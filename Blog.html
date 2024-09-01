@@ -5,7 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Fierce Firefighter Chronicles </title>
     <style>
-       
+        body {
+            background-color: #4F6367;
+            font-family: font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+            color: #333333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: url('https://example.com/firefighter-background.jpg') no-repeat center center/cover;
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            <!-- animation: bounce 1s infinite; -->
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #B8E1FF;
+            margin-top: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-post {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #8A9B68;
+            border-radius: 10px;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .blog-post:hover {
+            transform: scale(1.02);
+            background-color: #F5F5F5;
+        }
+
+        .blog-post h3 {
+            font-size: 2rem;
+            color: #3D52D5;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-post p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #8A9B68;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+
+        .social-icons {
+            margin: 10px 0;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.2s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: #ffcc00;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
 
 
         
