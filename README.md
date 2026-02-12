@@ -28,46 +28,32 @@ Output goes to `public/`. Deployment is handled automatically by GitHub Actions 
 
 ## Adding Content
 
-All content lives in the `content/` folder as Markdown files. Each file starts with **front matter** (the stuff between `---` lines) followed by your content.
-
 ### Blog Post
 
-Create a new file at `content/blog/your-post-title.md`:
+Create `content/blog/your-post-title.md`:
 
 ```markdown
 ---
 title: "Your Post Title"
 date: 2024-08-10
-author: "Your Name"
+author: "JT"
 description: "A short summary that shows up in previews."
 ---
 
-Write your post here in regular Markdown.
-
-Use **bold**, *italics*, [links](https://example.com), etc.
-
-> Blockquotes look like this.
-
-You can add images if you put them in `static/images/` first:
-
-![alt text](/images/my-photo.jpg)
+Write your post here in Markdown.
 ```
 
-Or use the Hugo command to scaffold it:
-
-```bash
-hugo new blog/your-post-title.md
-```
+Or scaffold: `hugo new blog/your-post-title.md`
 
 ### Recipe
 
-Create a new file at `content/cooking/recipe-name.md`:
+Create `content/cooking/recipe-name.md`:
 
 ```markdown
 ---
 title: "Recipe Name"
 date: 2024-08-10
-author: "Your Name"
+author: "JT"
 description: "Short description of the dish."
 ---
 
@@ -77,108 +63,79 @@ description: "Short description of the dish."
 
 - 2 lbs potatoes
 - 1 lb sausage
-- 1 onion, diced
-- Salt, pepper, garlic
 
 ## Steps
 
 1. Prep your vegetables.
-2. Heat oil in a pan over medium heat.
-3. Cook the potatoes until golden.
-4. Add sausage and onions, cook until done.
-5. Season and serve.
+2. Cook them.
 
 ## Notes
 
-Any tips, variations, or stories about the dish.
+Any tips or variations.
 ```
 
-Or scaffold it:
-
-```bash
-hugo new cooking/recipe-name.md
-```
+Or scaffold: `hugo new cooking/recipe-name.md`
 
 ### Farm Update
 
-Create a new file at `content/farming/update-name.md`:
+Create `content/farming/update-name.md`:
 
 ```markdown
 ---
 title: "Update Title"
 date: 2024-08-10
-author: "Your Name"
+author: "JT"
 description: "What's happening on the farm."
 ---
 
-Your farm update here. Add photos, talk about the harvest, weather, whatever.
+Your farm update here.
 ```
 
-Or scaffold it:
-
-```bash
-hugo new farming/update-name.md
-```
+Or scaffold: `hugo new farming/update-name.md`
 
 ### Music
 
-Music is a single page. Edit `content/music.md` directly:
+Music is data-driven. Edit `data/music.yaml`:
 
-```markdown
----
-title: "Music"
-type: "page"
-layout: "single"
-description: "What we're listening to"
----
+```yaml
+albums:
+  - title: "Blonde"
+    artist: "Frank Ocean"
+    year: 2016
+    note: "Still hits."
+    link: "https://open.spotify.com/album/..."
 
-## Now Playing
-
-**Album Name** by Artist — Short review. This album rips.
-
-## Albums We're Into
-
-- **Album 1** by Artist — One sentence review
-- **Album 2** by Artist — One sentence review
-
-## Playlists
-
-- [Playlist Name](https://open.spotify.com/playlist/xxx) — Description
+playlists:
+  - name: "Fire Camp"
+    description: "What we play on the 14-day rolls."
+    link: "https://open.spotify.com/playlist/..."
 ```
+
+Add entries and they render as cards on the Music page automatically.
 
 ### Books
 
-Same idea — edit `content/books.md` directly:
+Edit `data/books.yaml`. Each book needs a `status` of `reading`, `finished`, or `recommended`:
 
-```markdown
----
-title: "Books"
-type: "page"
-layout: "single"
-description: "Our reading list"
----
+```yaml
+books:
+  - title: "Blood Meridian"
+    author: "Cormac McCarthy"
+    status: "finished"
+    note: "Brutal and beautiful."
 
-## Currently Reading
-
-**Book Title** by Author — Thoughts so far.
-
-## Recommendations
-
-- **Book 1** by Author — Why it's good
-- **Book 2** by Author — Why it's good
-
-## Finished
-
-- **Book 3** by Author — Short review
+  - title: "Braiding Sweetgrass"
+    author: "Robin Wall Kimmerer"
+    status: "reading"
 ```
+
+The Books page automatically groups them into Currently Reading, Finished, and Recommendations.
 
 ### Gallery
 
-Add images to `static/images/gallery/`, then reference them in `content/gallery.md`.
+Drop images (`.jpg`, `.png`, `.webp`, `.gif`) into `static/images/gallery/` and they show up on the Gallery page automatically. No markdown editing needed.
 
----
-
-## Adding a Contributor
+### Adding a Contributor
 
 Edit `data/contributors.yaml`:
 
@@ -193,29 +150,31 @@ Edit `data/contributors.yaml`:
   photo: "/images/jake.jpg"
 ```
 
-If you include a `photo`, put the image file in `static/images/`. If you skip `photo`, the site shows the person's first initial in a yellow circle.
+If you include a `photo`, put the image in `static/images/`. Without a photo, the site shows the person's first initial in a yellow circle.
 
 ---
 
 ## Project Structure
 
 ```
-content/           ← All your content (Markdown files)
+content/           ← Markdown content
   blog/            ← Blog posts
   cooking/         ← Recipes
   farming/         ← Farm updates
-  music.md         ← Music page (single file)
-  books.md         ← Books page (single file)
-  about.md         ← About page
-  gallery.md       ← Gallery page
+  music.md         ← Music page (renders from data/music.yaml)
+  books.md         ← Books page (renders from data/books.yaml)
+  gallery.md       ← Gallery page (scans static/images/gallery/)
+  about.md         ← About page (renders from data/contributors.yaml)
 data/
-  contributors.yaml  ← Contributor bios for the About page
+  music.yaml       ← Albums and playlists
+  books.yaml       ← Reading list
+  contributors.yaml ← Crew bios for the About page
 static/
-  images/          ← Put your images here
+  images/          ← Images (gallery/ subfolder for Gallery page)
   CNAME            ← Custom domain config
 assets/css/
-  main.css         ← All the site styling
-layouts/           ← Hugo templates (you probably don't need to touch these)
+  main.css         ← Site styling
+layouts/           ← Hugo templates
 archetypes/        ← Templates for `hugo new` commands
 hugo.toml          ← Site config (title, menu, settings)
 .github/workflows/ ← Auto-deploy on push to main
@@ -223,30 +182,8 @@ hugo.toml          ← Site config (title, menu, settings)
 
 ---
 
-## Markdown Cheat Sheet
-
-```markdown
-**bold text**
-*italic text*
-[link text](https://url.com)
-![image alt](/images/filename.jpg)
-
-> blockquote
-
-- bullet list
-- another item
-
-1. numbered list
-2. another item
-
-## Heading 2
-### Heading 3
-
----  (horizontal rule)
-```
-
----
-
 ## Deployment
 
-Push to `main` and GitHub Actions builds + deploys automatically. That's it.
+Push to `main` and GitHub Actions builds + deploys automatically.
+
+**Important:** In your repo settings (Settings > Pages), make sure the Source is set to **GitHub Actions**, not "Deploy from a branch".
