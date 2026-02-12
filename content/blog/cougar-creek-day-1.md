@@ -1,7 +1,7 @@
 ---
 title: "Tuzaga, was it?"
 date: 2024-08-04
-author: "JT"
+author: ""
 description: "Day 0/1 of Cougar Creek — burn ops off the 43 road with the Eagle Cap Hotshots, and meeting Justin from Mississippi."
 ---
 
