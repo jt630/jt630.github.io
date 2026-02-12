@@ -1,0 +1,69 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="curated-page">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.description }}<p class="page-subtitle">{{ . }}</p>{{ end }}
+
+    {{ with .Content }}
+      <div class="curated-intro">{{ . }}</div>
+    {{ end }}
+
+    {{ $books := .Site.Data.books.books }}
+
+    {{/* Currently Reading */}}
+    {{ $reading := where $books "status" "reading" }}
+    <h2>Currently Reading</h2>
+    {{ if $reading }}
+      <div class="item-grid">
+        {{ range $reading }}
+        <div class="item-card">
+          <h3>{{ .title }}</h3>
+          <div class="item-meta">{{ .author }}</div>
+          {{ with .note }}<p>{{ . }}</p>{{ end }}
+          {{ with .link }}<a href="{{ . }}" class="item-link" target="_blank" rel="noopener">More &rarr;</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="empty-state">Nothing on the nightstand right now.</p>
+    {{ end }}
+
+    {{/* Finished */}}
+    {{ $finished := where $books "status" "finished" }}
+    <h2>Finished</h2>
+    {{ if $finished }}
+      <div class="item-grid">
+        {{ range $finished }}
+        <div class="item-card">
+          <h3>{{ .title }}</h3>
+          <div class="item-meta">{{ .author }}</div>
+          {{ with .note }}<p>{{ . }}</p>{{ end }}
+          {{ with .link }}<a href="{{ . }}" class="item-link" target="_blank" rel="noopener">More &rarr;</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="empty-state">No finished books listed yet.</p>
+    {{ end }}
+
+    {{/* Recommendations */}}
+    {{ $recs := where $books "status" "recommended" }}
+    <h2>Recommendations</h2>
+    {{ if $recs }}
+      <div class="item-grid">
+        {{ range $recs }}
+        <div class="item-card">
+          <h3>{{ .title }}</h3>
+          <div class="item-meta">{{ .author }}</div>
+          {{ with .note }}<p>{{ . }}</p>{{ end }}
+          {{ with .link }}<a href="{{ . }}" class="item-link" target="_blank" rel="noopener">More &rarr;</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="empty-state">No recommendations yet.</p>
+    {{ end }}
+
+  </div>
+</div>
+{{ end }}

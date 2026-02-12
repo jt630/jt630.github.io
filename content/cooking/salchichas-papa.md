@@ -1,7 +1,7 @@
 ---
 title: "Salchichas Papa"
 date: 2024-08-01
-author: ""
+author: "JT"
 description: "Sausage and potatoes — for when that's all you've got."
 ---
 

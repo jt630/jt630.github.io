@@ -1,0 +1,48 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="curated-page">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.description }}<p class="page-subtitle">{{ . }}</p>{{ end }}
+
+    {{ with .Content }}
+      <div class="curated-intro">{{ . }}</div>
+    {{ end }}
+
+    {{/* Albums */}}
+    <h2>Albums</h2>
+    {{ $albums := .Site.Data.music.albums }}
+    {{ if $albums }}
+      <div class="item-grid">
+        {{ range $albums }}
+        <div class="item-card">
+          <h3>{{ .title }}</h3>
+          <div class="item-meta">{{ .artist }}{{ with .year }} &middot; {{ . }}{{ end }}</div>
+          {{ with .note }}<p>{{ . }}</p>{{ end }}
+          {{ with .link }}<a href="{{ . }}" class="item-link" target="_blank" rel="noopener">Listen &rarr;</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="empty-state">No albums added yet.</p>
+    {{ end }}
+
+    {{/* Playlists */}}
+    <h2>Playlists</h2>
+    {{ $playlists := .Site.Data.music.playlists }}
+    {{ if $playlists }}
+      <div class="item-grid">
+        {{ range $playlists }}
+        <div class="item-card">
+          <h3>{{ .name }}</h3>
+          {{ with .description }}<p>{{ . }}</p>{{ end }}
+          {{ with .link }}<a href="{{ . }}" class="item-link" target="_blank" rel="noopener">Listen &rarr;</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="empty-state">No playlists added yet.</p>
+    {{ end }}
+
+  </div>
+</div>
+{{ end }}
