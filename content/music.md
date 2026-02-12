@@ -3,6 +3,7 @@ title: "Music"
 type: "page"
 layout: "single"
 description: "What we're listening to"
+tabTitle: "Time for DIN"
 ---
 
 ## Now Playing

@@ -3,6 +3,7 @@ title: "Books"
 type: "page"
 layout: "single"
 description: "Our reading list"
+tabTitle: "Perf"
 ---
 
 ## Currently Reading
