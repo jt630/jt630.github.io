@@ -1,7 +1,7 @@
 ---
 title: "Fragments of Justin"
 date: 2024-08-03
-author: "JT"
+author: ""
 description: "The best quotes from Justin of Walnut, Mississippi."
 ---
 

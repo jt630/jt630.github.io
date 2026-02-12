@@ -1,7 +1,7 @@
 ---
 title: "Mount Misery"
 date: 2024-08-05
-author: "JT"
+author: ""
 description: "Day two at the Mount Misery Warming Hut — cards, the 40 road, and cutting line around a burning snag."
 ---
 

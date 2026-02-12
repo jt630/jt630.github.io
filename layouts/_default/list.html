@@ -7,16 +7,10 @@
   {{ with .Content }}
     <div style="margin-bottom: 2rem;">{{ . }}</div>
   {{ end }}
-  {{ if .Pages }}
-    <div class="post-list">
-      {{ range .Pages.ByDate.Reverse }}
-        {{ partial "post-card.html" . }}
-      {{ end }}
-    </div>
-  {{ else }}
-    <div class="empty-section">
-      <p>No posts yet.</p>
-    </div>
-  {{ end }}
+  <div class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
 </div>
 {{ end }}
