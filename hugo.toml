@@ -33,9 +33,37 @@ title = "Almond Farm"
     url = "/gallery/"
     weight = 6
   [[menu.main]]
+    name = "Gaming"
+    url = "/gaming/"
+    weight = 7
+  [[menu.main]]
+    name = "Art"
+    url = "/art/"
+    weight = 8
+  [[menu.main]]
+    name = "Movies"
+    url = "/movies/"
+    weight = 9
+  [[menu.main]]
+    name = "Drinks"
+    url = "/drinks/"
+    weight = 10
+  [[menu.main]]
+    name = "Brain"
+    url = "/brain/"
+    weight = 11
+  [[menu.main]]
+    name = "Body"
+    url = "/body/"
+    weight = 12
+  [[menu.main]]
+    name = "Gadgets"
+    url = "/gadgets/"
+    weight = 13
+  [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 7
+    weight = 14
 
 [markup]
   [markup.goldmark]
