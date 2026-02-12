@@ -303,6 +303,13 @@ img {
 .section-card.books   { border-top: 3px solid var(--gold-light); }
 .section-card.farming { border-top: 3px solid var(--pink); }
 .section-card.gallery { border-top: 3px solid var(--gold); }
+.section-card.gaming  { border-top: 3px solid var(--pink); }
+.section-card.art     { border-top: 3px solid var(--gold-light); }
+.section-card.movies  { border-top: 3px solid var(--pink-light); }
+.section-card.drinks  { border-top: 3px solid var(--gold); }
+.section-card.brain   { border-top: 3px solid var(--pink); }
+.section-card.body    { border-top: 3px solid var(--gold-light); }
+.section-card.gadgets { border-top: 3px solid var(--pink-light); }
 
 /* ---- RECENT POSTS (homepage) ---- */
 .recent-section {
