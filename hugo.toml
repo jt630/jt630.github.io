@@ -1,0 +1,42 @@
+baseURL = "https://almondfarm.us/"
+languageCode = "en-us"
+title = "Almond Farm"
+
+[params]
+  description = "A lifestyle site by friends, for friends."
+  tagline = "get on farming"
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 1
+  [[menu.main]]
+    name = "Cooking"
+    url = "/cooking/"
+    weight = 2
+  [[menu.main]]
+    name = "Music"
+    url = "/music/"
+    weight = 3
+  [[menu.main]]
+    name = "Books"
+    url = "/books/"
+    weight = 4
+  [[menu.main]]
+    name = "Farming"
+    url = "/farming/"
+    weight = 5
+  [[menu.main]]
+    name = "Gallery"
+    url = "/gallery/"
+    weight = 6
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 7
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

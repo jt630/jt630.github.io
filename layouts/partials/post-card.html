@@ -1,0 +1,13 @@
+<article class="post-card">
+  {{ with .Params.image }}
+    <img class="post-card-img" src="{{ . }}" alt="{{ $.Title }}">
+  {{ end }}
+  <div class="post-card-body">
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <div class="post-card-meta">
+      <time>{{ .Date.Format "January 2, 2006" }}</time>
+      {{ with .Params.author }} &middot; {{ . }}{{ end }}
+    </div>
+    <p class="post-card-excerpt">{{ .Summary | plainify | truncate 150 }}</p>
+  </div>
+</article>

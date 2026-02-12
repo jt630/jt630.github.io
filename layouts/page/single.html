@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="curated-page">
+    <h1>{{ .Title }}</h1>
+    <div class="content">
+      {{ .Content }}
+    </div>
+  </div>
+  {{ if eq .File.ContentBaseName "about" }}
+    {{ partial "contributors.html" . }}
+  {{ end }}
+</div>
+{{ end }}

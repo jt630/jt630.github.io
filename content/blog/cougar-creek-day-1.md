@@ -1,0 +1,16 @@
+---
+title: "Tuzaga, was it?"
+date: 2024-08-04
+author: ""
+description: "Day 0/1 of Cougar Creek — burn ops off the 43 road with the Eagle Cap Hotshots, and meeting Justin from Mississippi."
+---
+
+Day 0/1 of Cougar Creek, Engine 4501, E-573, and an unmarked truck driven by Engine Boss Trainee Robert Tuzaga with Engine Boss actual Connor Rupert arrived at the Wenatchee lookout at approximately 14:00. From 14:00 - 24:00, the 10 man squad assisted the Eagle Cap Hotshots from Enterprise, OR (ran by a guy named Fidel) in a burn operation off the 43 road. I drove 4501 while Jake Wells and Karson Krouse watched the burn to make sure no sparks, embers, or flames crossed over into the "green."
+
+One of the many guarantees when on a 14 day roll is that you're going to meet new people. On this particular roll it took less than a day for 4501 to make a new friend. Justin (who didn't include his last name in his introduction) is a part of the Mississippi crew that has been assigned to the Golf Division. Justin is about as southern as a man can get besides the fact that he does not care nor watch any football. He told stories about frying catfish and trapping beavers in-between lulls of southern drawl that were incomprehensible. However, it took little to no comprehension to understand that Justin is a good man with an honest soul. He enjoyed making us laugh and he was curious about the west. He worried about the small businesses around the fire despite the fact that he'll only be in the area for a mere 14 days of his life. Born and raised in Walnut, Mississippi, Justin spent his entire life in the Dixie Alley apart from six months he spent in Haver, Montana. He talked about Montana and was astonished by the big sky country.
+
+> "In Haver, Montana if you have a dog you can watch that joker run away for a week!"
+
+The sunset outlasted the sun going down on day one as orange flame lit up the mountain side as far as the eye could see on the south side of the 43 road. Despite an hour long wind shift that pushed smoke over the green the operation went smooth. Unburnt fuels were turned black, and the cameras from unmanned Romeo (a DNR owned drone the size of a wood pallet) confirmed at 2300 that the green remained green.
+
+At 0300 we settled down for the night despite my urge to continue conversation with Tuzaga about religion and the proximity of our extended families. Both of which have roots in Southern California. Tuzaga, as prideful and confident as he is religious, insisted that tents would only slow down our departure in the morning. Sleeping under no shelter became problematic around 0400 when the rain became steady. At 0542 we departed our campsite for the Mount Misery Warming Hut, a popular snowmobile hangout in the winter and a potential shelter for our group of 10. Driving 4501 with bare feet, and cold, wet clothes we arrived at the warming hut only to find that it had been wrapped in fire protective material that would replicate industrial strength tinfoil if that was a product sold on the open market. Tuzaga did not want to remove the wrapping but Rupert insisted that we use the structure to dry our sleeping bags and fire blankets. At around 0645, I closed my eyes in the driver's seat of 4501 still with no shoes on.
