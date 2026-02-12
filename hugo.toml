@@ -5,6 +5,7 @@ title = "Almond Farm"
 [params]
   description = "A lifestyle site by friends, for friends."
   tagline = "get on farming"
+  tabTitle = "ALMONDS!"
 
 [menu]
   [[menu.main]]
