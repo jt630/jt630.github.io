@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 </head>
 <body>
+  <div class="ie-warning" id="ie-warning" style="display:none">
+    ⚠️ WARNING: This site is optimized for <strong>Internet Explorer 6.0</strong>. Your browser may not display this page correctly.
+    <button onclick="this.parentElement.remove()">[ X ] Dismiss</button>
+  </div>
   {{ partial "nav.html" . }}
   <div class="marquee-ticker">
     <marquee behavior="scroll" direction="left" scrollamount="4">
@@ -23,6 +27,67 @@
     document.querySelector('.nav-toggle')?.addEventListener('click', function() {
       document.querySelector('.nav-links').classList.toggle('open');
     });
+
+    // IE6 warning — show if not IE
+    (function() {
+      var isIE = /MSIE|Trident/.test(navigator.userAgent);
+      if (!isIE) {
+        var w = document.getElementById('ie-warning');
+        if (w) w.style.display = 'block';
+      }
+    })();
+
+    // Cursor sparkle trail
+    (function() {
+      var symbols = ['✨', '★', '✦', '⭐', '💫', '✧', '🌟'];
+      var last = 0;
+      document.addEventListener('mousemove', function(e) {
+        var now = Date.now();
+        if (now - last < 60) return;
+        last = now;
+        var el = document.createElement('span');
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.cssText = [
+          'position:fixed',
+          'left:' + (e.clientX - 8) + 'px',
+          'top:' + (e.clientY - 8) + 'px',
+          'pointer-events:none',
+          'font-size:16px',
+          'z-index:9999',
+          'animation:sparkle-fade 0.7s forwards',
+          'user-select:none'
+        ].join(';');
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 700);
+      });
+    })();
+
+    // Page load beep — fires on first click (autoplay blocked in modern browsers)
+    (function() {
+      var played = false;
+      function playBeep() {
+        if (played) return;
+        played = true;
+        try {
+          var ctx = new (window.AudioContext || window.webkitAudioContext)();
+          var notes = [880, 1100, 880, 1320];
+          notes.forEach(function(freq, i) {
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'square';
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.08, ctx.currentTime + i * 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.1 + 0.09);
+            osc.start(ctx.currentTime + i * 0.1);
+            osc.stop(ctx.currentTime + i * 0.1 + 0.09);
+          });
+        } catch(e) {}
+      }
+      document.addEventListener('click', playBeep, { once: true });
+      document.addEventListener('keydown', playBeep, { once: true });
+    })();
   </script>
 </body>
 </html>

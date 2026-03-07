@@ -948,3 +948,100 @@ img {
 .curated-page p a {
   text-decoration: underline;
 }
+
+/* Blink utility class */
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Sparkle cursor trail */
+@keyframes sparkle-fade {
+  0%   { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.2) translateY(-24px); }
+}
+
+/* IE warning banner */
+.ie-warning {
+  background: #FFFF00;
+  color: #000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.78rem;
+  font-weight: bold;
+  padding: 5px 12px;
+  text-align: center;
+  border-bottom: 2px solid #FF0000;
+  position: relative;
+  z-index: 200;
+}
+
+.ie-warning button {
+  background: #C0C0C0;
+  color: #000;
+  border: 2px outset #C0C0C0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  font-weight: bold;
+  padding: 1px 8px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.ie-warning button:active {
+  border-style: inset;
+}
+
+/* 88×31 badges */
+.badge-row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.web-badge {
+  display: flex;
+  width: 88px;
+  height: 31px;
+  font-family: Arial, sans-serif;
+  font-size: 7.5px;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  cursor: default;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.web-badge .badge-left {
+  width: 28px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.web-badge .badge-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2px;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-ie        { background: #003399; color: #fff; }
+.badge-ie        .badge-left { background: #0066cc; }
+.badge-construct { background: #1a1a00; color: #FFFF00; }
+.badge-construct .badge-left { background: #000; }
+.badge-notepad   { background: #003300; color: #00FF41; }
+.badge-notepad   .badge-left { background: #001a00; }
+.badge-best      { background: #4b0082; color: #fff; }
+.badge-best      .badge-left { background: #2d0050; }
+.badge-y2k       { background: #8b0000; color: #FFFF00; }
+.badge-y2k       .badge-left { background: #5a0000; }
