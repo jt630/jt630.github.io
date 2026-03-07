@@ -1,6 +1,7 @@
 /* ===========================
    ALMOND FARM — Maximum Cunty
    Hot pink · Black · Gold
+   Est. 2000 · Under Construction
    =========================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
@@ -22,8 +23,8 @@
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
   --shadow-pink: 0 4px 30px rgba(255, 45, 138, 0.25);
   --shadow-gold: 0 4px 30px rgba(212, 175, 55, 0.2);
-  --radius: 12px;
-  --radius-lg: 20px;
+  --radius: 4px;
+  --radius-lg: 6px;
 }
 
 /* Reset */
@@ -45,6 +46,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  cursor: crosshair;
 }
 
 /* Selection */
@@ -202,8 +204,12 @@ img {
 }
 
 .hero h1 {
+  font-family: Impact, 'Arial Black', 'Playfair Display', serif;
   font-size: 5rem;
   font-style: italic;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   position: relative;
   z-index: 1;
   background: linear-gradient(135deg, var(--pink) 0%, var(--gold-light) 50%, var(--pink-light) 100%);
@@ -213,6 +219,8 @@ img {
   background-clip: text;
   animation: shimmer 4s ease infinite;
   margin-bottom: 0.5rem;
+  text-shadow: none;
+  filter: drop-shadow(0 0 12px var(--pink-glow));
 }
 
 @keyframes shimmer {
@@ -830,4 +838,113 @@ img {
   .hero h1 {
     font-size: 2.4rem;
   }
+}
+
+/* ===========================
+   2000s VIBES
+   =========================== */
+
+/* Marquee ticker */
+.marquee-ticker {
+  background: #000080;
+  color: #FFFF00;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.82rem;
+  font-weight: bold;
+  padding: 5px 0;
+  border-top: 2px solid #FFFF00;
+  border-bottom: 2px solid #FFFF00;
+}
+
+/* Blink animation */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* NEW! badge */
+.new-badge {
+  display: inline-block;
+  background: #FF0000;
+  color: #FFFF00;
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid #FFFF00;
+  animation: blink 0.9s step-end infinite;
+  vertical-align: middle;
+  margin-left: 8px;
+  text-transform: uppercase;
+}
+
+/* Section card outset borders */
+.section-card {
+  border-style: outset;
+  border-width: 3px;
+  border-color: rgba(255, 109, 179, 0.5);
+}
+
+.section-card:hover {
+  border-style: inset;
+}
+
+/* Twinkling stars in hero */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.hero::after {
+  content: '✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦';
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gold);
+  letter-spacing: 0.4em;
+  animation: twinkle 2.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Visitor counter */
+.visitor-counter {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  color: #00FF41;
+  letter-spacing: 0.08em;
+  margin-top: 0.4rem;
+}
+
+.counter-digits {
+  font-weight: bold;
+  font-size: 1rem;
+  border: 1px solid #00FF41;
+  padding: 1px 5px;
+  background: #001400;
+}
+
+/* Best viewed text */
+.best-viewed {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  color: var(--white-faint);
+  margin-top: 0.3rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+/* Nav links - more boxy 2000s feel */
+.nav-links a {
+  border-radius: 2px;
+}
+
+/* Underline prose links like it's 2001 */
+.single-post .content a,
+.curated-page p a {
+  text-decoration: underline;
 }

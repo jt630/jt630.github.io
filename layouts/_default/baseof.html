@@ -10,6 +10,11 @@
 </head>
 <body>
   {{ partial "nav.html" . }}
+  <div class="marquee-ticker">
+    <marquee behavior="scroll" direction="left" scrollamount="4">
+      ✨ Welcome to Almond Farm ✨ &nbsp;&nbsp;&nbsp; 🌟 Updated daily! 🌟 &nbsp;&nbsp;&nbsp; ★ Sign our guestbook! ★ &nbsp;&nbsp;&nbsp; 💾 Bookmark this page! 💾 &nbsp;&nbsp;&nbsp; 🔥 Best site on the web 🔥 &nbsp;&nbsp;&nbsp; ✨ get on farming ✨ &nbsp;&nbsp;&nbsp;
+    </marquee>
+  </div>
   <main>
     {{ block "main" . }}{{ end }}
   </main>
