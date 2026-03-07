@@ -1,5 +1,15 @@
 <footer class="site-footer">
   <p>&copy; {{ now.Year }} Almond Farm &middot; <a href="/about/">About</a></p>
-  <p class="visitor-counter">👁 You are visitor #<span class="counter-digits">001337</span></p>
+  <p class="visitor-counter">👁 You are visitor #<span class="counter-digits" id="visitor-count">000000</span></p>
+  <script>
+    (function() {
+      var BASE = 419200;
+      var stored = localStorage.getItem('af_visits');
+      var count = stored ? parseInt(stored, 10) : BASE + Math.floor(Math.random() * 800);
+      count += Math.floor(Math.random() * 6) + 1;
+      localStorage.setItem('af_visits', count);
+      document.getElementById('visitor-count').textContent = String(count).padStart(6, '0');
+    })();
+  </script>
   <p class="best-viewed">Best viewed in Internet Explorer 6 at 800×600 resolution</p>
 </footer>
