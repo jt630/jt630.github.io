@@ -3,6 +3,16 @@
 {{/* Bake personal events from data/calendar_events.yaml into the page */}}
 {{ $personalEvents := site.Data.calendar_events | default (slice) }}
 
+{{/* Bake pre-fetched calendar data (from scripts/fetch-calendars.py) if it exists */}}
+{{ $bakedEvents := site.Data.baked_calendars | default (slice) }}
+{{/* Collect which sources are already baked so JS skips live-fetching them */}}
+{{ $bakedSources := slice }}
+{{ range $bakedEvents }}
+  {{ with .extendedProps }}
+    {{ $bakedSources = $bakedSources | append .source }}
+  {{ end }}
+{{ end }}
+
 <div class="cal-page">
 
   <div class="cal-window">
@@ -51,7 +61,8 @@
 
   <!-- Edit hint -->
   <p class="cal-hint">
-    ✏️ Personal events live in <code>data/calendar_events.yaml</code> — edit that file to add your own.
+    ✏️ Personal events → <code>data/calendar_events.yaml</code> &nbsp;|&nbsp;
+    Refresh schedule → <code>python3 scripts/fetch-calendars.py</code>
   </p>
 
 </div>
@@ -65,7 +76,13 @@
 // ── Personal events baked in by Hugo ─────────────────────────────────────────
 const PERSONAL_EVENTS = {{ $personalEvents | jsonify }};
 
-// ── External ICS feeds ────────────────────────────────────────────────────────
+// ── Pre-fetched events baked in by Hugo (from scripts/fetch-calendars.py) ─────
+const BAKED_EVENTS = {{ $bakedEvents | jsonify }};
+
+// Sources already covered by baked data — skip live fetching these
+const BAKED_SOURCES = new Set({{ $bakedSources | uniq | jsonify }});
+
+// ── External ICS feeds (only fetched live if NOT in BAKED_SOURCES) ─────────
 const ICS_FEEDS = [
   {
     name: 'US Holidays',
@@ -93,7 +110,7 @@ const ICS_FEEDS = [
   }
 ];
 
-// CORS proxy — routes ICS fetches through a public proxy
+// CORS proxy — only used for any feeds not already baked in
 const CORS_PROXY = 'https://corsproxy.io/?url=';
 
 // ── ICS fetch + parse ─────────────────────────────────────────────────────────
@@ -160,7 +177,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     extendedProps: { source: 'Personal' }
   }));
 
-  // Init FullCalendar with personal events
+  // Seed with baked events (pre-fetched at build time — no network needed)
+  const initialEvents = [...personalFC, ...(BAKED_EVENTS || [])];
+
+  // Init FullCalendar
   const calEl = document.getElementById('calendar');
   const calendar = new FullCalendar.Calendar(calEl, {
     initialView: 'dayGridMonth',
@@ -171,24 +191,37 @@ document.addEventListener('DOMContentLoaded', async () => {
       right: 'dayGridMonth,dayGridWeek'
     },
     height: 'auto',
-    events: personalFC,
+    events: initialEvents,
     eventDidMount(info) {
       info.el.title = info.event.extendedProps.source + ': ' + info.event.title;
     }
   });
   calendar.render();
-  statusEl.textContent = `${personalFC.length} personal event(s) · loading external feeds...`;
 
-  // Fetch external ICS feeds concurrently
-  const results = await Promise.allSettled(ICS_FEEDS.map(f => fetchICS(f)));
+  const bakedCount = (BAKED_EVENTS || []).length;
+  if (bakedCount > 0) {
+    statusEl.textContent = `${personalFC.length} personal · ${bakedCount} baked events loaded ✓`;
+  } else {
+    statusEl.textContent = `${personalFC.length} personal event(s) · loading external feeds...`;
+  }
+
+  // Only live-fetch feeds that are NOT already covered by baked data
+  const liveFeeds = ICS_FEEDS.filter(f => !BAKED_SOURCES.has(f.name));
+
+  if (liveFeeds.length === 0) {
+    if (bakedCount > 0) return; // all covered by baked data
+  }
+
+  // Fetch remaining feeds via CORS proxy
+  const results = await Promise.allSettled(liveFeeds.map(f => fetchICS(f)));
   let loaded = 0;
-  let totalExternal = 0;
+  let totalLive = 0;
 
   results.forEach((result, i) => {
-    const feed = ICS_FEEDS[i];
+    const feed = liveFeeds[i];
     if (result.status === 'fulfilled') {
       result.value.forEach(ev => calendar.addEvent(ev));
-      totalExternal += result.value.length;
+      totalLive += result.value.length;
       loaded++;
     } else {
       console.warn('[cal] Failed to load', feed.name, result.reason);
@@ -196,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   statusEl.textContent =
-    `${personalFC.length} personal · ${totalExternal} external events · ${loaded}/${ICS_FEEDS.length} feeds loaded`;
+    `${personalFC.length} personal · ${bakedCount} baked · ${totalLive} live · ${loaded}/${liveFeeds.length} feeds`;
 
   // ── Toggle visibility by source ─────────────────────────────────────────────
   document.querySelectorAll('.cal-toggle').forEach(label => {
