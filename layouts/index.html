@@ -79,7 +79,7 @@
 
 {{ if $recent }}
 <section class="recent-section">
-  <h2>Latest Posts</h2>
+  <h2>Latest Posts <span class="new-badge">NEW!</span></h2>
   <div class="post-list">
     {{ range first 5 (sort $recent "Date" "desc") }}
       {{ partial "post-card.html" . }}

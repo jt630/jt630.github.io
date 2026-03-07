@@ -1,0 +1,688 @@
+{{ define "main" }}
+<style>
+/* ── BRAIN LAB WRAPPER ───────────────────────────── */
+.brain-lab { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 6rem; }
+.lab-header {
+  text-align: center; padding: 2.5rem 1rem; margin-bottom: 3.5rem;
+  border: 2px solid var(--pink);
+  background: linear-gradient(135deg,rgba(255,45,138,.05),rgba(212,175,55,.05));
+}
+.lab-header h1 {
+  font-family: Impact,'Arial Black',sans-serif; font-size: 3rem;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--pink); margin:0 0 .5rem;
+}
+.lab-header p { font-family:'Courier New',monospace; color:var(--gold); font-size:.82rem; letter-spacing:.1em; margin:0; }
+.design-entry { margin-bottom: 4rem; }
+.design-label {
+  font-family:'Courier New',monospace; font-size:.7rem; color:var(--gold);
+  letter-spacing:.2em; text-transform:uppercase; padding:.4rem .8rem;
+  border-left:3px solid var(--gold); background:rgba(212,175,55,.07);
+  margin-bottom:.7rem; display:flex; justify-content:space-between; align-items:center;
+}
+.design-label .dtag { font-size:.62rem; color:var(--pink); border:1px solid var(--pink); padding:1px 6px; }
+.design-frame { border:1px solid rgba(255,255,255,.08); overflow:hidden; }
+</style>
+
+<div class="brain-lab">
+<div class="lab-header">
+  <h1>⚡ Brain Lab</h1>
+  <p>10 html designs :: old web aesthetic × ai superpowers</p>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 01 — Geocities Shrine
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 01 — Geocities Shrine <span class="dtag">starfield + rainbow text</span></div>
+<div class="design-frame">
+<style>
+.d1 { background:#000033; background-image:radial-gradient(circle,rgba(255,255,255,.15) 1px,transparent 1px); background-size:18px 18px; font-family:Verdana,Geneva,sans-serif; padding:1.5rem; color:#FFF; text-align:center; }
+.d1-title { font-family:Impact,sans-serif; font-size:2.2rem; animation:d1-rb 2.5s linear infinite; text-shadow:2px 2px #00FFFF,-1px -1px #FF0000; letter-spacing:.1em; }
+@keyframes d1-rb { 0%{color:#FF00FF}16%{color:#FF3300}33%{color:#FFFF00}50%{color:#00FF00}66%{color:#00FFFF}83%{color:#0055FF}100%{color:#FF00FF} }
+.d1-stars { font-size:1.1rem; margin:.4rem 0; color:#FFD700; animation:twinkle 1.8s ease-in-out infinite; }
+.d1-box { background:rgba(0,0,128,.65); border:2px solid #00FFFF; padding:1rem; margin:1rem auto; max-width:520px; text-align:left; }
+.d1-aibadge { display:inline-block; background:#00FF00; color:#000; font-family:Impact,sans-serif; font-size:.58rem; letter-spacing:.12em; font-weight:900; padding:1px 5px; margin-right:5px; }
+.d1-aitext { color:#AAFFAA; font-size:.8rem; line-height:1.6; font-style:italic; }
+.d1-ctr { font-family:'Courier New',monospace; font-size:.72rem; color:#FFFF00; margin-top:.8rem; }
+.d1-ctr span { background:#000; border:1px solid #FFFF00; padding:1px 6px; color:#00FF00; font-size:.95rem; font-weight:bold; }
+.d1-ring { margin-top:.8rem; padding-top:.7rem; border-top:1px dashed #00FFFF; font-size:.68rem; color:#AAAAFF; }
+.d1-ring a { color:#00FFFF; font-weight:bold; text-decoration:none; border:1px outset #00FFFF; padding:2px 8px; margin:0 4px; font-family:'Courier New',monospace; font-size:.68rem; }
+</style>
+<div class="d1">
+  <div class="d1-stars">✦ ✧ ★ ✧ ✦ ✧ ★ ✧ ✦ ✧ ★ ✧ ✦</div>
+  <div class="d1-title">~*~ WELCOME TO MY BRAIN ~*~</div>
+  <div class="d1-stars">✦ ✧ ★ ✧ ✦ ✧ ★ ✧ ✦ ✧ ★ ✧ ✦</div>
+  <div class="d1-box">
+    <div style="font-size:.6rem;color:#FFFF00;letter-spacing:.15em;margin-bottom:.5rem;">⚡ TODAY'S AI BRAIN FORECAST ⚡</div>
+    <span class="d1-aibadge">AI</span>
+    <span class="d1-aitext">"Neural activity suggests elevated lateral thinking. Recommend: jazz, long walks, and avoiding fluorescent lights. Your beta waves are giving main character energy today."</span>
+  </div>
+  <div class="d1-ctr">👁 YOU ARE VISITOR <span>001338</span></div>
+  <div class="d1-ctr" style="margin-top:.35rem;">LAST UPDATED: <span>2/14/2002</span> &nbsp; BEST IN IE5 &nbsp; 800×600</div>
+  <div class="d1-ring">← <a href="#">PREV</a> &nbsp;·&nbsp; [ BRAIN WEBRING ] &nbsp;·&nbsp; <a href="#">NEXT</a> →</div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 02 — phpBB Forum Thread
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 02 — phpBB Forum Thread <span class="dtag">table layout + AI bot reply</span></div>
+<div class="design-frame">
+<style>
+.d2 { font-family:Verdana,Geneva,sans-serif; font-size:.8rem; background:#DDEEFF; color:#000; }
+.d2-breadcrumb { background:#336699; color:#FFF; padding:4px 8px; font-size:.7rem; font-weight:bold; border-bottom:2px solid #224466; }
+.d2-breadcrumb a { color:#FFFF99; text-decoration:none; }
+.d2-threadtitle { background:#7399C6; color:#FFF; padding:5px 8px; font-size:.85rem; font-weight:bold; }
+.d2-postrow { display:grid; grid-template-columns:110px 1fr; border-bottom:1px solid #AABBCC; }
+.d2-postrow:nth-child(even) .d2-postcontent { background:#EEF4FF; }
+.d2-avatar { background:#BBCCDD; padding:8px; text-align:center; border-right:1px solid #AABBCC; font-size:.68rem; }
+.d2-username { font-weight:bold; font-size:.8rem; color:#336699; margin-bottom:4px; }
+.d2-rankstars { color:#FF9900; font-size:.65rem; letter-spacing:1px; }
+.d2-postcount { font-size:.62rem; color:#666; margin-top:3px; }
+.d2-avatarimg { width:60px; height:60px; background:#99AACC; margin:0 auto 4px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; border:2px inset #7788AA; }
+.d2-botavatar { background:#003300; border-color:#00FF00; color:#00FF00; font-size:1rem; }
+.d2-postcontent { background:#F5F9FF; padding:8px 10px; }
+.d2-postheader { display:flex; justify-content:space-between; font-size:.65rem; color:#666; padding-bottom:5px; border-bottom:1px dotted #BBCCDD; margin-bottom:7px; }
+.d2-postnumber { color:#336699; font-weight:bold; }
+.d2-postbody { line-height:1.5; }
+.d2-sig { margin-top:8px; padding-top:6px; border-top:1px solid #BBCCDD; font-size:.68rem; color:#888; font-style:italic; }
+.d2-bot .d2-username { color:#006600; }
+.d2-bot .d2-postcontent { background:#EEFFEE; }
+.d2-aichip { display:inline-block; background:#006600; color:#00FF00; font-size:.58rem; font-family:'Courier New',monospace; padding:0 4px; letter-spacing:.08em; margin-right:3px; border:1px solid #00FF00; vertical-align:middle; }
+.d2-quoting { background:#DDEEDD; border-left:3px solid #009900; padding:4px 8px; margin-bottom:7px; font-size:.75rem; color:#334433; font-style:italic; }
+.d2-footer { background:#7399C6; padding:4px 8px; text-align:right; font-size:.65rem; color:#FFF; }
+.d2-footer a { color:#FFFF99; margin-left:8px; text-decoration:none; font-weight:bold; }
+</style>
+<div class="d2">
+  <div class="d2-breadcrumb"><a href="#">Forum Index</a> &raquo; <a href="#">Mind & Memory</a> &raquo; <strong>Does music help you focus?</strong></div>
+  <div class="d2-threadtitle">Does music help you focus? — Posted by: jt630 · 14 replies</div>
+  <!-- Post 1 -->
+  <div class="d2-postrow">
+    <div class="d2-avatar">
+      <div class="d2-avatarimg">🧑</div>
+      <div class="d2-username">jt630</div>
+      <div class="d2-rankstars">★★★☆☆</div>
+      <div class="d2-postcount">Posts: 247</div>
+      <div class="d2-postcount">Joined: Jan 2001</div>
+    </div>
+    <div class="d2-postcontent">
+      <div class="d2-postheader"><span>Posted: Wed Mar 05, 2003 9:14 pm</span><span class="d2-postnumber">#1</span></div>
+      <div class="d2-postbody">anyone else find that certain music completely destroys your ability to think? been trying to work and keep putting on stuff that's way too loud. what does everyone use to focus?</div>
+      <div class="d2-sig">-- jt630 | "the internet is for everyone" | AIM: jt630farm</div>
+    </div>
+  </div>
+  <!-- AI Bot Post -->
+  <div class="d2-postrow d2-bot">
+    <div class="d2-avatar">
+      <div class="d2-avatarimg d2-botavatar">🤖</div>
+      <div class="d2-username" style="color:#006600;">SynthBot_v1</div>
+      <div class="d2-rankstars" style="color:#00CC00;">▓▓▓▓▓</div>
+      <div class="d2-postcount" style="color:#009900;">Posts: ∞</div>
+      <div class="d2-postcount" style="color:#009900;">AI Member</div>
+    </div>
+    <div class="d2-postcontent" style="background:#EEFFEE;">
+      <div class="d2-postheader"><span>Posted: Wed Mar 05, 2003 9:14 pm</span><span class="d2-postnumber" style="color:#006600;">#2</span></div>
+      <div class="d2-quoting">jt630 wrote: anyone else find that certain music completely destroys your ability to think?</div>
+      <div class="d2-postbody"><span class="d2-aichip">AI</span> Research suggests 60-80 BPM instrumental tracks activate the default mode network without triggering speech-processing interference. Based on your post history, you tend to focus best in the early morning — try lo-fi or baroque. Your pattern: 3pm is your personal productivity cliff.</div>
+      <div class="d2-sig">-- SynthBot_v1 | Powered by forum neural analysis | <em>This reply was auto-generated</em></div>
+    </div>
+  </div>
+  <div class="d2-footer">
+    Pages: <a href="#">1</a> <a href="#">2</a> &nbsp;|&nbsp; <a href="#">Reply to thread</a> &nbsp;|&nbsp; <a href="#">New topic</a>
+  </div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 03 — Windows 98 Window
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 03 — Windows 98 Window <span class="dtag">win98 chrome + clippy AI</span></div>
+<div class="design-frame">
+<style>
+.d3 { background:#008080; padding:16px; font-family:'Arial',sans-serif; }
+.d3-win { background:#D4D0C8; border:2px outset #F0EFE8; max-width:560px; margin:0 auto; }
+.d3-titlebar { background:linear-gradient(90deg,#000080,#1084D0); padding:3px 4px; display:flex; align-items:center; justify-content:space-between; }
+.d3-titletext { color:#FFF; font-size:.75rem; font-weight:bold; font-family:'Arial',sans-serif; display:flex; align-items:center; gap:5px; }
+.d3-winctrls { display:flex; gap:2px; }
+.d3-winbtn { background:#D4D0C8; border:1px outset #FFF; width:16px; height:14px; font-size:.55rem; font-weight:900; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'Arial',sans-serif; }
+.d3-menubar { background:#D4D0C8; padding:2px 4px; font-size:.72rem; border-bottom:1px solid #808080; display:flex; gap:0; }
+.d3-menu { padding:2px 8px; cursor:pointer; }
+.d3-menu:hover { background:#000080; color:#FFF; }
+.d3-toolbar { background:#D4D0C8; padding:3px 4px; border-bottom:1px solid #808080; display:flex; gap:4px; align-items:center; }
+.d3-tbtn { background:#D4D0C8; border:1px outset #FFF; padding:3px 6px; font-size:.65rem; cursor:pointer; }
+.d3-sep { width:1px; height:18px; background:#808080; margin:0 3px; }
+.d3-content { background:#FFF; margin:4px; padding:12px; min-height:160px; font-size:.8rem; color:#000; line-height:1.6; position:relative; }
+.d3-noteheading { font-weight:bold; font-size:.9rem; margin-bottom:8px; border-bottom:1px solid #CCC; padding-bottom:4px; }
+.d3-clippy { position:absolute; bottom:8px; right:8px; background:#FFFFC0; border:1px solid #888; border-radius:4px 4px 0 4px; padding:6px 8px; max-width:160px; font-size:.68rem; line-height:1.4; }
+.d3-clippy::after { content:''; position:absolute; bottom:-8px; right:0; border-top:8px solid #888; border-left:8px solid transparent; }
+.d3-clippy-icon { font-size:1.5rem; display:block; text-align:center; margin-bottom:3px; }
+.d3-aibubble { display:inline-block; background:#000080; color:#FFFF00; font-size:.6rem; padding:1px 4px; margin-right:3px; font-weight:bold; font-family:'Courier New',monospace; }
+.d3-statusbar { background:#D4D0C8; border-top:1px solid #808080; padding:2px 6px; font-size:.68rem; color:#000; display:flex; gap:12px; }
+.d3-sb-panel { border-right:1px inset #FFF; padding-right:10px; }
+</style>
+<div class="d3">
+  <div class="d3-win">
+    <div class="d3-titlebar">
+      <div class="d3-titletext">🧠 Brain Notes — Notepad</div>
+      <div class="d3-winctrls">
+        <div class="d3-winbtn">_</div>
+        <div class="d3-winbtn">□</div>
+        <div class="d3-winbtn" style="background:#D4D0C8;">✕</div>
+      </div>
+    </div>
+    <div class="d3-menubar">
+      <span class="d3-menu">File</span><span class="d3-menu">Edit</span><span class="d3-menu">Format</span><span class="d3-menu">View</span><span class="d3-menu" style="color:#000080;font-weight:bold;">AI ▼</span><span class="d3-menu">Help</span>
+    </div>
+    <div class="d3-toolbar">
+      <div class="d3-tbtn">💾</div><div class="d3-tbtn">📂</div><div class="d3-tbtn">🖨️</div>
+      <div class="d3-sep"></div>
+      <div class="d3-tbtn">✂️</div><div class="d3-tbtn">📋</div>
+      <div class="d3-sep"></div>
+      <div class="d3-tbtn" style="background:#E8F0FF;border-color:#000080;color:#000080;font-weight:bold;font-size:.6rem;">⚡ AI Suggest</div>
+    </div>
+    <div class="d3-content">
+      <div class="d3-noteheading">brain_notes.txt</div>
+      <p>Things I want to understand better this year:</p>
+      <ul style="margin:4px 0 4px 16px; padding:0;">
+        <li>How memory consolidation works during sleep</li>
+        <li>The default mode network</li>
+        <li>Why some ideas feel impossible to forget</li>
+      </ul>
+      <p style="margin-top:8px;"><span class="d3-aibubble">AI</span> <em style="font-size:.75rem;">Based on these notes, your likely next question: "What role does emotion play in memory encoding?" Want me to draft a reading list?</em></p>
+      <div class="d3-clippy">
+        <span class="d3-clippy-icon">📎</span>
+        It looks like you're <b>thinking!</b><br>Would you like me to<br>summarize your notes?
+      </div>
+    </div>
+    <div class="d3-statusbar">
+      <span class="d3-sb-panel">Ln 12, Col 1</span>
+      <span class="d3-sb-panel">AI: Ready</span>
+      <span>100%</span>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 04 — LiveJournal Entry
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 04 — LiveJournal Entry <span class="dtag">mood + music + AI analysis</span></div>
+<div class="design-frame">
+<style>
+.d4 { font-family:Verdana,Geneva,sans-serif; font-size:.8rem; background:#D6E4F7; color:#000; padding:12px; }
+.d4-header { background:#4A7FBF; color:#FFF; padding:6px 10px; border-radius:3px 3px 0 0; border:1px solid #2A5F9F; display:flex; justify-content:space-between; align-items:center; }
+.d4-username { font-weight:bold; font-size:.9rem; }
+.d4-nav { font-size:.65rem; }
+.d4-nav a { color:#CCDDFF; margin-left:6px; text-decoration:none; }
+.d4-entry { background:#FFF; border:1px solid #9BBCDE; border-top:none; padding:10px 12px; }
+.d4-meta { display:flex; gap:16px; flex-wrap:wrap; font-size:.68rem; color:#666; border-bottom:1px dotted #AABBCC; padding-bottom:6px; margin-bottom:8px; }
+.d4-mood, .d4-music, .d4-date { display:flex; align-items:center; gap:4px; }
+.d4-mood span, .d4-music span { font-weight:bold; color:#333; }
+.d4-body { line-height:1.65; margin-bottom:10px; }
+.d4-tags { font-size:.68rem; color:#4A7FBF; border-top:1px dotted #AABBCC; padding-top:6px; margin-top:6px; }
+.d4-tags a { color:#4A7FBF; margin-right:6px; text-decoration:none; font-weight:bold; }
+.d4-aipanel { background:#EEF7EE; border:1px solid #99CC99; padding:8px 10px; margin-top:8px; border-radius:2px; }
+.d4-aipanel-head { font-size:.65rem; font-weight:bold; color:#336633; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px; }
+.d4-aitext { font-size:.75rem; color:#334433; font-style:italic; }
+.d4-meter { height:6px; background:#DDEECC; border-radius:3px; margin-top:5px; overflow:hidden; display:flex; }
+.d4-meter-fill { height:100%; background:linear-gradient(90deg,#66CC66,#88EE44); border-radius:3px; }
+.d4-meter-label { font-size:.6rem; color:#556644; margin-top:2px; display:flex; justify-content:space-between; }
+.d4-comments { background:#E8EEF7; border:1px solid #9BBCDE; border-top:none; padding:5px 10px; font-size:.68rem; color:#666; display:flex; gap:10px; }
+.d4-comments a { color:#4A7FBF; text-decoration:none; font-weight:bold; }
+</style>
+<div class="d4">
+  <div class="d4-header">
+    <div class="d4-username">📓 jt630's journal</div>
+    <div class="d4-nav"><a href="#">friends</a><a href="#">calendar</a><a href="#">memories</a><a href="#">profile</a></div>
+  </div>
+  <div class="d4-entry">
+    <div class="d4-meta">
+      <div class="d4-date">📅 March 7, 2026 — 11:43pm</div>
+      <div class="d4-mood">😔 mood: <span>restless</span></div>
+      <div class="d4-music">🎵 music: <span>Amon Tobin – Chaos Theory</span></div>
+    </div>
+    <div class="d4-body">
+      can't sleep again. brain is going a million miles an hour. made the mistake of reading about neuroplasticity at 10pm which somehow led to a two-hour rabbit hole on how memory changes every time you recall it. nothing is real, all memories are reconstructions. anyway. hi livejournal.
+    </div>
+    <div class="d4-tags">tags: <a href="#">sleep</a> <a href="#">brain</a> <a href="#">rabbit-holes</a> <a href="#">2am-thoughts</a></div>
+    <div class="d4-aipanel">
+      <div class="d4-aipanel-head">⚡ AI Mood Analysis</div>
+      <div class="d4-aitext">"Restless + late-night curiosity spike detected. Pattern match: you've posted 7 entries like this in the past 3 months, all between 10pm–2am. Your best ideas historically come from these sessions — consider keeping a dedicated notebook nearby."</div>
+      <div class="d4-meter"><div class="d4-meter-fill" style="width:72%"></div></div>
+      <div class="d4-meter-label"><span>cognitive load</span><span>72% — high</span></div>
+    </div>
+  </div>
+  <div class="d4-comments"><a href="#">12 comments</a> · <a href="#">add comment</a> · <a href="#">edit entry</a></div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 05 — Under Construction
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 05 — Under Construction <span class="dtag">caution tape + AI build progress</span></div>
+<div class="design-frame">
+<style>
+.d5 { font-family:Impact,'Arial Black',sans-serif; background:#222; color:#FFF; text-align:center; }
+.d5-tape { background:repeating-linear-gradient(45deg,#FFD700,#FFD700 12px,#000 12px,#000 24px); height:28px; }
+.d5-body { padding:2rem 1.5rem; }
+.d5-icon { font-size:3.5rem; animation:d5-spin 2s linear infinite; display:inline-block; }
+@keyframes d5-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.d5-heading { font-size:2rem; color:#FFD700; letter-spacing:.08em; margin:.6rem 0 .3rem; text-transform:uppercase; }
+.d5-sub { font-family:Verdana,sans-serif; font-size:.8rem; color:#CCC; margin-bottom:1.5rem; font-weight:normal; letter-spacing:.04em; }
+.d5-aibox { background:rgba(0,200,0,.08); border:1px solid #00CC00; max-width:440px; margin:0 auto 1.2rem; padding:1rem; text-align:left; font-family:'Courier New',monospace; }
+.d5-aihead { font-size:.65rem; color:#00FF00; letter-spacing:.2em; text-transform:uppercase; margin-bottom:.5rem; }
+.d5-log { font-size:.72rem; color:#AAFFAA; line-height:1.7; }
+.d5-log span { color:#00FF00; }
+.d5-prog-wrap { margin-top:.8rem; }
+.d5-prog-label { font-size:.65rem; color:#00CC00; text-align:right; margin-bottom:2px; font-family:'Courier New',monospace; }
+.d5-prog { height:12px; background:#001400; border:1px solid #00CC00; border-radius:1px; overflow:hidden; }
+.d5-prog-fill { height:100%; width:67%; background:linear-gradient(90deg,#004400,#00FF00); animation:d5-progress 3s ease-in-out infinite alternate; }
+@keyframes d5-progress { from{width:64%} to{width:71%} }
+.d5-eta { font-family:'Courier New',monospace; font-size:.7rem; color:#888; margin-top:.5rem; }
+</style>
+<div class="d5">
+  <div class="d5-tape"></div>
+  <div class="d5-body">
+    <div class="d5-icon">⚠️</div>
+    <div class="d5-heading">Under Construction</div>
+    <div class="d5-sub">This page is being built. Please check back soon!</div>
+    <div class="d5-aibox">
+      <div class="d5-aihead">▶ AI BUILD LOG</div>
+      <div class="d5-log">
+        <span>✔</span> Scraping knowledge base...<br>
+        <span>✔</span> Indexing 4,203 articles...<br>
+        <span>✔</span> Generating reading list...<br>
+        <span class="d5-log" style="color:#FFD700;">⟳</span> <span style="color:#FFD700;">Synthesizing insights...</span><br>
+        <span style="color:#555;">○ Formatting output...</span>
+      </div>
+      <div class="d5-prog-wrap">
+        <div class="d5-prog-label">67% complete</div>
+        <div class="d5-prog"><div class="d5-prog-fill"></div></div>
+      </div>
+    </div>
+    <div class="d5-eta">ETA: approximately 3 days, 2 hours, 17 minutes</div>
+  </div>
+  <div class="d5-tape"></div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 06 — Early Movie Review Site
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 06 — Early Review Site (IMDb 2001) <span class="dtag">table layout + AI critic</span></div>
+<div class="design-frame">
+<style>
+.d6 { font-family:Arial,Helvetica,sans-serif; font-size:.78rem; background:#F5F5DC; color:#000; }
+.d6-topbar { background:#F0C040; padding:5px 10px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #CC8800; font-weight:bold; font-size:.72rem; }
+.d6-logo { font-family:Impact,sans-serif; font-size:1.1rem; color:#000080; letter-spacing:.04em; }
+.d6-search { display:flex; gap:4px; }
+.d6-search input { font-size:.68rem; padding:2px 5px; border:1px inset #888; width:130px; }
+.d6-search button { font-size:.65rem; padding:2px 8px; background:#D4D0C8; border:1px outset #FFF; cursor:pointer; }
+.d6-main { display:grid; grid-template-columns:1fr 180px; gap:0; }
+.d6-content { padding:10px 12px; border-right:1px solid #CCC; }
+.d6-sidebar { padding:8px; background:#FFFAEE; font-size:.7rem; }
+.d6-movietitle { font-family:Impact,sans-serif; font-size:1.6rem; color:#000080; margin-bottom:2px; }
+.d6-metarow { color:#666; font-size:.7rem; margin-bottom:8px; }
+.d6-stars-outer { color:#CCC; font-size:1.1rem; letter-spacing:2px; position:relative; display:inline-block; }
+.d6-stars-inner { color:#FF9900; font-size:1.1rem; letter-spacing:2px; position:absolute; top:0; left:0; overflow:hidden; white-space:nowrap; }
+.d6-rating-num { font-size:.85rem; font-weight:bold; margin-left:6px; vertical-align:middle; }
+.d6-rating-count { font-size:.68rem; color:#666; }
+.d6-divider { border:none; border-top:1px solid #CCC; margin:8px 0; }
+.d6-section-head { font-weight:bold; font-size:.78rem; color:#000080; border-bottom:1px solid #000080; padding-bottom:2px; margin-bottom:6px; margin-top:10px; }
+.d6-review { background:#FFFAF0; border:1px solid #DDD; padding:8px; font-size:.75rem; line-height:1.55; }
+.d6-review-meta { font-size:.65rem; color:#666; margin-top:6px; display:flex; justify-content:space-between; }
+.d6-aibadge { display:inline-block; background:#7B00B4; color:#FFF; font-size:.58rem; font-weight:bold; padding:1px 5px; margin-right:4px; font-family:'Courier New',monospace; letter-spacing:.06em; border-radius:1px; }
+.d6-sidebar h4 { font-size:.72rem; font-weight:bold; color:#000080; border-bottom:1px solid #000080; margin:0 0 5px; padding-bottom:2px; }
+.d6-sidebar ul { margin:0; padding:0 0 0 12px; }
+.d6-sidebar li { margin-bottom:3px; font-size:.7rem; }
+.d6-sidebar a { color:#000080; }
+.d6-rateit { margin-top:8px; padding-top:6px; border-top:1px solid #DDD; font-size:.7rem; }
+.d6-rateit select, .d6-rateit button { font-size:.65rem; }
+</style>
+<div class="d6">
+  <div class="d6-topbar">
+    <div class="d6-logo">🎬 BrainDB</div>
+    <div class="d6-search">
+      <input type="text" placeholder="Search titles...">
+      <button>Go</button>
+    </div>
+    <div>Login | Register | <strong>AI Picks</strong></div>
+  </div>
+  <div class="d6-main">
+    <div class="d6-content">
+      <div class="d6-movietitle">Memento (2000)</div>
+      <div class="d6-metarow">R · 113 min · Thriller, Mystery · Dir. Christopher Nolan</div>
+      <div>
+        <span class="d6-stars-outer">★★★★★★★★★★</span>
+        <span class="d6-stars-inner" style="width:88%;">★★★★★★★★★★</span>
+        <span class="d6-rating-num">8.8</span>
+        <span class="d6-rating-count">(924,103 votes)</span>
+      </div>
+      <hr class="d6-divider">
+      <div class="d6-section-head">Top User Review</div>
+      <div class="d6-review">
+        <span class="d6-aibadge">AI CRITIC</span>
+        A film that weaponizes its own structure as metaphor. Nolan's decision to run the narrative backwards forces the audience into the same disorientation as its protagonist — you can't trust what you "know" any more than Leonard can. Technically a thriller; philosophically a meditation on how identity depends on the stories we tell ourselves about the past.
+        <div class="d6-review-meta"><span>Generated by AI Film Analysis v2.1</span><span>Helpful? <a href="#">Yes (347)</a> / <a href="#">No (12)</a></span></div>
+      </div>
+      <div class="d6-rateit">Rate this title: <select><option>--</option><option>10</option><option>9</option><option>8</option></select> <button>Rate!</button></div>
+    </div>
+    <div class="d6-sidebar">
+      <h4>More Like This</h4>
+      <ul>
+        <li><a href="#">The Prestige (2006)</a></li>
+        <li><a href="#">Eternal Sunshine (2004)</a></li>
+        <li><a href="#">Primer (2004)</a></li>
+        <li><a href="#">Pi (1998)</a></li>
+      </ul>
+      <h4 style="margin-top:10px;">AI Recommendation</h4>
+      <p style="font-size:.68rem;color:#444;font-style:italic;">"Based on your watch history, you'll enjoy this 94% — high correlation with Pi and Adaptation."</p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 07 — Winamp Player
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 07 — Winamp Skin <span class="dtag">LCD display + AI DJ</span></div>
+<div class="design-frame">
+<style>
+.d7 { background:#1A1A2E; padding:1.5rem; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; align-items:flex-start; font-family:'Courier New',monospace; }
+.d7-player { background:#000; border:2px solid #444; width:275px; }
+.d7-titlebar { background:linear-gradient(90deg,#2244AA,#112266); padding:3px 6px; display:flex; justify-content:space-between; align-items:center; }
+.d7-titletext { color:#8899FF; font-size:.6rem; letter-spacing:.1em; font-family:'Courier New',monospace; }
+.d7-wctrls { display:flex; gap:2px; }
+.d7-wbtn { background:#1A1A3A; border:1px outset #3344AA; width:12px; height:10px; font-size:.4rem; display:flex; align-items:center; justify-content:center; color:#8899FF; cursor:pointer; }
+.d7-lcd { background:#0A0A00; margin:4px; padding:6px 8px; border:1px inset #333; position:relative; }
+.d7-lcd-title { color:#66FF00; font-size:.6rem; letter-spacing:.06em; overflow:hidden; white-space:nowrap; animation:d7-scroll 8s linear infinite; display:inline-block; }
+@keyframes d7-scroll { 0%{transform:translateX(100%)} 100%{transform:translateX(-100%)} }
+.d7-lcd-time { color:#66FF00; font-size:.85rem; font-weight:bold; letter-spacing:.15em; margin-top:4px; text-align:right; }
+.d7-lcd-info { color:#449900; font-size:.58rem; letter-spacing:.06em; display:flex; justify-content:space-between; }
+.d7-seek { margin:0 4px 4px; height:6px; background:#111; border:1px inset #333; position:relative; }
+.d7-seek-fill { height:100%; width:38%; background:#66FF00; }
+.d7-seek-thumb { width:4px; height:8px; background:#99FF00; position:absolute; top:-1px; left:37%; }
+.d7-controls { display:flex; justify-content:center; gap:4px; padding:4px; }
+.d7-ctrl { background:#222; border:1px outset #555; padding:4px 8px; color:#BBB; font-size:.75rem; cursor:pointer; min-width:28px; text-align:center; }
+.d7-ctrl:active, .d7-ctrl:hover { border-style:inset; background:#333; }
+.d7-vol-row { display:flex; align-items:center; gap:6px; padding:3px 6px 5px; font-size:.58rem; color:#777; }
+.d7-vol-bar { flex:1; height:5px; background:#111; border:1px inset #333; }
+.d7-vol-fill { height:100%; background:#66FF00; }
+.d7-playlist { background:#000011; border:2px solid #333; width:275px; font-size:.65rem; }
+.d7-pl-header { background:linear-gradient(90deg,#001166,#000033); color:#8899FF; padding:3px 6px; font-size:.6rem; letter-spacing:.1em; display:flex; justify-content:space-between; }
+.d7-pl-item { padding:3px 8px; color:#66FF00; border-bottom:1px solid #0A0A1A; display:flex; gap:6px; }
+.d7-pl-item:hover { background:#001133; }
+.d7-pl-item.playing { color:#FFFF00; background:#001A00; }
+.d7-pl-item .num { color:#336633; min-width:18px; }
+.d7-pl-ai { color:#FF66FF; background:#110011; font-style:italic; border-left:2px solid #AA00AA; }
+.d7-pl-ai .num { color:#884488; }
+.d7-pl-footer { background:#000011; padding:4px 8px; color:#336633; font-size:.58rem; display:flex; justify-content:space-between; }
+</style>
+<div class="d7">
+  <div class="d7-player">
+    <div class="d7-titlebar">
+      <div class="d7-titletext">WINAMP 2.95</div>
+      <div class="d7-wctrls"><div class="d7-wbtn">_</div><div class="d7-wbtn">□</div><div class="d7-wbtn">×</div></div>
+    </div>
+    <div class="d7-lcd">
+      <div class="d7-lcd-title">Amon Tobin — Chaos Theory OST — 04 - You Can't Hide</div>
+      <div class="d7-lcd-time">2:17 / 5:43</div>
+      <div class="d7-lcd-info"><span>128kbps · 44kHz · Stereo</span><span>EQ SHF</span></div>
+    </div>
+    <div class="d7-seek"><div class="d7-seek-fill"></div><div class="d7-seek-thumb"></div></div>
+    <div class="d7-controls">
+      <div class="d7-ctrl">⏮</div>
+      <div class="d7-ctrl">⏹</div>
+      <div class="d7-ctrl">⏸</div>
+      <div class="d7-ctrl" style="color:#66FF00;border-color:#66FF00;">▶</div>
+      <div class="d7-ctrl">⏭</div>
+    </div>
+    <div class="d7-vol-row">
+      <span>VOL</span>
+      <div class="d7-vol-bar"><div class="d7-vol-fill" style="width:70%;"></div></div>
+      <span>BAL</span>
+      <div class="d7-vol-bar"><div class="d7-vol-fill" style="width:50%;"></div></div>
+    </div>
+  </div>
+  <div class="d7-playlist">
+    <div class="d7-pl-header"><span>PLAYLIST EDITOR</span><span>⚡ AI DJ ON</span></div>
+    <div class="d7-pl-item"><span class="num">1.</span> Blockhead – The Music Scene</div>
+    <div class="d7-pl-item"><span class="num">2.</span> Blockhead – Sunday Seance</div>
+    <div class="d7-pl-item"><span class="num">3.</span> Amon Tobin – Verbal</div>
+    <div class="d7-pl-item playing"><span class="num">4.</span> Amon Tobin – You Can't Hide ▶</div>
+    <div class="d7-pl-item"><span class="num">5.</span> Amon Tobin – Sands Pt.2</div>
+    <div class="d7-pl-ai"><span class="num">⚡</span> <em>AI: Madlib – Hamburger Lady (similar BPM + texture)</em></div>
+    <div class="d7-pl-ai"><span class="num">⚡</span> <em>AI: Flying Lotus – Coronus</em></div>
+    <div class="d7-pl-footer"><span>7 tracks · 38:14</span><span style="color:#AA00AA;">2 AI suggestions</span></div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 08 — AIM Away Message
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 08 — AIM Away Message <span class="dtag">buddy list + AI away gen</span></div>
+<div class="design-frame">
+<style>
+.d8 { font-family:Arial,Helvetica,sans-serif; font-size:.78rem; background:#E8ECF0; display:flex; gap:8px; padding:12px; justify-content:center; flex-wrap:wrap; }
+.d8-buddy { background:#FFF; border:1px solid #AAB; width:200px; }
+.d8-bl-header { background:linear-gradient(180deg,#6688CC,#3355AA); color:#FFF; padding:5px 8px; font-weight:bold; font-size:.75rem; display:flex; justify-content:space-between; }
+.d8-bl-toolbar { background:#D8DCE8; padding:2px 4px; display:flex; gap:3px; border-bottom:1px solid #AAB; }
+.d8-bl-icon { font-size:.9rem; cursor:pointer; padding:1px 3px; }
+.d8-bl-icon:hover { background:#BBCCEE; }
+.d8-group { padding:0; }
+.d8-group-header { background:#C8D0E0; padding:2px 6px; font-size:.68rem; font-weight:bold; color:#334; display:flex; align-items:center; gap:3px; }
+.d8-buddy-row { padding:2px 8px 2px 14px; display:flex; align-items:center; gap:5px; font-size:.72rem; cursor:pointer; }
+.d8-buddy-row:hover { background:#EEF2FF; }
+.d8-buddy-row .icon { font-size:.85rem; }
+.d8-away { color:#888; font-style:italic; }
+.d8-status-dot { width:6px; height:6px; border-radius:50%; display:inline-block; margin-right:2px; }
+.d8-online { background:#00CC00; }
+.d8-idle { background:#CCAA00; }
+.d8-offline { background:#CCC; }
+.d8-footer { background:#C8D0E0; padding:3px 6px; font-size:.65rem; display:flex; justify-content:space-between; color:#334; border-top:1px solid #AAB; }
+.d8-away-panel { background:#FFF; border:1px solid #AAB; width:240px; }
+.d8-ap-title { background:linear-gradient(180deg,#AACCFF,#7799DD); padding:5px 8px; font-weight:bold; font-size:.72rem; border-bottom:1px solid #AAB; display:flex; justify-content:space-between; }
+.d8-screen-name { font-size:1rem; font-weight:bold; color:#3355AA; padding:6px 10px 2px; }
+.d8-idle-time { font-size:.65rem; color:#888; padding:0 10px 6px; border-bottom:1px solid #DDE; }
+.d8-away-box { padding:8px 10px; background:#FFFFF0; border-bottom:1px solid #DDE; }
+.d8-away-box-head { font-size:.62rem; font-weight:bold; color:#886622; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px; }
+.d8-away-text { font-size:.78rem; color:#333; line-height:1.5; font-style:italic; }
+.d8-away-text a { color:#0000EE; }
+.d8-ai-row { padding:8px 10px; background:#F5F0FF; font-size:.68rem; }
+.d8-ai-badge { display:inline-block; background:#6600CC; color:#FFF; font-size:.58rem; padding:1px 4px; font-weight:bold; letter-spacing:.06em; margin-right:4px; font-family:'Courier New',monospace; }
+.d8-ai-hint { color:#553388; font-style:italic; }
+.d8-ap-footer { background:#EEF; padding:4px 8px; font-size:.65rem; display:flex; justify-content:space-between; color:#334; }
+.d8-ap-footer a { color:#0000EE; margin-left:6px; text-decoration:none; }
+</style>
+<div class="d8">
+  <div class="d8-buddy">
+    <div class="d8-bl-header"><span>🟡 Buddy List</span><span>jt630</span></div>
+    <div class="d8-bl-toolbar">
+      <div class="d8-bl-icon">💬</div><div class="d8-bl-icon">📋</div><div class="d8-bl-icon">⚙️</div><div class="d8-bl-icon" style="color:#6600CC;font-weight:bold;font-size:.65rem;padding-top:3px;">⚡AI</div>
+    </div>
+    <div class="d8-group">
+      <div class="d8-group-header">▾ Buddies (3/5)</div>
+      <div class="d8-buddy-row"><span class="d8-status-dot d8-online"></span><span class="d8-icon">🧑</span> farmgirl22</div>
+      <div class="d8-buddy-row"><span class="d8-status-dot d8-online"></span><span class="d8-icon">🧑</span> cougar_creek</div>
+      <div class="d8-buddy-row"><span class="d8-status-dot d8-idle"></span><span class="d8-icon">🧑</span><span class="d8-away"> misr_justin (away)</span></div>
+      <div class="d8-buddy-row"><span class="d8-status-dot d8-offline"></span><span class="d8-icon">👤</span><span style="color:#AAA;"> anon_42</span></div>
+    </div>
+    <div class="d8-group">
+      <div class="d8-group-header">▾ AI Bots (1/1)</div>
+      <div class="d8-buddy-row"><span class="d8-status-dot d8-online"></span><span class="d8-icon">🤖</span> <span style="color:#6600CC;font-weight:bold;">BrainBot</span></div>
+    </div>
+    <div class="d8-footer"><span>5 online</span><span>Set Status ▼</span></div>
+  </div>
+  <div class="d8-away-panel">
+    <div class="d8-ap-title"><span>💬 Away Message</span><span>✕</span></div>
+    <div class="d8-screen-name">misr_justin</div>
+    <div class="d8-idle-time">Idle for 1 hour, 47 minutes</div>
+    <div class="d8-away-box">
+      <div class="d8-away-box-head">Away Message</div>
+      <div class="d8-away-text">
+        gone to stare at the ceiling and think about things that don't matter until they do.<br><br>
+        <em>"the test of a first-rate intelligence is the ability to hold two opposing ideas in mind at the same time"</em><br>
+        — F. Scott Fitzgerald<br><br>
+        brb probably never
+      </div>
+    </div>
+    <div class="d8-ai-row">
+      <span class="d8-ai-badge">AI</span>
+      <span class="d8-ai-hint">Generated from mood log: "contemplative + late-night + Fitzgerald phase." Regenerate?</span>
+    </div>
+    <div class="d8-ap-footer"><span>Last on: 3 hrs ago</span><a href="#">IM</a><a href="#">Profile</a></div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 09 — Hacker Terminal
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 09 — Hacker Terminal Page <span class="dtag">green-on-black + AI oracle</span></div>
+<div class="design-frame">
+<style>
+.d9 { background:#000; color:#00FF41; font-family:'Courier New',Courier,monospace; font-size:.78rem; padding:1.5rem; line-height:1.7; }
+.d9-ascii { font-size:.5rem; line-height:1.1; color:#00CC33; letter-spacing:.05em; margin-bottom:1rem; overflow-x:auto; white-space:pre; }
+.d9-prompt { color:#00FF41; }
+.d9-prompt::before { content:'$ '; color:#00AA33; }
+.d9-comment { color:#007722; }
+.d9-output { color:#AAFFAA; padding-left:12px; margin-bottom:.5rem; }
+.d9-highlight { color:#FFFF00; }
+.d9-ai-block { border:1px solid #00FF41; padding:.8rem; margin:1rem 0; background:rgba(0,255,65,.04); }
+.d9-ai-head { color:#00FF41; letter-spacing:.15em; text-transform:uppercase; font-size:.65rem; margin-bottom:.5rem; animation: blink .8s step-end infinite; }
+.d9-ai-response { color:#88FF99; font-style:italic; }
+.d9-blink { animation: blink .8s step-end infinite; }
+.d9-link { color:#00FFFF; text-decoration:underline; cursor:pointer; }
+.d9-divider { border:none; border-top:1px solid #003311; margin:1rem 0; }
+</style>
+<div class="d9">
+<div class="d9-ascii">
+  ██████╗ ██████╗  █████╗ ██╗███╗   ██╗
+  ██╔══██╗██╔══██╗██╔══██╗██║████╗  ██║
+  ██████╔╝██████╔╝███████║██║██╔██╗ ██║
+  ██╔══██╗██╔══██╗██╔══██║██║██║╚██╗██║
+  ██████╔╝██║  ██║██║  ██║██║██║ ╚████║
+  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝  LAB v0.9
+</div>
+<div class="d9-comment"># welcome. you are now connected to brain.local</div>
+<div class="d9-comment"># last login: Fri Mar 07 23:41:02 2026 from 10.0.0.1</div>
+<br>
+<div class="d9-prompt">whoami</div>
+<div class="d9-output">jt630 — <span class="d9-highlight">cognitive explorer</span>, almond farmer, internet person</div>
+<div class="d9-prompt">ls -la /brain/current/</div>
+<div class="d9-output">drwxr-xr-x  memory/<br>drwxr-xr-x  patterns/<br>-rw-------  <span class="d9-highlight">obsessions.txt</span><br>-rw-r--r--  reading_list.md<br>-rw-r--r--  <span style="color:#FF6666;">TODO_unfinished_thoughts.md</span></div>
+<div class="d9-prompt">cat obsessions.txt</div>
+<div class="d9-output">1. why certain smells collapse time<br>2. the exact moment a metaphor becomes a cliché<br>3. sleep debt as slow-motion identity erosion<br>4. what happened at cougar creek</div>
+<hr class="d9-divider">
+<div class="d9-ai-block">
+  <div class="d9-ai-head">▶ ORACLE_AI.exe — pattern analysis running<span class="d9-blink">_</span></div>
+  <div class="d9-ai-response">Cross-referencing entries... Item #3 ("sleep debt as identity erosion") correlates 87% with your late-night journal posts. Item #1 appears in 4 separate content drafts. Recommendation: write the smell piece first — it's blocking the others.</div>
+</div>
+<div class="d9-prompt">curl -s brain.local/recommend | jq '.top_links'</div>
+<div class="d9-output">
+  [1] <span class="d9-link">The Extended Mind — Annie Murphy Paul</span><br>
+  [2] <span class="d9-link">Default Mode Network — Wikipedia</span><br>
+  [3] <span class="d9-link">Proust and the Squid — Maryanne Wolf</span><br>
+  [4] <span class="d9-link">On Memory and Childhood Amnesia — Schachtel (1947)</span>
+</div>
+<div class="d9-prompt"><span class="d9-blink">█</span></div>
+</div>
+</div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DESIGN 10 — Classic "My Homepage"
+     ══════════════════════════════════════ -->
+<div class="design-entry">
+<div class="design-label">Design 10 — Classic "Welcome to My Homepage" <span class="dtag">the archetype</span></div>
+<div class="design-frame">
+<style>
+.d10 { background:#FFFFFF; font-family:Times New Roman,Times,serif; font-size:.82rem; color:#000; max-width:640px; margin:0 auto; }
+.d10-flametitle { font-family:Impact,'Arial Black',sans-serif; font-size:2.2rem; text-align:center; padding:.8rem; background:linear-gradient(180deg,#FF8800,#FF0000,#880000); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; letter-spacing:.06em; }
+.d10-construction { background:repeating-linear-gradient(45deg,#FFD700,#FFD700 8px,#000 8px,#000 16px); color:#FFF; font-family:Impact,sans-serif; font-size:.72rem; text-align:center; padding:3px; letter-spacing:.2em; }
+.d10-hr { border:none; border-top:3px ridge #CC0000; margin:.5rem 0; }
+.d10-welcome { text-align:center; font-size:.95rem; font-style:italic; margin:.5rem 0; color:#880000; }
+.d10-table { width:100%; border-collapse:collapse; }
+.d10-table td { vertical-align:top; padding:6px 8px; border:1px solid #CCC; }
+.d10-table th { background:#000080; color:#FFF; padding:4px 8px; font-family:Verdana,sans-serif; font-size:.72rem; letter-spacing:.08em; }
+.d10-statrow td:first-child { background:#EEF; font-weight:bold; color:#000080; width:100px; font-family:Verdana,sans-serif; font-size:.72rem; }
+.d10-aboutbox { border:2px inset #888; padding:8px; background:#FFFAEE; margin:.5rem 0; line-height:1.6; }
+.d10-aibadge { display:inline-block; background:#FF0099; color:#FFF; font-size:.58rem; font-weight:bold; padding:1px 5px; font-family:Impact,sans-serif; letter-spacing:.08em; margin-right:3px; }
+.d10-links { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:.5rem 0; }
+.d10-links a { display:inline-block; background:#D4D0C8; border:2px outset #F0EFE8; padding:3px 10px; color:#000080; font-family:Verdana,sans-serif; font-size:.7rem; text-decoration:none; font-weight:bold; }
+.d10-links a:hover { border-style:inset; }
+.d10-email { text-align:center; font-family:Verdana,sans-serif; font-size:.72rem; margin:.5rem 0; }
+.d10-guestbook { text-align:center; background:#FFE; border:2px solid #CC9900; padding:6px; margin:.5rem 0; font-family:Verdana,sans-serif; font-size:.72rem; }
+.d10-ticker { background:#000080; color:#FFFF00; font-family:'Courier New',monospace; font-size:.68rem; padding:3px 0; overflow:hidden; }
+.d10-ticker marquee { }
+.d10-footer { text-align:center; font-family:Verdana,sans-serif; font-size:.62rem; color:#888; padding:.5rem; border-top:1px solid #DDD; }
+</style>
+<div class="d10">
+  <div class="d10-construction">⚠ THIS PAGE IS UNDER CONSTRUCTION ⚠</div>
+  <div class="d10-flametitle">WELCOME TO JT'S BRAIN PAGE!!</div>
+  <hr class="d10-hr">
+  <div class="d10-welcome">hi!!! thanks for visiting!!!! you are visitor #001339!! 🎉</div>
+  <hr class="d10-hr">
+
+  <table class="d10-table">
+    <tr><th colspan="2">📋 ABOUT ME</th></tr>
+    <tr class="d10-statrow"><td>name:</td><td>JT</td></tr>
+    <tr class="d10-statrow"><td>age:</td><td>old enough to know better</td></tr>
+    <tr class="d10-statrow"><td>location:</td><td>the almond farm / the internet</td></tr>
+    <tr class="d10-statrow"><td>interests:</td><td>thinking, farming, music, not sleeping</td></tr>
+    <tr class="d10-statrow"><td>aim:</td><td>jt630farm</td></tr>
+  </table>
+
+  <br>
+  <div class="d10-aboutbox">
+    <span class="d10-aibadge">AI</span>
+    <em>"JT is someone who fell into farming and found it suited their brain's need for problems that are both deeply physical and completely unresolvable. Reads voraciously, sleeps poorly, has strong opinions about coffee and weak opinions about most other things. This site is an attempt to externalize the internal — a public notebook for a private thinker."</em>
+  </div>
+  <hr class="d10-hr">
+
+  <div style="text-align:center;font-family:Verdana,sans-serif;font-size:.72rem;font-weight:bold;margin-bottom:4px;">🔗 MY FAVORITE LINKS:</div>
+  <div class="d10-links">
+    <a href="#">📚 Goodreads</a>
+    <a href="#">🎵 Last.fm</a>
+    <a href="#">🌐 MetaFilter</a>
+    <a href="#">🧠 Wikipedia</a>
+    <a href="#">📰 Hacker News</a>
+  </div>
+
+  <div class="d10-guestbook">📖 Please <strong><a href="#" style="color:#880000;">sign my guestbook</a></strong>! &nbsp; <span style="font-style:italic;color:#666;">(23 entries — last signed by SynthBot_v1)</span></div>
+  <div class="d10-email">📧 Email me: <strong><a href="#" style="color:#000080;">jt630@almondfarm.us</a></strong> &nbsp;|&nbsp; please no spam</div>
+  <div class="d10-ticker"><marquee scrollamount="3">★ Last updated: March 7, 2026 ★ &nbsp;&nbsp; This site best viewed in Netscape Navigator 4.0 or higher &nbsp;&nbsp; ★ No hotlinking please ★ &nbsp;&nbsp; Guestbook now open!! ★ &nbsp;&nbsp; AI-generated about me section coming soon &nbsp;&nbsp; ★</marquee></div>
+  <div class="d10-footer">© 2026 JT's Brain Page · Made with ❤ in Notepad · Best viewed 800×600 · IE5+</div>
+</div>
+</div>
+</div>
+
+</div><!-- /.brain-lab -->
+{{ end }}
