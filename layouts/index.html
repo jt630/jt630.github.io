@@ -77,10 +77,7 @@
   </a>
 </section>
 
-{{ $blogPosts := where .Site.RegularPages "Section" "blog" }}
-{{ $cookingPosts := where .Site.RegularPages "Section" "cooking" }}
-{{ $farmingPosts := where .Site.RegularPages "Section" "farming" }}
-{{ $recent := union $blogPosts (union $cookingPosts $farmingPosts) }}
+{{ $recent := where .Site.RegularPages "Section" "ne" "" }}
 
 {{ if $recent }}
 <section class="recent-section">

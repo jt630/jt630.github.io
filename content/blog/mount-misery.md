@@ -3,6 +3,7 @@ title: "Mount Misery"
 date: 2024-08-05
 author: ""
 description: "Day two at the Mount Misery Warming Hut — cards, the 40 road, and cutting line around a burning snag."
+tags: ["wildfire", "dispatch"]
 ---
 
 Waking up on day two next to the Mount Misery Warming Hut in the driver's seat of 4501, our mission was unclear. Four hours of consecutive rain restricted the fire behavior and our accessibility to various spots on the fire within Division Golf.

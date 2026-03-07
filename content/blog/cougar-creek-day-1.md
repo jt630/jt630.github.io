@@ -3,6 +3,7 @@ title: "Tuzaga, was it?"
 date: 2024-08-04
 author: ""
 description: "Day 0/1 of Cougar Creek — burn ops off the 43 road with the Eagle Cap Hotshots, and meeting Justin from Mississippi."
+tags: ["wildfire", "dispatch", "people"]
 ---
 
 Day 0/1 of Cougar Creek, Engine 4501, E-573, and an unmarked truck driven by Engine Boss Trainee Robert Tuzaga with Engine Boss actual Connor Rupert arrived at the Wenatchee lookout at approximately 14:00. From 14:00 - 24:00, the 10 man squad assisted the Eagle Cap Hotshots from Enterprise, OR (ran by a guy named Fidel) in a burn operation off the 43 road. I drove 4501 while Jake Wells and Karson Krouse watched the burn to make sure no sparks, embers, or flames crossed over into the "green."

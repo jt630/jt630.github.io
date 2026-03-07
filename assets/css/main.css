@@ -1045,3 +1045,83 @@ img {
 .badge-best      .badge-left { background: #2d0050; }
 .badge-y2k       { background: #8b0000; color: #FFFF00; }
 .badge-y2k       .badge-left { background: #5a0000; }
+
+/* Tag pills on post cards */
+.post-card-tags {
+  margin: 0.35rem 0 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag-pill {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  color: var(--pink);
+  background: transparent;
+  border: 1px solid var(--pink);
+  border-style: outset;
+  padding: 1px 7px;
+  border-radius: 2px;
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tag-pill:hover {
+  background: var(--pink);
+  color: var(--black);
+  border-style: inset;
+}
+
+/* RSS link in footer */
+.rss-link {
+  color: var(--gold);
+}
+
+.rss-link:hover {
+  color: var(--gold-light);
+}
+
+/* Tags index page */
+.tags-index {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tags-index h1 {
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 2.5rem;
+  color: var(--pink);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tags-cloud a {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--pink);
+  border: 1px outset var(--pink);
+  padding: 4px 12px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tags-cloud a:hover {
+  background: var(--pink);
+  color: var(--black);
+  border-style: inset;
+}
