@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ with .Params.tabTitle }}{{ . }}{{ else if .IsHome }}{{ with .Site.Params.tabTitle }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <title>{{ if .Params.tabTitle }}{{ .Params.tabTitle }}{{ else if .IsHome }}{{ with .Site.Params.tabTitle }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   {{ $css := resources.Get "css/main.css" }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
