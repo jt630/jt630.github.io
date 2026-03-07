@@ -1,0 +1,124 @@
+# California Farm Seasonal Guide
+# Produce in season + almond lifecycle note for each month.
+# Rendered in the "What's in Season" panel below the calendar.
+
+months:
+  - name: "January"
+    short: "JAN"
+    produce:
+      - "Citrus (navel oranges, lemons)"
+      - "Kale & winter greens"
+      - "Root vegetables"
+      - "Brussels sprouts"
+      - "Leeks & fennel"
+    almond: "🔪 Dormant pruning — focus on structure, remove suckers and crossing limbs"
+
+  - name: "February"
+    short: "FEB"
+    produce:
+      - "Citrus (peak)"
+      - "Early artichokes"
+      - "Kale & chard"
+      - "Broccoli & cauliflower"
+      - "Blood oranges"
+    almond: "🌸 BLOOM — most critical month. Frost = yield loss. Bees in orchard."
+
+  - name: "March"
+    short: "MAR"
+    produce:
+      - "Artichokes (peak)"
+      - "Asparagus"
+      - "Strawberries (early)"
+      - "Peas & snap peas"
+      - "Spring lettuces"
+    almond: "🌿 Petal fall → jacket stage. Remove mummified nuts. Hull development begins."
+
+  - name: "April"
+    short: "APR"
+    produce:
+      - "Strawberries"
+      - "Asparagus"
+      - "Fava beans"
+      - "Artichokes"
+      - "Spring onions"
+    almond: "🌱 Hull growing. Monitor water stress. Spring spray program."
+
+  - name: "May"
+    short: "MAY"
+    produce:
+      - "Strawberries (peak)"
+      - "Cherries"
+      - "Apricots (early)"
+      - "Zucchini (early)"
+      - "Snap peas"
+    almond: "🌱 Hull development continues. Heat units accumulating."
+
+  - name: "June"
+    short: "JUN"
+    produce:
+      - "Stone fruits (peaches, nectarines)"
+      - "Apricots"
+      - "Berries (peak)"
+      - "Zucchini & squash"
+      - "Green beans"
+    almond: "🦋 Watch for navel orangeworm (NOW). First hull split checks."
+
+  - name: "July"
+    short: "JUL"
+    produce:
+      - "Tomatoes (early)"
+      - "Sweet corn"
+      - "Peppers"
+      - "Melons"
+      - "Summer squash"
+    almond: "⚡ Hull split! 5–7 days post-split = peak NOW risk. Critical spray window."
+
+  - name: "August"
+    short: "AUG"
+    produce:
+      - "Tomatoes (peak)"
+      - "Figs"
+      - "Corn (peak)"
+      - "Eggplant"
+      - "Basil"
+    almond: "🌾 HARVEST. Shake → windrow → pickup. Early varieties first (Sonora, Fritz)."
+
+  - name: "September"
+    short: "SEP"
+    produce:
+      - "Grapes"
+      - "Figs"
+      - "Apples & pears"
+      - "Winter squash (early)"
+      - "Late tomatoes"
+    almond: "🌾 Late harvest (Mission, Winters). Haul to huller. Post-harvest irrigation starts."
+
+  - name: "October"
+    short: "OCT"
+    produce:
+      - "Pumpkins"
+      - "Winter squash (peak)"
+      - "Apples (peak)"
+      - "Pomegranates"
+      - "Persimmons"
+    almond: "💧 Post-harvest irrigation. Floor management. Orchard assessment."
+
+  - name: "November"
+    short: "NOV"
+    produce:
+      - "Citrus (early)"
+      - "Persimmons"
+      - "Pomegranates"
+      - "Root vegetables"
+      - "Kale & greens return"
+    almond: "😴 Trees entering dormancy. Chill hours start. Plan pruning crew."
+
+  - name: "December"
+    short: "DEC"
+    produce:
+      - "Citrus (navel, tangerines)"
+      - "Kale & winter greens"
+      - "Root vegetables"
+      - "Leeks & fennel"
+      - "Meyer lemons"
+    almond: "🔪 Dormant pruning begins mid-month. Start with oldest/most vigorous trees."
