@@ -1,0 +1,575 @@
+{{ define "main" }}
+
+{{/* ── Data sources baked in at build time ─────────────────────────────── */}}
+{{ $personalEvents := site.Data.calendar_events  | default (slice) }}
+{{ $bakedEvents    := site.Data.baked_calendars  | default (slice) }}
+{{ $almondEvents   := site.Data.almond_lifecycle | default (slice) }}
+{{ $seasons        := site.Data.seasons }}
+
+{{/* Which external sources are already baked — skip live-fetching these */}}
+{{ $bakedSources := slice }}
+{{ range $bakedEvents }}
+  {{ with .extendedProps }}
+    {{ $bakedSources = $bakedSources | append .source }}
+  {{ end }}
+{{ end }}
+
+<div class="cal-page">
+
+  <div class="cal-window">
+
+    <!-- Win98-style title bar -->
+    <div class="cal-titlebar">
+      <span class="cal-titlebar-icon">📅</span>
+      <span class="cal-titlebar-text">ALMOND FARM CALENDAR</span>
+      <div class="cal-titlebar-btns">
+        <span>_</span>
+        <span>□</span>
+        <span>✕</span>
+      </div>
+    </div>
+
+    <!-- Toggle checkboxes -->
+    <div class="cal-toolbar">
+      <span class="cal-toolbar-label">SHOW:</span>
+      <label class="cal-toggle" data-source="Personal">
+        <input type="checkbox" checked> <span class="dot" style="background:#FF2D8A"></span> Personal
+      </label>
+      <label class="cal-toggle" data-source="Almond Farm">
+        <input type="checkbox" checked> <span class="dot" style="background:#C4A265"></span> Almond Farm
+      </label>
+      <label class="cal-toggle" data-toggle="moon">
+        <input type="checkbox" checked> <span style="font-size:0.9rem">🌕</span> Moon
+      </label>
+      <label class="cal-toggle" data-source="US Holidays">
+        <input type="checkbox" checked> <span class="dot" style="background:#D4AF37"></span> Holidays
+      </label>
+      <label class="cal-toggle" data-source="Yankees">
+        <input type="checkbox" checked> <span class="dot" style="background:#003087"></span> Yankees
+      </label>
+      <label class="cal-toggle" data-source="Mets">
+        <input type="checkbox" checked> <span class="dot" style="background:#FF5910"></span> Mets
+      </label>
+      <label class="cal-toggle" data-source="Dodgers">
+        <input type="checkbox" checked> <span class="dot" style="background:#005A9C"></span> Dodgers
+      </label>
+    </div>
+
+    <!-- Calendar mount point -->
+    <div id="calendar"></div>
+
+    <!-- Status bar -->
+    <div class="cal-statusbar">
+      <span id="cal-status">Initializing...</span>
+      <span class="cal-statusbar-right">almondfarm.us</span>
+    </div>
+
+  </div><!-- .cal-window -->
+
+  <!-- Edit hint -->
+  <p class="cal-hint">
+    ✏️ Personal events → <code>data/calendar_events.yaml</code> &nbsp;|&nbsp;
+    Farm lifecycle → <code>data/almond_lifecycle.yaml</code> &nbsp;|&nbsp;
+    Refresh MLB → <code>python3 scripts/fetch-calendars.py</code>
+  </p>
+
+  <!-- ── What's in Season ───────────────────────────────────────────────── -->
+  {{ with $seasons }}
+  <div class="seasons-window">
+    <div class="cal-titlebar">
+      <span class="cal-titlebar-icon">🌾</span>
+      <span class="cal-titlebar-text">WHAT'S IN SEASON · CALIFORNIA FARM</span>
+      <div class="cal-titlebar-btns">
+        <span>_</span>
+        <span>□</span>
+        <span>✕</span>
+      </div>
+    </div>
+    <div class="seasons-grid">
+      {{ range .months }}
+      <div class="season-month">
+        <div class="season-month-name">{{ .short }}</div>
+        <ul class="season-produce">
+          {{ range .produce }}<li>{{ . }}</li>{{ end }}
+        </ul>
+        {{ with .almond }}
+        <div class="season-almond">{{ . }}</div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+</div><!-- .cal-page -->
+
+<!-- FullCalendar v6 global bundle -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<!-- ical.js for live ICS parsing (fallback only) -->
+<script src="https://cdn.jsdelivr.net/npm/ical.js@1.5.0/build/ical.min.js"></script>
+
+<script>
+// ── Baked data from Hugo ───────────────────────────────────────────────────────
+const PERSONAL_EVENTS = {{ $personalEvents | jsonify }};
+const BAKED_EVENTS    = {{ $bakedEvents    | jsonify }};
+const ALMOND_EVENTS   = {{ $almondEvents   | jsonify }};
+const BAKED_SOURCES   = new Set({{ $bakedSources | uniq | jsonify }});
+
+// ── External ICS feeds (only fetched live if NOT in BAKED_SOURCES) ────────────
+const ICS_FEEDS = [
+  { name:'US Holidays', url:'https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics', color:'#D4AF37', textColor:'#0A0A0A' },
+  { name:'Yankees',     url:'https://www.mlb.com/yankees/schedule/list.ics',  color:'#003087', textColor:'#ffffff' },
+  { name:'Mets',        url:'https://www.mlb.com/mets/schedule/list.ics',     color:'#FF5910', textColor:'#ffffff' },
+  { name:'Dodgers',     url:'https://www.mlb.com/dodgers/schedule/list.ics',  color:'#005A9C', textColor:'#ffffff' },
+];
+
+const CORS_PROXY = 'https://corsproxy.io/?url=';
+
+// ── Moon phase calculator ─────────────────────────────────────────────────────
+// Builds a lookup { 'YYYY-MM-DD': { emoji, name } } for all major phases.
+// Algorithm: fixed reference new moon + synodic period.
+function buildMoonLookup(years) {
+  const REF_MS     = Date.UTC(2000, 0, 6, 18, 14, 0); // Jan 6 2000 new moon
+  const SYNODIC_MS = 29.530588853 * 24 * 60 * 60 * 1000;
+  const PHASES = [
+    { frac: 0,    emoji: '🌑', name: 'New Moon'      },
+    { frac: 0.25, emoji: '🌓', name: 'First Quarter' },
+    { frac: 0.5,  emoji: '🌕', name: 'Full Moon'     },
+    { frac: 0.75, emoji: '🌗', name: 'Last Quarter'  },
+  ];
+
+  const lookup = {};
+  for (const yr of years) {
+    const yrStart = Date.UTC(yr, 0, 1);
+    const yrEnd   = Date.UTC(yr + 1, 0, 1);
+    // Step back to the new moon just before the year
+    const elapsed = yrStart - REF_MS;
+    const cycles  = Math.floor(elapsed / SYNODIC_MS);
+    let t = REF_MS + cycles * SYNODIC_MS;
+
+    while (t < yrEnd) {
+      for (const p of PHASES) {
+        const phaseMs = t + p.frac * SYNODIC_MS;
+        if (phaseMs >= yrStart && phaseMs < yrEnd) {
+          const key = new Date(phaseMs).toISOString().slice(0, 10);
+          lookup[key] = { emoji: p.emoji, name: p.name };
+        }
+      }
+      t += SYNODIC_MS;
+    }
+  }
+  return lookup;
+}
+
+const NOW_YEAR   = new Date().getFullYear();
+const MOON_LOOKUP = buildMoonLookup([NOW_YEAR - 1, NOW_YEAR, NOW_YEAR + 1]);
+
+// Applies moon icons to currently visible day cells
+function applyMoonIcons(calEl) {
+  calEl.querySelectorAll('.fc-daygrid-day').forEach(dayEl => {
+    const dateStr = dayEl.getAttribute('data-date');
+    const phase   = MOON_LOOKUP[dateStr];
+    if (!phase) return;
+    const top = dayEl.querySelector('.fc-daygrid-day-top');
+    if (!top || top.querySelector('.moon-icon')) return; // already added
+    const span = document.createElement('span');
+    span.className = 'moon-icon';
+    span.textContent = phase.emoji;
+    span.title = phase.name;
+    top.appendChild(span);
+  });
+}
+
+// ── ICS fetch helpers ─────────────────────────────────────────────────────────
+async function fetchICS(feed) {
+  const res = await fetch(CORS_PROXY + encodeURIComponent(feed.url));
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  return parseICS(await res.text(), feed);
+}
+
+function parseICS(text, feed) {
+  const events = [];
+  let jcal;
+  try { jcal = ICAL.parse(text); } catch { return events; }
+  new ICAL.Component(jcal).getAllSubcomponents('vevent').forEach(vevent => {
+    try {
+      const ev = new ICAL.Event(vevent);
+      const dtstart = ev.startDate, dtend = ev.endDate;
+      const isMLB = ['Yankees','Mets','Dodgers'].includes(feed.name);
+      events.push({
+        title: isMLB ? shortenMLB(ev.summary) : ev.summary,
+        start: dtstart.toJSDate(),
+        end:   dtend ? dtend.toJSDate() : undefined,
+        allDay: dtstart.isDate,
+        backgroundColor: feed.color,
+        borderColor:     feed.color,
+        textColor:       feed.textColor,
+        extendedProps: { source: feed.name }
+      });
+    } catch (_) {}
+  });
+  return events;
+}
+
+function shortenMLB(title) {
+  if (!title) return '⚾ Game';
+  return title
+    .replace(/New York Yankees/g, 'NYY')
+    .replace(/New York Mets/g,    'NYM')
+    .replace(/Los Angeles Dodgers/g, 'LAD')
+    .replace(/ at /g,  ' @ ')
+    .replace(/ vs\. /g,' vs ');
+}
+
+// ── Boot ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async () => {
+  const statusEl = document.getElementById('cal-status');
+  const calEl    = document.getElementById('calendar');
+
+  // Personal events
+  const personalFC = (PERSONAL_EVENTS || []).map(e => ({
+    ...e,
+    backgroundColor: e.color || '#FF2D8A',
+    borderColor:     e.color || '#FF2D8A',
+    textColor:       e.textColor || '#ffffff',
+    extendedProps: { source: 'Personal' }
+  }));
+
+  // Almond lifecycle events (already have correct extendedProps in YAML)
+  const almondFC = (ALMOND_EVENTS || []);
+
+  // All events loaded at boot — no network needed if baked
+  const initialEvents = [...personalFC, ...(BAKED_EVENTS || []), ...almondFC];
+
+  // ── FullCalendar init ───────────────────────────────────────────────────────
+  const calendar = new FullCalendar.Calendar(calEl, {
+    initialView: 'dayGridMonth',
+    firstDay: 0,
+    headerToolbar: {
+      left:   'prev,next today',
+      center: 'title',
+      right:  'dayGridMonth,dayGridWeek'
+    },
+    height: 'auto',
+    events: initialEvents,
+
+    // Add moon icons whenever the view re-renders new dates
+    datesSet() {
+      requestAnimationFrame(() => applyMoonIcons(calEl));
+    },
+
+    eventDidMount(info) {
+      info.el.title = info.event.extendedProps.source + ': ' + info.event.title;
+    }
+  });
+
+  calendar.render();
+
+  const bakedCount = (BAKED_EVENTS || []).length;
+  statusEl.textContent = bakedCount > 0
+    ? `${personalFC.length} personal · ${almondFC.length} farm · ${bakedCount} baked ✓`
+    : `${personalFC.length} personal · ${almondFC.length} farm · loading feeds...`;
+
+  // ── Source toggles ──────────────────────────────────────────────────────────
+  document.querySelectorAll('.cal-toggle[data-source]').forEach(label => {
+    const source   = label.dataset.source;
+    const checkbox = label.querySelector('input');
+    checkbox.addEventListener('change', () => {
+      calendar.getEvents().forEach(ev => {
+        if (ev.extendedProps.source === source) {
+          ev.setProp('display', checkbox.checked ? 'auto' : 'none');
+        }
+      });
+    });
+  });
+
+  // ── Moon phase toggle (CSS class — no re-render needed) ─────────────────────
+  document.querySelector('.cal-toggle[data-toggle="moon"] input')
+    ?.addEventListener('change', e => {
+      calEl.classList.toggle('no-moon', !e.target.checked);
+    });
+
+  // ── Live-fetch unbaked feeds ────────────────────────────────────────────────
+  const liveFeeds = ICS_FEEDS.filter(f => !BAKED_SOURCES.has(f.name));
+  if (liveFeeds.length === 0) return;
+
+  const results = await Promise.allSettled(liveFeeds.map(f => fetchICS(f)));
+  let loaded = 0, totalLive = 0;
+
+  results.forEach((r, i) => {
+    if (r.status === 'fulfilled') {
+      r.value.forEach(ev => calendar.addEvent(ev));
+      totalLive += r.value.length;
+      loaded++;
+    } else {
+      console.warn('[cal] Failed:', liveFeeds[i].name, r.reason);
+    }
+  });
+
+  statusEl.textContent =
+    `${personalFC.length} personal · ${almondFC.length} farm · ${bakedCount} baked · ${totalLive} live`;
+});
+</script>
+
+<style>
+/* ── Page ─────────────────────────────────────────────────────────────────── */
+.cal-page {
+  max-width: 1040px;
+  margin: 2rem auto;
+  padding: 0 1rem 3rem;
+}
+
+/* ── Win98 window chrome (shared by both panels) ─────────────────────────── */
+.cal-window,
+.seasons-window {
+  border: 3px outset #888;
+  background: var(--black-card);
+  box-shadow: 4px 4px 0 #000;
+}
+.seasons-window { margin-top: 2rem; }
+
+.cal-titlebar {
+  background: linear-gradient(90deg, #FF2D8A 0%, #8B0057 100%);
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+.seasons-window .cal-titlebar {
+  background: linear-gradient(90deg, #4A7C59 0%, #2E5C3A 100%);
+}
+.cal-titlebar-icon { font-size: 0.9rem; }
+.cal-titlebar-text {
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 0 #000;
+}
+.cal-titlebar-btns { display: flex; gap: 3px; }
+.cal-titlebar-btns span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 16px;
+  background: #c0c0c0;
+  border: 2px outset #fff;
+  font-size: 0.6rem;
+  color: #000;
+  font-family: monospace;
+  cursor: default;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────────────────── */
+.cal-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 7px 12px;
+  background: #111;
+  border-bottom: 2px inset #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+}
+.cal-toolbar-label { color: #888; letter-spacing: 1px; }
+.cal-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: #ccc;
+  white-space: nowrap;
+}
+.cal-toggle input { cursor: pointer; accent-color: #FF2D8A; }
+.cal-toggle .dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* ── Status bar ──────────────────────────────────────────────────────────── */
+.cal-statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 12px;
+  background: #111;
+  border-top: 2px inset #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #666;
+}
+.cal-statusbar-right { color: #444; }
+
+/* ── Edit hint ───────────────────────────────────────────────────────────── */
+.cal-hint {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: #555;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+  line-height: 1.8;
+}
+.cal-hint code {
+  background: #1A1A1A;
+  border: 1px solid #333;
+  padding: 1px 5px;
+  color: #D4AF37;
+  font-size: 0.75rem;
+}
+
+/* ── Moon phase icons in day cells ───────────────────────────────────────── */
+.moon-icon {
+  font-size: 0.8rem;
+  margin-left: 4px;
+  opacity: 0.85;
+  cursor: default;
+}
+/* Hidden when moon toggle is off */
+#calendar.no-moon .moon-icon { display: none; }
+
+/* ── FullCalendar dark 2000s overrides ───────────────────────────────────── */
+#calendar {
+  padding: 10px;
+  background: var(--black-card);
+}
+.fc {
+  --fc-border-color: #2a2a2a;
+  --fc-button-bg-color: #1a1a1a;
+  --fc-button-border-color: #555;
+  --fc-button-text-color: #ccc;
+  --fc-button-hover-bg-color: #FF2D8A;
+  --fc-button-hover-border-color: #FF2D8A;
+  --fc-button-active-bg-color: #c4006b;
+  --fc-button-active-border-color: #c4006b;
+  --fc-today-bg-color: rgba(255, 45, 138, 0.10);
+  --fc-page-bg-color: var(--black-card);
+  --fc-neutral-bg-color: #1a1a1a;
+  color: var(--white);
+  font-family: 'Courier New', monospace;
+}
+.fc-toolbar-title {
+  font-family: 'Impact', 'Arial Black', sans-serif !important;
+  color: #FF2D8A !important;
+  font-size: 1.35rem !important;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 0 #000;
+}
+.fc .fc-button {
+  font-family: 'Courier New', monospace !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  border-radius: 0 !important;
+  border-style: outset !important;
+  border-width: 2px !important;
+  padding: 3px 10px !important;
+}
+.fc .fc-button:active, .fc .fc-button-active { border-style: inset !important; }
+.fc th {
+  background: #1a1a1a;
+  color: #D4AF37;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+  padding: 5px 2px;
+}
+.fc-daygrid-day-number {
+  color: #666;
+  font-size: 0.78rem;
+  font-family: 'Courier New', monospace;
+}
+.fc-day-today .fc-daygrid-day-number { color: #FF2D8A; font-weight: bold; }
+.fc-day-other .fc-daygrid-day-number { color: #333; }
+.fc-event {
+  border-radius: 0 !important;
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem !important;
+  border-width: 1px !important;
+  cursor: pointer;
+}
+.fc-daygrid-more-link {
+  color: #FF2D8A;
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+}
+.fc-popover {
+  background: #1a1a1a !important;
+  border: 2px outset #666 !important;
+  border-radius: 0 !important;
+}
+.fc-popover-header {
+  background: linear-gradient(90deg, #FF2D8A, #8B0057) !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: 0.75rem !important;
+  color: #fff !important;
+}
+
+/* ── Seasons panel ───────────────────────────────────────────────────────── */
+.seasons-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+}
+@media (max-width: 700px) {
+  .seasons-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 420px) {
+  .seasons-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.season-month {
+  border-right: 1px solid #2a2a2a;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 10px 8px;
+  background: var(--black-card);
+}
+.season-month:nth-child(6n) { border-right: none; }
+
+.season-month-name {
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-size: 0.9rem;
+  color: #D4AF37;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.season-produce {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+.season-produce li {
+  font-family: 'Courier New', monospace;
+  font-size: 0.68rem;
+  color: #aaa;
+  line-height: 1.5;
+  padding-left: 0.7em;
+  position: relative;
+}
+.season-produce li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #4A7C59;
+}
+
+.season-almond {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #C4A265;
+  line-height: 1.4;
+  border-top: 1px solid #2a2a2a;
+  padding-top: 6px;
+  margin-top: 4px;
+}
+</style>
+
+{{ end }}

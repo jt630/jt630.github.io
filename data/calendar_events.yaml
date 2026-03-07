@@ -1,0 +1,35 @@
+# Almond Farm — Personal Calendar Events
+# These are baked in at build time. Add/edit events here, then push.
+#
+# Fields:
+#   title       (required) — event name
+#   start       (required) — "YYYY-MM-DD" for all-day, "YYYY-MM-DDTHH:MM:SS" for timed
+#   end         (optional) — end date/time (exclusive for all-day)
+#   allDay      (optional) — true/false (auto-detected from start format)
+#   color       (optional) — hex color, defaults to hot pink #FF2D8A
+#   url         (optional) — clicking the event opens this URL
+#
+# Example timed event:
+# - title: "Farm dinner"
+#   start: "2026-04-18T18:00:00"
+#   end:   "2026-04-18T21:00:00"
+#
+# Example all-day event:
+# - title: "Almond Festival"
+#   start: "2026-07-04"
+#   color: "#D4AF37"
+
+- title: "Almond Farm Meetup"
+  start: "2026-04-15"
+  allDay: true
+  color: "#FF2D8A"
+
+- title: "Plant garlic"
+  start: "2026-03-20"
+  allDay: true
+  color: "#4CAF50"
+
+- title: "Farm dinner"
+  start: "2026-03-22T18:00:00"
+  end:   "2026-03-22T21:00:00"
+  color: "#FF2D8A"

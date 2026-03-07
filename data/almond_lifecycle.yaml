@@ -1,0 +1,163 @@
+# Almond Farm — Annual Lifecycle Events
+# These appear on the calendar under the "Almond Farm" toggle.
+#
+# UPDATE EACH YEAR: Change the year in all dates. Adjust ±2 weeks based on
+# actual chilling hours received and your variety mix (Nonpareil blooms first,
+# then Carmel/Padre/Mission follow ~3-5 days later).
+#
+# Reference timing for California Central Valley:
+#   Bloom:            mid-Feb – early Mar
+#   Harvest start:    late Jul (early) / Aug 1 (Nonpareil) / Sep (Mission)
+#   Pruning window:   Dec 15 – Feb 14
+#   Hull split:       Jul 15 – Aug 10 (varies by variety & heat)
+
+# ── DORMANCY & PRUNING ────────────────────────────────────────────────────────
+- title: "🔪 Dormant pruning"
+  start: "2026-01-01"
+  end: "2026-02-15"
+  color: "#6B5344"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── PRE-BLOOM PREP ────────────────────────────────────────────────────────────
+- title: "🐝 Scout bee placement sites"
+  start: "2026-01-20"
+  allDay: true
+  color: "#C4A265"
+  textColor: "#0A0A0A"
+  extendedProps:
+    source: "Almond Farm"
+
+- title: "🐝 Bees in — pollination window open"
+  start: "2026-02-05"
+  end: "2026-03-10"
+  color: "#F5D674"
+  textColor: "#0A0A0A"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── BLOOM ─────────────────────────────────────────────────────────────────────
+# Most critical period — frost, rain, and wind during bloom = yield loss.
+- title: "🌸 Bloom"
+  start: "2026-02-08"
+  end: "2026-03-08"
+  color: "#FFB7C5"
+  textColor: "#5A0020"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── PETAL FALL → JACKET STAGE ─────────────────────────────────────────────────
+- title: "🌿 Petal fall — jacket stage"
+  start: "2026-03-08"
+  allDay: true
+  color: "#4A7C59"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── HULL DEVELOPMENT ──────────────────────────────────────────────────────────
+- title: "🌱 Hull growth & irrigation"
+  start: "2026-03-15"
+  end: "2026-07-01"
+  color: "#2E5C3A"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── SPRAY / PEST PROGRAM ──────────────────────────────────────────────────────
+- title: "💊 Spring spray program"
+  start: "2026-04-01"
+  end: "2026-05-15"
+  color: "#7A5EA7"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── NAVEL ORANGEWORM MONITORING ───────────────────────────────────────────────
+# NOW is the #1 insect pest of almonds — damage rises sharply at hull split.
+- title: "🦋 NOW monitoring"
+  start: "2026-06-01"
+  end: "2026-09-01"
+  color: "#8B3A3A"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── HULL SPLIT ────────────────────────────────────────────────────────────────
+# 5-7 days after hull split is peak NOW egg-laying window — critical spray timing.
+- title: "⚡ Hull split"
+  start: "2026-07-15"
+  end: "2026-08-05"
+  color: "#C4A265"
+  textColor: "#0A0A0A"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── HARVEST ───────────────────────────────────────────────────────────────────
+- title: "🌾 Harvest — shake & windrow"
+  start: "2026-08-01"
+  end: "2026-09-15"
+  color: "#D4AF37"
+  textColor: "#0A0A0A"
+  extendedProps:
+    source: "Almond Farm"
+
+- title: "💨 Windrow drying (7–10 days per block)"
+  start: "2026-08-10"
+  end: "2026-09-05"
+  color: "#A08040"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+- title: "🚜 Pickup & haul to huller"
+  start: "2026-08-20"
+  end: "2026-09-20"
+  color: "#8B6914"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── POST-HARVEST ──────────────────────────────────────────────────────────────
+- title: "💧 Post-harvest irrigation"
+  start: "2026-10-01"
+  end: "2026-11-01"
+  color: "#1A6B8A"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+- title: "🌿 Fall floor management"
+  start: "2026-10-15"
+  end: "2026-11-15"
+  color: "#4A7C59"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── PRE-DORMANCY ──────────────────────────────────────────────────────────────
+- title: "📋 Pre-dormancy orchard assessment"
+  start: "2026-11-01"
+  end: "2026-11-20"
+  color: "#8B6914"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"
+
+- title: "😴 Dormancy — chill hours accumulating"
+  start: "2026-11-20"
+  end: "2026-12-15"
+  color: "#444444"
+  textColor: "#ccc"
+  extendedProps:
+    source: "Almond Farm"
+
+# ── YEAR-END PRUNING ──────────────────────────────────────────────────────────
+- title: "🔪 Dormant pruning begins"
+  start: "2026-12-15"
+  end: "2026-12-31"
+  color: "#6B5344"
+  textColor: "#fff"
+  extendedProps:
+    source: "Almond Farm"

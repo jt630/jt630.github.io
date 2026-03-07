@@ -61,9 +61,13 @@ title = "Almond Farm"
     url = "/gadgets/"
     weight = 13
   [[menu.main]]
+    name = "Calendar"
+    url = "/calendar/"
+    weight = 14
+  [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 14
+    weight = 15
 
 [markup]
   [markup.goldmark]
