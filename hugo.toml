@@ -61,13 +61,17 @@ title = "Almond Farm"
     url = "/gadgets/"
     weight = 13
   [[menu.main]]
+    name = "Videos"
+    url = "/videos/"
+    weight = 14
+  [[menu.main]]
     name = "Calendar"
     url = "/calendar/"
-    weight = 14
+    weight = 15
   [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 15
+    weight = 16
 
 [taxonomies]
   tag = "tags"
