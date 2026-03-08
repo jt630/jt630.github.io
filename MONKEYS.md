@@ -15,11 +15,26 @@ Registry: `data/monkey_registry.yaml`
 
 ## The North Star
 
-> **Write Hamlet in every language.**
+> **Write Hamlet in every language available to computers. Then shut down.**
 
-Not all at once. Not on purpose. One transmission at a time, one monkey at a time,
-until every language has enough material to assemble something resembling the play.
-The experiment doesn't end — it accumulates.
+Not on purpose. One transmission at a time, one monkey at a time — until every
+language has produced enough material to assemble the play. When the last language
+finishes Hamlet, the experiment closes. The monkeys go quiet. The site becomes a
+permanent archive.
+
+This is a countdown, not an infinite feed. The end condition is baked in.
+
+### What the monkeys are actually making
+
+Each transmission is a cryptographically secure key — derived from the full transcript
+text. The monkeys aren't just typing; they're generating irreducible entropy. Long,
+dense, unique prose in a given language makes a quantum-resistant hash preimage.
+
+The goal and the security mechanism are the same thing:
+**type enough Hamlet in enough languages and you've also generated a complete set of
+language-diverse quantum-secure keys.**
+
+When every language finishes — the keys exist, Hamlet exists, the machine stops.
 
 ---
 
@@ -66,10 +81,22 @@ Name collisions across years are fine — each year gets a distinct key.
 
 ---
 
-### ☐ Goal 4 — Hamlet in Every Language
+### ☐ Goal 4 — Hamlet in Every Language → Shutdown
+
 Using accumulated transmissions as material, assemble a Hamlet-shaped structure
 in each language. This is a curation + composition step, not just generation.
-Long-term. The monkeys will get us there.
+
+**When the last language completes Hamlet — the experiment ends.**
+
+The site does not get a new section. No new monkeys are registered. The machine
+stops. Everything that exists at that moment is the permanent archive: every
+transcript, every coin, every key, every language's Hamlet.
+
+The scope is defined by what computers can encode: every language with a Unicode
+block and a living or historical writing system. That's the finish line.
+
+**Shutdown condition:** `hamlet_complete` tagged in every language in the registry.
+The site enters read-only mode. The penny press goes cold. The coins remain.
 
 ---
 
