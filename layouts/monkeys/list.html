@@ -23,7 +23,7 @@
   <div class="mk-window">
     <div class="mk-titlebar">
       <span class="mk-titlebar-icon">🐒</span>
-      <span class="mk-titlebar-text">MONKEYS — FILE DIRECTORY</span>
+      <span class="mk-titlebar-text">INFINITE MONKEY THEOREM — TERMINAL OUTPUT LOG</span>
       <div class="mk-titlebar-btns">
         <span>_</span><span>□</span><span>✕</span>
       </div>
@@ -86,7 +86,11 @@
               </div>
               <div class="mk-folder-body">
                 {{ range $monthPages }}
-                {{ $monkey := .Params.monkey | default .Title }}
+                {{ $monkey := .Params.monkey }}
+                {{ if and (not $monkey) .Params.monkey_id }}
+                  {{ $monkey = partial "monkey-name.html" .Params.monkey_id }}
+                {{ end }}
+                {{ $monkey = $monkey | default .Title }}
                 {{ $dateStr := .Date.Format "20060102" }}
                 {{ $filename := printf "%s_%s.txt" $monkey $dateStr }}
                 <a class="mk-file-row mk-indent2" href="{{ .Permalink }}">
@@ -116,8 +120,8 @@
   </div>
 
   <p class="mk-hint">
-    ✏️ Add posts → <code>content/monkeys/</code> &nbsp;|&nbsp;
-    Set <code>monkey: "YourName"</code> in front matter
+    🐒 Each monkey types until something comes out &nbsp;|&nbsp;
+    Files → <code>content/monkeys/</code> &nbsp;|&nbsp; Name via <code>monkey:</code> front matter
   </p>
 
 </div>

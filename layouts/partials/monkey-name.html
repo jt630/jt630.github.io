@@ -1,0 +1,13 @@
+{{/*
+  Returns the monkey name for a given 1-based monkey_id.
+  Usage: {{ partial "monkey-name.html" 7 }}
+
+  If the post sets `monkey:` directly in front matter, use that instead —
+  this partial is only needed when using `monkey_id:` for auto-assignment.
+*/}}
+{{ $adj  := site.Data.monkey_names.adjectives }}
+{{ $noun := site.Data.monkey_names.nouns }}
+{{ $id   := . | int }}
+{{ $a    := index $adj  (mod (sub $id 1) (len $adj))  }}
+{{ $n    := index $noun (mod (sub $id 1) (len $noun)) }}
+{{ print $a $n }}
