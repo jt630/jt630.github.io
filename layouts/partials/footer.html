@@ -1,5 +1,37 @@
 <footer class="site-footer">
-  <p>&copy; {{ now.Year }} Almond Farm &middot; <a href="/about/">About</a></p>
-  <p class="visitor-counter">👁 You are visitor #<span class="counter-digits">001337</span></p>
-  <p class="best-viewed">Best viewed in Internet Explorer 6 at 800×600 resolution</p>
+  <p>&copy; {{ now.Year }} Almond Farm &middot; <a href="/about/">About</a> &middot; <a href="/index.xml" class="rss-link">&#x2605; RSS Feed</a> &middot; <a href="/tags/">Topics</a></p>
+  <p class="visitor-counter">👁 You are visitor #<span class="counter-digits" id="visitor-count">000000</span></p>
+  <script>
+    (function() {
+      var BASE = 419200;
+      var stored = localStorage.getItem('af_visits');
+      var count = stored ? parseInt(stored, 10) : BASE + Math.floor(Math.random() * 800);
+      count += Math.floor(Math.random() * 6) + 1;
+      localStorage.setItem('af_visits', count);
+      document.getElementById('visitor-count').textContent = String(count).padStart(6, '0');
+    })();
+  </script>
+  <p class="best-viewed blink">Best viewed in Internet Explorer 6 at 800×600 resolution</p>
+  <div class="badge-row">
+    <div class="web-badge badge-ie">
+      <div class="badge-left">🌐</div>
+      <div class="badge-right">IE 6.0<br>ENHANCED</div>
+    </div>
+    <div class="web-badge badge-construct">
+      <div class="badge-left">🚧</div>
+      <div class="badge-right">UNDER<br>CONSTRUCTION</div>
+    </div>
+    <div class="web-badge badge-notepad">
+      <div class="badge-left">📝</div>
+      <div class="badge-right">MADE WITH<br>NOTEPAD</div>
+    </div>
+    <div class="web-badge badge-best">
+      <div class="badge-left">⭐</div>
+      <div class="badge-right">BEST SITE<br>ON WEB</div>
+    </div>
+    <div class="web-badge badge-y2k">
+      <div class="badge-left">💾</div>
+      <div class="badge-right">Y2K<br>COMPLIANT</div>
+    </div>
+  </div>
 </footer>

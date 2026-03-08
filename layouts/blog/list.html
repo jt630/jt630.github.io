@@ -1,0 +1,100 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="subtitle">{{ . }}</p>{{ end }}
+  </div>
+
+  {{/* ── Monkeys Series Banner ── */}}
+  <a href="/monkeys/" class="mk-series-banner">
+    <div class="mk-series-titlebar">
+      <span>📁</span>
+      <span class="mk-series-titlebar-text">SERIES: INFINITE MONKEY THEOREM</span>
+      <div class="mk-series-titlebar-btns">
+        <span>_</span><span>□</span><span>✕</span>
+      </div>
+    </div>
+    <div class="mk-series-body">
+      <span class="mk-series-icon">🐒</span>
+      <div class="mk-series-info">
+        <p class="mk-series-desc">Given infinite time, a monkey at a typewriter will eventually produce Shakespeare. We are not waiting that long. These are the transcripts.</p>
+        {{ $monkeyCount := len (where .Site.RegularPages "Section" "monkeys") }}
+        <p class="mk-series-meta">{{ $monkeyCount }} file{{ if ne $monkeyCount 1 }}s{{ end }} · Open directory →</p>
+      </div>
+    </div>
+  </a>
+
+  {{/* ── Regular blog posts ── */}}
+  {{ with .Content }}
+    <div style="margin-bottom: 2rem;">{{ . }}</div>
+  {{ end }}
+
+  <div class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+</div>
+
+<style>
+.mk-series-banner {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  border: 3px outset #888;
+  box-shadow: 4px 4px 0 #000;
+  transition: box-shadow 0.1s, border-style 0.1s;
+}
+.mk-series-banner:hover {
+  border-style: inset;
+  box-shadow: 2px 2px 0 #000;
+}
+
+.mk-series-titlebar {
+  background: linear-gradient(90deg, #c46200 0%, #7a3d00 100%);
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+.mk-series-titlebar-text {
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 0 #000;
+}
+.mk-series-titlebar-btns { display: flex; gap: 3px; }
+.mk-series-titlebar-btns span {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 14px;
+  background: #c0c0c0; border: 2px outset #fff;
+  font-size: 0.55rem; color: #000; font-family: monospace;
+}
+
+.mk-series-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: var(--black-card);
+}
+
+.mk-series-icon { font-size: 2.2rem; flex-shrink: 0; }
+
+.mk-series-desc {
+  font-size: 0.85rem;
+  color: var(--white-dim);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.mk-series-meta {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: #D4AF37;
+}
+</style>
+{{ end }}

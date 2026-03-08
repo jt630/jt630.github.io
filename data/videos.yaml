@@ -1,0 +1,12 @@
+# Add videos here. Each entry needs:
+#   id:          YouTube video ID (from the URL: youtube.com/watch?v=ID)
+#   title:       Title to display
+#   posted_by:   Who shared it
+#   description: Short note (optional)
+#   date:        YYYY-MM-DD
+
+- id: "dQw4w9WgXcQ"
+  title: "Never Gonna Give You Up"
+  posted_by: "JT"
+  description: "Felt appropriate for a 2000s website."
+  date: "2024-08-01"

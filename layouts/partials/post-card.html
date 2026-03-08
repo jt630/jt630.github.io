@@ -7,7 +7,13 @@
     <div class="post-card-meta">
       <time>{{ .Date.Format "January 2, 2006" }}</time>
       {{ with .Params.author }} &middot; {{ . }}{{ end }}
+      &middot; {{ .ReadingTime }} min read
     </div>
+    {{ with .Params.tags }}
+    <div class="post-card-tags">
+      {{ range . }}<a href="/tags/{{ . | urlize }}/" class="tag-pill">#{{ . }}</a>{{ end }}
+    </div>
+    {{ end }}
     <p class="post-card-excerpt">{{ .Summary | plainify | truncate 150 }}</p>
   </div>
 </article>

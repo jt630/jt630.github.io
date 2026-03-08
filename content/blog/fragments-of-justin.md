@@ -3,6 +3,7 @@ title: "Fragments of Justin"
 date: 2024-08-03
 author: ""
 description: "The best quotes from Justin of Walnut, Mississippi."
+tags: ["wildfire", "people", "quotes"]
 ---
 
 > "In Haver, Montana if you have a dog you can watch that joker run away for a week."

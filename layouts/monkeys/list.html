@@ -1,0 +1,324 @@
+{{ define "main" }}
+{{/*
+  Group pages by year, then by month.
+  Each page's "filename" = MonkeyName_YYYYMMDD.txt
+  Monkey name comes from front-matter field `monkey`, fallback to .Title.
+*/}}
+
+{{ $byYear := dict }}
+{{ range .Pages.ByDate.Reverse }}
+  {{ $y := .Date.Format "2006" }}
+  {{ $existing := index $byYear $y | default (slice) }}
+  {{ $byYear = merge $byYear (dict $y ($existing | append .)) }}
+{{ end }}
+
+{{ $years := slice }}
+{{ range $y, $_ := $byYear }}
+  {{ $years = $years | append $y }}
+{{ end }}
+{{ $years = sort $years "value" "desc" }}
+
+<div class="mk-page">
+
+  <div class="mk-window">
+    <div class="mk-titlebar">
+      <span class="mk-titlebar-icon">🐒</span>
+      <span class="mk-titlebar-text">INFINITE MONKEY THEOREM — TERMINAL OUTPUT LOG</span>
+      <div class="mk-titlebar-btns">
+        <span>_</span><span>□</span><span>✕</span>
+      </div>
+    </div>
+
+    <div class="mk-toolbar">
+      <span class="mk-toolbar-btn" onclick="expandAll()">+ Expand All</span>
+      <span class="mk-toolbar-sep">|</span>
+      <span class="mk-toolbar-btn" onclick="collapseAll()">- Collapse All</span>
+      <span class="mk-toolbar-sep">|</span>
+      <span class="mk-toolbar-label">{{ len .Pages }} file{{ if ne (len .Pages) 1 }}s{{ end }}</span>
+    </div>
+
+    <div class="mk-explorer">
+      <div class="mk-tree">
+
+        {{ if not .Pages }}
+          <p class="mk-empty">No files yet. Add posts to <code>content/monkeys/</code></p>
+        {{ end }}
+
+        {{ range $years }}
+        {{ $y := . }}
+        {{ $yearPages := index $byYear $y }}
+
+        {{/* group this year by month */}}
+        {{ $byMonth := dict }}
+        {{ range $yearPages }}
+          {{ $m := .Date.Format "01" }}
+          {{ $ex := index $byMonth $m | default (slice) }}
+          {{ $byMonth = merge $byMonth (dict $m ($ex | append .)) }}
+        {{ end }}
+        {{ $months := slice }}
+        {{ range $m, $_ := $byMonth }}
+          {{ $months = $months | append $m }}
+        {{ end }}
+        {{ $months = sort $months "value" "desc" }}
+
+        <div class="mk-folder mk-year" data-open="true">
+          <div class="mk-folder-row" onclick="toggleFolder(this)">
+            <span class="mk-caret">▼</span>
+            <span class="mk-icon-folder">📁</span>
+            <span class="mk-folder-name">{{ $y }}</span>
+            <span class="mk-folder-count">({{ len $yearPages }})</span>
+          </div>
+          <div class="mk-folder-body">
+
+            {{ range $months }}
+            {{ $m := . }}
+            {{ $monthPages := index $byMonth $m }}
+            {{/* month name */}}
+            {{ $monthNames := dict "01" "January" "02" "February" "03" "March" "04" "April" "05" "May" "06" "June" "07" "July" "08" "August" "09" "September" "10" "October" "11" "November" "12" "December" }}
+            {{ $monthLabel := index $monthNames $m | default $m }}
+
+            <div class="mk-folder mk-month" data-open="true">
+              <div class="mk-folder-row mk-indent1" onclick="toggleFolder(this)">
+                <span class="mk-caret">▼</span>
+                <span class="mk-icon-folder">📂</span>
+                <span class="mk-folder-name">{{ $monthLabel }}</span>
+                <span class="mk-folder-count">({{ len $monthPages }})</span>
+              </div>
+              <div class="mk-folder-body">
+                {{ range $monthPages }}
+                {{ $key := .Params.monkey_key | default (.Params.monkey | default .Title) }}
+                {{ $dateStr := .Date.Format "20060102" }}
+                {{ $filename := printf "%s %s.txt" $key $dateStr }}
+                <a class="mk-file-row mk-indent2" href="{{ .Permalink }}">
+                  <span class="mk-icon-file">📄</span>
+                  <span class="mk-filename">{{ $filename }}</span>
+                  {{ with .Params.description }}
+                  <span class="mk-file-desc">— {{ . }}</span>
+                  {{ end }}
+                </a>
+                {{ end }}
+              </div>
+            </div>
+
+            {{ end }}{{/* range months */}}
+          </div>
+        </div>
+
+        {{ end }}{{/* range years */}}
+
+      </div>{{/* .mk-tree */}}
+    </div>{{/* .mk-explorer */}}
+
+    <div class="mk-statusbar">
+      <span id="mk-status">{{ len .Pages }} object{{ if ne (len .Pages) 1 }}s{{ end }}</span>
+      <span>almondfarm.us/monkeys/</span>
+    </div>
+  </div>
+
+  <p class="mk-hint">
+    🐒 Each monkey is a named agent — top baby name, country, year &nbsp;|&nbsp;
+    Key: <code>Name_ISO2_Year</code> &nbsp;|&nbsp; Registry: <code>data/monkey_registry.yaml</code>
+  </p>
+
+</div>
+
+<script>
+function toggleFolder(rowEl) {
+  const folder = rowEl.closest('.mk-folder');
+  const isOpen = folder.dataset.open === 'true';
+  folder.dataset.open = isOpen ? 'false' : 'true';
+  rowEl.querySelector('.mk-caret').textContent = isOpen ? '▶' : '▼';
+  rowEl.querySelector('.mk-icon-folder').textContent = isOpen ? '📁' : '📂';
+}
+
+function expandAll() {
+  document.querySelectorAll('.mk-folder').forEach(f => {
+    f.dataset.open = 'true';
+    const caret = f.querySelector(':scope > .mk-folder-row .mk-caret');
+    const icon  = f.querySelector(':scope > .mk-folder-row .mk-icon-folder');
+    if (caret) caret.textContent = '▼';
+    if (icon)  icon.textContent  = '📂';
+  });
+}
+
+function collapseAll() {
+  document.querySelectorAll('.mk-folder').forEach(f => {
+    f.dataset.open = 'false';
+    const caret = f.querySelector(':scope > .mk-folder-row .mk-caret');
+    const icon  = f.querySelector(':scope > .mk-folder-row .mk-icon-folder');
+    if (caret) caret.textContent = '▶';
+    if (icon)  icon.textContent  = '📁';
+  });
+}
+</script>
+
+<style>
+.mk-page {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1rem 3rem;
+}
+
+/* ── Window chrome ── */
+.mk-window {
+  border: 3px outset #888;
+  background: var(--black-card);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.mk-titlebar {
+  background: linear-gradient(90deg, #c46200 0%, #7a3d00 100%);
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+.mk-titlebar-icon { font-size: 0.9rem; }
+.mk-titlebar-text {
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 0 #000;
+}
+.mk-titlebar-btns { display: flex; gap: 3px; }
+.mk-titlebar-btns span {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 16px;
+  background: #c0c0c0; border: 2px outset #fff;
+  font-size: 0.6rem; color: #000; font-family: monospace; cursor: default;
+}
+
+/* ── Toolbar ── */
+.mk-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  background: #111;
+  border-bottom: 2px inset #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+}
+.mk-toolbar-btn {
+  color: #D4AF37;
+  cursor: pointer;
+  user-select: none;
+}
+.mk-toolbar-btn:hover { color: #FF2D8A; }
+.mk-toolbar-sep { color: #333; }
+.mk-toolbar-label { color: #555; margin-left: auto; }
+
+/* ── Explorer area ── */
+.mk-explorer {
+  min-height: 200px;
+  padding: 12px 10px;
+  background: #0d0d0d;
+}
+
+/* ── Folder / file rows ── */
+.mk-folder-row,
+.mk-file-row {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 3px 6px;
+  border-radius: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.6;
+}
+.mk-folder-row:hover { background: #1a1a1a; }
+
+.mk-file-row {
+  text-decoration: none;
+  display: flex;
+}
+.mk-file-row:hover { background: #1f1310; }
+
+.mk-indent1 { padding-left: 22px; }
+.mk-indent2 { padding-left: 44px; }
+
+.mk-caret {
+  color: #555;
+  font-size: 0.6rem;
+  width: 10px;
+  flex-shrink: 0;
+}
+.mk-icon-folder,
+.mk-icon-file {
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.mk-folder-name {
+  color: #D4AF37;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.mk-folder-count {
+  color: #444;
+  font-size: 0.7rem;
+  margin-left: 4px;
+}
+.mk-filename {
+  color: #ccc;
+}
+.mk-file-row:hover .mk-filename { color: #FF2D8A; }
+.mk-file-desc {
+  color: #555;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 340px;
+}
+
+/* ── Folder body collapse ── */
+.mk-folder[data-open="false"] > .mk-folder-body { display: none; }
+.mk-folder[data-open="true"]  > .mk-folder-body { display: block; }
+
+/* ── Empty state ── */
+.mk-empty {
+  font-family: 'Courier New', monospace;
+  color: #444;
+  font-size: 0.82rem;
+  padding: 2rem;
+  text-align: center;
+}
+.mk-empty code { color: #D4AF37; }
+
+/* ── Status bar ── */
+.mk-statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 12px;
+  background: #111;
+  border-top: 2px inset #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #666;
+}
+
+/* ── Hint ── */
+.mk-hint {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: #555;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+}
+.mk-hint code {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 1px 5px;
+  color: #D4AF37;
+  font-size: 0.75rem;
+}
+</style>
+
+{{ end }}

@@ -3,6 +3,7 @@ title: "Salchichas Papa"
 date: 2024-08-01
 author: ""
 description: "Sausage and potatoes — for when that's all you've got."
+tags: ["recipe", "comfort-food", "quick"]
 ---
 
 **Sausage and Potatoes** — Any Meal
