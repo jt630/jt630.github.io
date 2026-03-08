@@ -43,4 +43,11 @@ monkeys: []
 #   milestones: []
 #   owner: "gh:username"        # whoever triggered the post (gh: / email: / anon)
 #   owner_date: "YYYY-MM-DD"    # date ownership was claimed
+#
+# CRYPTOGRAPHIC FIELDS (set by generate_monkey_post.py at generation time):
+#   token_id: "0x…"             # keccak256(monkey_key|YYYYMMDD|transcript) — content commitment
+#                               # quantum-resistant: SHA-3 family, 128-bit post-Grover security
+#   pq_pubkey: "…hex…"          # ML-DSA-65 (FIPS 204 / Dilithium3) public key
+#                               # quantum-resistant: owner proves PQ ownership when ETH migrates
+#   pq_scheme: "ML-DSA-65"     # always ML-DSA-65 for now
 # ─────────────────────────────────────────────────────────────────────────────

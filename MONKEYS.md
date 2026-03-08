@@ -162,6 +162,11 @@ country: "US"                    # ISO2
 language: "en"                   # ISO 639-1
 source_year: 2023
 description: "short teaser"
+owner: "gh:username"             # whoever triggered the post
+owner_date: "2026-03-08"
+token_id: "0x…"                  # keccak256(monkey_key+date+transcript) — content commitment
+pq_pubkey: "…"                   # ML-DSA-65 public key — post-quantum ownership anchor
+pq_scheme: "ML-DSA-65"          # FIPS 204 / Dilithium3
 milestones: []
 ---
 ```
@@ -299,11 +304,10 @@ Each coin is visually unique — generated from the monkey's metadata:
 ---
 
 ## Token Model & Security Design
-*Ideas to develop — not decided.*
 
 ### Question 1: Real crypto vs. site-native token?
 
-**Option A — Real ERC-721 NFT (on-chain)**
+**Option A — Real ERC-721 NFT (on-chain)** ← current plan
 - Lives on a public blockchain forever, independent of almondfarm.us
 - Tradeable on OpenSea etc., real market value possible
 - Gas cost, wallet friction, environmental optics
@@ -318,63 +322,103 @@ Each coin is visually unique — generated from the monkey's metadata:
 - Each language family gets its own ERC-20 token: `$ARABIC`, `$MANDARIN`, `$ENGLISH`, etc.
 - Pressing a coin in that language earns/burns some of that token
 - Rare languages → scarce tokens → actual scarcity economics
-- The NFT receipt + a fungible language token together
 - Interesting: Arabic monkeys are rarer → `$ARABIC` is harder to earn
 
 *→ Open: do we want real tradeable value, or just provable ownership?*
 
 ---
 
-### Question 2: Transcript as cryptographic anchor
+### Question 2: Quantum Security — Two Separate Layers
 
-Each monkey transcript is ~500–2000 words. That's a lot of entropy.
+The token has two distinct cryptographic layers with different quantum profiles:
 
-**Idea: the token ID is derived from the content itself, not just the key.**
+| Layer | Mechanism | Quantum safe? | Why |
+|-------|-----------|--------------|-----|
+| Content integrity | SHA-3/keccak256(monkey_key + date + transcript) → token_id | **Yes** | Grover's gives √ speedup; 256-bit → 128-bit security, still fine |
+| Ownership | ETH wallet ECDSA (secp256k1) | **No** | Shor's algorithm can factor the elliptic curve discrete log |
 
-```
-token_id = BLAKE3(monkey_key + date + full_transcript_text)
-```
+**Note on transcript length:** A longer transcript does not improve quantum security.
+Quantum attacks target the signature scheme (ECDSA), not the hash preimage.
+Length improves classical brute-force resistance, but that's not the threat model.
 
-This means:
-- Token ID is a commitment to the exact text — tampering with the transcript
-  would produce a different hash → the token would no longer match
-- The transcript IS the proof of what was generated — immutable by construction
-- Anyone can verify: re-hash the content, compare to on-chain token ID
+#### The real threat: ECDSA wallet signatures
 
-**Why BLAKE3 (or SHA-3) not SHA-256:**
-- SHA-256 is vulnerable to Grover's algorithm on quantum computers
-  (halves effective key length: 256-bit → 128-bit security)
-- BLAKE3 and SHA-3 have better post-quantum resistance profiles
-- For a 2000-word transcript: the preimage space is astronomically large —
-  even Grover's can't brute-force it; the transcript length is the defense
+Shor's algorithm on a sufficiently large quantum computer breaks ECDSA entirely.
+That's how ETH wallets prove ownership. It is *not* how the token ID is computed.
 
-**Quantum security framing:**
-A long transcript is a large preimage. Quantum computers threaten:
-- Short hashes (Grover halves bit-security)
-- Asymmetric keys like ECDSA (Shor's breaks it entirely)
+**The content layer is already safe.** `keccak256(transcript)` as a token ID commitment
+is quantum-resistant. No changes needed there.
 
-EVM wallets use ECDSA → *wallets themselves are quantum-vulnerable long-term.*
-But the content commitment (transcript → hash) using a long preimage + SHA-3/BLAKE3
-is quantum-hard. So the token's content integrity survives even if wallet
-signature schemes eventually need upgrading.
-
-**Practical implication:**
-The transcript isn't just flavor text — it's the security primitive.
-Short transcripts = weaker anchor. Long, dense transcripts = quantum-resistant fingerprint.
-This gives us a design reason to make monkey posts *substantive* — longer is more secure.
+**The ownership layer needs a plan.** Two options:
 
 ---
 
-### Open Security Design Questions
+#### Option 2A — Ride ETH's roadmap (low effort, sound choice)
 
-- [ ] Hash function choice: BLAKE3 vs. SHA-3 vs. keccak256 (native to EVM)?
-- [ ] Store full transcript on IPFS with hash on-chain, or transcript hash only?
-- [ ] Wallet sig scheme: ECDSA (current EVM standard, quantum-vulnerable long-term)
-      vs. watch for EIP proposals for post-quantum wallet signatures
+Ethereum is migrating to post-quantum signatures via account abstraction
+(EIP-7560, ERC-4337). When ETH migrates, existing NFTs are automatically covered.
+Practical quantum computers that break secp256k1 are 10–20+ years out.
+ETH will migrate before then. This is probably fine.
+
+---
+
+#### Option 2B — Embed a PQ keypair at mint time (forward-compatible, elegant) ← chosen approach
+
+At mint time, derive a **CRYSTALS-Dilithium (ML-DSA-65 / FIPS 204)** keypair from
+the transcript. Include the public key in the NFT metadata. The owner receives
+the secret key privately — it is never stored on the site or on-chain.
+
+```
+transcript                     →  SHA-3-256  →  32-byte seed
+32-byte seed                   →  ML-DSA-65 KeyGen  →  (pk, sk)
+pk (public key)                →  NFT metadata (on-chain + IPFS)
+sk (secret key)                →  given to the owner only — never stored
+```
+
+**The transcript IS the key.** Literally. SHA-3(transcript) seeds the PQ keypair.
+Whoever holds the transcript can rederive the private key and prove PQ ownership.
+The coin and its key are the same act of generation.
+
+**What this buys:**
+- Right now: provable ownership commitment independent of ECDSA
+- When ETH migrates: the ML-DSA public key becomes the authoritative ownership proof
+- Always: the transcript's cryptographic value is foregrounded — this is the *point*
+
+**Coin metadata structure:**
+
+```json
+{
+  "name": "Monkey #42 — Liam / English",
+  "monkey_key": "Liam_US_2023",
+  "press_date": "2026-03-08",
+  "token_id": "0x…keccak256 of key+date+transcript…",
+  "transcript_ipfs": "ipfs://Qm…",
+  "pq_pubkey": "…ML-DSA-65 public key hex…",
+  "pq_scheme": "ML-DSA-65",
+  "owner": "gh:username"
+}
+```
+
+**Post front matter gains two new fields:**
+
+```yaml
+token_id: "0x…"          # keccak256 commitment — verifiable, immutable
+pq_pubkey: "…"           # ML-DSA-65 public key — PQ ownership anchor
+pq_scheme: "ML-DSA-65"   # FIPS 204
+```
+
+**Implementation:** `scripts/generate_monkey_post.py` handles all key derivation.
+The owner's PQ secret key is printed to stdout at generation time and never stored.
+
+---
+
+### Open Design Questions
+
+- [ ] Which chain? (Base, Polygon, Arbitrum — low gas, EVM-compatible)
 - [ ] Per-language fungible token: makes sense economically? Or gimmick?
 - [ ] If site-native (no chain): what's the ownership proof mechanism?
-      Signed JWT? Merkle tree in a public repo?
-- [ ] Minimum transcript length for security guarantee? (Flavor rule: 500 words min)
+- [ ] Can coins be burned? (destroy transcript = lose ownership forever)
+- [ ] Minimum transcript length? (Current: 500 words minimum enforced in generation)
 
 ---
 
