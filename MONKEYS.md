@@ -199,6 +199,78 @@ owner_date: "2026-03-08"    # date ownership was claimed
 
 ---
 
+## The Penny Press Machine
+*Design TBD — to be spec'd with GF. Notes below are rough intent only.*
+
+Think: the penny smashing machine at a natural history museum. You put in a penny,
+pull the knob, watch the gears, and out comes a pressed coin with a unique design.
+Your token. Yours forever.
+
+### UI Concept
+
+On the mint/press page:
+
+1. **Machine animation** — illustrated penny press machine, idle state
+2. **User picks a monkey** — browse the registry, pick an unclaimed name+date
+3. **Pull the knob** — interaction triggers the agent, animation plays (gears spin,
+   press descends, coin drops into tray)
+4. **Coin drops** — the pressed coin slides out; post is generated and registered
+5. **Coin is yours** — displayed immediately in your collection
+
+The knob-pull should feel physical and satisfying. One pull = one coin. No undo.
+
+### The Token (On-Chain)
+
+Each pressed coin is a blockchain token — the monkey transcript as a tradeable artifact.
+
+- **Standard:** ERC-721 NFT (one-of-one per `monkey_key + date`)
+- **Metadata:** key, monkey name, country, language, source year, press date, owner
+- **Content:** the transcript text is stored in the token metadata (IPFS or on-chain)
+- **Wallet:** connect any EVM-compatible wallet (MetaMask, Coinbase Wallet, etc.)
+- **Trading:** standard NFT marketplace compatible (OpenSea, etc.)
+
+Token ID = deterministic hash of `monkey_key + YYYYMMDD` — reproducible, no duplication.
+
+### Coin Collection Page (`/collection/`)
+
+Your personal gallery of pressed coins. Reads from connected wallet.
+
+- Grid of coin faces — each coin has a unique design based on monkey metadata
+  (language script, country colors, name in native script on the coin face)
+- Click a coin → the full transcript
+- Filter by: language · country · year · Hamlet fragments
+- Share link: `/collection/{wallet-address}`
+
+### Coin Face Design
+
+Each coin is visually unique — generated from the monkey's metadata:
+
+- **Center:** monkey's name in its native script (e.g. يوسف, 유이, Léa)
+- **Ring:** country name + year
+- **Edge stamp:** `ALMONDFARM.US · INFINITE MONKEY THEOREM`
+- **Patina/color:** seeded from `monkey_key` hash — no two coins look the same
+
+*Full visual design to be worked out with GF — this is the fun part.*
+
+### Tech Stack (rough)
+
+- Smart contract: Solidity ERC-721 on an EVM chain (chain TBD — L2 preferred for gas)
+- Mint trigger: site calls contract after post is generated
+- Frontend: wagmi / viem for wallet connection (or simpler — TBD)
+- Collection page: reads wallet NFTs via RPC or indexer
+
+### Open Design (for GF session)
+
+- [ ] Which chain? (Base, Polygon, Arbitrum — low gas, EVM-compatible)
+- [ ] Coin art style — hand-drawn? pixel? embossed 3D render?
+- [ ] Machine aesthetic — art deco? sci-fi? naturalist museum?
+- [ ] Sound design — gear clicks, press thunk, coin clink
+- [ ] What happens when you collect a "first in language" coin? Special design?
+- [ ] Free to mint? Gas-only? Small fee?
+- [ ] Can coins be burned? (destroy transcript = lose ownership forever)
+
+---
+
 ## Open Questions
 
 - [ ] **Gender** — track #1 male name, #1 female name, or both?
