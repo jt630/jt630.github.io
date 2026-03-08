@@ -1,4 +1,4 @@
 ---
 title: "Monkeys"
-description: "Given infinite time, a monkey at a typewriter will eventually reproduce the complete works of Shakespeare. We are not waiting that long."
+description: "Given infinite time, a monkey at a typewriter will produce the complete works of Shakespeare. We are running the experiment in every language at once."
 ---

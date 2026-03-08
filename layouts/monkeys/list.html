@@ -86,13 +86,9 @@
               </div>
               <div class="mk-folder-body">
                 {{ range $monthPages }}
-                {{ $monkey := .Params.monkey }}
-                {{ if and (not $monkey) .Params.monkey_id }}
-                  {{ $monkey = partial "monkey-name.html" .Params.monkey_id }}
-                {{ end }}
-                {{ $monkey = $monkey | default .Title }}
+                {{ $key := .Params.monkey_key | default (.Params.monkey | default .Title) }}
                 {{ $dateStr := .Date.Format "20060102" }}
-                {{ $filename := printf "%s_%s.txt" $monkey $dateStr }}
+                {{ $filename := printf "%s %s.txt" $key $dateStr }}
                 <a class="mk-file-row mk-indent2" href="{{ .Permalink }}">
                   <span class="mk-icon-file">📄</span>
                   <span class="mk-filename">{{ $filename }}</span>
@@ -120,8 +116,8 @@
   </div>
 
   <p class="mk-hint">
-    🐒 Each monkey types until something comes out &nbsp;|&nbsp;
-    Files → <code>content/monkeys/</code> &nbsp;|&nbsp; Name via <code>monkey:</code> front matter
+    🐒 Each monkey is a named agent — top baby name, country, year &nbsp;|&nbsp;
+    Key: <code>Name_ISO2_Year</code> &nbsp;|&nbsp; Registry: <code>data/monkey_registry.yaml</code>
   </p>
 
 </div>
