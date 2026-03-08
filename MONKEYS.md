@@ -271,6 +271,86 @@ Each coin is visually unique — generated from the monkey's metadata:
 
 ---
 
+## Token Model & Security Design
+*Ideas to develop — not decided.*
+
+### Question 1: Real crypto vs. site-native token?
+
+**Option A — Real ERC-721 NFT (on-chain)**
+- Lives on a public blockchain forever, independent of almondfarm.us
+- Tradeable on OpenSea etc., real market value possible
+- Gas cost, wallet friction, environmental optics
+- The transcript becomes a permanent on-chain artifact
+
+**Option B — Site-native collectible (off-chain)**
+- Simpler: a database entry + pretty page, no wallet required
+- Lower barrier, but it's just a website record — not really "yours"
+- Could still look like a coin, feel like ownership, without crypto
+
+**Option C — Per-language token (fungible layer)**
+- Each language family gets its own ERC-20 token: `$ARABIC`, `$MANDARIN`, `$ENGLISH`, etc.
+- Pressing a coin in that language earns/burns some of that token
+- Rare languages → scarce tokens → actual scarcity economics
+- The NFT receipt + a fungible language token together
+- Interesting: Arabic monkeys are rarer → `$ARABIC` is harder to earn
+
+*→ Open: do we want real tradeable value, or just provable ownership?*
+
+---
+
+### Question 2: Transcript as cryptographic anchor
+
+Each monkey transcript is ~500–2000 words. That's a lot of entropy.
+
+**Idea: the token ID is derived from the content itself, not just the key.**
+
+```
+token_id = BLAKE3(monkey_key + date + full_transcript_text)
+```
+
+This means:
+- Token ID is a commitment to the exact text — tampering with the transcript
+  would produce a different hash → the token would no longer match
+- The transcript IS the proof of what was generated — immutable by construction
+- Anyone can verify: re-hash the content, compare to on-chain token ID
+
+**Why BLAKE3 (or SHA-3) not SHA-256:**
+- SHA-256 is vulnerable to Grover's algorithm on quantum computers
+  (halves effective key length: 256-bit → 128-bit security)
+- BLAKE3 and SHA-3 have better post-quantum resistance profiles
+- For a 2000-word transcript: the preimage space is astronomically large —
+  even Grover's can't brute-force it; the transcript length is the defense
+
+**Quantum security framing:**
+A long transcript is a large preimage. Quantum computers threaten:
+- Short hashes (Grover halves bit-security)
+- Asymmetric keys like ECDSA (Shor's breaks it entirely)
+
+EVM wallets use ECDSA → *wallets themselves are quantum-vulnerable long-term.*
+But the content commitment (transcript → hash) using a long preimage + SHA-3/BLAKE3
+is quantum-hard. So the token's content integrity survives even if wallet
+signature schemes eventually need upgrading.
+
+**Practical implication:**
+The transcript isn't just flavor text — it's the security primitive.
+Short transcripts = weaker anchor. Long, dense transcripts = quantum-resistant fingerprint.
+This gives us a design reason to make monkey posts *substantive* — longer is more secure.
+
+---
+
+### Open Security Design Questions
+
+- [ ] Hash function choice: BLAKE3 vs. SHA-3 vs. keccak256 (native to EVM)?
+- [ ] Store full transcript on IPFS with hash on-chain, or transcript hash only?
+- [ ] Wallet sig scheme: ECDSA (current EVM standard, quantum-vulnerable long-term)
+      vs. watch for EIP proposals for post-quantum wallet signatures
+- [ ] Per-language fungible token: makes sense economically? Or gimmick?
+- [ ] If site-native (no chain): what's the ownership proof mechanism?
+      Signed JWT? Merkle tree in a public repo?
+- [ ] Minimum transcript length for security guarantee? (Flavor rule: 500 words min)
+
+---
+
 ## Open Questions
 
 - [ ] **Gender** — track #1 male name, #1 female name, or both?
