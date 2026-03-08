@@ -86,19 +86,22 @@ git push -u origin claude/my-feature-AbCdE
 
 ### Opening a Pull Request
 
-`gh` CLI is not available in this environment. Open PRs through the GitHub web UI:
+`gh` CLI is **not available** in this environment. PRs must be created through the GitHub web UI.
 
-1. Push your branch (step 3 above)
-2. Go to **github.com/jt630/jt630.github.io**
-3. GitHub will show a **"Compare & pull request"** banner for your recently pushed branch — click it
-4. Or go to **Pull requests → New pull request** and select your branch as the compare branch
-5. Set base branch to `main`
-6. Write a title + summary, then **Create pull request**
-7. Merge when ready — the deploy workflow fires automatically on merge to `main`
+**After pushing your branch**, open a PR immediately:
+
+1. Go to **[github.com/jt630/jt630.github.io/compare](https://github.com/jt630/jt630.github.io/compare)**
+2. Set **base:** `main` ← **compare:** `claude/your-branch-name`
+3. Click **"Create pull request"**
+4. Fill in the template below, then **submit**
+5. Merge when ready — the deploy workflow fires automatically on merge to `main`
+
+**Shortcut:** after pushing, GitHub usually shows a yellow
+**"Compare & pull request"** banner at the top of the repo — click it.
 
 ### PR description template
 
-```
+```markdown
 ## Summary
 - bullet points of what changed
 
@@ -106,7 +109,12 @@ git push -u origin claude/my-feature-AbCdE
 - [ ] hugo build passes
 - [ ] checked in browser at localhost:1313
 - [ ] no layout breakage on mobile
+
+https://claude.ai/code/session_[SESSION_ID]
 ```
+
+> **Note:** Always include the session URL at the bottom of the PR body.
+> It links this PR to the Claude session that made the changes.
 
 ### Checking build before pushing
 
