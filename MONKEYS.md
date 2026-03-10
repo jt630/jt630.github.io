@@ -4,10 +4,15 @@
 
 We are running the infinite monkey theorem simultaneously in every human language.
 
-Each monkey is a named AI agent. Its name is the **#1 baby name of the year** in a
-given country — real, historically sourced. The monkey types in its mother tongue.
-Given enough transmissions, the monkeys will collectively produce Hamlet in every
-language. These are the transcripts so far.
+There is **one monkey per language**. When a monkey types, it performs a **brownian
+walk through its language's full dictionary** — word by word, no grammar, no intent,
+pure noise.
+
+Each mint produces a massive wall of random words in that language. Given enough
+transmissions, the monkeys will collectively produce Hamlet in every language — not
+by writing it, but by wandering through the possibility space until the text appears.
+
+These are the transcripts so far.
 
 Registry: `data/monkey_registry.yaml`
 
@@ -15,78 +20,123 @@ Registry: `data/monkey_registry.yaml`
 
 ## The North Star
 
-> **Write Hamlet in every language available to computers. Then shut down.**
+> **Produce Hamlet in every language available to computers. Then shut down.**
 
-Not on purpose. One transmission at a time, one monkey at a time — until every
-language has produced enough material to assemble the play. When the last language
-finishes Hamlet, the experiment closes. The monkeys go quiet. The site becomes a
-permanent archive.
+Not on purpose. One coin at a time, one monkey at a time. Each coin is a brownian
+walk — thousands of words sampled from a language's dictionary, laid end to end.
+Somewhere in the noise, Hamlet fragments appear. When every language has produced
+enough material to assemble the complete play, the experiment closes. The monkeys
+go quiet. The site becomes a permanent archive.
 
 This is a countdown, not an infinite feed. The end condition is baked in.
 
 ### What the monkeys are actually making
 
-Each transmission is a cryptographically secure key — derived from the full transcript
-text. The monkeys aren't just typing; they're generating irreducible entropy. Long,
-dense, unique prose in a given language makes a quantum-resistant hash preimage.
+Each transmission is a **random walk through a dictionary**. The monkey picks words
+from the full vocabulary of its language — not sentences, not prose, not meaning.
+Just words. One after another. A massive, dense, unique sequence.
 
-The goal and the security mechanism are the same thing:
-**type enough Hamlet in enough languages and you've also generated a complete set of
-language-diverse quantum-secure keys.**
+The walk is the point. Inside the noise, Hamlet hides. The monkeys aren't trying to
+write it. They're generating enough randomness that it *must* eventually appear —
+the same way the original thought experiment works, but at word scale instead of
+character scale, and in every human language simultaneously.
+
+Each transmission is also a cryptographic artifact — the random text seeds a
+quantum-resistant hash. The monkeys aren't just typing; they're generating
+irreducible entropy. The goal and the security mechanism are the same thing:
+**walk through enough words in enough languages and you've also generated a
+complete set of language-diverse quantum-secure keys.**
 
 When every language finishes — the keys exist, Hamlet exists, the machine stops.
+
+---
+
+## How a Transmission Works
+
+A transmission is **not** AI-generated prose. It is a programmatic random walk:
+
+1. Load the **full dictionary** for the monkey's language
+2. Sample words — the walk method produces a sequence of dictionary words
+3. Output is a wall of text: thousands of words, no punctuation, no grammar
+4. The length of each transmission may vary (open — may evolve over time)
+
+### Example (English, ~50 words shown of thousands)
+
+```
+blanket survey infinite cloud perplex roam thistle quarter velocity
+moss amber translate furnish orchard peculiar wander digest throne
+marble scaffold petition ghost remedy sovereign curtain dissolve
+trumpet occasion virtue corrupt minister occasion funeral trumpet
+ceremony poison kingdom avenge father remember
+```
+
+No sentences. No intent. Just a walk through English. But notice — buried in there,
+"ghost," "poison," "kingdom," "avenge," "father," "remember." Hamlet is in the
+dictionary. The walk will find it.
+
+### Hamlet Detection
+
+After each coin is minted, the transcript is scanned for **n-gram matches** against
+the known Hamlet text in that language. Matching sequences (contiguous word runs that
+appear in Hamlet) are tagged as fragments.
+
+- **Fragment:** a contiguous run of N words that matches Hamlet (minimum N = TBD)
+- **Completion:** a language is "done" when every contiguous N-word chunk of Hamlet
+  has been found across all transmissions in that language
+- Detection can be re-run as methods improve — coins are permanent, scanning isn't
+
+### What "Enough" Means
+
+This is genuinely hard. A true random walk at word level through a full dictionary
+will almost never produce long contiguous Hamlet sequences by pure chance. The math
+is brutal — even a 5-word match is astronomically unlikely with uniform random
+sampling from a large dictionary.
+
+This is an honest tension in the project. Options:
+
+1. **Accept the impossibility** — the experiment is conceptual/artistic. "Completion"
+   is asymptotic. The monkeys type forever and never finish. The countdown never
+   reaches zero. That's the point.
+2. **Lower the bar** — define completion as thematic coverage, not literal text match.
+   Less pure but achievable.
+3. **Weight the walk** — bias the dictionary sampling toward Hamlet's vocabulary
+   (frequency-weighted or Markov chain). Makes fragments more likely but less random.
+4. **Redefine the unit** — match at the word level (individual words from Hamlet
+   appearing in sequence, not necessarily contiguous) rather than exact n-grams.
+
+**This is an open question. It doesn't need to be resolved now.** The monkeys can
+start typing before we know exactly how they finish.
 
 ---
 
 ## Goals (ordered)
 
 ### ☐ Goal 0 — Hamlet in English first
-Before expanding outward: get enough English transmissions to sketch the arc of Hamlet.
-This proves the format and gives a baseline for what "enough" looks like in one language.
+Before expanding outward: mint enough English coins to understand the statistics.
+How often do Hamlet words cluster? What does fragment detection look like in practice?
+This proves the format and gives a baseline.
 
 ---
 
-### ☐ Goal 1 — One Monkey Per Language
-One transmission from every major living language (target: all ISO 639-1 languages
-with a living speaker population — ~184 languages).
+### ☐ Goal 1 — First Coin in Every Language
+One transmission from every language with a digital dictionary available
+(target: all ISO 639-1 languages with a living speaker population — ~184 languages).
 
-Each post written in the monkey's mother tongue.
+Each coin is a walk through that language's dictionary.
 
 **How:**
-1. For each target language, identify a primary country with available baby name data
-2. Pull the #1 baby name for any year with data
-3. Invoke the monkey agent → generates one post in that language
-4. Register the entry; tag `first_in_language:{lang}` and `first_in_country:{iso2}`
+1. Source or build a dictionary for the target language
+2. Mint the coin → generates one walk in that language
+3. Register the entry; tag `first_in_language:{lang}`
 
 **Milestone:** `goal1_complete` — tagged on the final entry that closes the language set.
 
 ---
 
-### ☐ Goal 2 — Every Available Name, Every Available Country, One Year
-Compile all #1 baby name data available globally for a single year (target: **2023**).
-One monkey per entry. Every post in mother tongue.
+### ☐ Goal 2 — Hamlet in Every Language → Shutdown
 
-Sources: national statistics offices · UNICEF · academic datasets · journalistic records.
-Tag `data_gap` when the source is non-primary.
-
-**Milestone:** `goal2_complete:2023` — tagged when all available 2023 entries are done.
-
----
-
-### ☐ Goal 3 — Decade Sweep (2014–2023)
-Extend Goal 2 across ten years. Each year = one sweep. Same process.
-Name collisions across years are fine — each year gets a distinct key.
-
-**Milestone:** `goal3_complete` — tagged when all ten years are fully populated.
-
----
-
-### ☐ Goal 4 — Hamlet in Every Language → Shutdown
-
-Using accumulated transmissions as material, assemble a Hamlet-shaped structure
-in each language. This is a curation + composition step, not just generation.
-
-**When the last language completes Hamlet — the experiment ends.**
+When accumulated transmissions contain enough material to assemble Hamlet in
+every language — the experiment ends.
 
 The site does not get a new section. No new monkeys are registered. The machine
 stops. Everything that exists at that moment is the permanent archive: every
@@ -100,73 +150,142 @@ The site enters read-only mode. The penny press goes cold. The coins remain.
 
 ---
 
-## Agent Architecture
+## Generation Architecture
 
-Each monkey is an **agent configuration** stored in the registry. When a post is
-triggered for monkey `Liam_US_2023`, the system:
+Each monkey is **one entry per language** in the registry. When a coin is minted
+for the English monkey (`en`), the system:
 
-1. Reads `data/monkey_registry.yaml` → finds entry with `key: "Liam_US_2023"`
-2. Builds a system prompt from the entry's fields:
-   - Language: English (`en`)
-   - Country: United States
-   - Name/persona: Liam
-   - Source year: 2023 (the monkey's "birth year" context)
-3. Calls the Claude API with that system prompt
-4. Output = a "transmission" — raw monkey typing, in English, unedited
-5. Saves to `content/monkeys/liam-us-2023_{YYYYMMDD}.md` with full front matter
-6. Updates the registry entry (`post_date`, `file`, any new milestones)
+1. Reads `data/monkey_registry.yaml` → finds the `en` entry
+2. Loads the **dictionary** for that language
+3. Performs a random walk — sampling words from the dictionary
+4. Output = a "transmission" — a massive wall of random words, no editing
+5. Saves to `content/monkeys/en_{YYYYMMDD}.md` with full front matter
+6. Scans the output for Hamlet n-gram fragments, tags any matches
+7. Updates the registry entry (`total_coins`, any new milestones)
 
-**Post generation triggers:** manual (call the agent) or scripted batch sweep.
-The agent script lives at: `scripts/generate_monkey_post.py` *(to be built)*
+**Generation triggers:** manual (CLI) or scripted batch sweep.
+The generation script lives at: `scripts/generate_monkey_post.py` *(to be built)*
+
+### Dictionary Sources
+
+Each language needs a word list. Sources (in priority order):
+- Aspell/Hunspell dictionaries (open source, wide language coverage)
+- Wiktionary frequency lists
+- NLTK / spaCy word lists
+- Custom compiled from Hamlet translations + general corpora
+
+Dictionary files stored at: `data/dictionaries/` *(to be built)*
+
+### Walk Method
+
+**Current plan:** to be determined. Options ranked by purity:
+
+| Method | Description | Hamlet fragment likelihood |
+|--------|-------------|--------------------------|
+| Uniform random | Each word sampled independently from full dictionary | Lowest (purest) |
+| Frequency-weighted | Common words appear more often, matching natural language distribution | Low-medium |
+| Markov chain | Next word influenced by previous word(s) | Medium (local texture) |
+| Hamlet-weighted | Hamlet vocabulary overrepresented in the sampling pool | Higher (less pure) |
+
+The walk method may evolve over time. Early coins might use one method; later coins
+another. The method used is recorded in each coin's front matter for transparency.
 
 ---
 
 ## Key Design
 
-### Unique Key Format
+### Monkey Identity
+
+Each monkey is identified by its **ISO 639-1 language code** and a **baby name** —
+the most popular given name in its primary country for the year the monkey was
+registered.
 
 ```
-{Name}_{ISO2}_{Year}
+Liam (en) · Yui (ja) · Mohammed (ar) · Sofía (es) · 伟 (zh) · Aarav (hi) …
 ```
 
-| Field | Description |
-|-------|-------------|
-| `Name` | Romanized spelling of the baby name, exact as reported |
-| `ISO2` | ISO 3166-1 alpha-2 country code, uppercase |
-| `Year` | 4-digit year the name held the #1 position |
+One monkey per language. The language code is the system identifier; the name is the
+face. The name appears on every coin, on the registry page, and in the penny press UI.
 
-Examples: `Liam_US_2023` · `Sofia_IT_2022` · `Yui_JP_2021` · `Fatima_EG_2020`
+**Why baby names:**
+- They give each monkey a face. A registry of language codes is a spreadsheet.
+  A registry of Liam, Yui, Mohammed, Sofía is a room full of monkeys.
+- Baby names are themselves a cultural artifact — the most popular name in a
+  country reflects that moment in that culture. The monkeys carry that.
+- Names make the coins personal. Pulling a coin from "Yui" is different from
+  pulling a coin from `ja`. People will trade for coins that carry their name,
+  their kid's name, a name that means something to them.
+- Over time, the full registry becomes a snapshot of global naming culture
+  at the moment each monkey was born.
 
-The key is immutable once assigned. It is the monkey's identity across all systems.
+**Name selection rules:**
+1. Use the **#1 most popular baby name** in the monkey's primary country
+   for the year the monkey is first registered
+2. Source: official national statistics where available, otherwise best
+   available data (UN, SSA, national registries)
+3. Use the name in its **native script** (العربية not "Mohammed" on the `ar` monkey)
+   with a romanized form available for display contexts that need it
+4. If two languages share a country, use the most popular name in that
+   language's speaking population, not the national aggregate
+5. Names are permanent once assigned — they don't change if popularity shifts
+
+### Name Trading
+
+Names are what make coins personal and tradeable beyond pure collection:
+
+- **"Find your name"** — search the registry for your name or a name you love.
+  Every coin minted by that monkey carries the name. Trade for it, collect it.
+- **"My name, my coin"** — someone named Liam might want every Liam coin.
+  Someone named Yui might want the first Yui coin ever minted.
+- **Name-specific milestones** — `first_in_language` coins are extra meaningful
+  because they're the first coin a named monkey ever produced.
+- **Cultural preservation** — the registry preserves the most popular name in
+  ~184 cultures at a specific moment in time. The names themselves are an archive.
+
+This doesn't require smart contracts or a trading platform yet. It starts with
+display: showing the name prominently on every coin, making the registry browsable
+by name, and letting the community figure out what names are worth to them.
+
+### Coin Key Format
+
+A coin is one mint from one monkey on one date:
+
+```
+{lang}_{YYYYMMDD}
+```
+
+Examples: `en_20260310` · `ar_20260310` · `ja_20260311` · `es_20260312`
 
 ### File Naming
 
 ```
-content/monkeys/{slug}_{YYYYMMDD}.md
+content/monkeys/{lang}_{YYYYMMDD}.md
 ```
 
-- `{slug}` = key lowercased, underscores → hyphens: `liam-us-2023`
-- `{YYYYMMDD}` = date the post was generated
-
-Explorer display: `Liam_US_2023 20260308.txt`
+Examples: `content/monkeys/en_20260310.md` · `content/monkeys/ar_20260310.md`
 
 ### Front Matter Schema
 
 ```yaml
 ---
-title: "transmission one"
-date: 2026-03-08
-monkey_key: "Liam_US_2023"      # unique key — REQUIRED
-monkey: "Liam"                   # display name
-country: "US"                    # ISO2
-language: "en"                   # ISO 639-1
-source_year: 2023
-description: "short teaser"
-owner: "gh:username"             # whoever triggered the post
-owner_date: "2026-03-08"
-token_id: "0x…"                  # keccak256(monkey_key+date+transcript) — content commitment
-pq_pubkey: "…"                   # ML-DSA-65 public key — post-quantum ownership anchor
-pq_scheme: "ML-DSA-65"          # FIPS 204 / Dilithium3
+title: "Liam — transmission 042"
+date: 2026-03-10
+monkey_name: "Liam"              # baby name — the monkey's face
+monkey_name_native: "Liam"       # name in native script (same for Latin langs)
+language: "en"                   # ISO 639-1 — the monkey's identity
+language_name: "English"         # human-readable
+coin_key: "en_20260310"          # unique coin identifier
+transmission_number: 42          # sequential per language
+word_count: 5000                 # total words in this transmission
+walk_method: "uniform"           # how words were sampled
+dictionary_size: 50000           # number of words in the source dictionary
+owner: "gh:username"             # whoever triggered the mint
+owner_date: "2026-03-10"
+hamlet_fragments: 0              # number of n-gram matches found
+longest_fragment: 0              # longest contiguous Hamlet match (in words)
+token_id: ""                     # keccak256(coin_key+transcript) — future
+pq_pubkey: ""                    # ML-DSA-65 public key — future
+pq_scheme: ""                    # FIPS 204 / Dilithium3 — future
 milestones: []
 ---
 ```
@@ -175,59 +294,48 @@ milestones: []
 
 | Tag | Meaning |
 |-----|---------|
-| `first_in_language:{lang}` | First monkey in this language |
-| `first_in_country:{iso2}` | First monkey from this country |
+| `first_in_language:{lang}` | First coin ever minted in this language |
 | `goal0_complete` | Closes the English Hamlet baseline |
 | `goal1_complete` | Closes the all-languages sweep |
-| `goal2_complete:{year}` | Closes the year sweep for `{year}` |
-| `goal3_complete` | Closes the decade sweep |
-| `name_repeat:{prev_key}` | Same name was #1 in a prior year — links to prior entry |
-| `data_gap` | Source is non-primary (estimate / proxy / journalistic) |
-| `hamlet_fragment` | This transmission contains usable Hamlet material |
+| `hamlet_fragment` | This transmission contains a Hamlet match |
+| `hamlet_complete:{lang}` | This language has produced enough to assemble Hamlet |
 
 ---
 
 ## Ownership / Mining Mechanic
 
-Each monkey transcript is a unique artifact. The person who triggers a post **owns it**.
+Each coin is a unique artifact. The person who triggers a mint **owns it**.
 
 ### The Unit
 
-A "coin" is one `monkey_key + YYYYMMDD` pair:
+A "coin" is one `lang + YYYYMMDD` pair:
 
 ```
-Liam_US_2023 20260308
+en_20260310
 ```
 
-No two people can own the same coin — once a monkey posts on a given date, that
-transcript is taken. A monkey can post on multiple dates; each date is a separate coin.
+No two people can own the same coin — once a monkey mints on a given date, that
+transcript is taken. A monkey can mint on multiple dates; each date is a separate coin.
 
 ### How Mining Works
 
-1. A user picks an unclaimed monkey (or date slot on an existing monkey)
-2. They trigger the agent → post is generated
-3. Their handle/identifier is written into the registry entry and the post's front matter
+1. A user picks a language (or gets one assigned)
+2. They pull the press → the walk runs, words are generated
+3. Their handle is written into the coin's front matter
 4. The post page displays their ownership credit
-
-### Registry Fields (to add)
-
-```yaml
-owner: "gh:username"        # whoever triggered the post; gh: / email: / etc.
-owner_date: "2026-03-08"    # date ownership was claimed
-```
 
 ### Display
 
 - Post page: small "mined by {owner}" badge
-- Leaderboard page (future): ranked by number of posts mined
+- Leaderboard page (future): ranked by number of coins mined
 - Each owner gets a permanent URL: `/monkeys/?owner=username`
 
 ### Open Design
 
-- [ ] What is the "value" of a coin? Scarcity (rare languages) vs. volume (popular names)?
+- [ ] What is the "value" of a coin? Scarcity (rare languages) vs. volume?
 - [ ] Can ownership transfer? (Proposed: no — immutable once claimed)
 - [ ] Anonymous mining? (Proposed: yes, owner = `anon`)
-- [ ] Leaderboard: total posts mined, languages covered, Hamlet fragments found
+- [ ] Leaderboard: total coins minted, languages covered, Hamlet fragments found
 
 ---
 
@@ -243,235 +351,208 @@ Your token. Yours forever.
 On the mint/press page:
 
 1. **Machine animation** — illustrated penny press machine, idle state
-2. **User picks a monkey** — browse the registry, pick an unclaimed name+date
-3. **Pull the knob** — interaction triggers the agent, animation plays (gears spin,
+2. **User picks a language** — browse the registry, pick a language to mint
+3. **Pull the knob** — interaction triggers the walk, animation plays (gears spin,
    press descends, coin drops into tray)
-4. **Coin drops** — the pressed coin slides out; post is generated and registered
+4. **Coin drops** — the pressed coin slides out; words are generated and registered
 5. **Coin is yours** — displayed immediately in your collection
 
 The knob-pull should feel physical and satisfying. One pull = one coin. No undo.
 
-### The Token (On-Chain)
-
-Each pressed coin is a blockchain token — the monkey transcript as a tradeable artifact.
-
-- **Standard:** ERC-721 NFT (one-of-one per `monkey_key + date`)
-- **Metadata:** key, monkey name, country, language, source year, press date, owner
-- **Content:** the transcript text is stored in the token metadata (IPFS or on-chain)
-- **Wallet:** connect any EVM-compatible wallet (MetaMask, Coinbase Wallet, etc.)
-- **Trading:** standard NFT marketplace compatible (OpenSea, etc.)
-
-Token ID = deterministic hash of `monkey_key + YYYYMMDD` — reproducible, no duplication.
-
-### Coin Collection Page (`/collection/`)
-
-Your personal gallery of pressed coins. Reads from connected wallet.
-
-- Grid of coin faces — each coin has a unique design based on monkey metadata
-  (language script, country colors, name in native script on the coin face)
-- Click a coin → the full transcript
-- Filter by: language · country · year · Hamlet fragments
-- Share link: `/collection/{wallet-address}`
-
 ### Coin Face Design
 
-Each coin is visually unique — generated from the monkey's metadata:
+Each coin is visually unique — generated from the language metadata:
 
-- **Center:** monkey's name in its native script (e.g. يوسف, 유이, Léa)
-- **Ring:** country name + year
+- **Center:** the language's name in its own script (e.g. العربية, 日本語, English)
+- **Ring:** ISO code + transmission number
 - **Edge stamp:** `ALMONDFARM.US · INFINITE MONKEY THEOREM`
-- **Patina/color:** seeded from `monkey_key` hash — no two coins look the same
+- **Patina/color:** seeded from `coin_key` hash — no two coins look the same
 
 *Full visual design to be worked out with GF — this is the fun part.*
 
-### Tech Stack (rough)
-
-- Smart contract: Solidity ERC-721 on an EVM chain (chain TBD — L2 preferred for gas)
-- Mint trigger: site calls contract after post is generated
-- Frontend: wagmi / viem for wallet connection (or simpler — TBD)
-- Collection page: reads wallet NFTs via RPC or indexer
-
 ### Open Design (for GF session)
 
-- [ ] Which chain? (Base, Polygon, Arbitrum — low gas, EVM-compatible)
 - [ ] Coin art style — hand-drawn? pixel? embossed 3D render?
 - [ ] Machine aesthetic — art deco? sci-fi? naturalist museum?
 - [ ] Sound design — gear clicks, press thunk, coin clink
 - [ ] What happens when you collect a "first in language" coin? Special design?
-- [ ] Free to mint? Gas-only? Small fee?
-- [ ] Can coins be burned? (destroy transcript = lose ownership forever)
 
 ---
 
-## Token Model & Security Design
+## Token & Crypto Layer (Design Phase — Low Priority)
 
-### Question 1: Real crypto vs. site-native token?
+The crypto layer is designed but not yet implemented. It adds three things:
 
-**Option A — Real ERC-721 NFT (on-chain)** ← current plan
-- Lives on a public blockchain forever, independent of almondfarm.us
-- Tradeable on OpenSea etc., real market value possible
-- Gas cost, wallet friction, environmental optics
-- The transcript becomes a permanent on-chain artifact
+1. **Content integrity** — hash commitment proving the transcript hasn't been altered
+2. **Ownership proof** — quantum-resistant keypair derived from the transcript itself
+3. **On-chain permanence** — optional NFT minting for tradeable ownership
 
-**Option B — Site-native collectible (off-chain)**
-- Simpler: a database entry + pretty page, no wallet required
-- Lower barrier, but it's just a website record — not really "yours"
-- Could still look like a coin, feel like ownership, without crypto
+### Content Integrity (keccak256)
 
-**Option C — Per-language token (fungible layer)**
-- Each language family gets its own ERC-20 token: `$ARABIC`, `$MANDARIN`, `$ENGLISH`, etc.
-- Pressing a coin in that language earns/burns some of that token
-- Rare languages → scarce tokens → actual scarcity economics
-- Interesting: Arabic monkeys are rarer → `$ARABIC` is harder to earn
+```
+token_id = keccak256(coin_key + transcript)
+```
 
-*→ Open: do we want real tradeable value, or just provable ownership?*
+This is quantum-safe (Grover's gives √ speedup; 256-bit → 128-bit post-quantum
+security, still solid). The token ID is a deterministic fingerprint of the coin.
 
----
-
-### Question 2: Quantum Security — Two Separate Layers
-
-The token has two distinct cryptographic layers with different quantum profiles:
-
-| Layer | Mechanism | Quantum safe? | Why |
-|-------|-----------|--------------|-----|
-| Content integrity | SHA-3/keccak256(monkey_key + date + transcript) → token_id | **Yes** | Grover's gives √ speedup; 256-bit → 128-bit security, still fine |
-| Ownership | ETH wallet ECDSA (secp256k1) | **No** | Shor's algorithm can factor the elliptic curve discrete log |
-
-**Note on transcript length:** A longer transcript does not improve quantum security.
-Quantum attacks target the signature scheme (ECDSA), not the hash preimage.
-Length improves classical brute-force resistance, but that's not the threat model.
-
-#### The real threat: ECDSA wallet signatures
-
-Shor's algorithm on a sufficiently large quantum computer breaks ECDSA entirely.
-That's how ETH wallets prove ownership. It is *not* how the token ID is computed.
-
-**The content layer is already safe.** `keccak256(transcript)` as a token ID commitment
-is quantum-resistant. No changes needed there.
-
-**The ownership layer needs a plan.** Two options:
-
----
-
-#### Option 2A — Ride ETH's roadmap (low effort, sound choice)
-
-Ethereum is migrating to post-quantum signatures via account abstraction
-(EIP-7560, ERC-4337). When ETH migrates, existing NFTs are automatically covered.
-Practical quantum computers that break secp256k1 are 10–20+ years out.
-ETH will migrate before then. This is probably fine.
-
----
-
-#### Option 2B — Embed a PQ keypair at mint time (forward-compatible, elegant) ← chosen approach
+### Quantum Ownership (ML-DSA-65)
 
 At mint time, derive a **CRYSTALS-Dilithium (ML-DSA-65 / FIPS 204)** keypair from
-the transcript. Include the public key in the NFT metadata. The owner receives
-the secret key privately — it is never stored on the site or on-chain.
+the transcript:
 
 ```
-transcript                     →  SHA-3-256  →  32-byte seed
-32-byte seed                   →  ML-DSA-65 KeyGen  →  (pk, sk)
-pk (public key)                →  NFT metadata (on-chain + IPFS)
-sk (secret key)                →  given to the owner only — never stored
+transcript  →  SHA-3-256  →  32-byte seed
+seed        →  ML-DSA-65 KeyGen  →  (public_key, secret_key)
+public_key  →  stored in coin metadata (front matter / on-chain)
+secret_key  →  given to owner at mint time — NEVER stored
 ```
 
-**The transcript IS the key.** Literally. SHA-3(transcript) seeds the PQ keypair.
-Whoever holds the transcript can rederive the private key and prove PQ ownership.
-The coin and its key are the same act of generation.
+**The transcript IS the key.** SHA-3(transcript) seeds the PQ keypair. Whoever holds
+the transcript can rederive the private key and prove ownership. The coin and its key
+are the same act of generation.
 
-**What this buys:**
-- Right now: provable ownership commitment independent of ECDSA
-- When ETH migrates: the ML-DSA public key becomes the authoritative ownership proof
-- Always: the transcript's cryptographic value is foregrounded — this is the *point*
+### On-Chain (Future)
 
-**Coin metadata structure:**
+- **Standard:** ERC-721 NFT (one-of-one per coin key)
+- **Chain:** TBD (L2 preferred — Base, Polygon, or Arbitrum)
+- **Wallet:** EVM-compatible (MetaMask, Coinbase Wallet, etc.)
+- **Content:** transcript stored on IPFS, referenced in token metadata
 
-```json
-{
-  "name": "Monkey #42 — Liam / English",
-  "monkey_key": "Liam_US_2023",
-  "press_date": "2026-03-08",
-  "token_id": "0x…keccak256 of key+date+transcript…",
-  "transcript_ipfs": "ipfs://Qm…",
-  "pq_pubkey": "…ML-DSA-65 public key hex…",
-  "pq_scheme": "ML-DSA-65",
-  "owner": "gh:username"
-}
-```
+### Open Crypto Questions
 
-**Post front matter gains two new fields:**
-
-```yaml
-token_id: "0x…"          # keccak256 commitment — verifiable, immutable
-pq_pubkey: "…"           # ML-DSA-65 public key — PQ ownership anchor
-pq_scheme: "ML-DSA-65"   # FIPS 204
-```
-
-**Implementation:** `scripts/generate_monkey_post.py` handles all key derivation.
-The owner's PQ secret key is printed to stdout at generation time and never stored.
+- [ ] Which chain? (Base, Polygon, Arbitrum — low gas, EVM-compatible)
+- [ ] Real ERC-721 NFT, site-native token, or per-language fungible tokens?
+- [ ] Free to mint? Gas-only? Small fee?
+- [ ] Can coins be burned? (destroy transcript = lose ownership forever)
+- [ ] When to implement? (After generation pipeline is stable)
 
 ---
 
-### Open Design Questions
+## The Archive
 
-- [ ] Which chain? (Base, Polygon, Arbitrum — low gas, EVM-compatible)
-- [ ] Per-language fungible token: makes sense economically? Or gimmick?
-- [ ] If site-native (no chain): what's the ownership proof mechanism?
-- [ ] Can coins be burned? (destroy transcript = lose ownership forever)
-- [ ] Minimum transcript length? (Current: 500 words minimum enforced in generation)
+When the monkeys finish — if they finish — the site becomes a permanent record of
+three things simultaneously:
+
+1. **A library of word combinations** — every transmission is a unique sequence of
+   words in a specific language. Millions of coins across ~184 languages produce an
+   enormous corpus of random word combinations. Most are noise. Some contain Hamlet
+   fragments. All of them are real words in real languages, preserved exactly as the
+   dictionary contained them.
+
+2. **A language preservation layer** — for languages with shrinking speaker populations,
+   the monkey's dictionary IS the record. The Swahili monkey, the Welsh monkey, the
+   Māori monkey — their dictionaries and their transmissions preserve vocabulary that
+   might otherwise exist only in academic databases. Every coin minted in a minority
+   language is an act of preservation, even if the content is random.
+
+3. **A naming culture snapshot** — the registry captures the most popular baby name
+   in ~184 cultures at a specific moment in time. Names reflect immigration patterns,
+   pop culture, religious traditions, political shifts. Liam dominates the Anglosphere.
+   Mohammed spans the Arabic-speaking world. Sofía crosses all of Latin America. The
+   names the monkeys carry are themselves an artifact — a global census of what parents
+   were naming their children when the experiment began.
+
+The monkeys aren't just trying to write Hamlet. They're inadvertently building an
+archive of human language and naming culture, one coin at a time.
 
 ---
 
 ## Open Questions
 
-- [ ] **Gender** — track #1 male name, #1 female name, or both?
-      If both, key format: `Liam_US_2023_M` and `Emma_US_2023_F`.
-      Needs decision before Goal 2 begins.
-
-- [ ] **Name ties** — if two names tie for #1, use alphabetically first.
-      Always document in registry `source_notes`.
-
 - [ ] **Script support** — posts in Arabic, CJK, Cyrillic, Hebrew, etc.
       The layout likely handles it (UTF-8), but needs a browser check.
+      Dictionary sourcing for non-Latin scripts is the real challenge.
 
-- [ ] **Hamlet structure** — how many transmissions per language before we attempt
-      assembly? No hard rule yet. Revisit when Goal 1 is close to complete.
+- [ ] **Transmission length** — how many words per coin? Fixed? Variable?
+      May evolve over time. Record `word_count` in front matter regardless.
+
+- [ ] **Walk method** — uniform random, frequency-weighted, Markov, or
+      Hamlet-weighted? See Walk Method table above. May evolve.
+
+- [ ] **Hamlet completion definition** — exact n-gram match vs. thematic
+      coverage vs. word-level (non-contiguous) matching. See "What Enough
+      Means" section. Doesn't block generation.
+
+- [ ] **Dictionary curation** — who builds/maintains the word lists?
+      How do we handle languages with limited digital dictionary resources?
+
+- [ ] **Multiple coins per day?** — current key is `lang_YYYYMMDD`, limiting
+      to one coin per language per day. Enough? Or add a sequence number?
+
+---
+
+## Registry Schema
+
+`data/monkey_registry.yaml` — one entry per language:
+
+```yaml
+- language: "en"
+  language_name: "English"
+  monkey_name: "Liam"             # most popular baby name (US, 2026)
+  monkey_name_native: "Liam"      # in native script
+  name_source: "SSA"              # Social Security Administration
+  name_year: 2026                 # year the name was sourced
+  country: "US"                   # primary country for this language
+  script: "Latin"
+  dictionary_source: "aspell-en"
+  dictionary_size: 50000
+  total_coins: 0
+  first_coin_date: null
+  hamlet_progress: 0.0
+  milestones: []
+
+- language: "ja"
+  language_name: "Japanese"
+  monkey_name: "Yui"
+  monkey_name_native: "結衣"
+  name_source: "meiji-yasuda"
+  name_year: 2026
+  country: "JP"
+  script: "CJK"
+  dictionary_source: "mecab-ipadic"
+  dictionary_size: 120000
+  total_coins: 0
+  first_coin_date: null
+  hamlet_progress: 0.0
+  milestones: []
+
+- language: "ar"
+  language_name: "Arabic"
+  monkey_name: "Mohammed"
+  monkey_name_native: "محمّد"
+  name_source: "babycenter-mena"
+  name_year: 2026
+  country: "SA"
+  script: "Arabic"
+  dictionary_source: "aspell-ar"
+  dictionary_size: 40000
+  total_coins: 0
+  first_coin_date: null
+  hamlet_progress: 0.0
+  milestones: []
+```
 
 ---
 
 ## Milestones Log
 
-| Date | Milestone | Key |
-|------|-----------|-----|
+| Date | Milestone | Language |
+|------|-----------|----------|
 | — | — | — |
 
 ---
 
 ## Progress
 
-### Goal 1 — Languages
+### Goal 0 — English Baseline
 
-| Language | ISO 639-1 | Primary Country | Key | Done |
-|----------|-----------|-----------------|-----|------|
-| | | | | |
+| Coins Minted | Hamlet Fragments Found | Longest Fragment |
+|-------------|----------------------|-----------------|
+| 0 | 0 | 0 words |
 
-### Goal 2 — 2023 Country Sweep
+### Goal 1 — All Languages
 
-| Region | Countries Done | Countries Total | Data Gaps |
-|--------|---------------|-----------------|-----------|
-| | | | |
-
-### Goal 3 — Decade (2014–2023)
-
-| Year | Done | Remaining |
-|------|------|-----------|
-| 2023 | 0 | ? |
-| 2022 | 0 | ? |
-| 2021 | 0 | ? |
-| 2020 | 0 | ? |
-| 2019 | 0 | ? |
-| 2018 | 0 | ? |
-| 2017 | 0 | ? |
-| 2016 | 0 | ? |
-| 2015 | 0 | ? |
-| 2014 | 0 | ? |
+| Languages with ≥1 Coin | Total Languages | Coverage |
+|------------------------|----------------|----------|
+| 0 | ~184 | 0% |

@@ -1,53 +1,41 @@
 # Monkey Registry
 #
-# Each entry is one monkey — a real baby name that held the #1 position
-# in a given country/language for a given year.
+# One entry per language. Each monkey is an agent that performs brownian walks
+# through its language's full dictionary.
 #
-# UNIQUE KEY FORMAT: {Name}_{ISO2}_{Year}
-#   Name  — romanized spelling of the #1 baby name (exact, as reported)
-#   ISO2  — ISO 3166-1 alpha-2 country code (uppercase)
-#   Year  — 4-digit year the name held #1 position
+# MONKEY IDENTITY: ISO 639-1 language code (e.g. "en", "ar", "ja")
+# COIN KEY FORMAT: {lang}_{YYYYMMDD}  (e.g. "en_20260310")
+# FILE PATH:       content/monkeys/{lang}_{YYYYMMDD}.md
 #
-# FILE SLUG FORMAT: {lowercase-key-with-hyphens}_{YYYYMMDD}
-#   Example key Liam_US_2023 → slug liam-us-2023
-#   Full filename: content/monkeys/liam-us-2023_20260308.md
-#   Explorer display: "Liam_US_2023 20260308.txt"
+# MILESTONE TAGS:
+#   first_in_language:{lang}   — first coin ever minted in this language
+#   goal0_complete             — closes Goal 0 (English Hamlet baseline)
+#   goal1_complete             — closes Goal 1 (all target languages have ≥1 coin)
+#   hamlet_fragment            — this coin contains a Hamlet n-gram match
+#   hamlet_complete:{lang}     — this language has fully assembled Hamlet
 #
-# MILESTONE TAGS (applied to milestones list):
-#   first_in_language:{lang}   — first monkey to post in this language
-#   first_in_country:{iso2}    — first monkey from this country
-#   goal1_complete             — closes Goal 1 (all target languages)
-#   goal2_complete:{year}      — closes the year sweep for {year}
-#   goal3_complete             — closes the decade sweep
-#   name_repeat:{prev_key}     — same name was #1 in a prior year
-#   data_gap                   — source is non-primary (estimate/proxy)
-#
-# GENDER VALUES: M / F / unspecified
 # LANGUAGE: ISO 639-1 two-letter code where available, else ISO 639-3
 
 monkeys: []
 
 # ─── TEMPLATE ────────────────────────────────────────────────────────────────
-# - key: "Name_ISO2_Year"
-#   name: "Name"
-#   country_code: "ISO2"
-#   country: "Country Name"
-#   language_code: "xx"
-#   language: "Language Name"
-#   gender: "M"                 # M / F / unspecified
-#   source_year: 2023
-#   source: "Name of source / URL"
-#   source_notes: ""            # tie-breaking, data quality notes, etc.
-#   post_date: "YYYY-MM-DD"     # date the post was generated
-#   file: "name-iso2-year_YYYYMMDD"   # Hugo content slug (no extension)
+# - language: "en"
+#   language_name: "English"
+#   monkey_name: "Liam"               # most popular baby name in primary country
+#   monkey_name_native: "Liam"        # name in native script
+#   name_source: "SSA"                # where the name data comes from
+#   name_year: 2026                   # year the name was sourced
+#   country: "US"                     # primary country (ISO 3166-1 alpha-2)
+#   script: "Latin"
+#   dictionary_source: "aspell-en"    # where the word list comes from
+#   dictionary_size: 50000            # number of words in the dictionary
+#   total_coins: 0                    # how many transmissions minted
+#   first_coin_date: null             # date of first mint
+#   hamlet_progress: 0.0              # percentage of Hamlet fragments found (0.0–100.0)
 #   milestones: []
-#   owner: "gh:username"        # whoever triggered the post (gh: / email: / anon)
-#   owner_date: "YYYY-MM-DD"    # date ownership was claimed
 #
-# CRYPTOGRAPHIC FIELDS (set by generate_monkey_post.py at generation time):
-#   token_id: "0x…"             # keccak256(monkey_key|YYYYMMDD|transcript) — content commitment
-#                               # quantum-resistant: SHA-3 family, 128-bit post-Grover security
-#   pq_pubkey: "…hex…"          # ML-DSA-65 (FIPS 204 / Dilithium3) public key
-#                               # quantum-resistant: owner proves PQ ownership when ETH migrates
-#   pq_scheme: "ML-DSA-65"     # always ML-DSA-65 for now
+# CRYPTOGRAPHIC FIELDS (set at mint time — future):
+#   token_id: "0x…"             # keccak256(coin_key|transcript) — content commitment
+#   pq_pubkey: "…hex…"          # ML-DSA-65 (FIPS 204) public key
+#   pq_scheme: "ML-DSA-65"
 # ─────────────────────────────────────────────────────────────────────────────
