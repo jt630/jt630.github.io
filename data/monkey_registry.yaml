@@ -21,6 +21,11 @@ monkeys: []
 # ─── TEMPLATE ────────────────────────────────────────────────────────────────
 # - language: "en"
 #   language_name: "English"
+#   monkey_name: "Liam"               # most popular baby name in primary country
+#   monkey_name_native: "Liam"        # name in native script
+#   name_source: "SSA"                # where the name data comes from
+#   name_year: 2026                   # year the name was sourced
+#   country: "US"                     # primary country (ISO 3166-1 alpha-2)
 #   script: "Latin"
 #   dictionary_source: "aspell-en"    # where the word list comes from
 #   dictionary_size: 50000            # number of words in the dictionary

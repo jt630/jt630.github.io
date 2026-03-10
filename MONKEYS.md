@@ -196,13 +196,55 @@ another. The method used is recorded in each coin's front matter for transparenc
 
 ### Monkey Identity
 
-Each monkey is identified by its **ISO 639-1 language code**:
+Each monkey is identified by its **ISO 639-1 language code** and a **baby name** —
+the most popular given name in its primary country for the year the monkey was
+registered.
 
 ```
-en · ar · ja · es · zh · hi · sw · ko · ru · de · fr …
+Liam (en) · Yui (ja) · Mohammed (ar) · Sofía (es) · 伟 (zh) · Aarav (hi) …
 ```
 
-One monkey per language. The language code is the monkey's identity across all systems.
+One monkey per language. The language code is the system identifier; the name is the
+face. The name appears on every coin, on the registry page, and in the penny press UI.
+
+**Why baby names:**
+- They give each monkey a face. A registry of language codes is a spreadsheet.
+  A registry of Liam, Yui, Mohammed, Sofía is a room full of monkeys.
+- Baby names are themselves a cultural artifact — the most popular name in a
+  country reflects that moment in that culture. The monkeys carry that.
+- Names make the coins personal. Pulling a coin from "Yui" is different from
+  pulling a coin from `ja`. People will trade for coins that carry their name,
+  their kid's name, a name that means something to them.
+- Over time, the full registry becomes a snapshot of global naming culture
+  at the moment each monkey was born.
+
+**Name selection rules:**
+1. Use the **#1 most popular baby name** in the monkey's primary country
+   for the year the monkey is first registered
+2. Source: official national statistics where available, otherwise best
+   available data (UN, SSA, national registries)
+3. Use the name in its **native script** (العربية not "Mohammed" on the `ar` monkey)
+   with a romanized form available for display contexts that need it
+4. If two languages share a country, use the most popular name in that
+   language's speaking population, not the national aggregate
+5. Names are permanent once assigned — they don't change if popularity shifts
+
+### Name Trading
+
+Names are what make coins personal and tradeable beyond pure collection:
+
+- **"Find your name"** — search the registry for your name or a name you love.
+  Every coin minted by that monkey carries the name. Trade for it, collect it.
+- **"My name, my coin"** — someone named Liam might want every Liam coin.
+  Someone named Yui might want the first Yui coin ever minted.
+- **Name-specific milestones** — `first_in_language` coins are extra meaningful
+  because they're the first coin a named monkey ever produced.
+- **Cultural preservation** — the registry preserves the most popular name in
+  ~184 cultures at a specific moment in time. The names themselves are an archive.
+
+This doesn't require smart contracts or a trading platform yet. It starts with
+display: showing the name prominently on every coin, making the registry browsable
+by name, and letting the community figure out what names are worth to them.
 
 ### Coin Key Format
 
@@ -226,8 +268,10 @@ Examples: `content/monkeys/en_20260310.md` · `content/monkeys/ar_20260310.md`
 
 ```yaml
 ---
-title: "en — transmission 042"
+title: "Liam — transmission 042"
 date: 2026-03-10
+monkey_name: "Liam"              # baby name — the monkey's face
+monkey_name_native: "Liam"       # name in native script (same for Latin langs)
 language: "en"                   # ISO 639-1 — the monkey's identity
 language_name: "English"         # human-readable
 coin_key: "en_20260310"          # unique coin identifier
@@ -385,6 +429,35 @@ are the same act of generation.
 
 ---
 
+## The Archive
+
+When the monkeys finish — if they finish — the site becomes a permanent record of
+three things simultaneously:
+
+1. **A library of word combinations** — every transmission is a unique sequence of
+   words in a specific language. Millions of coins across ~184 languages produce an
+   enormous corpus of random word combinations. Most are noise. Some contain Hamlet
+   fragments. All of them are real words in real languages, preserved exactly as the
+   dictionary contained them.
+
+2. **A language preservation layer** — for languages with shrinking speaker populations,
+   the monkey's dictionary IS the record. The Swahili monkey, the Welsh monkey, the
+   Māori monkey — their dictionaries and their transmissions preserve vocabulary that
+   might otherwise exist only in academic databases. Every coin minted in a minority
+   language is an act of preservation, even if the content is random.
+
+3. **A naming culture snapshot** — the registry captures the most popular baby name
+   in ~184 cultures at a specific moment in time. Names reflect immigration patterns,
+   pop culture, religious traditions, political shifts. Liam dominates the Anglosphere.
+   Mohammed spans the Arabic-speaking world. Sofía crosses all of Latin America. The
+   names the monkeys carry are themselves an artifact — a global census of what parents
+   were naming their children when the experiment began.
+
+The monkeys aren't just trying to write Hamlet. They're inadvertently building an
+archive of human language and naming culture, one coin at a time.
+
+---
+
 ## Open Questions
 
 - [ ] **Script support** — posts in Arabic, CJK, Cyrillic, Hebrew, etc.
@@ -416,16 +489,41 @@ are the same act of generation.
 ```yaml
 - language: "en"
   language_name: "English"
+  monkey_name: "Liam"             # most popular baby name (US, 2026)
+  monkey_name_native: "Liam"      # in native script
+  name_source: "SSA"              # Social Security Administration
+  name_year: 2026                 # year the name was sourced
+  country: "US"                   # primary country for this language
   script: "Latin"
   dictionary_source: "aspell-en"
   dictionary_size: 50000
   total_coins: 0
   first_coin_date: null
-  hamlet_progress: 0.0          # percentage of Hamlet fragments found
+  hamlet_progress: 0.0
+  milestones: []
+
+- language: "ja"
+  language_name: "Japanese"
+  monkey_name: "Yui"
+  monkey_name_native: "結衣"
+  name_source: "meiji-yasuda"
+  name_year: 2026
+  country: "JP"
+  script: "CJK"
+  dictionary_source: "mecab-ipadic"
+  dictionary_size: 120000
+  total_coins: 0
+  first_coin_date: null
+  hamlet_progress: 0.0
   milestones: []
 
 - language: "ar"
   language_name: "Arabic"
+  monkey_name: "Mohammed"
+  monkey_name_native: "محمّد"
+  name_source: "babycenter-mena"
+  name_year: 2026
+  country: "SA"
   script: "Arabic"
   dictionary_source: "aspell-ar"
   dictionary_size: 40000
