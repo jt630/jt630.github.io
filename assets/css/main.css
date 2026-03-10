@@ -317,7 +317,8 @@ img {
 .section-card.drinks  { border-top: 3px solid var(--gold); }
 .section-card.brain   { border-top: 3px solid var(--pink); }
 .section-card.body    { border-top: 3px solid var(--gold-light); }
-.section-card.gadgets { border-top: 3px solid var(--pink-light); }
+.section-card.gadgets  { border-top: 3px solid var(--pink-light); }
+.section-card.markets  { border-top: 3px solid var(--gold); }
 
 /* ---- RECENT POSTS (homepage) ---- */
 .recent-section {
@@ -952,6 +953,209 @@ img {
 /* Blink utility class */
 .blink {
   animation: blink 1s step-end infinite;
+}
+
+/* ===========================
+   MARKETS DASHBOARD
+   =========================== */
+
+.markets-page {
+  /* container — inherits .page-wrap max-width */
+}
+
+.markets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.markets-header h1 {
+  font-family: Impact, 'Arial Black', 'Courier New', monospace;
+  font-size: 3rem;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: none;
+  -webkit-text-fill-color: var(--gold);
+  filter: none;
+  margin-bottom: 0.2rem;
+}
+
+.markets-subtitle {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.82rem;
+  color: var(--white-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.markets-header-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.markets-static-badge {
+  display: inline-block;
+  background: #1a1100;
+  color: #FFFF00;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border: 1px solid #FFFF00;
+  animation: blink 1.4s step-end infinite;
+}
+
+.markets-static-sub {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  color: var(--white-faint);
+  margin-top: 0.4rem;
+}
+
+.markets-panel {
+  background: var(--black-card);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markets-panel-title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.78rem;
+  font-weight: bold;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.markets-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.markets-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.markets-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.markets-label {
+  font-size: 0.88rem;
+  color: var(--white-dim);
+}
+
+.markets-value {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--gold);
+  white-space: nowrap;
+  text-align: right;
+  min-width: 5rem;
+}
+
+.markets-value.positive {
+  color: #00FF41;
+}
+
+.markets-value.warn {
+  color: var(--pink);
+}
+
+.markets-note {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.7rem;
+  color: var(--white-faint);
+  white-space: nowrap;
+  text-align: right;
+}
+
+.markets-note.up {
+  color: #00AA30;
+}
+
+.markets-note.down {
+  color: var(--pink);
+}
+
+.markets-sources {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.markets-sources-title {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  color: var(--white-faint);
+  margin-bottom: 0.3rem;
+}
+
+.markets-sources p {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.78rem;
+  color: var(--white-faint);
+  margin-bottom: 0.35rem;
+}
+
+.markets-sources a {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.markets-sources a:hover {
+  color: var(--gold-light);
+}
+
+/* Responsive: stack note below value on small screens */
+@media (max-width: 640px) {
+  .markets-row {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 0.25rem 0.75rem;
+  }
+
+  .markets-note {
+    grid-column: 1 / -1;
+    text-align: left;
+    padding-bottom: 0.25rem;
+  }
+
+  .markets-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .markets-header-meta {
+    text-align: left;
+  }
+
+  .markets-header h1 {
+    font-size: 2.2rem;
+  }
 }
 
 /* Sparkle cursor trail */

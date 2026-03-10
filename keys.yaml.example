@@ -1,0 +1,6 @@
+# API keys for the markets dashboard.
+# Copy this file to data/keys.yaml (gitignored) and fill in your keys.
+#
+# FRED key: register free at https://fred.stlouisfed.org/docs/api/api_key.html
+# Restrict your key to your domain in FRED account settings.
+fred: "YOUR_FRED_API_KEY_HERE"
