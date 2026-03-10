@@ -1,0 +1,191 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="markets-page">
+
+    <div class="markets-header">
+      <div class="markets-title-block">
+        <h1>MARKETS</h1>
+        <p class="markets-subtitle">macro dashboard</p>
+      </div>
+      <div class="markets-header-meta">
+        <span class="markets-static-badge">⚠ STATIC DEMO DATA</span>
+        <p class="markets-static-sub">live API integration coming in v2 — see <a href="https://github.com/jt630/jt630.github.io/blob/main/MARKETS.md" target="_blank" rel="noopener">MARKETS.md</a></p>
+      </div>
+    </div>
+
+    <!-- Fed & Rates -->
+    <div class="markets-panel">
+      <h2 class="markets-panel-title">&#9608; Fed &amp; Rates</h2>
+      <div class="markets-rows">
+        <div class="markets-row">
+          <span class="markets-label">Fed Funds Rate</span>
+          <span class="markets-value" id="FEDFUNDS">4.25–4.50%</span>
+          <span class="markets-note">current target range</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">10Y Treasury Yield</span>
+          <span class="markets-value" id="DGS10">4.54%</span>
+          <span class="markets-note up">↑ +0.08 — risk-free benchmark</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">2Y Treasury Yield</span>
+          <span class="markets-value" id="DGS2">4.28%</span>
+          <span class="markets-note up">↑ +0.03 — most Fed-sensitive</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Yield Curve (10Y–2Y)</span>
+          <span class="markets-value positive" id="T10Y2Y">+0.26%</span>
+          <span class="markets-note">re-steepened — not inverted</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Fed Balance Sheet</span>
+          <span class="markets-value" id="WALCL">$6.8T</span>
+          <span class="markets-note down">↓ from $8.9T peak — QT ongoing</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">M2 Money Supply</span>
+          <span class="markets-value" id="M2SL">$21.5T</span>
+          <span class="markets-note">seasonally adjusted</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inflation -->
+    <div class="markets-panel">
+      <h2 class="markets-panel-title">&#9608; Inflation</h2>
+      <div class="markets-rows">
+        <div class="markets-row">
+          <span class="markets-label">Core PCE</span>
+          <span class="markets-value warn" id="PCEPILFE">2.5% YoY</span>
+          <span class="markets-note">Jan 2026 · Fed target: 2.0%</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Headline CPI</span>
+          <span class="markets-value warn" id="CPIAUCSL">2.9% YoY</span>
+          <span class="markets-note">Feb 2026 · BLS via FRED</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Core CPI</span>
+          <span class="markets-value warn" id="CPILFESL">3.1% YoY</span>
+          <span class="markets-note">ex food &amp; energy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Labor -->
+    <div class="markets-panel">
+      <h2 class="markets-panel-title">&#9608; Labor</h2>
+      <div class="markets-rows">
+        <div class="markets-row">
+          <span class="markets-label">Unemployment Rate</span>
+          <span class="markets-value" id="UNRATE">4.2%</span>
+          <span class="markets-note">U-3 · Feb 2026 · BLS</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Nonfarm Payrolls</span>
+          <span class="markets-value" id="PAYEMS">+151k</span>
+          <span class="markets-note">Feb 2026 · monthly job adds</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Initial Jobless Claims</span>
+          <span class="markets-value" id="ICSA">221k</span>
+          <span class="markets-note">weekly · leading indicator</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">JOLTS Job Openings</span>
+          <span class="markets-value" id="JTSJOL">7.6M</span>
+          <span class="markets-note">Jan 2026 · demand side of labor</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Housing -->
+    <div class="markets-panel">
+      <h2 class="markets-panel-title">&#9608; Housing</h2>
+      <div class="markets-rows">
+        <div class="markets-row">
+          <span class="markets-label">30Y Fixed Mortgage</span>
+          <span class="markets-value warn" id="MORTGAGE30US">6.81%</span>
+          <span class="markets-note">week of Mar 6 · Freddie Mac</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">15Y Fixed Mortgage</span>
+          <span class="markets-value" id="MORTGAGE15US">6.07%</span>
+          <span class="markets-note">week of Mar 6 · Freddie Mac</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Housing Starts</span>
+          <span class="markets-value" id="HOUST">1.37M</span>
+          <span class="markets-note">annualized · Jan 2026</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Existing Home Sales</span>
+          <span class="markets-value" id="EXHOSLUSM495S">4.08M</span>
+          <span class="markets-note">annualized · Jan 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Markets -->
+    <div class="markets-panel">
+      <h2 class="markets-panel-title">&#9608; Markets</h2>
+      <div class="markets-rows">
+        <div class="markets-row">
+          <span class="markets-label">S&amp;P 500</span>
+          <span class="markets-value" id="SP500">5,614</span>
+          <span class="markets-note down">↓ –1.4% · placeholder</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">NASDAQ</span>
+          <span class="markets-value" id="NASDAQ">17,468</span>
+          <span class="markets-note down">↓ –1.9%</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">VIX</span>
+          <span class="markets-value warn" id="VIX">24.2</span>
+          <span class="markets-note">elevated — fear priced in</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">Gold (GLD)</span>
+          <span class="markets-value positive" id="GOLD">$2,915</span>
+          <span class="markets-note up">↑ +0.6% · inflation hedge</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credit -->
+    <div class="markets-panel">
+      <h2 class="markets-panel-title">&#9608; Credit</h2>
+      <div class="markets-rows">
+        <div class="markets-row">
+          <span class="markets-label">10Y–2Y Yield Spread</span>
+          <span class="markets-value positive" id="T10Y2Y-credit">+0.26%</span>
+          <span class="markets-note">positive — curve not inverted</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">BBB Corporate Spread</span>
+          <span class="markets-value" id="BAMLC0A4CBBB">1.42%</span>
+          <span class="markets-note">investment grade stress gauge</span>
+        </div>
+        <div class="markets-row">
+          <span class="markets-label">High Yield Spread</span>
+          <span class="markets-value warn" id="BAMLH0A0HYM2">3.85%</span>
+          <span class="markets-note">widening — risk appetite falling</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="markets-sources">
+      <p class="markets-sources-title">DATA SOURCES</p>
+      <p>
+        <a href="https://fred.stlouisfed.org" target="_blank" rel="noopener">FRED (St. Louis Fed)</a> ·
+        <a href="https://fiscaldata.treasury.gov" target="_blank" rel="noopener">U.S. Treasury Fiscal Data</a> ·
+        <a href="https://www.bls.gov" target="_blank" rel="noopener">Bureau of Labor Statistics</a> ·
+        <a href="https://www.freddiemac.com/pmms" target="_blank" rel="noopener">Freddie Mac PMMS</a>
+      </p>
+      <p class="markets-static-sub">Static demo values as of March 2026. Live API feed planned for v2. Build plan: <a href="https://github.com/jt630/jt630.github.io/blob/main/MARKETS.md" target="_blank" rel="noopener">MARKETS.md</a></p>
+    </div>
+
+  </div>
+</div>
+{{ end }}

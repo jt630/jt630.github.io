@@ -69,9 +69,13 @@ title = "Almond Farm"
     url = "/calendar/"
     weight = 15
   [[menu.main]]
+    name = "Markets"
+    url = "/markets/"
+    weight = 16
+  [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 16
+    weight = 17
 
 [taxonomies]
   tag = "tags"
