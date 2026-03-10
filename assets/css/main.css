@@ -977,6 +977,8 @@ img {
   font-family: Impact, 'Arial Black', 'Courier New', monospace;
   font-size: 3rem;
   font-style: normal;
+  text-shadow: 0 0 10px rgba(255,45,138,0.7), 0 0 30px rgba(255,45,138,0.3), 2px 2px 0 rgba(0,0,0,0.8);
+  animation: title-flicker 8s ease-in-out infinite;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
@@ -991,7 +993,8 @@ img {
   font-size: 0.82rem;
   color: var(--white-faint);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.25em;
+  text-shadow: 0 0 8px rgba(255,255,255,0.15);
 }
 
 .markets-header-meta {
@@ -1026,6 +1029,12 @@ img {
   border-radius: var(--radius);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.markets-panel:hover {
+  border-top-color: #FFD700;
+  box-shadow: 0 0 16px rgba(212,175,55,0.15), inset 0 1px 0 rgba(212,175,55,0.1);
 }
 
 .markets-panel-title {
@@ -1039,6 +1048,7 @@ img {
   margin-bottom: 0.85rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+  text-shadow: 0 0 8px rgba(212,175,55,0.6), 0 0 20px rgba(212,175,55,0.2);
 }
 
 .markets-rows {
@@ -1063,6 +1073,18 @@ img {
 .markets-label {
   font-size: 0.88rem;
   color: var(--white-dim);
+  letter-spacing: 0.03em;
+}
+
+.markets-row:hover .markets-label {
+  color: #fff;
+  text-shadow: 0 0 6px rgba(255,255,255,0.4);
+  transition: all 0.2s ease;
+}
+
+.markets-row:hover .markets-value {
+  filter: brightness(1.25);
+  transition: filter 0.2s ease;
 }
 
 .markets-value {
@@ -1073,14 +1095,17 @@ img {
   white-space: nowrap;
   text-align: right;
   min-width: 5rem;
+  text-shadow: 0 0 6px rgba(212,175,55,0.4);
 }
 
 .markets-value.positive {
   color: #00FF41;
+  text-shadow: 0 0 6px rgba(0,255,65,0.6), 0 0 16px rgba(0,255,65,0.2);
 }
 
 .markets-value.warn {
   color: var(--pink);
+  text-shadow: 0 0 6px rgba(255,45,138,0.5);
 }
 
 .markets-note {
@@ -1093,10 +1118,12 @@ img {
 
 .markets-note.up {
   color: #00AA30;
+  text-shadow: 0 0 6px rgba(0,200,60,0.5);
 }
 
 .markets-note.down {
   color: var(--pink);
+  text-shadow: 0 0 6px rgba(255,45,138,0.5);
 }
 
 .markets-sources {
@@ -1141,6 +1168,14 @@ img {
 @keyframes unrate-pulse {
   0%, 100% { text-shadow: 0 0 6px #FF2D8A, 0 0 18px #FF2D8A, 0 0 40px rgba(255,45,138,0.5); }
   50%       { text-shadow: 0 0 12px #FF2D8A, 0 0 30px #FF2D8A, 0 0 60px rgba(255,45,138,0.8); }
+}
+
+@keyframes title-flicker {
+  0%, 95%, 100% { text-shadow: 0 0 10px rgba(255,45,138,0.7), 0 0 30px rgba(255,45,138,0.3), 2px 2px 0 rgba(0,0,0,0.8); }
+  96%            { text-shadow: 0 0 2px rgba(255,45,138,0.3), 2px 2px 0 rgba(0,0,0,0.8); opacity: 0.85; }
+  97%            { text-shadow: 0 0 14px rgba(255,45,138,0.9), 0 0 40px rgba(255,45,138,0.5), 2px 2px 0 rgba(0,0,0,0.8); opacity: 1; }
+  98%            { text-shadow: 0 0 4px rgba(255,45,138,0.4), 2px 2px 0 rgba(0,0,0,0.8); opacity: 0.9; }
+  99%            { text-shadow: 0 0 12px rgba(255,45,138,0.8), 0 0 35px rgba(255,45,138,0.4), 2px 2px 0 rgba(0,0,0,0.8); opacity: 1; }
 }
 
 /* Core PCE — horror gothic */
