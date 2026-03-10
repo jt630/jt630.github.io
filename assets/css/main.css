@@ -993,7 +993,8 @@ img {
   font-size: 0.82rem;
   color: var(--white-faint);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.25em;
+  text-shadow: 0 0 8px rgba(255,255,255,0.15);
 }
 
 .markets-header-meta {
@@ -1028,6 +1029,12 @@ img {
   border-radius: var(--radius);
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.markets-panel:hover {
+  border-top-color: #FFD700;
+  box-shadow: 0 0 16px rgba(212,175,55,0.15), inset 0 1px 0 rgba(212,175,55,0.1);
 }
 
 .markets-panel-title {
@@ -1088,6 +1095,7 @@ img {
   white-space: nowrap;
   text-align: right;
   min-width: 5rem;
+  text-shadow: 0 0 6px rgba(212,175,55,0.4);
 }
 
 .markets-value.positive {
