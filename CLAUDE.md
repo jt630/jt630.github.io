@@ -34,6 +34,22 @@ content/
 Data-driven sections (music, books) get their content from `data/`. Gallery pulls
 from `static/images/gallery/`. Everything else is markdown in `content/`.
 
+### Monkeys subsystem
+
+The Infinite Monkey Theorem project lives under `content/monkeys/`. Full design
+spec, architecture, and build plan are in **`MONKEYS.md`** — read it before any
+monkeys session.
+
+Key files:
+- `MONKEYS.md` — project spec, design decisions, and session build plans
+- `data/monkey_registry.yaml` — one entry per language (name, coins, progress)
+- `data/dictionaries/{lang}.txt` — word lists per language *(to be built)*
+- `data/hamlet/{lang}.txt` — Hamlet plaintext per language *(to be built)*
+- `scripts/generate_monkey_post.py` — mint script *(to be built)*
+- `scripts/hamlet_scan.py` — Hamlet n-gram scanner *(to be built)*
+- `content/monkeys/{lang}_{YYYYMMDD}.md` — individual coin posts
+- `layouts/monkeys/` — coin display templates
+
 ## Layouts
 
 - `layouts/_default/baseof.html` — master shell (nav, marquee ticker, footer)
@@ -123,3 +139,28 @@ hugo --minify
 | Command | What it does |
 |---------|-------------|
 | `/new-post` | Scaffolds a new Hugo post — asks for section, title, description |
+| `/mint` | Mint a monkey coin — picks language, runs generation, commits *(planned)* |
+
+## Claude Code best practices for this project
+
+These patterns apply across sessions. Follow them.
+
+### Parallel agents for research
+When a task requires looking up multiple independent things (baby names for 10
+countries, dictionaries for 10 languages, checking 10 files), use **parallel
+Agent calls** — launch them all in one message. Don't research sequentially.
+
+### Worktree isolation for risky experiments
+When trying something that might break the site (new layout, big CSS refactor,
+theme experiment), use `isolation: "worktree"` on the Agent tool. This gives
+you a throwaway copy of the repo. If it works, merge it. If not, it disappears.
+
+### Build verification
+Always run `hugo --minify` after making changes and before committing. The
+session-start hook checks this automatically, but you should verify after
+each significant change too.
+
+### Read MONKEYS.md first
+Before any monkeys session, read `MONKEYS.md`. It contains design decisions,
+front matter schema, naming conventions, and the session build plan. Without
+it you'll make decisions that conflict with prior work.
