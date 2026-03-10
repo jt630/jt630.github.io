@@ -8,6 +8,7 @@
   {{ $css := resources.Get "css/main.css" }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="/index.xml">
+  {{ block "head-extra" . }}{{ end }}
 </head>
 <body>
   <div class="ie-warning" id="ie-warning" style="display:none">

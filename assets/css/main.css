@@ -1130,6 +1130,29 @@ img {
   color: var(--gold-light);
 }
 
+/* Unemployment — cuntier than everything else */
+#UNRATE {
+  color: #FF2D8A;
+  font-size: 1.45rem;
+  text-shadow: 0 0 6px #FF2D8A, 0 0 18px #FF2D8A, 0 0 40px rgba(255,45,138,0.5);
+  letter-spacing: 0.08em;
+  animation: unrate-pulse 2s ease-in-out infinite;
+}
+@keyframes unrate-pulse {
+  0%, 100% { text-shadow: 0 0 6px #FF2D8A, 0 0 18px #FF2D8A, 0 0 40px rgba(255,45,138,0.5); }
+  50%       { text-shadow: 0 0 12px #FF2D8A, 0 0 30px #FF2D8A, 0 0 60px rgba(255,45,138,0.8); }
+}
+
+/* Core PCE — horror gothic */
+#PCEPILFE {
+  font-family: 'UnifrakturMaguntia', serif;
+  color: #CC0000;
+  font-size: 1.35rem;
+  font-weight: normal;
+  text-shadow: 2px 2px 0 #000, 0 0 10px rgba(180,0,0,0.7), 0 4px 12px rgba(180,0,0,0.4);
+  letter-spacing: 0.04em;
+}
+
 /* Responsive: stack note below value on small screens */
 @media (max-width: 640px) {
   .markets-row {
