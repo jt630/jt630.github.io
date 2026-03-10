@@ -9,7 +9,7 @@
       </div>
       <div class="markets-header-meta">
         <span class="markets-static-badge">⚠ STATIC DEMO DATA</span>
-        <p class="markets-static-sub">live API integration coming in v2 — see <a href="https://github.com/jt630/jt630.github.io/blob/main/MARKETS.md" target="_blank" rel="noopener">MARKETS.md</a></p>
+        <p class="markets-static-sub" id="markets-last-updated"></p>
       </div>
     </div>
 
@@ -188,4 +188,10 @@
 
   </div>
 </div>
+
+{{ with .Site.Data.keys }}
+<script>window.FRED_KEY = "{{ .fred }}";</script>
+{{ end }}
+{{ $js := resources.Get "js/markets.js" }}
+<script src="{{ $js.RelPermalink }}"></script>
 {{ end }}
