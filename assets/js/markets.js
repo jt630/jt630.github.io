@@ -184,7 +184,7 @@
       ts.textContent = 'fetched ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
 
-    var sub = document.querySelector('.markets-static-sub');
+    var sub = document.getElementById('markets-source-footer');
     if (sub) sub.textContent = 'Source: FRED (St. Louis Fed) · updates on page load';
 
   }).catch(function () {
