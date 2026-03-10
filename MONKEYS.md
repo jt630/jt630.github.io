@@ -589,6 +589,11 @@ Copy a block into a session and go.
 design decisions and conventions that prevent you from reinventing or contradicting
 prior work.
 
+**Teaching mode:** The owner is learning AI-assisted development through this project.
+See `CLAUDE.md` > "Learning philosophy" for full details. When you use a Claude Code
+feature for the first time in a session, explain what it is and why it's useful beyond
+this project. Each session has a "Learning opportunity" callout — don't skip it.
+
 ---
 
 ### Session 1: English Dictionary + First Coin
