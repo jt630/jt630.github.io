@@ -323,7 +323,18 @@ Work in this order. Each session should be self-contained and leave the build pa
 - Pull 12 months of FRED history per series
 - **Success criteria:** Visual trend lines per card
 
-### Session 6 — Polish & Editorial
+### Session 6 — GDP Panel
+- Add **Output** panel to the dashboard
+- FRED series to fetch:
+  - `GDPC1` — Real GDP (quarterly, % change QoQ annualized)
+  - `A191RL1Q225SBEA` — Real GDP growth rate (already a % change series)
+  - `INDPRO` — Industrial Production Index (monthly activity proxy)
+  - `RSAFS` — Retail Sales (monthly consumer demand)
+- Display: latest value + prior quarter for QoQ comparison
+- Breakdown section: show GDP components if data available (consumption, investment, govt, net exports)
+- **Success criteria:** Output panel renders with live FRED data, QoQ growth visible
+
+### Session 7 — Polish & Editorial
 - Add "What to watch" blurb (manually edited markdown block on the page)
 - Add last-updated timestamp
 - Mobile layout pass
