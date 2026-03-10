@@ -74,7 +74,7 @@ No sentences. No intent. Just a walk through English. But notice — buried in t
 "ghost," "poison," "kingdom," "avenge," "father," "remember." Hamlet is in the
 dictionary. The walk will find it.
 
-### Hamlet Detection
+### Hamlet Detection (First-Party)
 
 After each coin is minted, the transcript is scanned for **n-gram matches** against
 the known Hamlet text in that language. Matching sequences (contiguous word runs that
@@ -84,6 +84,18 @@ appear in Hamlet) are tagged as fragments.
 - **Completion:** a language is "done" when every contiguous N-word chunk of Hamlet
   has been found across all transmissions in that language
 - Detection can be re-run as methods improve — coins are permanent, scanning isn't
+
+**Hamlet is the only first-party scan.** We look for Hamlet because that's the north
+star — the shutdown condition. Everything else the transcripts might contain (poetry,
+proverbs, phrases, word patterns, name sequences) is not our problem to find. The
+transcripts are public. Anyone can scan them for anything. If someone wants to search
+every Māori coin for traditional proverbs, or find love poems in the French monkey's
+output, that's their project built on our raw material.
+
+Think of it like a fortune cookie: nobody buys the cookie. The cookie is terrible.
+But when it's sitting there after the meal, everyone cracks it open. The quarter
+covers the crack. Hamlet is our fortune. Everything else is someone else's fortune
+to find.
 
 ### What "Enough" Means
 
@@ -330,12 +342,21 @@ transcript is taken. A monkey can mint on multiple dates; each date is a separat
 - Leaderboard page (future): ranked by number of coins mined
 - Each owner gets a permanent URL: `/monkeys/?owner=username`
 
+### Pricing
+
+$0.25 per coin. A quarter. Gumball price. Pressed-penny price.
+
+This is not a business model. This is a souvenir price. The project will be net
+negative on money and net positive on having built something genuinely weird. The
+quarter covers the crack of the fortune cookie. Nobody's getting rich. The machine
+exists because people want to pull the lever.
+
 ### Open Design
 
-- [ ] What is the "value" of a coin? Scarcity (rare languages) vs. volume?
 - [ ] Can ownership transfer? (Proposed: no — immutable once claimed)
 - [ ] Anonymous mining? (Proposed: yes, owner = `anon`)
 - [ ] Leaderboard: total coins minted, languages covered, Hamlet fragments found
+- [ ] Payment integration — Stripe? crypto? honor system?
 
 ---
 
@@ -556,3 +577,259 @@ archive of human language and naming culture, one coin at a time.
 | Languages with ≥1 Coin | Total Languages | Coverage |
 |------------------------|----------------|----------|
 | 0 | ~184 | 0% |
+
+---
+
+## Build Plan — Session Task Lists
+
+Ordered by dependency. Each block is one Sonnet session's worth of work.
+Copy a block into a session and go.
+
+**Before every session:** Read `MONKEYS.md` and `CLAUDE.md` first. They contain
+design decisions and conventions that prevent you from reinventing or contradicting
+prior work.
+
+**Teaching mode:** The owner is learning AI-assisted development through this project.
+See `CLAUDE.md` > "Learning philosophy" for full details. When you use a Claude Code
+feature for the first time in a session, explain what it is and why it's useful beyond
+this project. Each session has a "Learning opportunity" callout — don't skip it.
+
+---
+
+### Session 1: English Dictionary + First Coin
+
+**Goal:** Mint the first coin. Prove the pipeline end-to-end.
+
+**Context for Sonnet:** This session creates the core generation pipeline that
+every future session depends on. The front matter schema in MONKEYS.md is the
+contract — match it exactly. Don't add fields, don't rename fields.
+
+- [ ] Source English dictionary — download aspell-en word list, clean it,
+      save to `data/dictionaries/en.txt` (one word per line, lowercase, deduped)
+- [ ] Build `scripts/generate_monkey_post.py` — the mint script:
+  - Read dictionary from `data/dictionaries/{lang}.txt`
+  - Perform uniform random walk (sample N words with replacement)
+  - Write output to `content/monkeys/{lang}_{YYYYMMDD}.md` with full front matter
+  - Front matter **must match the schema in MONKEYS.md exactly** — read it first
+  - Update `data/monkey_registry.yaml` (increment `total_coins`, set `first_coin_date`)
+  - Word count: 5,000 words per transmission (configurable via CLI arg)
+  - No Hamlet scanning yet — just the walk
+  - Accept `--lang`, `--words`, `--owner` as CLI args (defaults: en, 5000, anon)
+- [ ] Register the English monkey in `data/monkey_registry.yaml`:
+  ```
+  language: en, monkey_name: Liam, country: US, etc.
+  ```
+  Follow the Registry Schema section in MONKEYS.md for all fields.
+- [ ] Run the script — mint `en_{today}.md`
+- [ ] Verify: `hugo --minify` builds cleanly with the new coin
+- [ ] Verify: `hugo server` renders the coin at `/monkeys/en_{date}/`
+- [ ] Create `.claude/commands/mint.md` — a slash command that prompts for
+      language and word count, then runs `generate_monkey_post.py`.
+      See `/new-post` in `.claude/commands/new-post.md` for the pattern.
+
+**Learning opportunity:** Creating the `/mint` slash command teaches you how
+custom commands work. They're markdown files in `.claude/commands/` that become
+interactive prompts. After this session, minting is one command instead of
+remembering script paths and flags.
+
+---
+
+### Session 2: Hamlet Scanner
+
+**Goal:** Build the Hamlet n-gram detection system.
+
+**Context for Sonnet:** Hamlet scanning is the ONLY first-party detection we do.
+See the "Hamlet Detection (First-Party)" section in MONKEYS.md for the philosophy.
+Everything else (poetry, proverbs, patterns) is community territory. Don't scope
+creep into general text analysis.
+
+- [ ] Source Hamlet text — find a clean plaintext English Hamlet,
+      save to `data/hamlet/en.txt` (words only, lowercased, one continuous sequence)
+- [ ] Build `scripts/hamlet_scan.py`:
+  - Load Hamlet text as word list
+  - Load a coin's transcript as word list (parse the markdown, extract body text)
+  - Scan for contiguous n-gram matches (configurable minimum n, start with n=3)
+  - Output: list of matched fragments with position and length
+  - Update coin front matter: `hamlet_fragments`, `longest_fragment`
+  - Accept `--coin` (path to coin .md) or `--lang` (scan all coins for a language)
+- [ ] Run against the first English coin — record results (expect: almost nothing)
+- [ ] Add cumulative Hamlet progress tracking:
+  - Which Hamlet n-grams have been found across ALL coins for a language?
+  - Update `hamlet_progress` in registry (percentage of unique Hamlet n-grams covered)
+- [ ] Integration: update `generate_monkey_post.py` to optionally run Hamlet scan
+      after minting (flag: `--scan`). Keep them separate scripts but wire them together.
+
+**Learning opportunity:** The scan script should be idempotent — running it twice
+on the same coin produces the same result. This is important because MONKEYS.md
+says "Detection can be re-run as methods improve — coins are permanent, scanning
+isn't." Design for re-scanning from the start.
+
+---
+
+### Session 3: Multi-Language Expansion
+
+**Goal:** Register 10+ monkeys and mint first coins.
+
+**Context for Sonnet:** This is a research-heavy session. Use **parallel Agent
+calls** for independent lookups — don't search baby names one country at a time.
+Launch 10 research agents simultaneously. This is faster and is how Claude Code
+is meant to handle bulk research.
+
+- [ ] **Use parallel agents** to research simultaneously:
+  - Dictionary sources for: `es`, `fr`, `de`, `pt`, `ja`, `ar`, `zh`, `hi`, `ko`, `sw`
+  - #1 baby name for each language's primary country (2025/2026 data)
+  - Launch these as independent Agent calls in a single message
+- [ ] Download/generate dictionaries, save each to `data/dictionaries/{lang}.txt`
+  - Same format as English: one word per line, lowercase, deduped
+  - Record `dictionary_source` and `dictionary_size` for registry
+- [ ] Register all monkeys in `data/monkey_registry.yaml`
+  - Follow the schema exactly — check `monkey_name_native` uses native script
+  - Verify YAML is valid after editing
+- [ ] Batch mint: one coin per language using `generate_monkey_post.py`
+- [ ] `hugo --minify` — verify all coins build cleanly
+- [ ] Spot-check non-Latin scripts in browser: Arabic (RTL), CJK, Devanagari
+- [ ] Commit dictionaries and registry together, coins separately
+  (dictionaries are infrastructure, coins are content — keep the history clean)
+
+**Learning opportunity:** Parallel agents. When you have N independent research
+tasks, you can launch N agents in one message. Each runs its own search. You get
+all results back without sequential waiting. Use this pattern any time you need
+to look up multiple independent things.
+
+---
+
+### Session 4: Coin Display & Single Page
+
+**Goal:** Make individual coin pages look good.
+
+**Context for Sonnet:** Use `isolation: "worktree"` for the CSS/layout work.
+This gives you a throwaway copy of the repo to experiment in. If the design
+works, merge it. If not, discard — no risk to the main branch. The site's theme
+is documented in `CUNTY-THEME-GUIDE.md` — read it for colors and conventions.
+
+- [ ] Read `CUNTY-THEME-GUIDE.md` for the site's color palette and component style
+- [ ] Read existing layouts: `layouts/_default/single.html`, `layouts/_default/list.html`
+      to understand the current patterns before creating new ones
+- [ ] Create `layouts/monkeys/single.html`:
+  - Monkey name + native name prominently displayed
+  - Language, transmission number, date
+  - "Mined by {owner}" badge
+  - Coin key displayed
+  - Hamlet fragment count (if any)
+  - The transcript itself — full wall of text, styled as monospace/typewriter
+- [ ] Coin face visual — CSS-only coin design:
+  - Circle with language name in native script centered
+  - ISO code + transmission number on the ring
+  - `ALMONDFARM.US · INFINITE MONKEY THEOREM` edge text
+  - Color/patina seeded from coin_key hash (CSS `hsl()` from hash)
+- [ ] Add CSS to `assets/css/main.css` — don't create a new stylesheet.
+      This project uses a single CSS file (see CLAUDE.md).
+- [ ] Mobile-responsive check — test at 375px width
+- [ ] `hugo --minify` — verify build
+
+**Learning opportunity:** Worktree isolation. When experimenting with layouts
+and CSS, use `isolation: "worktree"` on Agent calls. You get a full copy of the
+repo to break without consequences. This is how you prototype safely.
+
+---
+
+### Session 5: Registry & Browse Page
+
+**Goal:** Make the monkey registry browsable.
+
+**Context for Sonnet:** The registry page reads from `data/monkey_registry.yaml`.
+Hugo's data templates (`{{ site.Data.monkey_registry }}`) make this straightforward.
+The "Find your name" search should be vanilla JS — this project has no JS framework
+(see CLAUDE.md: "Vanilla JS — only a hamburger menu toggle").
+
+- [ ] Build `layouts/monkeys/list.html` (the section list page):
+  - Grid/table of all registered monkeys from `data/monkey_registry.yaml`
+  - Each entry shows: name (native), language, country flag emoji, total coins, hamlet progress
+  - Vanilla JS filter/search by name — no frameworks, no npm
+  - Sort by name, language, coin count (JS click handlers on column headers)
+- [ ] Add stats dashboard at top:
+  - Total monkeys registered (count entries in registry)
+  - Total coins minted (sum `total_coins` across registry)
+  - Overall Hamlet progress (average `hamlet_progress`)
+  - Goal 0 / Goal 1 status bars
+- [ ] Link list of individual coins below the registry (existing Hugo list behavior)
+- [ ] Add "Monkeys" to nav in `hugo.toml` menu config + `layouts/_default/baseof.html`
+- [ ] `hugo --minify` — verify build
+
+---
+
+### Session 6: Crypto Layer
+
+**Goal:** Add content integrity hashing to each coin.
+
+**Context for Sonnet:** The crypto design is in MONKEYS.md under "Token & Crypto
+Layer." Read it. keccak256 is the priority. ML-DSA-65 is nice-to-have — if the
+Python deps aren't available in this environment, stub the function and move on.
+Don't spend the session fighting package installs.
+
+- [ ] Add keccak256 hashing to `generate_monkey_post.py`:
+  - `token_id = keccak256(coin_key + transcript)`
+  - Use `pycryptodome` or `pysha3` — check what's available first
+  - Write `token_id` to front matter
+- [ ] Add ML-DSA-65 keypair generation:
+  - Check if `oqs` or `dilithium` Python package is available
+  - If yes: `SHA-3-256(transcript) → seed → ML-DSA-65 KeyGen → (pub, secret)`
+  - Store `pq_pubkey` in front matter, print `secret_key` to stdout (NEVER stored)
+  - **If deps unavailable: stub with a TODO comment and move on.** Don't block.
+- [ ] Display `token_id` on coin single page (`layouts/monkeys/single.html`)
+- [ ] Build `scripts/backfill_tokens.py` — re-run on all existing coins to add token_ids
+- [ ] Run backfill, verify front matter updated, `hugo --minify`
+
+---
+
+### Session 7: Penny Press UI
+
+**Goal:** Interactive mint page. Design session — build with GF.
+
+**Context for Sonnet:** This is a creative/design session. The press is the public
+face of the project. Read the "Penny Press Machine" section in MONKEYS.md for the
+vision. All JS should be vanilla — no frameworks. All CSS goes in `assets/css/main.css`.
+Use `CUNTY-THEME-GUIDE.md` for the color palette.
+
+- [ ] Read MONKEYS.md "Penny Press Machine" section + CUNTY-THEME-GUIDE.md
+- [ ] Create `content/press.md` + `layouts/press/single.html`
+  (or use `layouts/_default/` with a custom type — match existing patterns)
+- [ ] Machine idle state — CSS illustration of a penny press
+- [ ] Language picker — dropdown or grid of available monkeys from registry data
+- [ ] Pull animation — CSS/JS sequence (knob pull → gears spin → coin drops)
+  - Pure CSS transitions + vanilla JS state machine
+  - No animation libraries
+- [ ] Result display — show the minted coin face + first few words of transcript
+- [ ] Link to full coin page
+- [ ] Add "Press" to site nav
+- [ ] `hugo --minify` — verify build
+
+---
+
+### Session 8: Automation & Scaling
+
+**Goal:** Make minting automatic or semi-automatic.
+
+**Context for Sonnet:** GitHub Actions workflow goes in `.github/workflows/`.
+There's already a `deploy.yml` there — read it first to understand the existing
+CI/CD pattern. The daily mint workflow should be a SEPARATE file, not modifications
+to the deploy workflow.
+
+- [ ] Read `.github/workflows/deploy.yml` to understand the existing CI pattern
+- [ ] Create `.github/workflows/daily-mint.yml`:
+  - Schedule: `cron: '0 12 * * *'` (noon UTC daily)
+  - Pick a random language from registry (or round-robin)
+  - Install Python + deps, run generation script
+  - `hugo --minify` to verify build
+  - Commit + push the new coin
+  - Owner = `anon` for automated mints
+- [ ] Build batch mint wrapper: `scripts/batch_mint.py`
+  - Mint N coins across M languages in one run
+  - Accept `--languages all` or `--languages en,fr,de`
+  - Accept `--count N` (coins per language)
+- [ ] Storage audit: estimate GitHub Pages limits at scale
+  - 5,000 words x ~6 chars avg = ~30KB per coin
+  - 184 languages x 365 days = 67,160 coins/year = ~2GB/year
+  - Document findings in MONKEYS.md under a new "Scaling Notes" section
+  - If limits are a concern, propose alternatives (separate repo for transcripts,
+    external storage, pagination)

@@ -34,6 +34,22 @@ content/
 Data-driven sections (music, books) get their content from `data/`. Gallery pulls
 from `static/images/gallery/`. Everything else is markdown in `content/`.
 
+### Monkeys subsystem
+
+The Infinite Monkey Theorem project lives under `content/monkeys/`. Full design
+spec, architecture, and build plan are in **`MONKEYS.md`** — read it before any
+monkeys session.
+
+Key files:
+- `MONKEYS.md` — project spec, design decisions, and session build plans
+- `data/monkey_registry.yaml` — one entry per language (name, coins, progress)
+- `data/dictionaries/{lang}.txt` — word lists per language *(to be built)*
+- `data/hamlet/{lang}.txt` — Hamlet plaintext per language *(to be built)*
+- `scripts/generate_monkey_post.py` — mint script *(to be built)*
+- `scripts/hamlet_scan.py` — Hamlet n-gram scanner *(to be built)*
+- `content/monkeys/{lang}_{YYYYMMDD}.md` — individual coin posts
+- `layouts/monkeys/` — coin display templates
+
 ## Layouts
 
 - `layouts/_default/baseof.html` — master shell (nav, marquee ticker, footer)
@@ -123,3 +139,94 @@ hugo --minify
 | Command | What it does |
 |---------|-------------|
 | `/new-post` | Scaffolds a new Hugo post — asks for section, title, description |
+| `/mint` | Mint a monkey coin — picks language, runs generation, commits *(planned)* |
+
+## Claude Code best practices for this project
+
+These patterns apply across sessions. Follow them.
+
+### Parallel agents for research
+When a task requires looking up multiple independent things (baby names for 10
+countries, dictionaries for 10 languages, checking 10 files), use **parallel
+Agent calls** — launch them all in one message. Don't research sequentially.
+
+### Worktree isolation for risky experiments
+When trying something that might break the site (new layout, big CSS refactor,
+theme experiment), use `isolation: "worktree"` on the Agent tool. This gives
+you a throwaway copy of the repo. If it works, merge it. If not, it disappears.
+
+### Build verification
+Always run `hugo --minify` after making changes and before committing. The
+session-start hook checks this automatically, but you should verify after
+each significant change too.
+
+### Read MONKEYS.md first
+Before any monkeys session, read `MONKEYS.md`. It contains design decisions,
+front matter schema, naming conventions, and the session build plan. Without
+it you'll make decisions that conflict with prior work.
+
+---
+
+## Learning philosophy
+
+**The owner is learning to use AI tools through building this project.** The site
+is real, but the deeper goal is developing fluency with AI-assisted development
+workflows. This changes how you should work:
+
+### Explain what's happening
+Don't just execute — narrate. When you use a Claude Code feature (parallel agents,
+worktrees, background tasks, hooks, slash commands), explain **what it is, why you
+chose it, and when the user would reach for it again** in future projects. Treat
+every session as a chance to transfer a portable skill.
+
+### Suggest the tool, not just the fix
+When you see a chance to use a Claude Code capability the user hasn't tried yet,
+call it out even if it's not strictly necessary. "This would be a good place to
+use X because..." is more valuable than silently doing it the simple way.
+
+### Portable skills to build through this project
+
+These are the AI workflow skills this project is designed to teach, roughly in
+the order they'll come up:
+
+1. **Spec-driven development** — writing a design doc (MONKEYS.md) before code,
+   so AI sessions have context and constraints instead of blank-slate guessing.
+   *Transferable to: any multi-session AI project.*
+
+2. **Session handoff via documentation** — using CLAUDE.md and MONKEYS.md as
+   persistent memory across sessions. The AI has no memory between sessions;
+   your docs ARE the memory. The better the docs, the smarter every future session.
+   *Transferable to: all AI-assisted work. This is the single highest-leverage skill.*
+
+3. **Slash commands as workflow shortcuts** — building `/mint`, `/new-post` etc.
+   Custom commands encode your workflows so you don't re-explain them each time.
+   *Transferable to: any repetitive AI task.*
+
+4. **Parallel agent orchestration** — launching multiple research tasks at once
+   instead of waiting for each to finish. Understanding when tasks are independent
+   vs. dependent.
+   *Transferable to: research, bulk operations, any fan-out work.*
+
+5. **Worktree isolation** — experimenting safely by running agents in throwaway
+   copies of your repo. Understanding when to prototype vs. commit directly.
+   *Transferable to: any project where you want to try something risky.*
+
+6. **Hooks and automation** — session-start hooks, pre-commit checks, CI/CD.
+   Making the environment enforce quality so you don't have to remember to.
+   *Transferable to: all software projects.*
+
+7. **Data-driven content** — YAML registries rendered by templates. Understanding
+   the separation between data and presentation. Hugo's data templates are one
+   instance of a universal pattern (config vs. code, data vs. view).
+   *Transferable to: any project with structured content.*
+
+8. **Prompt engineering through docs** — CLAUDE.md IS a prompt. The "Context for
+   Sonnet" blocks in session todos ARE prompts. Learning to write instructions
+   that constrain AI behavior effectively is the meta-skill underneath everything.
+   *Transferable to: literally every AI interaction you'll ever have.*
+
+### When to surface learning moments
+- When introducing a new tool or technique for the first time
+- When a task could be done two ways and the choice teaches something
+- When a mistake reveals a workflow gap (missing docs, no pre-commit hook, etc.)
+- When the user asks "how am I underutilizing this?" — answer honestly
