@@ -1,15 +1,15 @@
 name: Dinger Palooza — Weekly Draft Board
 
 on:
-  # Every Monday at 8 AM ET (12:00 UTC) — before people start drafting
+  # Every Sunday at 9 AM ET (13:00 UTC during EDT) — before the draft
   schedule:
-    - cron: "0 12 * * 1"
+    - cron: "0 13 * * 0"
 
   # Allow manual trigger from GitHub Actions UI
   workflow_dispatch:
     inputs:
       week:
-        description: "Start date of target week (YYYY-MM-DD, must be Monday). Leave blank for next Monday."
+        description: "Start date of target week (YYYY-MM-DD). Leave blank to use current week."
         required: false
         default: ""
 
