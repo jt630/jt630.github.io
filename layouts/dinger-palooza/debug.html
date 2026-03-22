@@ -1,0 +1,243 @@
+{{ define "main" }}
+{{ $board    := .Site.Data.dinger_palooza.draft_board }}
+{{ $sched    := .Site.Data.dinger_palooza.intermediate.schedule }}
+{{ $weather  := .Site.Data.dinger_palooza.intermediate.weather }}
+{{ $pitcher  := .Site.Data.dinger_palooza.intermediate.pitcher }}
+
+<div class="dp-page dp-debug">
+
+  <div class="dp-header">
+    <div class="dp-title-row">
+      <h1 class="dp-title">DEBUG BOARD</h1>
+      <span class="dp-badge-new blink">RAW</span>
+    </div>
+    <p class="dp-subtitle">Pipeline data dump — for debugging &amp; manual inspection</p>
+    <div class="dp-meta-row">
+      <span class="dp-week-badge">{{ $board.week_start }} &rarr; {{ $board.week_end }}</span>
+      <span class="dp-updated">Generated: {{ $board.generated_at | dateFormat "Jan 2, 2006 3:04:05 PM UTC" }}</span>
+      <span class="dp-updated">Players: {{ len $board.players }}</span>
+    </div>
+    <p style="margin-top:0.5rem;font-size:0.8rem;opacity:0.6;">
+      &larr; <a href="/dinger-palooza/">Back to draft board</a>
+    </p>
+  </div>
+
+  <!-- ── Section nav ── -->
+  <nav class="dbg-nav">
+    <a class="dbg-nav-link" href="#board">Draft Board ({{ len $board.players }})</a>
+    {{ if $sched }}<a class="dbg-nav-link" href="#schedule">Schedule</a>{{ end }}
+    {{ if $weather }}<a class="dbg-nav-link" href="#weather">Weather</a>{{ end }}
+    {{ if $pitcher }}<a class="dbg-nav-link" href="#pitcher">Pitcher</a>{{ end }}
+    <a class="dbg-nav-link" href="#raw-board">Raw JSON</a>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1 — Full Draft Board Table                        -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section id="board" class="dbg-section">
+    <h2 class="dbg-section-title">DRAFT BOARD — ALL PLAYERS</h2>
+    <div class="dbg-table-wrap">
+      <table class="dbg-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th>Team</th>
+            <th>Score</th>
+            <th>Sched</th>
+            <th>Pitch</th>
+            <th>Park</th>
+            <th>Wx</th>
+            <th>G</th>
+            <th>Fav</th>
+            <th>Rain</th>
+            <th>HOT</th>
+            <th>Reasoning</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $board.players }}
+          <tr {{ if .high_opportunity }}class="dbg-row-hot"{{ end }}>
+            <td class="dbg-rank">{{ .rank }}</td>
+            <td class="dbg-name">{{ .name }}</td>
+            <td>{{ .team_abbr }}</td>
+            <td class="dbg-score">{{ .overall_score }}</td>
+            <td>{{ .schedule_score }}</td>
+            <td>{{ .pitcher_score }}</td>
+            <td>{{ .park_score }}</td>
+            <td>{{ .weather_score }}</td>
+            <td>{{ .games_this_week }}</td>
+            <td>{{ .favorable_matchups }}</td>
+            <td>{{ .rain_risk_games }}</td>
+            <td>{{ if .high_opportunity }}🔥{{ end }}</td>
+            <td class="dbg-reasoning">{{ .reasoning }}</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2 — Per-player game breakdown                     -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section id="games" class="dbg-section">
+    <h2 class="dbg-section-title">GAME BREAKDOWN — TOP 30</h2>
+    {{ range first 30 $board.players }}
+    <details class="dbg-player-detail">
+      <summary class="dbg-player-summary">
+        <strong>#{{ .rank }} {{ .name }}</strong>
+        <span class="dp-team-badge">{{ .team_abbr }}</span>
+        <span>{{ .games_this_week }}G &nbsp; Score: {{ .overall_score }}</span>
+      </summary>
+      {{ if .games }}
+      <div class="dbg-table-wrap">
+        <table class="dbg-table dbg-table-sm">
+          <thead>
+            <tr>
+              <th>Date</th><th>H/A</th><th>Opp</th><th>Venue</th><th>PF</th>
+              <th>Pitcher</th><th>Hand</th><th>Platoon</th><th>Matchup</th><th>Matchup Score</th>
+              <th>Rain%</th><th>Temp</th><th>Wind</th><th>WindOut</th><th>Wx</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range .games }}
+            <tr>
+              <td>{{ .date }}</td>
+              <td class="{{ if eq .home_away "home" }}dbg-home{{ else }}dbg-away{{ end }}">{{ upper .home_away }}</td>
+              <td>{{ .opponent }}</td>
+              <td title="{{ .park_notes }}">{{ .venue }}</td>
+              <td>{{ .park_factor }}</td>
+              <td>{{ .probable_pitcher_name }}</td>
+              <td>{{ .pitcher_hand }}</td>
+              <td>{{ .platoon_label }}</td>
+              <td class="dbg-matchup-{{ lower .pitcher_matchup_label }}">{{ .pitcher_matchup_label }}</td>
+              <td>{{ .pitcher_matchup_score }}</td>
+              {{ with .weather }}
+              <td>{{ .rain_pct }}%</td>
+              <td>{{ .temp_f }}°F</td>
+              <td>{{ .wind_mph }}mph</td>
+              <td>{{ if .wind_out }}✓{{ end }}</td>
+              <td>{{ .conditions }}</td>
+              {{ else }}
+              <td colspan="5" style="opacity:0.4">no weather</td>
+              {{ end }}
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+      {{ else }}
+      <p class="dbg-empty">No games this week.</p>
+      {{ end }}
+    </details>
+    {{ end }}
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3 — Schedule intermediate                         -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  {{ if $sched }}
+  <section id="schedule" class="dbg-section">
+    <h2 class="dbg-section-title">SCHEDULE AGENT OUTPUT ({{ len $sched }} players)</h2>
+    <div class="dbg-table-wrap">
+      <table class="dbg-table">
+        <thead>
+          <tr><th>Player</th><th>Team</th><th>MLB ID</th><th>Games</th><th>Sched Score</th><th>Park Score</th><th>Best Park</th><th>Best PF</th><th>HOT</th></tr>
+        </thead>
+        <tbody>
+          {{ range $sched }}
+          <tr {{ if .high_opportunity }}class="dbg-row-hot"{{ end }}>
+            <td>{{ .name }}</td>
+            <td>{{ .team_abbr }}</td>
+            <td>{{ .mlb_id }}</td>
+            <td>{{ .games_this_week }}</td>
+            <td>{{ .schedule_score }}</td>
+            <td>{{ .park_score }}</td>
+            <td>{{ .best_park_game }}</td>
+            <td>{{ .best_park_factor }}</td>
+            <td>{{ if .high_opportunity }}🔥{{ end }}</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4 — Weather intermediate                          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  {{ if $weather }}
+  <section id="weather" class="dbg-section">
+    <h2 class="dbg-section-title">WEATHER AGENT OUTPUT ({{ len $weather }} players)</h2>
+    <div class="dbg-table-wrap">
+      <table class="dbg-table">
+        <thead>
+          <tr><th>Player</th><th>Team</th><th>Wx Score</th><th>Rain Risk Games</th></tr>
+        </thead>
+        <tbody>
+          {{ range $weather }}
+          <tr>
+            <td>{{ .name }}</td>
+            <td>{{ .team_abbr }}</td>
+            <td>{{ .weather_score }}</td>
+            <td>{{ .rain_risk_games }}</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION 5 — Pitcher intermediate                          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  {{ if $pitcher }}
+  <section id="pitcher" class="dbg-section">
+    <h2 class="dbg-section-title">PITCHER AGENT OUTPUT ({{ len $pitcher }} players)</h2>
+    <div class="dbg-table-wrap">
+      <table class="dbg-table">
+        <thead>
+          <tr><th>Player</th><th>Team</th><th>Pitcher Score</th><th>Fav Matchups</th><th>Platoon Adv</th></tr>
+        </thead>
+        <tbody>
+          {{ range $pitcher }}
+          <tr>
+            <td>{{ .name }}</td>
+            <td>{{ .team_abbr }}</td>
+            <td>{{ .pitcher_score }}</td>
+            <td>{{ .favorable_matchups }}</td>
+            <td>{{ .platoon_advantages }}</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- Missing intermediate data notice -->
+  {{ if and (not $sched) (not $weather) (not $pitcher) }}
+  <section class="dbg-section">
+    <div class="dbg-empty-block">
+      <p><strong>No intermediate data files found.</strong></p>
+      <p>Run the GitHub Action to generate <code>data/dinger_palooza/intermediate/schedule.json</code>, <code>weather.json</code>, and <code>pitcher.json</code>. They'll appear here automatically once committed.</p>
+    </div>
+  </section>
+  {{ end }}
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- SECTION 6 — Raw JSON                                      -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <section id="raw-board" class="dbg-section">
+    <h2 class="dbg-section-title">RAW JSON — draft_board.json</h2>
+    <details>
+      <summary class="dbg-raw-summary">Expand full JSON</summary>
+      <pre class="dbg-raw">{{ $board | jsonify (dict "indent" "  ") }}</pre>
+    </details>
+  </section>
+
+</div>
+{{ end }}
