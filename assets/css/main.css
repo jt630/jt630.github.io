@@ -1788,6 +1788,12 @@ img {
   background: rgba(78,203,113,0.08);
 }
 
+.dp-chip--platoon {
+  border-color: #a78bfa;
+  color: #a78bfa;
+  background: rgba(167,139,250,0.08);
+}
+
 /* ── Rules panel ── */
 .dp-rules-panel {
   background: #0d0d0d;
@@ -1945,6 +1951,29 @@ img {
 
 /* Hot park game row highlight */
 .dp-game-row--hotpark { border-left-color: var(--gold) !important; }
+
+/* Pitcher hand badge */
+.dp-pitcher-hand {
+  font-size: 0.58rem;
+  color: #555;
+  border: 1px solid #333;
+  padding: 0px 4px;
+  margin-left: 3px;
+  vertical-align: middle;
+  font-style: normal;
+}
+
+/* Platoon label */
+.dp-platoon-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.62rem;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.dp-platoon--good { color: #a78bfa; background: rgba(167,139,250,0.1); border: 1px solid #a78bfa; }
+.dp-platoon--bad  { color: #666;    background: rgba(100,100,100,0.08); border: 1px solid #444; }
 
 /* Responsive */
 @media (max-width: 520px) {

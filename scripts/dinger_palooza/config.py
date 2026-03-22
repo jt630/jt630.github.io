@@ -7,17 +7,21 @@ from datetime import date, timedelta
 
 # ── Candidate sluggers ────────────────────────────────────────────────────────
 # team_id from the MLB Stats API (/api/v1/teams)
+
+# bats: "L" = left-handed, "R" = right-handed, "S" = switch hitter
+# Switch hitters always bat from the favorable side → treat as neutral for platoon purposes.
+# Update this list once the owner confirms the final 6–8 player roster.
 PLAYERS = [
-    {"name": "Cal Raleigh",       "team": "Seattle Mariners",      "team_id": 136, "team_abbr": "SEA", "mlb_id": None},
-    {"name": "Aaron Judge",       "team": "New York Yankees",      "team_id": 147, "team_abbr": "NYY", "mlb_id": None},
-    {"name": "Kyle Schwarber",    "team": "Philadelphia Phillies", "team_id": 143, "team_abbr": "PHI", "mlb_id": None},
-    {"name": "Shohei Ohtani",     "team": "Los Angeles Dodgers",   "team_id": 119, "team_abbr": "LAD", "mlb_id": None},
-    {"name": "Junior Caminero",   "team": "Tampa Bay Rays",        "team_id": 139, "team_abbr": "TB",  "mlb_id": None},
-    {"name": "Juan Soto",         "team": "New York Mets",         "team_id": 121, "team_abbr": "NYM", "mlb_id": None},
-    {"name": "Ronald Acuna Jr",   "team": "Atlanta Braves",        "team_id": 144, "team_abbr": "ATL", "mlb_id": None},
-    {"name": "Bobby Witt Jr",     "team": "Kansas City Royals",    "team_id": 118, "team_abbr": "KC",  "mlb_id": None},
-    {"name": "Jose Ramirez",      "team": "Cleveland Guardians",   "team_id": 114, "team_abbr": "CLE", "mlb_id": None},
-    {"name": "Pete Alonso",       "team": "New York Mets",         "team_id": 121, "team_abbr": "NYM", "mlb_id": None},
+    {"name": "Cal Raleigh",       "team": "Seattle Mariners",      "team_id": 136, "team_abbr": "SEA", "mlb_id": None, "bats": "R"},
+    {"name": "Aaron Judge",       "team": "New York Yankees",      "team_id": 147, "team_abbr": "NYY", "mlb_id": None, "bats": "R"},
+    {"name": "Kyle Schwarber",    "team": "Philadelphia Phillies", "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "L"},
+    {"name": "Shohei Ohtani",     "team": "Los Angeles Dodgers",   "team_id": 119, "team_abbr": "LAD", "mlb_id": None, "bats": "L"},
+    {"name": "Junior Caminero",   "team": "Tampa Bay Rays",        "team_id": 139, "team_abbr": "TB",  "mlb_id": None, "bats": "R"},
+    {"name": "Juan Soto",         "team": "New York Mets",         "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "L"},
+    {"name": "Ronald Acuna Jr",   "team": "Atlanta Braves",        "team_id": 144, "team_abbr": "ATL", "mlb_id": None, "bats": "R"},
+    {"name": "Bobby Witt Jr",     "team": "Kansas City Royals",    "team_id": 118, "team_abbr": "KC",  "mlb_id": None, "bats": "R"},
+    {"name": "Jose Ramirez",      "team": "Cleveland Guardians",   "team_id": 114, "team_abbr": "CLE", "mlb_id": None, "bats": "S"},
+    {"name": "Pete Alonso",       "team": "New York Mets",         "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "R"},
 ]
 
 # Stadium locations for weather lookups (city, state/country for OWM query)

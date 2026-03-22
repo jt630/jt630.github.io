@@ -47,14 +47,17 @@ def build_reasoning(player: dict) -> str:
     else:
         parts.append("neutral parks")
 
-    # Pitcher blurb + multi-HR bonus callout
+    # Pitcher blurb + platoon + multi-HR bonus callout
     favorable = player.get("favorable_matchups", 0)
+    platoon_adv = player.get("platoon_advantages", 0)
     if pitch_score >= 65:
-        parts.append(f"{favorable} favorable matchup{'s' if favorable != 1 else ''} (multi-HR bonus potential)")
+        platoon_str = f", {platoon_adv} platoon advantage{'s' if platoon_adv != 1 else ''}" if platoon_adv else ""
+        parts.append(f"{favorable} favorable matchup{'s' if favorable != 1 else ''}{platoon_str} (multi-HR bonus potential)")
     elif pitch_score < 40:
         parts.append("tough pitching schedule")
     else:
-        parts.append("neutral pitching schedule")
+        platoon_str = f", {platoon_adv} platoon advantage{'s' if platoon_adv != 1 else ''}" if platoon_adv else ""
+        parts.append(f"neutral pitching schedule{platoon_str}")
 
     # Weather blurb
     rain_risk = player.get("rain_risk_games", 0)
@@ -148,6 +151,9 @@ def build_draft_board(
                 "park_factor": g.get("park_factor", 100),
                 "park_notes": g.get("park_notes", ""),
                 "probable_pitcher_name": (g.get("probable_pitcher") or {}).get("name", "TBD"),
+                "pitcher_hand": g.get("pitcher_hand"),
+                "platoon_label": g.get("platoon_label", "neutral"),
+                "platoon_delta": g.get("platoon_delta", 0.0),
                 "pitcher_matchup_label": g.get("pitcher_matchup_label", "TBD"),
                 "pitcher_matchup_score": g.get("pitcher_matchup_score", 50),
                 "weather": g.get("weather", {}),
@@ -166,6 +172,7 @@ def build_draft_board(
             "games_this_week": p["games_this_week"],
             "high_opportunity": p.get("high_opportunity", False),
             "favorable_matchups": p.get("favorable_matchups", 0),
+            "platoon_advantages": p.get("platoon_advantages", 0),
             "rain_risk_games": p.get("rain_risk_games", 0),
             "best_park_game": p.get("best_park_game", ""),
             "best_park_factor": p.get("best_park_factor", 100),

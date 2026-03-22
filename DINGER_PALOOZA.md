@@ -98,8 +98,8 @@ To update: edit `PLAYERS` list in `scripts/dinger_palooza/config.py`.
 ### 🟡 Short-term improvements (first few weeks)
 
 #### Data quality
-- [ ] **Batter handedness vs. park splits** — Yankee Stadium is elite for LHH (Judge, Schwarber) but neutral for RHH. Add `bats` field to PLAYERS config and adjust park score accordingly. MLB API has handedness on `/api/v1/people/{id}`.
-- [ ] **Platoon splits** — most sluggers have 20–40% HR rate gap vs. LHP/RHP. MLB Stats API has `group=hitting&sitCode=vr` splits. Add to pitcher agent.
+- [ ] **Batter handedness vs. park splits** — Yankee Stadium is elite for LHH (Judge, Schwarber) but neutral for RHH. Park factor currently uses team-level average; next step is to weight by batter hand. Bats field already in PLAYERS config.
+- [x] **Platoon splits** — implemented in pitcher_agent.py. Fetches pitcher throwing hand + batter career HR rate vs. LHP/RHP. `platoon_adjustment()` returns score delta (±12 pts max) and label shown on each game row. Switch hitters always neutral.
 - [ ] **Recent form (last 14 days)** — a player mid-streak is likely to continue. Pull `stats=lastXGames&gameType=R` from MLB Stats API. Add a 5th "form" factor or use as a tiebreaker.
 - [ ] **Injury/IL status check** — a player on the IL is worth 0 pts. Add a quick roster status check to schedule_agent before counting games. MLB API: `/api/v1/teams/{teamId}/roster?rosterType=active`.
 - [ ] **Batting order position** — cleanup hitters (3/4/5) face more runners on base → more 3/4-run HR chances (+1 bonus pt). MLB API: `/api/v1/game/{gamePk}/boxscore` or `/api/v1/teams/{teamId}/lineup`. Add to game-level data.
@@ -154,6 +154,12 @@ Track weight changes here so we can see what we tried and why.
 - GitHub Actions cron configured (Monday 8am ET)
 - Park factors hardcoded for all 30 parks with notes
 - Multi-HR bonus logic documented in config.py (`hr_game_points()`)
+- Added platoon splits to pitcher_agent: pitcher throwing hand + batter career HR rate vs. LHP/RHP
+  - `platoon_adjustment()` returns ±score delta and label per game
+  - Switch hitters always neutral; fallback to generic ±6 when no split data available
+  - Platoon edge chips shown on draft card; LHP/RHP badge on each game row
+- Real league rules encoded: 5-player roster, triangular multi-HR bonus, escalating keep cost
+- 4-factor scoring: Schedule 35% / Pitcher 30% / Park 20% / Weather 15%
 - **Blocked**: MLB Stats API + OpenWeatherMap blocked from sandbox; pipeline must run via GH Actions or locally
 - **Pending**: owner to confirm player list + add OWM_API_KEY secret
 

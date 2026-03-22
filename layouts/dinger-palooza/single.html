@@ -158,6 +158,9 @@
         {{ if gt .favorable_matchups 0 }}
         <span class="dp-chip dp-chip--good">{{ .favorable_matchups }} fav. matchup{{ if gt .favorable_matchups 1 }}s{{ end }}</span>
         {{ end }}
+        {{ if gt .platoon_advantages 0 }}
+        <span class="dp-chip dp-chip--platoon">{{ .platoon_advantages }} platoon edge{{ if gt .platoon_advantages 1 }}s{{ end }}</span>
+        {{ end }}
         {{ if gt .rain_risk_games 0 }}
         <span class="dp-chip dp-chip--warn">{{ .rain_risk_games }} rain risk</span>
         {{ end }}
@@ -187,8 +190,14 @@
                 PF {{ $pf }}
               </span>
             </span>
-            <span class="dp-game-pitcher">{{ .probable_pitcher_name }}</span>
+            <span class="dp-game-pitcher">
+              {{ .probable_pitcher_name }}
+              {{ if .pitcher_hand }}<span class="dp-pitcher-hand">{{ .pitcher_hand }}HP</span>{{ end }}
+            </span>
             <span class="dp-game-matchup dp-matchup--{{ lower .pitcher_matchup_label }}">{{ .pitcher_matchup_label }}</span>
+            {{ if ne .platoon_label "neutral" }}
+            <span class="dp-platoon-label {{ if eq .platoon_label "platoon ✓" }}dp-platoon--good{{ else }}dp-platoon--bad{{ end }}">{{ .platoon_label }}</span>
+            {{ end }}
             {{ with .weather }}
             <span class="dp-game-wx">
               {{ if eq .conditions "Dome" }}🏟{{ else }}
