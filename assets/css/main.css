@@ -1987,3 +1987,83 @@ img {
   .dp-game-venue { display: none; }
   .dp-rules-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Dinger Palooza Debug Page ─────────────────────────────── */
+.dp-debug .dbg-nav {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin: 1rem 0 1.5rem;
+}
+.dbg-nav-link {
+  background: #1a1a1a; border: 1px solid #FF2D8A;
+  color: #FF2D8A; padding: 0.3rem 0.8rem;
+  font-size: 0.8rem; font-family: monospace;
+  text-decoration: none;
+}
+.dbg-nav-link:hover { background: #FF2D8A; color: #000; }
+
+.dbg-section { margin-bottom: 2.5rem; }
+.dbg-section-title {
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 1.1rem; letter-spacing: 0.08em;
+  color: #D4AF37; border-bottom: 1px solid #333;
+  padding-bottom: 0.4rem; margin-bottom: 0.8rem;
+}
+
+.dbg-table-wrap { overflow-x: auto; }
+.dbg-table {
+  border-collapse: collapse; font-size: 0.75rem;
+  font-family: monospace; width: 100%;
+}
+.dbg-table th {
+  background: #1a1a1a; color: #FF2D8A;
+  padding: 0.3rem 0.5rem; text-align: left;
+  border: 1px solid #333; white-space: nowrap;
+}
+.dbg-table td {
+  padding: 0.25rem 0.5rem; border: 1px solid #222;
+  color: #ccc; vertical-align: top;
+}
+.dbg-table tr:hover td { background: #111; }
+.dbg-table-sm { font-size: 0.7rem; }
+
+.dbg-row-hot td { background: #1a0a00; }
+.dbg-row-hot:hover td { background: #220d00; }
+.dbg-rank { color: #D4AF37; font-weight: bold; }
+.dbg-score { color: #FF2D8A; font-weight: bold; }
+.dbg-name { white-space: nowrap; }
+.dbg-reasoning { font-size: 0.68rem; max-width: 300px; color: #999; }
+.dbg-home { color: #4af; }
+.dbg-away { color: #fa4; }
+.dbg-matchup-favorable { color: #4f4; }
+.dbg-matchup-neutral { color: #aaa; }
+.dbg-matchup-unfavorable { color: #f44; }
+
+.dbg-player-detail { margin-bottom: 0.5rem; }
+.dbg-player-summary {
+  cursor: pointer; padding: 0.4rem 0.6rem;
+  background: #111; border: 1px solid #333;
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.82rem; list-style: none;
+}
+.dbg-player-summary:hover { background: #1a1a1a; border-color: #FF2D8A; }
+.dbg-player-summary strong { color: #fff; }
+.dbg-empty { color: #555; font-style: italic; font-size: 0.8rem; padding: 0.5rem; }
+
+.dbg-empty-block {
+  background: #111; border: 1px dashed #444;
+  padding: 1.5rem; text-align: center; color: #888;
+  font-size: 0.85rem;
+}
+.dbg-empty-block code { color: #D4AF37; }
+
+.dbg-raw-summary {
+  cursor: pointer; color: #FF2D8A;
+  font-family: monospace; font-size: 0.85rem;
+  padding: 0.4rem 0; list-style: none;
+}
+.dbg-raw {
+  background: #0d0d0d; border: 1px solid #333;
+  padding: 1rem; overflow-x: auto;
+  font-size: 0.7rem; color: #aaa; max-height: 600px;
+  overflow-y: auto; line-height: 1.5;
+}
