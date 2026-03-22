@@ -1,0 +1,124 @@
+{{ define "main" }}
+{{ $board := .Site.Data.dinger_palooza.draft_board }}
+
+<div class="dp-page">
+
+  <!-- ── Header ── -->
+  <div class="dp-header">
+    <div class="dp-title-row">
+      <h1 class="dp-title">DINGER PALOOZA</h1>
+      <span class="dp-badge-new blink">LIVE</span>
+    </div>
+    <p class="dp-subtitle">Weekly MLB Home Run Draft Board</p>
+    <div class="dp-meta-row">
+      <span class="dp-week-badge">
+        {{ $board.week_start }} &rarr; {{ $board.week_end }}
+      </span>
+      <span class="dp-updated">
+        Updated: {{ $board.generated_at | dateFormat "Jan 2, 2006 3:04 PM UTC" }}
+      </span>
+    </div>
+    <div class="dp-weights-row">
+      <span class="dp-weight-chip dp-weight-sched">Schedule {{ mul $board.weights.schedule 100 | int }}%</span>
+      <span class="dp-weight-chip dp-weight-pitch">Pitchers {{ mul $board.weights.pitcher 100 | int }}%</span>
+      <span class="dp-weight-chip dp-weight-wx">Weather {{ mul $board.weights.weather 100 | int }}%</span>
+    </div>
+  </div>
+
+  <!-- ── Draft Board ── -->
+  <div class="dp-board">
+    {{ range $board.players }}
+    <div class="dp-card {{ if .high_opportunity }}dp-card--hot{{ end }}">
+
+      <!-- Rank + Name -->
+      <div class="dp-card-top">
+        <span class="dp-rank">#{{ .rank }}</span>
+        <div class="dp-player-info">
+          <span class="dp-player-name">{{ .name }}</span>
+          <span class="dp-team-badge">{{ .team_abbr }}</span>
+          {{ if .high_opportunity }}<span class="dp-hot-badge">HOT WEEK</span>{{ end }}
+        </div>
+        <div class="dp-overall-score">
+          <span class="dp-score-num">{{ .overall_score }}</span>
+          <span class="dp-score-label">PTS</span>
+        </div>
+      </div>
+
+      <!-- Score bars -->
+      <div class="dp-scores">
+        <div class="dp-score-row">
+          <span class="dp-score-name">Schedule</span>
+          <div class="dp-bar-track">
+            <div class="dp-bar dp-bar--sched" style="width:{{ .schedule_score }}%"></div>
+          </div>
+          <span class="dp-score-val">{{ .schedule_score }}</span>
+        </div>
+        <div class="dp-score-row">
+          <span class="dp-score-name">Pitcher</span>
+          <div class="dp-bar-track">
+            <div class="dp-bar dp-bar--pitch" style="width:{{ .pitcher_score }}%"></div>
+          </div>
+          <span class="dp-score-val">{{ .pitcher_score }}</span>
+        </div>
+        <div class="dp-score-row">
+          <span class="dp-score-name">Weather</span>
+          <div class="dp-bar-track">
+            <div class="dp-bar dp-bar--wx" style="width:{{ .weather_score }}%"></div>
+          </div>
+          <span class="dp-score-val">{{ .weather_score }}</span>
+        </div>
+      </div>
+
+      <!-- Quick stats chips -->
+      <div class="dp-chips">
+        <span class="dp-chip">{{ .games_this_week }}G</span>
+        {{ if gt .favorable_matchups 0 }}
+        <span class="dp-chip dp-chip--good">{{ .favorable_matchups }} fav. matchup{{ if gt .favorable_matchups 1 }}s{{ end }}</span>
+        {{ end }}
+        {{ if gt .rain_risk_games 0 }}
+        <span class="dp-chip dp-chip--warn">{{ .rain_risk_games }} rain risk</span>
+        {{ end }}
+      </div>
+
+      <!-- Reasoning -->
+      <p class="dp-reasoning">{{ .reasoning }}</p>
+
+      <!-- Per-game breakdown (collapsible) -->
+      {{ if .games }}
+      <details class="dp-games-detail">
+        <summary class="dp-games-summary">Game-by-game breakdown</summary>
+        <div class="dp-games-grid">
+          {{ range .games }}
+          <div class="dp-game-row {{ if .weather.rain_risk }}dp-game-row--rain{{ end }} {{ if eq .pitcher_matchup_label "Favorable" }}dp-game-row--fav{{ end }}">
+            <span class="dp-game-date">{{ .date | dateFormat "Mon 1/2" }}</span>
+            <span class="dp-game-ha {{ if eq .home_away "home" }}dp-ha-home{{ else }}dp-ha-away{{ end }}">{{ upper .home_away }}</span>
+            <span class="dp-game-opp">vs {{ .opponent }}</span>
+            <span class="dp-game-pitcher" title="Starting pitcher">{{ .probable_pitcher_name }}</span>
+            <span class="dp-game-matchup dp-matchup--{{ lower .pitcher_matchup_label }}">{{ .pitcher_matchup_label }}</span>
+            {{ with .weather }}
+            <span class="dp-game-wx">
+              {{ if .wind_out }}💨{{ end }}
+              {{ if .rain_risk }}🌧{{ else }}{{ if le .rain_pct 20 }}☀{{ else }}⛅{{ end }}{{ end }}
+              {{ if .rain_pct }}{{ .rain_pct }}%{{ end }}
+              {{ if .temp_f }}{{ .temp_f }}°F{{ end }}
+              {{ if and .wind_mph (gt .wind_mph 0) }}{{ .wind_mph }}mph{{ end }}
+            </span>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </details>
+      {{ end }}
+
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- ── Footer note ── -->
+  <div class="dp-footer-note">
+    <p>Scores updated every Monday morning via GitHub Actions. Weights: Schedule 40% &middot; Pitcher matchup 35% &middot; Weather 25%.</p>
+    <p>Data: <a href="https://statsapi.mlb.com" target="_blank" rel="noopener">MLB Stats API</a> &middot; <a href="https://openweathermap.org" target="_blank" rel="noopener">OpenWeatherMap</a></p>
+  </div>
+
+</div>
+{{ end }}
