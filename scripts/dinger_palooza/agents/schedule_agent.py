@@ -12,7 +12,7 @@ from datetime import date
 
 import aiohttp
 
-from config import MLB_API_BASE, PLAYERS, HIGH_OPPORTUNITY_GAMES
+from config import MLB_API_BASE, PLAYERS, HIGH_OPPORTUNITY_GAMES, PARK_FACTORS, park_factor_score
 
 logger = logging.getLogger(__name__)
 
@@ -145,6 +145,8 @@ def build_player_schedule(players: list[dict], games: list[dict]) -> list[dict]:
             opp_team_id = g["away_team_id"] if is_home else g["home_team_id"]
             probable_pitcher = g["away_pitcher"] if is_home else g["home_pitcher"]
 
+            home_team_id = g["home_team_id"]
+            pf_data = PARK_FACTORS.get(home_team_id, {})
             game_summaries.append({
                 "game_pk": g["game_pk"],
                 "date": g["date"],
@@ -153,9 +155,17 @@ def build_player_schedule(players: list[dict], games: list[dict]) -> list[dict]:
                 "opponent_team_id": opp_team_id,
                 "venue": g["venue"],
                 "probable_pitcher": probable_pitcher,
+                "park_factor": pf_data.get("hr_factor", 100),
+                "park_factor_score": park_factor_score(home_team_id),
+                "park_notes": pf_data.get("notes", ""),
             })
 
         game_count = len(game_summaries)
+        avg_park_score = (
+            round(sum(g["park_factor_score"] for g in game_summaries) / game_count, 1)
+            if game_count else 50.0
+        )
+        best_park = max(game_summaries, key=lambda g: g["park_factor"], default={})
         results.append({
             **player,
             "games_this_week": game_count,
@@ -163,9 +173,12 @@ def build_player_schedule(players: list[dict], games: list[dict]) -> list[dict]:
             "games": game_summaries,
             # Raw schedule score 0–100 (scales with games, maxes at 7)
             "schedule_score": min(100, round((game_count / 7) * 100)),
+            "park_score": avg_park_score,
+            "best_park_game": best_park.get("venue", ""),
+            "best_park_factor": best_park.get("park_factor", 100),
         })
         logger.info(
-            f"{player['name']}: {game_count} games "
+            f"{player['name']}: {game_count} games, avg park score {avg_park_score} "
             f"{'🔥 HIGH OPP' if game_count >= HIGH_OPPORTUNITY_GAMES else ''}"
         )
 

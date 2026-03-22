@@ -1,5 +1,6 @@
 {{ define "main" }}
 {{ $board := .Site.Data.dinger_palooza.draft_board }}
+{{ $rules := $board.rules }}
 
 <div class="dp-page">
 
@@ -12,7 +13,7 @@
     <p class="dp-subtitle">Weekly MLB Home Run Draft Board</p>
     <div class="dp-meta-row">
       <span class="dp-week-badge">
-        {{ $board.week_start }} &rarr; {{ $board.week_end }}
+        Week of {{ $board.week_start }} &rarr; {{ $board.week_end }}
       </span>
       <span class="dp-updated">
         Updated: {{ $board.generated_at | dateFormat "Jan 2, 2006 3:04 PM UTC" }}
@@ -21,9 +22,81 @@
     <div class="dp-weights-row">
       <span class="dp-weight-chip dp-weight-sched">Schedule {{ mul $board.weights.schedule 100 | int }}%</span>
       <span class="dp-weight-chip dp-weight-pitch">Pitchers {{ mul $board.weights.pitcher 100 | int }}%</span>
+      <span class="dp-weight-chip dp-weight-park">Park Factor {{ mul $board.weights.park 100 | int }}%</span>
       <span class="dp-weight-chip dp-weight-wx">Weather {{ mul $board.weights.weather 100 | int }}%</span>
     </div>
   </div>
+
+  <!-- ── Rules Panel ── -->
+  <details class="dp-rules-panel" open>
+    <summary class="dp-rules-summary">LEAGUE RULES &amp; SCORING</summary>
+    <div class="dp-rules-body">
+
+      <div class="dp-rules-grid">
+
+        <!-- Scoring table -->
+        <div class="dp-rules-col">
+          <h3 class="dp-rules-heading">Scoring</h3>
+          <table class="dp-rules-table">
+            <thead>
+              <tr><th>Situation</th><th>Pts</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1st HR in a game</td><td>1</td></tr>
+              <tr><td>3- or 4-run HR</td><td>2 <span class="dp-note">(instead of 1)</span></td></tr>
+              <tr class="dp-row-bonus"><td>2nd HR in same game</td><td>3 <span class="dp-note">total</span></td></tr>
+              <tr class="dp-row-bonus"><td>3rd HR in same game</td><td>6 <span class="dp-note">total</span></td></tr>
+            </tbody>
+          </table>
+          <p class="dp-rules-note">Multi-HR bonus: nth HR in a game = n pts &rarr; total = n&times;(n+1)/2</p>
+        </div>
+
+        <!-- Keep cost table -->
+        <div class="dp-rules-col">
+          <h3 class="dp-rules-heading">Keep Cost</h3>
+          <table class="dp-rules-table">
+            <thead>
+              <tr><th>Week held</th><th>Cost</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1st week</td><td class="dp-cost-free">FREE</td></tr>
+              <tr><td>2nd week</td><td>&minus;1 pt</td></tr>
+              <tr><td>3rd week</td><td>&minus;2 pts</td></tr>
+              <tr><td>4th week</td><td>&minus;3 pts</td></tr>
+              <tr><td>5th week+</td><td>&minus;4 pts&hellip;</td></tr>
+            </tbody>
+          </table>
+          <p class="dp-rules-note">Cost = weeks held &minus; 1. Gets pricier each week.</p>
+        </div>
+
+        <!-- Draft rules -->
+        <div class="dp-rules-col">
+          <h3 class="dp-rules-heading">Draft Format</h3>
+          <ul class="dp-rules-list">
+            <li>Draft <strong>5 players</strong> per team</li>
+            <li>Draft day: <strong>Sunday</strong></li>
+            <li>Traditional order (not snake)</li>
+            <li>Lowest score picks first</li>
+            <li>Declare keep/drop by Sunday afternoon</li>
+            <li>Cannot re-pick a player dropped <em>that week</em></li>
+            <li>First week is 1&frac12; weeks</li>
+            <li>Season prize: <strong>$100 cash</strong></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Park factor legend -->
+      <div class="dp-park-legend">
+        <span class="dp-park-label">Park factor guide:</span>
+        <span class="dp-pf-chip dp-pf-elite">120+ ELITE</span>
+        <span class="dp-pf-chip dp-pf-good">108–119 Good</span>
+        <span class="dp-pf-chip dp-pf-neutral">95–107 Neutral</span>
+        <span class="dp-pf-chip dp-pf-bad">Below 95 Tough</span>
+      </div>
+
+    </div>
+  </details>
 
   <!-- ── Draft Board ── -->
   <div class="dp-board">
@@ -61,6 +134,13 @@
           <span class="dp-score-val">{{ .pitcher_score }}</span>
         </div>
         <div class="dp-score-row">
+          <span class="dp-score-name">Park</span>
+          <div class="dp-bar-track">
+            <div class="dp-bar dp-bar--park" style="width:{{ .park_score }}%"></div>
+          </div>
+          <span class="dp-score-val">{{ .park_score }}</span>
+        </div>
+        <div class="dp-score-row">
           <span class="dp-score-name">Weather</span>
           <div class="dp-bar-track">
             <div class="dp-bar dp-bar--wx" style="width:{{ .weather_score }}%"></div>
@@ -72,6 +152,9 @@
       <!-- Quick stats chips -->
       <div class="dp-chips">
         <span class="dp-chip">{{ .games_this_week }}G</span>
+        {{ if gt .best_park_factor 107 }}
+        <span class="dp-chip dp-chip--park">{{ .best_park_game }} PF {{ .best_park_factor }}</span>
+        {{ end }}
         {{ if gt .favorable_matchups 0 }}
         <span class="dp-chip dp-chip--good">{{ .favorable_matchups }} fav. matchup{{ if gt .favorable_matchups 1 }}s{{ end }}</span>
         {{ end }}
@@ -89,19 +172,32 @@
         <summary class="dp-games-summary">Game-by-game breakdown</summary>
         <div class="dp-games-grid">
           {{ range .games }}
-          <div class="dp-game-row {{ if .weather.rain_risk }}dp-game-row--rain{{ end }} {{ if eq .pitcher_matchup_label "Favorable" }}dp-game-row--fav{{ end }}">
+          {{ $pf := .park_factor | default 100 }}
+          <div class="dp-game-row
+            {{ if .weather.rain_risk }}dp-game-row--rain{{ end }}
+            {{ if eq .pitcher_matchup_label "Favorable" }}dp-game-row--fav{{ end }}
+            {{ if ge $pf 110 }}dp-game-row--hotpark{{ end }}">
             <span class="dp-game-date">{{ .date | dateFormat "Mon 1/2" }}</span>
             <span class="dp-game-ha {{ if eq .home_away "home" }}dp-ha-home{{ else }}dp-ha-away{{ end }}">{{ upper .home_away }}</span>
-            <span class="dp-game-opp">vs {{ .opponent }}</span>
-            <span class="dp-game-pitcher" title="Starting pitcher">{{ .probable_pitcher_name }}</span>
+            <span class="dp-game-opp">{{ .opponent }}</span>
+            <span class="dp-game-venue" title="{{ .park_notes }}">
+              {{ .venue }}
+              <span class="dp-pf-inline
+                {{ if ge $pf 115 }}dp-pf-elite{{ else if ge $pf 108 }}dp-pf-good{{ else if lt $pf 95 }}dp-pf-bad{{ else }}dp-pf-neutral{{ end }}">
+                PF {{ $pf }}
+              </span>
+            </span>
+            <span class="dp-game-pitcher">{{ .probable_pitcher_name }}</span>
             <span class="dp-game-matchup dp-matchup--{{ lower .pitcher_matchup_label }}">{{ .pitcher_matchup_label }}</span>
             {{ with .weather }}
             <span class="dp-game-wx">
-              {{ if .wind_out }}💨{{ end }}
-              {{ if .rain_risk }}🌧{{ else }}{{ if le .rain_pct 20 }}☀{{ else }}⛅{{ end }}{{ end }}
-              {{ if .rain_pct }}{{ .rain_pct }}%{{ end }}
-              {{ if .temp_f }}{{ .temp_f }}°F{{ end }}
-              {{ if and .wind_mph (gt .wind_mph 0) }}{{ .wind_mph }}mph{{ end }}
+              {{ if eq .conditions "Dome" }}🏟{{ else }}
+                {{ if .wind_out }}💨{{ end }}
+                {{ if .rain_risk }}🌧{{ else }}{{ if le .rain_pct 20 }}☀{{ else }}⛅{{ end }}{{ end }}
+                {{ if .rain_pct }}{{ .rain_pct }}%{{ end }}
+                {{ if .temp_f }}{{ .temp_f }}°F{{ end }}
+                {{ if and .wind_mph (gt .wind_mph 0) }}{{ .wind_mph }}mph{{ end }}
+              {{ end }}
             </span>
             {{ end }}
           </div>
@@ -116,8 +212,8 @@
 
   <!-- ── Footer note ── -->
   <div class="dp-footer-note">
-    <p>Scores updated every Monday morning via GitHub Actions. Weights: Schedule 40% &middot; Pitcher matchup 35% &middot; Weather 25%.</p>
-    <p>Data: <a href="https://statsapi.mlb.com" target="_blank" rel="noopener">MLB Stats API</a> &middot; <a href="https://openweathermap.org" target="_blank" rel="noopener">OpenWeatherMap</a></p>
+    <p>Draft board updated every Monday morning via GitHub Actions &mdash; reflects next Sunday's roster decisions.</p>
+    <p>Data: <a href="https://statsapi.mlb.com" target="_blank" rel="noopener">MLB Stats API</a> &middot; <a href="https://openweathermap.org" target="_blank" rel="noopener">OpenWeatherMap</a> &middot; Park factors via multi-year averages.</p>
   </div>
 
 </div>

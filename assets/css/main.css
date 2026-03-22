@@ -1772,6 +1772,180 @@ img {
 .dp-footer-note a { color: #777; text-decoration: underline; }
 .dp-footer-note a:hover { color: var(--gold); }
 
+/* Park score bar */
+.dp-bar--park { background: linear-gradient(90deg, #2a6b3a, #4ecb71); }
+
+.dp-weight-park {
+  background: rgba(78,203,113,0.12);
+  color: #4ecb71;
+  border: 1px solid #4ecb71;
+}
+
+/* Park chip */
+.dp-chip--park {
+  border-color: #4ecb71;
+  color: #4ecb71;
+  background: rgba(78,203,113,0.08);
+}
+
+/* ── Rules panel ── */
+.dp-rules-panel {
+  background: #0d0d0d;
+  border: 1px solid #333;
+  margin-bottom: 1.5rem;
+}
+
+.dp-rules-summary {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  list-style: none;
+}
+.dp-rules-summary::-webkit-details-marker { display: none; }
+.dp-rules-summary::before { content: "▶ "; font-size: 0.6rem; }
+.dp-rules-panel[open] .dp-rules-summary::before { content: "▼ "; }
+.dp-rules-summary:hover { color: #fff; }
+
+.dp-rules-body {
+  padding: 0.2rem 1rem 1rem;
+  border-top: 1px solid #222;
+}
+
+.dp-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.dp-rules-col {}
+
+.dp-rules-heading {
+  font-family: Impact, Arial, sans-serif;
+  font-size: 0.9rem;
+  color: var(--pink);
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.dp-rules-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: #aaa;
+}
+
+.dp-rules-table th {
+  text-align: left;
+  color: #666;
+  font-weight: normal;
+  border-bottom: 1px solid #222;
+  padding: 2px 6px 4px 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+}
+
+.dp-rules-table td {
+  padding: 3px 6px 3px 0;
+  vertical-align: top;
+}
+
+.dp-rules-table td:last-child {
+  color: var(--gold);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.dp-row-bonus td { color: var(--pink) !important; }
+.dp-row-bonus td:last-child { color: var(--pink) !important; }
+
+.dp-cost-free { color: #4ecb71 !important; }
+
+.dp-note {
+  color: #555;
+  font-size: 0.65rem;
+  font-weight: normal;
+}
+
+.dp-rules-note {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #555;
+  margin: 0.4rem 0 0;
+  line-height: 1.4;
+}
+
+.dp-rules-list {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: #888;
+  padding-left: 1.2em;
+  margin: 0;
+  line-height: 1.8;
+}
+
+.dp-rules-list strong { color: #ccc; }
+.dp-rules-list em { color: var(--pink); font-style: normal; }
+
+/* Park factor legend */
+.dp-park-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-top: 0.6rem;
+  border-top: 1px solid #1a1a1a;
+}
+
+.dp-park-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #555;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dp-pf-chip {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+.dp-pf-elite   { background: rgba(212,175,55,0.15); color: var(--gold); border: 1px solid var(--gold); }
+.dp-pf-good    { background: rgba(78,203,113,0.12); color: #4ecb71; border: 1px solid #4ecb71; }
+.dp-pf-neutral { background: rgba(100,100,100,0.1); color: #888; border: 1px solid #444; }
+.dp-pf-bad     { background: rgba(255,80,80,0.08); color: #e05050; border: 1px solid #e05050; }
+
+/* Per-game park factor inline badge */
+.dp-game-venue {
+  font-style: italic;
+  color: #666;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.dp-pf-inline {
+  font-size: 0.6rem;
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+/* Hot park game row highlight */
+.dp-game-row--hotpark { border-left-color: var(--gold) !important; }
+
 /* Responsive */
 @media (max-width: 520px) {
   .dp-card-top { gap: 0.6rem; }
@@ -1781,4 +1955,6 @@ img {
   .dp-score-num { font-size: 1.2rem; }
   .dp-game-row { font-size: 0.65rem; }
   .dp-game-pitcher { display: none; }
+  .dp-game-venue { display: none; }
+  .dp-rules-grid { grid-template-columns: 1fr; }
 }
