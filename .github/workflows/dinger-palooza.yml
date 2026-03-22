@@ -38,11 +38,10 @@ jobs:
         env:
           OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
         run: |
-          cd scripts/dinger_palooza
           if [ -n "${{ github.event.inputs.week }}" ]; then
-            python main.py --week "${{ github.event.inputs.week }}"
+            python scripts/dinger_palooza/main.py --week "${{ github.event.inputs.week }}"
           else
-            python main.py
+            python scripts/dinger_palooza/main.py
           fi
 
       - name: Commit updated draft board
