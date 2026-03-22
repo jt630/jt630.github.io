@@ -7,34 +7,152 @@ from datetime import date, timedelta
 
 # ── Candidate sluggers ────────────────────────────────────────────────────────
 # team_id from the MLB Stats API (/api/v1/teams)
-
+#
 # bats: "L" = left-handed, "R" = right-handed, "S" = switch hitter
-# Switch hitters always bat from the favorable side → treat as neutral for platoon purposes.
-# Update this list once the owner confirms the final 6–8 player roster.
+# Switch hitters always bat from the favorable side → treat as neutral for platoon.
+#
+# NOTE: Team assignments reflect rosters as of spring 2026. Free-agent moves
+# may cause a handful of players to fail the roster lookup (mlb_id stays None).
+# If a player shows 0 pitcher matchup data, verify their team_id here.
 PLAYERS = [
-    {"name": "Cal Raleigh",       "team": "Seattle Mariners",      "team_id": 136, "team_abbr": "SEA", "mlb_id": None, "bats": "R"},
-    {"name": "Aaron Judge",       "team": "New York Yankees",      "team_id": 147, "team_abbr": "NYY", "mlb_id": None, "bats": "R"},
-    {"name": "Kyle Schwarber",    "team": "Philadelphia Phillies", "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "L"},
-    {"name": "Shohei Ohtani",     "team": "Los Angeles Dodgers",   "team_id": 119, "team_abbr": "LAD", "mlb_id": None, "bats": "L"},
-    {"name": "Junior Caminero",   "team": "Tampa Bay Rays",        "team_id": 139, "team_abbr": "TB",  "mlb_id": None, "bats": "R"},
-    {"name": "Juan Soto",         "team": "New York Mets",         "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "L"},
-    {"name": "Ronald Acuna Jr",   "team": "Atlanta Braves",        "team_id": 144, "team_abbr": "ATL", "mlb_id": None, "bats": "R"},
-    {"name": "Bobby Witt Jr",     "team": "Kansas City Royals",    "team_id": 118, "team_abbr": "KC",  "mlb_id": None, "bats": "R"},
-    {"name": "Jose Ramirez",      "team": "Cleveland Guardians",   "team_id": 114, "team_abbr": "CLE", "mlb_id": None, "bats": "S"},
-    {"name": "Pete Alonso",       "team": "New York Mets",         "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "R"},
+    # ── Elite tier ────────────────────────────────────────────────────────────
+    {"name": "Cal Raleigh",          "team": "Seattle Mariners",        "team_id": 136, "team_abbr": "SEA", "mlb_id": None, "bats": "L"},
+    {"name": "Aaron Judge",          "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": None, "bats": "R"},
+    {"name": "Kyle Schwarber",       "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "L"},
+    {"name": "Shohei Ohtani",        "team": "Los Angeles Dodgers",     "team_id": 119, "team_abbr": "LAD", "mlb_id": None, "bats": "L"},
+    {"name": "Junior Caminero",      "team": "Tampa Bay Rays",          "team_id": 139, "team_abbr": "TB",  "mlb_id": None, "bats": "R"},
+    {"name": "Juan Soto",            "team": "New York Mets",           "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "L"},
+    {"name": "Ronald Acuna Jr",      "team": "Atlanta Braves",          "team_id": 144, "team_abbr": "ATL", "mlb_id": None, "bats": "R"},
+    {"name": "Bobby Witt Jr",        "team": "Kansas City Royals",      "team_id": 118, "team_abbr": "KC",  "mlb_id": None, "bats": "R"},
+    {"name": "Jose Ramirez",         "team": "Cleveland Guardians",     "team_id": 114, "team_abbr": "CLE", "mlb_id": None, "bats": "S"},
+    {"name": "Pete Alonso",          "team": "New York Mets",           "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "R"},
+    # ── 35–45 HR tier ─────────────────────────────────────────────────────────
+    {"name": "Yordan Alvarez",       "team": "Houston Astros",          "team_id": 117, "team_abbr": "HOU", "mlb_id": None, "bats": "L"},
+    {"name": "Matt Olson",           "team": "Atlanta Braves",          "team_id": 144, "team_abbr": "ATL", "mlb_id": None, "bats": "L"},
+    {"name": "Bryce Harper",         "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "L"},
+    {"name": "Giancarlo Stanton",    "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": None, "bats": "R"},
+    {"name": "Manny Machado",        "team": "San Diego Padres",        "team_id": 135, "team_abbr": "SD",  "mlb_id": None, "bats": "R"},
+    {"name": "Rafael Devers",        "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "L"},
+    {"name": "Gunnar Henderson",     "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": None, "bats": "L"},
+    {"name": "Corey Seager",         "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": None, "bats": "L"},
+    {"name": "Vladimir Guerrero Jr", "team": "Toronto Blue Jays",       "team_id": 141, "team_abbr": "TOR", "mlb_id": None, "bats": "R"},
+    {"name": "Fernando Tatis Jr",    "team": "San Diego Padres",        "team_id": 135, "team_abbr": "SD",  "mlb_id": None, "bats": "R"},
+    {"name": "Austin Riley",         "team": "Atlanta Braves",          "team_id": 144, "team_abbr": "ATL", "mlb_id": None, "bats": "R"},
+    {"name": "Marcell Ozuna",        "team": "Atlanta Braves",          "team_id": 144, "team_abbr": "ATL", "mlb_id": None, "bats": "R"},
+    {"name": "Jazz Chisholm Jr",     "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": None, "bats": "L"},
+    {"name": "Cody Bellinger",       "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": None, "bats": "L"},
+    {"name": "Brent Rooker",         "team": "Athletics",               "team_id": 133, "team_abbr": "ATH", "mlb_id": None, "bats": "R"},
+    {"name": "Kyle Tucker",          "team": "Chicago Cubs",            "team_id": 112, "team_abbr": "CHC", "mlb_id": None, "bats": "L"},
+    # ── 25–35 HR tier ─────────────────────────────────────────────────────────
+    {"name": "Julio Rodriguez",      "team": "Seattle Mariners",        "team_id": 136, "team_abbr": "SEA", "mlb_id": None, "bats": "R"},
+    {"name": "Randy Arozarena",      "team": "Seattle Mariners",        "team_id": 136, "team_abbr": "SEA", "mlb_id": None, "bats": "R"},
+    {"name": "Freddie Freeman",      "team": "Los Angeles Dodgers",     "team_id": 119, "team_abbr": "LAD", "mlb_id": None, "bats": "L"},
+    {"name": "Mookie Betts",         "team": "Los Angeles Dodgers",     "team_id": 119, "team_abbr": "LAD", "mlb_id": None, "bats": "R"},
+    {"name": "Teoscar Hernandez",    "team": "Los Angeles Dodgers",     "team_id": 119, "team_abbr": "LAD", "mlb_id": None, "bats": "R"},
+    {"name": "Max Muncy",            "team": "Los Angeles Dodgers",     "team_id": 119, "team_abbr": "LAD", "mlb_id": None, "bats": "L"},
+    {"name": "Will Smith",           "team": "Los Angeles Dodgers",     "team_id": 119, "team_abbr": "LAD", "mlb_id": None, "bats": "R"},
+    {"name": "Francisco Lindor",     "team": "New York Mets",           "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "S"},
+    {"name": "Mark Vientos",         "team": "New York Mets",           "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "R"},
+    {"name": "Marcus Semien",        "team": "New York Mets",           "team_id": 121, "team_abbr": "NYM", "mlb_id": None, "bats": "R"},
+    {"name": "Trea Turner",          "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
+    {"name": "Alec Bohm",            "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
+    {"name": "J.T. Realmuto",        "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
+    {"name": "Nick Castellanos",     "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
+    {"name": "Tyler O'Neill",        "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "R"},
+    {"name": "Triston Casas",        "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "L"},
+    {"name": "Jarren Duran",         "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "L"},
+    {"name": "Alex Bregman",         "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "R"},
+    {"name": "Adley Rutschman",      "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": None, "bats": "S"},
+    {"name": "Anthony Santander",    "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": None, "bats": "S"},
+    {"name": "Ryan Mountcastle",     "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": None, "bats": "R"},
+    {"name": "Colton Cowser",        "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": None, "bats": "L"},
+    {"name": "Adolis Garcia",        "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": None, "bats": "R"},
+    {"name": "Nathaniel Lowe",       "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": None, "bats": "L"},
+    {"name": "Evan Carter",          "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": None, "bats": "L"},
+    {"name": "Josh Jung",            "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": None, "bats": "R"},
+    {"name": "Luis Robert Jr",       "team": "Chicago White Sox",       "team_id": 145, "team_abbr": "CWS", "mlb_id": None, "bats": "R"},
+    {"name": "Andrew Vaughn",        "team": "Chicago White Sox",       "team_id": 145, "team_abbr": "CWS", "mlb_id": None, "bats": "R"},
+    {"name": "Spencer Torkelson",    "team": "Detroit Tigers",          "team_id": 116, "team_abbr": "DET", "mlb_id": None, "bats": "R"},
+    {"name": "Riley Greene",         "team": "Detroit Tigers",          "team_id": 116, "team_abbr": "DET", "mlb_id": None, "bats": "L"},
+    {"name": "Christian Yelich",     "team": "Milwaukee Brewers",       "team_id": 158, "team_abbr": "MIL", "mlb_id": None, "bats": "L"},
+    {"name": "William Contreras",    "team": "Milwaukee Brewers",       "team_id": 158, "team_abbr": "MIL", "mlb_id": None, "bats": "R"},
+    {"name": "Willy Adames",         "team": "Milwaukee Brewers",       "team_id": 158, "team_abbr": "MIL", "mlb_id": None, "bats": "R"},
+    {"name": "Jackson Chourio",      "team": "Milwaukee Brewers",       "team_id": 158, "team_abbr": "MIL", "mlb_id": None, "bats": "R"},
+    {"name": "Ryan McMahon",         "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": None, "bats": "L"},
+    {"name": "Nolan Jones",          "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": None, "bats": "L"},
+    {"name": "Ezequiel Tovar",       "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": None, "bats": "R"},
+    {"name": "Hunter Goodman",       "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": None, "bats": "R"},
+    {"name": "Mike Trout",           "team": "Los Angeles Angels",      "team_id": 108, "team_abbr": "LAA", "mlb_id": None, "bats": "R"},
+    {"name": "Taylor Ward",          "team": "Los Angeles Angels",      "team_id": 108, "team_abbr": "LAA", "mlb_id": None, "bats": "R"},
+    {"name": "Zach Neto",            "team": "Los Angeles Angels",      "team_id": 108, "team_abbr": "LAA", "mlb_id": None, "bats": "R"},
+    {"name": "Salvador Perez",       "team": "Kansas City Royals",      "team_id": 118, "team_abbr": "KC",  "mlb_id": None, "bats": "R"},
+    {"name": "Vinnie Pasquantino",   "team": "Kansas City Royals",      "team_id": 118, "team_abbr": "KC",  "mlb_id": None, "bats": "L"},
+    {"name": "MJ Melendez",          "team": "Kansas City Royals",      "team_id": 118, "team_abbr": "KC",  "mlb_id": None, "bats": "L"},
+    {"name": "Yandy Diaz",           "team": "Tampa Bay Rays",          "team_id": 139, "team_abbr": "TB",  "mlb_id": None, "bats": "R"},
+    {"name": "Brandon Lowe",         "team": "Tampa Bay Rays",          "team_id": 139, "team_abbr": "TB",  "mlb_id": None, "bats": "L"},
+    {"name": "Josh Naylor",          "team": "Cleveland Guardians",     "team_id": 114, "team_abbr": "CLE", "mlb_id": None, "bats": "L"},
+    {"name": "Kyle Manzardo",        "team": "Cleveland Guardians",     "team_id": 114, "team_abbr": "CLE", "mlb_id": None, "bats": "L"},
+    {"name": "Rhys Hoskins",         "team": "Cleveland Guardians",     "team_id": 114, "team_abbr": "CLE", "mlb_id": None, "bats": "R"},
+    {"name": "Jake Cronenworth",     "team": "San Diego Padres",        "team_id": 135, "team_abbr": "SD",  "mlb_id": None, "bats": "L"},
+    {"name": "Xander Bogaerts",      "team": "San Diego Padres",        "team_id": 135, "team_abbr": "SD",  "mlb_id": None, "bats": "R"},
+    {"name": "Jorge Soler",          "team": "Miami Marlins",           "team_id": 146, "team_abbr": "MIA", "mlb_id": None, "bats": "R"},
+    {"name": "Dylan Crews",          "team": "Washington Nationals",    "team_id": 120, "team_abbr": "WSH", "mlb_id": None, "bats": "R"},
+    {"name": "James Wood",           "team": "Washington Nationals",    "team_id": 120, "team_abbr": "WSH", "mlb_id": None, "bats": "L"},
+    {"name": "CJ Abrams",            "team": "Washington Nationals",    "team_id": 120, "team_abbr": "WSH", "mlb_id": None, "bats": "L"},
+    {"name": "Keibert Ruiz",         "team": "Washington Nationals",    "team_id": 120, "team_abbr": "WSH", "mlb_id": None, "bats": "S"},
+    {"name": "Elly De La Cruz",      "team": "Cincinnati Reds",         "team_id": 113, "team_abbr": "CIN", "mlb_id": None, "bats": "S"},
+    {"name": "Spencer Steer",        "team": "Cincinnati Reds",         "team_id": 113, "team_abbr": "CIN", "mlb_id": None, "bats": "R"},
+    {"name": "Jeimer Candelario",    "team": "Cincinnati Reds",         "team_id": 113, "team_abbr": "CIN", "mlb_id": None, "bats": "S"},
+    {"name": "Lawrence Butler",      "team": "Athletics",               "team_id": 133, "team_abbr": "ATH", "mlb_id": None, "bats": "L"},
+    {"name": "Seiya Suzuki",         "team": "Chicago Cubs",            "team_id": 112, "team_abbr": "CHC", "mlb_id": None, "bats": "R"},
+    {"name": "Ian Happ",             "team": "Chicago Cubs",            "team_id": 112, "team_abbr": "CHC", "mlb_id": None, "bats": "S"},
+    {"name": "Nolan Arenado",        "team": "St. Louis Cardinals",     "team_id": 138, "team_abbr": "STL", "mlb_id": None, "bats": "R"},
+    {"name": "Nolan Gorman",         "team": "St. Louis Cardinals",     "team_id": 138, "team_abbr": "STL", "mlb_id": None, "bats": "L"},
+    {"name": "Paul Goldschmidt",     "team": "St. Louis Cardinals",     "team_id": 138, "team_abbr": "STL", "mlb_id": None, "bats": "R"},
+    {"name": "Michael Harris II",    "team": "Atlanta Braves",          "team_id": 144, "team_abbr": "ATL", "mlb_id": None, "bats": "L"},
+    {"name": "Matt Chapman",         "team": "San Francisco Giants",    "team_id": 137, "team_abbr": "SF",  "mlb_id": None, "bats": "R"},
+    {"name": "Heliot Ramos",         "team": "San Francisco Giants",    "team_id": 137, "team_abbr": "SF",  "mlb_id": None, "bats": "R"},
+    {"name": "Christian Walker",     "team": "Houston Astros",          "team_id": 117, "team_abbr": "HOU", "mlb_id": None, "bats": "R"},
+    {"name": "Anthony Volpe",        "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": None, "bats": "R"},
+    {"name": "Royce Lewis",          "team": "Minnesota Twins",         "team_id": 142, "team_abbr": "MIN", "mlb_id": None, "bats": "R"},
+    {"name": "Carlos Correa",        "team": "Minnesota Twins",         "team_id": 142, "team_abbr": "MIN", "mlb_id": None, "bats": "R"},
+    {"name": "Byron Buxton",         "team": "Minnesota Twins",         "team_id": 142, "team_abbr": "MIN", "mlb_id": None, "bats": "R"},
+    {"name": "Jo Adell",             "team": "Los Angeles Angels",      "team_id": 108, "team_abbr": "LAA", "mlb_id": None, "bats": "R"},
 ]
 
 # Stadium locations for weather lookups (city, state/country for OWM query)
+# Covers all 30 MLB home venues.
 STADIUM_LOCATIONS = {
-    136: {"city": "Seattle",       "state": "WA", "owm_q": "Seattle,US"},
-    147: {"city": "New York",      "state": "NY", "owm_q": "New York,US"},
-    143: {"city": "Philadelphia",  "state": "PA", "owm_q": "Philadelphia,US"},
-    119: {"city": "Los Angeles",   "state": "CA", "owm_q": "Los Angeles,US"},
-    139: {"city": "St. Petersburg","state": "FL", "owm_q": "Saint Petersburg,US"},
-    121: {"city": "New York",      "state": "NY", "owm_q": "New York,US"},
-    144: {"city": "Atlanta",       "state": "GA", "owm_q": "Atlanta,US"},
-    118: {"city": "Kansas City",   "state": "MO", "owm_q": "Kansas City,US"},
-    114: {"city": "Cleveland",     "state": "OH", "owm_q": "Cleveland,US"},
+    108: {"city": "Anaheim",        "state": "CA", "owm_q": "Anaheim,US"},
+    109: {"city": "Phoenix",        "state": "AZ", "owm_q": "Phoenix,US"},
+    110: {"city": "Baltimore",      "state": "MD", "owm_q": "Baltimore,US"},
+    111: {"city": "Boston",         "state": "MA", "owm_q": "Boston,US"},
+    112: {"city": "Chicago",        "state": "IL", "owm_q": "Chicago,US"},
+    113: {"city": "Cincinnati",     "state": "OH", "owm_q": "Cincinnati,US"},
+    114: {"city": "Cleveland",      "state": "OH", "owm_q": "Cleveland,US"},
+    115: {"city": "Denver",         "state": "CO", "owm_q": "Denver,US"},
+    116: {"city": "Detroit",        "state": "MI", "owm_q": "Detroit,US"},
+    117: {"city": "Houston",        "state": "TX", "owm_q": "Houston,US"},
+    118: {"city": "Kansas City",    "state": "MO", "owm_q": "Kansas City,US"},
+    119: {"city": "Los Angeles",    "state": "CA", "owm_q": "Los Angeles,US"},
+    120: {"city": "Washington",     "state": "DC", "owm_q": "Washington,US"},
+    121: {"city": "New York",       "state": "NY", "owm_q": "New York,US"},
+    133: {"city": "Sacramento",     "state": "CA", "owm_q": "Sacramento,US"},
+    134: {"city": "Pittsburgh",     "state": "PA", "owm_q": "Pittsburgh,US"},
+    135: {"city": "San Diego",      "state": "CA", "owm_q": "San Diego,US"},
+    136: {"city": "Seattle",        "state": "WA", "owm_q": "Seattle,US"},
+    137: {"city": "San Francisco",  "state": "CA", "owm_q": "San Francisco,US"},
+    138: {"city": "St. Louis",      "state": "MO", "owm_q": "Saint Louis,US"},
+    139: {"city": "St. Petersburg", "state": "FL", "owm_q": "Saint Petersburg,US"},
+    140: {"city": "Arlington",      "state": "TX", "owm_q": "Arlington,US"},
+    141: {"city": "Toronto",        "state": "ON", "owm_q": "Toronto,CA"},
+    142: {"city": "Minneapolis",    "state": "MN", "owm_q": "Minneapolis,US"},
+    143: {"city": "Philadelphia",   "state": "PA", "owm_q": "Philadelphia,US"},
+    144: {"city": "Atlanta",        "state": "GA", "owm_q": "Atlanta,US"},
+    145: {"city": "Chicago",        "state": "IL", "owm_q": "Chicago,US"},
+    146: {"city": "Miami",          "state": "FL", "owm_q": "Miami,US"},
+    147: {"city": "New York",       "state": "NY", "owm_q": "New York,US"},
+    158: {"city": "Milwaukee",      "state": "WI", "owm_q": "Milwaukee,US"},
 }
 
 # ── API endpoints ─────────────────────────────────────────────────────────────
@@ -91,11 +209,21 @@ def hr_game_points(hr_count: int, run_values: list[int] | None = None) -> int:
 
 # ── Week target ───────────────────────────────────────────────────────────────
 def get_target_week() -> tuple[date, date]:
-    """Returns (monday, sunday) for the current draft week (Mon–Sun)."""
+    """
+    Returns (monday, sunday) for the UPCOMING draft week.
+
+    Draft runs Sunday → next Mon–Sun:
+      - Triggered on Sunday (cron day): returns NEXT Monday through NEXT Sunday.
+      - Triggered any other day: returns the current Monday–Sunday.
+    Use --week YYYY-MM-DD to override (e.g. opening week partial).
+    """
     today = date.today()
-    # Week runs Mon–Sun; draft/scoring deadline is Sunday
-    days_since_monday = today.weekday()  # Mon=0
-    monday = today - timedelta(days=days_since_monday)
+    days_since_monday = today.weekday()  # Mon=0 … Sun=6
+    this_monday = today - timedelta(days=days_since_monday)
+    if today.weekday() == 6:  # Sunday — draft day, look ahead
+        monday = this_monday + timedelta(days=7)
+    else:
+        monday = this_monday
     sunday = monday + timedelta(days=6)
     return monday, sunday
 
