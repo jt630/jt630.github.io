@@ -40,8 +40,16 @@
       <a href="/dinger-palooza/" class="dp-nav-link">Draft Board</a>
       <span class="dp-nav-sep">·</span>
       <a href="/dinger-palooza/leaderboard/" class="dp-nav-link">Leaderboard</a>
-      <span class="dp-nav-sep">·</span>
-      <span class="dp-nav-link dp-nav-active">Week {{ $week_num }}</span>
+      {{ range $key, $_ := .Site.Data.dinger_palooza.results }}
+        {{ $url := replace $key "_" "-" }}
+        {{ $num := substr $key 5 | int }}
+        <span class="dp-nav-sep">·</span>
+        {{ if eq $key $week_key }}
+          <span class="dp-nav-link dp-nav-active">Week {{ $num }}</span>
+        {{ else }}
+          <a href="/dinger-palooza/weeks/{{ $url }}/" class="dp-nav-link">Week {{ $num }}</a>
+        {{ end }}
+      {{ end }}
     </div>
   </div>
 
