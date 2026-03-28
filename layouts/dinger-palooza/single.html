@@ -34,10 +34,9 @@
       </span>
     </div>
     <div class="dp-weights-row">
-      <span class="dp-weight-chip dp-weight-sched">Schedule {{ mul $board.weights.schedule 100 | int }}%</span>
+      <span class="dp-weight-chip dp-weight-sched">Schedule {{ mul $board.weights.schedule 100 | int }}% <span class="dp-weight-note">(rain-adjusted)</span></span>
       <span class="dp-weight-chip dp-weight-pitch">Pitchers {{ mul $board.weights.pitcher 100 | int }}%</span>
       <span class="dp-weight-chip dp-weight-park">Park Factor {{ mul $board.weights.park 100 | int }}%</span>
-      <span class="dp-weight-chip dp-weight-wx">Weather {{ mul $board.weights.weather 100 | int }}%</span>
     </div>
   </div>
 
@@ -157,13 +156,6 @@
             <div class="dp-bar dp-bar--park" style="width:{{ .park_score }}%"></div>
           </div>
           <span class="dp-score-val">{{ .park_score }}</span>
-        </div>
-        <div class="dp-score-row">
-          <span class="dp-score-name">Weather</span>
-          <div class="dp-bar-track">
-            <div class="dp-bar dp-bar--wx" style="width:{{ .weather_score }}%"></div>
-          </div>
-          <span class="dp-score-val">{{ .weather_score }}</span>
         </div>
       </div>
 

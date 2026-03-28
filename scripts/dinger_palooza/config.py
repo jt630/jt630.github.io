@@ -164,11 +164,14 @@ OWM_API_KEY = os.environ.get("OWM_API_KEY", "")
 
 # ── Scoring weights ───────────────────────────────────────────────────────────
 WEIGHTS = {
-    "schedule": 0.35,   # games played this week
+    "schedule": 0.40,   # effective games (rain-risk games discounted)
     "pitcher":  0.30,   # matchup favorability
-    "park":     0.25,   # stadium HR park factor
-    "weather":  0.10,   # HR-friendly conditions (rain/wind discount)
+    "park":     0.30,   # stadium HR park factor
 }
+
+# Rain-risk games reduce effective_games by this fraction each.
+# 0.5 = a rain-risk game is worth half a game opportunity.
+RAIN_GAME_DISCOUNT = 0.5
 
 # ── League rules ─────────────────────────────────────────────────────────────
 # Scoring system (points per HR in a single game):

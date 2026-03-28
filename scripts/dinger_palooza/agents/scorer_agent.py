@@ -1,11 +1,14 @@
 """
 Scorer / Ranker Agent — combines all agent outputs into a final draft board.
 
-Weights (updated to include park factor):
-  Schedule     35%  (games played)
-  Pitcher      30%  (matchup favorability)
-  Park factor  20%  (stadium HR index)
-  Weather      15%  (HR-friendly conditions)
+Weights:
+  Schedule     40%  (effective games — raw games minus rain-risk discount)
+  Pitcher      35%  (matchup favorability)
+  Park factor  25%  (stadium HR index)
+
+Weather is NOT a separate factor. Rain-risk games reduce the effective game
+count used in the schedule score (RAIN_GAME_DISCOUNT in config.py).
+Wind-out and temperature info still surfaces in per-game detail.
 
 Scoring system reminder (for reasoning labels):
   1st HR in a game  → 1 pt  (+1 if 3- or 4-run HR)
@@ -17,7 +20,7 @@ Scoring system reminder (for reasoning labels):
 import logging
 from datetime import date
 
-from config import WEIGHTS, keep_cost
+from config import WEIGHTS, RAIN_GAME_DISCOUNT, keep_cost
 
 logger = logging.getLogger(__name__)
 
@@ -28,13 +31,19 @@ def build_reasoning(player: dict) -> str:
     games = player["games_this_week"]
     pitch_score = player.get("pitcher_score", 50)
     park_score = player.get("park_score", 50)
-    wx_score = player.get("weather_score", 50)
 
-    # Schedule blurb
+    # Schedule blurb — note rain discount if applicable
+    rain_risk = player.get("rain_risk_games", 0)
     if player.get("high_opportunity"):
-        parts.append(f"{games} games (premium schedule)")
+        if rain_risk:
+            parts.append(f"{games} games ({rain_risk} rain-risk, schedule discounted)")
+        else:
+            parts.append(f"{games} games (premium schedule)")
     else:
-        parts.append(f"{games} games")
+        if rain_risk:
+            parts.append(f"{games} games ({rain_risk} rain-risk)")
+        else:
+            parts.append(f"{games} games")
 
     # Park factor blurb — highlight if notably good or bad
     best_park = player.get("best_park_game", "")
@@ -59,43 +68,44 @@ def build_reasoning(player: dict) -> str:
         platoon_str = f", {platoon_adv} platoon advantage{'s' if platoon_adv != 1 else ''}" if platoon_adv else ""
         parts.append(f"neutral pitching schedule{platoon_str}")
 
-    # Weather blurb
-    rain_risk = player.get("rain_risk_games", 0)
+    # Wind blurb — still worth surfacing even without a weather score factor
     wind_out_games = sum(
         1 for g in player.get("games", [])
         if g.get("weather", {}).get("wind_out")
     )
-    if wx_score >= 70:
-        if wind_out_games:
-            parts.append(f"wind out in {wind_out_games} game{'s' if wind_out_games != 1 else ''}")
-        else:
-            parts.append("clean weather")
-    elif rain_risk >= 2:
-        parts.append(f"rain risk in {rain_risk} games")
-    elif rain_risk == 1:
-        parts.append("1 game with rain risk")
-    else:
-        parts.append("clear skies")
+    if wind_out_games:
+        parts.append(f"wind out in {wind_out_games} game{'s' if wind_out_games != 1 else ''}")
 
     return "; ".join(parts) + "."
 
 
+def effective_schedule_score(player: dict) -> float:
+    """
+    Schedule score adjusted for rain-risk games.
+    Rain-risk games count as RAIN_GAME_DISCOUNT of a full game opportunity.
+    E.g. 7 games, 2 rain-risk → effective 6 games → score 86 instead of 100.
+    """
+    games = player.get("games_this_week", 0)
+    rain  = player.get("rain_risk_games", 0)
+    effective = max(0, games - rain * RAIN_GAME_DISCOUNT)
+    return min(100, round((effective / 7) * 100, 1))
+
+
 def score_player(player: dict) -> dict:
     """Compute the weighted overall score for a player."""
-    s = player.get("schedule_score", 50)
+    s = effective_schedule_score(player)
     p = player.get("pitcher_score", 50)
     k = player.get("park_score", 50)
-    w = player.get("weather_score", 50)
 
     overall = (
         s * WEIGHTS["schedule"]
         + p * WEIGHTS["pitcher"]
         + k * WEIGHTS["park"]
-        + w * WEIGHTS["weather"]
     )
 
     return {
         **player,
+        "schedule_score": s,   # overwrite with weather-adjusted value
         "overall_score": round(overall, 1),
         "reasoning": build_reasoning(player),
     }
