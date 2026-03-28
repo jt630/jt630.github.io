@@ -1,0 +1,686 @@
+{{ define "head-extra" }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+<style>
+/* ===========================
+   NEWS PAGE
+   =========================== */
+
+.news-page {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+}
+
+/* HERO */
+.news-hero {
+  text-align: center;
+  padding: 52px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 56px;
+}
+
+.news-eyebrow {
+  font-family: var(--font-body, 'Space Grotesk', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  margin: 0 0 12px;
+}
+
+.news-masthead {
+  font-family: 'Metal Mania', cursive;
+  font-size: clamp(88px, 18vw, 200px);
+  line-height: 0.85;
+  margin: 0 0 20px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light, #F5D674) 40%, var(--pink) 70%, #ff8800 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.35));
+  letter-spacing: 0.03em;
+}
+
+.news-credo {
+  font-family: var(--font-body, 'Space Grotesk', sans-serif);
+  font-size: 16px;
+  color: var(--white-dim);
+  font-style: italic;
+  margin: 0;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* SECTION HEADERS */
+.section-header {
+  font-family: var(--font-body, 'Space Grotesk', sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(212, 175, 55, 0.12);
+}
+
+/* BIAS CHART */
+.chart-section {
+  margin-bottom: 72px;
+}
+
+.bias-chart-outer {
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  padding: 28px 20px 16px;
+  overflow-x: auto;
+}
+
+.bias-chart-outer svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+
+/* PUBLICATION CARDS */
+.pubs-section {
+  margin-bottom: 72px;
+}
+
+.pubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 18px;
+}
+
+.pub-card {
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pub-card:hover {
+  border-color: rgba(255,255,255,0.14);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Top lean indicator bar */
+.pub-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.lean-far-left::before  { background: #1D4ED8; }
+.lean-left::before      { background: #3B82F6; }
+.lean-center-left::before { background: #7DD3FC; }
+.lean-center::before    { background: #6B7280; }
+.lean-center-right::before { background: #FDBA74; }
+.lean-right::before     { background: #F87171; }
+.lean-far-right::before { background: #991B1B; }
+
+.pub-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.pub-name {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.pub-owner {
+  font-size: 11px;
+  color: var(--white-faint);
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.pub-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 2px;
+  line-height: 1.4;
+}
+
+/* Lean badges */
+.b-far-left   { background: #1D4ED8; color: #fff; }
+.b-left       { background: #3B82F6; color: #fff; }
+.b-center-left{ background: #93C5FD; color: #0A0A0A; }
+.b-center     { background: #6B7280; color: #fff; }
+.b-center-right{ background: #FDBA74; color: #0A0A0A; }
+.b-right      { background: #F87171; color: #0A0A0A; }
+.b-far-right  { background: #991B1B; color: #fff; }
+
+/* Reliability badges */
+.r-very-high  { background: transparent; color: #4ADE80; border: 1px solid #4ADE80; }
+.r-high       { background: transparent; color: #86EFAC; border: 1px solid #86EFAC; }
+.r-medium     { background: transparent; color: #FDE68A; border: 1px solid #FDE68A; }
+.r-low        { background: transparent; color: #FCA5A5; border: 1px solid #FCA5A5; }
+.r-very-low   { background: transparent; color: #F87171; border: 1px solid #F87171; }
+
+.pub-field {
+  margin-bottom: 13px;
+}
+
+.pub-field-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.pub-field-text {
+  font-size: 13px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+
+.pub-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,45,138,0.25);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+
+.pub-link:hover { border-color: var(--pink); }
+
+/* READER TIPS */
+.tips-section { margin-bottom: 72px; }
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.tip-card {
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  padding: 22px;
+  transition: border-color 0.2s;
+}
+
+.tip-card:hover { border-color: rgba(255,45,138,0.2); }
+
+.tip-num {
+  font-family: 'Metal Mania', cursive;
+  font-size: 42px;
+  color: var(--pink);
+  line-height: 1;
+  margin-bottom: 10px;
+  opacity: 0.55;
+}
+
+.tip-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.tip-text {
+  font-size: 13px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .pubs-grid { grid-template-columns: 1fr; }
+  .tips-grid { grid-template-columns: 1fr; }
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="news-page">
+
+  <!-- ── HERO ── -->
+  <div class="news-hero">
+    <p class="news-eyebrow">Almond Farm / Media Intelligence</p>
+    <h1 class="news-masthead">NEWS</h1>
+    <p class="news-credo">Every outlet has an angle. Every owner has interests. Here is the map — read accordingly.</p>
+  </div>
+
+  <!-- ── BIAS CHART ── -->
+  <section class="chart-section">
+    <div class="section-header">Media Bias Chart — Political Lean vs. Reliability</div>
+    <div class="bias-chart-outer">
+      <svg width="700" height="420" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg"
+           font-family="'Space Grotesk', sans-serif" role="img" aria-label="Media bias chart">
+        <defs>
+          <linearGradient id="bgH" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="#0d1b3e" stop-opacity="0.75"/>
+            <stop offset="45%"  stop-color="#141414" stop-opacity="0.4"/>
+            <stop offset="55%"  stop-color="#141414" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#3e0d0d" stop-opacity="0.75"/>
+          </linearGradient>
+          <linearGradient id="bgV" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#000" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0.45"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Background zones -->
+        <rect x="68" y="28" width="564" height="310" rx="2" fill="url(#bgH)"/>
+        <rect x="68" y="28" width="564" height="310" rx="2" fill="url(#bgV)"/>
+
+        <!-- Center dashed lines -->
+        <line x1="350" y1="28" x2="350" y2="338" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="68"  y1="183" x2="632" y2="183" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <!-- Axis: reliability label (left, rotated) -->
+        <text transform="rotate(-90,18,183)" x="18" y="183" text-anchor="middle"
+              font-size="9" fill="rgba(255,255,255,0.3)" font-weight="600" letter-spacing="2">RELIABILITY</text>
+
+        <!-- Reliability HIGH/LOW -->
+        <text x="62" y="38"  text-anchor="end" font-size="8" fill="rgba(255,255,255,0.35)" font-weight="600" letter-spacing="1">HIGH</text>
+        <text x="62" y="338" text-anchor="end" font-size="8" fill="rgba(255,255,255,0.35)" font-weight="600" letter-spacing="1">LOW</text>
+
+        <!-- Political lean labels at bottom inside chart -->
+        <text x="80"  y="354" font-size="10" fill="#93C5FD" font-weight="700" letter-spacing="1.5">◄ LEFT</text>
+        <text x="350" y="354" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.35)" font-weight="600" letter-spacing="2">CENTER</text>
+        <text x="620" y="354" text-anchor="end" font-size="10" fill="#FCA5A5" font-weight="700" letter-spacing="1.5">RIGHT ►</text>
+
+        <!-- POLITICAL LEAN axis label -->
+        <text x="350" y="392" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.25)" letter-spacing="3">POLITICAL LEAN</text>
+
+        <!-- ── PUBLICATION DOTS ──
+             Plot area: x 68-632 (564px), y 28-338 (310px)
+             x = 68 + lean_pct/100 * 564
+             y = 338 - rel_pct/100 * 310
+        -->
+
+        <!-- ProPublica: lean=30, rel=89  → x=237, y=62 -->
+        <circle cx="237" cy="62" r="6.5" fill="#3B82F6" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="237" y="49" text-anchor="middle" font-size="10" fill="#F5F0EB" font-weight="600">ProPublica</text>
+
+        <!-- AP: lean=49, rel=92  → x=345, y=54 -->
+        <circle cx="345" cy="54" r="6.5" fill="#9CA3AF" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="318" y="41" text-anchor="end" font-size="10" fill="#F5F0EB" font-weight="600">AP</text>
+
+        <!-- Reuters: lean=56, rel=88  → x=384, y=65 -->
+        <circle cx="384" cy="65" r="6.5" fill="#9CA3AF" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="408" y="52" text-anchor="start" font-size="10" fill="#F5F0EB" font-weight="600">Reuters</text>
+
+        <!-- BBC: lean=41, rel=83  → x=299, y=81 -->
+        <circle cx="299" cy="81" r="6.5" fill="#93C5FD" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="299" y="68" text-anchor="middle" font-size="10" fill="#F5F0EB" font-weight="600">BBC</text>
+
+        <!-- NPR: lean=37, rel=77  → x=277, y=100 -->
+        <circle cx="277" cy="100" r="6.5" fill="#93C5FD" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="251" y="114" text-anchor="end" font-size="10" fill="#F5F0EB" font-weight="600">NPR</text>
+
+        <!-- WSJ: lean=63, rel=79  → x=424, y=94 -->
+        <circle cx="424" cy="94" r="6.5" fill="#FDBA74" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="447" y="87" text-anchor="start" font-size="10" fill="#F5F0EB" font-weight="600">WSJ</text>
+
+        <!-- Intercept: lean=17, rel=58  → x=164, y=159 -->
+        <circle cx="164" cy="159" r="6.5" fill="#2563EB" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="164" y="145" text-anchor="middle" font-size="10" fill="#F5F0EB" font-weight="600">Intercept</text>
+
+        <!-- Fox News: lean=79, rel=31  → x=514, y=242 -->
+        <circle cx="514" cy="242" r="6.5" fill="#EF4444" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="514" y="228" text-anchor="middle" font-size="10" fill="#F5F0EB" font-weight="600">Fox News</text>
+
+        <!-- Breitbart: lean=91, rel=10  → x=581, y=307 -->
+        <circle cx="581" cy="307" r="6.5" fill="#7F1D1D" stroke="#F5F0EB" stroke-width="1.5"/>
+        <text x="568" y="293" text-anchor="middle" font-size="10" fill="#F5F0EB" font-weight="600">Breitbart</text>
+
+        <!-- Chart border -->
+        <rect x="68" y="28" width="564" height="310" rx="2" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+      </svg>
+
+      <!-- Legend -->
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#2563EB"></div>Left</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#93C5FD"></div>Center-Left</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#9CA3AF"></div>Center</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#FDBA74"></div>Center-Right</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#EF4444"></div>Right</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7F1D1D"></div>Far Right</div>
+        <div class="legend-item" style="color:rgba(245,240,235,0.25);gap:0">· Vertical position = reliability</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PUBLICATION CARDS ── -->
+  <section class="pubs-section">
+    <div class="section-header">Publication Intelligence — Know Your Sources</div>
+    <div class="pubs-grid">
+
+      <!-- AP -->
+      <div class="pub-card lean-center">
+        <h2 class="pub-name">Associated Press</h2>
+        <p class="pub-owner">Non-profit cooperative owned by its member newspapers and broadcasters</p>
+        <div class="pub-badges">
+          <span class="badge b-center">Center</span>
+          <span class="badge r-very-high">Very High Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">The wire service that most other outlets copy-paste. When you read any news story anywhere, there is a good chance AP wrote the first draft. The closest thing to "just the facts" in American media.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">Both-sidesism can flatten important distinctions — "Party A says X, Party B says Y" without noting which claim is false. Institutional deference to official sources.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">Corporate malfeasance. Member newsrooms are often corporately owned, and scrutinizing those owners is bad for business.</div>
+        </div>
+        <a class="pub-link" href="https://apnews.com" target="_blank" rel="noopener">Visit AP News →</a>
+      </div>
+
+      <!-- Reuters -->
+      <div class="pub-card lean-center">
+        <h2 class="pub-name">Reuters</h2>
+        <p class="pub-owner">Thomson Reuters Corporation — Canadian multinational, publicly traded (NYSE: TRI)</p>
+        <div class="pub-badges">
+          <span class="badge b-center">Center</span>
+          <span class="badge r-very-high">Very High Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">Financial and international wire service. Reuters is the news journalists trust when they need to trust something. Rigorous standards, global bureaus, dry as a bone.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">The finance-world perspective is deeply embedded. Economic stories are told from the perspective of markets and capital — rarely from labor's angle.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">Class conflict angles; economic inequality as a systemic issue rather than a data point.</div>
+        </div>
+        <a class="pub-link" href="https://reuters.com" target="_blank" rel="noopener">Visit Reuters →</a>
+      </div>
+
+      <!-- BBC -->
+      <div class="pub-card lean-center-left">
+        <h2 class="pub-name">BBC News</h2>
+        <p class="pub-owner">UK public broadcaster funded by license fee — nominally independent from government</p>
+        <div class="pub-badges">
+          <span class="badge b-center-left">Center-Left</span>
+          <span class="badge r-high">High Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">The gold standard of international broadcast journalism. BBC World Service reporting on Africa, Asia, and Latin America is often the best English-language coverage available on those regions.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">UK-centric framing on everything. Deference to British government sources. The "impartiality" mandate can create false equivalence. Brexit coverage revealed deep internal biases.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">UK government failures — especially when it might embarrass the political class that ultimately controls the BBC's funding.</div>
+        </div>
+        <a class="pub-link" href="https://bbc.com/news" target="_blank" rel="noopener">Visit BBC News →</a>
+      </div>
+
+      <!-- NPR -->
+      <div class="pub-card lean-center-left">
+        <h2 class="pub-name">NPR</h2>
+        <p class="pub-owner">Member stations + partial government funding (CPB) + corporate underwriting (Visa, pharma, tech)</p>
+        <div class="pub-badges">
+          <span class="badge b-center-left">Center-Left</span>
+          <span class="badge r-high">High Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">The dominant public radio voice. Strong on long-form explainers, science coverage, domestic politics. Their podcast empire is genuinely excellent even when its viewpoint is tilted.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">The audience is overwhelmingly college-educated and urban — that shapes what counts as news. Corporate underwriters (Visa, pharmaceutical companies) are rarely subjected to critical coverage.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">Rural and working-class economic realities outside of election years. Third-party political perspectives. Their own funding contradictions.</div>
+        </div>
+        <a class="pub-link" href="https://npr.org/sections/news/" target="_blank" rel="noopener">Visit NPR →</a>
+      </div>
+
+      <!-- WSJ -->
+      <div class="pub-card lean-center-right">
+        <h2 class="pub-name">Wall Street Journal</h2>
+        <p class="pub-owner">News Corp — Rupert Murdoch. Same parent as Fox News, NY Post, The Sun (UK), The Australian.</p>
+        <div class="pub-badges">
+          <span class="badge b-center-right">Center-Right (news)</span>
+          <span class="badge r-high">High Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">The best business and financial journalism in America, full stop. The news section maintains genuine professional standards. The editorial board is a completely separate operation — do not confuse the two.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">The wall between news and opinion does not always hold. Policy coverage implicitly reflects investor and business-owner interests. The editorial board is a scorched-earth operation with its own reality.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">Labor organizing, environmental justice, economic inequality framed from workers' perspectives.</div>
+        </div>
+        <a class="pub-link" href="https://wsj.com" target="_blank" rel="noopener">Visit WSJ →</a>
+      </div>
+
+      <!-- ProPublica -->
+      <div class="pub-card lean-left">
+        <h2 class="pub-name">ProPublica</h2>
+        <p class="pub-owner">Non-profit newsroom funded by foundations — historically anchored by the Sandler Foundation</p>
+        <div class="pub-badges">
+          <span class="badge b-left">Center-Left</span>
+          <span class="badge r-very-high">Very High Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">The gold standard of American investigative journalism. More Pulitzers in a shorter span than almost any outlet in history. When ProPublica publishes a story, policies actually change.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">Long production timelines — not a breaking news source. Foundation funding means topic selection is shaped by what wealthy donors consider important. Strong on government accountability; lighter on corporate.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">Stories that do not lend themselves to months-long investigative formats. Potential overlap between foundation donors and story subjects.</div>
+        </div>
+        <a class="pub-link" href="https://propublica.org" target="_blank" rel="noopener">Visit ProPublica →</a>
+      </div>
+
+      <!-- The Intercept -->
+      <div class="pub-card lean-far-left">
+        <h2 class="pub-name">The Intercept</h2>
+        <p class="pub-owner">First Look Media — founded with funding from Pierre Omidyar (eBay founder, billionaire philanthropist)</p>
+        <div class="pub-badges">
+          <span class="badge b-far-left">Left</span>
+          <span class="badge r-medium">Medium Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">Founded on the Snowden documents. Their national security, surveillance, and drone warfare reporting is essential and unmatched. The Intercept will cover the story every other outlet is too afraid of or too cozy with power to touch.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">Can be ideologically predictable — some stories feel like they concluded before they began. Has published inaccurate reporting and experienced notable editorial scandals. The Omidyar funding creates contradictions they rarely examine.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">Internal contradictions of progressive politics. Stories that complicate rather than confirm the preferred frame.</div>
+        </div>
+        <a class="pub-link" href="https://theintercept.com" target="_blank" rel="noopener">Visit The Intercept →</a>
+      </div>
+
+      <!-- Fox News -->
+      <div class="pub-card lean-right">
+        <h2 class="pub-name">Fox News</h2>
+        <p class="pub-owner">Fox Corporation — Rupert Murdoch family control. Separate from News Corp but same dynasty.</p>
+        <div class="pub-badges">
+          <span class="badge b-right">Right</span>
+          <span class="badge r-low">Low Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">The most-watched cable news network in America. Essential reading if you want to understand what right-leaning America is being told — which is a legitimate and important thing to know. Some real reporters doing real journalism, buried under opinion programming.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">Opinion is the product; news is the wrapper. Fox paid $787M to settle Dominion's defamation lawsuit, with court filings revealing hosts knowingly aired false election claims. Story selection is designed to generate outrage, not inform.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">Republican party scandals, climate science, economic inequality, any story that does not fit the culture war frame.</div>
+        </div>
+        <a class="pub-link" href="https://foxnews.com" target="_blank" rel="noopener">Visit Fox News →</a>
+      </div>
+
+      <!-- Breitbart -->
+      <div class="pub-card lean-far-right">
+        <h2 class="pub-name">Breitbart</h2>
+        <p class="pub-owner">Founded by Andrew Breitbart. Significant past investment from Robert Mercer (hedge fund billionaire, Cambridge Analytica funder).</p>
+        <div class="pub-badges">
+          <span class="badge b-far-right">Far Right / Nationalist</span>
+          <span class="badge r-very-low">Very Low Reliability</span>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">What it is</div>
+          <div class="pub-field-text">The flagship of American nationalist media. Read it not for facts but to understand the rhetorical priorities of the populist right. It is a political operation with a news aesthetic, and its influence on the Republican base is enormous.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Watch for</div>
+          <div class="pub-field-text">Conspiracy-adjacent framing is the default, not the exception. Immigration coverage is explicit advocacy. Headlines are routinely more extreme than the underlying reporting supports. Fear and grievance are the primary currencies.</div>
+        </div>
+        <div class="pub-field">
+          <div class="pub-field-label">Underreports</div>
+          <div class="pub-field-text">Anything that does not serve the culture war narrative — white-collar crime, climate, corporate consolidation, foreign policy complexity, Republican donor behavior.</div>
+        </div>
+        <a class="pub-link" href="https://breitbart.com" target="_blank" rel="noopener">Visit Breitbart →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── READER TIPS ── -->
+  <section class="tips-section">
+    <div class="section-header">How to Read the News Without Losing Your Mind</div>
+    <div class="tips-grid">
+
+      <div class="tip-card">
+        <div class="tip-num">01</div>
+        <div class="tip-title">Find the story, not the outlet</div>
+        <div class="tip-text">When something matters, read two versions from opposite ends of the spectrum. The truth usually lives in the details both sides agree on. Friction between framings is information.</div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-num">02</div>
+        <div class="tip-title">Ask who is missing</div>
+        <div class="tip-text">Every story is also the story of who was not interviewed, whose perspective was backgrounded, and whose framing got the headline. The absence of a voice is a data point.</div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-num">03</div>
+        <div class="tip-title">Follow the money</div>
+        <div class="tip-text">Who owns the outlet? Who funds it? Who advertises? Ownership shapes what gets covered and what gets buried more reliably than any individual reporter's bias.</div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-num">04</div>
+        <div class="tip-title">News vs. opinion</div>
+        <div class="tip-text">The WSJ editorial board and WSJ news desk are different operations with different standards. Same for Fox's reporters versus its prime-time hosts. Learn the distinction at each outlet you read.</div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-num">05</div>
+        <div class="tip-title">Breaking news is a rough draft</div>
+        <div class="tip-text">The first two hours of major stories are usually wrong in important ways. The incentive to be first routinely beats the incentive to be right. Wait before forming strong opinions on breaking events.</div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-num">06</div>
+        <div class="tip-title">Outrage is the product</div>
+        <div class="tip-text">Anger, fear, and tribal validation keep you clicking, watching, sharing. When a story makes you feel that way, slow down. Ask whether the feeling is informing you or just engaging you.</div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+{{ end }}
