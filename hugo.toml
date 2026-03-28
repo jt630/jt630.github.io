@@ -77,9 +77,13 @@ title = "Almond Farm"
     url = "/dinger-palooza/"
     weight = 17
   [[menu.main]]
+    name = "News"
+    url = "/news/"
+    weight = 18
+  [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 18
+    weight = 19
 
 [taxonomies]
   tag = "tags"
