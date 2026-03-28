@@ -304,9 +304,280 @@
   line-height: 1.6;
 }
 
+/* PAYWALL HACKS */
+.hacks-section { margin-bottom: 72px; }
+
+.hacks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.hack-card {
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.hack-card:hover {
+  border-color: rgba(212,175,55,0.5);
+  border-left-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.hack-method {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+}
+
+.hack-works-on {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  margin-bottom: 10px;
+}
+
+.hack-text {
+  font-size: 13px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+
+.hack-text code {
+  font-family: monospace;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 12px;
+  color: var(--gold-light, #F5D674);
+}
+
+.hack-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212,175,55,0.25);
+  padding-bottom: 1px;
+  transition: border-color 0.2s;
+}
+.hack-link:hover { border-color: var(--gold); }
+
+/* Featured hack card — full width, step list */
+.hack-card--featured {
+  grid-column: 1 / -1;
+  border-left-width: 4px;
+}
+
+.hack-steps {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hack-step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.hack-step-num {
+  font-family: 'Metal Mania', cursive;
+  font-size: 22px;
+  color: var(--gold);
+  line-height: 1;
+  opacity: 0.7;
+  padding-top: 1px;
+}
+
+.hack-step-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.hack-step-text {
+  font-size: 13px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+
+.hack-note {
+  margin-top: 18px;
+  padding: 12px 14px;
+  background: rgba(212,175,55,0.06);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: var(--radius);
+  font-size: 12px;
+  color: var(--white-faint);
+  line-height: 1.6;
+}
+
 @media (max-width: 640px) {
   .pubs-grid { grid-template-columns: 1fr; }
   .tips-grid { grid-template-columns: 1fr; }
+  .hacks-grid { grid-template-columns: 1fr; }
+}
+
+/* ATTRIBUTION */
+.news-attribution {
+  font-size: 11px;
+  color: var(--white-faint);
+  margin: 12px 0 0;
+  letter-spacing: 0.1em;
+  font-style: italic;
+}
+
+/* RSS FEED */
+.feed-section { margin-bottom: 72px; }
+
+.feed-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.feed-filter-btn {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: var(--white-dim);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.feed-filter-btn:hover,
+.feed-filter-btn.active {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+
+.feed-status {
+  font-size: 11px;
+  color: var(--white-faint);
+  margin-left: auto;
+  font-style: italic;
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feed-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: start;
+  padding: 14px 16px;
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.feed-item:hover {
+  border-color: rgba(255,255,255,0.14);
+  background: var(--black-elevated);
+}
+
+.feed-source-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 68px;
+}
+
+.feed-source-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.feed-source-name {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.feed-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.4;
+}
+
+.feed-desc {
+  font-size: 12px;
+  color: var(--white-faint);
+  line-height: 1.5;
+  margin-top: 3px;
+}
+
+.feed-date {
+  font-size: 10px;
+  color: var(--white-faint);
+  white-space: nowrap;
+  margin-top: 3px;
+  text-align: right;
+}
+
+.feed-loading {
+  text-align: center;
+  padding: 48px;
+  color: var(--white-faint);
+  font-size: 13px;
+  font-style: italic;
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+}
+
+.feed-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--white-faint);
+  font-size: 13px;
+  font-style: italic;
+}
+
+@media (max-width: 500px) {
+  .feed-item { grid-template-columns: auto 1fr; }
+  .feed-date { display: none; }
 }
 </style>
 {{ end }}
@@ -319,6 +590,7 @@
     <p class="news-eyebrow">Almond Farm / Media Intelligence</p>
     <h1 class="news-masthead">NEWS</h1>
     <p class="news-credo">Every outlet has an angle. Every owner has interests. Here is the map — read accordingly.</p>
+    <p class="news-attribution">Source context written by Claude Sonnet · March 2026</p>
   </div>
 
   <!-- ── BIAS CHART ── -->
@@ -682,5 +954,237 @@
     </div>
   </section>
 
+  <!-- ── PAYWALL HACKS ── -->
+  <section class="hacks-section">
+    <div class="section-header">Getting Past the Gate — Paywall Workarounds</div>
+    <div class="hacks-grid">
+
+      <div class="hack-card">
+        <div class="hack-method">Private / Incognito Window</div>
+        <div class="hack-works-on">Works on: NYT, WaPo, The Atlantic, Bloomberg, many others</div>
+        <div class="hack-text">Soft paywalls count your visits using browser cookies. Open the article URL in a fresh private window and the counter resets. Works every time on metered paywalls — stops working on hard paywalls that require a login.</div>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">12ft.io</div>
+        <div class="hack-works-on">Works on: Most JavaScript-based paywalls</div>
+        <div class="hack-text">Prepend <code>12ft.io/</code> to any URL. The service fetches the page impersonating Googlebot, which most outlets exempt from paywalls to preserve search rankings. Example: <code>12ft.io/https://wsj.com/article/…</code></div>
+        <a class="hack-link" href="https://12ft.io" target="_blank" rel="noopener">12ft.io →</a>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">archive.ph</div>
+        <div class="hack-works-on">Works on: NYT, WSJ, FT, most major paywalls</div>
+        <div class="hack-text">Paste any URL at <code>archive.ph</code> to read a cached copy. Also works as a sharing tool — send the archive link instead of the original so your friends don't hit the wall. Search <code>archive.ph/newest/[URL]</code> to find an existing archive instantly.</div>
+        <a class="hack-link" href="https://archive.ph" target="_blank" rel="noopener">archive.ph →</a>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">Search the Headline</div>
+        <div class="hack-works-on">Works on: Any outlet that wants Google traffic</div>
+        <div class="hack-text">Copy the exact article headline, paste it into Google, and click through from the results page. Many outlets whitelist traffic coming from search engines. If that fails, try clicking through from a Google News result for the same story.</div>
+      </div>
+
+      <div class="hack-card hack-card--featured">
+        <div class="hack-method">Your Library Card 🏛️</div>
+        <div class="hack-works-on">Works on: NYT, WSJ, WaPo, The Economist, Bloomberg, hundreds of local &amp; international papers — completely free</div>
+        <div class="hack-text">This is the most powerful option on this page and almost nobody knows it exists. Your public library card unlocks free, unlimited, legal access to the world's best journalism. Here is how to use it.</div>
+
+        <div class="hack-steps">
+          <div class="hack-step">
+            <div class="hack-step-num">1</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Get a card (takes 5 minutes)</div>
+              <div class="hack-step-text">Walk into any branch with a photo ID and proof of address. Cards are free. Many library systems now issue instant digital cards online — search <code>[your city] library card online</code> and you can be set up before you finish reading this page.</div>
+            </div>
+          </div>
+
+          <div class="hack-step">
+            <div class="hack-step-num">2</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Go to your library's website → Digital Resources</div>
+              <div class="hack-step-text">Every library system has a slightly different portal. Look for a tab or link labeled <strong>Digital Resources</strong>, <strong>eResources</strong>, <strong>Research Databases</strong>, or <strong>Newspapers &amp; Magazines</strong>. This is where the good stuff lives.</div>
+            </div>
+          </div>
+
+          <div class="hack-step">
+            <div class="hack-step-num">3</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Find Pressreader — your all-you-can-read newsstand</div>
+              <div class="hack-step-text">Most libraries subscribe to <strong>Pressreader</strong>, which gives you unlimited access to 7,000+ newspapers and magazines from 120 countries — including the NYT, WaPo, The Guardian, USA Today, The Economist, and hundreds of international papers. Click the Pressreader link from your library's site, sign in with your library card number, and read everything.</div>
+            </div>
+          </div>
+
+          <div class="hack-step">
+            <div class="hack-step-num">4</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Check for direct NYT and WSJ access</div>
+              <div class="hack-step-text">Many libraries separately subscribe to the <strong>New York Times</strong> and <strong>Wall Street Journal</strong> at the full digital level. Look for them individually on the Digital Resources page — the NYT link will log you into a full nytimes.com account good for the duration of your session.</div>
+            </div>
+          </div>
+
+          <div class="hack-step">
+            <div class="hack-step-num">5</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Install the Pressreader app</div>
+              <div class="hack-step-text">The Pressreader app (iOS + Android) lets you download editions for offline reading — useful for flights or commutes. Log in via <strong>Connect → Library</strong>, search for your library system, enter your card number. You now have a free global newsstand in your pocket.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hack-note">Your library card number is the barcode on the physical card. Your PIN is usually set when you sign up — if you never set one, try the last 4 digits of your phone number, or call the branch and they will reset it instantly.</div>
+        <a class="hack-link" href="https://www.pressreader.com" target="_blank" rel="noopener">Pressreader →</a>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">Reader Mode</div>
+        <div class="hack-works-on">Works on: Soft and many JavaScript paywalls</div>
+        <div class="hack-text">Safari and Firefox have a built-in Reader Mode (the icon in the address bar) that strips all the JavaScript noise including a lot of paywall enforcement. In Firefox you can force it with <code>about:reader?url=</code> prepended to the URL.</div>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">uBlock Origin</div>
+        <div class="hack-works-on">Works on: A long and growing list of outlets</div>
+        <div class="hack-text">The free browser extension has filter lists that block paywall scripts. After installing, add the <strong>Annoyances</strong> and community filter lists. It also blocks the cookie consent banners and the tracking that feeds behavioral ad targeting.</div>
+        <a class="hack-link" href="https://ublockorigin.com" target="_blank" rel="noopener">uBlock Origin →</a>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">Bypass Paywalls Clean</div>
+        <div class="hack-works-on">Works on: 200+ specific outlets</div>
+        <div class="hack-text">A browser extension built specifically for paywall bypass, more aggressive than uBlock. Not on the Chrome Web Store (Google removed it) — install from the developer's GitHub directly. Available for Firefox and Chromium browsers.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── LIVE RSS FEED ── -->
+  <section class="feed-section">
+    <div class="section-header">Latest Headlines — Live Feed</div>
+    <div class="feed-controls">
+      <button class="feed-filter-btn active" data-filter="all">All Sources</button>
+      <button class="feed-filter-btn" data-filter="left">Left</button>
+      <button class="feed-filter-btn" data-filter="center">Center</button>
+      <button class="feed-filter-btn" data-filter="right">Right</button>
+      <span class="feed-status" id="feed-status">Loading feeds…</span>
+    </div>
+    <div id="feed-list" class="feed-list">
+      <div class="feed-loading">Fetching headlines from across the spectrum…</div>
+    </div>
+  </section>
+
 </div>
+
+<script>
+(function() {
+  var SOURCES = [
+    { name: 'BBC',        url: 'https://feeds.bbci.co.uk/news/world/rss.xml',                lean: 'center-left',  dot: '#7DD3FC', group: 'left'   },
+    { name: 'NPR',        url: 'https://feeds.npr.org/1001/rss.xml',                         lean: 'center-left',  dot: '#7DD3FC', group: 'left'   },
+    { name: 'ProPublica', url: 'https://www.propublica.org/feeds/propublica/main',            lean: 'left',         dot: '#3B82F6', group: 'left'   },
+    { name: 'Intercept',  url: 'https://theintercept.com/feed/?rss',                         lean: 'far-left',     dot: '#2563EB', group: 'left'   },
+    { name: 'AP',         url: 'https://feeds.apnews.com/rss/apf-topnews',                   lean: 'center',       dot: '#9CA3AF', group: 'center' },
+    { name: 'Reuters',    url: 'https://feeds.reuters.com/reuters/topNews',                  lean: 'center',       dot: '#9CA3AF', group: 'center' },
+    { name: 'WSJ',        url: 'https://feeds.a.dj.com/rss/RSSWorldNews.xml',               lean: 'center-right', dot: '#FDBA74', group: 'right'  },
+    { name: 'Fox News',   url: 'https://moxie.foxnews.com/google-publisher/latest.xml',      lean: 'right',        dot: '#EF4444', group: 'right'  },
+    { name: 'Breitbart',  url: 'https://feeds.feedburner.com/breitbart',                     lean: 'far-right',    dot: '#7F1D1D', group: 'right'  }
+  ];
+
+  var allItems = [];
+  var currentFilter = 'all';
+
+  function timeAgo(dateStr) {
+    var d = new Date(dateStr);
+    if (isNaN(d)) return '';
+    var diff = Math.floor((Date.now() - d) / 60000);
+    if (diff < 1)   return 'just now';
+    if (diff < 60)  return diff + 'm ago';
+    if (diff < 1440) return Math.floor(diff / 60) + 'h ago';
+    return Math.floor(diff / 1440) + 'd ago';
+  }
+
+  function stripHtml(str) {
+    return str ? str.replace(/<[^>]+>/g, '').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").trim() : '';
+  }
+
+  function renderFeed() {
+    var list = document.getElementById('feed-list');
+    var filtered = currentFilter === 'all'
+      ? allItems
+      : allItems.filter(function(item) { return item.source.group === currentFilter; });
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<div class="feed-empty">No headlines to show.</div>';
+      return;
+    }
+
+    list.innerHTML = filtered.slice(0, 60).map(function(item) {
+      var desc = item.desc ? item.desc.slice(0, 110) + (item.desc.length > 110 ? '…' : '') : '';
+      return '<a class="feed-item" href="' + item.url + '" target="_blank" rel="noopener">' +
+        '<div class="feed-source-col">' +
+          '<div class="feed-source-dot" style="background:' + item.source.dot + '"></div>' +
+          '<span class="feed-source-name">' + item.source.name + '</span>' +
+        '</div>' +
+        '<div>' +
+          '<div class="feed-title">' + item.title + '</div>' +
+          (desc ? '<div class="feed-desc">' + desc + '</div>' : '') +
+        '</div>' +
+        '<div class="feed-date">' + timeAgo(item.date) + '</div>' +
+      '</a>';
+    }).join('');
+  }
+
+  function fetchFeed(source) {
+    var api = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(source.url) + '&count=8';
+    return fetch(api)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.status !== 'ok' || !data.items) return [];
+        return data.items.map(function(item) {
+          return {
+            title:  stripHtml(item.title),
+            url:    item.link,
+            desc:   stripHtml(item.description),
+            date:   item.pubDate,
+            source: source
+          };
+        });
+      })
+      .catch(function() { return []; });
+  }
+
+  // Fetch all feeds in parallel
+  Promise.allSettled(SOURCES.map(fetchFeed)).then(function(results) {
+    results.forEach(function(r) {
+      if (r.status === 'fulfilled') {
+        allItems = allItems.concat(r.value);
+      }
+    });
+
+    // Sort newest first
+    allItems.sort(function(a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    var loaded = allItems.length;
+    var status = document.getElementById('feed-status');
+    if (loaded === 0) {
+      status.textContent = 'Could not load feeds.';
+      document.getElementById('feed-list').innerHTML = '<div class="feed-empty">Feeds unavailable — try visiting the outlets directly.</div>';
+    } else {
+      status.textContent = loaded + ' headlines loaded';
+      renderFeed();
+    }
+  });
+
+  // Filter buttons
+  document.querySelectorAll('.feed-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.feed-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      renderFeed();
+    });
+  });
+})();
+</script>
 {{ end }}
