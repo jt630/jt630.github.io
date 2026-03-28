@@ -1,0 +1,72 @@
+name: Dinger Palooza — Check Results
+
+on:
+  # Run automatically Sunday nights (after games finish — 11 PM ET = 03:00 UTC Monday)
+  schedule:
+    - cron: "0 3 * * 1"
+
+  # Also run midweek to capture any Tuesday/Wednesday HR action
+  # Wednesday nights (11 PM ET = 03:00 UTC Thursday)
+  # - cron: "0 3 * * 4"
+
+  # Manual trigger — useful any day of the week
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "Week number (e.g. 1). Leave blank to auto-detect."
+        required: false
+        default: ""
+      no_standings_update:
+        description: "Dry run — skip updating standings.json"
+        required: false
+        default: "false"
+        type: boolean
+
+jobs:
+  check-results:
+    name: Check HR results
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/dinger_palooza/requirements.txt
+
+      - name: Run results checker
+        run: |
+          ARGS=""
+          if [ -n "${{ github.event.inputs.week }}" ]; then
+            ARGS="--week ${{ github.event.inputs.week }}"
+          fi
+          if [ "${{ github.event.inputs.no_standings_update }}" = "true" ]; then
+            ARGS="$ARGS --no-standings-update"
+          fi
+          python scripts/dinger_palooza/check_results.py $ARGS
+
+      - name: Commit results if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/dinger_palooza/results/ data/dinger_palooza/standings.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            WEEK=$(python -c "
+          import json, glob, os
+          files = sorted(glob.glob('data/dinger_palooza/results/week_*.json'))
+          if files:
+              d = json.load(open(files[-1]))
+              print(f\"week {d['week_number']} ({d['week_start']} → {d['week_end']})\" )
+          else:
+              print('unknown week')
+            ")
+            git commit -m "results: update $WEEK"
+            git push
+          fi

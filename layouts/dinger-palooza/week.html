@@ -1,0 +1,191 @@
+{{ define "main" }}
+{{ $week_num := .Params.week_number | default 1 }}
+{{ $week_key := printf "week_%02d" $week_num }}
+{{ $results  := index .Site.Data.dinger_palooza.results $week_key }}
+{{ $picks    := index .Site.Data.dinger_palooza.picks   $week_key }}
+
+<div class="dp-page">
+
+  <!-- ── Header ── -->
+  <div class="dp-header">
+    <div class="dp-title-row">
+      <h1 class="dp-title">DINGER PALOOZA</h1>
+      {{ if $results }}
+        {{ if eq $results.status "final" }}
+          <span class="dp-badge-new" style="background:#1a6;border-color:#1a6">FINAL</span>
+        {{ else }}
+          <span class="dp-badge-new blink">LIVE</span>
+        {{ end }}
+      {{ end }}
+    </div>
+    <p class="dp-subtitle">Week {{ $week_num }} Results</p>
+    {{ if $results }}
+    <div class="dp-meta-row">
+      <span class="dp-week-badge">
+        {{ $results.week_start }} &rarr; {{ $results.week_end }}
+      </span>
+      <span class="dp-updated">
+        Checked: {{ $results.checked_at | dateFormat "Jan 2, 3:04 PM UTC" }}
+      </span>
+    </div>
+    {{ else if $picks }}
+    <div class="dp-meta-row">
+      <span class="dp-week-badge">
+        {{ $picks.week_start }} &rarr; {{ $picks.week_end }}
+      </span>
+      <span class="dp-updated">Results pending — run check_results.py</span>
+    </div>
+    {{ end }}
+    <div class="dp-meta-row" style="gap:8px;margin-top:6px;">
+      <a href="/dinger-palooza/" class="dp-nav-link">Draft Board</a>
+      <span class="dp-nav-sep">·</span>
+      <a href="/dinger-palooza/leaderboard/" class="dp-nav-link">Leaderboard</a>
+      <span class="dp-nav-sep">·</span>
+      <span class="dp-nav-link dp-nav-active">Week {{ $week_num }}</span>
+    </div>
+  </div>
+
+  {{ if $results }}
+
+  <!-- ── Week scoreboard ── -->
+  <div class="dp-lb-wrap">
+    <table class="dp-lb-table">
+      <thead>
+        <tr>
+          <th class="dp-lb-rank">#</th>
+          <th class="dp-lb-name">Manager</th>
+          <th class="dp-lb-total">Pts</th>
+          <th class="dp-lb-wk">HRs</th>
+          <th class="dp-lb-wk">2X+</th>
+          <th class="dp-lb-wk">3R/GS</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $i, $m := $results.members }}
+        {{ $total_hrs := 0 }}
+        {{ $multi_hr  := 0 }}
+        {{ $bonus_hr  := 0 }}
+        {{ range $m.picks }}
+          {{ $total_hrs = add $total_hrs .hrs }}
+          {{ if .multi_hr_game }}{{ $multi_hr = add $multi_hr 1 }}{{ end }}
+          {{ if .has_3run_or_gs }}{{ $bonus_hr = add $bonus_hr 1 }}{{ end }}
+        {{ end }}
+        <tr class="dp-lb-row{{ if eq $i 0 }} dp-lb-row--leader{{ end }}">
+          <td class="dp-lb-rank">{{ add $i 1 }}</td>
+          <td class="dp-lb-name">{{ $m.name }}</td>
+          <td class="dp-lb-total"><strong>{{ $m.week_points }}</strong></td>
+          <td class="dp-lb-wk {{ if gt $total_hrs 0 }}dp-lb-wk--scored{{ end }}">{{ if gt $total_hrs 0 }}{{ $total_hrs }}{{ else }}&mdash;{{ end }}</td>
+          <td class="dp-lb-wk {{ if gt $multi_hr 0 }}dp-lb-wk--scored{{ end }}">{{ if gt $multi_hr 0 }}{{ $multi_hr }}{{ else }}&mdash;{{ end }}</td>
+          <td class="dp-lb-wk {{ if gt $bonus_hr 0 }}dp-lb-wk--scored{{ end }}">{{ if gt $bonus_hr 0 }}{{ $bonus_hr }}{{ else }}&mdash;{{ end }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Per-member pick breakdown ── -->
+  {{ range $results.members }}
+  {{ $member := . }}
+  <div class="dp-member-card">
+    <div class="dp-member-header">
+      <span class="dp-member-name">{{ .name }}</span>
+      <span class="dp-member-pts-badge">{{ .week_points }} pts</span>
+    </div>
+    <div class="dp-picks-table-wrap">
+      <table class="dp-picks-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th>Team</th>
+            <th>HRs</th>
+            <th>2X+</th>
+            <th>3R/GS</th>
+            <th>Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range .picks }}
+          {{ $scored := gt .points 0 }}
+          <tr class="{{ if $scored }}dp-pick-row--scored{{ else }}dp-pick-row--zero{{ end }}">
+            <td class="dp-pick-num">{{ if .draft_pick }}{{ .draft_pick }}{{ else }}—{{ end }}</td>
+            <td class="dp-pick-player">{{ .player }}</td>
+            <td class="dp-pick-team">{{ .team }}</td>
+            <td class="dp-pick-stat {{ if gt .hrs 0 }}dp-stat--hit{{ end }}">
+              {{ if gt .hrs 0 }}{{ .hrs }}{{ else }}&mdash;{{ end }}
+            </td>
+            <td class="dp-pick-stat {{ if .multi_hr_game }}dp-stat--hit{{ end }}">
+              {{ if .multi_hr_game }}✓{{ else }}&mdash;{{ end }}
+            </td>
+            <td class="dp-pick-stat {{ if .has_3run_or_gs }}dp-stat--bonus{{ end }}">
+              {{ if .has_3run_or_gs }}✓{{ else }}&mdash;{{ end }}
+            </td>
+            <td class="dp-pick-pts {{ if $scored }}dp-pts--scored{{ end }}">
+              {{ if $scored }}<strong>{{ .points }}</strong>{{ else }}0{{ end }}
+            </td>
+          </tr>
+          {{ if and $scored .hr_games }}
+          {{ range .hr_games }}
+          <tr class="dp-hr-detail-row">
+            <td></td>
+            <td colspan="6" class="dp-hr-detail">
+              <span class="dp-hr-date">{{ .date }}</span>
+              <span class="dp-hr-vs">vs {{ .opponent }}</span>
+              <span class="dp-hr-ha">({{ .home_away }})</span>
+              {{ range .hr_details }}
+              <span class="dp-hr-pill {{ if .is_3run_or_more }}dp-hr-pill--bonus{{ end }}">
+                {{ .rbi }}-run HR{{ if .inning }} (inn. {{ .inning }}){{ end }}
+              </span>
+              {{ end }}
+              <span class="dp-hr-game-pts">+{{ .game_points }}pt{{ if gt .game_points 1 }}s{{ end }}</span>
+            </td>
+          </tr>
+          {{ end }}
+          {{ end }}
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{ end }}
+
+  {{ else }}
+
+  <!-- ── No results yet ── -->
+  <div class="dp-no-results">
+    <p>Results not yet loaded. Run the results checker:</p>
+    <pre>python scripts/dinger_palooza/check_results.py --week {{ $week_num }}</pre>
+    <p>Or trigger the <strong>Dinger Palooza — Check Results</strong> GitHub Action.</p>
+
+    {{ if $picks }}
+    <h3 style="margin-top:2rem;color:var(--gold)">Week {{ $week_num }} Picks</h3>
+    {{ range $picks.members }}
+    <div class="dp-member-card">
+      <div class="dp-member-header">
+        <span class="dp-member-name">{{ .name }}</span>
+      </div>
+      <div class="dp-member-picks">
+        {{ range .picks }}
+        <div class="dp-pick-row">
+          {{ if .draft_pick }}<span class="dp-pick-num">#{{ .draft_pick }}</span>{{ end }}
+          <span class="dp-pick-name">{{ .player }}</span>
+          <span class="dp-pick-team">{{ .team }}</span>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+
+  {{ end }}
+
+  <div class="dp-footer-note">
+    <p>Results via <a href="https://statsapi.mlb.com" target="_blank" rel="noopener">MLB Stats API</a>
+      &middot; <a href="/dinger-palooza/leaderboard/">Season Leaderboard</a>
+      &middot; <a href="/dinger-palooza/">Draft Board</a>
+    </p>
+  </div>
+
+</div>
+{{ end }}
