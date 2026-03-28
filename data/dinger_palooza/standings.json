@@ -1,16 +1,79 @@
 {
   "season": 2026,
-  "last_updated": "2026-03-28T00:00:00Z",
+  "last_updated": "2026-03-28T03:44:05.586317+00:00",
   "total_weeks": 1,
   "members": [
-    { "name": "Wendy",  "total_points": 2, "rank": 1, "weekly_points": [2] },
-    { "name": "Ellie",  "total_points": 1, "rank": 2, "weekly_points": [1] },
-    { "name": "Jeremy", "total_points": 1, "rank": 2, "weekly_points": [1] },
-    { "name": "Cam",    "total_points": 0, "rank": 4, "weekly_points": [0] },
-    { "name": "Jeff",   "total_points": 0, "rank": 4, "weekly_points": [0] },
-    { "name": "Kayla",  "total_points": 0, "rank": 4, "weekly_points": [0] },
-    { "name": "Makeda", "total_points": 0, "rank": 4, "weekly_points": [0] },
-    { "name": "Mason",  "total_points": 0, "rank": 4, "weekly_points": [0] },
-    { "name": "Tyler",  "total_points": 0, "rank": 4, "weekly_points": [0] }
+    {
+      "name": "Wendy",
+      "total_points": 4,
+      "rank": 1,
+      "weekly_points": [
+        4
+      ]
+    },
+    {
+      "name": "Jeremy",
+      "total_points": 3,
+      "rank": 2,
+      "weekly_points": [
+        3
+      ]
+    },
+    {
+      "name": "Ellie",
+      "total_points": 2,
+      "rank": 3,
+      "weekly_points": [
+        2
+      ]
+    },
+    {
+      "name": "Mason",
+      "total_points": 2,
+      "rank": 3,
+      "weekly_points": [
+        2
+      ]
+    },
+    {
+      "name": "Cam",
+      "total_points": 0,
+      "rank": 5,
+      "weekly_points": [
+        0
+      ]
+    },
+    {
+      "name": "Jeff",
+      "total_points": 0,
+      "rank": 5,
+      "weekly_points": [
+        0
+      ]
+    },
+    {
+      "name": "Kayla",
+      "total_points": 0,
+      "rank": 5,
+      "weekly_points": [
+        0
+      ]
+    },
+    {
+      "name": "Makeda",
+      "total_points": 0,
+      "rank": 5,
+      "weekly_points": [
+        0
+      ]
+    },
+    {
+      "name": "Tyler",
+      "total_points": 0,
+      "rank": 5,
+      "weekly_points": [
+        0
+      ]
+    }
   ]
 }
