@@ -304,9 +304,83 @@
   line-height: 1.6;
 }
 
+/* PAYWALL HACKS */
+.hacks-section { margin-bottom: 72px; }
+
+.hacks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.hack-card {
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.hack-card:hover {
+  border-color: rgba(212,175,55,0.5);
+  border-left-color: var(--gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.hack-method {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 5px;
+}
+
+.hack-works-on {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  margin-bottom: 10px;
+}
+
+.hack-text {
+  font-size: 13px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+
+.hack-text code {
+  font-family: monospace;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 12px;
+  color: var(--gold-light, #F5D674);
+}
+
+.hack-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212,175,55,0.25);
+  padding-bottom: 1px;
+  transition: border-color 0.2s;
+}
+.hack-link:hover { border-color: var(--gold); }
+
 @media (max-width: 640px) {
   .pubs-grid { grid-template-columns: 1fr; }
   .tips-grid { grid-template-columns: 1fr; }
+  .hacks-grid { grid-template-columns: 1fr; }
 }
 
 /* ATTRIBUTION */
@@ -820,6 +894,65 @@
         <div class="tip-num">06</div>
         <div class="tip-title">Outrage is the product</div>
         <div class="tip-text">Anger, fear, and tribal validation keep you clicking, watching, sharing. When a story makes you feel that way, slow down. Ask whether the feeling is informing you or just engaging you.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PAYWALL HACKS ── -->
+  <section class="hacks-section">
+    <div class="section-header">Getting Past the Gate — Paywall Workarounds</div>
+    <div class="hacks-grid">
+
+      <div class="hack-card">
+        <div class="hack-method">Private / Incognito Window</div>
+        <div class="hack-works-on">Works on: NYT, WaPo, The Atlantic, Bloomberg, many others</div>
+        <div class="hack-text">Soft paywalls count your visits using browser cookies. Open the article URL in a fresh private window and the counter resets. Works every time on metered paywalls — stops working on hard paywalls that require a login.</div>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">12ft.io</div>
+        <div class="hack-works-on">Works on: Most JavaScript-based paywalls</div>
+        <div class="hack-text">Prepend <code>12ft.io/</code> to any URL. The service fetches the page impersonating Googlebot, which most outlets exempt from paywalls to preserve search rankings. Example: <code>12ft.io/https://wsj.com/article/…</code></div>
+        <a class="hack-link" href="https://12ft.io" target="_blank" rel="noopener">12ft.io →</a>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">archive.ph</div>
+        <div class="hack-works-on">Works on: NYT, WSJ, FT, most major paywalls</div>
+        <div class="hack-text">Paste any URL at <code>archive.ph</code> to read a cached copy. Also works as a sharing tool — send the archive link instead of the original so your friends don't hit the wall. Search <code>archive.ph/newest/[URL]</code> to find an existing archive instantly.</div>
+        <a class="hack-link" href="https://archive.ph" target="_blank" rel="noopener">archive.ph →</a>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">Search the Headline</div>
+        <div class="hack-works-on">Works on: Any outlet that wants Google traffic</div>
+        <div class="hack-text">Copy the exact article headline, paste it into Google, and click through from the results page. Many outlets whitelist traffic coming from search engines. If that fails, try clicking through from a Google News result for the same story.</div>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">Your Library Card</div>
+        <div class="hack-works-on">Works on: NYT, WSJ, WaPo, Economist, hundreds of local papers</div>
+        <div class="hack-text">The most powerful and completely free option. US public libraries give cardholders free access to major newspapers through <strong>Pressreader</strong>, <strong>Libby</strong>, or direct library portals. Check your library's website — most people have no idea this exists.</div>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">Reader Mode</div>
+        <div class="hack-works-on">Works on: Soft and many JavaScript paywalls</div>
+        <div class="hack-text">Safari and Firefox have a built-in Reader Mode (the icon in the address bar) that strips all the JavaScript noise including a lot of paywall enforcement. In Firefox you can force it with <code>about:reader?url=</code> prepended to the URL.</div>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">uBlock Origin</div>
+        <div class="hack-works-on">Works on: A long and growing list of outlets</div>
+        <div class="hack-text">The free browser extension has filter lists that block paywall scripts. After installing, add the <strong>Annoyances</strong> and community filter lists. It also blocks the cookie consent banners and the tracking that feeds behavioral ad targeting.</div>
+        <a class="hack-link" href="https://ublockorigin.com" target="_blank" rel="noopener">uBlock Origin →</a>
+      </div>
+
+      <div class="hack-card">
+        <div class="hack-method">Bypass Paywalls Clean</div>
+        <div class="hack-works-on">Works on: 200+ specific outlets</div>
+        <div class="hack-text">A browser extension built specifically for paywall bypass, more aggressive than uBlock. Not on the Chrome Web Store (Google removed it) — install from the developer's GitHub directly. Available for Firefox and Chromium browsers.</div>
       </div>
 
     </div>
