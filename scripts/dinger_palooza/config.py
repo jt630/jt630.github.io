@@ -166,8 +166,8 @@ OWM_API_KEY = os.environ.get("OWM_API_KEY", "")
 WEIGHTS = {
     "schedule": 0.35,   # games played this week
     "pitcher":  0.30,   # matchup favorability
-    "park":     0.20,   # stadium HR park factor
-    "weather":  0.15,   # HR-friendly conditions
+    "park":     0.25,   # stadium HR park factor
+    "weather":  0.10,   # HR-friendly conditions (rain/wind discount)
 }
 
 # ── League rules ─────────────────────────────────────────────────────────────
