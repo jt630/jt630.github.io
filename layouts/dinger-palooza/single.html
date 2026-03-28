@@ -2,6 +2,20 @@
 {{ $board := .Site.Data.dinger_palooza.draft_board }}
 {{ $rules := $board.rules }}
 
+{{/* ── Keeper lookup: player name → {holder, cost} ── */}}
+{{/* Scans all picks files to find currently-held players.         */}}
+{{/* upcoming_keep_cost = current weeks_held (cost if kept again). */}}
+{{ $ks := newScratch }}
+{{ range .Site.Data.dinger_palooza.picks }}
+  {{ range .members }}
+    {{ $holder := .name }}
+    {{ range .picks }}
+      {{ $cost := default 1 .weeks_held }}
+      {{ $ks.Set .player (dict "holder" $holder "cost" $cost) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 <div class="dp-page">
 
   <!-- ── Header ── -->
@@ -20,10 +34,9 @@
       </span>
     </div>
     <div class="dp-weights-row">
-      <span class="dp-weight-chip dp-weight-sched">Schedule {{ mul $board.weights.schedule 100 | int }}%</span>
+      <span class="dp-weight-chip dp-weight-sched">Schedule {{ mul $board.weights.schedule 100 | int }}% <span class="dp-weight-note">(rain-adjusted)</span></span>
       <span class="dp-weight-chip dp-weight-pitch">Pitchers {{ mul $board.weights.pitcher 100 | int }}%</span>
       <span class="dp-weight-chip dp-weight-park">Park Factor {{ mul $board.weights.park 100 | int }}%</span>
-      <span class="dp-weight-chip dp-weight-wx">Weather {{ mul $board.weights.weather 100 | int }}%</span>
     </div>
   </div>
 
@@ -110,6 +123,10 @@
           <span class="dp-player-name">{{ .name }}</span>
           <span class="dp-team-badge">{{ .team_abbr }}</span>
           {{ if .high_opportunity }}<span class="dp-hot-badge">HOT WEEK</span>{{ end }}
+          {{ $k := $ks.Get .name }}
+          {{ if $k }}
+          <span class="dp-keeper-badge">{{ $k.holder }} &middot; -{{ $k.cost }}pt to keep</span>
+          {{ end }}
         </div>
         <div class="dp-overall-score">
           <span class="dp-score-num">{{ .overall_score }}</span>
@@ -139,13 +156,6 @@
             <div class="dp-bar dp-bar--park" style="width:{{ .park_score }}%"></div>
           </div>
           <span class="dp-score-val">{{ .park_score }}</span>
-        </div>
-        <div class="dp-score-row">
-          <span class="dp-score-name">Weather</span>
-          <div class="dp-bar-track">
-            <div class="dp-bar dp-bar--wx" style="width:{{ .weather_score }}%"></div>
-          </div>
-          <span class="dp-score-val">{{ .weather_score }}</span>
         </div>
       </div>
 
