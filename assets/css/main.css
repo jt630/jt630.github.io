@@ -2157,6 +2157,21 @@ img {
 .dp-pick-team { color: #888; font-size: 0.75rem; min-width: 30px; }
 .dp-pick-proj { color: #555; font-size: 0.72rem; }
 
+/* ── Scoring history (leaderboard member cards) ── */
+.dp-scoring-history { padding: 0.4rem 0.5rem; }
+.dp-score-event {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+  padding: 0.4rem 0.5rem; font-size: 0.83rem; border-bottom: 1px solid #1a1a1a;
+}
+.dp-score-event:last-child { border-bottom: none; }
+.dp-score-event:nth-child(even) { background: #141414; }
+.dp-score-event-date   { color: #666; min-width: 44px; font-size: 0.75rem; }
+.dp-score-event-player { color: #ddd; font-weight: 600; flex: 1; min-width: 120px; }
+.dp-score-event-team   { color: #888; font-size: 0.75rem; min-width: 30px; }
+.dp-score-event-desc   { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.dp-score-event-pts    { color: var(--gold); font-weight: 700; margin-left: auto; white-space: nowrap; }
+.dp-no-score           { color: #444; font-size: 0.82rem; padding: 0.6rem 0.5rem; margin: 0; }
+
 /* ── Week results: picks detail table ── */
 .dp-picks-table-wrap { overflow-x: auto; }
 .dp-picks-table {

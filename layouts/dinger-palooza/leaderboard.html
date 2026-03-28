@@ -73,34 +73,49 @@
     </table>
   </div>
 
-  <!-- ── Weekly pick cards ── -->
+  <!-- ── Scoring history per member ── -->
   {{ range $standings.members }}
   {{ $member_name := .name }}
   {{ $member_pts  := .total_points }}
-
-  {{/* find this member's picks in week_01 */}}
-  {{ $week_picks := slice }}
-  {{ with $picks.week_01 }}
-    {{ range .members }}
-      {{ if eq .name $member_name }}
-        {{ $week_picks = .picks }}
-      {{ end }}
-    {{ end }}
-  {{ end }}
+  {{ $sc := newScratch }}
+  {{ $sc.Set "has_score" false }}
 
   <div class="dp-member-card">
     <div class="dp-member-header">
       <span class="dp-member-name">{{ $member_name }}</span>
       <span class="dp-member-pts-badge">{{ $member_pts }} pts</span>
     </div>
-    <div class="dp-member-picks">
-      {{ range $week_picks }}
-      <div class="dp-pick-row">
-        {{ if .draft_pick }}<span class="dp-pick-num">#{{ .draft_pick }}</span>{{ end }}
-        <span class="dp-pick-name">{{ .player }}</span>
-        <span class="dp-pick-team">{{ .team }}</span>
-        {{ if .proj_hr }}<span class="dp-pick-proj">{{ .proj_hr }} proj HR</span>{{ end }}
-      </div>
+    <div class="dp-scoring-history">
+      {{ range $wk_key, $wk := $.Site.Data.dinger_palooza.results }}
+        {{ range $wk.members }}
+          {{ if eq .name $member_name }}
+            {{ range .picks }}
+              {{ if gt .points 0 }}
+                {{ $sc.Set "has_score" true }}
+                {{ $player := .player }}
+                {{ $team   := .team }}
+                {{ range .hr_games }}
+                <div class="dp-score-event">
+                  <span class="dp-score-event-date">{{ .date | dateFormat "Jan 2" }}</span>
+                  <span class="dp-score-event-player">{{ $player }}</span>
+                  <span class="dp-score-event-team">{{ $team }}</span>
+                  <span class="dp-score-event-desc">
+                    {{ range .hr_details }}
+                    <span class="dp-hr-pill {{ if .is_3run_or_more }}dp-hr-pill--bonus{{ end }}">
+                      {{ .rbi }}-run HR{{ if .inning }} inn.{{ .inning }}{{ end }}
+                    </span>
+                    {{ end }}
+                  </span>
+                  <span class="dp-score-event-pts">+{{ .game_points }}pt{{ if gt .game_points 1 }}s{{ end }}</span>
+                </div>
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if not ($sc.Get "has_score") }}
+      <p class="dp-no-score">No dingers yet this season.</p>
       {{ end }}
     </div>
   </div>
