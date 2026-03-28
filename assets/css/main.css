@@ -2067,3 +2067,135 @@ img {
   font-size: 0.7rem; color: #aaa; max-height: 600px;
   overflow-y: auto; line-height: 1.5;
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DINGER PALOOZA — Leaderboard + Results pages
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Nav links between pages ── */
+.dp-nav-link {
+  color: #888; font-size: 0.8rem; text-decoration: none; letter-spacing: 0.05em;
+}
+.dp-nav-link:hover { color: var(--gold); }
+.dp-nav-active { color: var(--gold) !important; font-weight: bold; }
+.dp-nav-sep { color: #444; font-size: 0.8rem; }
+
+/* ── Park weight chip ── */
+.dp-weight-park { background: rgba(212,175,55,0.15); color: var(--gold); border: 1px solid var(--gold); }
+
+/* ── Leaderboard / standings table ── */
+.dp-lb-wrap {
+  overflow-x: auto;
+  margin: 0 0 2.5rem;
+}
+.dp-lb-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.dp-lb-table th {
+  text-align: center; padding: 0.5rem 0.7rem;
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #888; border-bottom: 1px solid #333;
+}
+.dp-lb-table th.dp-lb-name { text-align: left; }
+.dp-lb-row td {
+  padding: 0.55rem 0.7rem; border-bottom: 1px solid #1a1a1a;
+  text-align: center;
+}
+.dp-lb-row--leader td { background: rgba(212,175,55,0.05); }
+.dp-lb-row--leader td.dp-lb-name { color: var(--gold); }
+.dp-lb-rank  { width: 36px; color: #555; font-size: 0.85rem; }
+.dp-lb-crown { font-size: 1rem; }
+.dp-lb-name  { text-align: left !important; font-weight: 600; color: #ccc; }
+.dp-lb-total { font-size: 1rem; color: var(--pink); min-width: 50px; }
+.dp-lb-wk    { color: #555; font-size: 0.85rem; min-width: 42px; }
+.dp-lb-wk--scored { color: #fff; font-weight: 600; }
+
+/* ── Member card (leaderboard page picks list) ── */
+.dp-member-card {
+  background: #111; border: 1px solid #222;
+  border-radius: 6px; margin-bottom: 1.2rem; overflow: hidden;
+}
+.dp-member-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 1rem; background: #161616; border-bottom: 1px solid #222;
+}
+.dp-member-name {
+  font-weight: 700; font-size: 1rem; color: #fff; letter-spacing: 0.03em;
+}
+.dp-member-pts-badge {
+  background: rgba(255,45,138,0.15); color: var(--pink);
+  border: 1px solid var(--pink); border-radius: 20px;
+  padding: 2px 10px; font-size: 0.78rem; font-weight: 700;
+}
+
+/* ── Pick rows (leaderboard summary view) ── */
+.dp-member-picks { padding: 0.4rem 0.5rem; }
+.dp-pick-row {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.3rem 0.5rem; font-size: 0.85rem;
+}
+.dp-pick-row:nth-child(even) { background: #141414; }
+.dp-pick-num  { color: #555; min-width: 28px; font-size: 0.75rem; }
+.dp-pick-name { flex: 1; color: #ccc; }
+.dp-pick-team { color: #888; font-size: 0.75rem; min-width: 30px; }
+.dp-pick-proj { color: #555; font-size: 0.72rem; }
+
+/* ── Week results: picks detail table ── */
+.dp-picks-table-wrap { overflow-x: auto; }
+.dp-picks-table {
+  width: 100%; border-collapse: collapse; font-size: 0.85rem;
+}
+.dp-picks-table th {
+  padding: 0.4rem 0.6rem; text-align: center;
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #555; border-bottom: 1px solid #222;
+}
+.dp-picks-table th:nth-child(2) { text-align: left; }
+.dp-picks-table tbody tr td { padding: 0.45rem 0.6rem; text-align: center; }
+.dp-picks-table tbody tr td:nth-child(2) { text-align: left; }
+.dp-pick-row--scored td { background: rgba(212,175,55,0.04); }
+.dp-pick-row--zero  td { opacity: 0.5; }
+.dp-pick-player { color: #ccc; font-weight: 600; }
+.dp-pick-stat   { color: #555; }
+.dp-stat--hit   { color: var(--pink); font-weight: 700; }
+.dp-stat--bonus { color: var(--gold); font-weight: 700; }
+.dp-pick-pts    { color: #555; }
+.dp-pts--scored { color: var(--gold); font-size: 1rem; }
+
+/* ── HR detail sub-rows ── */
+.dp-hr-detail-row td { padding: 0.2rem 0.6rem 0.4rem; }
+.dp-hr-detail {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+  font-size: 0.78rem; color: #888;
+  background: #0e0e0e; border-left: 2px solid var(--gold);
+  padding: 0.3rem 0.8rem !important;
+}
+.dp-hr-date   { color: #666; }
+.dp-hr-vs     { color: #aaa; }
+.dp-hr-ha     { color: #555; font-size: 0.72rem; }
+.dp-hr-pill {
+  background: rgba(255,45,138,0.12); color: var(--pink);
+  border: 1px solid rgba(255,45,138,0.3);
+  border-radius: 12px; padding: 1px 8px;
+  font-size: 0.75rem; font-weight: 600;
+}
+.dp-hr-pill--bonus {
+  background: rgba(212,175,55,0.15); color: var(--gold);
+  border-color: rgba(212,175,55,0.4);
+}
+.dp-hr-game-pts { color: var(--gold); font-weight: 700; margin-left: auto; }
+
+/* ── No results placeholder ── */
+.dp-no-results {
+  background: #111; border: 1px dashed #333;
+  border-radius: 6px; padding: 2rem; text-align: center;
+  color: #666; margin-bottom: 2rem;
+}
+.dp-no-results pre {
+  background: #0a0a0a; border: 1px solid #222;
+  color: var(--gold); padding: 0.8rem 1.2rem;
+  font-size: 0.82rem; display: inline-block;
+  border-radius: 4px; margin: 1rem 0;
+}

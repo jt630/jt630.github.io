@@ -1,0 +1,257 @@
+week_number: 1
+week_start: "2026-03-23"
+week_end: "2026-04-05"
+note: "Opening two-week window — no draft on March 29"
+
+members:
+  - name: Cam
+    picks:
+      - player: "Brent Rooker"
+        team: "ATH"
+        team_id: 133
+        draft_pick: 9
+        proj_hr: 33
+      - player: "Julio Rodriguez"
+        team: "SEA"
+        team_id: 136
+        draft_pick: 15
+        proj_hr: 30
+      - player: "Gunnar Henderson"
+        team: "BAL"
+        team_id: 110
+        draft_pick: 44
+        proj_hr: 26
+      - player: "Cody Bellinger"
+        team: "NYY"
+        team_id: 147
+        draft_pick: 56
+        proj_hr: 24
+      - player: "Alex Bregman"
+        team: "CHC"
+        team_id: 112
+        draft_pick: 74
+        proj_hr: 22
+
+  - name: Ellie
+    picks:
+      - player: "Juan Soto"
+        team: "NYM"
+        team_id: 121
+        draft_pick: 5
+        proj_hr: 37
+      - player: "Munetaka Murakami"
+        team: "CWS"
+        team_id: 145
+        draft_pick: 21
+        proj_hr: 28
+      - player: "Fernando Tatis Jr"
+        team: "SD"
+        team_id: 135
+        draft_pick: 25
+        proj_hr: 28
+      - player: "Jake Burger"
+        team: "TEX"
+        team_id: 140
+        draft_pick: 49
+        proj_hr: 25
+      - player: "Jazz Chisholm Jr"
+        team: "NYY"
+        team_id: 147
+        draft_pick: 34
+        proj_hr: 27
+
+  - name: Jeff
+    picks:
+      - player: "Junior Caminero"
+        team: "TB"
+        team_id: 139
+        draft_pick: 6
+        proj_hr: 37
+      - player: "Vladimir Guerrero Jr"
+        team: "TOR"
+        team_id: 141
+        draft_pick: 18
+        proj_hr: 30
+      - player: "Corey Seager"
+        team: "TEX"
+        team_id: 140
+        draft_pick: 36
+        proj_hr: 27
+      - player: "Vinnie Pasquantino"
+        team: "KC"
+        team_id: 118
+        draft_pick: 37
+        proj_hr: 27
+      - player: "James Wood"
+        team: "WSH"
+        team_id: 120
+        draft_pick: 38
+        proj_hr: 26
+
+  - name: Jeremy
+    picks:
+      - player: "Kyle Schwarber"
+        team: "PHI"
+        team_id: 143
+        draft_pick: 3
+        proj_hr: 42
+      - player: "Yordan Alvarez"
+        team: "HOU"
+        team_id: 117
+        draft_pick: 16
+        proj_hr: 30
+      - player: "Giancarlo Stanton"
+        team: "NYY"
+        team_id: 147
+        draft_pick: 57
+        proj_hr: 24
+      - player: "Elly De La Cruz"
+        team: "CIN"
+        team_id: 113
+        draft_pick: 62
+        proj_hr: 24
+      - player: "Bryce Harper"
+        team: "PHI"
+        team_id: 143
+        draft_pick: 31
+        proj_hr: 27
+
+  - name: Kayla
+    picks:
+      - player: "Pete Alonso"
+        team: "BAL"
+        team_id: 110
+        draft_pick: 8
+        proj_hr: 36
+      - player: "Eugenio Suarez"
+        team: "CIN"
+        team_id: 113
+        draft_pick: 10
+        proj_hr: 33
+      - player: "Teoscar Hernandez"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 39
+        proj_hr: 26
+      - player: "Pete Crow-Armstrong"
+        team: "CHC"
+        team_id: 112
+        draft_pick: 59
+        proj_hr: 24
+      - player: "Tyler O'Neill"
+        team: "BOS"
+        team_id: 111
+        draft_pick: null
+        proj_hr: null
+
+  - name: Makeda
+    picks:
+      - player: "Nick Kurtz"
+        team: "ATH"
+        team_id: 133
+        draft_pick: 7
+        proj_hr: 37
+      - player: "Ronald Acuna Jr"
+        team: "ATL"
+        team_id: 144
+        draft_pick: 13
+        proj_hr: 31
+      - player: "Austin Riley"
+        team: "ATL"
+        team_id: 144
+        draft_pick: 24
+        proj_hr: 28
+      - player: "Jose Ramirez"
+        team: "CLE"
+        team_id: 114
+        draft_pick: 26
+        proj_hr: 28
+      - player: "George Springer"
+        team: "TOR"
+        team_id: 141
+        draft_pick: 46
+        proj_hr: 25
+
+  - name: Mason
+    picks:
+      - player: "Aaron Judge"
+        team: "NYY"
+        team_id: 147
+        draft_pick: 2
+        proj_hr: 46
+      - player: "Bobby Witt Jr"
+        team: "KC"
+        team_id: 118
+        draft_pick: 19
+        proj_hr: 29
+      - player: "Hunter Goodman"
+        team: "COL"
+        team_id: 115
+        draft_pick: 22
+        proj_hr: 28
+      - player: "Ketel Marte"
+        team: "ARI"
+        team_id: 109
+        draft_pick: 28
+        proj_hr: 27
+      - player: "Manny Machado"
+        team: "SD"
+        team_id: 135
+        draft_pick: 29
+        proj_hr: 27
+
+  - name: Tyler
+    picks:
+      - player: "Cal Raleigh"
+        team: "SEA"
+        team_id: 136
+        draft_pick: 4
+        proj_hr: 40
+      - player: "Matt Olson"
+        team: "ATL"
+        team_id: 144
+        draft_pick: 14
+        proj_hr: 30
+      - player: "Byron Buxton"
+        team: "MIN"
+        team_id: 142
+        draft_pick: 23
+        proj_hr: 28
+      - player: "Corbin Carroll"
+        team: "ARI"
+        team_id: 109
+        draft_pick: 42
+        proj_hr: 26
+      - player: "Freddie Freeman"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 63
+        proj_hr: 23
+
+  - name: Wendy
+    picks:
+      - player: "Shohei Ohtani"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 1
+        proj_hr: 47
+      - player: "Kyle Tucker"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 17
+        proj_hr: 30
+      - player: "Michael Busch"
+        team: "CHC"
+        team_id: 112
+        draft_pick: 33
+        proj_hr: 27
+      - player: "Andy Pages"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 61
+        proj_hr: 24
+      - player: "Mookie Betts"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 76
+        proj_hr: 22

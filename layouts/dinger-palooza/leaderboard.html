@@ -1,0 +1,112 @@
+{{ define "main" }}
+{{ $standings := .Site.Data.dinger_palooza.standings }}
+{{ $picks     := .Site.Data.dinger_palooza.picks }}
+
+<div class="dp-page">
+
+  <!-- ── Header ── -->
+  <div class="dp-header">
+    <div class="dp-title-row">
+      <h1 class="dp-title">DINGER PALOOZA</h1>
+      <span class="dp-badge-new blink">2026</span>
+    </div>
+    <p class="dp-subtitle">Season Leaderboard</p>
+    <div class="dp-meta-row">
+      <span class="dp-week-badge">
+        {{ $standings.total_weeks }} week{{ if gt $standings.total_weeks 1 }}s{{ end }} played
+      </span>
+      <span class="dp-updated">
+        Updated: {{ $standings.last_updated | dateFormat "Jan 2, 3:04 PM UTC" }}
+      </span>
+    </div>
+    <div class="dp-meta-row" style="gap:8px;margin-top:6px;">
+      <a href="/dinger-palooza/" class="dp-nav-link">Draft Board</a>
+      <span class="dp-nav-sep">·</span>
+      <span class="dp-nav-link dp-nav-active">Leaderboard</span>
+      <span class="dp-nav-sep">·</span>
+      <a href="/dinger-palooza/weeks/week-01/" class="dp-nav-link">Week 1</a>
+    </div>
+  </div>
+
+  <!-- ── Standings table ── -->
+  <div class="dp-lb-wrap">
+    <table class="dp-lb-table">
+      <thead>
+        <tr>
+          <th class="dp-lb-rank">#</th>
+          <th class="dp-lb-name">Manager</th>
+          <th class="dp-lb-total">Total</th>
+          {{ range $i, $_ := (index $standings.members 0).weekly_points }}
+          <th class="dp-lb-wk">Wk {{ add $i 1 }}</th>
+          {{ end }}
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $standings.members }}
+        {{ $isTop := eq .rank 1 }}
+        <tr class="dp-lb-row{{ if $isTop }} dp-lb-row--leader{{ end }}">
+          <td class="dp-lb-rank">
+            {{ if $isTop }}
+              <span class="dp-lb-crown">👑</span>
+            {{ else }}
+              {{ .rank }}
+            {{ end }}
+          </td>
+          <td class="dp-lb-name">
+            {{ .name }}
+          </td>
+          <td class="dp-lb-total">
+            <strong>{{ .total_points }}</strong>
+          </td>
+          {{ range .weekly_points }}
+          <td class="dp-lb-wk {{ if gt . 0 }}dp-lb-wk--scored{{ end }}">
+            {{ if gt . 0 }}{{ . }}{{ else }}&mdash;{{ end }}
+          </td>
+          {{ end }}
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Weekly pick cards ── -->
+  {{ range $standings.members }}
+  {{ $member_name := .name }}
+  {{ $member_pts  := .total_points }}
+
+  {{/* find this member's picks in week_01 */}}
+  {{ $week_picks := slice }}
+  {{ with $picks.week_01 }}
+    {{ range .members }}
+      {{ if eq .name $member_name }}
+        {{ $week_picks = .picks }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  <div class="dp-member-card">
+    <div class="dp-member-header">
+      <span class="dp-member-name">{{ $member_name }}</span>
+      <span class="dp-member-pts-badge">{{ $member_pts }} pts</span>
+    </div>
+    <div class="dp-member-picks">
+      {{ range $week_picks }}
+      <div class="dp-pick-row">
+        {{ if .draft_pick }}<span class="dp-pick-num">#{{ .draft_pick }}</span>{{ end }}
+        <span class="dp-pick-name">{{ .player }}</span>
+        <span class="dp-pick-team">{{ .team }}</span>
+        {{ if .proj_hr }}<span class="dp-pick-proj">{{ .proj_hr }} proj HR</span>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <div class="dp-footer-note">
+    <p>Results updated automatically via GitHub Actions &middot;
+      <a href="/dinger-palooza/">Draft Board</a>
+    </p>
+  </div>
+
+</div>
+{{ end }}
