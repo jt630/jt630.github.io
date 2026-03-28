@@ -26,6 +26,8 @@ jobs:
   check-results:
     name: Check HR results
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo
