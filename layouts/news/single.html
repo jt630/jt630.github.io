@@ -308,6 +308,148 @@
   .pubs-grid { grid-template-columns: 1fr; }
   .tips-grid { grid-template-columns: 1fr; }
 }
+
+/* ATTRIBUTION */
+.news-attribution {
+  font-size: 11px;
+  color: var(--white-faint);
+  margin: 12px 0 0;
+  letter-spacing: 0.1em;
+  font-style: italic;
+}
+
+/* RSS FEED */
+.feed-section { margin-bottom: 72px; }
+
+.feed-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.feed-filter-btn {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: var(--white-dim);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.feed-filter-btn:hover,
+.feed-filter-btn.active {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #fff;
+}
+
+.feed-status {
+  font-size: 11px;
+  color: var(--white-faint);
+  margin-left: auto;
+  font-style: italic;
+}
+
+.feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feed-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: start;
+  padding: 14px 16px;
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.feed-item:hover {
+  border-color: rgba(255,255,255,0.14);
+  background: var(--black-elevated);
+}
+
+.feed-source-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 68px;
+}
+
+.feed-source-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.feed-source-name {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.feed-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.4;
+}
+
+.feed-desc {
+  font-size: 12px;
+  color: var(--white-faint);
+  line-height: 1.5;
+  margin-top: 3px;
+}
+
+.feed-date {
+  font-size: 10px;
+  color: var(--white-faint);
+  white-space: nowrap;
+  margin-top: 3px;
+  text-align: right;
+}
+
+.feed-loading {
+  text-align: center;
+  padding: 48px;
+  color: var(--white-faint);
+  font-size: 13px;
+  font-style: italic;
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+}
+
+.feed-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--white-faint);
+  font-size: 13px;
+  font-style: italic;
+}
+
+@media (max-width: 500px) {
+  .feed-item { grid-template-columns: auto 1fr; }
+  .feed-date { display: none; }
+}
 </style>
 {{ end }}
 
@@ -319,6 +461,7 @@
     <p class="news-eyebrow">Almond Farm / Media Intelligence</p>
     <h1 class="news-masthead">NEWS</h1>
     <p class="news-credo">Every outlet has an angle. Every owner has interests. Here is the map — read accordingly.</p>
+    <p class="news-attribution">Source context written by Claude Sonnet · March 2026</p>
   </div>
 
   <!-- ── BIAS CHART ── -->
@@ -682,5 +825,133 @@
     </div>
   </section>
 
+  <!-- ── LIVE RSS FEED ── -->
+  <section class="feed-section">
+    <div class="section-header">Latest Headlines — Live Feed</div>
+    <div class="feed-controls">
+      <button class="feed-filter-btn active" data-filter="all">All Sources</button>
+      <button class="feed-filter-btn" data-filter="left">Left</button>
+      <button class="feed-filter-btn" data-filter="center">Center</button>
+      <button class="feed-filter-btn" data-filter="right">Right</button>
+      <span class="feed-status" id="feed-status">Loading feeds…</span>
+    </div>
+    <div id="feed-list" class="feed-list">
+      <div class="feed-loading">Fetching headlines from across the spectrum…</div>
+    </div>
+  </section>
+
 </div>
+
+<script>
+(function() {
+  var SOURCES = [
+    { name: 'BBC',        url: 'https://feeds.bbci.co.uk/news/world/rss.xml',                lean: 'center-left',  dot: '#7DD3FC', group: 'left'   },
+    { name: 'NPR',        url: 'https://feeds.npr.org/1001/rss.xml',                         lean: 'center-left',  dot: '#7DD3FC', group: 'left'   },
+    { name: 'ProPublica', url: 'https://www.propublica.org/feeds/propublica/main',            lean: 'left',         dot: '#3B82F6', group: 'left'   },
+    { name: 'Intercept',  url: 'https://theintercept.com/feed/?rss',                         lean: 'far-left',     dot: '#2563EB', group: 'left'   },
+    { name: 'AP',         url: 'https://feeds.apnews.com/rss/apf-topnews',                   lean: 'center',       dot: '#9CA3AF', group: 'center' },
+    { name: 'Reuters',    url: 'https://feeds.reuters.com/reuters/topNews',                  lean: 'center',       dot: '#9CA3AF', group: 'center' },
+    { name: 'WSJ',        url: 'https://feeds.a.dj.com/rss/RSSWorldNews.xml',               lean: 'center-right', dot: '#FDBA74', group: 'right'  },
+    { name: 'Fox News',   url: 'https://moxie.foxnews.com/google-publisher/latest.xml',      lean: 'right',        dot: '#EF4444', group: 'right'  },
+    { name: 'Breitbart',  url: 'https://feeds.feedburner.com/breitbart',                     lean: 'far-right',    dot: '#7F1D1D', group: 'right'  }
+  ];
+
+  var allItems = [];
+  var currentFilter = 'all';
+
+  function timeAgo(dateStr) {
+    var d = new Date(dateStr);
+    if (isNaN(d)) return '';
+    var diff = Math.floor((Date.now() - d) / 60000);
+    if (diff < 1)   return 'just now';
+    if (diff < 60)  return diff + 'm ago';
+    if (diff < 1440) return Math.floor(diff / 60) + 'h ago';
+    return Math.floor(diff / 1440) + 'd ago';
+  }
+
+  function stripHtml(str) {
+    return str ? str.replace(/<[^>]+>/g, '').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").trim() : '';
+  }
+
+  function renderFeed() {
+    var list = document.getElementById('feed-list');
+    var filtered = currentFilter === 'all'
+      ? allItems
+      : allItems.filter(function(item) { return item.source.group === currentFilter; });
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<div class="feed-empty">No headlines to show.</div>';
+      return;
+    }
+
+    list.innerHTML = filtered.slice(0, 60).map(function(item) {
+      var desc = item.desc ? item.desc.slice(0, 110) + (item.desc.length > 110 ? '…' : '') : '';
+      return '<a class="feed-item" href="' + item.url + '" target="_blank" rel="noopener">' +
+        '<div class="feed-source-col">' +
+          '<div class="feed-source-dot" style="background:' + item.source.dot + '"></div>' +
+          '<span class="feed-source-name">' + item.source.name + '</span>' +
+        '</div>' +
+        '<div>' +
+          '<div class="feed-title">' + item.title + '</div>' +
+          (desc ? '<div class="feed-desc">' + desc + '</div>' : '') +
+        '</div>' +
+        '<div class="feed-date">' + timeAgo(item.date) + '</div>' +
+      '</a>';
+    }).join('');
+  }
+
+  function fetchFeed(source) {
+    var api = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(source.url) + '&count=8';
+    return fetch(api)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.status !== 'ok' || !data.items) return [];
+        return data.items.map(function(item) {
+          return {
+            title:  stripHtml(item.title),
+            url:    item.link,
+            desc:   stripHtml(item.description),
+            date:   item.pubDate,
+            source: source
+          };
+        });
+      })
+      .catch(function() { return []; });
+  }
+
+  // Fetch all feeds in parallel
+  Promise.allSettled(SOURCES.map(fetchFeed)).then(function(results) {
+    results.forEach(function(r) {
+      if (r.status === 'fulfilled') {
+        allItems = allItems.concat(r.value);
+      }
+    });
+
+    // Sort newest first
+    allItems.sort(function(a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    var loaded = allItems.length;
+    var status = document.getElementById('feed-status');
+    if (loaded === 0) {
+      status.textContent = 'Could not load feeds.';
+      document.getElementById('feed-list').innerHTML = '<div class="feed-empty">Feeds unavailable — try visiting the outlets directly.</div>';
+    } else {
+      status.textContent = loaded + ' headlines loaded';
+      renderFeed();
+    }
+  });
+
+  // Filter buttons
+  document.querySelectorAll('.feed-filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.feed-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      renderFeed();
+    });
+  });
+})();
+</script>
 {{ end }}
