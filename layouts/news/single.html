@@ -377,6 +377,61 @@
 }
 .hack-link:hover { border-color: var(--gold); }
 
+/* Featured hack card — full width, step list */
+.hack-card--featured {
+  grid-column: 1 / -1;
+  border-left-width: 4px;
+}
+
+.hack-steps {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hack-step {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.hack-step-num {
+  font-family: 'Metal Mania', cursive;
+  font-size: 22px;
+  color: var(--gold);
+  line-height: 1;
+  opacity: 0.7;
+  padding-top: 1px;
+}
+
+.hack-step-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.hack-step-text {
+  font-size: 13px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+
+.hack-note {
+  margin-top: 18px;
+  padding: 12px 14px;
+  background: rgba(212,175,55,0.06);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: var(--radius);
+  font-size: 12px;
+  color: var(--white-faint);
+  line-height: 1.6;
+}
+
 @media (max-width: 640px) {
   .pubs-grid { grid-template-columns: 1fr; }
   .tips-grid { grid-template-columns: 1fr; }
@@ -930,10 +985,55 @@
         <div class="hack-text">Copy the exact article headline, paste it into Google, and click through from the results page. Many outlets whitelist traffic coming from search engines. If that fails, try clicking through from a Google News result for the same story.</div>
       </div>
 
-      <div class="hack-card">
-        <div class="hack-method">Your Library Card</div>
-        <div class="hack-works-on">Works on: NYT, WSJ, WaPo, Economist, hundreds of local papers</div>
-        <div class="hack-text">The most powerful and completely free option. US public libraries give cardholders free access to major newspapers through <strong>Pressreader</strong>, <strong>Libby</strong>, or direct library portals. Check your library's website — most people have no idea this exists.</div>
+      <div class="hack-card hack-card--featured">
+        <div class="hack-method">Your Library Card 🏛️</div>
+        <div class="hack-works-on">Works on: NYT, WSJ, WaPo, The Economist, Bloomberg, hundreds of local &amp; international papers — completely free</div>
+        <div class="hack-text">This is the most powerful option on this page and almost nobody knows it exists. Your public library card unlocks free, unlimited, legal access to the world's best journalism. Here is how to use it.</div>
+
+        <div class="hack-steps">
+          <div class="hack-step">
+            <div class="hack-step-num">1</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Get a card (takes 5 minutes)</div>
+              <div class="hack-step-text">Walk into any branch with a photo ID and proof of address. Cards are free. Many library systems now issue instant digital cards online — search <code>[your city] library card online</code> and you can be set up before you finish reading this page.</div>
+            </div>
+          </div>
+
+          <div class="hack-step">
+            <div class="hack-step-num">2</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Go to your library's website → Digital Resources</div>
+              <div class="hack-step-text">Every library system has a slightly different portal. Look for a tab or link labeled <strong>Digital Resources</strong>, <strong>eResources</strong>, <strong>Research Databases</strong>, or <strong>Newspapers &amp; Magazines</strong>. This is where the good stuff lives.</div>
+            </div>
+          </div>
+
+          <div class="hack-step">
+            <div class="hack-step-num">3</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Find Pressreader — your all-you-can-read newsstand</div>
+              <div class="hack-step-text">Most libraries subscribe to <strong>Pressreader</strong>, which gives you unlimited access to 7,000+ newspapers and magazines from 120 countries — including the NYT, WaPo, The Guardian, USA Today, The Economist, and hundreds of international papers. Click the Pressreader link from your library's site, sign in with your library card number, and read everything.</div>
+            </div>
+          </div>
+
+          <div class="hack-step">
+            <div class="hack-step-num">4</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Check for direct NYT and WSJ access</div>
+              <div class="hack-step-text">Many libraries separately subscribe to the <strong>New York Times</strong> and <strong>Wall Street Journal</strong> at the full digital level. Look for them individually on the Digital Resources page — the NYT link will log you into a full nytimes.com account good for the duration of your session.</div>
+            </div>
+          </div>
+
+          <div class="hack-step">
+            <div class="hack-step-num">5</div>
+            <div class="hack-step-body">
+              <div class="hack-step-title">Install the Pressreader app</div>
+              <div class="hack-step-text">The Pressreader app (iOS + Android) lets you download editions for offline reading — useful for flights or commutes. Log in via <strong>Connect → Library</strong>, search for your library system, enter your card number. You now have a free global newsstand in your pocket.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hack-note">Your library card number is the barcode on the physical card. Your PIN is usually set when you sign up — if you never set one, try the last 4 digits of your phone number, or call the branch and they will reset it instantly.</div>
+        <a class="hack-link" href="https://www.pressreader.com" target="_blank" rel="noopener">Pressreader →</a>
       </div>
 
       <div class="hack-card">
