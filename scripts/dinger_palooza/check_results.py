@@ -25,6 +25,7 @@ import json
 import logging
 import os
 import sys
+import unicodedata
 import yaml
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -62,7 +63,22 @@ TEAM_ID_MAP = {
 # ── Player ID resolution ──────────────────────────────────────────────────────
 
 def _clean_name(s: str) -> str:
-    return s.lower().replace(".", "").replace(",", "").replace(" jr", "").replace(" sr", "").strip()
+    """Normalize a player name for fuzzy matching.
+    Strips accents, punctuation, suffixes like Jr/Sr, and lowercases.
+    """
+    # Decompose unicode → strip accent marks (combining characters)
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(c for c in s if unicodedata.category(c) != "Mn")
+    return (
+        s.lower()
+        .replace(".", "")
+        .replace(",", "")
+        .replace("'", "")
+        .replace("'", "")
+        .replace(" jr", "")
+        .replace(" sr", "")
+        .strip()
+    )
 
 
 async def resolve_player_id(
@@ -344,12 +360,20 @@ async def run_results_check(
     # Sort by points descending for display
     members_out.sort(key=lambda m: m["week_points"], reverse=True)
 
-    # Determine if week is complete (all games final)
+    # Determine if week is complete:
+    #   - If today <= week_end, games remain → in_progress
+    #   - If today > week_end AND no live games → final
+    today = date.today()
+    week_end_date = date.fromisoformat(str(week_end))
     any_live = any(
         r.get("games_live", 0) > 0
         for m in members_out
         for r in m["picks"]
     )
+    if today <= week_end_date or any_live:
+        status = "in_progress"
+    else:
+        status = "final"
 
     return {
         "week_number":   week_number,
@@ -357,7 +381,7 @@ async def run_results_check(
         "week_end":      str(week_end),
         "checked_at":    datetime.now(timezone.utc).isoformat(),
         "source":        "mlb_api",
-        "status":        "in_progress" if any_live else "final",
+        "status":        status,
         "members":       members_out,
     }
 

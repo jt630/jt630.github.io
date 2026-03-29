@@ -1,13 +1,10 @@
 name: Dinger Palooza — Check Results
 
 on:
-  # Run automatically Sunday nights (after games finish — 11 PM ET = 03:00 UTC Monday)
+  # Run daily at 8 AM UTC (4 AM ET) — after all games finish for the day.
+  # Results accumulate throughout the week; daily runs keep the page fresh.
   schedule:
-    - cron: "0 3 * * 1"
-
-  # Also run midweek to capture any Tuesday/Wednesday HR action
-  # Wednesday nights (11 PM ET = 03:00 UTC Thursday)
-  # - cron: "0 3 * * 4"
+    - cron: "0 8 * * *"
 
   # Manual trigger — useful any day of the week
   workflow_dispatch:
