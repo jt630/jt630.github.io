@@ -25,7 +25,8 @@
         {{ $results.week_start }} &rarr; {{ $results.week_end }}
       </span>
       <span class="dp-updated">
-        Checked: {{ $results.checked_at | dateFormat "Jan 2, 3:04 PM UTC" }}
+        Last updated: {{ $results.checked_at | dateFormat "Mon Jan 2, 3:04 PM" }} UTC
+        {{ if eq $results.status "in_progress" }}&middot; <em>Updates daily</em>{{ end }}
       </span>
     </div>
     {{ else if $picks }}
@@ -33,7 +34,7 @@
       <span class="dp-week-badge">
         {{ $picks.week_start }} &rarr; {{ $picks.week_end }}
       </span>
-      <span class="dp-updated">Results pending — run check_results.py</span>
+      <span class="dp-updated">Results pending &mdash; updates begin once games start</span>
     </div>
     {{ end }}
     <div class="dp-meta-row" style="gap:8px;margin-top:6px;">
