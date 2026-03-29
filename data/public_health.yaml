@@ -10,23 +10,76 @@ meta:
     ai_backend: "Claude API (claude-sonnet-4-20250514)"
     ui: "Streamlit"
 
+flagship:
+  title: "The Unlikely Correlations Engine"
+  subtitle: "Finding the signals humans wouldn't think to look for"
+  origin_story: >
+    Scientists noticed that Parkinson's disease rates were unusually high
+    near golf courses. Rather than explaining it away as coincidence, they
+    dug deeper. The correlation wasn't the golf — it was the pesticides
+    sprayed on the courses. Families in premium homes bordering manicured
+    fairways were being slowly poisoned. The connection was hiding in plain
+    sight, across datasets that nobody thought to combine.
+  vision: >
+    What if we could systematically hunt for connections like this? Not just
+    geographic overlaps, but across every dimension — where people live,
+    what they do for work, what's in their water, what industries surround
+    them. Then mine decades of scientific literature to see what correlations
+    have already been found but buried in obscure journals. And when we find
+    a signal, outline the study that could prove causation and actually help
+    people.
+  phases:
+    - name: "Correlation Layer"
+      description: "Cross-reference health outcomes with geographic, occupational, environmental, and lifestyle data to surface statistically suspicious overlaps."
+      data_sources:
+        - "CDC Wonder — disease prevalence by county"
+        - "EPA — pesticide use maps, toxic release inventory"
+        - "USGS — land use and water quality datasets"
+        - "NIOSH — occupational health outcomes"
+        - "BLS — occupation by geography"
+        - "Census — demographic and socioeconomic data"
+    - name: "Literature Mining"
+      description: "Use AI to search and synthesize decades of published research — surfacing known correlations, buried findings, and contradictions across studies that most humans would never read side by side."
+      data_sources:
+        - "PubMed / OpenAlex — academic literature APIs"
+        - "FDA FAERS — adverse event reports"
+        - "WHO Global Health Observatory"
+    - name: "Causation Investigation"
+      description: "When a correlation looks real, dig into confounders, dose-response relationships, biological plausibility, and existing mechanistic research. Separate signal from noise."
+      data_sources:
+        - "Cross-study comparison and contradiction analysis"
+        - "Exposure pathway modeling"
+        - "Temporal and dose-response pattern analysis"
+    - name: "Study Design"
+      description: "For the most promising leads, generate study proposals — the cohort, the controls, the measurements, the timeline. Turn a statistical hunch into an actionable research plan that could save lives."
+      data_sources:
+        - "Existing study methodologies as templates"
+        - "NIH and WHO study design frameworks"
+  status: active
+
 projects:
   - id: 1
-    title: "Environmental Exposure Correlation Engine"
-    status: planned
-    icon: "🗺️"
+    title: "Unlikely Correlations Engine"
+    status: active
+    icon: "🔬"
+    flagship: true
     description: >
-      Cross-reference disease prevalence maps with land use data (farms,
-      golf courses, industrial sites) to surface suspicious geographic overlaps.
-      The Parkinson's/pesticide discovery is the north star for this tool.
+      The flagship project. Cross-reference health outcomes with geographic,
+      occupational, and environmental data to surface suspicious correlations.
+      Mine scientific literature for buried findings. Investigate causation.
+      Design studies that could prove it. Inspired by the Parkinson's/golf
+      course pesticide discovery.
     data_sources:
       - "CDC Wonder disease prevalence by county"
-      - "EPA pesticide use maps"
+      - "EPA pesticide use maps & toxic release inventory"
       - "USGS land use datasets"
+      - "PubMed / OpenAlex academic literature"
+      - "NIOSH occupational health data"
+      - "FDA FAERS adverse event reports"
     first_milestone: >
       Build a map that overlays Parkinson's disease rates with golf course
       density by US county and compute a correlation score.
-    teaches: "API calls, data joining, map visualization (folium or plotly)"
+    teaches: "API calls, data joining, map visualization, AI-powered literature search"
 
   - id: 2
     title: "Occupational Disease Pattern Miner"

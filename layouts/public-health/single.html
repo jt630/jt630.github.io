@@ -1,6 +1,7 @@
 {{ define "main" }}
 {{ $data := site.Data.public_health }}
 {{ $meta := $data.meta }}
+{{ $flagship := $data.flagship }}
 {{ $projects := $data.projects }}
 {{ $path := $data.learning_path }}
 
@@ -26,6 +27,45 @@
     </div>
   </div>
 
+  <!-- Flagship project hero -->
+  <div class="ph-flagship">
+    <div class="ph-flagship-badge">
+      <span class="ph-status ph-status-active">Active Project</span>
+    </div>
+    <h2 class="ph-flagship-title">{{ $flagship.title }}</h2>
+    <p class="ph-flagship-subtitle">{{ $flagship.subtitle }}</p>
+
+    <div class="ph-origin">
+      <span class="ph-origin-label">The Origin Story</span>
+      <p class="ph-origin-text">{{ $flagship.origin_story }}</p>
+    </div>
+
+    <div class="ph-vision">
+      <span class="ph-origin-label">The Vision</span>
+      <p class="ph-vision-text">{{ $flagship.vision }}</p>
+    </div>
+
+    <div class="ph-phases">
+      <span class="ph-origin-label">Four Phases</span>
+      <div class="ph-phases-grid">
+        {{ range $i, $phase := $flagship.phases }}
+        <div class="ph-phase">
+          <div class="ph-phase-header">
+            <span class="ph-phase-num">{{ add $i 1 }}</span>
+            <h4 class="ph-phase-name">{{ $phase.name }}</h4>
+          </div>
+          <p class="ph-phase-desc">{{ $phase.description }}</p>
+          <ul class="ph-sources ph-phase-sources">
+            {{ range $phase.data_sources }}
+            <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
   <!-- Learning path -->
   <div class="ph-path">
     <h2 class="ph-section-title">Learning Path</h2>
@@ -45,7 +85,7 @@
     <h2 class="ph-section-title">The 10 Projects</h2>
 
     {{ range $projects }}
-    <div class="ph-card" id="project-{{ .id }}">
+    <div class="ph-card{{ if .flagship }} ph-card-flagship{{ end }}" id="project-{{ .id }}">
       <div class="ph-card-header">
         <span class="ph-card-icon">{{ .icon }}</span>
         <div class="ph-card-title-wrap">
@@ -165,6 +205,137 @@
   border: 1px solid rgba(45, 138, 255, 0.3);
   padding: 3px 10px;
   border-radius: 3px;
+}
+
+/* Flagship project hero */
+.ph-flagship {
+  background: var(--black-card);
+  border: 2px solid rgba(45, 138, 255, 0.3);
+  padding: 2.5rem 2.5rem 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  box-shadow: 0 0 40px rgba(45, 138, 255, 0.08), inset 0 1px 0 rgba(45, 138, 255, 0.1);
+}
+
+.ph-flagship-badge {
+  margin-bottom: 1rem;
+}
+
+.ph-flagship-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+}
+
+.ph-flagship-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  color: #2D8AFF;
+  margin: 0 0 2rem;
+  font-style: italic;
+}
+
+.ph-origin {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ph-origin-label {
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #2D8AFF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+}
+
+.ph-origin-text {
+  font-size: 1rem;
+  color: var(--white-dim);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.ph-vision {
+  margin-bottom: 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ph-vision-text {
+  font-size: 0.95rem;
+  color: var(--white-dim);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.ph-phases-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.ph-phase {
+  background: rgba(45, 138, 255, 0.04);
+  border: 1px solid rgba(45, 138, 255, 0.12);
+  padding: 1.25rem;
+  transition: border-color 0.3s;
+}
+.ph-phase:hover {
+  border-color: rgba(45, 138, 255, 0.35);
+}
+
+.ph-phase-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.ph-phase-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #2D8AFF;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.ph-phase-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  color: var(--white);
+  margin: 0;
+  font-weight: 700;
+}
+
+.ph-phase-desc {
+  font-size: 0.82rem;
+  color: var(--white-dim);
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+
+.ph-phase-sources li {
+  font-size: 0.72rem;
+}
+
+/* Active flagship card in project list */
+.ph-card-flagship {
+  border-color: rgba(45, 138, 255, 0.3);
+  box-shadow: 0 0 20px rgba(45, 138, 255, 0.08);
 }
 
 /* Section titles */
@@ -386,6 +557,9 @@
 /* Responsive */
 @media (max-width: 600px) {
   .ph-intro { padding: 1.25rem; }
+  .ph-flagship { padding: 1.5rem; }
+  .ph-flagship-title { font-size: 1.6rem; }
+  .ph-phases-grid { grid-template-columns: 1fr; }
   .ph-card { padding: 1.25rem; }
   .ph-card-header { flex-direction: column; gap: 0.5rem; }
   .ph-path-grid { grid-template-columns: 1fr 1fr; }
