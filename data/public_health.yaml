@@ -1,0 +1,183 @@
+meta:
+  name: "Public Health Unlikely Connections Explorer"
+  description: >
+    A suite of AI-powered research tools for a global health policy researcher
+    to surface hidden correlations, synthesize research, and track health
+    systems data. Inspired by discoveries like the Parkinson's/golf course
+    pesticide connection — finding signals humans wouldn't think to look for.
+  stack:
+    language: Python
+    ai_backend: "Claude API (claude-sonnet-4-20250514)"
+    ui: "Streamlit"
+
+projects:
+  - id: 1
+    title: "Environmental Exposure Correlation Engine"
+    status: planned
+    icon: "🗺️"
+    description: >
+      Cross-reference disease prevalence maps with land use data (farms,
+      golf courses, industrial sites) to surface suspicious geographic overlaps.
+      The Parkinson's/pesticide discovery is the north star for this tool.
+    data_sources:
+      - "CDC Wonder disease prevalence by county"
+      - "EPA pesticide use maps"
+      - "USGS land use datasets"
+    first_milestone: >
+      Build a map that overlays Parkinson's disease rates with golf course
+      density by US county and compute a correlation score.
+    teaches: "API calls, data joining, map visualization (folium or plotly)"
+
+  - id: 2
+    title: "Occupational Disease Pattern Miner"
+    status: planned
+    icon: "👷"
+    description: >
+      Analyze health outcome data broken down by occupation and surface
+      statistically unusual illness rates. What do flight attendants,
+      dry cleaners, and firefighters have in common health-wise?
+    data_sources:
+      - "NIOSH occupational health datasets"
+      - "BLS occupational data"
+    first_milestone: >
+      Generate a ranked table of occupations with the highest deviation
+      from baseline rates for a user-selected disease category.
+    teaches: "Statistical z-scores, pandas dataframes, table display in Streamlit"
+
+  - id: 3
+    title: "FDA Adverse Event Anomaly Detector"
+    status: planned
+    icon: "💊"
+    description: >
+      Scrape and analyze FDA FAERS reports to surface unexpected co-occurrences
+      between drugs and health conditions that aren't on the label yet.
+    data_sources:
+      - "FDA FAERS public dashboard API"
+    first_milestone: >
+      Let user input a drug name and return a ranked list of reported conditions
+      sorted by how unexpected they are relative to the drug's stated use.
+    teaches: "REST APIs, JSON parsing, Claude for interpretation of results"
+
+  - id: 4
+    title: "Policy Brief Summarizer"
+    status: planned
+    icon: "📋"
+    description: >
+      Paste in or upload a WHO report, academic paper, or donor document
+      and get a structured summary with key findings, recommendations,
+      evidence gaps, and suggested follow-up questions.
+    data_sources:
+      - "User-uploaded PDFs or pasted text"
+    first_milestone: >
+      Single-page Streamlit app with a text box — user pastes content,
+      Claude returns a clean structured summary.
+    teaches: "Claude API basics, prompt engineering, Streamlit UI"
+
+  - id: 5
+    title: "Multi-Document Research Q&A Tool"
+    status: planned
+    icon: "📚"
+    description: >
+      Upload a library of PDFs (studies, donor reports, policy briefs)
+      and ask natural language questions across all of them at once.
+      Essentially RAG for your own document library.
+    data_sources:
+      - "User-uploaded PDF library"
+    first_milestone: >
+      Upload 3 PDFs, ask one question, get a synthesized answer with
+      citations indicating which document the information came from.
+    teaches: "RAG concepts, vector embeddings, ChromaDB or similar"
+
+  - id: 6
+    title: "Cross-Study Contradiction Finder"
+    status: planned
+    icon: "⚖️"
+    description: >
+      Feed in multiple studies on the same health topic and have AI
+      flag where they disagree, why they might differ (methodology,
+      population, funding source), and what the weight of evidence suggests.
+    data_sources:
+      - "User-uploaded PDFs or PubMed IDs"
+    first_milestone: >
+      Input two paper abstracts, get a structured comparison highlighting
+      agreements, contradictions, and methodological differences.
+    teaches: "Structured prompting, comparative analysis, Claude for reasoning"
+
+  - id: 7
+    title: "Health System Scorecard Dashboard"
+    status: planned
+    icon: "📊"
+    description: >
+      Pull live data from WHO and World Bank APIs to visualize and compare
+      countries across key health system indicators — UHC coverage index,
+      health spending per capita, out-of-pocket costs, workforce density.
+    data_sources:
+      - "WHO Global Health Observatory API"
+      - "World Bank Health Nutrition and Population API"
+    first_milestone: >
+      Select 3 countries and a set of indicators, generate a side-by-side
+      comparison dashboard with trend lines over time.
+    teaches: "Data APIs, plotly charts, Streamlit layout and interactivity"
+
+  - id: 8
+    title: "Global Health Funding Landscape Tracker"
+    status: planned
+    icon: "💰"
+    description: >
+      Monitor and summarize what major donors (Gates Foundation, USAID,
+      Gavi, Wellcome Trust) are currently funding to help identify gaps,
+      trends, and alignment opportunities.
+    data_sources:
+      - "IATI (International Aid Transparency Initiative) open data"
+      - "Gates Foundation grant database"
+    first_milestone: >
+      Filter grants by disease area and year, generate a summary of
+      funding trends with Claude identifying apparent gaps.
+    teaches: "Data filtering, Claude for synthesis, download/export features"
+
+  - id: 9
+    title: "Stakeholder Interview Synthesizer"
+    status: planned
+    icon: "🎙️"
+    description: >
+      Upload transcripts from field interviews or stakeholder calls and
+      automatically extract key themes, tensions, notable quotes,
+      and action items — across dozens of conversations at once.
+    data_sources:
+      - "User-uploaded .txt or .docx transcripts"
+    first_milestone: >
+      Upload one transcript, extract themes and action items with Claude,
+      display results in a clean structured format.
+    teaches: "File handling, prompt engineering, structured JSON outputs"
+
+  - id: 10
+    title: "Health Policy Diffusion Tracker"
+    status: planned
+    icon: "🌍"
+    description: >
+      Track how a specific health policy (sugar taxes, vaccine mandates,
+      tobacco plain packaging) has spread country to country over time
+      and use AI to surface what contextual factors seem to predict adoption.
+    data_sources:
+      - "WHO policy databases"
+      - "Academic literature via OpenAlex API"
+      - "World Bank governance indicators"
+    first_milestone: >
+      Map the adoption timeline of sugar taxes globally and generate
+      a hypothesis about what economic or political factors correlate
+      with early adoption.
+    teaches: "Timeline visualization, multi-source data joins, AI hypothesis generation"
+
+learning_path:
+  - week: 1
+    focus: "Claude API basics + Streamlit"
+    projects: [4, 5]
+  - week: 2
+    focus: "Working with real data APIs"
+    projects: [7, 8]
+  - week: 3
+    focus: "Correlation and mapping tools"
+    projects: [1, 2]
+  - week: 4
+    focus: "Advanced RAG and multi-source analysis"
+    projects: [3, 6, 9, 10]

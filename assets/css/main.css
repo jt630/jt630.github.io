@@ -319,6 +319,7 @@ img {
 .section-card.body    { border-top: 3px solid var(--gold-light); }
 .section-card.gadgets  { border-top: 3px solid var(--pink-light); }
 .section-card.markets  { border-top: 3px solid var(--gold); }
+.section-card.public-health { border-top: 3px solid #2D8AFF; }
 
 /* ---- RECENT POSTS (homepage) ---- */
 .recent-section {
