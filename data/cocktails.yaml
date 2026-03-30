@@ -1,0 +1,169 @@
+- name: Margarita
+  glass: Cocktail glass
+  category: Ordinary Drink
+  instructions: Rub the rim of the glass with the lime slice to make the salt stick to
+    it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt
+    should present to the lips of the imbiber and never mix into the cocktail. Shake
+    the other ingredients with ice, then carefully pour into the glass.
+  ingredients:
+  - Tequila
+  - Triple sec
+  - Lime juice
+  - Salt
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg
+- name: Mojito
+  glass: Highball glass
+  category: Cocktail
+  instructions: Muddle mint leaves with sugar and lime juice. Add a splash of soda water
+    and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish
+    and serve with straw.
+  ingredients:
+  - Light rum
+  - Lime
+  - Sugar
+  - Mint
+  - Soda water
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/3z6xdi1589574603.jpg
+- name: Old Fashioned
+  glass: Old-fashioned glass
+  category: Cocktail
+  instructions: Place sugar cube in old fashioned glass and saturate with bitters, add
+    a dash of plain water. Muddle until dissolved. Fill the glass with ice cubes and
+    add whiskey. Garnish with orange twist, and a cocktail cherry.
+  ingredients:
+  - Bourbon
+  - Angostura bitters
+  - Sugar
+  - Water
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg
+- name: Negroni
+  glass: Old-fashioned glass
+  category: Cocktail
+  instructions: Stir into glass over ice, garnish and serve. If the Negroni is made
+    in batch, stir ingredients together and store in a bottle in the refrigerator.
+  ingredients:
+  - Gin
+  - Campari
+  - Sweet Vermouth
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg
+- name: Daiquiri
+  glass: Cocktail glass
+  category: Ordinary Drink
+  instructions: Pour all ingredients into shaker with ice cubes. Shake well. Strain
+    in chilled cocktail glass.
+  ingredients:
+  - Light rum
+  - Lime juice
+  - Sugar
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg
+- name: Manhattan
+  glass: Cocktail glass
+  category: Cocktail
+  instructions: Stirred over ice, strained into a chilled glass, garnished, and served
+    up.
+  ingredients:
+  - Rye whiskey
+  - Sweet Vermouth
+  - Angostura bitters
+  - Maraschino Cherry
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/reAntoine1643675547.jpg
+- name: Cosmopolitan
+  glass: Cocktail glass
+  category: Cocktail
+  instructions: Combine all ingredients in a cocktail shaker and shake well. Strain
+    into a martini glass. Garnish with lime wedge.
+  ingredients:
+  - Vodka
+  - Triple sec
+  - Cranberry juice
+  - Lime juice
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/kpsajh1504368362.jpg
+- name: Espresso Martini
+  glass: Cocktail glass
+  category: Cocktail
+  instructions: Shake all ingredients with ice and strain into a chilled cocktail glass.
+    Garnish with coffee beans.
+  ingredients:
+  - Vodka
+  - Coffee liqueur
+  - Espresso
+  - Sugar syrup
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/n0sx531504372951.jpg
+- name: Aperol Spritz
+  glass: Wine Glass
+  category: Cocktail
+  instructions: Build into a large wine glass filled with ice. Add Aperol, then prosecco,
+    then a splash of soda. Garnish with an orange slice.
+  ingredients:
+  - Aperol
+  - Prosecco
+  - Soda water
+  - Orange slice
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/iloasq1587661831.jpg
+- name: Tom Collins
+  glass: Collins glass
+  category: Ordinary Drink
+  instructions: In a shaker half-filled with ice cubes, combine the gin, lemon juice,
+    and sugar syrup. Shake well. Strain into a collins glass almost filled with ice cubes.
+    Add the club soda. Stir and garnish with the lemon slice and the maraschino cherry.
+  ingredients:
+  - Gin
+  - Lemon juice
+  - Sugar syrup
+  - Club soda
+  - Lemon
+  - Maraschino Cherry
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/Xx0UFl1474673074.jpg
+- name: Whiskey Sour
+  glass: Whiskey sour glass
+  category: Ordinary Drink
+  instructions: Shake with ice. Strain into chilled glass, garnish and serve. If the
+    cocktail is shaken rather than blended, strain into a chilled glass.
+  ingredients:
+  - Blended whiskey
+  - Lemon juice
+  - Powdered sugar
+  - Egg white
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg
+- name: Dark 'N' Stormy
+  glass: Highball glass
+  category: Cocktail
+  instructions: Fill a highball glass with ice. Add rum, then top with ginger beer.
+    Squeeze in the lime juice and stir gently. Garnish with a lime wedge.
+  ingredients:
+  - Dark rum
+  - Ginger beer
+  - Lime juice
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/m3cqe01589574997.jpg
+- name: Paloma
+  glass: Highball glass
+  category: Ordinary Drink
+  instructions: Salt the rim of the glass if desired. Build over ice, add tequila and
+    lime juice, then top with grapefruit soda. Garnish with a lime wedge.
+  ingredients:
+  - Tequila
+  - Lime juice
+  - Grapefruit soda
+  - Salt
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/tsxwqt1587602315.jpg
+- name: Boulevardier
+  glass: Old-fashioned glass
+  category: Cocktail
+  instructions: Stir all ingredients with ice, strain into a chilled glass over a large
+    ice cube, and garnish with an orange peel.
+  ingredients:
+  - Bourbon
+  - Campari
+  - Sweet Vermouth
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/gvpuws1480248348.jpg
+- name: Moscow Mule
+  glass: Copper Mug
+  category: Cocktail
+  instructions: Combine vodka and ginger beer in a copper mug filled with ice. Squeeze
+    in the lime juice and stir. Garnish with a lime wedge.
+  ingredients:
+  - Vodka
+  - Ginger beer
+  - Lime juice
+  - Lime
+  thumb_url: https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg
