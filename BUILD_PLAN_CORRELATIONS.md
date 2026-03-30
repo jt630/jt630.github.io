@@ -4,7 +4,7 @@ An open-source, multi-agent research platform that surfaces hidden
 correlations between health outcomes and environmental, occupational,
 and geographic factors.
 
-**Repository:** `jt630/unlikely-correlations`
+**Repository:** `jt630/Huh-Really-`
 **Stack:** Python, Claude API, Streamlit, PySAL, pandas, folium
 **Demo case:** Parkinson's disease / pesticide exposure / golf course proximity
 
