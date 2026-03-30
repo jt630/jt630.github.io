@@ -186,16 +186,19 @@ live dashboard without a backend server.
 
 ## How to use these prompts
 
-1. Start a new Claude Code session
-2. Copy-paste one prompt
-3. Let Sonnet execute it
-4. Review the PR, merge to main
-5. Move to the next prompt
+Start a new Claude Code session and say:
+
+> "Read `TODO-API-MAP-PROMPTS.md` and execute Prompt N."
+
+Sonnet will read the spec, read the relevant context files listed in the
+prompt, and execute. No copy-pasting needed.
 
 Each prompt builds on the previous one, but they're designed to be
 independently mergeable — if prompt 3 needs tweaks, you can fix it
 without redoing prompt 4.
 
-The first 4 prompts give you a working page. Prompts 5-7 enrich it.
-Prompt 8 adds interactivity. Prompts 9-10 are where it becomes a
-real data platform.
+**Milestones:**
+- Prompts 1–4 → working page live on the site
+- Prompts 5–7 → enriched catalog with project ideas and status tracking
+- Prompt 8 → interactive filters
+- Prompts 9–10 → live data pipeline, real integrations
