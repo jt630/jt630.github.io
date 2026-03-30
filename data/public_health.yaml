@@ -32,32 +32,37 @@ flagship:
     further investigation.
   phases:
     - name: "Correlation Detection"
-      description: "Cross-reference health outcomes with geographic, occupational, environmental, and demographic data at the US county level. Compute statistical correlations and identify spatial clusters using geospatial autocorrelation analysis (LISA)."
+      description: "Cross-reference health outcomes with geographic, occupational, environmental, and demographic data at the US county level. Compute statistical correlations, run sweep mode across all available variables, and identify spatial clusters using LISA geospatial autocorrelation."
       data_sources:
         - "CDC Wonder — mortality by ICD-10 code"
         - "CMS Chronic Conditions — disease prevalence by county"
-        - "EPA — pesticide use, toxic release inventory, Superfund sites"
-        - "USGS — land use, water quality, pesticide application"
-        - "Census ACS — demographic and socioeconomic confounders"
+        - "CDC PLACES — chronic disease prevalence estimates"
         - "County Health Rankings — composite health indicators"
+        - "EPA — pesticide use, toxic release inventory, Superfund sites, EJScreen"
+        - "EPA AQS — air quality monitoring (PM2.5, ozone, HAPs)"
+        - "USGS — land use, water quality, pesticide application estimates"
+        - "USDA CropScape — crop-specific land cover by county"
+        - "OpenStreetMap — golf courses, industrial sites, facility locations"
+        - "Census ACS — demographic and socioeconomic confounders"
+        - "CDC Social Vulnerability Index"
     - name: "Literature Mining"
-      description: "Search PubMed, Semantic Scholar, and other academic databases for published evidence related to detected correlations. Synthesize findings across studies, identify contradictions, and flag evidence gaps."
+      description: "Search PubMed, Semantic Scholar, and other academic databases for published evidence related to detected correlations. Synthesize findings across studies, identify contradictions, and flag evidence gaps. Co-designed with domain expert."
       data_sources:
         - "PubMed / NCBI E-utilities"
         - "Semantic Scholar API"
-        - "FDA FAERS — adverse event reports"
-        - "WHO Global Health Observatory"
+        - "openFDA FAERS — adverse event reports"
     - name: "Causation Analysis"
-      description: "Evaluate detected associations against established causal frameworks. Assess confounders, dose-response relationships, biological plausibility, temporality, and consistency across studies."
+      description: "Evaluate detected associations against Bradford Hill criteria. Assess confounders via partial correlation, generate alternative explanations (ecological fallacy, selection bias, shared upstream cause), and produce an overall causal plausibility rating. Co-designed with domain expert."
       data_sources:
-        - "Cross-study comparison and contradiction analysis"
-        - "Exposure pathway modeling"
-        - "Bradford Hill criteria assessment"
+        - "Correlation and literature results from upstream agents"
+        - "Bradford Hill criteria framework"
+        - "Confounder adjustment via partial correlation"
     - name: "Study Design"
-      description: "For associations with sufficient supporting evidence, generate structured research proposals including study population, methodology, controls, outcome measures, and timeline."
+      description: "Generate two output types: a Rapid Investigation Brief for operational decision-making, and a Full Research Proposal for formal study design. Both address specific evidence gaps identified by the Causation Agent. Co-designed with domain expert."
       data_sources:
-        - "Existing study methodologies as templates"
+        - "Pipeline output from all upstream agents"
         - "NIH and WHO study design frameworks"
+        - "Precedent studies from literature results"
   status: active
 
 projects:
