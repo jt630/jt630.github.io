@@ -1,0 +1,573 @@
+{{ define "main" }}
+{{ $data := site.Data.public_health }}
+{{ $meta := $data.meta }}
+{{ $flagship := $data.flagship }}
+{{ $projects := $data.projects }}
+{{ $path := $data.learning_path }}
+
+<div class="ph-page">
+
+  <!-- Header window -->
+  <div class="ph-window">
+    <div class="ph-titlebar">
+      <span class="ph-titlebar-icon">🔬</span>
+      <span class="ph-titlebar-text">PUBLIC HEALTH — UNLIKELY CONNECTIONS EXPLORER</span>
+      <div class="ph-titlebar-btns">
+        <span>_</span><span>□</span><span>✕</span>
+      </div>
+    </div>
+
+    <div class="ph-intro">
+      <p class="ph-desc">{{ $meta.description }}</p>
+      <div class="ph-stack">
+        <span class="ph-tag">{{ $meta.stack.language }}</span>
+        <span class="ph-tag">{{ $meta.stack.ai_backend }}</span>
+        <span class="ph-tag">{{ $meta.stack.ui }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flagship project hero -->
+  <div class="ph-flagship">
+    <div class="ph-flagship-badge">
+      <span class="ph-status ph-status-active">Active Project</span>
+    </div>
+    <h2 class="ph-flagship-title">{{ $flagship.title }}</h2>
+    <p class="ph-flagship-subtitle">{{ $flagship.subtitle }}</p>
+
+    <div class="ph-origin">
+      <span class="ph-origin-label">Motivation</span>
+      <p class="ph-origin-text">{{ $flagship.motivation }}</p>
+    </div>
+
+    <div class="ph-vision">
+      <span class="ph-origin-label">Approach</span>
+      <p class="ph-vision-text">{{ $flagship.vision }}</p>
+    </div>
+
+    <div class="ph-phases">
+      <span class="ph-origin-label">Architecture</span>
+      <div class="ph-phases-grid">
+        {{ range $i, $phase := $flagship.phases }}
+        <div class="ph-phase">
+          <div class="ph-phase-header">
+            <span class="ph-phase-num">{{ add $i 1 }}</span>
+            <h4 class="ph-phase-name">{{ $phase.name }}</h4>
+          </div>
+          <p class="ph-phase-desc">{{ $phase.description }}</p>
+          <ul class="ph-sources ph-phase-sources">
+            {{ range $phase.data_sources }}
+            <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Learning path -->
+  <div class="ph-path">
+    <h2 class="ph-section-title">Learning Path</h2>
+    <div class="ph-path-grid">
+      {{ range $path }}
+      <div class="ph-path-card">
+        <span class="ph-path-week">Week {{ .week }}</span>
+        <span class="ph-path-focus">{{ .focus }}</span>
+        <span class="ph-path-ids">Projects {{ delimit .projects ", #" "#" }}</span>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- Project cards -->
+  <div class="ph-projects">
+    <h2 class="ph-section-title">The 10 Projects</h2>
+
+    {{ range $projects }}
+    <div class="ph-card{{ if .flagship }} ph-card-flagship{{ end }}" id="project-{{ .id }}">
+      <div class="ph-card-header">
+        <span class="ph-card-icon">{{ .icon }}</span>
+        <div class="ph-card-title-wrap">
+          <h3 class="ph-card-title">
+            <span class="ph-card-num">#{{ .id }}</span>
+            {{ .title }}
+          </h3>
+          <span class="ph-status ph-status-{{ .status }}">{{ .status }}</span>
+        </div>
+      </div>
+
+      <p class="ph-card-desc">{{ .description }}</p>
+
+      <div class="ph-card-details">
+        <div class="ph-card-section">
+          <span class="ph-label">Data Sources</span>
+          <ul class="ph-sources">
+            {{ range .data_sources }}
+            <li>{{ . }}</li>
+            {{ end }}
+          </ul>
+        </div>
+
+        <div class="ph-card-section">
+          <span class="ph-label">First Milestone</span>
+          <p class="ph-milestone">{{ .first_milestone }}</p>
+        </div>
+
+        <div class="ph-card-section">
+          <span class="ph-label">Technical Components</span>
+          <p class="ph-teaches">{{ .teaches }}</p>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+  </div>
+
+  <div class="ph-statusbar">
+    <span>{{ len $projects }} projects</span>
+    <span>{{ $meta.stack.language }} + {{ $meta.stack.ui }}</span>
+    <span>almondfarm.us</span>
+  </div>
+
+</div>
+
+<style>
+/* ---- PUBLIC HEALTH PAGE ---- */
+.ph-page {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1rem 3rem;
+}
+
+/* Win98 window chrome */
+.ph-window {
+  border: 3px outset #888;
+  background: var(--black-card);
+  box-shadow: 4px 4px 0 #000;
+  margin-bottom: 2.5rem;
+}
+
+.ph-titlebar {
+  background: linear-gradient(90deg, #2D8AFF 0%, #003D8A 100%);
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+.ph-titlebar-icon { font-size: 0.9rem; }
+.ph-titlebar-text {
+  flex: 1;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 0 #000;
+}
+.ph-titlebar-btns { display: flex; gap: 3px; }
+.ph-titlebar-btns span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 16px;
+  background: #c0c0c0;
+  border: 2px outset #fff;
+  font-size: 0.6rem;
+  color: #000;
+  font-family: monospace;
+  cursor: default;
+}
+
+.ph-intro {
+  padding: 2rem 2rem 1.5rem;
+}
+
+.ph-desc {
+  font-size: 1rem;
+  color: var(--white-dim);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.ph-stack {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ph-tag {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: #2D8AFF;
+  background: rgba(45, 138, 255, 0.1);
+  border: 1px solid rgba(45, 138, 255, 0.3);
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+/* Flagship project hero */
+.ph-flagship {
+  background: var(--black-card);
+  border: 2px solid rgba(45, 138, 255, 0.3);
+  padding: 2.5rem 2.5rem 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  box-shadow: 0 0 40px rgba(45, 138, 255, 0.08), inset 0 1px 0 rgba(45, 138, 255, 0.1);
+}
+
+.ph-flagship-badge {
+  margin-bottom: 1rem;
+}
+
+.ph-flagship-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+}
+
+.ph-flagship-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  color: #2D8AFF;
+  margin: 0 0 2rem;
+  font-style: italic;
+}
+
+.ph-origin {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ph-origin-label {
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #2D8AFF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 0.6rem;
+}
+
+.ph-origin-text {
+  font-size: 1rem;
+  color: var(--white-dim);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.ph-vision {
+  margin-bottom: 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.ph-vision-text {
+  font-size: 0.95rem;
+  color: var(--white-dim);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.ph-phases-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.ph-phase {
+  background: rgba(45, 138, 255, 0.04);
+  border: 1px solid rgba(45, 138, 255, 0.12);
+  padding: 1.25rem;
+  transition: border-color 0.3s;
+}
+.ph-phase:hover {
+  border-color: rgba(45, 138, 255, 0.35);
+}
+
+.ph-phase-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.ph-phase-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #2D8AFF;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.ph-phase-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  color: var(--white);
+  margin: 0;
+  font-weight: 700;
+}
+
+.ph-phase-desc {
+  font-size: 0.82rem;
+  color: var(--white-dim);
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+
+.ph-phase-sources li {
+  font-size: 0.72rem;
+}
+
+/* Active flagship card in project list */
+.ph-card-flagship {
+  border-color: rgba(45, 138, 255, 0.3);
+  box-shadow: 0 0 20px rgba(45, 138, 255, 0.08);
+}
+
+/* Section titles */
+.ph-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  padding-left: 1rem;
+  position: relative;
+}
+.ph-section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #2D8AFF, var(--gold));
+}
+
+/* Learning path */
+.ph-path {
+  margin-bottom: 2.5rem;
+}
+
+.ph-path-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.ph-path-card {
+  background: var(--black-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color 0.3s;
+}
+.ph-path-card:hover {
+  border-color: #2D8AFF;
+}
+
+.ph-path-week {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #2D8AFF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.ph-path-focus {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.ph-path-ids {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--white-faint);
+}
+
+/* Project cards */
+.ph-projects {
+  margin-bottom: 1.5rem;
+}
+
+.ph-card {
+  background: var(--black-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.75rem 2rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s;
+}
+.ph-card:hover {
+  border-color: #2D8AFF;
+  box-shadow: 0 0 20px rgba(45, 138, 255, 0.1);
+}
+
+.ph-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ph-card-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ph-card-title-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ph-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  color: var(--white);
+  margin: 0;
+  font-weight: 700;
+}
+
+.ph-card-num {
+  font-family: 'Courier New', monospace;
+  color: #2D8AFF;
+  font-weight: bold;
+  margin-right: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.ph-status {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.ph-status-planned {
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+.ph-status-active {
+  color: #2D8AFF;
+  background: rgba(45, 138, 255, 0.12);
+  border: 1px solid rgba(45, 138, 255, 0.3);
+}
+.ph-status-done {
+  color: #4ADE80;
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.ph-card-desc {
+  color: var(--white-dim);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.ph-card-details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 1.25rem;
+}
+
+.ph-card-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.ph-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #2D8AFF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.ph-sources {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ph-sources li {
+  font-size: 0.82rem;
+  color: var(--white-dim);
+  padding: 2px 0;
+  font-family: 'Courier New', monospace;
+}
+.ph-sources li::before {
+  content: '→ ';
+  color: rgba(45, 138, 255, 0.5);
+}
+
+.ph-milestone {
+  font-size: 0.88rem;
+  color: var(--white-dim);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ph-teaches {
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Status bar */
+.ph-statusbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 12px;
+  background: #111;
+  border: 2px inset #555;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .ph-intro { padding: 1.25rem; }
+  .ph-flagship { padding: 1.5rem; }
+  .ph-flagship-title { font-size: 1.6rem; }
+  .ph-phases-grid { grid-template-columns: 1fr; }
+  .ph-card { padding: 1.25rem; }
+  .ph-card-header { flex-direction: column; gap: 0.5rem; }
+  .ph-path-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 400px) {
+  .ph-path-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+{{ end }}
