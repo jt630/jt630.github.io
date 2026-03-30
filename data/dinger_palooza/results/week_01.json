@@ -2,14 +2,14 @@
   "week_number": 1,
   "week_start": "2026-03-23",
   "week_end": "2026-04-05",
-  "checked_at": "2026-03-29T14:54:30.807535+00:00",
+  "checked_at": "2026-03-30T09:12:22.097689+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
     {
       "name": "Ellie",
-      "week_points": 4,
-      "total_hrs": 4,
+      "week_points": 5,
+      "total_hrs": 5,
       "picks": [
         {
           "player": "Juan Soto",
@@ -23,7 +23,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -33,10 +33,10 @@
           "mlb_id": 808959,
           "draft_pick": 21,
           "proj_hr": 28,
-          "hrs": 2,
+          "hrs": 3,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 2,
+          "points": 3,
           "hr_games": [
             {
               "date": "2026-03-26",
@@ -67,9 +67,24 @@
                   "description": "Munetaka Murakami homers (2) on a fly ball to center field."
                 }
               ]
+            },
+            {
+              "date": "2026-03-29",
+              "opponent": "Milwaukee Brewers",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 2,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Munetaka Murakami homers (3) on a fly ball to right center field."
+                }
+              ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -130,7 +145,7 @@
               ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -183,7 +198,7 @@
               ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -214,7 +229,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -276,7 +291,7 @@
               ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -291,7 +306,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         }
       ]
@@ -343,7 +358,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -401,6 +416,110 @@
                   "rbi": 3,
                   "is_3run_or_more": true,
                   "description": "Mookie Betts homers (1) on a fly ball to center field. Shohei Ohtani scores. Kyle Tucker scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 3,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Cam",
+      "week_points": 3,
+      "total_hrs": 2,
+      "picks": [
+        {
+          "player": "Brent Rooker",
+          "team": "ATH",
+          "team_id": 133,
+          "mlb_id": 667670,
+          "draft_pick": 9,
+          "proj_hr": 33,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Julio Rodriguez",
+          "team": "SEA",
+          "team_id": 136,
+          "mlb_id": 677594,
+          "draft_pick": 15,
+          "proj_hr": 30,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 4,
+          "games_live": 0
+        },
+        {
+          "player": "Gunnar Henderson",
+          "team": "BAL",
+          "team_id": 110,
+          "mlb_id": 683002,
+          "draft_pick": 44,
+          "proj_hr": 26,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Cody Bellinger",
+          "team": "NYY",
+          "team_id": 147,
+          "mlb_id": 641355,
+          "draft_pick": 56,
+          "proj_hr": 24,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Alex Bregman",
+          "team": "CHC",
+          "team_id": 112,
+          "mlb_id": 608324,
+          "draft_pick": 74,
+          "proj_hr": 22,
+          "hrs": 2,
+          "multi_hr_game": true,
+          "has_3run_or_gs": false,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-03-29",
+              "opponent": "Washington Nationals",
+              "home_away": "home",
+              "hrs_in_game": 2,
+              "game_points": 3,
+              "hr_details": [
+                {
+                  "inning": 4,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Alex Bregman homers (1) on a fly ball to center field."
+                },
+                {
+                  "inning": 8,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Alex Bregman homers (2) on a fly ball to right center field."
                 }
               ]
             }
@@ -473,7 +592,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -488,7 +607,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -556,7 +675,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -571,7 +690,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -602,7 +721,7 @@
               ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -617,7 +736,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -648,97 +767,15 @@
               ]
             }
           ],
-          "games_checked": 2,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Cam",
-      "week_points": 0,
-      "total_hrs": 0,
-      "picks": [
-        {
-          "player": "Brent Rooker",
-          "team": "ATH",
-          "team_id": 133,
-          "mlb_id": 667670,
-          "draft_pick": 9,
-          "proj_hr": 33,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 2,
-          "games_live": 0
-        },
-        {
-          "player": "Julio Rodriguez",
-          "team": "SEA",
-          "team_id": 136,
-          "mlb_id": null,
-          "draft_pick": 15,
-          "proj_hr": 30,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 0,
-          "games_live": 0
-        },
-        {
-          "player": "Gunnar Henderson",
-          "team": "BAL",
-          "team_id": 110,
-          "mlb_id": 683002,
-          "draft_pick": 44,
-          "proj_hr": 26,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 2,
-          "games_live": 0
-        },
-        {
-          "player": "Cody Bellinger",
-          "team": "NYY",
-          "team_id": 147,
-          "mlb_id": 641355,
-          "draft_pick": 56,
-          "proj_hr": 24,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
           "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Alex Bregman",
-          "team": "CHC",
-          "team_id": 112,
-          "mlb_id": 608324,
-          "draft_pick": 74,
-          "proj_hr": 22,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 2,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Kayla",
-      "week_points": 0,
-      "total_hrs": 0,
+      "week_points": 2,
+      "total_hrs": 1,
       "picks": [
         {
           "player": "Pete Alonso",
@@ -752,29 +789,45 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
           "player": "Eugenio Suarez",
           "team": "CIN",
           "team_id": 113,
-          "mlb_id": null,
+          "mlb_id": 553993,
           "draft_pick": 10,
           "proj_hr": 33,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 0,
+          "has_3run_or_gs": true,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-03-29",
+              "opponent": "Boston Red Sox",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Eugenio Su\u00e1rez homers (1) on a fly ball to left center field. Matt McLain scores. Sal Stewart scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 3,
           "games_live": 0
         },
         {
           "player": "Teoscar Hernandez",
           "team": "LAD",
           "team_id": 119,
-          "mlb_id": null,
+          "mlb_id": 606192,
           "draft_pick": 39,
           "proj_hr": 26,
           "hrs": 0,
@@ -782,7 +835,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -797,7 +850,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -819,8 +872,8 @@
     },
     {
       "name": "Makeda",
-      "week_points": 0,
-      "total_hrs": 0,
+      "week_points": 1,
+      "total_hrs": 1,
       "picks": [
         {
           "player": "Nick Kurtz",
@@ -834,14 +887,14 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
           "player": "Ronald Acuna Jr",
           "team": "ATL",
           "team_id": 144,
-          "mlb_id": null,
+          "mlb_id": 660670,
           "draft_pick": 13,
           "proj_hr": 31,
           "hrs": 0,
@@ -849,7 +902,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -864,14 +917,14 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
           "player": "Jose Ramirez",
           "team": "CLE",
           "team_id": 114,
-          "mlb_id": null,
+          "mlb_id": 608070,
           "draft_pick": 26,
           "proj_hr": 28,
           "hrs": 0,
@@ -879,7 +932,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -889,12 +942,28 @@
           "mlb_id": 543807,
           "draft_pick": 46,
           "proj_hr": 25,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 2,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-03-29",
+              "opponent": "Athletics",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "George Springer homers (1) on a fly ball to left field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 3,
           "games_live": 0
         }
       ]
@@ -916,7 +985,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -931,7 +1000,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -946,7 +1015,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
