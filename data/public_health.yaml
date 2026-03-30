@@ -1,10 +1,11 @@
 meta:
-  name: "Public Health Unlikely Connections Explorer"
+  name: "Unlikely Correlations Engine"
   description: >
-    A suite of AI-powered research tools for a global health policy researcher
-    to surface hidden correlations, synthesize research, and track health
-    systems data. Inspired by discoveries like the Parkinson's/golf course
-    pesticide connection — finding signals humans wouldn't think to look for.
+    An open-source, multi-agent research platform that surfaces hidden
+    correlations between health outcomes and environmental, occupational,
+    and geographic factors. Integrates public datasets, scientific literature,
+    and structured causal analysis to identify leads that warrant formal
+    investigation.
   stack:
     language: Python
     ai_backend: "Claude API (claude-sonnet-4-20250514)"
@@ -12,46 +13,48 @@ meta:
 
 flagship:
   title: "The Unlikely Correlations Engine"
-  subtitle: "Finding the signals humans wouldn't think to look for"
-  origin_story: >
-    Scientists noticed that Parkinson's disease rates were unusually high
-    near golf courses. Rather than explaining it away as coincidence, they
-    dug deeper. The correlation wasn't the golf — it was the pesticides
-    sprayed on the courses. Families in premium homes bordering manicured
-    fairways were being slowly poisoned. The connection was hiding in plain
-    sight, across datasets that nobody thought to combine.
+  subtitle: "Systematic detection of hidden health-environment associations"
+  motivation: >
+    Epidemiological research identified elevated Parkinson's disease rates
+    among populations living near golf courses. Investigation revealed the
+    underlying factor was chronic pesticide exposure from course maintenance.
+    Residential proximity to treated land — not the recreational facility
+    itself — was the relevant variable. The association was detectable in
+    existing public datasets, but required cross-referencing sources that
+    are not typically analyzed together.
   vision: >
-    What if we could systematically hunt for connections like this? Not just
-    geographic overlaps, but across every dimension — where people live,
-    what they do for work, what's in their water, what industries surround
-    them. Then mine decades of scientific literature to see what correlations
-    have already been found but buried in obscure journals. And when we find
-    a signal, outline the study that could prove causation and actually help
-    people.
+    This project applies that same cross-referencing approach systematically.
+    The platform correlates health outcome data with geographic, occupational,
+    environmental, and demographic variables at the US county level. When
+    a statistically significant association is detected, it searches the
+    published literature for supporting or contradicting evidence, evaluates
+    causal plausibility, and generates structured study proposals for
+    further investigation.
   phases:
-    - name: "Correlation Layer"
-      description: "Cross-reference health outcomes with geographic, occupational, environmental, and lifestyle data to surface statistically suspicious overlaps."
+    - name: "Correlation Detection"
+      description: "Cross-reference health outcomes with geographic, occupational, environmental, and demographic data at the US county level. Compute statistical correlations and identify spatial clusters using geospatial autocorrelation analysis (LISA)."
       data_sources:
-        - "CDC Wonder — disease prevalence by county"
-        - "EPA — pesticide use maps, toxic release inventory"
-        - "USGS — land use and water quality datasets"
-        - "NIOSH — occupational health outcomes"
-        - "BLS — occupation by geography"
-        - "Census — demographic and socioeconomic data"
+        - "CDC Wonder — mortality by ICD-10 code"
+        - "CMS Chronic Conditions — disease prevalence by county"
+        - "EPA — pesticide use, toxic release inventory, Superfund sites"
+        - "USGS — land use, water quality, pesticide application"
+        - "Census ACS — demographic and socioeconomic confounders"
+        - "County Health Rankings — composite health indicators"
     - name: "Literature Mining"
-      description: "Use AI to search and synthesize decades of published research — surfacing known correlations, buried findings, and contradictions across studies that most humans would never read side by side."
+      description: "Search PubMed, Semantic Scholar, and other academic databases for published evidence related to detected correlations. Synthesize findings across studies, identify contradictions, and flag evidence gaps."
       data_sources:
-        - "PubMed / OpenAlex — academic literature APIs"
+        - "PubMed / NCBI E-utilities"
+        - "Semantic Scholar API"
         - "FDA FAERS — adverse event reports"
         - "WHO Global Health Observatory"
-    - name: "Causation Investigation"
-      description: "When a correlation looks real, dig into confounders, dose-response relationships, biological plausibility, and existing mechanistic research. Separate signal from noise."
+    - name: "Causation Analysis"
+      description: "Evaluate detected associations against established causal frameworks. Assess confounders, dose-response relationships, biological plausibility, temporality, and consistency across studies."
       data_sources:
         - "Cross-study comparison and contradiction analysis"
         - "Exposure pathway modeling"
-        - "Temporal and dose-response pattern analysis"
+        - "Bradford Hill criteria assessment"
     - name: "Study Design"
-      description: "For the most promising leads, generate study proposals — the cohort, the controls, the measurements, the timeline. Turn a statistical hunch into an actionable research plan that could save lives."
+      description: "For associations with sufficient supporting evidence, generate structured research proposals including study population, methodology, controls, outcome measures, and timeline."
       data_sources:
         - "Existing study methodologies as templates"
         - "NIH and WHO study design frameworks"
@@ -64,173 +67,175 @@ projects:
     icon: "🔬"
     flagship: true
     description: >
-      The flagship project. Cross-reference health outcomes with geographic,
-      occupational, and environmental data to surface suspicious correlations.
-      Mine scientific literature for buried findings. Investigate causation.
-      Design studies that could prove it. Inspired by the Parkinson's/golf
-      course pesticide discovery.
+      Multi-agent pipeline for detecting hidden associations between health
+      outcomes and environmental, occupational, or geographic factors.
+      Integrates 20+ public data sources, searches published literature
+      for supporting evidence, evaluates causal plausibility, and generates
+      structured study proposals for further investigation.
     data_sources:
-      - "CDC Wonder disease prevalence by county"
-      - "EPA pesticide use maps & toxic release inventory"
-      - "USGS land use datasets"
-      - "PubMed / OpenAlex academic literature"
-      - "NIOSH occupational health data"
-      - "FDA FAERS adverse event reports"
+      - "CDC Wonder / CMS Chronic Conditions — health outcomes by county"
+      - "EPA — pesticide use, toxic releases, Superfund sites, air quality"
+      - "USGS — land use, water quality, pesticide application estimates"
+      - "PubMed / Semantic Scholar — academic literature"
+      - "Census ACS / County Health Rankings — demographic confounders"
+      - "openFDA FAERS — adverse event reports"
     first_milestone: >
-      Build a map that overlays Parkinson's disease rates with golf course
-      density by US county and compute a correlation score.
-    teaches: "API calls, data joining, map visualization, AI-powered literature search"
+      End-to-end demonstration using the Parkinson's disease / pesticide
+      exposure case. Reproduce the known correlation, retrieve supporting
+      literature, and generate a causation assessment.
+    teaches: "Multi-agent architecture, data APIs, geospatial analysis, literature synthesis"
 
   - id: 2
     title: "Occupational Disease Pattern Miner"
     status: planned
     icon: "👷"
     description: >
-      Analyze health outcome data broken down by occupation and surface
-      statistically unusual illness rates. What do flight attendants,
-      dry cleaners, and firefighters have in common health-wise?
+      Analyze health outcome data by occupation to identify statistically
+      unusual illness rates. Surface occupations with elevated risk for
+      specific disease categories relative to population baselines.
     data_sources:
       - "NIOSH occupational health datasets"
       - "BLS occupational data"
+      - "Census County Business Patterns"
     first_milestone: >
-      Generate a ranked table of occupations with the highest deviation
-      from baseline rates for a user-selected disease category.
-    teaches: "Statistical z-scores, pandas dataframes, table display in Streamlit"
+      Ranked table of occupations with the highest deviation from baseline
+      rates for a user-selected disease category, with confidence intervals.
+    teaches: "Statistical z-scores, pandas dataframes, Streamlit data display"
 
   - id: 3
     title: "FDA Adverse Event Anomaly Detector"
     status: planned
     icon: "💊"
     description: >
-      Scrape and analyze FDA FAERS reports to surface unexpected co-occurrences
-      between drugs and health conditions that aren't on the label yet.
+      Analyze FDA FAERS reports to identify unexpected co-occurrences
+      between drugs and health conditions not listed in current labeling.
     data_sources:
-      - "FDA FAERS public dashboard API"
+      - "openFDA FAERS API"
     first_milestone: >
-      Let user input a drug name and return a ranked list of reported conditions
-      sorted by how unexpected they are relative to the drug's stated use.
-    teaches: "REST APIs, JSON parsing, Claude for interpretation of results"
+      Input a drug name, return a ranked list of reported conditions sorted
+      by divergence from expected adverse event profile.
+    teaches: "REST API integration, statistical anomaly detection, AI-assisted interpretation"
 
   - id: 4
     title: "Policy Brief Summarizer"
     status: planned
     icon: "📋"
     description: >
-      Paste in or upload a WHO report, academic paper, or donor document
-      and get a structured summary with key findings, recommendations,
-      evidence gaps, and suggested follow-up questions.
+      Structured summarization of health policy documents, academic papers,
+      and institutional reports. Extracts key findings, recommendations,
+      evidence quality, and identifies gaps requiring further research.
     data_sources:
       - "User-uploaded PDFs or pasted text"
     first_milestone: >
-      Single-page Streamlit app with a text box — user pastes content,
-      Claude returns a clean structured summary.
-    teaches: "Claude API basics, prompt engineering, Streamlit UI"
+      Single-page application accepting document text and returning a
+      structured summary with cited findings and evidence assessment.
+    teaches: "Claude API integration, prompt engineering, Streamlit interface design"
 
   - id: 5
-    title: "Multi-Document Research Q&A Tool"
+    title: "Multi-Document Research Q&A"
     status: planned
     icon: "📚"
     description: >
-      Upload a library of PDFs (studies, donor reports, policy briefs)
-      and ask natural language questions across all of them at once.
-      Essentially RAG for your own document library.
+      Retrieval-augmented generation system for querying across a library
+      of research documents. Synthesizes answers from multiple sources
+      with citations to specific documents and passages.
     data_sources:
       - "User-uploaded PDF library"
     first_milestone: >
-      Upload 3 PDFs, ask one question, get a synthesized answer with
-      citations indicating which document the information came from.
-    teaches: "RAG concepts, vector embeddings, ChromaDB or similar"
+      Upload three documents, submit a natural language query, receive a
+      synthesized answer with source attribution.
+    teaches: "RAG architecture, vector embeddings, document indexing"
 
   - id: 6
     title: "Cross-Study Contradiction Finder"
     status: planned
     icon: "⚖️"
     description: >
-      Feed in multiple studies on the same health topic and have AI
-      flag where they disagree, why they might differ (methodology,
-      population, funding source), and what the weight of evidence suggests.
+      Comparative analysis of multiple studies on the same health topic.
+      Identifies agreements, contradictions, and methodological differences.
+      Assesses weight of evidence accounting for study design, population,
+      and potential sources of bias.
     data_sources:
       - "User-uploaded PDFs or PubMed IDs"
     first_milestone: >
-      Input two paper abstracts, get a structured comparison highlighting
-      agreements, contradictions, and methodological differences.
-    teaches: "Structured prompting, comparative analysis, Claude for reasoning"
+      Input two paper abstracts, receive structured comparison of findings,
+      methodology, and identified discrepancies.
+    teaches: "Structured prompting, comparative analysis, evidence synthesis"
 
   - id: 7
     title: "Health System Scorecard Dashboard"
     status: planned
     icon: "📊"
     description: >
-      Pull live data from WHO and World Bank APIs to visualize and compare
-      countries across key health system indicators — UHC coverage index,
-      health spending per capita, out-of-pocket costs, workforce density.
+      Comparative visualization of health system indicators across countries.
+      Covers UHC service coverage index, health expenditure, out-of-pocket
+      costs, workforce density, and related metrics.
     data_sources:
       - "WHO Global Health Observatory API"
       - "World Bank Health Nutrition and Population API"
     first_milestone: >
-      Select 3 countries and a set of indicators, generate a side-by-side
-      comparison dashboard with trend lines over time.
-    teaches: "Data APIs, plotly charts, Streamlit layout and interactivity"
+      Select countries and indicators, generate side-by-side comparison
+      dashboard with trend lines.
+    teaches: "Data API integration, interactive charting, dashboard layout"
 
   - id: 8
-    title: "Global Health Funding Landscape Tracker"
+    title: "Global Health Funding Tracker"
     status: planned
     icon: "💰"
     description: >
-      Monitor and summarize what major donors (Gates Foundation, USAID,
-      Gavi, Wellcome Trust) are currently funding to help identify gaps,
-      trends, and alignment opportunities.
+      Analysis of global health funding flows from major donors. Identifies
+      trends, gaps, and alignment opportunities across disease areas and
+      geographic regions.
     data_sources:
       - "IATI (International Aid Transparency Initiative) open data"
       - "Gates Foundation grant database"
     first_milestone: >
-      Filter grants by disease area and year, generate a summary of
-      funding trends with Claude identifying apparent gaps.
-    teaches: "Data filtering, Claude for synthesis, download/export features"
+      Filter grants by disease area and year, generate funding trend
+      analysis with identified gaps.
+    teaches: "Data filtering, AI-assisted synthesis, export functionality"
 
   - id: 9
     title: "Stakeholder Interview Synthesizer"
     status: planned
     icon: "🎙️"
     description: >
-      Upload transcripts from field interviews or stakeholder calls and
-      automatically extract key themes, tensions, notable quotes,
-      and action items — across dozens of conversations at once.
+      Automated extraction of themes, key findings, notable statements,
+      and action items from interview transcripts and stakeholder
+      consultation records.
     data_sources:
       - "User-uploaded .txt or .docx transcripts"
     first_milestone: >
-      Upload one transcript, extract themes and action items with Claude,
-      display results in a clean structured format.
-    teaches: "File handling, prompt engineering, structured JSON outputs"
+      Process a single transcript, extract structured themes and action
+      items with source attribution.
+    teaches: "File handling, structured extraction, JSON output formatting"
 
   - id: 10
     title: "Health Policy Diffusion Tracker"
     status: planned
     icon: "🌍"
     description: >
-      Track how a specific health policy (sugar taxes, vaccine mandates,
-      tobacco plain packaging) has spread country to country over time
-      and use AI to surface what contextual factors seem to predict adoption.
+      Analysis of how specific health policies propagate across countries
+      over time. Identifies contextual factors — economic, political,
+      demographic — that correlate with adoption timing.
     data_sources:
       - "WHO policy databases"
       - "Academic literature via OpenAlex API"
       - "World Bank governance indicators"
     first_milestone: >
-      Map the adoption timeline of sugar taxes globally and generate
-      a hypothesis about what economic or political factors correlate
-      with early adoption.
-    teaches: "Timeline visualization, multi-source data joins, AI hypothesis generation"
+      Map the adoption timeline of a specific policy globally and generate
+      a hypothesis about factors correlated with early adoption.
+    teaches: "Timeline visualization, multi-source data joins, hypothesis generation"
 
 learning_path:
   - week: 1
-    focus: "Claude API basics + Streamlit"
+    focus: "Claude API fundamentals and Streamlit"
     projects: [4, 5]
   - week: 2
-    focus: "Working with real data APIs"
+    focus: "Public data API integration"
     projects: [7, 8]
   - week: 3
-    focus: "Correlation and mapping tools"
+    focus: "Statistical correlation and geospatial analysis"
     projects: [1, 2]
   - week: 4
-    focus: "Advanced RAG and multi-source analysis"
+    focus: "Advanced retrieval, multi-source synthesis"
     projects: [3, 6, 9, 10]

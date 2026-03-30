@@ -36,17 +36,17 @@
     <p class="ph-flagship-subtitle">{{ $flagship.subtitle }}</p>
 
     <div class="ph-origin">
-      <span class="ph-origin-label">The Origin Story</span>
-      <p class="ph-origin-text">{{ $flagship.origin_story }}</p>
+      <span class="ph-origin-label">Motivation</span>
+      <p class="ph-origin-text">{{ $flagship.motivation }}</p>
     </div>
 
     <div class="ph-vision">
-      <span class="ph-origin-label">The Vision</span>
+      <span class="ph-origin-label">Approach</span>
       <p class="ph-vision-text">{{ $flagship.vision }}</p>
     </div>
 
     <div class="ph-phases">
-      <span class="ph-origin-label">Four Phases</span>
+      <span class="ph-origin-label">Architecture</span>
       <div class="ph-phases-grid">
         {{ range $i, $phase := $flagship.phases }}
         <div class="ph-phase">
@@ -115,7 +115,7 @@
         </div>
 
         <div class="ph-card-section">
-          <span class="ph-label">You'll Learn</span>
+          <span class="ph-label">Technical Components</span>
           <p class="ph-teaches">{{ .teaches }}</p>
         </div>
       </div>
