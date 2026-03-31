@@ -2497,3 +2497,85 @@ img {
 .api-cluster--empty {
   opacity: 0.35;
 }
+
+/* ===========================
+   API VISUALIZATIONS
+   View toggle + Canvas
+   =========================== */
+
+.api-view-toggle {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.25rem;
+}
+
+.api-view-btn {
+  background: var(--black-card);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--white-faint);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.api-view-btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.api-view-btn:last-child  { border-radius: 0 var(--radius) var(--radius) 0; }
+.api-view-btn + .api-view-btn { border-left: none; }
+
+.api-view-btn:hover {
+  background: var(--black-elevated);
+  color: var(--gold);
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+.api-view-btn--active {
+  background: var(--black-elevated);
+  color: var(--gold);
+  border-color: var(--gold);
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+.api-canvas-wrap {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--black);
+}
+
+.api-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+}
+
+.api-canvas-tooltip {
+  display: none;
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+  background: var(--black-card);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.72rem;
+  color: var(--white);
+  max-width: 220px;
+  line-height: 1.5;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 12px rgba(212,175,55,0.15);
+}
+
+.api-canvas-tooltip.visible { display: block; }
+
+.api-tooltip-name  { color: var(--pink); font-weight: bold; display: block; margin-bottom: 0.2rem; }
+.api-tooltip-meta  { color: var(--white-faint); display: block; margin-bottom: 0.15rem; }
+.api-tooltip-notes { color: var(--white-dim); display: block; font-size: 0.68rem; }
+.api-tooltip-hint  { color: var(--gold); font-size: 0.65rem; display: block; margin-top: 0.25rem; opacity: 0.7; }

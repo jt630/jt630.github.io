@@ -1,11 +1,38 @@
 {{ define "main" }}
+<script>
+window.API_CLUSTERS = {{ .Site.Data.api_map.clusters | jsonify }};
+</script>
 <div class="page-wrap">
   <div class="api-map-page">
 
     <div class="api-map-header">
       <h1>API DATA MAP</h1>
-      <p class="api-map-subtitle">the data manifold — {{ len .Site.Data.api_map.clusters }} clusters</p>
+      <p class="api-map-subtitle">the data manifold — {{ len .Site.Data.api_map.clusters }} clusters · {{ len .Site.Data.api_map.clusters }} constellations</p>
     </div>
+
+    <div class="api-view-toggle" id="api-view-toggle" role="group" aria-label="View mode">
+      <button class="api-view-btn api-view-btn--active" data-view="table" id="btn-view-table">
+        &#9776; table
+      </button>
+      <button class="api-view-btn" data-view="graph" id="btn-view-graph">
+        &#11042; graph
+      </button>
+      <button class="api-view-btn" data-view="constellation" id="btn-view-constellation">
+        &#10022; stars
+      </button>
+    </div>
+
+    <div class="api-canvas-wrap" id="api-canvas-graph" style="display:none">
+      <canvas id="canvas-graph" class="api-canvas"></canvas>
+      <div class="api-canvas-tooltip" id="graph-tooltip"></div>
+    </div>
+
+    <div class="api-canvas-wrap" id="api-canvas-constellation" style="display:none">
+      <canvas id="canvas-constellation" class="api-canvas"></canvas>
+      <div class="api-canvas-tooltip" id="constellation-tooltip"></div>
+    </div>
+
+    <div id="api-table-view">
 
     <div class="api-filter-bar" id="api-filter-bar">
       <select id="api-filter-auth" class="api-filter-select">
@@ -57,8 +84,53 @@
     </details>
     {{ end }}
 
+    </div><!-- #api-table-view -->
+
   </div>
 </div>
+
 {{ $js := resources.Get "js/api-map.js" }}
 <script src="{{ $js.RelPermalink }}" defer></script>
+{{ $jsGraph := resources.Get "js/api-graph.js" }}
+<script src="{{ $jsGraph.RelPermalink }}" defer></script>
+{{ $jsConst := resources.Get "js/api-constellation.js" }}
+<script src="{{ $jsConst.RelPermalink }}" defer></script>
+
+<script>
+(function () {
+  var views = {
+    table:         document.getElementById('api-table-view'),
+    graph:         document.getElementById('api-canvas-graph'),
+    constellation: document.getElementById('api-canvas-constellation')
+  };
+  var buttons = document.querySelectorAll('.api-view-btn');
+  var graphInit = false;
+  var constInit = false;
+
+  function switchView(name) {
+    Object.keys(views).forEach(function (k) {
+      views[k].style.display = k === name ? '' : 'none';
+    });
+    buttons.forEach(function (b) {
+      b.classList.toggle('api-view-btn--active', b.dataset.view === name);
+    });
+    if (name === 'graph') {
+      if (!graphInit) { graphInit = true; if (window.ApiGraph) window.ApiGraph.init('canvas-graph'); }
+      else if (window.ApiGraph) window.ApiGraph.resume();
+    } else {
+      if (window.ApiGraph) window.ApiGraph.pause();
+    }
+    if (name === 'constellation') {
+      if (!constInit) { constInit = true; if (window.ApiConstellation) window.ApiConstellation.init('canvas-constellation'); }
+      else if (window.ApiConstellation) window.ApiConstellation.resume();
+    } else {
+      if (window.ApiConstellation) window.ApiConstellation.pause();
+    }
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { switchView(b.dataset.view); });
+  });
+}());
+</script>
 {{ end }}
