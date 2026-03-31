@@ -148,6 +148,7 @@ hugo --minify
 |---------|-------------|
 | `/new-post` | Scaffolds a new Hugo post — asks for section, title, description |
 | `/mint` | Mint a monkey coin — picks language, runs generation, commits *(planned)* |
+| `/plan` | **TODO (general Claude files)** — Pre-flight parallelization planner. Reads a task spec, maps file dependencies, estimates output size per subtask, and produces a chunked execution graph with parallel lanes before any code is written. Prevents oversized single-agent tasks that timeout. |
 
 ## Claude Code best practices for this project
 
