@@ -1,0 +1,64 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="api-map-page">
+
+    <div class="api-map-header">
+      <h1>API DATA MAP</h1>
+      <p class="api-map-subtitle">the data manifold — {{ len .Site.Data.api_map.clusters }} clusters</p>
+    </div>
+
+    <div class="api-filter-bar" id="api-filter-bar">
+      <select id="api-filter-auth" class="api-filter-select">
+        <option value="">all auth levels</option>
+        <option value="none">no key</option>
+        <option value="free_key">free key</option>
+        <option value="free_tier">free tier</option>
+      </select>
+      <select id="api-filter-status" class="api-filter-select">
+        <option value="">all status</option>
+        <option value="idea">idea</option>
+        <option value="planned">planned</option>
+        <option value="built">built</option>
+        <option value="live">live</option>
+      </select>
+      <input type="search" id="api-filter-search" class="api-filter-input"
+             placeholder="search APIs...">
+      <button id="api-filter-clear" class="api-filter-clear">clear</button>
+    </div>
+
+    {{ range $i, $cluster := .Site.Data.api_map.clusters }}
+    <details class="api-cluster" {{ if eq $i 0 }}open{{ end }}>
+      <summary class="api-cluster-summary">
+        <span class="api-cluster-icon">{{ $cluster.icon }}</span>
+        <span class="api-cluster-name">{{ $cluster.name }}</span>
+        <span class="api-texture-badge">{{ $cluster.texture }}</span>
+        <span class="api-cluster-count">{{ len $cluster.apis }}</span>
+      </summary>
+      <p class="api-cluster-desc">{{ $cluster.description }}</p>
+      <div class="api-cards">
+        {{ range $cluster.apis }}
+        <div class="api-card" data-auth="{{ .auth }}" data-status="{{ .status }}">
+          <div class="api-card-header">
+            <a href="{{ .url }}" class="api-card-name" target="_blank" rel="noopener">{{ .name }}</a>
+            <span class="api-auth-badge api-auth-{{ .auth }}">{{ .auth }}</span>
+            <span class="api-status-badge api-status-{{ .status }}">{{ .status }}</span>
+          </div>
+          <p class="api-card-shape">{{ .shape }}</p>
+          <p class="api-card-notes">{{ .notes }}</p>
+          {{ with .rate_limit }}<p class="api-card-rate">rate: {{ . }}</p>{{ end }}
+          {{ with .project_ideas }}
+          <ul class="api-card-ideas">
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </details>
+    {{ end }}
+
+  </div>
+</div>
+{{ $js := resources.Get "js/api-map.js" }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{ end }}
