@@ -1,531 +1,737 @@
 clusters:
-  - name: "Sky & Earth"
-    icon: "🌍"
-    texture: "time-series, geographic, event-stream"
-    description: "The physical world instrumented — weather, climate, seismic, air quality"
-    apis:
-      - name: "Open-Meteo"
-        url: "https://open-meteo.com/en/docs"
-        shape: "hourly/daily forecast grids, historical climate"
-        auth: "none"
-        rate_limit: "10k/day"
-        notes: "No key needed. Best free weather API. Historical back to 1940."
-        status: "idea"
-        project_ideas:
-          - "7-day orchard forecast panel on the Farming page"
-          - "Historical frost date chart for almond bloom risk"
-      - name: "OpenWeatherMap"
-        url: "https://openweathermap.org/api"
-        shape: "current conditions, 5-day/3-hour forecast"
-        auth: "free_key"
-        rate_limit: "60/min"
-        notes: "Most-used weather API. Free tier sufficient for a site widget."
-        status: "idea"
-      - name: "NOAA Climate Data Online"
-        url: "https://www.ncdc.noaa.gov/cdo-web/webservices/v2"
-        shape: "historical climate records, station data, normals"
-        auth: "free_key"
-        notes: "Authoritative US climate archive. Good for long-run farm analysis."
-        status: "idea"
-      - name: "USGS Earthquake Hazards"
-        url: "https://earthquake.usgs.gov/fdsnws/event/1/"
-        shape: "real-time seismic events, GeoJSON"
-        auth: "none"
-        notes: "All global earthquakes, updated every minute. No key needed."
-        status: "idea"
-      - name: "AirNow"
-        url: "https://docs.airnowapi.org/"
-        shape: "US air quality index by zip/location"
-        auth: "free_key"
-        notes: "EPA AQI data. Useful for farm air quality or wildfire smoke context."
-        status: "idea"
-      - name: "OpenAQ"
-        url: "https://docs.openaq.org/"
-        shape: "global air quality sensor readings"
-        auth: "none"
-        notes: "Community sensor network, global coverage, no key for basic queries."
-        status: "idea"
-      - name: "Sunrise-Sunset"
-        url: "https://sunrise-sunset.org/api"
-        shape: "sunrise/sunset/golden hour times by lat/lon"
-        auth: "none"
-        notes: "Simple, reliable. No key. Good for farm light-hour displays."
-        status: "idea"
-
-  - name: "Space"
-    icon: "🚀"
-    texture: "image-stream, event-stream, time-series"
-    description: "Orbital mechanics, deep sky imagery, near-Earth objects, and launch data"
-    apis:
-      - name: "NASA APOD"
-        url: "https://api.nasa.gov/#apod"
-        shape: "one astronomy photo per day with title, explanation, media URL"
-        auth: "free_key"
-        rate_limit: "1k/hour"
-        notes: "Astronomy Picture of the Day. Easy integration, gorgeous imagery."
-        status: "idea"
-      - name: "NASA EONET"
-        url: "https://eonet.gsfc.nasa.gov/docs/v3"
-        shape: "natural event feed — wildfires, storms, volcanoes, GeoJSON"
-        auth: "none"
-        notes: "Earth Observatory Natural Event Tracker. Good for wildfire/drought context on the farm."
-        status: "idea"
-      - name: "NASA Mars Rover Photos"
-        url: "https://api.nasa.gov/#mars-rover-photos"
-        shape: "photos from Curiosity/Perseverance by sol date and camera"
-        auth: "free_key"
-        notes: "Thousands of high-res rover photos filterable by camera. Visually rich."
-        status: "idea"
-      - name: "NASA NEO"
-        url: "https://api.nasa.gov/#NeoWS"
-        shape: "near-Earth object feed by date range, orbital data"
-        auth: "free_key"
-        notes: "Near-Earth Object Web Service. Asteroid close approach data."
-        status: "idea"
-      - name: "SpaceX API"
-        url: "https://github.com/r-spacex/SpaceX-API"
-        shape: "launches, rockets, capsules, launchpads — JSON"
-        auth: "none"
-        notes: "Unofficial but comprehensive SpaceX launch history. No key needed."
-        status: "idea"
-      - name: "Open Notify (ISS)"
-        url: "http://open-notify.org/Open-Notify-API/"
-        shape: "current ISS position, next pass times by lat/lon"
-        auth: "none"
-        notes: "Tracks the International Space Station in real time. No key needed."
-        status: "idea"
-      - name: "Le Système Solaire"
-        url: "https://api.le-systeme-solaire.net/en/"
-        shape: "solar system bodies — mass, radius, orbital elements"
-        auth: "none"
-        notes: "Clean REST API for planetary data. Good for a solar system reference page."
-        status: "idea"
-
-  - name: "Living Things"
-    icon: "🌿"
-    texture: "taxonomy, geographic, corpus"
-    description: "Biodiversity records, food composition, and creature databases"
-    apis:
-      - name: "iNaturalist"
-        url: "https://api.inaturalist.org/v1/docs/"
-        shape: "species observations with photos, location, taxon hierarchy"
-        auth: "none"
-        notes: "Citizen science biodiversity network. Filter by location to find farm wildlife."
-        status: "idea"
-      - name: "GBIF"
-        url: "https://www.gbif.org/developer/summary"
-        shape: "global species occurrence records, taxon data"
-        auth: "none"
-        notes: "Global Biodiversity Information Facility. Massive dataset, no key."
-        status: "idea"
-      - name: "Open Food Facts"
-        url: "https://world.openfoodfacts.org/data"
-        shape: "product ingredient lists, nutrition, labels by barcode"
-        auth: "none"
-        notes: "Open database of food products worldwide. Useful for cooking/recipe pages."
-        status: "idea"
-      - name: "USDA FoodData Central"
-        url: "https://fdc.nal.usda.gov/api-guide.html"
-        shape: "nutrient composition per food item, branded and generic"
-        auth: "free_key"
-        notes: "Authoritative US nutrition data. Good for annotating recipes."
-        status: "idea"
-      - name: "TheDogAPI"
-        url: "https://thedogapi.com/"
-        shape: "dog breed info, temperament, images"
-        auth: "free_key"
-        notes: "Comprehensive breed database with photos. Fun for a pets or body page."
-        status: "idea"
-      - name: "TheCatAPI"
-        url: "https://thecatapi.com/"
-        shape: "cat breed info, temperament, random cat images"
-        auth: "free_key"
-        notes: "Same pattern as TheDogAPI. Easy to integrate alongside it."
-        status: "idea"
-      - name: "PokeAPI"
-        url: "https://pokeapi.co/"
-        shape: "Pokémon species, moves, abilities, stats — full game data"
-        auth: "none"
-        rate_limit: "100/min"
-        notes: "Complete Pokémon game data. No key. Good for gaming section."
-        status: "idea"
-
-  - name: "Culture & Knowledge"
-    icon: "📚"
-    texture: "corpus, taxonomy, image-stream"
-    description: "Books, music, film, art, and encyclopedic knowledge bases"
-    apis:
-      - name: "Open Library"
-        url: "https://openlibrary.org/developers/api"
-        shape: "book metadata, cover images, author info by ISBN/OLID"
-        auth: "none"
-        notes: "Internet Archive's book database. Cover images and metadata for free."
-        status: "idea"
-      - name: "Google Books"
-        url: "https://developers.google.com/books/docs/v1/using"
-        shape: "book search, metadata, preview links, volume info"
-        auth: "free_key"
-        notes: "Largest book API. Good for enriching the books reading list."
-        status: "idea"
-      - name: "MusicBrainz"
-        url: "https://musicbrainz.org/doc/MusicBrainz_API"
-        shape: "artist, release, recording metadata — open music encyclopedia"
-        auth: "none"
-        notes: "Open music database. No key. Good source for album/track data."
-        status: "idea"
-      - name: "Last.fm"
-        url: "https://www.last.fm/api"
-        shape: "scrobble history, track/artist info, similar artists"
-        auth: "free_key"
-        notes: "Rich music metadata and listening data. Key is free and easy to get."
-        status: "idea"
-      - name: "Discogs"
-        url: "https://www.discogs.com/developers/"
-        shape: "vinyl/CD release database, marketplace, artist discographies"
-        auth: "free_key"
-        notes: "Definitive record collecting database. Good for music or gadgets pages."
-        status: "idea"
-      - name: "TheMovieDB (TMDB)"
-        url: "https://developer.themoviedb.org/docs"
-        shape: "film/TV metadata, posters, cast, ratings, now-playing"
-        auth: "free_key"
-        rate_limit: "~40/10s"
-        notes: "Best free movie API. Poster images included. Free key with generous limits."
-        status: "idea"
-      - name: "Open Trivia DB"
-        url: "https://opentdb.com/api_config.php"
-        shape: "trivia questions by category, difficulty, type"
-        auth: "none"
-        notes: "Community trivia database. No key. Good for a brain/games widget."
-        status: "idea"
-      - name: "Wikidata"
-        url: "https://www.wikidata.org/wiki/Wikidata:Data_access"
-        shape: "structured facts about any entity via SPARQL or entity IDs"
-        auth: "none"
-        notes: "Structured knowledge graph behind Wikipedia. Very flexible, no key."
-        status: "idea"
-      - name: "Wikipedia REST"
-        url: "https://en.wikipedia.org/api/rest_v1/"
-        shape: "article summaries, page content, search, images"
-        auth: "none"
-        notes: "Clean REST interface to Wikipedia. Easy summaries for any topic."
-        status: "idea"
-      - name: "Harvard Art Museums"
-        url: "https://github.com/harvardartmuseums/api-docs"
-        shape: "art objects, images, exhibitions, provenance data"
-        auth: "free_key"
-        notes: "250k+ art objects with high-res images. Free key, generous limits."
-        status: "idea"
-      - name: "Met Museum"
-        url: "https://metmuseum.github.io/"
-        shape: "470k+ art objects, images, department/culture metadata"
-        auth: "none"
-        notes: "Metropolitan Museum of Art. No key needed. Huge open collection."
-        status: "idea"
-      - name: "Rijksmuseum"
-        url: "https://data.rijksmuseum.nl/object-metadata/api/"
-        shape: "Dutch Golden Age art objects, high-res images, artist data"
-        auth: "free_key"
-        notes: "Rijksmuseum Amsterdam. Rembrandt, Vermeer, free key, stunning images."
-        status: "idea"
-
-  - name: "Words & Language"
-    icon: "✍️"
-    texture: "corpus, taxonomy"
-    description: "Dictionaries, poetry, prose, quotations, and linguistic data"
-    apis:
-      - name: "Datamuse"
-        url: "https://www.datamuse.com/api/"
-        shape: "words by meaning, sound, spelling — rhymes, synonyms, associations"
-        auth: "none"
-        rate_limit: "100k/day"
-        notes: "Powerful word-finding engine. No key. Good for generative text tools."
-        status: "idea"
-      - name: "Free Dictionary API"
-        url: "https://dictionaryapi.dev/"
-        shape: "definitions, phonetics, audio pronunciation, part of speech"
-        auth: "none"
-        notes: "Clean, no-key dictionary API. English and some other languages."
-        status: "idea"
-      - name: "Wordnik"
-        url: "https://developer.wordnik.com/"
-        shape: "definitions, examples, related words, pronunciations"
-        auth: "free_key"
-        notes: "Richer than Free Dictionary. Includes citation examples from real text."
-        status: "idea"
-      - name: "PoetryDB"
-        url: "https://poetrydb.org/index.html"
-        shape: "poems by author, title, or line — full text"
-        auth: "none"
-        notes: "Public domain poetry corpus. No key. Good for a random poem widget."
-        status: "idea"
-      - name: "Project Gutenberg"
-        url: "https://gutendex.com/"
-        shape: "70k+ public domain books — metadata, download URLs"
-        auth: "none"
-        notes: "Gutendex is a JSON API wrapper for Gutenberg. No key, full text available."
-        status: "idea"
-      - name: "Quotable"
-        url: "https://github.com/lukePeavey/quotable"
-        shape: "random quotes by author, tag, length"
-        auth: "none"
-        notes: "Simple quote API. No key. Good for footer rotation or brain page."
-        status: "idea"
-
-  - name: "Civic & Government"
-    icon: "🏛️"
-    texture: "time-series, corpus, graph"
-    description: "Public data from US and global government — census, legislation, economics"
-    apis:
-      - name: "US Census Bureau"
-        url: "https://www.census.gov/data/developers/data-sets.html"
-        shape: "demographic, economic, housing data by geography"
-        auth: "free_key"
-        notes: "Authoritative US population and economic data. Many datasets available."
-        status: "idea"
-      - name: "Data.gov"
-        url: "https://catalog.data.gov/dataset"
-        shape: "catalog of US federal open datasets across all agencies"
-        auth: "none"
-        notes: "Discovery layer for thousands of federal datasets. Good starting point."
-        status: "idea"
-      - name: "Congress.gov API"
-        url: "https://api.congress.gov/"
-        shape: "bills, amendments, members, votes, congressional record"
-        auth: "free_key"
-        notes: "Official Library of Congress API for US legislative data."
-        status: "idea"
-      - name: "Open States"
-        url: "https://docs.openstates.org/api-v3/"
-        shape: "state legislature bills, votes, legislators by state"
-        auth: "free_key"
-        notes: "Tracks all 50 state legislatures. Good for local California farm policy."
-        status: "idea"
-      - name: "FEC"
-        url: "https://api.open.fec.gov/developers/"
-        shape: "federal campaign finance — candidates, committees, filings"
-        auth: "free_key"
-        notes: "Federal Election Commission data. Full campaign finance transparency."
-        status: "idea"
-      - name: "BLS"
-        url: "https://www.bls.gov/developers/"
-        shape: "CPI, unemployment, wage, employment statistics by series"
-        auth: "free_key"
-        notes: "Bureau of Labor Statistics. Key economic indicators as time series."
-        status: "idea"
-      - name: "FRED"
-        url: "https://fred.stlouisfed.org/docs/api/fred/"
-        shape: "800k+ economic time series — GDP, rates, inflation, employment"
-        auth: "free_key"
-        rate_limit: "120/min"
-        notes: "St. Louis Fed. Most comprehensive free economics data source."
-        status: "built"
-        project_ideas:
-          - "Almond commodity price tracker on the Farming page"
-          - "CPI overlay on the markets page next to FRED interest rate data"
-      - name: "World Bank"
-        url: "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392"
-        shape: "global development indicators — GDP, poverty, health by country/year"
-        auth: "none"
-        notes: "Open data for 200+ countries. No key needed."
-        status: "idea"
-      - name: "UN Comtrade"
-        url: "https://comtradeplus.un.org/Trade-Data/api"
-        shape: "international trade flows by commodity and country"
-        auth: "free_key"
-        notes: "UN trade statistics. Useful for almond export/import data."
-        status: "idea"
-
-  - name: "Sports"
-    icon: "⚾"
-    texture: "time-series, event-stream, graph"
-    description: "Game scores, player stats, standings, and schedules"
-    apis:
-      - name: "MLB Stats API"
-        url: "https://statsapi.mlb.com/api/"
-        shape: "games, scores, player stats, rosters — full MLB data"
-        auth: "none"
-        notes: "Official MLB API, undocumented but public. No key needed."
-        status: "idea"
-      - name: "NBA Stats"
-        url: "https://www.nba.com/stats"
-        shape: "player and team stats, box scores — unofficial endpoint"
-        auth: "none"
-        notes: "Unofficial NBA stats API. No key but requires spoofed headers."
-        status: "idea"
-      - name: "TheSportsDB"
-        url: "https://www.thesportsdb.com/api.php"
-        shape: "team, player, event data across many sports"
-        auth: "free_key"
-        notes: "Multi-sport database. Free tier available with reasonable limits."
-        status: "idea"
-      - name: "Football-data.org"
-        url: "https://www.football-data.org/documentation/quickstart"
-        shape: "European football leagues — standings, fixtures, results"
-        auth: "free_key"
-        rate_limit: "10/min"
-        notes: "Best free football (soccer) API. Covers major European leagues."
-        status: "idea"
-      - name: "ESPN (unofficial)"
-        url: "https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b"
-        shape: "scores, standings, schedules across all ESPN sports"
-        auth: "none"
-        notes: "Undocumented ESPN endpoints. Broad sport coverage but may break."
-        status: "idea"
-
-  - name: "Maps & Place"
-    icon: "🗺️"
-    texture: "geographic, spatial, taxonomy"
-    description: "Geocoding, elevation, place names, and geographic reference data"
-    apis:
-      - name: "OpenStreetMap / Overpass"
-        url: "https://overpass-api.de/api/interpreter"
-        shape: "any OSM feature by Overpass QL query — buildings, roads, amenities"
-        auth: "none"
-        notes: "Query the entire OpenStreetMap planet. Powerful but complex query language."
-        status: "idea"
-      - name: "Nominatim"
-        url: "https://nominatim.org/release-docs/develop/api/Overview/"
-        shape: "geocoding and reverse geocoding using OSM data"
-        auth: "none"
-        rate_limit: "1/s"
-        notes: "OSM geocoder. No key, rate limit is 1 req/s — respect it."
-        status: "idea"
-      - name: "Open Elevation"
-        url: "https://open-elevation.com/"
-        shape: "elevation in meters for any lat/lon or batch of points"
-        auth: "none"
-        notes: "Free elevation lookup. No key. Useful for terrain visualizations."
-        status: "idea"
-      - name: "GeoNames"
-        url: "https://www.geonames.org/export/web-services.html"
-        shape: "place names, timezones, postal codes, country info"
-        auth: "free_key"
-        notes: "Large geographic names database. Free account with generous limits."
-        status: "idea"
-      - name: "REST Countries"
-        url: "https://restcountries.com/"
-        shape: "country info — population, capital, languages, flags, borders"
-        auth: "none"
-        notes: "All countries as JSON. No key. Good for quick country reference lookups."
-        status: "idea"
-      - name: "IP-API"
-        url: "https://ip-api.com/docs"
-        shape: "geolocation by IP address — country, city, ISP, coordinates"
-        auth: "none"
-        rate_limit: "45/min"
-        notes: "No key for HTTP. Good for rough visitor location without tracking."
-        status: "idea"
-
-  - name: "Money & Markets"
-    icon: "📈"
-    texture: "time-series, event-stream"
-    description: "Stock prices, crypto, forex, and financial market data"
-    apis:
-      - name: "Alpha Vantage"
-        url: "https://www.alphavantage.co/documentation/"
-        shape: "stock OHLCV, forex, crypto — intraday and daily historical"
-        auth: "free_key"
-        rate_limit: "25/day"
-        notes: "Most popular free stock API. Daily limit is tight but usable for static data."
-        status: "idea"
-      - name: "CoinGecko"
-        url: "https://www.coingecko.com/en/api/documentation"
-        shape: "crypto prices, market cap, OHLC, coin list"
-        auth: "none"
-        rate_limit: "30/min"
-        notes: "Best free crypto API. No key needed for demo tier."
-        status: "idea"
-      - name: "ExchangeRate.host"
-        url: "https://exchangerate.host/#/"
-        shape: "forex rates, historical exchange rate time series"
-        auth: "none"
-        notes: "Clean free forex API. No key. Good for currency conversion widgets."
-        status: "idea"
-      - name: "Open Exchange Rates"
-        url: "https://openexchangerates.org/api/docs"
-        shape: "hourly forex rates, historical data, 170+ currencies"
-        auth: "free_key"
-        rate_limit: "1k/month"
-        notes: "Free tier gives hourly USD base rates. Monthly limit is enough for static sites."
-        status: "idea"
-      - name: "Yahoo Finance (unofficial)"
-        url: "https://github.com/ranaroussi/yfinance"
-        shape: "stock quotes, options, earnings, balance sheets"
-        auth: "none"
-        notes: "Unofficial Yahoo Finance scraper. Broad coverage but can break on changes."
-        status: "idea"
-
-  - name: "Transit & Infrastructure"
-    icon: "✈️"
-    texture: "event-stream, geographic, time-series"
-    description: "Public transit, flight tracking, and network infrastructure feeds"
-    apis:
-      - name: "Transit.land"
-        url: "https://www.transit.land/documentation"
-        shape: "transit feeds, routes, stops, schedules worldwide"
-        auth: "free_key"
-        notes: "Aggregates GTFS data from hundreds of transit agencies globally."
-        status: "idea"
-      - name: "Transport for London"
-        url: "https://api.tfl.gov.uk/"
-        shape: "London bus/tube arrivals, disruptions, line status"
-        auth: "free_key"
-        notes: "Official TfL API. Real-time arrivals and service status."
-        status: "idea"
-      - name: "WMATA"
-        url: "https://developer.wmata.com/"
-        shape: "DC Metro rail/bus arrivals, incidents, schedule"
-        auth: "free_key"
-        notes: "Washington Metro API. Real-time train predictions and incidents."
-        status: "idea"
-      - name: "OpenSky Network"
-        url: "https://openskynetwork.github.io/opensky-api/"
-        shape: "real-time and historical aircraft positions worldwide"
-        auth: "none"
-        rate_limit: "100 req/day (anonymous)"
-        notes: "Live ADS-B flight data. No key for basic queries."
-        status: "idea"
-      - name: "ADS-B Exchange"
-        url: "https://www.adsbexchange.com/data/"
-        shape: "real-time global aircraft positions, military and unfiltered"
-        auth: "free_key"
-        notes: "Unfiltered ADS-B data including military flights. More complete than FlightAware."
-        status: "idea"
-
-  - name: "Dev & Social"
-    icon: "💻"
-    texture: "graph, event-stream, corpus"
-    description: "Developer platforms, hacker news, chess — niche community data"
-    apis:
-      - name: "GitHub REST"
-        url: "https://docs.github.com/en/rest"
-        shape: "repos, commits, issues, PRs, user activity"
-        auth: "free_key"
-        rate_limit: "5k/hour (authed)"
-        notes: "Full GitHub platform data. Token gives 5k req/hr. Good for dev dashboards."
-        status: "idea"
-      - name: "HackerNews"
-        url: "https://github.com/HackerNews/API"
-        shape: "stories, comments, user profiles — live Firebase feed"
-        auth: "none"
-        notes: "Official HN API via Firebase. No key. Real-time top stories feed."
-        status: "idea"
-      - name: "Lichess"
-        url: "https://lichess.org/api"
-        shape: "games, puzzles, leaderboards, opening explorer, broadcasts"
-        auth: "none"
-        notes: "Open source chess platform. Rich API, no key for most endpoints."
-        status: "idea"
-      - name: "Chess.com"
-        url: "https://www.chess.com/news/view/published-data-api"
-        shape: "player stats, game archives, leaderboards, puzzles"
-        auth: "none"
-        notes: "Chess.com public data API. No key needed. Good for gaming section."
-        status: "idea"
-      - name: "CocktailDB"
-        url: "https://www.thecocktaildb.com/api.php"
-        shape: "cocktail recipes, ingredients, glass types, images"
-        auth: "none"
-        notes: "Free tier with test key '1'. Full recipe database with photos."
-        status: "idea"
+- name: Sky & Earth
+  icon: 🌍
+  texture: time-series, geographic, event-stream
+  description: The physical world instrumented — weather, climate, seismic, air quality
+  apis:
+  - name: Open-Meteo
+    url: https://open-meteo.com/en/docs
+    shape: hourly/daily forecast grids, historical climate
+    auth: none
+    rate_limit: 10k/day
+    notes: No key needed. Best free weather API. Historical back to 1940.
+    status: idea
+    project_ideas:
+    - 7-day orchard forecast panel on the Farming page
+    - Historical frost date chart for almond bloom risk
+  - name: OpenWeatherMap
+    url: https://openweathermap.org/api
+    shape: current conditions, 5-day/3-hour forecast
+    auth: free_key
+    rate_limit: 60/min
+    notes: Most-used weather API. Free tier sufficient for a site widget.
+    status: idea
+    project_ideas:
+    - Current conditions widget for the farm's zip code
+    - Rain alert banner for irrigation scheduling on Farming page
+  - name: NOAA Climate Data Online
+    url: https://www.ncdc.noaa.gov/cdo-web/webservices/v2
+    shape: historical climate records, station data, normals
+    auth: free_key
+    notes: Authoritative US climate archive. Good for long-run farm analysis.
+    status: idea
+    project_ideas:
+    - Historical frost dates chart for almond bloom risk on Farming
+    - Multi-decade Central Valley rainfall chart on Farming page
+  - name: USGS Earthquake Hazards
+    url: https://earthquake.usgs.gov/fdsnws/event/1/
+    shape: real-time seismic events, GeoJSON
+    auth: none
+    notes: All global earthquakes, updated every minute. No key needed.
+    status: idea
+    project_ideas:
+    - Real-time Central Valley quake ticker on Farming page
+    - Seismic event map embedded in Farming page context
+  - name: AirNow
+    url: https://docs.airnowapi.org/
+    shape: US air quality index by zip/location
+    auth: free_key
+    notes: EPA AQI data. Useful for farm air quality or wildfire smoke context.
+    status: idea
+    project_ideas:
+    - Wildfire smoke AQI alert during almond harvest season
+    - Air quality badge in Farming page header
+  - name: OpenAQ
+    url: https://docs.openaq.org/
+    shape: global air quality sensor readings
+    auth: none
+    notes: Community sensor network, global coverage, no key for basic queries.
+    status: idea
+    project_ideas:
+    - Farm-local air quality index in Farming sidebar
+    - Global AQI comparison widget in Brain Lab
+  - name: Sunrise-Sunset
+    url: https://sunrise-sunset.org/api
+    shape: sunrise/sunset/golden hour times by lat/lon
+    auth: none
+    notes: Simple, reliable. No key. Good for farm light-hour displays.
+    status: idea
+    project_ideas:
+    - Daylight hours bar display on Farming page header
+    - Golden hour countdown for farm photography planning
+- name: Space
+  icon: 🚀
+  texture: image-stream, event-stream, time-series
+  description: Orbital mechanics, deep sky imagery, near-Earth objects, and launch data
+  apis:
+  - name: NASA APOD
+    url: https://api.nasa.gov/#apod
+    shape: one astronomy photo per day with title, explanation, media URL
+    auth: free_key
+    rate_limit: 1k/hour
+    notes: Astronomy Picture of the Day. Easy integration, gorgeous imagery.
+    status: idea
+    project_ideas:
+    - Daily astronomy photo rotating in Art section
+    - Weekly space image gallery in Art section
+  - name: NASA EONET
+    url: https://eonet.gsfc.nasa.gov/docs/v3
+    shape: natural event feed — wildfires, storms, volcanoes, GeoJSON
+    auth: none
+    notes: Earth Observatory Natural Event Tracker. Good for wildfire/drought context on the farm.
+    status: idea
+    project_ideas:
+    - Active California wildfire event feed on Farming page
+    - Natural disaster map in Farming sidebar
+  - name: NASA Mars Rover Photos
+    url: https://api.nasa.gov/#mars-rover-photos
+    shape: photos from Curiosity/Perseverance by sol date and camera
+    auth: free_key
+    notes: Thousands of high-res rover photos filterable by camera. Visually rich.
+    status: idea
+    project_ideas:
+    - Mars rover photo gallery in Art section
+    - Daily rover image widget in Brain Lab
+  - name: NASA NEO
+    url: https://api.nasa.gov/#NeoWS
+    shape: near-Earth object feed by date range, orbital data
+    auth: free_key
+    notes: Near-Earth Object Web Service. Asteroid close approach data.
+    status: idea
+    project_ideas:
+    - Asteroid close-approach ticker in Brain Lab
+    - Near-Earth object countdown widget in Brain section
+  - name: SpaceX API
+    url: https://github.com/r-spacex/SpaceX-API
+    shape: launches, rockets, capsules, launchpads — JSON
+    auth: none
+    notes: Unofficial but comprehensive SpaceX launch history. No key needed.
+    status: idea
+    project_ideas:
+    - Upcoming launch countdown widget in Brain Lab
+    - Launch history timeline in Brain or Gaming section
+  - name: Open Notify (ISS)
+    url: http://open-notify.org/Open-Notify-API/
+    shape: current ISS position, next pass times by lat/lon
+    auth: none
+    notes: Tracks the International Space Station in real time. No key needed.
+    status: idea
+    project_ideas:
+    - ISS pass times over the farm's coordinates in Farming
+    - Live ISS position tracker in Brain Lab
+  - name: Le Système Solaire
+    url: https://api.le-systeme-solaire.net/en/
+    shape: solar system bodies — mass, radius, orbital elements
+    auth: none
+    notes: Clean REST API for planetary data. Good for a solar system reference page.
+    status: idea
+    project_ideas:
+    - Solar system data cards in Brain Lab experiments
+    - Planet fact comparison widget in Brain section
+- name: Living Things
+  icon: 🌿
+  texture: taxonomy, geographic, corpus
+  description: Biodiversity records, food composition, and creature databases
+  apis:
+  - name: iNaturalist
+    url: https://api.inaturalist.org/v1/docs/
+    shape: species observations with photos, location, taxon hierarchy
+    auth: none
+    notes: Citizen science biodiversity network. Filter by location to find farm wildlife.
+    status: idea
+    project_ideas:
+    - Wildlife sightings near the almond farm on Farming page
+    - Native species observation log in Farming section
+  - name: GBIF
+    url: https://www.gbif.org/developer/summary
+    shape: global species occurrence records, taxon data
+    auth: none
+    notes: Global Biodiversity Information Facility. Massive dataset, no key.
+    status: idea
+    project_ideas:
+    - Biodiversity count for the farm's county in Farming
+    - Native California species reference on Farming page
+  - name: Open Food Facts
+    url: https://world.openfoodfacts.org/data
+    shape: product ingredient lists, nutrition, labels by barcode
+    auth: none
+    notes: Open database of food products worldwide. Useful for cooking/recipe pages.
+    status: idea
+    project_ideas:
+    - Ingredient sourcing badges on Cooking recipe cards
+    - Allergen lookup widget in Cooking section
+  - name: USDA FoodData Central
+    url: https://fdc.nal.usda.gov/api-guide.html
+    shape: nutrient composition per food item, branded and generic
+    auth: free_key
+    notes: Authoritative US nutrition data. Good for annotating recipes.
+    status: idea
+    project_ideas:
+    - Macro breakdown panel auto-added to Cooking recipes
+    - Nutrition label for farm-grown produce in Cooking
+  - name: TheDogAPI
+    url: https://thedogapi.com/
+    shape: dog breed info, temperament, images
+    auth: free_key
+    notes: Comprehensive breed database with photos. Fun for a pets or body page.
+    status: idea
+    project_ideas:
+    - Dog breed of the week card in Body section
+    - Random dog photo widget in Brain Lab experiments
+  - name: TheCatAPI
+    url: https://thecatapi.com/
+    shape: cat breed info, temperament, random cat images
+    auth: free_key
+    notes: Same pattern as TheDogAPI. Easy to integrate alongside it.
+    status: idea
+    project_ideas:
+    - Random cat image widget in Brain Lab
+    - Cat breed explorer in Body section
+  - name: PokeAPI
+    url: https://pokeapi.co/
+    shape: Pokémon species, moves, abilities, stats — full game data
+    auth: none
+    rate_limit: 100/min
+    notes: Complete Pokémon game data. No key. Good for gaming section.
+    status: idea
+    project_ideas:
+    - Pokédex lookup tool in Gaming section
+    - Daily Pokémon card in Gaming section
+- name: Culture & Knowledge
+  icon: 📚
+  texture: corpus, taxonomy, image-stream
+  description: Books, music, film, art, and encyclopedic knowledge bases
+  apis:
+  - name: Open Library
+    url: https://openlibrary.org/developers/api
+    shape: book metadata, cover images, author info by ISBN/OLID
+    auth: none
+    notes: Internet Archive's book database. Cover images and metadata for free.
+    status: idea
+    project_ideas:
+    - Book cover art fetcher for the Books reading list
+    - Author bio lookup linked from Books page entries
+  - name: Google Books
+    url: https://developers.google.com/books/docs/v1/using
+    shape: book search, metadata, preview links, volume info
+    auth: free_key
+    notes: Largest book API. Good for enriching the books reading list.
+    status: idea
+    project_ideas:
+    - Preview links and synopsis enrichment for Books list
+    - Book search widget in Brain Lab
+  - name: MusicBrainz
+    url: https://musicbrainz.org/doc/MusicBrainz_API
+    shape: artist, release, recording metadata — open music encyclopedia
+    auth: none
+    notes: Open music database. No key. Good source for album/track data.
+    status: idea
+    project_ideas:
+    - Album tracklist and release info for Music page entries
+    - Artist discography explorer linked from Music page
+  - name: Last.fm
+    url: https://www.last.fm/api
+    shape: scrobble history, track/artist info, similar artists
+    auth: free_key
+    notes: Rich music metadata and listening data. Key is free and easy to get.
+    status: idea
+    project_ideas:
+    - Recently scrobbled tracks widget on Music page
+    - Similar artist recommendations on Music page
+  - name: Discogs
+    url: https://www.discogs.com/developers/
+    shape: vinyl/CD release database, marketplace, artist discographies
+    auth: free_key
+    notes: Definitive record collecting database. Good for music or gadgets pages.
+    status: idea
+    project_ideas:
+    - Vinyl record value lookup in Gadgets section
+    - Release discography with dates on Music page
+  - name: TheMovieDB (TMDB)
+    url: https://developer.themoviedb.org/docs
+    shape: film/TV metadata, posters, cast, ratings, now-playing
+    auth: free_key
+    rate_limit: ~40/10s
+    notes: Best free movie API. Poster images included. Free key with generous limits.
+    status: idea
+    project_ideas:
+    - Movie poster grid in the Movies section
+    - Now-playing feed for Movies section header
+  - name: Open Trivia DB
+    url: https://opentdb.com/api_config.php
+    shape: trivia questions by category, difficulty, type
+    auth: none
+    notes: Community trivia database. No key. Good for a brain/games widget.
+    status: idea
+    project_ideas:
+    - Daily trivia question widget in Brain Lab
+    - Category quiz game in Brain section
+  - name: Wikidata
+    url: https://www.wikidata.org/wiki/Wikidata:Data_access
+    shape: structured facts about any entity via SPARQL or entity IDs
+    auth: none
+    notes: Structured knowledge graph behind Wikipedia. Very flexible, no key.
+    status: idea
+    project_ideas:
+    - Structured fact sidebar for farming-history blog posts
+    - Entity fact panel in Brain Lab SPARQL explorer
+  - name: Wikipedia REST
+    url: https://en.wikipedia.org/api/rest_v1/
+    shape: article summaries, page content, search, images
+    auth: none
+    notes: Clean REST interface to Wikipedia. Easy summaries for any topic.
+    status: idea
+    project_ideas:
+    - Article summary cards linked from blog posts
+    - Random article discovery widget in Brain Lab
+  - name: Harvard Art Museums
+    url: https://github.com/harvardartmuseums/api-docs
+    shape: art objects, images, exhibitions, provenance data
+    auth: free_key
+    notes: 250k+ art objects with high-res images. Free key, generous limits.
+    status: idea
+    project_ideas:
+    - Rotating art discovery feature in Art section
+    - Color-palette artwork finder in Art section
+  - name: Met Museum
+    url: https://metmuseum.github.io/
+    shape: 470k+ art objects, images, department/culture metadata
+    auth: none
+    notes: Metropolitan Museum of Art. No key needed. Huge open collection.
+    status: idea
+    project_ideas:
+    - Daily artwork from open collection in Art section
+    - Department explorer as Art section navigation
+  - name: Rijksmuseum
+    url: https://data.rijksmuseum.nl/object-metadata/api/
+    shape: Dutch Golden Age art objects, high-res images, artist data
+    auth: free_key
+    notes: Rijksmuseum Amsterdam. Rembrandt, Vermeer, free key, stunning images.
+    status: idea
+    project_ideas:
+    - Dutch Golden Age painting gallery in Art section
+    - Rembrandt/Vermeer spotlight cards in Art section
+- name: Words & Language
+  icon: ✍️
+  texture: corpus, taxonomy
+  description: Dictionaries, poetry, prose, quotations, and linguistic data
+  apis:
+  - name: Datamuse
+    url: https://www.datamuse.com/api/
+    shape: words by meaning, sound, spelling — rhymes, synonyms, associations
+    auth: none
+    rate_limit: 100k/day
+    notes: Powerful word-finding engine. No key. Good for generative text tools.
+    status: idea
+    project_ideas:
+    - Rhyme finder for experimental poetry in Brain Lab
+    - Word association explorer widget in Brain section
+  - name: Free Dictionary API
+    url: https://dictionaryapi.dev/
+    shape: definitions, phonetics, audio pronunciation, part of speech
+    auth: none
+    notes: Clean, no-key dictionary API. English and some other languages.
+    status: idea
+    project_ideas:
+    - Word lookup hover cards in Blog posts
+    - Daily word definition widget in Brain Lab
+  - name: Wordnik
+    url: https://developer.wordnik.com/
+    shape: definitions, examples, related words, pronunciations
+    auth: free_key
+    notes: Richer than Free Dictionary. Includes citation examples from real text.
+    status: idea
+    project_ideas:
+    - Word-of-the-day rotating in site footer
+    - Etymology context for unusual words in blog posts
+  - name: PoetryDB
+    url: https://poetrydb.org/index.html
+    shape: poems by author, title, or line — full text
+    auth: none
+    notes: Public domain poetry corpus. No key. Good for a random poem widget.
+    status: idea
+    project_ideas:
+    - Random poem widget on Books or Brain page
+    - Poet of the week feature in Books section
+  - name: Project Gutenberg
+    url: https://gutendex.com/
+    shape: 70k+ public domain books — metadata, download URLs
+    auth: none
+    notes: Gutendex is a JSON API wrapper for Gutenberg. No key, full text available.
+    status: idea
+    project_ideas:
+    - Classic book recommendations on Books page
+    - Public domain text excerpt widget in Brain Lab
+  - name: Quotable
+    url: https://github.com/lukePeavey/quotable
+    shape: random quotes by author, tag, length
+    auth: none
+    notes: Simple quote API. No key. Good for footer rotation or brain page.
+    status: idea
+    project_ideas:
+    - Rotating quote below visitor counter in footer
+    - Farming-writer quotes on Farming page header
+- name: Civic & Government
+  icon: 🏛️
+  texture: time-series, corpus, graph
+  description: Public data from US and global government — census, legislation, economics
+  apis:
+  - name: US Census Bureau
+    url: https://www.census.gov/data/developers/data-sets.html
+    shape: demographic, economic, housing data by geography
+    auth: free_key
+    notes: Authoritative US population and economic data. Many datasets available.
+    status: idea
+    project_ideas:
+    - Central Valley ag demographics sidebar on Farming
+    - California population data chart in Brain Lab
+  - name: Data.gov
+    url: https://catalog.data.gov/dataset
+    shape: catalog of US federal open datasets across all agencies
+    auth: none
+    notes: Discovery layer for thousands of federal datasets. Good starting point.
+    status: idea
+    project_ideas:
+    - USDA almond crop statistics on Farming page
+    - Federal climate dataset feeds for farm planning tools
+  - name: Congress.gov API
+    url: https://api.congress.gov/
+    shape: bills, amendments, members, votes, congressional record
+    auth: free_key
+    notes: Official Library of Congress API for US legislative data.
+    status: idea
+    project_ideas:
+    - Farm bill and water rights tracker on Farming page
+    - Agricultural subsidy bill status in Farming sidebar
+  - name: Open States
+    url: https://docs.openstates.org/api-v3/
+    shape: state legislature bills, votes, legislators by state
+    auth: free_key
+    notes: Tracks all 50 state legislatures. Good for local California farm policy.
+    status: idea
+    project_ideas:
+    - California water rights legislation tracker on Farming
+    - CA ag policy bill status widget in Farming section
+  - name: FEC
+    url: https://api.open.fec.gov/developers/
+    shape: federal campaign finance — candidates, committees, filings
+    auth: free_key
+    notes: Federal Election Commission data. Full campaign finance transparency.
+    status: idea
+    project_ideas:
+    - Ag industry PAC spending lookup in Brain Lab
+    - Big ag donor tracking in Civic Brain section
+  - name: BLS
+    url: https://www.bls.gov/developers/
+    shape: CPI, unemployment, wage, employment statistics by series
+    auth: free_key
+    notes: Bureau of Labor Statistics. Key economic indicators as time series.
+    status: idea
+    project_ideas:
+    - Farm labor wage index chart on Farming page
+    - CPI food index on Cooking or Markets page
+  - name: FRED
+    url: https://fred.stlouisfed.org/docs/api/fred/
+    shape: 800k+ economic time series — GDP, rates, inflation, employment
+    auth: free_key
+    rate_limit: 120/min
+    notes: St. Louis Fed. Most comprehensive free economics data source.
+    status: built
+    project_ideas:
+    - Almond commodity price tracker on the Farming page
+    - CPI overlay on the markets page next to FRED interest rate data
+  - name: World Bank
+    url: https://datahelpdesk.worldbank.org/knowledgebase/articles/889392
+    shape: global development indicators — GDP, poverty, health by country/year
+    auth: none
+    notes: Open data for 200+ countries. No key needed.
+    status: idea
+    project_ideas:
+    - Global almond trade volume chart on Farming page
+    - Agricultural GDP comparison widget in Brain section
+  - name: UN Comtrade
+    url: https://comtradeplus.un.org/Trade-Data/api
+    shape: international trade flows by commodity and country
+    auth: free_key
+    notes: UN trade statistics. Useful for almond export/import data.
+    status: idea
+    project_ideas:
+    - Almond export volume by destination country on Farming
+    - US commodity flow chart in Farming section
+- name: Sports
+  icon: ⚾
+  texture: time-series, event-stream, graph
+  description: Game scores, player stats, standings, and schedules
+  apis:
+  - name: MLB Stats API
+    url: https://statsapi.mlb.com/api/
+    shape: games, scores, player stats, rosters — full MLB data
+    auth: none
+    notes: Official MLB API, undocumented but public. No key needed.
+    status: idea
+    project_ideas:
+    - A's or Giants score ticker in Gaming section
+    - Live MLB standings table in Gaming section
+  - name: NBA Stats
+    url: https://www.nba.com/stats
+    shape: player and team stats, box scores — unofficial endpoint
+    auth: none
+    notes: Unofficial NBA stats API. No key but requires spoofed headers.
+    status: idea
+    project_ideas:
+    - Warriors standings card in Gaming section
+    - NBA player stat lookup in Gaming section
+  - name: TheSportsDB
+    url: https://www.thesportsdb.com/api.php
+    shape: team, player, event data across many sports
+    auth: free_key
+    notes: Multi-sport database. Free tier available with reasonable limits.
+    status: idea
+    project_ideas:
+    - Multi-sport scores dashboard in Gaming section
+    - Sport team info cards in Gaming section
+  - name: Football-data.org
+    url: https://www.football-data.org/documentation/quickstart
+    shape: European football leagues — standings, fixtures, results
+    auth: free_key
+    rate_limit: 10/min
+    notes: Best free football (soccer) API. Covers major European leagues.
+    status: idea
+    project_ideas:
+    - Champions League standings widget in Brain Lab
+    - Premier League table widget in Gaming section
+  - name: ESPN (unofficial)
+    url: https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b
+    shape: scores, standings, schedules across all ESPN sports
+    auth: none
+    notes: Undocumented ESPN endpoints. Broad sport coverage but may break.
+    status: idea
+    project_ideas:
+    - Daily sports headlines sidebar in Gaming section
+    - Score ticker across major sports in Gaming
+- name: Maps & Place
+  icon: 🗺️
+  texture: geographic, spatial, taxonomy
+  description: Geocoding, elevation, place names, and geographic reference data
+  apis:
+  - name: OpenStreetMap / Overpass
+    url: https://overpass-api.de/api/interpreter
+    shape: any OSM feature by Overpass QL query — buildings, roads, amenities
+    auth: none
+    notes: Query the entire OpenStreetMap planet. Powerful but complex query language.
+    status: idea
+    project_ideas:
+    - Farm location map with nearby amenities on About page
+    - Orchard infrastructure map embedded in Farming page
+  - name: Nominatim
+    url: https://nominatim.org/release-docs/develop/api/Overview/
+    shape: geocoding and reverse geocoding using OSM data
+    auth: none
+    rate_limit: 1/s
+    notes: OSM geocoder. No key, rate limit is 1 req/s — respect it.
+    status: idea
+    project_ideas:
+    - Address lookup for farm visitor directions page
+    - Place name geocoder tool in Brain Lab
+  - name: Open Elevation
+    url: https://open-elevation.com/
+    shape: elevation in meters for any lat/lon or batch of points
+    auth: none
+    notes: Free elevation lookup. No key. Useful for terrain visualizations.
+    status: idea
+    project_ideas:
+    - Farm terrain elevation profile chart on Farming page
+    - Almond orchard topography display in Farming
+  - name: GeoNames
+    url: https://www.geonames.org/export/web-services.html
+    shape: place names, timezones, postal codes, country info
+    auth: free_key
+    notes: Large geographic names database. Free account with generous limits.
+    status: idea
+    project_ideas:
+    - Farm timezone and region info in Farming page header
+    - Local place name context data in Farming section
+  - name: REST Countries
+    url: https://restcountries.com/
+    shape: country info — population, capital, languages, flags, borders
+    auth: none
+    notes: All countries as JSON. No key. Good for quick country reference lookups.
+    status: idea
+    project_ideas:
+    - Country fact cards in a future World or Brain section
+    - Country data lookup widget in Brain Lab
+  - name: IP-API
+    url: https://ip-api.com/docs
+    shape: geolocation by IP address — country, city, ISP, coordinates
+    auth: none
+    rate_limit: 45/min
+    notes: No key for HTTP. Good for rough visitor location without tracking.
+    status: idea
+    project_ideas:
+    - Visitor location for weather widget personalization
+    - Anonymous visitor origin map in Brain Lab
+- name: Money & Markets
+  icon: 📈
+  texture: time-series, event-stream
+  description: Stock prices, crypto, forex, and financial market data
+  apis:
+  - name: Alpha Vantage
+    url: https://www.alphavantage.co/documentation/
+    shape: stock OHLCV, forex, crypto — intraday and daily historical
+    auth: free_key
+    rate_limit: 25/day
+    notes: Most popular free stock API. Daily limit is tight but usable for static data.
+    status: idea
+    project_ideas:
+    - Almond commodity price chart on Farming page
+    - Agricultural ETF tracker in Markets section
+  - name: CoinGecko
+    url: https://www.coingecko.com/en/api/documentation
+    shape: crypto prices, market cap, OHLC, coin list
+    auth: none
+    rate_limit: 30/min
+    notes: Best free crypto API. No key needed for demo tier.
+    status: idea
+    project_ideas:
+    - Crypto price ticker in Brain Lab or Gadgets section
+    - Top 10 coins widget in Markets or Brain section
+  - name: ExchangeRate.host
+    url: https://exchangerate.host/#/
+    shape: forex rates, historical exchange rate time series
+    auth: none
+    notes: Clean free forex API. No key. Good for currency conversion widgets.
+    status: idea
+    project_ideas:
+    - Currency converter widget in Gadgets section
+    - USD rate table on Markets page
+  - name: Open Exchange Rates
+    url: https://openexchangerates.org/api/docs
+    shape: hourly forex rates, historical data, 170+ currencies
+    auth: free_key
+    rate_limit: 1k/month
+    notes: Free tier gives hourly USD base rates. Monthly limit is enough for static sites.
+    status: idea
+    project_ideas:
+    - Live forex rates for almond export context on Farming
+    - Multi-currency rate table in Markets dashboard
+  - name: Yahoo Finance (unofficial)
+    url: https://github.com/ranaroussi/yfinance
+    shape: stock quotes, options, earnings, balance sheets
+    auth: none
+    notes: Unofficial Yahoo Finance scraper. Broad coverage but can break on changes.
+    status: idea
+    project_ideas:
+    - Ag company stock tracker in Farming or Markets
+    - Informal equity lookup tool in Brain Lab
+- name: Transit & Infrastructure
+  icon: ✈️
+  texture: event-stream, geographic, time-series
+  description: Public transit, flight tracking, and network infrastructure feeds
+  apis:
+  - name: Transit.land
+    url: https://www.transit.land/documentation
+    shape: transit feeds, routes, stops, schedules worldwide
+    auth: free_key
+    notes: Aggregates GTFS data from hundreds of transit agencies globally.
+    status: idea
+    project_ideas:
+    - Nearest transit options from farm for visitor page
+    - Transit route finder for farm trip planning
+  - name: Transport for London
+    url: https://api.tfl.gov.uk/
+    shape: London bus/tube arrivals, disruptions, line status
+    auth: free_key
+    notes: Official TfL API. Real-time arrivals and service status.
+    status: idea
+    project_ideas:
+    - TfL live status demo widget in Brain Lab
+    - London tube arrivals as live API demo in Brain
+  - name: WMATA
+    url: https://developer.wmata.com/
+    shape: DC Metro rail/bus arrivals, incidents, schedule
+    auth: free_key
+    notes: Washington Metro API. Real-time train predictions and incidents.
+    status: idea
+    project_ideas:
+    - DC Metro arrivals demo widget in Brain Lab
+    - Transit API comparison demo in Brain section
+  - name: OpenSky Network
+    url: https://openskynetwork.github.io/opensky-api/
+    shape: real-time and historical aircraft positions worldwide
+    auth: none
+    rate_limit: 100 req/day (anonymous)
+    notes: Live ADS-B flight data. No key for basic queries.
+    status: idea
+    project_ideas:
+    - Live aircraft over the farm's airspace on Farming
+    - Central Valley flight tracker in Brain Lab
+  - name: ADS-B Exchange
+    url: https://www.adsbexchange.com/data/
+    shape: real-time global aircraft positions, military and unfiltered
+    auth: free_key
+    notes: Unfiltered ADS-B data including military flights. More complete than FlightAware.
+    status: idea
+    project_ideas:
+    - Real-time military flight map in Brain Lab
+    - Unfiltered aircraft data experiment in Brain section
+- name: Dev & Social
+  icon: 💻
+  texture: graph, event-stream, corpus
+  description: Developer platforms, hacker news, chess — niche community data
+  apis:
+  - name: GitHub REST
+    url: https://docs.github.com/en/rest
+    shape: repos, commits, issues, PRs, user activity
+    auth: free_key
+    rate_limit: 5k/hour (authed)
+    notes: Full GitHub platform data. Token gives 5k req/hr. Good for dev dashboards.
+    status: idea
+    project_ideas:
+    - This site's recent commit history widget in Brain Lab
+    - Open source project showcase in Gadgets section
+  - name: HackerNews
+    url: https://github.com/HackerNews/API
+    shape: stories, comments, user profiles — live Firebase feed
+    auth: none
+    notes: Official HN API via Firebase. No key. Real-time top stories feed.
+    status: idea
+    project_ideas:
+    - Top HN stories sidebar in Brain Lab section
+    - Tech news digest in Brain Lab or Gadgets
+  - name: Lichess
+    url: https://lichess.org/api
+    shape: games, puzzles, leaderboards, opening explorer, broadcasts
+    auth: none
+    notes: Open source chess platform. Rich API, no key for most endpoints.
+    status: idea
+    project_ideas:
+    - Daily chess puzzle widget in Gaming section
+    - Opening explorer tool in Gaming section
+  - name: Chess.com
+    url: https://www.chess.com/news/view/published-data-api
+    shape: player stats, game archives, leaderboards, puzzles
+    auth: none
+    notes: Chess.com public data API. No key needed. Good for gaming section.
+    status: idea
+    project_ideas:
+    - Chess leaderboard widget in Gaming section
+    - Puzzle of the day in Gaming section
+  - name: CocktailDB
+    url: https://www.thecocktaildb.com/api.php
+    shape: cocktail recipes, ingredients, glass types, images
+    auth: none
+    notes: Free tier with test key '1'. Full recipe database with photos.
+    status: idea
+    project_ideas:
+    - Cocktail recipe card grid in Drinks section
+    - Random cocktail of the day on Drinks page header
