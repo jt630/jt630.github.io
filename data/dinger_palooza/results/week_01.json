@@ -2,10 +2,216 @@
   "week_number": 1,
   "week_start": "2026-03-23",
   "week_end": "2026-04-05",
-  "checked_at": "2026-03-31T08:59:51.831886+00:00",
+  "checked_at": "2026-04-01T09:04:19.533101+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
+    {
+      "name": "Jeremy",
+      "week_points": 8,
+      "total_hrs": 8,
+      "picks": [
+        {
+          "player": "Kyle Schwarber",
+          "team": "PHI",
+          "team_id": 143,
+          "mlb_id": 656941,
+          "draft_pick": 3,
+          "proj_hr": 42,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-03-26",
+              "opponent": "Texas Rangers",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Kyle Schwarber homers (1) on a fly ball to left center field. Trea Turner scores."
+                }
+              ]
+            },
+            {
+              "date": "2026-03-31",
+              "opponent": "Washington Nationals",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Kyle Schwarber homers (2) on a fly ball to right center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Yordan Alvarez",
+          "team": "HOU",
+          "team_id": 117,
+          "mlb_id": 670541,
+          "draft_pick": 16,
+          "proj_hr": 30,
+          "hrs": 3,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-03-27",
+              "opponent": "Los Angeles Angels",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 5,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Yordan Alvarez homers (1) on a fly ball to right field."
+                }
+              ]
+            },
+            {
+              "date": "2026-03-30",
+              "opponent": "Boston Red Sox",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Yordan Alvarez homers (2) on a fly ball to right field. Jose Altuve scores."
+                }
+              ]
+            },
+            {
+              "date": "2026-03-31",
+              "opponent": "Boston Red Sox",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 5,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Yordan Alvarez homers (3) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Giancarlo Stanton",
+          "team": "NYY",
+          "team_id": 147,
+          "mlb_id": 519317,
+          "draft_pick": 57,
+          "proj_hr": 24,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-03-27",
+              "opponent": "San Francisco Giants",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Giancarlo Stanton homers (1) on a fly ball to left field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Elly De La Cruz",
+          "team": "CIN",
+          "team_id": 113,
+          "mlb_id": 682829,
+          "draft_pick": 62,
+          "proj_hr": 24,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-03-28",
+              "opponent": "Boston Red Sox",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 5,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Elly De La Cruz homers (1) on a fly ball to right field."
+                }
+              ]
+            },
+            {
+              "date": "2026-03-31",
+              "opponent": "Pittsburgh Pirates",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Elly De La Cruz homers (2) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Bryce Harper",
+          "team": "PHI",
+          "team_id": 143,
+          "mlb_id": 547180,
+          "draft_pick": 31,
+          "proj_hr": 27,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 5,
+          "games_live": 0
+        }
+      ]
+    },
     {
       "name": "Ellie",
       "week_points": 5,
@@ -23,7 +229,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -84,7 +290,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -99,7 +305,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -145,7 +351,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -160,168 +366,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Jeremy",
-      "week_points": 5,
-      "total_hrs": 5,
-      "picks": [
-        {
-          "player": "Kyle Schwarber",
-          "team": "PHI",
-          "team_id": 143,
-          "mlb_id": 656941,
-          "draft_pick": 3,
-          "proj_hr": 42,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-03-26",
-              "opponent": "Texas Rangers",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 1,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Kyle Schwarber homers (1) on a fly ball to left center field. Trea Turner scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Yordan Alvarez",
-          "team": "HOU",
-          "team_id": 117,
-          "mlb_id": 670541,
-          "draft_pick": 16,
-          "proj_hr": 30,
-          "hrs": 2,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-03-27",
-              "opponent": "Los Angeles Angels",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 5,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Yordan Alvarez homers (1) on a fly ball to right field."
-                }
-              ]
-            },
-            {
-              "date": "2026-03-30",
-              "opponent": "Boston Red Sox",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Yordan Alvarez homers (2) on a fly ball to right field. Jose Altuve scores."
-                }
-              ]
-            }
-          ],
           "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Giancarlo Stanton",
-          "team": "NYY",
-          "team_id": 147,
-          "mlb_id": 519317,
-          "draft_pick": 57,
-          "proj_hr": 24,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-03-27",
-              "opponent": "San Francisco Giants",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 6,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Giancarlo Stanton homers (1) on a fly ball to left field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Elly De La Cruz",
-          "team": "CIN",
-          "team_id": 113,
-          "mlb_id": 682829,
-          "draft_pick": 62,
-          "proj_hr": 24,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-03-28",
-              "opponent": "Boston Red Sox",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 5,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Elly De La Cruz homers (1) on a fly ball to right field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Bryce Harper",
-          "team": "PHI",
-          "team_id": 143,
-          "mlb_id": 547180,
-          "draft_pick": 31,
-          "proj_hr": 27,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
           "games_live": 0
         }
       ]
@@ -343,7 +388,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -358,7 +403,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -389,7 +434,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -404,7 +449,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -441,129 +486,15 @@
               ]
             }
           ],
-          "games_checked": 4,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Wendy",
-      "week_points": 4,
-      "total_hrs": 2,
-      "picks": [
-        {
-          "player": "Shohei Ohtani",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 660271,
-          "draft_pick": 1,
-          "proj_hr": 47,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Kyle Tucker",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 663656,
-          "draft_pick": 17,
-          "proj_hr": 30,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Michael Busch",
-          "team": "CHC",
-          "team_id": 112,
-          "mlb_id": 683737,
-          "draft_pick": 33,
-          "proj_hr": 27,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Andy Pages",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 681624,
-          "draft_pick": 61,
-          "proj_hr": 24,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-03-26",
-              "opponent": "Arizona Diamondbacks",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 5,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Andy Pages homers (1) on a fly ball to left center field. Max Muncy scores. Teoscar Hern\u00e1ndez scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Mookie Betts",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 605141,
-          "draft_pick": 76,
-          "proj_hr": 22,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-03-27",
-              "opponent": "Arizona Diamondbacks",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Mookie Betts homers (1) on a fly ball to center field. Shohei Ohtani scores. Kyle Tucker scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Mason",
-      "week_points": 3,
-      "total_hrs": 3,
+      "week_points": 4,
+      "total_hrs": 4,
       "picks": [
         {
           "player": "Aaron Judge",
@@ -608,7 +539,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -633,12 +564,28 @@
           "mlb_id": 696100,
           "draft_pick": 22,
           "proj_hr": 28,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-03-31",
+              "opponent": "Toronto Blue Jays",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Hunter Goodman homers (1) on a fly ball to left center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -669,7 +616,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -684,15 +631,129 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Wendy",
+      "week_points": 4,
+      "total_hrs": 2,
+      "picks": [
+        {
+          "player": "Shohei Ohtani",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 660271,
+          "draft_pick": 1,
+          "proj_hr": 47,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Kyle Tucker",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 663656,
+          "draft_pick": 17,
+          "proj_hr": 30,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Michael Busch",
+          "team": "CHC",
+          "team_id": 112,
+          "mlb_id": 683737,
+          "draft_pick": 33,
+          "proj_hr": 27,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Andy Pages",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 681624,
+          "draft_pick": 61,
+          "proj_hr": 24,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-03-26",
+              "opponent": "Arizona Diamondbacks",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 5,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Andy Pages homers (1) on a fly ball to left center field. Max Muncy scores. Teoscar Hern\u00e1ndez scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Mookie Betts",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 605141,
+          "draft_pick": 76,
+          "proj_hr": 22,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-03-27",
+              "opponent": "Arizona Diamondbacks",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Mookie Betts homers (1) on a fly ball to center field. Shohei Ohtani scores. Kyle Tucker scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Jeff",
-      "week_points": 2,
-      "total_hrs": 2,
+      "week_points": 3,
+      "total_hrs": 3,
       "picks": [
         {
           "player": "Junior Caminero",
@@ -706,7 +767,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -721,7 +782,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -731,10 +792,10 @@
           "mlb_id": 608369,
           "draft_pick": 36,
           "proj_hr": 27,
-          "hrs": 1,
+          "hrs": 2,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 1,
+          "points": 2,
           "hr_games": [
             {
               "date": "2026-03-28",
@@ -750,9 +811,24 @@
                   "description": "Corey Seager homers (1) on a fly ball to right center field."
                 }
               ]
+            },
+            {
+              "date": "2026-03-31",
+              "opponent": "Baltimore Orioles",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Corey Seager homers (2) on a fly ball to right center field."
+                }
+              ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -798,15 +874,15 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Kayla",
-      "week_points": 2,
-      "total_hrs": 1,
+      "week_points": 3,
+      "total_hrs": 2,
       "picks": [
         {
           "player": "Pete Alonso",
@@ -815,12 +891,28 @@
           "mlb_id": 624413,
           "draft_pick": 8,
           "proj_hr": 36,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-03-31",
+              "opponent": "Texas Rangers",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 4,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Pete Alonso homers (1) on a fly ball to center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -851,7 +943,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -866,7 +958,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -881,7 +973,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -918,7 +1010,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -933,7 +1025,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -948,7 +1040,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -963,7 +1055,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1009,7 +1101,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
@@ -1031,7 +1123,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1046,7 +1138,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1092,7 +1184,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1107,7 +1199,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
