@@ -2,7 +2,7 @@
   "week_number": 1,
   "week_start": "2026-03-23",
   "week_end": "2026-04-05",
-  "checked_at": "2026-04-01T22:28:36.320796+00:00",
+  "checked_at": "2026-04-02T08:56:57.557643+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
@@ -631,7 +631,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -761,7 +761,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -859,7 +859,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -942,123 +942,9 @@
       ]
     },
     {
-      "name": "Wendy",
-      "week_points": 4,
-      "total_hrs": 2,
-      "picks": [
-        {
-          "player": "Shohei Ohtani",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 660271,
-          "draft_pick": 1,
-          "proj_hr": 47,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Kyle Tucker",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 663656,
-          "draft_pick": 17,
-          "proj_hr": 30,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Michael Busch",
-          "team": "CHC",
-          "team_id": 112,
-          "mlb_id": 683737,
-          "draft_pick": 33,
-          "proj_hr": 27,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 6,
-          "games_live": 0
-        },
-        {
-          "player": "Andy Pages",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 681624,
-          "draft_pick": 61,
-          "proj_hr": 24,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-03-26",
-              "opponent": "Arizona Diamondbacks",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 5,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Andy Pages homers (1) on a fly ball to left center field. Max Muncy scores. Teoscar Hern\u00e1ndez scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Mookie Betts",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 605141,
-          "draft_pick": 76,
-          "proj_hr": 22,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-03-27",
-              "opponent": "Arizona Diamondbacks",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Mookie Betts homers (1) on a fly ball to center field. Shohei Ohtani scores. Kyle Tucker scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 5,
-          "games_live": 0
-        }
-      ]
-    },
-    {
       "name": "Tyler",
-      "week_points": 3,
-      "total_hrs": 2,
+      "week_points": 4,
+      "total_hrs": 3,
       "picks": [
         {
           "player": "Cal Raleigh",
@@ -1102,7 +988,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1158,20 +1044,150 @@
           "mlb_id": 518692,
           "draft_pick": 63,
           "proj_hr": 23,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-01",
+              "opponent": "Cleveland Guardians",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Freddie Freeman homers (1) on a fly ball to center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Wendy",
+      "week_points": 4,
+      "total_hrs": 2,
+      "picks": [
+        {
+          "player": "Shohei Ohtani",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 660271,
+          "draft_pick": 1,
+          "proj_hr": 47,
           "hrs": 0,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Kyle Tucker",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 663656,
+          "draft_pick": 17,
+          "proj_hr": 30,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Michael Busch",
+          "team": "CHC",
+          "team_id": 112,
+          "mlb_id": 683737,
+          "draft_pick": 33,
+          "proj_hr": 27,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Andy Pages",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 681624,
+          "draft_pick": 61,
+          "proj_hr": 24,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-03-26",
+              "opponent": "Arizona Diamondbacks",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 5,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Andy Pages homers (1) on a fly ball to left center field. Max Muncy scores. Teoscar Hern\u00e1ndez scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Mookie Betts",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 605141,
+          "draft_pick": 76,
+          "proj_hr": 22,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-03-27",
+              "opponent": "Arizona Diamondbacks",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Mookie Betts homers (1) on a fly ball to center field. Shohei Ohtani scores. Kyle Tucker scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Makeda",
-      "week_points": 2,
-      "total_hrs": 2,
+      "week_points": 3,
+      "total_hrs": 3,
       "picks": [
         {
           "player": "Nick Kurtz",
@@ -1225,12 +1241,28 @@
           "mlb_id": 608070,
           "draft_pick": 26,
           "proj_hr": 28,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 6,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-01",
+              "opponent": "Los Angeles Dodgers",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Jos\u00e9 Ram\u00edrez homers (1) on a fly ball to left field. Angel Mart\u00ednez scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 7,
           "games_live": 0
         },
         {
