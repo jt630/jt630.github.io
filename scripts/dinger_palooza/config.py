@@ -58,7 +58,7 @@ PLAYERS = [
     {"name": "Alec Bohm",            "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
     {"name": "J.T. Realmuto",        "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
     {"name": "Nick Castellanos",     "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
-    {"name": "Tyler O'Neill",        "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "R"},
+    {"name": "Tyler O'Neill",        "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": None, "bats": "R"},
     {"name": "Triston Casas",        "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "L"},
     {"name": "Jarren Duran",         "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "L"},
     {"name": "Alex Bregman",         "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "R"},

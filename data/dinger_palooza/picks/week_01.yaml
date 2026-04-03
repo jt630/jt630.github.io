@@ -139,8 +139,8 @@ members:
         draft_pick: 59
         proj_hr: 24
       - player: "Tyler O'Neill"
-        team: "BOS"
-        team_id: 111
+        team: "BAL"
+        team_id: 110
         draft_pick: null
         proj_hr: null
 
