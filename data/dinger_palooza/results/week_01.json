@@ -2,7 +2,7 @@
   "week_number": 1,
   "week_start": "2026-03-23",
   "week_end": "2026-04-05",
-  "checked_at": "2026-04-02T08:56:57.557643+00:00",
+  "checked_at": "2026-04-03T08:54:34.644635+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
@@ -261,7 +261,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -398,6 +398,151 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
+          "games_checked": 6,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Tyler",
+      "week_points": 5,
+      "total_hrs": 4,
+      "picks": [
+        {
+          "player": "Cal Raleigh",
+          "team": "SEA",
+          "team_id": 136,
+          "mlb_id": 663728,
+          "draft_pick": 4,
+          "proj_hr": 40,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 7,
+          "games_live": 0
+        },
+        {
+          "player": "Matt Olson",
+          "team": "ATL",
+          "team_id": 144,
+          "mlb_id": 621566,
+          "draft_pick": 14,
+          "proj_hr": 30,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-02",
+              "opponent": "Arizona Diamondbacks",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Matt Olson homers (1) on a fly ball to center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 7,
+          "games_live": 0
+        },
+        {
+          "player": "Byron Buxton",
+          "team": "MIN",
+          "team_id": 142,
+          "mlb_id": 621439,
+          "draft_pick": 23,
+          "proj_hr": 28,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Corbin Carroll",
+          "team": "ARI",
+          "team_id": 109,
+          "mlb_id": 682998,
+          "draft_pick": 42,
+          "proj_hr": 26,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-03-30",
+              "opponent": "Detroit Tigers",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 2,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Corbin Carroll homers (1) on a fly ball to right center field. Ildemaro Vargas scores. Jordan Lawlar scores."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-01",
+              "opponent": "Detroit Tigers",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Corbin Carroll homers (2) on a fly ball to center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 7,
+          "games_live": 0
+        },
+        {
+          "player": "Freddie Freeman",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 518692,
+          "draft_pick": 63,
+          "proj_hr": 23,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-01",
+              "opponent": "Cleveland Guardians",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Freddie Freeman homers (1) on a fly ball to center field."
+                }
+              ]
+            }
+          ],
           "games_checked": 6,
           "games_live": 0
         }
@@ -631,7 +776,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -859,7 +1004,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -921,7 +1066,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -936,135 +1081,6 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 6,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Tyler",
-      "week_points": 4,
-      "total_hrs": 3,
-      "picks": [
-        {
-          "player": "Cal Raleigh",
-          "team": "SEA",
-          "team_id": 136,
-          "mlb_id": 663728,
-          "draft_pick": 4,
-          "proj_hr": 40,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 7,
-          "games_live": 0
-        },
-        {
-          "player": "Matt Olson",
-          "team": "ATL",
-          "team_id": 144,
-          "mlb_id": 621566,
-          "draft_pick": 14,
-          "proj_hr": 30,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 6,
-          "games_live": 0
-        },
-        {
-          "player": "Byron Buxton",
-          "team": "MIN",
-          "team_id": 142,
-          "mlb_id": 621439,
-          "draft_pick": 23,
-          "proj_hr": 28,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Corbin Carroll",
-          "team": "ARI",
-          "team_id": 109,
-          "mlb_id": 682998,
-          "draft_pick": 42,
-          "proj_hr": 26,
-          "hrs": 2,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 3,
-          "hr_games": [
-            {
-              "date": "2026-03-30",
-              "opponent": "Detroit Tigers",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 2,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Corbin Carroll homers (1) on a fly ball to right center field. Ildemaro Vargas scores. Jordan Lawlar scores."
-                }
-              ]
-            },
-            {
-              "date": "2026-04-01",
-              "opponent": "Detroit Tigers",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 1,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Corbin Carroll homers (2) on a fly ball to center field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 6,
-          "games_live": 0
-        },
-        {
-          "player": "Freddie Freeman",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 518692,
-          "draft_pick": 63,
-          "proj_hr": 23,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-01",
-              "opponent": "Cleveland Guardians",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 9,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Freddie Freeman homers (1) on a fly ball to center field."
-                }
-              ]
-            }
-          ],
           "games_checked": 6,
           "games_live": 0
         }
@@ -1216,7 +1232,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -1231,7 +1247,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
