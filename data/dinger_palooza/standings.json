@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-04-03T22:06:36.388051+00:00",
+  "last_updated": "2026-04-04T08:40:12.788687+00:00",
   "total_weeks": 1,
   "members": [
     {
@@ -20,17 +20,17 @@
       ]
     },
     {
-      "name": "Ellie",
-      "total_points": 6,
+      "name": "Tyler",
+      "total_points": 7,
       "rank": 3,
       "weekly_points": [
-        6
+        7
       ]
     },
     {
-      "name": "Tyler",
+      "name": "Ellie",
       "total_points": 6,
-      "rank": 3,
+      "rank": 4,
       "weekly_points": [
         6
       ]
@@ -38,7 +38,7 @@
     {
       "name": "Kayla",
       "total_points": 6,
-      "rank": 3,
+      "rank": 4,
       "weekly_points": [
         6
       ]
@@ -53,16 +53,16 @@
     },
     {
       "name": "Cam",
-      "total_points": 4,
-      "rank": 7,
+      "total_points": 5,
+      "rank": 6,
       "weekly_points": [
-        4
+        5
       ]
     },
     {
       "name": "Jeff",
       "total_points": 4,
-      "rank": 7,
+      "rank": 8,
       "weekly_points": [
         4
       ]
