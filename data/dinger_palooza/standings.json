@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-04-04T08:40:12.788687+00:00",
+  "last_updated": "2026-04-05T08:42:53.495049+00:00",
   "total_weeks": 1,
   "members": [
     {
@@ -13,10 +13,10 @@
     },
     {
       "name": "Wendy",
-      "total_points": 9,
+      "total_points": 11,
       "rank": 2,
       "weekly_points": [
-        9
+        11
       ]
     },
     {
@@ -29,16 +29,24 @@
     },
     {
       "name": "Ellie",
-      "total_points": 6,
-      "rank": 4,
+      "total_points": 7,
+      "rank": 3,
       "weekly_points": [
-        6
+        7
       ]
     },
     {
       "name": "Kayla",
       "total_points": 6,
-      "rank": 4,
+      "rank": 5,
+      "weekly_points": [
+        6
+      ]
+    },
+    {
+      "name": "Cam",
+      "total_points": 6,
+      "rank": 5,
       "weekly_points": [
         6
       ]
@@ -46,25 +54,17 @@
     {
       "name": "Mason",
       "total_points": 5,
-      "rank": 6,
-      "weekly_points": [
-        5
-      ]
-    },
-    {
-      "name": "Cam",
-      "total_points": 5,
-      "rank": 6,
+      "rank": 7,
       "weekly_points": [
         5
       ]
     },
     {
       "name": "Jeff",
-      "total_points": 4,
-      "rank": 8,
+      "total_points": 5,
+      "rank": 7,
       "weekly_points": [
-        4
+        5
       ]
     },
     {
