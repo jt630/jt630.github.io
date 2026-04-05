@@ -1648,7 +1648,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -2600,7 +2604,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -2612,7 +2620,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -2624,7 +2636,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -3580,7 +3596,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -3592,7 +3612,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -3604,7 +3628,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -3756,7 +3784,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680736,
+          "name": "Justin Wrobleski",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -3768,7 +3800,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 808967,
+          "name": "Yoshinobu Yamamoto",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -3780,7 +3816,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 660271,
+          "name": "Shohei Ohtani",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4548,7 +4588,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4560,7 +4604,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4572,7 +4620,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4636,7 +4688,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4648,7 +4704,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4660,7 +4720,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4724,7 +4788,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4736,7 +4804,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4748,7 +4820,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4812,7 +4888,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4824,7 +4904,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4836,7 +4920,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4900,7 +4988,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4912,7 +5004,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -4924,7 +5020,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -5604,7 +5704,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -5616,7 +5720,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -5628,7 +5736,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -5992,7 +6104,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6004,7 +6120,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6016,7 +6136,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6080,7 +6204,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6092,7 +6220,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6104,7 +6236,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6168,7 +6304,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6180,7 +6320,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6192,7 +6336,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6256,7 +6404,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6268,7 +6420,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6280,7 +6436,11 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7784,7 +7944,11 @@
         "opponent": "St. Louis Cardinals",
         "opponent_team_id": 138,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 700241,
+          "name": "Michael McGreevy",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -7880,7 +8044,11 @@
         "opponent": "St. Louis Cardinals",
         "opponent_team_id": 138,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 700241,
+          "name": "Michael McGreevy",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -7976,7 +8144,11 @@
         "opponent": "St. Louis Cardinals",
         "opponent_team_id": 138,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 700241,
+          "name": "Michael McGreevy",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -8072,7 +8244,11 @@
         "opponent": "St. Louis Cardinals",
         "opponent_team_id": 138,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 700241,
+          "name": "Michael McGreevy",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"

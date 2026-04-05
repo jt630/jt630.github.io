@@ -2414,15 +2414,28 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 9.0,
+          "hr": 1,
+          "hr9": 1.0,
+          "bb9": 3.0,
+          "k9": 10.0,
+          "era": 5.0,
+          "innings_pitched": "9.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -2502,7 +2515,7 @@
     "park_score": 45.9,
     "best_park_game": "loanDepot park",
     "best_park_factor": 99,
-    "pitcher_score": 47.9,
+    "pitcher_score": 47.0,
     "favorable_matchups": 0,
     "platoon_advantages": 2,
     "batter_splits": {}
@@ -3823,15 +3836,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 6.0,
+          "hr": 1,
+          "hr9": 1.5,
+          "bb9": 1.5,
+          "k9": 6.0,
+          "era": 1.5,
+          "innings_pitched": "6.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -3841,16 +3867,29 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 12.0,
+          "hr": 1,
+          "hr9": 0.75,
+          "bb9": 0.0,
+          "k9": 15.75,
+          "era": 0.75,
+          "innings_pitched": "12.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 21.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822833,
@@ -3859,15 +3898,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 9.666666666666666,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 4.66,
+          "k9": 16.76,
+          "era": 2.79,
+          "innings_pitched": "9.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -3929,9 +3981,9 @@
     "park_score": 52.4,
     "best_park_game": "UNIQLO Field at Dodger Stadium",
     "best_park_factor": 104,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -5175,13 +5227,13 @@
         "park_notes": "Green Monster helps LHH; hurts RHH",
         "pitcher_stats": {
           "pitch_hand": "R",
-          "ip": 4.333333333333333,
+          "ip": 9.333333333333334,
           "hr": 1,
-          "hr9": 2.08,
-          "bb9": 2.08,
-          "k9": 8.31,
-          "era": 2.08,
-          "innings_pitched": "4.1"
+          "hr9": 0.96,
+          "bb9": 3.86,
+          "k9": 6.75,
+          "era": 0.96,
+          "innings_pitched": "9.1"
         },
         "pitcher_hand": "R",
         "platoon_label": "platoon \u2713",
@@ -5270,15 +5322,28 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 5.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 1.8,
+          "k9": 7.2,
+          "era": 5.4,
+          "innings_pitched": "5.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -5288,15 +5353,28 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 4.666666666666667,
+          "hr": 1,
+          "hr9": 1.93,
+          "bb9": 7.71,
+          "k9": 5.79,
+          "era": 19.29,
+          "innings_pitched": "4.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -5306,16 +5384,29 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 0.9,
+          "k9": 10.8,
+          "era": 3.6,
+          "innings_pitched": "10.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824858,
@@ -5376,9 +5467,9 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 43.7,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -5526,15 +5617,28 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680736,
+          "name": "Justin Wrobleski",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 4.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 2.25,
+          "k9": 4.5,
+          "era": 6.75,
+          "innings_pitched": "4.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -5544,16 +5648,29 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 808967,
+          "name": "Yoshinobu Yamamoto",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 12.0,
+          "hr": 2,
+          "hr9": 1.5,
+          "bb9": 0.75,
+          "k9": 6.0,
+          "era": 3.0,
+          "innings_pitched": "12.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 53.5,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822833,
@@ -5562,15 +5679,28 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 660271,
+          "name": "Shohei Ohtani",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 6.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 4.5,
+          "k9": 9.0,
+          "era": 0.0,
+          "innings_pitched": "6.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -5632,9 +5762,9 @@
     "park_score": 48.1,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "pitcher_score": 50.0,
+    "pitcher_score": 50.6,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -6678,15 +6808,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 6.0,
+          "hr": 1,
+          "hr9": 1.5,
+          "bb9": 1.5,
+          "k9": 6.0,
+          "era": 1.5,
+          "innings_pitched": "6.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -6696,16 +6839,29 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 12.0,
+          "hr": 1,
+          "hr9": 0.75,
+          "bb9": 0.0,
+          "k9": 15.75,
+          "era": 0.75,
+          "innings_pitched": "12.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 21.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822833,
@@ -6714,15 +6870,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 9.666666666666666,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 4.66,
+          "k9": 16.76,
+          "era": 2.79,
+          "innings_pitched": "9.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -6784,9 +6953,9 @@
     "park_score": 52.4,
     "best_park_game": "UNIQLO Field at Dodger Stadium",
     "best_park_factor": 104,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -6806,15 +6975,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 6.0,
+          "hr": 1,
+          "hr9": 1.5,
+          "bb9": 1.5,
+          "k9": 6.0,
+          "era": 1.5,
+          "innings_pitched": "6.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -6824,16 +7006,29 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 12.0,
+          "hr": 1,
+          "hr9": 0.75,
+          "bb9": 0.0,
+          "k9": 15.75,
+          "era": 0.75,
+          "innings_pitched": "12.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 9.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822833,
@@ -6842,15 +7037,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 9.666666666666666,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 4.66,
+          "k9": 16.76,
+          "era": 2.79,
+          "innings_pitched": "9.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -6912,7 +7120,7 @@
     "park_score": 52.4,
     "best_park_game": "UNIQLO Field at Dodger Stadium",
     "best_park_factor": 104,
-    "pitcher_score": 50.0,
+    "pitcher_score": 41.2,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -6934,15 +7142,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 6.0,
+          "hr": 1,
+          "hr9": 1.5,
+          "bb9": 1.5,
+          "k9": 6.0,
+          "era": 1.5,
+          "innings_pitched": "6.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -6952,16 +7173,29 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 12.0,
+          "hr": 1,
+          "hr9": 0.75,
+          "bb9": 0.0,
+          "k9": 15.75,
+          "era": 0.75,
+          "innings_pitched": "12.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 9.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822833,
@@ -6970,15 +7204,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 9.666666666666666,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 4.66,
+          "k9": 16.76,
+          "era": 2.79,
+          "innings_pitched": "9.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -7040,7 +7287,7 @@
     "park_score": 52.4,
     "best_park_game": "UNIQLO Field at Dodger Stadium",
     "best_park_factor": 104,
-    "pitcher_score": 50.0,
+    "pitcher_score": 41.2,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -7062,15 +7309,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 6.0,
+          "hr": 1,
+          "hr9": 1.5,
+          "bb9": 1.5,
+          "k9": 6.0,
+          "era": 1.5,
+          "innings_pitched": "6.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -7080,16 +7340,29 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 12.0,
+          "hr": 1,
+          "hr9": 0.75,
+          "bb9": 0.0,
+          "k9": 15.75,
+          "era": 0.75,
+          "innings_pitched": "12.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 21.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822833,
@@ -7098,15 +7371,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 9.666666666666666,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 4.66,
+          "k9": 16.76,
+          "era": 2.79,
+          "innings_pitched": "9.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -7168,9 +7454,9 @@
     "park_score": 52.4,
     "best_park_game": "UNIQLO Field at Dodger Stadium",
     "best_park_factor": 104,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -7190,15 +7476,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 6.0,
+          "hr": 1,
+          "hr9": 1.5,
+          "bb9": 1.5,
+          "k9": 6.0,
+          "era": 1.5,
+          "innings_pitched": "6.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -7208,16 +7507,29 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 12.0,
+          "hr": 1,
+          "hr9": 0.75,
+          "bb9": 0.0,
+          "k9": 15.75,
+          "era": 0.75,
+          "innings_pitched": "12.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 9.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822833,
@@ -7226,15 +7538,28 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656302,
+          "name": "Dylan Cease",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 9.666666666666666,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 4.66,
+          "k9": 16.76,
+          "era": 2.79,
+          "innings_pitched": "9.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -7296,7 +7621,7 @@
     "park_score": 52.4,
     "best_park_game": "UNIQLO Field at Dodger Stadium",
     "best_park_factor": 104,
-    "pitcher_score": 50.0,
+    "pitcher_score": 41.2,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -8214,15 +8539,28 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 5.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 1.8,
+          "k9": 7.2,
+          "era": 5.4,
+          "innings_pitched": "5.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -8232,15 +8570,28 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 4.666666666666667,
+          "hr": 1,
+          "hr9": 1.93,
+          "bb9": 7.71,
+          "k9": 5.79,
+          "era": 19.29,
+          "innings_pitched": "4.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -8250,16 +8601,29 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 0.9,
+          "k9": 10.8,
+          "era": 3.6,
+          "innings_pitched": "10.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824858,
@@ -8320,7 +8684,7 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 39.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -8414,13 +8778,13 @@
         "park_notes": "Green Monster helps LHH; hurts RHH",
         "pitcher_stats": {
           "pitch_hand": "R",
-          "ip": 4.333333333333333,
+          "ip": 9.333333333333334,
           "hr": 1,
-          "hr9": 2.08,
-          "bb9": 2.08,
-          "k9": 8.31,
-          "era": 2.08,
-          "innings_pitched": "4.1"
+          "hr9": 0.96,
+          "bb9": 3.86,
+          "k9": 6.75,
+          "era": 0.96,
+          "innings_pitched": "9.1"
         },
         "pitcher_hand": "R",
         "platoon_label": "platoon \u2713",
@@ -8581,13 +8945,13 @@
         "park_notes": "Green Monster helps LHH; hurts RHH",
         "pitcher_stats": {
           "pitch_hand": "R",
-          "ip": 4.333333333333333,
+          "ip": 9.333333333333334,
           "hr": 1,
-          "hr9": 2.08,
-          "bb9": 2.08,
-          "k9": 8.31,
-          "era": 2.08,
-          "innings_pitched": "4.1"
+          "hr9": 0.96,
+          "bb9": 3.86,
+          "k9": 6.75,
+          "era": 0.96,
+          "innings_pitched": "9.1"
         },
         "pitcher_hand": "R",
         "platoon_label": "platoon \u2713",
@@ -8748,13 +9112,13 @@
         "park_notes": "Green Monster helps LHH; hurts RHH",
         "pitcher_stats": {
           "pitch_hand": "R",
-          "ip": 4.333333333333333,
+          "ip": 9.333333333333334,
           "hr": 1,
-          "hr9": 2.08,
-          "bb9": 2.08,
-          "k9": 8.31,
-          "era": 2.08,
-          "innings_pitched": "4.1"
+          "hr9": 0.96,
+          "bb9": 3.86,
+          "k9": 6.75,
+          "era": 0.96,
+          "innings_pitched": "9.1"
         },
         "pitcher_hand": "R",
         "platoon_label": "platoon \u2717",
@@ -8843,12 +9207,25 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 5.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 1.8,
+          "k9": 7.2,
+          "era": 5.4,
+          "innings_pitched": "5.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
         "pitcher_matchup_score": 50.0,
@@ -8861,12 +9238,25 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 4.666666666666667,
+          "hr": 1,
+          "hr9": 1.93,
+          "bb9": 7.71,
+          "k9": 5.79,
+          "era": 19.29,
+          "innings_pitched": "4.2"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
         "pitcher_matchup_score": 50.0,
@@ -8879,16 +9269,29 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 0.9,
+          "k9": 10.8,
+          "era": 3.6,
+          "innings_pitched": "10.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824858,
@@ -8949,7 +9352,7 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 41.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -8971,12 +9374,25 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 5.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 1.8,
+          "k9": 7.2,
+          "era": 5.4,
+          "innings_pitched": "5.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
         "pitcher_matchup_score": 50.0,
@@ -8989,12 +9405,25 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 4.666666666666667,
+          "hr": 1,
+          "hr9": 1.93,
+          "bb9": 7.71,
+          "k9": 5.79,
+          "era": 19.29,
+          "innings_pitched": "4.2"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
         "pitcher_matchup_score": 50.0,
@@ -9007,16 +9436,29 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 0.9,
+          "k9": 10.8,
+          "era": 3.6,
+          "innings_pitched": "10.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824858,
@@ -9077,7 +9519,7 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 41.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -9099,15 +9541,28 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 5.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 1.8,
+          "k9": 7.2,
+          "era": 5.4,
+          "innings_pitched": "5.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -9117,15 +9572,28 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 4.666666666666667,
+          "hr": 1,
+          "hr9": 1.93,
+          "bb9": 7.71,
+          "k9": 5.79,
+          "era": 19.29,
+          "innings_pitched": "4.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -9135,16 +9603,29 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 0.9,
+          "k9": 10.8,
+          "era": 3.6,
+          "innings_pitched": "10.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824858,
@@ -9205,7 +9686,7 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 39.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -9227,15 +9708,28 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607200,
+          "name": "Erick Fedde",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 5.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 1.8,
+          "k9": 7.2,
+          "era": 5.4,
+          "innings_pitched": "5.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -9245,15 +9739,28 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681343,
+          "name": "Shane Smith",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 4.666666666666667,
+          "hr": 1,
+          "hr9": 1.93,
+          "bb9": 7.71,
+          "k9": 5.79,
+          "era": 19.29,
+          "innings_pitched": "4.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.0,
         "pitcher_matchup_label": "TBD"
       },
       {
@@ -9263,16 +9770,29 @@
         "opponent": "Chicago White Sox",
         "opponent_team_id": 145,
         "venue": "Rate Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680732,
+          "name": "Sean Burke",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.0,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 0.9,
+          "k9": 10.8,
+          "era": 3.6,
+          "innings_pitched": "10.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824858,
@@ -9333,9 +9853,9 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 43.7,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -11465,16 +11985,29 @@
         "opponent": "St. Louis Cardinals",
         "opponent_team_id": 138,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 700241,
+          "name": "Michael McGreevy",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.666666666666666,
+          "hr": 1,
+          "hr9": 0.84,
+          "bb9": 1.69,
+          "k9": 7.59,
+          "era": 2.53,
+          "innings_pitched": "10.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 19.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823808,
@@ -11535,7 +12068,7 @@
     "park_score": 47.0,
     "best_park_game": "American Family Field",
     "best_park_factor": 102,
-    "pitcher_score": 52.1,
+    "pitcher_score": 46.9,
     "favorable_matchups": 1,
     "platoon_advantages": 1,
     "batter_splits": {}
@@ -11619,16 +12152,29 @@
         "opponent": "St. Louis Cardinals",
         "opponent_team_id": 138,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 700241,
+          "name": "Michael McGreevy",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.666666666666666,
+          "hr": 1,
+          "hr9": 0.84,
+          "bb9": 1.69,
+          "k9": 7.59,
+          "era": 2.53,
+          "innings_pitched": "10.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 31.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823808,
@@ -11689,9 +12235,9 @@
     "park_score": 47.0,
     "best_park_game": "American Family Field",
     "best_park_factor": 102,
-    "pitcher_score": 52.1,
+    "pitcher_score": 48.9,
     "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -11773,16 +12319,29 @@
         "opponent": "St. Louis Cardinals",
         "opponent_team_id": 138,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 700241,
+          "name": "Michael McGreevy",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.666666666666666,
+          "hr": 1,
+          "hr9": 0.84,
+          "bb9": 1.69,
+          "k9": 7.59,
+          "era": 2.53,
+          "innings_pitched": "10.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 31.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823808,
@@ -11843,9 +12402,9 @@
     "park_score": 47.0,
     "best_park_game": "American Family Field",
     "best_park_factor": 102,
-    "pitcher_score": 52.1,
+    "pitcher_score": 48.9,
     "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -11927,16 +12486,29 @@
         "opponent": "St. Louis Cardinals",
         "opponent_team_id": 138,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 700241,
+          "name": "Michael McGreevy",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 10.666666666666666,
+          "hr": 1,
+          "hr9": 0.84,
+          "bb9": 1.69,
+          "k9": 7.59,
+          "era": 2.53,
+          "innings_pitched": "10.2"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 25.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823808,
@@ -11997,7 +12569,7 @@
     "park_score": 47.0,
     "best_park_game": "American Family Field",
     "best_park_factor": 102,
-    "pitcher_score": 52.1,
+    "pitcher_score": 47.9,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
