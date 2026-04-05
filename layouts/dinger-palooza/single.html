@@ -132,7 +132,8 @@
         <span class="dp-rank">#{{ .rank }}</span>
         <div class="dp-player-info">
           <span class="dp-player-name">{{ .name }}</span>
-          <span class="dp-team-badge">{{ .team_abbr }}</span>
+          <span class="dp-team-badge{{ if .team_stale }} dp-team-badge--stale{{ end }}" title="{{ if .team_stale }}⚠ Config team may be stale — live team shown{{ end }}">{{ .team_abbr }}</span>
+          {{ if .team_stale }}<span class="dp-stale-badge" title="Player changed teams since config was written">⚠ TEAM?</span>{{ end }}
           {{ if .high_opportunity }}<span class="dp-hot-badge">HOT WEEK</span>{{ end }}
           {{ $k := $ks.Get .name }}
           {{ if $k }}
