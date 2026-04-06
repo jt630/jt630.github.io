@@ -72,8 +72,9 @@ async def resolve_player_ids(
     players: list[dict],
 ) -> list[dict]:
     """
-    Look up the MLB person ID for each player by name search.
-    Fills in mlb_id in-place and returns the updated list.
+    Look up each player's MLB person ID and verify their current team.
+    Uses name search so the lookup works even if the player changed teams.
+    Updates team_id/team/team_abbr in-place when a mismatch is detected.
     """
     tasks = [_lookup_player(session, p) for p in players]
     resolved = await asyncio.gather(*tasks, return_exceptions=True)
@@ -82,15 +83,71 @@ async def resolve_player_ids(
     for player, result in zip(players, resolved):
         if isinstance(result, Exception):
             logger.warning(f"Could not resolve ID for {player['name']}: {result}")
-            enriched.append({**player})
+            enriched.append({**player, "team_stale": False})
         else:
-            enriched.append({**player, "mlb_id": result})
+            updates = result or {}
+            merged = {**player, **updates}
+            # Flag if the live team differs from config so the UI can warn
+            merged["team_stale"] = (
+                "team_id" in updates and updates["team_id"] != player["team_id"]
+            )
+            if merged["team_stale"]:
+                logger.warning(
+                    f"STALE CONFIG: {player['name']} is no longer on "
+                    f"{player['team']} — now on {merged['team']} ({merged['team_abbr']}). "
+                    f"Update config.py team_id for this player."
+                )
+            enriched.append(merged)
     return enriched
 
 
-async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> int | None:
-    """Search MLB Stats API for a player's person ID."""
-    # Use the team roster to find the exact player — more reliable than name search
+async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
+    """
+    Look up a player via MLB people search (team-agnostic).
+    Returns a dict of fields to merge into the player: mlb_id, and optionally
+    team_id / team / team_abbr if the player's current team differs from config.
+
+    Falls back to the original roster-based lookup if name search yields nothing.
+    """
+    name_encoded = player["name"].replace(" ", "+")
+    url = f"{MLB_API_BASE}/people/search?names={name_encoded}&sportId=1"
+
+    try:
+        async with session.get(url) as resp:
+            resp.raise_for_status()
+            data = await resp.json()
+        people = data.get("people", [])
+    except Exception as exc:
+        logger.debug(f"Name search failed for {player['name']}: {exc} — falling back to roster")
+        people = []
+
+    if people:
+        target = player["name"].lower()
+        for person in people:
+            full_name = person.get("fullName", "").lower()
+            if target in full_name or full_name in target or _name_match(target, full_name):
+                mlb_id = person.get("id")
+                current_team = person.get("currentTeam", {})
+                current_team_id = current_team.get("id")
+                current_team_name = current_team.get("name", player["team"])
+                current_team_abbr = current_team.get("abbreviation", player["team_abbr"])
+
+                result = {"mlb_id": mlb_id}
+                if current_team_id and current_team_id != player["team_id"]:
+                    result["team_id"] = current_team_id
+                    result["team"] = current_team_name
+                    result["team_abbr"] = current_team_abbr
+
+                logger.info(f"Resolved {player['name']} → MLB ID {mlb_id} ({current_team_name})")
+                return result
+
+    # Fallback: search the configured team's roster (original behavior)
+    logger.debug(f"Name search found no match for {player['name']} — trying {player['team']} roster")
+    return await _lookup_player_via_roster(session, player)
+
+
+async def _lookup_player_via_roster(session: aiohttp.ClientSession, player: dict) -> dict:
+    """Fallback: fetch the configured team's active roster and match by name."""
     url = (
         f"{MLB_API_BASE}/teams/{player['team_id']}/roster"
         f"?rosterType=active"
@@ -104,18 +161,16 @@ async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> int | 
     for entry in data.get("roster", []):
         person = entry.get("person", {})
         full_name = person.get("fullName", "").lower()
-        # Handle "Jr" suffix variations
-        if (
-            target in full_name
-            or full_name in target
-            or _name_match(target, full_name)
-        ):
+        if target in full_name or full_name in target or _name_match(target, full_name):
             pid = person.get("id")
-            logger.info(f"Resolved {player['name']} → MLB ID {pid}")
-            return pid
+            logger.info(f"Resolved {player['name']} → MLB ID {pid} (via roster fallback)")
+            return {"mlb_id": pid}
 
-    logger.warning(f"Player '{player['name']}' not found on {player['team']} roster")
-    return None
+    logger.warning(
+        f"Player '{player['name']}' not found on {player['team']} roster. "
+        f"They may have been traded — update team_id in config.py."
+    )
+    return {"mlb_id": None}
 
 
 def _name_match(a: str, b: str) -> bool:

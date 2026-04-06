@@ -11,9 +11,11 @@ from datetime import date, timedelta
 # bats: "L" = left-handed, "R" = right-handed, "S" = switch hitter
 # Switch hitters always bat from the favorable side → treat as neutral for platoon.
 #
-# NOTE: Team assignments reflect rosters as of spring 2026. Free-agent moves
-# may cause a handful of players to fail the roster lookup (mlb_id stays None).
-# If a player shows 0 pitcher matchup data, verify their team_id here.
+# NOTE: Team assignments are the *seed* used for initial lookup. The schedule
+# agent now uses MLB people/search to auto-detect the player's current team and
+# will override team_id/team/team_abbr at runtime if a trade occurred.
+# Players with a stale team show a ⚠ TEAM? badge on the draft board.
+# If a player shows 0 pitcher matchup data, verify their team_id here and update.
 PLAYERS = [
     # ── Elite tier ────────────────────────────────────────────────────────────
     {"name": "Cal Raleigh",          "team": "Seattle Mariners",        "team_id": 136, "team_abbr": "SEA", "mlb_id": None, "bats": "L"},

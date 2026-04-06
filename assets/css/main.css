@@ -1566,6 +1566,22 @@ img {
   border-radius: 2px;
 }
 
+.dp-team-badge--stale {
+  border-color: #8B6914;
+  color: #D4AF37;
+}
+
+.dp-stale-badge {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  background: #2a1f00;
+  color: #D4AF37;
+  border: 1px solid #8B6914;
+  padding: 1px 6px;
+  border-radius: 2px;
+  cursor: help;
+}
+
 .dp-hot-badge {
   font-family: Impact, Arial, sans-serif;
   font-size: 0.65rem;
