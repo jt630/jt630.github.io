@@ -76,10 +76,12 @@ marquee ticker, blinking NEW! badge, visitor counter in footer.
 All work goes on a feature branch. Branch names must follow this pattern:
 
 ```
-claude/[short-description]-[SESSION_ID_SUFFIX]
+[PR_NUMBER]-claude/[short-description]-[SESSION_ID_SUFFIX]
 ```
 
-Example: `claude/2000s-style-updates-K4Nh1`
+Example: `47-claude/fix-player-lookup-bCsF6`
+
+To get the next PR number: check the latest PR via `mcp__github__list_pull_requests` and add 1.
 
 The session ID suffix is provided in your system prompt at the start of each session.
 **Never push directly to `main`** — it's protected and will return a 403.
