@@ -1,0 +1,40 @@
+name: Dinger Palooza — Team Config Audit
+
+on:
+  # Run manually from GitHub Actions UI whenever you want to check
+  workflow_dispatch:
+
+  # Also run automatically every Monday morning so stale entries don't sneak through
+  schedule:
+    - cron: "0 12 * * 1"  # Mondays at 12:00 UTC (8 AM ET)
+
+jobs:
+  audit-teams:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/dinger_palooza/requirements.txt
+
+      - name: Run team config audit
+        # exit code 1 if any STALE/NOTFOUND players — marks the job as failed
+        # so you see a red X on the Actions tab without digging into logs
+        run: |
+          cd scripts/dinger_palooza
+          python check_teams.py --gha
+        continue-on-error: true
+        id: audit
+
+      - name: Fail job if issues found
+        if: steps.audit.outcome == 'failure'
+        run: |
+          echo "::error::Stale or missing player-team entries detected. Check the job summary and update config.py."
+          exit 1

@@ -80,7 +80,7 @@ PLAYERS = [
     {"name": "William Contreras",    "team": "Milwaukee Brewers",       "team_id": 158, "team_abbr": "MIL", "mlb_id": None, "bats": "R"},
     {"name": "Willy Adames",         "team": "Milwaukee Brewers",       "team_id": 158, "team_abbr": "MIL", "mlb_id": None, "bats": "R"},
     {"name": "Jackson Chourio",      "team": "Milwaukee Brewers",       "team_id": 158, "team_abbr": "MIL", "mlb_id": None, "bats": "R"},
-    {"name": "Ryan McMahon",         "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": None, "bats": "L"},
+    {"name": "Ryan McMahon",         "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": None, "bats": "L"},
     {"name": "Nolan Jones",          "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": None, "bats": "L"},
     {"name": "Ezequiel Tovar",       "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": None, "bats": "R"},
     {"name": "Hunter Goodman",       "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": None, "bats": "R"},
