@@ -1,8 +1,8 @@
 """
 check_teams.py — Validate that every player in config.py is on their listed team.
 
-Uses MLB /people/search (same as the fixed schedule agent) to find each player's
-current team and compares it against the config entry.
+Uses MLB /people/search to find the player ID, then /people/{id}?hydrate=currentTeam
+for the actual current team (search alone doesn't return currentTeam reliably).
 
 Usage:
   python scripts/dinger_palooza/check_teams.py
@@ -10,7 +10,7 @@ Usage:
 Outputs:
   - PASS: player is on their listed team
   - STALE: player is on a different team (config needs updating)
-  - NOTFOUND: player not found in MLB search (retired, minors, etc.)
+  - NOTFOUND: player not found in MLB search (retired, minors, name mismatch)
 
 Exit code 1 if any STALE or NOTFOUND entries exist, so CI can catch it.
 """
@@ -19,12 +19,31 @@ import asyncio
 import json
 import os
 import sys
+import unicodedata
 
 import aiohttp
 
-# Allow running from repo root or scripts/dinger_palooza/
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 from config import PLAYERS, MLB_API_BASE
+
+
+def normalize(s: str) -> str:
+    """Lowercase, strip accents, remove punctuation for fuzzy matching."""
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(c for c in s if unicodedata.category(c) != "Mn")  # strip combining marks
+    return s.lower().replace(".", "").replace(",", "").replace(" jr", "").replace(" sr", "").strip()
+
+
+async def get_current_team(session: aiohttp.ClientSession, mlb_id: int) -> dict:
+    """Fetch a player's current team via /people/{id}?hydrate=currentTeam."""
+    url = f"{MLB_API_BASE}/people/{mlb_id}?hydrate=currentTeam"
+    async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+        resp.raise_for_status()
+        data = await resp.json()
+    people = data.get("people", [])
+    if not people:
+        return {}
+    return people[0].get("currentTeam", {})
 
 
 async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
@@ -40,19 +59,22 @@ async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
         return {**player, "status": "ERROR", "detail": str(exc), "live_team": None, "live_team_id": None}
 
     people = data.get("people", [])
-    target = name.lower()
-
-    def clean(s):
-        return s.replace(".", "").replace(",", "").replace(" jr", "").replace(" sr", "").strip()
+    target = normalize(name)
 
     for person in people:
-        full_name = person.get("fullName", "").lower()
-        if target in full_name or full_name in target or clean(target) == clean(full_name):
-            current_team = person.get("currentTeam", {})
+        full_name = normalize(person.get("fullName", ""))
+        if target in full_name or full_name in target or target == full_name:
+            mlb_id = person.get("id")
+
+            # Search doesn't reliably include currentTeam — fetch it directly
+            try:
+                current_team = await get_current_team(session, mlb_id)
+            except Exception:
+                current_team = {}
+
             live_team_id = current_team.get("id")
             live_team = current_team.get("name", "Unknown")
             live_abbr = current_team.get("abbreviation", "???")
-            mlb_id = person.get("id")
 
             if live_team_id == player["team_id"]:
                 status = "PASS"
@@ -74,7 +96,13 @@ async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
                 "mlb_id": mlb_id,
             }
 
-    return {**player, "status": "NOTFOUND", "detail": "Not found in MLB people search", "live_team": None, "live_team_id": None}
+    return {
+        **player,
+        "status": "NOTFOUND",
+        "detail": f"No match in MLB search for '{name}'",
+        "live_team": None,
+        "live_team_id": None,
+    }
 
 
 async def run_checks() -> list[dict]:
@@ -85,14 +113,12 @@ async def run_checks() -> list[dict]:
 
 
 def print_report(results: list[dict], fmt: str = "text") -> int:
-    """Print results and return exit code (0 = all good, 1 = issues found)."""
     stale = [r for r in results if r["status"] == "STALE"]
     notfound = [r for r in results if r["status"] == "NOTFOUND"]
     errors = [r for r in results if r["status"] == "ERROR"]
     passing = [r for r in results if r["status"] == "PASS"]
 
     if fmt == "gha":
-        # GitHub Actions job summary markdown
         lines = []
         lines.append("# Dinger Palooza — Team Config Audit\n")
         lines.append(f"Checked {len(results)} players against live MLB API.\n")
@@ -129,14 +155,12 @@ def print_report(results: list[dict], fmt: str = "text") -> int:
             lines.append("")
 
         if passing:
-            lines.append("<details><summary>✅ Passing players ({len(passing)})</summary>\n")
+            lines.append(f"<details><summary>✅ Passing players ({len(passing)})</summary>\n")
             for r in passing:
                 lines.append(f"- {r['name']} — {r['detail']}")
             lines.append("</details>")
 
         output = "\n".join(lines)
-
-        # Write to GITHUB_STEP_SUMMARY if running in GHA
         summary_file = os.environ.get("GITHUB_STEP_SUMMARY")
         if summary_file:
             with open(summary_file, "w") as f:
@@ -146,25 +170,20 @@ def print_report(results: list[dict], fmt: str = "text") -> int:
             print(output)
 
     else:
-        # Plain text output
         print(f"\n{'='*60}")
         print(f"  Dinger Palooza Team Config Audit — {len(results)} players")
         print(f"{'='*60}")
-
         for r in sorted(results, key=lambda x: (x["status"] != "STALE", x["status"] != "NOTFOUND", x["name"])):
             icon = {"PASS": "✓", "STALE": "✗", "NOTFOUND": "?", "ERROR": "!"}.get(r["status"], " ")
             print(f"  {icon} {r['name']:<25}  {r['status']:<10}  {r['detail']}")
-
         print(f"\n  Results: {len(passing)} OK · {len(stale)} stale · {len(notfound)} not found · {len(errors)} errors")
         if stale or notfound:
             print("\n  → Paste this output to Claude to update config.py automatically.\n")
 
-    has_issues = bool(stale or notfound)
-    return 1 if has_issues else 0
+    return 1 if (stale or notfound) else 0
 
 
 def build_patch(results: list[dict]) -> dict:
-    """Return a dict of name→new_team_data for any stale players."""
     return {
         r["name"]: {
             "team": r["live_team"],
