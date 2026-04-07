@@ -102,18 +102,14 @@ git push -u origin claude/my-feature-AbCdE
 
 ### Opening a Pull Request
 
-`gh` CLI is **not available** in this environment. PRs must be created through the GitHub web UI.
+**Always create the PR yourself** using the `mcp__github__create_pull_request` tool — don't ask the owner to do it. The owner merges on their end (GitHub app) and deletes the branch.
 
-**After pushing your branch**, open a PR immediately:
-
-1. Go to **[github.com/jt630/jt630.github.io/compare](https://github.com/jt630/jt630.github.io/compare)**
-2. Set **base:** `main` ← **compare:** `claude/your-branch-name`
-3. Click **"Create pull request"**
-4. Fill in the template below, then **submit**
-5. Merge when ready — the deploy workflow fires automatically on merge to `main`
-
-**Shortcut:** after pushing, GitHub usually shows a yellow
-**"Compare & pull request"** banner at the top of the repo — click it.
+```
+owner: jt630
+repo:  jt630.github.io
+base:  main
+head:  claude/your-branch-name
+```
 
 ### PR description template
 
