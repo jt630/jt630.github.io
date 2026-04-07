@@ -140,6 +140,19 @@ hugo --minify
 # Build output goes to ./public/ (gitignored).
 ```
 
+### Branch lifecycle — avoid orphaned commits
+
+The owner **deletes branches immediately after merging**. This means:
+
+- Once a PR is merged and the branch is deleted, **never push more commits to it**.
+- If follow-up work is needed in the same chat session, **create a new branch** before committing:
+  ```bash
+  git checkout main && git pull origin main
+  git checkout -b claude/followup-description-XXXXX
+  ```
+- The session ID suffix in the branch name can stay the same across related branches in one session — what matters is that each branch is fresh off `main`.
+- Commits pushed to a deleted/merged branch are orphaned and won't reach `main`.
+
 ---
 
 ## Slash commands
