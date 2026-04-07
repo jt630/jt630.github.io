@@ -2,7 +2,7 @@
   "week_number": 1,
   "week_start": "2026-03-23",
   "week_end": "2026-04-05",
-  "checked_at": "2026-04-06T09:08:33.832508+00:00",
+  "checked_at": "2026-04-07T09:02:33.469853+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -828,196 +828,6 @@
       ]
     },
     {
-      "name": "Ellie",
-      "week_points": 7,
-      "total_hrs": 7,
-      "picks": [
-        {
-          "player": "Juan Soto",
-          "team": "NYM",
-          "team_id": 121,
-          "mlb_id": 665742,
-          "draft_pick": 5,
-          "proj_hr": 37,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-01",
-              "opponent": "St. Louis Cardinals",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 6,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Juan Soto homers (1) on a fly ball to right field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 8,
-          "games_live": 0
-        },
-        {
-          "player": "Munetaka Murakami",
-          "team": "CWS",
-          "team_id": 145,
-          "mlb_id": 808959,
-          "draft_pick": 21,
-          "proj_hr": 28,
-          "hrs": 4,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 4,
-          "hr_games": [
-            {
-              "date": "2026-03-26",
-              "opponent": "Milwaukee Brewers",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 9,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Munetaka Murakami homers (1) on a fly ball to right field."
-                }
-              ]
-            },
-            {
-              "date": "2026-03-28",
-              "opponent": "Milwaukee Brewers",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 4,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Munetaka Murakami homers (2) on a fly ball to center field."
-                }
-              ]
-            },
-            {
-              "date": "2026-03-29",
-              "opponent": "Milwaukee Brewers",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 2,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Munetaka Murakami homers (3) on a fly ball to right center field."
-                }
-              ]
-            },
-            {
-              "date": "2026-04-04",
-              "opponent": "Toronto Blue Jays",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 6,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Munetaka Murakami homers (4) on a fly ball to center field. Miguel Vargas scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 9,
-          "games_live": 0
-        },
-        {
-          "player": "Fernando Tatis Jr",
-          "team": "SD",
-          "team_id": 135,
-          "mlb_id": 665487,
-          "draft_pick": 25,
-          "proj_hr": 28,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 9,
-          "games_live": 0
-        },
-        {
-          "player": "Jake Burger",
-          "team": "TEX",
-          "team_id": 140,
-          "mlb_id": 669394,
-          "draft_pick": 49,
-          "proj_hr": 25,
-          "hrs": 2,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-03-26",
-              "opponent": "Philadelphia Phillies",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 9,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Jake Burger homers (1) on a line drive to left center field. Corey Seager scores."
-                }
-              ]
-            },
-            {
-              "date": "2026-03-28",
-              "opponent": "Philadelphia Phillies",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Jake Burger homers (2) on a line drive to left field. Brandon Nimmo scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 9,
-          "games_live": 0
-        },
-        {
-          "player": "Jazz Chisholm Jr",
-          "team": "NYY",
-          "team_id": 147,
-          "mlb_id": 665862,
-          "draft_pick": 34,
-          "proj_hr": 27,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 9,
-          "games_live": 0
-        }
-      ]
-    },
-    {
       "name": "Kayla",
       "week_points": 7,
       "total_hrs": 5,
@@ -1524,6 +1334,180 @@
               ]
             }
           ],
+          "games_checked": 9,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Ellie",
+      "week_points": 6,
+      "total_hrs": 6,
+      "picks": [
+        {
+          "player": "Juan Soto",
+          "team": "NYM",
+          "team_id": 121,
+          "mlb_id": null,
+          "draft_pick": 5,
+          "proj_hr": 37,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 0,
+          "games_live": 0
+        },
+        {
+          "player": "Munetaka Murakami",
+          "team": "CWS",
+          "team_id": 145,
+          "mlb_id": 808959,
+          "draft_pick": 21,
+          "proj_hr": 28,
+          "hrs": 4,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 4,
+          "hr_games": [
+            {
+              "date": "2026-03-26",
+              "opponent": "Milwaukee Brewers",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Munetaka Murakami homers (1) on a fly ball to right field."
+                }
+              ]
+            },
+            {
+              "date": "2026-03-28",
+              "opponent": "Milwaukee Brewers",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 4,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Munetaka Murakami homers (2) on a fly ball to center field."
+                }
+              ]
+            },
+            {
+              "date": "2026-03-29",
+              "opponent": "Milwaukee Brewers",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 2,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Munetaka Murakami homers (3) on a fly ball to right center field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-04",
+              "opponent": "Toronto Blue Jays",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Munetaka Murakami homers (4) on a fly ball to center field. Miguel Vargas scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 9,
+          "games_live": 0
+        },
+        {
+          "player": "Fernando Tatis Jr",
+          "team": "SD",
+          "team_id": 135,
+          "mlb_id": 665487,
+          "draft_pick": 25,
+          "proj_hr": 28,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 9,
+          "games_live": 0
+        },
+        {
+          "player": "Jake Burger",
+          "team": "TEX",
+          "team_id": 140,
+          "mlb_id": 669394,
+          "draft_pick": 49,
+          "proj_hr": 25,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-03-26",
+              "opponent": "Philadelphia Phillies",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Jake Burger homers (1) on a line drive to left center field. Corey Seager scores."
+                }
+              ]
+            },
+            {
+              "date": "2026-03-28",
+              "opponent": "Philadelphia Phillies",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Jake Burger homers (2) on a line drive to left field. Brandon Nimmo scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 9,
+          "games_live": 0
+        },
+        {
+          "player": "Jazz Chisholm Jr",
+          "team": "NYY",
+          "team_id": 147,
+          "mlb_id": 665862,
+          "draft_pick": 34,
+          "proj_hr": 27,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
           "games_checked": 9,
           "games_live": 0
         }

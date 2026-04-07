@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-04-06T09:08:33.835518+00:00",
+  "last_updated": "2026-04-07T09:02:33.473135+00:00",
   "total_weeks": 1,
   "members": [
     {
@@ -44,14 +44,6 @@
       ]
     },
     {
-      "name": "Ellie",
-      "total_points": 7,
-      "rank": 5,
-      "weekly_points": [
-        7
-      ]
-    },
-    {
       "name": "Kayla",
       "total_points": 7,
       "rank": 5,
@@ -65,6 +57,14 @@
       "rank": 5,
       "weekly_points": [
         7
+      ]
+    },
+    {
+      "name": "Ellie",
+      "total_points": 6,
+      "rank": 8,
+      "weekly_points": [
+        6
       ]
     },
     {
