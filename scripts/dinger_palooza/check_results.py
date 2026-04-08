@@ -86,26 +86,62 @@ async def resolve_player_id(
     player_name: str,
     team_id: int,
 ) -> int | None:
-    """Look up MLB person ID via active roster for the given team."""
-    url = f"{MLB_API_BASE}/teams/{team_id}/roster?rosterType=active&hydrate=person"
+    """
+    Look up MLB person ID for a player.
+
+    Strategy (most robust to least):
+      1. /people/search by name — team-agnostic, works even when player is on IL
+         or when the picks file has a stale team assignment.
+      2. fullRoster fallback — includes IL / 60-day DL players unlike 'active'.
+
+    Using 'active' roster alone caused null IDs for IL players (e.g. Soto, Betts)
+    and for players whose team_id was wrong in the picks file.
+    """
+    target = _clean_name(player_name)
+
+    # ── 1. Name search (team-agnostic, IL-safe) ───────────────────────────────
+    name_encoded = player_name.replace(" ", "+")
+    search_url = f"{MLB_API_BASE}/people/search?names={name_encoded}&sportId=1"
     try:
-        async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+        async with session.get(search_url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
             resp.raise_for_status()
             data = await resp.json()
+        for person in data.get("people", []):
+            full = _clean_name(person.get("fullName", ""))
+            if target == full or target in full or full in target:
+                pid = person.get("id")
+                # Warn if live team differs from picks file — data drift, not a failure
+                live_team = person.get("currentTeam", {})
+                live_tid = live_team.get("id")
+                if live_tid and live_tid != team_id:
+                    logger.warning(
+                        f"'{player_name}' team drift: picks says team_id={team_id}, "
+                        f"live team is {live_team.get('name')} (id={live_tid}). "
+                        f"Using mlb_id={pid} regardless — update picks file."
+                    )
+                logger.info(f"Resolved '{player_name}' → MLB ID {pid} (name search)")
+                return pid
     except Exception as e:
-        logger.warning(f"Roster lookup failed (team {team_id}): {e}")
-        return None
+        logger.warning(f"Name search failed for '{player_name}': {e}")
 
-    target = _clean_name(player_name)
-    for entry in data.get("roster", []):
-        person = entry.get("person", {})
-        full = _clean_name(person.get("fullName", ""))
-        if target == full or target in full or full in target:
-            pid = person.get("id")
-            logger.info(f"Resolved '{player_name}' → MLB ID {pid}")
-            return pid
+    # ── 2. fullRoster fallback (includes IL / 60-day DL) ─────────────────────
+    logger.info(f"Trying fullRoster fallback for '{player_name}' (team {team_id})")
+    roster_url = f"{MLB_API_BASE}/teams/{team_id}/roster?rosterType=fullRoster&hydrate=person"
+    try:
+        async with session.get(roster_url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+            resp.raise_for_status()
+            data = await resp.json()
+        for entry in data.get("roster", []):
+            person = entry.get("person", {})
+            full = _clean_name(person.get("fullName", ""))
+            if target == full or target in full or full in target:
+                pid = person.get("id")
+                logger.info(f"Resolved '{player_name}' → MLB ID {pid} (fullRoster fallback)")
+                return pid
+    except Exception as e:
+        logger.warning(f"fullRoster lookup failed (team {team_id}): {e}")
 
-    logger.warning(f"'{player_name}' not found on team {team_id} roster")
+    logger.warning(f"'{player_name}' not found via name search or fullRoster (team {team_id})")
     return None
 
 

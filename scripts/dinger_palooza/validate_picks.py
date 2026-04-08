@@ -49,29 +49,94 @@ PLAYER_INDEX: dict[str, dict] = {_clean(p["name"]): p for p in PLAYERS}
 
 # ── Roster check via MLB API ──────────────────────────────────────────────────
 
-async def is_on_active_roster(
+async def check_roster_status(
     session: aiohttp.ClientSession,
     player_name: str,
     team_id: int,
-) -> bool | None:
+) -> dict:
     """
-    Returns True if player is on the team's active roster, False if not found,
-    None if the API call failed.
+    Returns a status dict describing where the player actually is:
+
+      {"status": "active"}                          — on 26-man active roster ✓
+      {"status": "il"}                              — on 40-man/fullRoster but not active (IL)
+      {"status": "wrong_team",
+       "actual_team": str, "actual_team_id": int,
+       "actual_team_abbr": str}                     — found in MLB but on a different team
+      {"status": "not_found"}                       — not found in MLB search at all
+      {"status": "api_error"}                       — API call failed
+
+    Uses /people/search first (team-agnostic, IL-safe), then confirms active
+    roster status with a second call.  This replaces the old active-roster-only
+    check that false-errored on IL players (e.g. Soto, Betts hit 0 games_checked).
     """
-    url = f"{MLB_API_BASE}/teams/{team_id}/roster?rosterType=active&hydrate=person"
+    target = _clean(player_name)
+
+    # Step 1: name search to find the player and their actual current team
+    name_encoded = player_name.replace(" ", "+")
+    search_url = f"{MLB_API_BASE}/people/search?names={name_encoded}&sportId=1"
     try:
-        async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+        async with session.get(search_url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
             resp.raise_for_status()
             data = await resp.json()
-    except Exception as e:
-        return None
+    except Exception:
+        return {"status": "api_error"}
 
-    target = _clean(player_name)
-    for entry in data.get("roster", []):
-        full = _clean(entry.get("person", {}).get("fullName", ""))
+    mlb_id = None
+    for person in data.get("people", []):
+        full = _clean(person.get("fullName", ""))
         if target == full or target in full or full in target:
-            return True
-    return False
+            mlb_id = person.get("id")
+            live_team = person.get("currentTeam", {})
+            live_tid = live_team.get("id")
+            # If currentTeam is present and differs from picks → wrong team
+            if live_tid and live_tid != team_id:
+                return {
+                    "status": "wrong_team",
+                    "actual_team": live_team.get("name", "Unknown"),
+                    "actual_team_id": live_tid,
+                    "actual_team_abbr": live_team.get("abbreviation", "?"),
+                }
+            break  # Found player, team matches (or currentTeam not in response)
+
+    if mlb_id is None:
+        return {"status": "not_found"}
+
+    # Step 2: confirm active vs IL — use fullRoster (includes IL) then active
+    full_url = f"{MLB_API_BASE}/teams/{team_id}/roster?rosterType=fullRoster&hydrate=person"
+    try:
+        async with session.get(full_url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+            resp.raise_for_status()
+            full_data = await resp.json()
+    except Exception:
+        # Couldn't confirm but found via search — treat as active (don't false-error)
+        return {"status": "active"}
+
+    on_full_roster = any(
+        target == _clean(e.get("person", {}).get("fullName", ""))
+        or target in _clean(e.get("person", {}).get("fullName", ""))
+        or _clean(e.get("person", {}).get("fullName", "")) in target
+        for e in full_data.get("roster", [])
+    )
+    if not on_full_roster:
+        # Name search found them but they're not on this team's 40-man — likely wrong team
+        return {"status": "not_found"}
+
+    # Check active roster to distinguish active from IL
+    active_url = f"{MLB_API_BASE}/teams/{team_id}/roster?rosterType=active&hydrate=person"
+    try:
+        async with session.get(active_url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+            resp.raise_for_status()
+            active_data = await resp.json()
+    except Exception:
+        return {"status": "il"}  # On 40-man but couldn't confirm active
+
+    on_active = any(
+        target == _clean(e.get("person", {}).get("fullName", ""))
+        or target in _clean(e.get("person", {}).get("fullName", ""))
+        or _clean(e.get("person", {}).get("fullName", "")) in target
+        for e in active_data.get("roster", [])
+    )
+    return {"status": "active" if on_active else "il"}
 
 
 # ── Validation logic ──────────────────────────────────────────────────────────
@@ -121,13 +186,14 @@ async def validate_picks(picks_data: dict, check_roster: bool = True) -> list[di
 
                 # Check 3: Live roster check (uses pick's team_id as source of truth)
                 if check_roster:
-                    tasks.append(is_on_active_roster(session, name, team_id))
+                    tasks.append(check_roster_status(session, name, team_id))
                     task_meta.append((member["name"], name, team_abbr, team_id))
 
         if check_roster and tasks:
             results = await asyncio.gather(*tasks)
-            for (member_name, name, team_abbr, team_id), on_roster in zip(task_meta, results):
-                if on_roster is None:
+            for (member_name, name, team_abbr, team_id), result in zip(task_meta, results):
+                status = result["status"]
+                if status == "api_error":
                     issues.append({
                         "member":  member_name,
                         "player":  name,
@@ -135,14 +201,39 @@ async def validate_picks(picks_data: dict, check_roster: bool = True) -> list[di
                         "level":   "warning",
                         "message": f"Roster check failed for '{name}' (team_id={team_id}) — API unavailable.",
                     })
-                elif not on_roster:
+                elif status == "wrong_team":
                     issues.append({
                         "member":  member_name,
                         "player":  name,
                         "team":    team_abbr,
                         "level":   "error",
-                        "message": f"'{name}' was NOT found on the active roster for {team_abbr} (team_id={team_id}).",
+                        "message": (
+                            f"Wrong team in picks file: listed as {team_abbr} (id={team_id}) "
+                            f"but '{name}' is actually on {result['actual_team']} "
+                            f"({result['actual_team_abbr']}, id={result['actual_team_id']}). "
+                            f"Update picks file."
+                        ),
                     })
+                elif status == "not_found":
+                    issues.append({
+                        "member":  member_name,
+                        "player":  name,
+                        "team":    team_abbr,
+                        "level":   "warning",
+                        "message": f"'{name}' not found in MLB search — check spelling or team.",
+                    })
+                elif status == "il":
+                    issues.append({
+                        "member":  member_name,
+                        "player":  name,
+                        "team":    team_abbr,
+                        "level":   "warning",
+                        "message": (
+                            f"'{name}' is on {team_abbr}'s 40-man roster but NOT on the active roster "
+                            f"(likely on IL). Pick is valid but expect 0 points while inactive."
+                        ),
+                    })
+                # status == "active": no issue
 
     return issues
 
