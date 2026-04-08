@@ -118,7 +118,10 @@
           {{ $scored := gt .points 0 }}
           <tr class="{{ if $scored }}dp-pick-row--scored{{ else }}dp-pick-row--zero{{ end }}">
             <td class="dp-pick-num">{{ if .draft_pick }}{{ .draft_pick }}{{ else }}—{{ end }}</td>
-            <td class="dp-pick-player">{{ .player }}</td>
+            <td class="dp-pick-player">
+              {{ .player }}
+              {{ if .is_injured }}<span class="dp-il-badge">IL</span>{{ end }}
+            </td>
             <td class="dp-pick-team">{{ .team }}</td>
             <td class="dp-pick-stat {{ if gt .hrs 0 }}dp-stat--hit{{ end }}">
               {{ if gt .hrs 0 }}{{ .hrs }}{{ else }}&mdash;{{ end }}

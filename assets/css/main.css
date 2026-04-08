@@ -2205,6 +2205,14 @@ img {
 .dp-pick-row--scored td { background: rgba(212,175,55,0.04); }
 .dp-pick-row--zero  td { opacity: 0.5; }
 .dp-pick-player { color: #ccc; font-weight: 600; }
+.dp-il-badge {
+  display: inline-block; margin-left: 5px;
+  background: rgba(255,100,0,0.15); color: #ff6400;
+  border: 1px solid rgba(255,100,0,0.4);
+  border-radius: 3px; padding: 1px 5px;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em;
+  vertical-align: middle;
+}
 .dp-pick-stat   { color: #555; }
 .dp-stat--hit   { color: var(--pink); font-weight: 700; }
 .dp-stat--bonus { color: var(--gold); font-weight: 700; }

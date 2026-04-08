@@ -81,13 +81,37 @@ def _clean_name(s: str) -> str:
     )
 
 
+async def _is_on_active_roster(
+    session: aiohttp.ClientSession,
+    target_clean: str,
+    team_id: int,
+) -> bool:
+    """Check if a (cleaned) player name appears on the team's 26-man active roster."""
+    url = f"{MLB_API_BASE}/teams/{team_id}/roster?rosterType=active&hydrate=person"
+    try:
+        async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+            resp.raise_for_status()
+            data = await resp.json()
+        return any(
+            target_clean == _clean_name(e.get("person", {}).get("fullName", ""))
+            or target_clean in _clean_name(e.get("person", {}).get("fullName", ""))
+            or _clean_name(e.get("person", {}).get("fullName", "")) in target_clean
+            for e in data.get("roster", [])
+        )
+    except Exception:
+        return True  # Assume active on API error — don't false-tag as injured
+
+
 async def resolve_player_id(
     session: aiohttp.ClientSession,
     player_name: str,
     team_id: int,
-) -> int | None:
+) -> tuple[int | None, bool]:
     """
     Look up MLB person ID for a player.
+
+    Returns (mlb_id, is_injured) where is_injured is True when the player
+    is on the 40-man roster but NOT the active 26-man (i.e., on IL).
 
     Strategy (most robust to least):
       1. /people/search by name — team-agnostic, works even when player is on IL
@@ -119,8 +143,10 @@ async def resolve_player_id(
                         f"live team is {live_team.get('name')} (id={live_tid}). "
                         f"Using mlb_id={pid} regardless — update picks file."
                     )
-                logger.info(f"Resolved '{player_name}' → MLB ID {pid} (name search)")
-                return pid
+                actual_tid = live_tid if live_tid else team_id
+                is_injured = not await _is_on_active_roster(session, target, actual_tid)
+                logger.info(f"Resolved '{player_name}' → MLB ID {pid} (name search, injured={is_injured})")
+                return pid, is_injured
     except Exception as e:
         logger.warning(f"Name search failed for '{player_name}': {e}")
 
@@ -136,13 +162,14 @@ async def resolve_player_id(
             full = _clean_name(person.get("fullName", ""))
             if target == full or target in full or full in target:
                 pid = person.get("id")
-                logger.info(f"Resolved '{player_name}' → MLB ID {pid} (fullRoster fallback)")
-                return pid
+                is_injured = not await _is_on_active_roster(session, target, team_id)
+                logger.info(f"Resolved '{player_name}' → MLB ID {pid} (fullRoster fallback, injured={is_injured})")
+                return pid, is_injured
     except Exception as e:
         logger.warning(f"fullRoster lookup failed (team {team_id}): {e}")
 
     logger.warning(f"'{player_name}' not found via name search or fullRoster (team {team_id})")
-    return None
+    return None, False
 
 
 # ── Schedule / game fetching ──────────────────────────────────────────────────
@@ -242,9 +269,10 @@ async def check_player_results(
     name = player["player"]
     season = int(str(week_start).split("-")[0])
 
-    # Resolve MLB ID if not cached
+    # Resolve MLB ID if not cached; also get IL status
+    is_injured = False
     if not mlb_id:
-        mlb_id = await resolve_player_id(session, name, team_id)
+        mlb_id, is_injured = await resolve_player_id(session, name, team_id)
         player["mlb_id"] = mlb_id
 
     if not mlb_id:
@@ -263,7 +291,7 @@ async def check_player_results(
     )
 
     if not games_with_hrs:
-        return _empty_result(player, games_checked=total_games)
+        return _empty_result(player, games_checked=total_games, is_injured=is_injured)
 
     # Step 2: play-by-play only for games where a HR was hit
     pbp_tasks = [
@@ -320,6 +348,7 @@ async def check_player_results(
         "team":           player["team"],
         "team_id":        team_id,
         "mlb_id":         mlb_id,
+        "is_injured":     is_injured,
         "draft_pick":     player.get("draft_pick"),
         "proj_hr":        player.get("proj_hr"),
         "hrs":            total_hrs,
@@ -332,12 +361,13 @@ async def check_player_results(
     }
 
 
-def _empty_result(player: dict, games_checked: int = 0) -> dict:
+def _empty_result(player: dict, games_checked: int = 0, is_injured: bool = False) -> dict:
     return {
         "player":         player["player"],
         "team":           player["team"],
         "team_id":        player["team_id"],
         "mlb_id":         player.get("mlb_id"),
+        "is_injured":     is_injured,
         "draft_pick":     player.get("draft_pick"),
         "proj_hr":        player.get("proj_hr"),
         "hrs":            0,
