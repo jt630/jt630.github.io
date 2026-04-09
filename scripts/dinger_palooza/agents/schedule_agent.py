@@ -147,10 +147,10 @@ async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
 
 
 async def _lookup_player_via_roster(session: aiohttp.ClientSession, player: dict) -> dict:
-    """Fallback: fetch the configured team's active roster and match by name."""
+    """Fallback: fetch the configured team's fullRoster (includes IL players) and match by name."""
     url = (
         f"{MLB_API_BASE}/teams/{player['team_id']}/roster"
-        f"?rosterType=active"
+        f"?rosterType=fullRoster"
         f"&hydrate=person"
     )
     async with session.get(url) as resp:
