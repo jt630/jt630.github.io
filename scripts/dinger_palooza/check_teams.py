@@ -24,7 +24,7 @@ import unicodedata
 import aiohttp
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
-from config import PLAYERS, MLB_API_BASE
+from config import PLAYERS, MLB_API_BASE, TEAM_ABBR
 
 
 def normalize(s: str) -> str:
@@ -74,7 +74,7 @@ async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
 
             live_team_id = current_team.get("id")
             live_team = current_team.get("name", "Unknown")
-            live_abbr = current_team.get("abbreviation", "???")
+            live_abbr = current_team.get("abbreviation") or TEAM_ABBR.get(live_team_id, "???")
 
             if live_team_id == player["team_id"]:
                 status = "PASS"
