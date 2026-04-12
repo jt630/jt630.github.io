@@ -101,6 +101,22 @@ async def resolve_player_ids(
     return enriched
 
 
+async def _fetch_current_team(session: aiohttp.ClientSession, mlb_id: int) -> dict:
+    """
+    Fetch a player's current team via /people/{id}?hydrate=currentTeam.
+    The /people/search endpoint doesn't reliably include currentTeam, so we
+    always make this second call to get an authoritative answer.
+    """
+    url = f"{MLB_API_BASE}/people/{mlb_id}?hydrate=currentTeam"
+    async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
+        resp.raise_for_status()
+        data = await resp.json()
+    people = data.get("people", [])
+    if not people:
+        return {}
+    return people[0].get("currentTeam", {})
+
+
 async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
     """
     Look up a player via MLB people search (team-agnostic).
@@ -127,7 +143,15 @@ async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
             full_name = person.get("fullName", "").lower()
             if target in full_name or full_name in target or _name_match(target, full_name):
                 mlb_id = person.get("id")
-                current_team = person.get("currentTeam", {})
+
+                # /people/search doesn't reliably include currentTeam — fetch it directly.
+                # This is the same approach check_teams.py uses and is the authoritative source.
+                try:
+                    current_team = await _fetch_current_team(session, mlb_id)
+                except Exception as exc:
+                    logger.debug(f"currentTeam lookup failed for {player['name']}: {exc} — using search result")
+                    current_team = person.get("currentTeam", {})
+
                 current_team_id = current_team.get("id")
                 current_team_name = current_team.get("name", player["team"])
                 current_team_abbr = current_team.get("abbreviation", player["team_abbr"])
