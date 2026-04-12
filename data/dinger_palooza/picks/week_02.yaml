@@ -1,0 +1,305 @@
+week_number: 2
+week_start: "2026-04-06"
+week_end: "2026-04-12"
+note: "Week 2 rosters (pre-draft for 2026-04-13). Jeff swapped Brent Rooker for Max Muncy on 2026-04-12."
+
+members:
+  - name: Cam
+    picks:
+      - player: "Riley Greene"
+        team: "DET"
+        team_id: 116
+        draft_pick: 20
+        proj_hr: null
+        season_hr: 1
+      - player: "Luis Robert Jr"
+        team: "NYM"
+        team_id: 121
+        draft_pick: 95
+        proj_hr: null
+        season_hr: 2
+      - player: "Matt Chapman"
+        team: "SF"
+        team_id: 137
+        draft_pick: 54
+        proj_hr: null
+        season_hr: 1
+      - player: "Cody Bellinger"
+        team: "NYY"
+        team_id: 147
+        draft_pick: 56
+        proj_hr: null
+        season_hr: 1
+      - player: "Alex Bregman"
+        team: "CHC"
+        team_id: 112
+        draft_pick: 74
+        proj_hr: null
+        season_hr: 2
+
+  - name: Ellie
+    picks:
+      - player: "Manny Machado"
+        team: "SD"
+        team_id: 135
+        draft_pick: 29
+        proj_hr: null
+        season_hr: 2
+      - player: "Munetaka Murakami"
+        team: "CWS"
+        team_id: 145
+        draft_pick: 21
+        proj_hr: null
+        season_hr: 4
+      - player: "Francisco Lindor"
+        team: "NYM"
+        team_id: 121
+        draft_pick: 40
+        proj_hr: null
+        season_hr: 0
+      - player: "Jake Burger"
+        team: "TEX"
+        team_id: 140
+        draft_pick: 49
+        proj_hr: null
+        season_hr: 2
+      - player: "Jazz Chisholm Jr"
+        team: "NYY"
+        team_id: 147
+        draft_pick: 34
+        proj_hr: null
+        season_hr: 0
+
+  - name: Jeff
+    picks:
+      # Brent Rooker dropped → Max Muncy added on 2026-04-12
+      - player: "Junior Caminero"
+        team: "TB"
+        team_id: 139
+        draft_pick: 6
+        proj_hr: null
+        season_hr: 2
+      - player: "Vladimir Guerrero Jr"
+        team: "TOR"
+        team_id: 141
+        draft_pick: 18
+        proj_hr: null
+        season_hr: 1
+      - player: "Corey Seager"
+        team: "TEX"
+        team_id: 140
+        draft_pick: 36
+        proj_hr: null
+        season_hr: 4
+      - player: "Gunnar Henderson"
+        team: "BAL"
+        team_id: 110
+        draft_pick: 44
+        proj_hr: null
+        season_hr: 6
+      - player: "Max Muncy"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 94
+        proj_hr: null
+        season_hr: 4
+
+  - name: Jeremy
+    picks:
+      - player: "Kyle Schwarber"
+        team: "PHI"
+        team_id: 143
+        draft_pick: 3
+        proj_hr: null
+        season_hr: 4
+      - player: "Yordan Alvarez"
+        team: "HOU"
+        team_id: 117
+        draft_pick: 16
+        proj_hr: null
+        season_hr: 6
+      - player: "Giancarlo Stanton"
+        team: "NYY"
+        team_id: 147
+        draft_pick: 57
+        proj_hr: null
+        season_hr: 1
+      - player: "Elly De La Cruz"
+        team: "CIN"
+        team_id: 113
+        draft_pick: 62
+        proj_hr: null
+        season_hr: 4
+      - player: "Ryan McMahon"
+        # Board showed COL (stale config) when Jeremy drafted him — actual team NYY.
+        # Schedule agent bug fixed 2026-04-12; board will now correctly show NYY going forward.
+        team: "NYY"
+        team_id: 147
+        draft_pick: null
+        proj_hr: null
+        season_hr: 0
+
+  - name: Kayla
+    picks:
+      - player: "Pete Alonso"
+        team: "BAL"
+        team_id: 110
+        draft_pick: 8
+        proj_hr: null
+        season_hr: 1
+      - player: "Eugenio Suarez"
+        team: "CIN"
+        team_id: 113
+        draft_pick: 10
+        proj_hr: null
+        season_hr: 2
+      - player: "Teoscar Hernandez"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 39
+        proj_hr: null
+        season_hr: 3
+      - player: "Francisco Alvarez"
+        team: "NYM"
+        team_id: 121
+        draft_pick: null
+        proj_hr: null
+        season_hr: 4
+      - player: "Luke Raley"
+        team: "SEA"
+        team_id: 136
+        draft_pick: null
+        proj_hr: null
+        season_hr: 3
+
+  - name: Makeda
+    picks:
+      - player: "Nick Kurtz"
+        team: "ATH"
+        team_id: 133
+        draft_pick: 7
+        proj_hr: null
+        season_hr: 0
+      - player: "Ronald Acuna Jr"
+        team: "ATL"
+        team_id: 144
+        draft_pick: 13
+        proj_hr: null
+        season_hr: 1
+      - player: "Chase DeLautier"
+        team: "CLE"
+        team_id: 114
+        draft_pick: null
+        proj_hr: null
+        season_hr: 5
+      - player: "Jose Ramirez"
+        team: "CLE"
+        team_id: 114
+        draft_pick: 26
+        proj_hr: null
+        season_hr: 2
+      - player: "George Springer"
+        team: "TOR"
+        team_id: 141
+        draft_pick: 46
+        proj_hr: null
+        season_hr: 2
+
+  - name: Mason
+    picks:
+      - player: "Aaron Judge"
+        team: "NYY"
+        team_id: 147
+        draft_pick: 2
+        proj_hr: null
+        season_hr: 3
+      - player: "Bobby Witt Jr"
+        team: "KC"
+        team_id: 118
+        draft_pick: 19
+        proj_hr: null
+        season_hr: 0
+      - player: "Hunter Goodman"
+        team: "COL"
+        team_id: 115
+        draft_pick: 22
+        proj_hr: null
+        season_hr: 2
+      - player: "Mickey Moniak"
+        team: "COL"
+        team_id: 115
+        draft_pick: 91
+        proj_hr: null
+        season_hr: 5
+      - player: "Oneil Cruz"
+        team: "PIT"
+        team_id: 134
+        draft_pick: 71
+        proj_hr: null
+        season_hr: 4
+
+  - name: Tyler
+    picks:
+      - player: "Cal Raleigh"
+        team: "SEA"
+        team_id: 136
+        draft_pick: 4
+        proj_hr: null
+        season_hr: 2
+      - player: "Matt Olson"
+        team: "ATL"
+        team_id: 144
+        draft_pick: 14
+        proj_hr: null
+        season_hr: 4
+      - player: "CJ Abrams"
+        team: "WSH"
+        team_id: 120
+        draft_pick: null
+        proj_hr: null
+        season_hr: 4
+      - player: "Corbin Carroll"
+        team: "ARI"
+        team_id: 109
+        draft_pick: 42
+        proj_hr: null
+        season_hr: 2
+      - player: "Freddie Freeman"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 63
+        proj_hr: null
+        season_hr: 3
+
+  - name: Wendy
+    picks:
+      - player: "Shohei Ohtani"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 1
+        proj_hr: null
+        season_hr: 4
+      - player: "Kyle Tucker"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 17
+        proj_hr: null
+        season_hr: 1
+      - player: "Pete Crow-Armstrong"
+        team: "CHC"
+        team_id: 112
+        draft_pick: 59
+        proj_hr: null
+        season_hr: 1
+      - player: "Andy Pages"
+        team: "LAD"
+        team_id: 119
+        draft_pick: 61
+        proj_hr: null
+        season_hr: 4
+      - player: "Shea Langeliers"
+        team: "ATH"
+        team_id: 133
+        draft_pick: 27
+        proj_hr: null
+        season_hr: 5
