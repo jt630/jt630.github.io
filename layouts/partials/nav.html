@@ -8,7 +8,18 @@
     </button>
     <ul class="nav-links">
       {{ range .Site.Menus.main }}
-        <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
+        {{ if .HasChildren }}
+          <li class="nav-group">
+            <span class="nav-group-label" tabindex="0">{{ .Name }}<span class="nav-arrow">▾</span></span>
+            <ul class="nav-dropdown">
+              {{ range .Children }}
+                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+              {{ end }}
+            </ul>
+          </li>
+        {{ else }}
+          <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
       {{ end }}
     </ul>
   </div>
