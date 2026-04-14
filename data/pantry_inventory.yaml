@@ -1,0 +1,72 @@
+# Almond Farm — Pantry Inventory
+#
+# Populated by /scan-pantry (manual snapshot from fridge/pantry photos).
+# Status: full | half | low | trace | out
+# Location: fridge | freezer | pantry | counter
+#
+# This feeds the meal planner: staple meals whose key_ingredients
+# are all present at "half" or better can be made without shopping.
+
+last_updated: null
+
+items:
+  # Seed with known permanent pantry staples — update status via /scan-pantry
+  - name: soy sauce
+    category: condiment
+    status: unknown
+    location: pantry
+
+  - name: olive oil
+    category: pantry
+    status: unknown
+    location: pantry
+
+  - name: butter
+    category: dairy
+    status: unknown
+    location: fridge
+
+  - name: garlic
+    category: produce
+    status: unknown
+    location: pantry
+
+  - name: salt
+    category: spice
+    status: full
+    location: pantry
+
+  - name: black pepper
+    category: spice
+    status: full
+    location: pantry
+
+  - name: rice
+    category: pantry
+    status: unknown
+    location: pantry
+
+  - name: pasta
+    category: pantry
+    status: unknown
+    location: pantry
+
+  - name: canned green beans
+    category: pantry
+    status: unknown
+    location: pantry
+
+  - name: brown sugar
+    category: pantry
+    status: unknown
+    location: pantry
+
+  - name: rice vinegar
+    category: condiment
+    status: unknown
+    location: pantry
+
+  - name: sesame oil
+    category: condiment
+    status: unknown
+    location: pantry

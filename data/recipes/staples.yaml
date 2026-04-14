@@ -1,0 +1,287 @@
+# Almond Farm — Staple Recipe Registry
+#
+# These are the known-good, repeatable meals in regular rotation.
+# They anchor the meal planner: when you pick 1-2 "intense" anchor dishes
+# for the week, the planner fills remaining days from this list,
+# prioritizing ingredient overlap to minimize waste.
+#
+# Season tags: spring | summer | fall | winter | all
+# Type: main | side | salad | sauce
+# Protein: chicken | pork | beef | seafood | vegetarian | none
+
+mains:
+  - id: chicken-teriyaki
+    title: Chicken Teriyaki
+    protein: chicken
+    cuisine: japanese
+    seasons: [all]
+    key_ingredients: [chicken thighs, soy sauce, mirin, sake, sugar, ginger, garlic]
+    pantry_heavy: true   # most ingredients are pantry staples
+    time_active: 20
+    difficulty: easy
+    tags: [weeknight, japanese, umami, rice-pairing]
+
+  - id: chicken-caesar-salad
+    title: Chicken Caesar Salad
+    protein: chicken
+    cuisine: american
+    seasons: [spring, summer, fall]
+    key_ingredients: [chicken breast, romaine, parmesan, croutons, caesar dressing, lemon]
+    pantry_heavy: false
+    time_active: 20
+    difficulty: easy
+    tags: [salad, light, lunch, crowd-pleaser]
+
+  - id: rotisserie-chicken-sandwiches
+    title: Rotisserie Chicken Sandwiches
+    protein: chicken
+    cuisine: american
+    seasons: [all]
+    key_ingredients: [rotisserie chicken, bread, lettuce, tomato, mayo, pickles]
+    pantry_heavy: true
+    time_active: 10
+    difficulty: easy
+    tags: [quick, leftover-friendly, lunch, weeknight]
+
+  - id: pulled-pork
+    title: Pulled Pork
+    protein: pork
+    cuisine: american-bbq
+    seasons: [spring, summer, fall]
+    key_ingredients: [pork shoulder, brown sugar, smoked paprika, garlic powder, apple cider vinegar, onion]
+    pantry_heavy: true
+    time_active: 30       # active time — low and slow otherwise
+    time_cook: 480        # 8 hrs low
+    difficulty: medium
+    tags: [slow-cook, batch, leftover-friendly, bbq, crowd-pleaser]
+    pairs_with: [cabbage-salad-izakaya, corn, fries, coleslaw]
+
+  - id: pork-chops
+    title: Pork Chops
+    protein: pork
+    cuisine: american
+    seasons: [fall, winter]
+    key_ingredients: [pork chops, garlic, thyme, butter, apple, mustard]
+    pantry_heavy: true
+    time_active: 25
+    difficulty: easy
+    tags: [weeknight, pan-sear, fall-winter]
+    pairs_with: [mashed-potatoes, roasted-broccoli, green-beans-canned]
+
+  - id: ham-steaks
+    title: Ham Steaks
+    protein: pork
+    cuisine: american
+    seasons: [fall, winter]
+    key_ingredients: [ham steaks, brown sugar, butter, dijon mustard, pineapple]
+    pantry_heavy: true
+    time_active: 15
+    difficulty: easy
+    tags: [quick, weeknight, sweet-savory]
+    pairs_with: [sweet-potatoes, green-beans-canned, corn]
+
+  - id: burgers
+    title: Burgers
+    protein: beef
+    cuisine: american
+    seasons: [spring, summer, fall]
+    key_ingredients: [ground beef, buns, lettuce, tomato, onion, cheese, pickles, ketchup, mustard]
+    pantry_heavy: false
+    time_active: 20
+    difficulty: easy
+    tags: [grill, summer, crowd-pleaser, weekend]
+    pairs_with: [fries, corn, cucumber-salad]
+
+  - id: roast-chicken
+    title: Roast Chicken
+    protein: chicken
+    cuisine: french-american
+    seasons: [fall, winter]
+    key_ingredients: [whole chicken, butter, garlic, thyme, rosemary, lemon, onion]
+    pantry_heavy: true
+    time_active: 20
+    time_cook: 75
+    difficulty: medium
+    tags: [weekend, batch, leftover-friendly, classic, impressive]
+    pairs_with: [roasted-potatoes, roasted-broccoli, green-beans-canned]
+    note: "Carcass makes stock — plan a soup or risotto next day."
+
+  - id: chicken-fajitas
+    title: Chicken Fajitas
+    protein: chicken
+    cuisine: tex-mex
+    seasons: [spring, summer]
+    key_ingredients: [chicken breast, bell peppers, onion, cumin, chili powder, lime, tortillas, sour cream, salsa]
+    pantry_heavy: false
+    time_active: 30
+    difficulty: easy
+    tags: [weeknight, crowd-pleaser, tex-mex, interactive]
+    pairs_with: [corn, cucumber]
+
+  - id: steaks
+    title: Steaks
+    protein: beef
+    cuisine: american
+    seasons: [spring, summer, fall]
+    key_ingredients: [ribeye or NY strip, butter, garlic, thyme, salt, pepper]
+    pantry_heavy: true
+    time_active: 20
+    difficulty: medium
+    tags: [weekend, special-occasion, pan-sear, classic]
+    pairs_with: [fries, mashed-potatoes, roasted-broccoli, shishito-peppers]
+
+  - id: japanese-curry
+    title: Japanese Curry
+    protein: chicken  # or beef or pork
+    cuisine: japanese
+    seasons: [fall, winter]
+    key_ingredients: [curry roux, chicken or beef, potato, carrot, onion, rice]
+    pantry_heavy: true
+    time_active: 30
+    time_cook: 40
+    difficulty: easy
+    tags: [weeknight, comfort, japanese, batch, leftover-friendly]
+    pairs_with: []
+    note: "Better the next day. Make a big pot."
+
+  - id: pomodoro
+    title: Pasta Pomodoro
+    protein: vegetarian
+    cuisine: italian
+    seasons: [summer, fall]
+    key_ingredients: [san marzano tomatoes, garlic, olive oil, basil, pasta, parmesan]
+    pantry_heavy: true
+    time_active: 20
+    difficulty: easy
+    tags: [weeknight, vegetarian, italian, quick, pantry-meal]
+
+  - id: alfredo
+    title: Fettuccine Alfredo
+    protein: vegetarian  # or add chicken
+    cuisine: italian
+    seasons: [fall, winter]
+    key_ingredients: [fettuccine, butter, heavy cream, parmesan, garlic, black pepper]
+    pantry_heavy: true
+    time_active: 20
+    difficulty: easy
+    tags: [weeknight, comfort, italian, quick, indulgent]
+
+  - id: pasta-salad
+    title: Pasta Salad
+    protein: vegetarian
+    cuisine: american
+    seasons: [spring, summer]
+    key_ingredients: [rotini, cherry tomatoes, cucumber, bell pepper, olives, salami, italian dressing, parmesan]
+    pantry_heavy: false
+    time_active: 20
+    difficulty: easy
+    tags: [make-ahead, summer, potluck, lunch, crowd-pleaser]
+    pairs_with: [burgers, pulled-pork]
+
+
+sides:
+  - id: green-beans-canned
+    title: Green Beans (Canned)
+    type: side
+    seasons: [all]
+    key_ingredients: [canned green beans, butter, garlic, salt, pepper]
+    time_active: 10
+    difficulty: easy
+    tags: [quick, pantry, comfort, weeknight]
+
+  - id: cabbage-salad-izakaya
+    title: Cabbage Salad (Izakaya Style)
+    type: side
+    seasons: [spring, summer, fall]
+    key_ingredients: [green cabbage, sesame oil, rice vinegar, soy sauce, sesame seeds, scallions]
+    time_active: 10
+    difficulty: easy
+    tags: [japanese, refreshing, crunchy, no-cook, quick]
+    pairs_well_with: [chicken-teriyaki, japanese-curry, pulled-pork]
+
+  - id: roasted-broccoli
+    title: Roasted Broccoli
+    type: side
+    seasons: [fall, winter, spring]
+    key_ingredients: [broccoli, olive oil, garlic, parmesan, lemon, red pepper flakes]
+    time_active: 5
+    time_cook: 20
+    difficulty: easy
+    tags: [roasted, weeknight, healthy, oven]
+
+  - id: shishito-peppers
+    title: Shishito Peppers
+    type: side
+    seasons: [summer, fall]
+    key_ingredients: [shishito peppers, olive oil, flaky salt, lemon]
+    time_active: 10
+    difficulty: easy
+    tags: [quick, japanese-influenced, snack, blistered, summer]
+
+  - id: cucumber
+    title: Sliced Cucumber
+    type: side
+    seasons: [spring, summer]
+    key_ingredients: [cucumber, flaky salt]
+    time_active: 5
+    difficulty: easy
+    tags: [no-cook, refreshing, palate-cleanser, summer]
+
+  - id: cucumber-salad
+    title: Cucumber Salad
+    type: side
+    seasons: [spring, summer]
+    key_ingredients: [cucumber, rice vinegar, sesame oil, chili flakes, soy sauce, sugar, sesame seeds]
+    time_active: 10
+    difficulty: easy
+    tags: [asian-inspired, refreshing, no-cook, summer, quick]
+
+  - id: fries
+    title: Fries
+    type: side
+    seasons: [all]
+    key_ingredients: [russet potatoes, oil, salt, pepper]
+    time_active: 10
+    time_cook: 25
+    difficulty: easy
+    tags: [comfort, crowd-pleaser, oven-or-fry, classic]
+
+  - id: mashed-potatoes
+    title: Mashed Potatoes
+    type: side
+    seasons: [fall, winter]
+    key_ingredients: [russet or yukon gold potatoes, butter, heavy cream, garlic, salt]
+    time_active: 10
+    time_cook: 20
+    difficulty: easy
+    tags: [comfort, classic, fall-winter, crowd-pleaser]
+
+  - id: roasted-potatoes
+    title: Roasted Potatoes
+    type: side
+    seasons: [fall, winter, spring]
+    key_ingredients: [baby potatoes or yukon gold, olive oil, rosemary, garlic, salt, pepper]
+    time_active: 5
+    time_cook: 35
+    difficulty: easy
+    tags: [roasted, oven, weeknight, hands-off]
+
+  - id: sweet-potatoes
+    title: Sweet Potatoes
+    type: side
+    seasons: [fall, winter]
+    key_ingredients: [sweet potatoes, butter, brown sugar, cinnamon, salt]
+    time_active: 5
+    time_cook: 45
+    difficulty: easy
+    tags: [fall-winter, comfort, oven, sweet-savory]
+
+  - id: corn
+    title: Corn
+    type: side
+    seasons: [summer, fall]
+    key_ingredients: [corn on the cob or frozen corn, butter, salt, pepper]
+    time_active: 5
+    time_cook: 10
+    difficulty: easy
+    tags: [summer, grillable, simple, crowd-pleaser]
