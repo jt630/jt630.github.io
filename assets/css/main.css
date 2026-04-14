@@ -176,6 +176,89 @@ img {
   transition: transform 0.3s, opacity 0.3s;
 }
 
+/* ---- NAV DROPDOWNS ---- */
+.nav-group {
+  position: relative;
+  list-style: none;
+}
+
+.nav-group-label {
+  color: var(--white-dim);
+  padding: 0.45rem 0.85rem;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s, text-shadow 0.2s;
+  user-select: none;
+}
+
+.nav-group:hover .nav-group-label,
+.nav-group:focus-within .nav-group-label {
+  color: var(--pink);
+  border-color: var(--pink);
+  text-shadow: 0 0 12px var(--pink-glow);
+}
+
+.nav-arrow {
+  font-size: 0.65em;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+
+.nav-group:hover .nav-arrow,
+.nav-group:focus-within .nav-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  background: var(--black);
+  border: 1px solid rgba(255, 45, 138, 0.3);
+  border-top: 2px solid var(--pink);
+  min-width: 140px;
+  z-index: 200;
+  list-style: none;
+  padding: 0.4rem 0;
+  margin: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.nav-group:hover .nav-dropdown,
+.nav-group:focus-within .nav-dropdown {
+  display: block;
+}
+
+.nav-dropdown li {
+  list-style: none;
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 0.45rem 1rem;
+  color: var(--white-dim);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  border-radius: 0;
+  border: none;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-dropdown a:hover {
+  color: var(--pink);
+  background: rgba(255, 45, 138, 0.08);
+  text-shadow: 0 0 8px var(--pink-glow);
+  border-color: transparent;
+}
+
 /* ---- HERO (homepage) ---- */
 .hero {
   background: var(--black);
@@ -239,6 +322,28 @@ img {
   font-weight: 400;
 }
 
+/* ---- HOMEPAGE SECTION GROUPS ---- */
+.section-groups {
+  max-width: 960px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.section-group {
+  margin-bottom: 2.5rem;
+}
+
+.group-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
 /* Section cards on homepage */
 .section-cards {
   display: grid;
@@ -247,6 +352,12 @@ img {
   max-width: 960px;
   margin: 3rem auto;
   padding: 0 1.5rem;
+}
+
+.section-group .section-cards {
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .section-card {
@@ -320,6 +431,9 @@ img {
 .section-card.gadgets  { border-top: 3px solid var(--pink-light); }
 .section-card.markets  { border-top: 3px solid var(--gold); }
 .section-card.public-health { border-top: 3px solid #2D8AFF; }
+.section-card.monkeys  { border-top: 3px solid var(--gold); }
+.section-card.dingers  { border-top: 3px solid var(--pink); }
+.section-card.news     { border-top: 3px solid var(--pink-light); }
 
 /* ---- RECENT POSTS (homepage) ---- */
 .recent-section {
@@ -813,6 +927,49 @@ img {
 
   .nav-toggle {
     display: block;
+  }
+
+  .nav-group {
+    width: 100%;
+  }
+
+  .nav-group-label {
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0.6rem 0;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 45, 138, 0.08);
+  }
+
+  .nav-group:hover .nav-group-label,
+  .nav-group:focus-within .nav-group-label {
+    border-color: transparent;
+    border-bottom-color: rgba(255, 45, 138, 0.08);
+  }
+
+  /* disable hover dropdown on touch, use click toggle instead */
+  .nav-group:hover .nav-dropdown,
+  .nav-group:focus-within .nav-dropdown {
+    display: none;
+  }
+
+  .nav-group.expanded .nav-dropdown {
+    display: block;
+    position: static;
+    border: none;
+    border-left: 2px solid rgba(255, 45, 138, 0.3);
+    border-top: none;
+    background: rgba(255, 255, 255, 0.03);
+    min-width: unset;
+    box-shadow: none;
+    padding: 0.25rem 0;
+    margin: 0.25rem 0 0.5rem 1rem;
+  }
+
+  .nav-group.expanded .nav-arrow {
+    transform: rotate(180deg);
   }
 
   .section-cards {
