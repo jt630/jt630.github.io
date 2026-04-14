@@ -1,0 +1,564 @@
+{{ define "main" }}
+<style>
+/* ── STEG RECEIPT PAGE ──────────────────────────────── */
+.steg-page { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 6rem; }
+
+.steg-hero {
+  text-align: center; padding: 2.5rem 1rem 2rem;
+  border: 2px solid var(--pink);
+  background: linear-gradient(135deg,rgba(255,45,138,.05),rgba(212,175,55,.05));
+  margin-bottom: 3rem;
+}
+.steg-hero h1 {
+  font-family: Impact,'Arial Black',sans-serif; font-size: 2.6rem;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--pink); margin: 0 0 .5rem;
+}
+.steg-hero .tagline {
+  font-family: 'Courier New',monospace; color: var(--gold); font-size: .8rem;
+  letter-spacing: .12em; text-transform: uppercase; margin: 0;
+}
+
+/* concept blocks */
+.concept-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1rem; margin-bottom: 3rem; }
+.concept-card {
+  border: 1px solid rgba(212,175,55,.3); border-left: 3px solid var(--gold);
+  background: rgba(212,175,55,.04); padding: 1.1rem 1.2rem;
+  font-family: 'Courier New',monospace; font-size: .78rem;
+}
+.concept-card .cc-num { color: var(--gold); font-size: 1.6rem; font-weight: 700; line-height: 1; margin-bottom: .4rem; }
+.concept-card .cc-label { color: var(--pink); font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .4rem; }
+.concept-card p { color: var(--white-faint); margin: 0; line-height: 1.5; }
+
+/* section headers */
+.steg-section { margin-bottom: 3.5rem; }
+.steg-section-header {
+  font-family: 'Courier New',monospace; font-size: .7rem; color: var(--gold);
+  letter-spacing: .2em; text-transform: uppercase; padding: .4rem .8rem;
+  border-left: 3px solid var(--gold); background: rgba(212,175,55,.07);
+  margin-bottom: 1.5rem; display: flex; justify-content: space-between;
+}
+
+/* algorithm diagram */
+.algo-flow {
+  display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
+  font-family: 'Courier New',monospace; font-size: .75rem;
+  margin-bottom: 1.5rem;
+}
+.algo-box {
+  border: 1px solid rgba(255,255,255,.15); padding: .5rem .8rem;
+  background: rgba(255,255,255,.03); color: var(--white); border-radius: 2px;
+  text-align: center; min-width: 100px;
+}
+.algo-box.pink { border-color: var(--pink); color: var(--pink); }
+.algo-box.gold  { border-color: var(--gold); color: var(--gold); }
+.algo-arrow { color: rgba(255,255,255,.3); font-size: 1rem; }
+
+/* encoding params table */
+.param-table { width: 100%; border-collapse: collapse; font-family: 'Courier New',monospace; font-size: .76rem; margin-bottom: 1.5rem; }
+.param-table th { color: var(--gold); text-transform: uppercase; letter-spacing: .1em; font-size: .65rem; padding: .4rem .7rem; text-align: left; border-bottom: 1px solid rgba(212,175,55,.2); }
+.param-table td { padding: .45rem .7rem; border-bottom: 1px solid rgba(255,255,255,.05); color: var(--white); }
+.param-table td:first-child { color: var(--gold); }
+.param-table tr:hover td { background: rgba(255,255,255,.03); }
+
+/* demo zone */
+.demo-zone {
+  border: 1px solid rgba(255,45,138,.3); padding: 1.5rem;
+  background: rgba(255,45,138,.03); margin-bottom: 2rem;
+}
+.demo-zone h3 {
+  font-family: 'Courier New',monospace; font-size: .7rem; color: var(--pink);
+  letter-spacing: .2em; text-transform: uppercase; margin: 0 0 1.2rem;
+}
+.demo-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+.demo-col { flex: 1; min-width: 220px; }
+
+label.field-label {
+  display: block; font-family: 'Courier New',monospace; font-size: .65rem;
+  color: var(--gold); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .3rem;
+}
+input.steg-input, textarea.steg-input, select.steg-input {
+  width: 100%; box-sizing: border-box;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+  color: var(--white); font-family: 'Courier New',monospace; font-size: .78rem;
+  padding: .45rem .6rem; outline: none; resize: vertical;
+}
+input.steg-input:focus, textarea.steg-input:focus { border-color: var(--pink); }
+
+.btn-steg {
+  font-family: 'Courier New',monospace; font-size: .72rem; letter-spacing: .15em;
+  text-transform: uppercase; background: var(--pink); color: #000; border: none;
+  padding: .6rem 1.4rem; cursor: pointer; margin-top: .8rem; display: inline-block;
+}
+.btn-steg:hover { background: var(--gold); }
+.btn-steg.secondary { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+.btn-steg.secondary:hover { background: var(--gold); color: #000; }
+
+.canvas-wrap { position: relative; display: inline-block; }
+canvas { display: block; image-rendering: pixelated; }
+.canvas-label {
+  font-family: 'Courier New',monospace; font-size: .62rem; color: var(--white-faint);
+  letter-spacing: .08em; text-transform: uppercase; text-align: center; margin-top: .4rem;
+}
+
+.decode-output {
+  font-family: 'Courier New',monospace; font-size: .73rem; color: var(--gold);
+  background: rgba(0,0,0,.4); border: 1px solid rgba(212,175,55,.2);
+  padding: .8rem; white-space: pre-wrap; min-height: 120px; line-height: 1.6;
+  max-height: 300px; overflow-y: auto;
+}
+
+.status-bar {
+  font-family: 'Courier New',monospace; font-size: .68rem; color: var(--white-faint);
+  letter-spacing: .05em; margin-top: .6rem; min-height: 1.2em;
+}
+.status-bar.ok { color: #4ade80; }
+.status-bar.err { color: #f87171; }
+
+/* frame layout diagram */
+.frame-diagram {
+  display: flex; flex-wrap: wrap; gap: 0; font-family: 'Courier New',monospace; font-size: .7rem;
+  border: 1px solid rgba(255,255,255,.1); margin-bottom: 1rem; overflow: hidden;
+}
+.frame-seg {
+  padding: .5rem .7rem; text-align: center; border-right: 1px solid rgba(255,255,255,.1);
+}
+.frame-seg:last-child { border-right: none; flex: 1; }
+.frame-seg .fs-label { color: var(--gold); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; }
+.frame-seg .fs-val   { color: var(--white); font-size: .78rem; margin-top: .2rem; }
+.frame-seg .fs-bits  { color: rgba(255,255,255,.35); font-size: .6rem; }
+
+/* stack diagram */
+.stack-info {
+  border: 1px solid rgba(255,255,255,.08); padding: 1rem 1.2rem;
+  background: rgba(255,255,255,.02); margin-top: 1rem;
+}
+.stack-info code {
+  display: block; font-family: 'Courier New',monospace; font-size: .72rem;
+  color: var(--gold); line-height: 1.8;
+}
+</style>
+
+<div class="steg-page">
+
+  <!-- HERO -->
+  <div class="steg-hero">
+    <h1>Steganographic<br>Receipt System</h1>
+    <p class="tagline">Invisible watermarks · Full receipt payload · Phone camera decodes · AI understands</p>
+  </div>
+
+  <!-- CONCEPT CARDS -->
+  <div class="concept-grid">
+    <div class="concept-card">
+      <div class="cc-num">01</div>
+      <div class="cc-label">The problem</div>
+      <p>Receipts carry rich structured data but apps can only OCR them — unreliably. QR codes look ugly and break the receipt aesthetic. There's no invisible channel.</p>
+    </div>
+    <div class="concept-card">
+      <div class="cc-num">02</div>
+      <div class="cc-label">The idea</div>
+      <p>Encode the full receipt JSON into a subtle brightness pattern across the paper. Print it as a background texture. It looks like normal paper grain to the human eye.</p>
+    </div>
+    <div class="concept-card">
+      <div class="cc-num">03</div>
+      <div class="cc-label">The decode</div>
+      <p>Phone camera captures the receipt. Decoder reads the brightness grid, reconstructs bits, decompresses the payload. Full structured data — no OCR guessing.</p>
+    </div>
+    <div class="concept-card">
+      <div class="cc-num">04</div>
+      <div class="cc-label">The AI</div>
+      <p>Decoded JSON feeds directly to Claude with context: expense categorization, bill splitting, warranty tracking, return windows — zero transcription errors.</p>
+    </div>
+  </div>
+
+  <!-- ENCODING ALGORITHM -->
+  <div class="steg-section">
+    <div class="steg-section-header">
+      <span>How it works — encoding algorithm</span>
+    </div>
+
+    <div class="algo-flow">
+      <div class="algo-box pink">Receipt JSON</div>
+      <span class="algo-arrow">→</span>
+      <div class="algo-box">zlib compress</div>
+      <span class="algo-arrow">→</span>
+      <div class="algo-box gold">Frame payload</div>
+      <span class="algo-arrow">→</span>
+      <div class="algo-box">Bitstream</div>
+      <span class="algo-arrow">→</span>
+      <div class="algo-box">Noise carrier</div>
+      <span class="algo-arrow">→</span>
+      <div class="algo-box pink">PNG texture</div>
+    </div>
+
+    <div class="frame-diagram">
+      <div class="frame-seg">
+        <div class="fs-label">Magic</div>
+        <div class="fs-val">0xAF 0x01</div>
+        <div class="fs-bits">16 bits</div>
+      </div>
+      <div class="frame-seg">
+        <div class="fs-label">Length</div>
+        <div class="fs-val">uint16 LE</div>
+        <div class="fs-bits">16 bits</div>
+      </div>
+      <div class="frame-seg" style="flex:4">
+        <div class="fs-label">Payload (zlib-compressed JSON)</div>
+        <div class="fs-val">variable</div>
+        <div class="fs-bits">≤ 504 bytes = 4032 bits</div>
+      </div>
+      <div class="frame-seg">
+        <div class="fs-label">CRC32</div>
+        <div class="fs-val">uint32 LE</div>
+        <div class="fs-bits">32 bits</div>
+      </div>
+    </div>
+
+    <table class="param-table">
+      <thead><tr><th>Parameter</th><th>Value</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Texture size</td><td>512 × 512 px</td><td>4096 total 8×8 blocks</td></tr>
+        <tr><td>Block size</td><td>8 × 8 pixels</td><td>Robust to print grain and blur</td></tr>
+        <tr><td>Encoding</td><td>Block average ± 14 vs. 128 baseline</td><td>Threshold decision, not LSB fragility</td></tr>
+        <tr><td>Capacity</td><td>512 bytes (≈ 504 usable)</td><td>Typical 10-item receipt compresses to ~300B</td></tr>
+        <tr><td>Opacity</td><td>6% default</td><td>Invisible to eye, readable by camera</td></tr>
+        <tr><td>Error detect</td><td>CRC32 + magic check</td><td>Catches bit errors from print noise</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LIVE DEMO -->
+  <div class="steg-section">
+    <div class="steg-section-header">
+      <span>Interactive demo — browser encoder</span>
+      <span style="color:rgba(255,255,255,.3);font-size:.6rem">runs locally in JS · no server needed</span>
+    </div>
+
+    <div class="demo-zone">
+      <h3>1 — Enter receipt data</h3>
+      <div class="demo-row">
+        <div class="demo-col">
+          <label class="field-label">Store name</label>
+          <input id="d-store" class="steg-input" type="text" value="Almond Farm Market">
+        </div>
+        <div class="demo-col">
+          <label class="field-label">Date</label>
+          <input id="d-date" class="steg-input" type="text" value="2026-04-14">
+        </div>
+      </div>
+      <div class="demo-row" style="margin-top:.8rem">
+        <div class="demo-col">
+          <label class="field-label">Items (one per line: name, qty, price)</label>
+          <textarea id="d-items" class="steg-input" rows="4">Raw Almonds 1lb, 2, 12.99
+Local Honey 12oz, 1, 8.49
+Olive Oil 500ml, 1, 14.99</textarea>
+        </div>
+        <div class="demo-col">
+          <label class="field-label">Tax rate (%)</label>
+          <input id="d-tax" class="steg-input" type="number" value="8.75" step="0.01">
+          <div style="margin-top:.6rem">
+            <label class="field-label">Opacity (%)</label>
+            <input id="d-opacity" class="steg-input" type="range" min="2" max="25" value="6"
+              oninput="document.getElementById('d-opacity-val').textContent = this.value + '%'">
+            <span id="d-opacity-val" style="font-family:monospace;font-size:.72rem;color:var(--gold)">6%</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn-steg" onclick="runEncode()">Encode → texture</button>
+    </div>
+
+    <div class="demo-zone">
+      <h3>2 — Texture output + decode</h3>
+      <div class="demo-row">
+        <div class="demo-col" style="text-align:center">
+          <div class="canvas-wrap">
+            <canvas id="cvs-encoded" width="256" height="256" style="border:1px solid rgba(255,255,255,.1);width:200px;height:200px"></canvas>
+          </div>
+          <div class="canvas-label">Encoded texture (zoomed in)</div>
+          <div class="canvas-wrap" style="margin-top:.8rem">
+            <canvas id="cvs-magnified" width="256" height="256" style="border:1px solid rgba(212,175,55,.2);width:200px;height:200px"></canvas>
+          </div>
+          <div class="canvas-label">16× magnified — block pattern visible</div>
+        </div>
+        <div class="demo-col">
+          <label class="field-label">Decoded payload</label>
+          <div id="decode-out" class="decode-output">Run encoder first...</div>
+          <div id="decode-status" class="status-bar">—</div>
+          <button class="btn-steg secondary" onclick="runDecode()" style="margin-top:.8rem">Decode texture</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STACK DIAGRAM -->
+  <div class="steg-section">
+    <div class="steg-section-header">
+      <span>Full stack — production API</span>
+    </div>
+    <div class="stack-info">
+      <code>steganography/
+├── backend/
+│   ├── encoder.py      ← Receipt JSON → 512×512 RGBA PNG texture
+│   ├── decoder.py      ← Photo → deskew → block decode → JSON
+│   ├── receipt.py      ← Texture + layout → print-ready PDF
+│   ├── ai_client.py    ← Claude: expense / split / warranty / returns
+│   ├── main.py         ← FastAPI: /encode /decode /analyze /full-flow
+│   └── schemas.py      ← Pydantic models shared by all modules
+└── frontend/
+    └── src/            ← React: capture → decode → AI display</code>
+    </div>
+
+    <table class="param-table" style="margin-top:1.2rem">
+      <thead><tr><th>Route</th><th>Input</th><th>Output</th></tr></thead>
+      <tbody>
+        <tr><td>POST /encode</td><td>EncodeRequest</td><td>Base64 PNG + stats</td></tr>
+        <tr><td>POST /decode</td><td>Base64 image</td><td>Receipt JSON + confidence + CRC</td></tr>
+        <tr><td>POST /analyze</td><td>Receipt + mode</td><td>Claude expense/split/warranty/returns</td></tr>
+        <tr><td>POST /full-flow</td><td>Receipt</td><td>PDF + texture + AI analysis (one call)</td></tr>
+      </tbody>
+    </table>
+
+    <div style="font-family:'Courier New',monospace;font-size:.73rem;color:var(--white-faint);line-height:1.8;border-top:1px solid rgba(255,255,255,.07);padding-top:1rem;margin-top:1rem">
+      <span style="color:var(--gold)">Start the API:</span><br>
+      <span style="color:var(--white)">cd steganography/backend &amp;&amp; uvicorn main:app --reload</span><br><br>
+      <span style="color:var(--gold)">Start the React UI:</span><br>
+      <span style="color:var(--white)">cd steganography/frontend &amp;&amp; npm install &amp;&amp; npm run dev</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── STEGANOGRAPHY ENGINE (vanilla JS, mirrors Python encoder/decoder) ── -->
+<script>
+// ── Constants (match Python schemas.py) ──────────────────────────────────
+const BLOCK_SIZE = 8;
+const MAGIC = [0xAF, 0x01];
+const DELTA = 14;
+const BASE_GRAY = 128;
+const NOISE_AMP = 8;
+const TEXTURE_SIZE = 256;   // smaller for browser demo (256 instead of 512)
+
+// ── Utilities ────────────────────────────────────────────────────────────
+function seededRng(seed) {
+  let s = seed >>> 0;
+  return () => {
+    s ^= s << 13; s ^= s >>> 17; s ^= s << 5;
+    return (s >>> 0) / 4294967296;
+  };
+}
+
+function bytesToBits(bytes) {
+  const bits = [];
+  for (const b of bytes)
+    for (let i = 7; i >= 0; i--) bits.push((b >> i) & 1);
+  return bits;
+}
+
+function bitsToBytes(bits) {
+  const bytes = [];
+  for (let i = 0; i + 7 < bits.length; i += 8) {
+    let b = 0;
+    for (let j = 0; j < 8; j++) b = (b << 1) | bits[i + j];
+    bytes.push(b);
+  }
+  return new Uint8Array(bytes);
+}
+
+function crc32(bytes) {
+  let crc = 0xFFFFFFFF;
+  const table = new Uint32Array(256);
+  for (let i = 0; i < 256; i++) {
+    let c = i;
+    for (let j = 0; j < 8; j++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1;
+    table[i] = c;
+  }
+  for (const b of bytes) crc = table[(crc ^ b) & 0xFF] ^ (crc >>> 8);
+  return (crc ^ 0xFFFFFFFF) >>> 0;
+}
+
+// ── Receipt → JSON → frame → bits ────────────────────────────────────────
+function buildReceipt() {
+  const store = document.getElementById('d-store').value.trim() || 'Store';
+  const date  = document.getElementById('d-date').value.trim() || '2026-01-01';
+  const taxPct = parseFloat(document.getElementById('d-tax').value) / 100;
+
+  const itemLines = document.getElementById('d-items').value.trim().split('\n').filter(l => l.trim());
+  const items = itemLines.map(line => {
+    const parts = line.split(',').map(s => s.trim());
+    const name = parts[0] || 'Item';
+    const qty  = parseFloat(parts[1]) || 1;
+    const unit = parseFloat(parts[2]) || 0;
+    return { name, qty, unit_price: unit, total: +(qty * unit).toFixed(2) };
+  });
+
+  const subtotal = +items.reduce((s, i) => s + i.total, 0).toFixed(2);
+  const tax_amount = +(subtotal * taxPct).toFixed(2);
+  const total = +(subtotal + tax_amount).toFixed(2);
+
+  return { store_name: store, date, items, subtotal, tax_rate: taxPct, tax_amount, total };
+}
+
+function encodeFrame(jsonStr) {
+  const enc = new TextEncoder();
+  // Simple byte storage (no zlib in browser — use raw UTF-8)
+  const payload = enc.encode(jsonStr);
+  const length = payload.length;
+
+  const frame = new Uint8Array(2 + 2 + length + 4);
+  frame[0] = MAGIC[0]; frame[1] = MAGIC[1];
+  frame[2] = length & 0xFF; frame[3] = (length >> 8) & 0xFF;
+  frame.set(payload, 4);
+
+  const checksum = crc32(payload);
+  const offset = 4 + length;
+  frame[offset]   =  checksum        & 0xFF;
+  frame[offset+1] = (checksum >> 8)  & 0xFF;
+  frame[offset+2] = (checksum >> 16) & 0xFF;
+  frame[offset+3] = (checksum >> 24) & 0xFF;
+
+  return frame;
+}
+
+// ── Encode → canvas ──────────────────────────────────────────────────────
+let lastImageData = null;
+
+function runEncode() {
+  const receipt = buildReceipt();
+  const jsonStr = JSON.stringify(receipt);
+  const frame = encodeFrame(jsonStr);
+  const bits = bytesToBits(frame);
+
+  const cap = (TEXTURE_SIZE / BLOCK_SIZE) ** 2;
+  if (bits.length > cap) {
+    alert(`Payload too large: ${bits.length} bits, capacity ${cap}`);
+    return;
+  }
+
+  const rng = seededRng(42);
+  const size = TEXTURE_SIZE;
+  const carrier = new Int16Array(size * size);
+  for (let i = 0; i < carrier.length; i++)
+    carrier[i] = BASE_GRAY + Math.floor(rng() * 2 * NOISE_AMP - NOISE_AMP);
+
+  const bpr = size / BLOCK_SIZE;
+  for (let idx = 0; idx < bits.length; idx++) {
+    const row = Math.floor(idx / bpr), col = idx % bpr;
+    const d = bits[idx] === 1 ? DELTA : -DELTA;
+    for (let dr = 0; dr < BLOCK_SIZE; dr++)
+      for (let dc = 0; dc < BLOCK_SIZE; dc++) {
+        const pi = (row * BLOCK_SIZE + dr) * size + (col * BLOCK_SIZE + dc);
+        carrier[pi] = Math.min(255, Math.max(0, carrier[pi] + d));
+      }
+  }
+
+  const opacity = parseInt(document.getElementById('d-opacity').value) / 100;
+  const alpha = Math.round(opacity * 255);
+
+  const cvs = document.getElementById('cvs-encoded');
+  const ctx = cvs.getContext('2d');
+  const imgData = ctx.createImageData(size, size);
+  for (let i = 0; i < size * size; i++) {
+    const v = carrier[i];
+    imgData.data[i*4]   = v;
+    imgData.data[i*4+1] = v;
+    imgData.data[i*4+2] = v;
+    imgData.data[i*4+3] = alpha;
+  }
+  ctx.putImageData(imgData, 0, 0);
+  lastImageData = imgData;
+
+  // magnified view — top-left 32×32 block region → stretched to canvas
+  const mag = document.getElementById('cvs-magnified');
+  const mctx = mag.getContext('2d');
+  const cropSize = 32;
+  const tempCvs = document.createElement('canvas');
+  tempCvs.width = cropSize; tempCvs.height = cropSize;
+  const tctx = tempCvs.getContext('2d');
+  const crop = tctx.createImageData(cropSize, cropSize);
+  for (let y = 0; y < cropSize; y++)
+    for (let x = 0; x < cropSize; x++) {
+      const si = (y * size + x) * 4, di = (y * cropSize + x) * 4;
+      crop.data[di] = crop.data[di+1] = crop.data[di+2] = carrier[y * size + x];
+      crop.data[di+3] = 255;
+    }
+  tctx.putImageData(crop, 0, 0);
+  mctx.imageSmoothingEnabled = false;
+  mctx.drawImage(tempCvs, 0, 0, 256, 256);
+
+  document.getElementById('decode-out').textContent = 'Texture encoded. Click "Decode texture" to verify round-trip.';
+  document.getElementById('decode-status').textContent = `Payload: ${frame.length} bytes · Capacity: ${Math.floor(cap / 8)} bytes`;
+  document.getElementById('decode-status').className = 'status-bar';
+}
+
+// ── Decode ────────────────────────────────────────────────────────────────
+function runDecode() {
+  if (!lastImageData) {
+    document.getElementById('decode-status').textContent = 'Encode something first.';
+    document.getElementById('decode-status').className = 'status-bar err';
+    return;
+  }
+
+  const size = TEXTURE_SIZE;
+  const bpr = size / BLOCK_SIZE;
+  const data = lastImageData.data;
+
+  // Extract per-block averages
+  const bits = [];
+  let confident = 0;
+  const totalBlocks = (size / BLOCK_SIZE) ** 2;
+
+  for (let idx = 0; idx < totalBlocks; idx++) {
+    const row = Math.floor(idx / bpr), col = idx % bpr;
+    let sum = 0;
+    for (let dr = 0; dr < BLOCK_SIZE; dr++)
+      for (let dc = 0; dc < BLOCK_SIZE; dc++) {
+        const pi = ((row * BLOCK_SIZE + dr) * size + (col * BLOCK_SIZE + dc)) * 4;
+        sum += data[pi]; // R channel (== G == B)
+      }
+    const avg = sum / (BLOCK_SIZE * BLOCK_SIZE);
+    const bit = avg > BASE_GRAY ? 1 : 0;
+    bits.push(bit);
+    if (Math.abs(avg - BASE_GRAY) > DELTA * 0.5) confident++;
+  }
+
+  const allBytes = bitsToBytes(bits);
+
+  // Check magic
+  if (allBytes[0] !== MAGIC[0] || allBytes[1] !== MAGIC[1]) {
+    document.getElementById('decode-out').textContent = 'Magic bytes not found. Decode failed.';
+    document.getElementById('decode-status').textContent = 'CRC: FAIL';
+    document.getElementById('decode-status').className = 'status-bar err';
+    return;
+  }
+
+  const payloadLen = allBytes[2] | (allBytes[3] << 8);
+  const payload = allBytes.slice(4, 4 + payloadLen);
+
+  // CRC check
+  const stored = allBytes[4 + payloadLen]
+    | (allBytes[4 + payloadLen + 1] << 8)
+    | (allBytes[4 + payloadLen + 2] << 16)
+    | (allBytes[4 + payloadLen + 3] << 24);
+  const computed = crc32(payload);
+  const crcOk = ((stored >>> 0) === (computed >>> 0));
+
+  const dec = new TextDecoder();
+  let text;
+  try {
+    text = dec.decode(payload);
+    const parsed = JSON.parse(text);
+    text = JSON.stringify(parsed, null, 2);
+  } catch(e) {
+    text = dec.decode(payload);
+  }
+
+  const conf = ((confident / totalBlocks) * 100).toFixed(1);
+  document.getElementById('decode-out').textContent = text;
+  document.getElementById('decode-status').textContent =
+    `CRC: ${crcOk ? 'OK' : 'FAIL'} · Confidence: ${conf}% · Payload: ${payloadLen} bytes`;
+  document.getElementById('decode-status').className = 'status-bar ' + (crcOk ? 'ok' : 'err');
+}
+
+// Auto-encode on load
+window.addEventListener('DOMContentLoaded', () => setTimeout(runEncode, 100));
+</script>
+{{ end }}
