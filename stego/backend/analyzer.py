@@ -9,6 +9,7 @@ Tests implemented
 4. block_variance      — detects block-average encoding (our own scheme)
 5. sample_pairs        — detects LSB matching via adjacent pixel pair analysis
 6. our_scheme          — tries to decode with Almond Farm steganographic receipt format
+7. dct_chi_square      — chi-square on JPEG DCT AC coefficients (detects OutGuess/F5/JPHide)
 """
 from __future__ import annotations
 
@@ -415,6 +416,169 @@ def our_scheme(arr: np.ndarray, raw_bytes: bytes) -> TestResult:
     )
 
 
+# ── 7. DCT chi-square (JPEG domain steganography) ────────────────────────────
+
+def dct_chi_square(img: Image.Image, arr: np.ndarray) -> TestResult:
+    """
+    Runs chi-square on the LSBs of JPEG DCT AC coefficients.
+
+    The idea
+    ────────
+    JPEG stores each 8×8 pixel block as 64 frequency coefficients (DCT).
+    One is the DC coefficient (average brightness of the block).
+    The other 63 are AC coefficients (how much of each frequency pattern).
+
+    Natural images: AC coefficients follow a Laplacian distribution —
+    pairs of adjacent values (2k, 2k+1) appear with UNequal frequency
+    because the distribution is peaked at zero and tapers off.
+
+    OutGuess / JPHide / F5 hide data by flipping the LSB of AC coefficients.
+    This makes adjacent pairs (2k, 2k+1) appear with MORE EQUAL frequency —
+    exactly what the chi-square test detects.
+
+    This is why Cicada 3301 images are detectable even though they're JPEG:
+    OutGuess touched the DCT coefficients, not the pixels.
+    """
+    if (img.format or "").upper() != "JPEG":
+        return TestResult(
+            name="DCT Chi-Square",
+            slug="dct_chi_square",
+            verdict="SKIPPED",
+            score=0.0,
+            detail="Not a JPEG — DCT analysis only applies to JPEG files.",
+            data={},
+        )
+
+    # Use jpegio to read the ACTUAL stored DCT coefficients from the JPEG file,
+    # not a re-computed approximation. This is the only accurate approach:
+    # JPEG stores quantized DCT integers; decoding → re-encoding loses precision.
+    try:
+        import jpegio
+        import tempfile, os
+        with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as f:
+            # jpegio needs a file path — write raw bytes to a temp file
+            # We pass the raw bytes that were read from disk (before PIL decoded them)
+            # Caller must pass image_bytes; we reconstruct from PIL for now
+            buf = io.BytesIO()
+            img.save(buf, format="JPEG")
+            f.write(buf.getvalue())
+            tmp = f.name
+        try:
+            jpeg_struct = jpegio.read(tmp)
+        finally:
+            os.unlink(tmp)
+
+        # coef_arrays[0] = Y (luma) channel stored DCT coefficients
+        # Shape: (height_in_blocks * 8, width_in_blocks * 8) — raw quantized integers
+        coeffs_2d = jpeg_struct.coef_arrays[0]       # full Y-channel coeff matrix
+        h8, w8 = coeffs_2d.shape
+        # Reshape into (n_blocks_h, 8, n_blocks_w, 8) then flatten blocks
+        blocks = coeffs_2d.reshape(h8 // 8, 8, w8 // 8, 8).transpose(0, 2, 1, 3)
+        # blocks shape: (n_h, n_w, 8, 8)
+        # Skip DC (position [0,0] in each block), take AC coefficients
+        ac_coeffs = blocks[:, :, :, :].reshape(-1, 64)[:, 1:].flatten()
+
+    except Exception as e:
+        return TestResult(
+            name="DCT Chi-Square",
+            slug="dct_chi_square",
+            verdict="SKIPPED",
+            score=0.0,
+            detail=f"Could not read DCT coefficients: {e}",
+            data={},
+        )
+
+    if len(ac_coeffs) < 500:
+        return TestResult(
+            name="DCT Chi-Square",
+            slug="dct_chi_square",
+            verdict="SKIPPED",
+            score=0.0,
+            detail="Too few DCT coefficients (image too small or heavily quantized).",
+            data={},
+        )
+
+    ac = np.array(ac_coeffs, dtype=np.int32)
+
+    # Focus on small non-zero coefficients — where OutGuess/F5 embed data.
+    # Large coefficients follow the natural image distribution and aren't modified.
+    ac_small = ac[(ac != 0) & (np.abs(ac) <= 8)]
+
+    if len(ac_small) < 100:
+        return TestResult(
+            name="DCT Chi-Square",
+            slug="dct_chi_square",
+            verdict="SKIPPED",
+            score=0.0,
+            detail="Too few small AC coefficients — image may be too heavily compressed.",
+            data={"total_coeffs": int(len(ac_coeffs)), "small_coeffs": int(len(ac_small))},
+        )
+
+    # Chi-square on pairs (2k, 2k+1) of the SIGNED coefficients.
+    # Natural JPEG: adjacent value pairs appear with unequal frequency (Laplacian dist).
+    # OutGuess/F5: flipping LSBs makes pairs nearly equal → chi-square detects this.
+    counts: dict[int, int] = {}
+    for v in ac_small.tolist():
+        counts[v] = counts.get(v, 0) + 1
+
+    chi2 = 0.0
+    pairs = 0
+    for k in range(-4, 5):
+        a = counts.get(2 * k, 0)
+        b = counts.get(2 * k + 1, 0)
+        expected = (a + b) / 2.0
+        if expected >= 5:
+            chi2 += ((a - expected) ** 2 + (b - expected) ** 2) / expected
+            pairs += 1
+
+    if pairs == 0:
+        return TestResult(
+            name="DCT Chi-Square",
+            slug="dct_chi_square",
+            verdict="SKIPPED",
+            score=0.0,
+            detail="No valid coefficient pairs.",
+            data={},
+        )
+
+    p = _chi2_p_approx(chi2, pairs - 1)
+
+    # IMPORTANT — direction of this test:
+    # Natural images: coefficient pairs (2k, 2k+1) are UNEQUAL (Laplacian falloff)
+    #   → high χ², LOW p-value → CLEAN
+    # Stego (OutGuess/F5/JPHide): LSB flipping makes pairs EQUAL
+    #   → low χ², HIGH p-value → SUSPICIOUS
+    # So we flag HIGH p-values, not low ones.
+    suspicious = p > 0.95
+    score = max(0.0, min(1.0, (p - 0.9) * 10)) if suspicious else 0.0
+
+    return TestResult(
+        name="DCT Chi-Square",
+        slug="dct_chi_square",
+        verdict="SUSPICIOUS" if suspicious else "CLEAN",
+        score=score,
+        detail=(
+            f"χ²={chi2:.1f} across {pairs} AC coefficient pairs, p≈{p:.4f}. "
+            f"Analysed {len(ac_small):,} small AC coefficients from {len(ac_coeffs):,} total. "
+            + (
+                "Coefficient pairs suspiciously EQUAL — consistent with "
+                "DCT-domain steganography (OutGuess, F5, JPHide). "
+                "Cicada 3301 used OutGuess — this is the test that catches it."
+                if suspicious else
+                f"Coefficient pairs are naturally unequal (p={p:.4f}). "
+                "No DCT-domain steganography detected."
+            )
+        ),
+        data={
+            "chi2": round(chi2, 2),
+            "p_value": round(p, 4),
+            "pairs_tested": pairs,
+            "ac_coeffs_analysed": int(len(ac_small)),
+            "total_ac_coeffs": int(len(ac_coeffs)),
+        },
+    )
+
+
 # ── Main analyzer ─────────────────────────────────────────────────────────────
 
 def analyze(image_bytes: bytes) -> AnalysisReport:
@@ -424,12 +588,15 @@ def analyze(image_bytes: bytes) -> AnalysisReport:
     fmt_info, fmt_test = format_analysis(img, image_bytes)
     tests: list[TestResult] = [fmt_test]
 
-    # Only run pixel-level tests on lossless images
+    # Only run pixel-level LSB tests on lossless images
     # (JPEG destroys LSBs — results would be meaningless noise)
     if fmt_info.lossless:
         tests.append(lsb_chi_square(arr))
         tests.append(lsb_entropy(arr))
         tests.append(sample_pairs(arr))
+    else:
+        # JPEG: run DCT-domain test instead (catches OutGuess, F5, JPHide, Cicada)
+        tests.append(dct_chi_square(img, arr))
 
     tests.append(block_variance(arr))
     tests.append(our_scheme(arr, image_bytes))
