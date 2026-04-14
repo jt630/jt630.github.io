@@ -1,0 +1,536 @@
+{{ define "main" }}
+<style>
+/* ===========================
+   Business Ideas Lab
+   =========================== */
+
+.ideas-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  flex: 1;
+}
+
+.ideas-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.ideas-header h1 {
+  font-family: 'Impact', 'Playfair Display', sans-serif;
+  font-size: 3rem;
+  color: var(--pink);
+  margin: 0.5rem 0 0.4rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.ideas-header .subtitle {
+  color: var(--white-dim);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* Section labels */
+.ideas-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin: 3rem 0 0.4rem;
+}
+
+.ideas-title {
+  font-size: 1.5rem;
+  color: var(--white);
+  font-family: 'Playfair Display', serif;
+  margin: 0 0 0.4rem;
+}
+
+.ideas-desc {
+  color: var(--white-dim);
+  font-size: 0.9rem;
+  margin: 0 0 1.25rem;
+  max-width: 700px;
+}
+
+/* ===========================
+   SDG Grid
+   =========================== */
+.sdg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.sdg-card {
+  border-radius: 6px;
+  padding: 1rem 0.9rem 0.85rem;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+.sdg-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+}
+
+.sdg-num {
+  font-family: 'Impact', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  opacity: 0.22;
+  position: absolute;
+  top: 0.3rem;
+  right: 0.6rem;
+  line-height: 1;
+}
+
+.sdg-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.25;
+  margin-bottom: 0.3rem;
+}
+
+.sdg-hook {
+  font-size: 0.72rem;
+  opacity: 0.82;
+  line-height: 1.35;
+}
+
+/* ===========================
+   Lenses Grid
+   =========================== */
+.lenses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.lens-card {
+  background: var(--black-card);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 1.4rem 1.4rem 1.2rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lens-card:hover {
+  border-color: var(--pink);
+  border-top-color: var(--pink);
+  box-shadow: var(--shadow-pink);
+}
+
+.lens-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.lens-card h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.lens-card p {
+  font-size: 0.875rem;
+  color: var(--white-dim);
+  line-height: 1.55;
+  margin: 0 0 0.6rem;
+}
+
+.lens-card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--white-faint);
+  line-height: 1.6;
+}
+
+.lens-card ul li {
+  margin-bottom: 0.15rem;
+}
+
+/* ===========================
+   Spark / Combination Prompts
+   =========================== */
+.spark-box {
+  background: var(--black-card);
+  border: 1px solid rgba(255, 45, 138, 0.18);
+  border-radius: 8px;
+  padding: 2rem 2rem 1.5rem;
+  margin-top: 3rem;
+}
+
+.spark-box h2 {
+  font-size: 1.2rem;
+  color: var(--pink);
+  margin-bottom: 0.3rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.spark-box .spark-intro {
+  font-size: 0.875rem;
+  color: var(--white-dim);
+  margin-bottom: 1.5rem;
+}
+
+.spark-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.75rem;
+}
+
+.spark-prompt {
+  background: var(--black-elevated);
+  border-left: 3px solid var(--pink);
+  border-radius: 0 5px 5px 0;
+  padding: 0.9rem 1rem;
+  font-size: 0.84rem;
+  color: var(--white-dim);
+  line-height: 1.5;
+}
+
+.spark-prompt strong {
+  display: block;
+  color: var(--white);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+  color: var(--pink-light);
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 600px) {
+  .ideas-header h1 { font-size: 2rem; }
+  .sdg-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .lenses-grid { grid-template-columns: 1fr; }
+  .spark-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="ideas-wrap">
+
+  <div class="ideas-header">
+    <a class="back-link" href="/brain/">&larr; Brain</a>
+    <h1>Business Ideas Lab</h1>
+    <p class="subtitle">Pick a global problem. Pick a lens. Find the business hiding in the intersection.</p>
+  </div>
+
+  <!-- ==============================
+       FRAMEWORK 1 — UN SDGs
+       ============================== -->
+  <p class="ideas-label">Framework 1 of 2</p>
+  <h2 class="ideas-title">UN Sustainable Development Goals</h2>
+  <p class="ideas-desc">17 global problem statements — each a massive underserved market hiding in plain sight. The world committed to solving these by 2035. Most are nowhere close. That's the opportunity.</p>
+
+  <div class="sdg-grid">
+
+    <div class="sdg-card" style="background:#E5243B;">
+      <span class="sdg-num">1</span>
+      <span class="sdg-name">No Poverty</span>
+      <span class="sdg-hook">Financial inclusion, micro-lending, income diversification for the unbanked</span>
+    </div>
+
+    <div class="sdg-card" style="background:#DDA63A;">
+      <span class="sdg-num">2</span>
+      <span class="sdg-name">Zero Hunger</span>
+      <span class="sdg-hook">Precision agriculture, food waste reduction, alternative proteins, distribution logistics</span>
+    </div>
+
+    <div class="sdg-card" style="background:#4C9F38;">
+      <span class="sdg-num">3</span>
+      <span class="sdg-name">Good Health</span>
+      <span class="sdg-hook">Telemedicine for underserved areas, preventive care tech, mental health at scale</span>
+    </div>
+
+    <div class="sdg-card" style="background:#C5192D;">
+      <span class="sdg-num">4</span>
+      <span class="sdg-name">Quality Education</span>
+      <span class="sdg-hook">Adaptive learning, alternative credentialing, vocational training, literacy tools</span>
+    </div>
+
+    <div class="sdg-card" style="background:#FF3A21;">
+      <span class="sdg-num">5</span>
+      <span class="sdg-name">Gender Equality</span>
+      <span class="sdg-hook">Women-led supply chains, workplace equity tools, safety tech, economic access</span>
+    </div>
+
+    <div class="sdg-card" style="background:#26BDE2;">
+      <span class="sdg-num">6</span>
+      <span class="sdg-name">Clean Water</span>
+      <span class="sdg-hook">Affordable purification, leak detection, agricultural water efficiency, sanitation tech</span>
+    </div>
+
+    <div class="sdg-card" style="background:#FCC30B; color:#111;">
+      <span class="sdg-num" style="color:#111;">7</span>
+      <span class="sdg-name" style="color:#111;">Affordable Energy</span>
+      <span class="sdg-hook" style="color:rgba(0,0,0,0.7);">Solar microgrids, energy storage, demand response, pay-as-you-go models</span>
+    </div>
+
+    <div class="sdg-card" style="background:#A21942;">
+      <span class="sdg-num">8</span>
+      <span class="sdg-name">Decent Work</span>
+      <span class="sdg-hook">Gig worker benefits, skills matching, worker-owned cooperatives, upskilling</span>
+    </div>
+
+    <div class="sdg-card" style="background:#FD6925;">
+      <span class="sdg-num">9</span>
+      <span class="sdg-name">Industry &amp; Innovation</span>
+      <span class="sdg-hook">Sustainable manufacturing, industrial IoT, materials science, SME digitization</span>
+    </div>
+
+    <div class="sdg-card" style="background:#DD1367;">
+      <span class="sdg-num">10</span>
+      <span class="sdg-name">Reduced Inequalities</span>
+      <span class="sdg-hook">Impact investing tools, community wealth building, equitable hiring infrastructure</span>
+    </div>
+
+    <div class="sdg-card" style="background:#FD9D24; color:#111;">
+      <span class="sdg-num" style="color:#111;">11</span>
+      <span class="sdg-name" style="color:#111;">Sustainable Cities</span>
+      <span class="sdg-hook" style="color:rgba(0,0,0,0.7);">Urban mobility, green building, smart waste management, affordable housing</span>
+    </div>
+
+    <div class="sdg-card" style="background:#BF8B2E;">
+      <span class="sdg-num">12</span>
+      <span class="sdg-name">Responsible Consumption</span>
+      <span class="sdg-hook">Circular economy platforms, supply chain transparency, repair culture, rental markets</span>
+    </div>
+
+    <div class="sdg-card" style="background:#3F7E44;">
+      <span class="sdg-num">13</span>
+      <span class="sdg-name">Climate Action</span>
+      <span class="sdg-hook">Carbon accounting, climate risk insurance, adaptation tech, carbon removal</span>
+    </div>
+
+    <div class="sdg-card" style="background:#0A97D9;">
+      <span class="sdg-num">14</span>
+      <span class="sdg-name">Life Below Water</span>
+      <span class="sdg-hook">Ocean monitoring, sustainable aquaculture, plastic reduction, blue economy</span>
+    </div>
+
+    <div class="sdg-card" style="background:#56C02B; color:#111;">
+      <span class="sdg-num" style="color:#111;">15</span>
+      <span class="sdg-name" style="color:#111;">Life on Land</span>
+      <span class="sdg-hook" style="color:rgba(0,0,0,0.7);">Biodiversity credits, sustainable forestry, rewilding platforms, soil health</span>
+    </div>
+
+    <div class="sdg-card" style="background:#00689D;">
+      <span class="sdg-num">16</span>
+      <span class="sdg-name">Peace &amp; Justice</span>
+      <span class="sdg-hook">Legal access tech, anti-corruption tools, identity verification, civic infrastructure</span>
+    </div>
+
+    <div class="sdg-card" style="background:#19486A;">
+      <span class="sdg-num">17</span>
+      <span class="sdg-name">Partnerships</span>
+      <span class="sdg-hook">Impact measurement, cross-sector collaboration platforms, blended finance tools</span>
+    </div>
+
+  </div><!-- /sdg-grid -->
+
+
+  <!-- ==============================
+       FRAMEWORK 2 — 8 LENSES
+       ============================== -->
+  <p class="ideas-label">Framework 2 of 2</p>
+  <h2 class="ideas-title">8 Idea Lenses</h2>
+  <p class="ideas-desc">Point any of these at an SDG and the business model starts to appear. The intersection of a global problem + a specific lens is usually where the non-obvious idea lives.</p>
+
+  <div class="lenses-grid">
+
+    <div class="lens-card">
+      <span class="lens-icon">🌊</span>
+      <h3>Megatrends</h3>
+      <p>Long-wave forces that create demand whether anyone plans for it or not. Ride them instead of fighting them.</p>
+      <ul>
+        <li>Aging populations in wealthy countries</li>
+        <li>Rising middle class in Africa &amp; Southeast Asia</li>
+        <li>Urbanization (70% of people in cities by 2050)</li>
+        <li>Chronic disease becoming the default health context</li>
+        <li>Generational wealth transfer ($84T by 2045)</li>
+      </ul>
+    </div>
+
+    <div class="lens-card">
+      <span class="lens-icon">⚡</span>
+      <h3>Technology Horizons</h3>
+      <p>Things that weren't economically viable two years ago but now are. Cheap tools waiting for a business model.</p>
+      <ul>
+        <li>AI inference now cheap enough for consumer products</li>
+        <li>Solar + battery storage at grid parity everywhere</li>
+        <li>Satellite internet reaching the last billion (Starlink etc.)</li>
+        <li>Biotech: GLP-1s, gene editing, longevity diagnostics</li>
+        <li>Sensors + edge compute for real-time monitoring</li>
+      </ul>
+    </div>
+
+    <div class="lens-card">
+      <span class="lens-icon">🧠</span>
+      <h3>Personal Inventory</h3>
+      <p>The most underused lens. What do YOU have that others don't? This is where unfair advantage lives.</p>
+      <ul>
+        <li>Domain expertise most people lack</li>
+        <li>Network access to a specific community or industry</li>
+        <li>Geographic presence in an underserved market</li>
+        <li>Lived experience of a problem others only theorize about</li>
+        <li>Trust with a hard-to-reach customer segment</li>
+      </ul>
+    </div>
+
+    <div class="lens-card">
+      <span class="lens-icon">🌍</span>
+      <h3>Geographic Arbitrage</h3>
+      <p>Something proven in one market hasn't crossed to another yet. Execution risk is lower when the model is validated elsewhere.</p>
+      <ul>
+        <li>M-Pesa mobile banking → Latin America</li>
+        <li>Indonesia's GoTo super-app model → West Africa</li>
+        <li>Japan's elder-care robotics → Europe</li>
+        <li>India's ₹2 health insurance model → Southeast Asia</li>
+        <li>Brazil's open banking framework → other emerging markets</li>
+      </ul>
+    </div>
+
+    <div class="lens-card">
+      <span class="lens-icon">📋</span>
+      <h3>Regulatory Tailwinds</h3>
+      <p>New laws create new requirements, and requirements create markets. Compliance tools are boring but dependable.</p>
+      <ul>
+        <li>EU CSRD: mandatory sustainability reporting for SMEs</li>
+        <li>SEC climate disclosure rules: US public companies</li>
+        <li>Right-to-repair legislation spreading globally</li>
+        <li>AI Act compliance tools (Europe)</li>
+        <li>Plastic packaging bans creating material substitution demand</li>
+      </ul>
+    </div>
+
+    <div class="lens-card">
+      <span class="lens-icon">👥</span>
+      <h3>Underserved Markets</h3>
+      <p>Existing solutions were built for someone. Find who they weren't built for. That's your customer.</p>
+      <ul>
+        <li>Rural populations with no local professional services</li>
+        <li>Non-English speakers in English-default software</li>
+        <li>Shift workers with irregular schedules</li>
+        <li>People with disabilities in inaccessible products</li>
+        <li>Small businesses priced out of enterprise tools</li>
+      </ul>
+    </div>
+
+    <div class="lens-card">
+      <span class="lens-icon">🔗</span>
+      <h3>Supply Chain Stress</h3>
+      <p>COVID, geopolitics, and climate events exposed single points of failure. Resilience is now a purchasing priority.</p>
+      <ul>
+        <li>Reshoring demand: manufacturers need local suppliers</li>
+        <li>Agricultural supply concentration risk</li>
+        <li>Semiconductor diversification beyond Taiwan</li>
+        <li>Critical mineral supply chains (lithium, rare earths)</li>
+        <li>Food system redundancy after COVID disruptions</li>
+      </ul>
+    </div>
+
+    <div class="lens-card">
+      <span class="lens-icon">🔄</span>
+      <h3>Behavioral Shifts</h3>
+      <p>COVID rewired how people work, heal, eat, and relate. Many of these changes are sticky. Build for the new behavior, not the old one.</p>
+      <ul>
+        <li>Remote work normalized → new home/office blur</li>
+        <li>Mental health destigmatized → mass demand for care</li>
+        <li>Loneliness epidemic → community-forming products</li>
+        <li>Distrust of institutions → peer-to-peer alternatives</li>
+        <li>Health optimization mainstreamed (wearables, labs, GLP-1s)</li>
+      </ul>
+    </div>
+
+  </div><!-- /lenses-grid -->
+
+
+  <!-- ==============================
+       COMBINATION PROMPTS
+       ============================== -->
+  <div class="spark-box">
+    <h2>Combination Prompts</h2>
+    <p class="spark-intro">Pick one SDG + one lens. Sit with the question. Write before you evaluate.</p>
+
+    <div class="spark-grid">
+
+      <div class="spark-prompt">
+        <strong>SDG 3 + Megatrends</strong>
+        Aging populations in wealthy countries have money and chronic health needs. What preventive health product works for 65+ in a rural setting where there's no specialist within 100 miles?
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 7 + Geographic Arbitrage</strong>
+        Pay-as-you-go solar works in East Africa. What's blocking the same model from reaching rural Latin America or South Asia? Is that blocker your business?
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 4 + Technology Horizons</strong>
+        AI tutoring is now cheap enough for consumer apps. Who isn't using it yet? Adult literacy? Trade skills? What's the bottleneck — trust, language, access, habit?
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 12 + Regulatory Tailwinds</strong>
+        EU CSRD forces supply chain transparency reporting. What tool helps a 50-person manufacturer comply without a full sustainability team? Where does the SaaS tool stop and the consulting start?
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 11 + Underserved Markets</strong>
+        Urban mobility apps are built for young professionals with smartphones and flexible schedules. What about shift workers who need to be at a factory at 5am and live 8 miles away with no transit?
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 1 + Personal Inventory</strong>
+        What do you know about financial systems, informal economies, or specific communities that most fintech founders don't? The gap between what you know and what products exist is your idea.
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 13 + Supply Chain Stress</strong>
+        Climate volatility is hitting agricultural yields unpredictably. Small farmers can't afford traditional crop insurance. What's the parametric insurance product that pays out on weather data, not loss assessment?
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 8 + Behavioral Shifts</strong>
+        Remote work normalized self-employment. 60M+ Americans now freelance. They have no employer-sponsored benefits. What's the benefits infrastructure layer — health, retirement, PTO equivalents — for the permanently self-employed?
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 6 + Technology Horizons</strong>
+        Low-cost sensors + satellite connectivity can now monitor water quality and pipeline leaks in real time. Who pays for this? Municipalities? NGOs? What's the revenue model when the customer is a government with no budget?
+      </div>
+
+      <div class="spark-prompt">
+        <strong>SDG 16 + Underserved Markets</strong>
+        Legal services are priced for corporations. Small landlords, gig workers, immigrants, and small business owners face legal situations constantly with no affordable help. What does legal access look like at $30/mo?
+      </div>
+
+    </div><!-- /spark-grid -->
+  </div><!-- /spark-box -->
+
+</div><!-- /ideas-wrap -->
+{{ end }}
