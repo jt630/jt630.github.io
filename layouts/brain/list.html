@@ -12,6 +12,25 @@
   letter-spacing:.08em; text-transform:uppercase; color:var(--pink); margin:0 0 .5rem;
 }
 .lab-header p { font-family:'Courier New',monospace; color:var(--gold); font-size:.82rem; letter-spacing:.1em; margin:0; }
+.brain-pages { display:flex; flex-wrap:wrap; gap:.75rem; margin-bottom:3rem; }
+.brain-page-link {
+  display:flex; align-items:center; gap:.75rem;
+  background:rgba(212,175,55,.07); border:1px solid rgba(212,175,55,.25);
+  border-left:3px solid var(--gold);
+  padding:.75rem 1.1rem; border-radius:4px;
+  color:var(--white); text-decoration:none;
+  font-family:'Courier New',monospace; font-size:.75rem;
+  letter-spacing:.08em; text-transform:uppercase;
+  transition:border-color .2s ease, background .2s ease;
+  flex:1; min-width:200px;
+}
+.brain-page-link:hover { border-color:var(--pink); background:rgba(255,45,138,.07); color:var(--pink); }
+.brain-page-link .bp-icon { font-size:1.3rem; }
+.brain-page-link .bp-meta { display:flex; flex-direction:column; gap:.15rem; }
+.brain-page-link .bp-title { font-weight:700; color:var(--gold); }
+.brain-page-link:hover .bp-title { color:var(--pink); }
+.brain-page-link .bp-desc { font-size:.68rem; color:var(--white-faint); letter-spacing:.05em; text-transform:none; font-family:'Space Grotesk',sans-serif; }
+
 .design-entry { margin-bottom: 4rem; }
 .design-label {
   font-family:'Courier New',monospace; font-size:.7rem; color:var(--gold);
@@ -27,6 +46,20 @@
 <div class="lab-header">
   <h1>⚡ Brain Lab</h1>
   <p>10 html designs :: old web aesthetic × ai superpowers</p>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PAGES
+     ══════════════════════════════════════ -->
+<div class="brain-pages">
+  <a href="/brain/business-ideas/" class="brain-page-link">
+    <span class="bp-icon">💡</span>
+    <span class="bp-meta">
+      <span class="bp-title">Business Ideas Lab</span>
+      <span class="bp-desc">17 SDGs × 8 lenses — find the idea in the intersection</span>
+    </span>
+  </a>
 </div>
 
 
