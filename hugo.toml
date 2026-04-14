@@ -8,146 +8,123 @@ title = "Almond Farm"
   tabTitle = "ALMONDS!"
 
 [menu]
-  # Farm
+  # Build
   [[menu.main]]
-    name = "Farm"
-    identifier = "farm"
+    name = "Build"
+    identifier = "build"
     weight = 10
-  [[menu.main]]
-    name = "Farming"
-    url = "/farming/"
-    parent = "farm"
-    weight = 1
-  [[menu.main]]
-    name = "Cooking"
-    url = "/cooking/"
-    parent = "farm"
-    weight = 2
-  [[menu.main]]
-    name = "Drinks"
-    url = "/drinks/"
-    parent = "farm"
-    weight = 3
-
-  # Brain
-  [[menu.main]]
-    name = "Brain"
-    identifier = "brain-grp"
-    weight = 20
   [[menu.main]]
     name = "Brain Lab"
     url = "/brain/"
-    parent = "brain-grp"
+    parent = "build"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    parent = "build"
+    weight = 2
+  [[menu.main]]
+    name = "Farming"
+    url = "/farming/"
+    parent = "build"
+    weight = 3
+  [[menu.main]]
+    name = "Cooking"
+    url = "/cooking/"
+    parent = "build"
+    weight = 4
+  [[menu.main]]
+    name = "Monkeys"
+    url = "/monkeys/"
+    parent = "build"
+    weight = 5
+  [[menu.main]]
+    name = "Public Health"
+    url = "/public-health/"
+    parent = "build"
+    weight = 6
+
+  # Taste
+  [[menu.main]]
+    name = "Taste"
+    identifier = "taste"
+    weight = 20
+  [[menu.main]]
+    name = "Music"
+    url = "/music/"
+    parent = "taste"
     weight = 1
   [[menu.main]]
     name = "Books"
     url = "/books/"
-    parent = "brain-grp"
+    parent = "taste"
     weight = 2
-  [[menu.main]]
-    name = "Music"
-    url = "/music/"
-    parent = "brain-grp"
-    weight = 3
   [[menu.main]]
     name = "Movies"
     url = "/movies/"
-    parent = "brain-grp"
-    weight = 4
+    parent = "taste"
+    weight = 3
   [[menu.main]]
     name = "Art"
     url = "/art/"
-    parent = "brain-grp"
-    weight = 5
+    parent = "taste"
+    weight = 4
   [[menu.main]]
     name = "Gaming"
     url = "/gaming/"
-    parent = "brain-grp"
-    weight = 6
-
-  # Body
-  [[menu.main]]
-    name = "Body"
-    identifier = "body-grp"
-    weight = 30
-  [[menu.main]]
-    name = "Body"
-    url = "/body/"
-    parent = "body-grp"
-    weight = 1
-  [[menu.main]]
-    name = "Public Health"
-    url = "/public-health/"
-    parent = "body-grp"
-    weight = 2
-
-  # Lab
-  [[menu.main]]
-    name = "Lab"
-    identifier = "lab"
-    weight = 40
-  [[menu.main]]
-    name = "Gadgets"
-    url = "/gadgets/"
-    parent = "lab"
-    weight = 1
-  [[menu.main]]
-    name = "APIs"
-    url = "/apis/"
-    parent = "lab"
-    weight = 2
-  [[menu.main]]
-    name = "Markets"
-    url = "/markets/"
-    parent = "lab"
-    weight = 3
-  [[menu.main]]
-    name = "Monkeys"
-    url = "/monkeys/"
-    parent = "lab"
-    weight = 4
-  [[menu.main]]
-    name = "Dingers"
-    url = "/dinger-palooza/"
-    parent = "lab"
+    parent = "taste"
     weight = 5
-
-  # Journal
   [[menu.main]]
-    name = "Journal"
-    identifier = "journal"
-    weight = 50
-  [[menu.main]]
-    name = "Blog"
-    url = "/blog/"
-    parent = "journal"
-    weight = 1
+    name = "Drinks"
+    url = "/drinks/"
+    parent = "taste"
+    weight = 6
   [[menu.main]]
     name = "Gallery"
     url = "/gallery/"
-    parent = "journal"
-    weight = 2
+    parent = "taste"
+    weight = 7
   [[menu.main]]
     name = "Videos"
     url = "/videos/"
-    parent = "journal"
-    weight = 3
+    parent = "taste"
+    weight = 8
+
+  # Ops
+  [[menu.main]]
+    name = "Ops"
+    identifier = "ops"
+    weight = 30
+  [[menu.main]]
+    name = "Dingers"
+    url = "/dinger-palooza/"
+    parent = "ops"
+    weight = 1
+  [[menu.main]]
+    name = "Markets"
+    url = "/markets/"
+    parent = "ops"
+    weight = 2
   [[menu.main]]
     name = "Calendar"
     url = "/calendar/"
-    parent = "journal"
+    parent = "ops"
+    weight = 3
+  [[menu.main]]
+    name = "APIs"
+    url = "/apis/"
+    parent = "ops"
     weight = 4
   [[menu.main]]
-    name = "News"
-    url = "/news/"
-    parent = "journal"
+    name = "Gadgets"
+    url = "/gadgets/"
+    parent = "ops"
     weight = 5
-
-  # About — standalone
   [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 60
+    name = "Body"
+    url = "/body/"
+    parent = "ops"
+    weight = 6
 
 [taxonomies]
   tag = "tags"
