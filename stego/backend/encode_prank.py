@@ -3,10 +3,13 @@
 encode_prank.py — LSB-encode a secret message into any PNG/JPG image.
 
 Usage:
-    python encode_prank.py <input_image> [output.png]
+    python encode_prank.py <input_image> [output.png] [-m "your message"]
+    python encode_prank.py <input_image> --decode
 
-Example:
-    python encode_prank.py photo.jpg josh_prank.png
+Examples:
+    python encode_prank.py photo.jpg
+    python encode_prank.py photo.jpg out.png -m "you've been had"
+    python encode_prank.py out.png --decode
 
 Requirements: Pillow, numpy
     pip install pillow numpy
@@ -82,39 +85,45 @@ def lsb_decode(img_bytes: bytes) -> str | None:
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    if len(sys.argv) < 2:
+    args = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if not args:
         print(__doc__)
         sys.exit(1)
 
-    src = Path(sys.argv[1])
+    # -m "message" flag
+    message = MESSAGE
+    if "-m" in sys.argv:
+        idx = sys.argv.index("-m")
+        if idx + 1 >= len(sys.argv):
+            sys.exit("Usage: -m \"your message\"")
+        message = sys.argv[idx + 1]
+
+    src = Path(args[0])
     if not src.exists():
         sys.exit(f"File not found: {src}")
 
-    dst = Path(sys.argv[2]) if len(sys.argv) > 2 else src.with_stem(src.stem + "_prank").with_suffix(".png")
+    dst = Path(args[1]) if len(args) > 1 else src.with_stem(src.stem + "_encoded").with_suffix(".png")
 
     print(f"Reading  {src}")
     img_bytes = src.read_bytes()
 
-    print(f"Encoding message ({len(MESSAGE)} chars)…")
-    encoded = lsb_encode(img_bytes, MESSAGE)
+    print(f"Encoding message ({len(message)} chars)…")
+    encoded = lsb_encode(img_bytes, message)
 
     dst.write_bytes(encoded)
     print(f"Saved →  {dst}  ({len(encoded) // 1024}KB)")
 
-    # Verify round-trip
     decoded = lsb_decode(encoded)
-    if decoded == MESSAGE:
+    if decoded == message:
         print("Verify ✓  message decodes correctly")
     else:
         print("WARNING: decode mismatch — check the image")
 
     print()
-    print("How Josh can read it:")
-    print("  1. Drop the image into https://almondfarm.us/brain/stego  (click 'Reveal hidden text')")
-    print("  2. Or: python encode_prank.py <image> --decode")
+    print("Decode with:  python encode_prank.py <image> --decode")
+    print("           or drop it on https://almondfarm.us/brain/stego")
     print()
-    print("Message hidden:")
-    print(f"  {MESSAGE[:80]}…")
+    print(f"Message: {message[:80]}{'…' if len(message) > 80 else ''}")
 
 
 if __name__ == "__main__":
