@@ -6,7 +6,7 @@ Usage:
     python encode_prank.py <input_image> [output.png]
 
 Example:
-    python encode_prank.py trump_warrior.jpg trump_prank.png
+    python encode_prank.py photo.jpg josh_prank.png
 
 Requirements: Pillow, numpy
     pip install pillow numpy
