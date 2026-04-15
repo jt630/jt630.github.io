@@ -10,6 +10,7 @@ Tests implemented
 5. sample_pairs        — detects LSB matching via adjacent pixel pair analysis
 6. our_scheme          — tries to decode with Almond Farm steganographic receipt format
 7. dct_chi_square      — chi-square on JPEG DCT AC coefficients (detects OutGuess/F5/JPHide)
+8. steg_lsb            — attempts full LSB decode with STEG magic header
 """
 from __future__ import annotations
 
@@ -416,6 +417,79 @@ def our_scheme(arr: np.ndarray, raw_bytes: bytes) -> TestResult:
     )
 
 
+# ── 8. STEG LSB decoder ──────────────────────────────────────────────────────
+
+STEG_MAGIC = b"STEG"
+
+def steg_lsb(arr: np.ndarray) -> TestResult:
+    """
+    Attempts to decode a message encoded with our LSB scheme.
+    Frame: [STEG 4B][length uint32 BE][UTF-8 payload]
+    Completely invisible — max pixel change is ±1.
+    """
+    flat = arr.flatten()
+
+    def read_bytes(start_bit: int, n: int) -> bytes:
+        out = bytearray()
+        for i in range(n):
+            byte = 0
+            for j in range(8):
+                idx = start_bit + i * 8 + j
+                if idx >= len(flat):
+                    return bytes(out)
+                byte = (byte << 1) | int(flat[idx] & 1)
+            out.append(byte)
+        return bytes(out)
+
+    # Check magic (first 32 bits)
+    magic = read_bytes(0, 4)
+    if magic != STEG_MAGIC:
+        return TestResult(
+            name="STEG LSB Decode",
+            slug="steg_lsb",
+            verdict="CLEAN",
+            score=0.0,
+            detail="No STEG magic header found. Not encoded with this scheme.",
+            data={"magic_matched": False},
+        )
+
+    # Read length (next 32 bits)
+    length_bytes = read_bytes(32, 4)
+    length = struct.unpack(">I", length_bytes)[0]
+
+    max_payload = (len(flat) - 64) // 8
+    if length == 0 or length > max_payload:
+        return TestResult(
+            name="STEG LSB Decode",
+            slug="steg_lsb",
+            verdict="SUSPICIOUS",
+            score=0.7,
+            detail=f"STEG magic found but length {length} is invalid (max {max_payload}).",
+            data={"magic_matched": True, "length": length},
+        )
+
+    payload_bytes = read_bytes(64, length)
+    try:
+        payload = payload_bytes.decode("utf-8")
+    except UnicodeDecodeError:
+        payload = payload_bytes.decode("utf-8", errors="replace")
+
+    preview = payload[:300]
+
+    return TestResult(
+        name="STEG LSB Decode",
+        slug="steg_lsb",
+        verdict="DETECTED",
+        score=1.0,
+        detail=f"STEG magic matched. Payload: {length} bytes decoded successfully.",
+        data={
+            "magic_matched": True,
+            "payload_bytes": length,
+            "preview": preview,
+        },
+    )
+
+
 # ── 7. DCT chi-square (JPEG domain steganography) ────────────────────────────
 
 def dct_chi_square(img: Image.Image, arr: np.ndarray) -> TestResult:
@@ -594,6 +668,7 @@ def analyze(image_bytes: bytes) -> AnalysisReport:
         tests.append(lsb_chi_square(arr))
         tests.append(lsb_entropy(arr))
         tests.append(sample_pairs(arr))
+        tests.append(steg_lsb(arr))          # attempt full LSB decode
     else:
         # JPEG: run DCT-domain test instead (catches OutGuess, F5, JPHide, Cicada)
         tests.append(dct_chi_square(img, arr))
@@ -619,15 +694,22 @@ def analyze(image_bytes: bytes) -> AnalysisReport:
         verdict = "CLEAN"
         confidence = 1.0 - max_score
 
-    # Extract payload info from our_scheme test if detected
-    our = next((t for t in tests if t.slug == "our_scheme"), None)
+    # Extract payload info — check both our_scheme and steg_lsb
     payload_scheme = None
     payload_size = None
     payload_preview = None
+
+    our = next((t for t in tests if t.slug == "our_scheme"), None)
     if our and our.verdict == "DETECTED":
         payload_scheme = "almond-farm-block-average-v1"
         payload_size = our.data.get("payload_bytes")
         payload_preview = our.data.get("preview")
+
+    lsb = next((t for t in tests if t.slug == "steg_lsb"), None)
+    if lsb and lsb.verdict == "DETECTED":
+        payload_scheme = "steg-lsb-v1"
+        payload_size = lsb.data.get("payload_bytes")
+        payload_preview = lsb.data.get("preview")
 
     return AnalysisReport(
         image_hash=image_hash,
