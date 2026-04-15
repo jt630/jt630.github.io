@@ -1,0 +1,458 @@
+{{ define "main" }}
+<style>
+/* ── STEGO TERMINAL PAGE ─────────────────────────── */
+:root {
+  --terminal-green: #00ff41;
+  --terminal-dim:   #00802a;
+  --terminal-amber: #ffb300;
+}
+
+.stego-page { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem 6rem; }
+
+/* hero */
+.stego-hero {
+  border: 1px solid var(--terminal-green);
+  padding: 1.4rem 1.6rem 1.2rem;
+  margin-bottom: 2.5rem;
+  background: rgba(0,255,65,.03);
+  position: relative;
+}
+.stego-hero::before {
+  content: "STEGO v1.0 // steganographic image analyzer";
+  font-family: 'Courier New',monospace; font-size: .65rem;
+  color: var(--terminal-dim); letter-spacing: .1em;
+  position: absolute; top: -0.55rem; left: 1rem;
+  background: var(--bg, #0a0a0a); padding: 0 .4rem;
+}
+.stego-hero h1 {
+  font-family: 'Courier New',monospace; font-size: 2rem;
+  color: var(--terminal-green); margin: 0 0 .3rem; font-weight: 400;
+  letter-spacing: .08em;
+}
+.stego-hero p {
+  font-family: 'Courier New',monospace; font-size: .76rem;
+  color: rgba(0,255,65,.5); margin: 0; letter-spacing: .05em;
+}
+
+/* drop zone */
+.drop-zone {
+  border: 1px dashed rgba(0,255,65,.35);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: border-color .2s, background .2s;
+  position: relative;
+}
+.drop-zone:hover, .drop-zone.drag-over {
+  border-color: var(--terminal-green);
+  background: rgba(0,255,65,.04);
+}
+.drop-zone input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+}
+.drop-zone .dz-label {
+  font-family: 'Courier New',monospace; font-size: .78rem;
+  color: var(--terminal-dim); letter-spacing: .08em; pointer-events: none;
+}
+.drop-zone .dz-label span { color: var(--terminal-green); }
+.drop-zone .dz-preview {
+  max-width: 160px; max-height: 160px; display: none; margin: 0 auto .8rem;
+  border: 1px solid rgba(0,255,65,.2);
+}
+
+/* terminal output */
+.terminal {
+  background: #000; border: 1px solid rgba(0,255,65,.25);
+  padding: 1.2rem 1.4rem; min-height: 180px;
+  font-family: 'Courier New',monospace; font-size: .76rem;
+  line-height: 1.8; color: var(--terminal-green);
+  overflow-y: auto; max-height: 600px;
+  display: none;
+}
+.terminal.visible { display: block; }
+
+.t-prompt   { color: var(--terminal-dim); }
+.t-clean    { color: #4ade80; }
+.t-sus      { color: var(--terminal-amber); }
+.t-detected { color: var(--pink, #FF2D8A); }
+.t-skipped  { color: rgba(255,255,255,.3); }
+.t-label    { color: rgba(0,255,65,.5); }
+.t-value    { color: #fff; }
+.t-payload  { color: var(--gold, #D4AF37); }
+.t-cursor   { display: inline-block; width: .55em; height: 1em; background: var(--terminal-green); vertical-align: middle; animation: blink .8s step-end infinite; }
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* verdict banner */
+.verdict-banner {
+  display: none; padding: .8rem 1.2rem;
+  font-family: 'Courier New',monospace; font-size: .8rem;
+  letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 1.5rem; border-left: 4px solid;
+}
+.verdict-banner.clean    { border-color:#4ade80; color:#4ade80; background:rgba(74,222,128,.06); }
+.verdict-banner.sus      { border-color:var(--terminal-amber); color:var(--terminal-amber); background:rgba(255,179,0,.06); }
+.verdict-banner.detected { border-color:var(--pink,#FF2D8A); color:var(--pink,#FF2D8A); background:rgba(255,45,138,.06); }
+
+/* reveal button */
+.reveal-btn {
+  display: none; font-family: 'Courier New',monospace;
+  font-size: .72rem; letter-spacing: .15em; text-transform: uppercase;
+  background: transparent; border: 1px solid var(--pink,#FF2D8A);
+  color: var(--pink,#FF2D8A); padding: .6rem 1.4rem;
+  cursor: pointer; margin-bottom: 1.5rem;
+}
+.reveal-btn:hover { background: var(--pink,#FF2D8A); color: #000; }
+
+.payload-box {
+  display: none; border: 1px solid rgba(212,175,55,.3);
+  background: rgba(0,0,0,.5); padding: 1rem 1.2rem;
+  font-family: 'Courier New',monospace; font-size: .72rem;
+  color: var(--gold,#D4AF37); white-space: pre-wrap; line-height: 1.6;
+  margin-bottom: 1.5rem; max-height: 300px; overflow-y: auto;
+}
+
+/* analyze btn */
+.analyze-btn {
+  font-family: 'Courier New',monospace; font-size: .72rem;
+  letter-spacing: .15em; text-transform: uppercase;
+  background: var(--terminal-green); color: #000; border: none;
+  padding: .65rem 1.6rem; cursor: pointer; display: none;
+}
+.analyze-btn:hover { background: #fff; }
+.analyze-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* examples */
+.examples {
+  margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,.07);
+  padding-top: 1.5rem;
+}
+.examples h3 {
+  font-family: 'Courier New',monospace; font-size: .65rem;
+  color: rgba(0,255,65,.4); letter-spacing: .2em; text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+.example-list { font-family: 'Courier New',monospace; font-size: .72rem; color: rgba(255,255,255,.4); line-height: 2; }
+.example-list span { color: var(--terminal-dim); }
+</style>
+
+<div class="stego-page">
+
+  <div class="stego-hero">
+    <h1>STEGO<span class="t-cursor"></span></h1>
+    <p>drop any image // find out if something is hiding inside</p>
+  </div>
+
+  <!-- drop zone -->
+  <div class="drop-zone" id="dropZone">
+    <input type="file" id="fileInput" accept="image/*">
+    <img id="preview" class="dz-preview">
+    <div class="dz-label" id="dzLabel">
+      drop image here or <span>click to browse</span><br>
+      <span style="opacity:.5;font-size:.65rem">PNG · JPEG · WebP · GIF</span>
+    </div>
+  </div>
+
+  <button class="analyze-btn" id="analyzeBtn" onclick="runAnalysis()">
+    Run Analysis
+  </button>
+
+  <!-- verdict -->
+  <div class="verdict-banner" id="verdictBanner"></div>
+
+  <!-- reveal -->
+  <button class="reveal-btn" id="revealBtn" onclick="revealPayload()">
+    &#x25B6; Reveal Payload
+  </button>
+  <div class="payload-box" id="payloadBox"></div>
+
+  <!-- terminal output -->
+  <div class="terminal" id="terminal"></div>
+
+  <!-- examples -->
+  <div class="examples">
+    <h3>// what the tests look for</h3>
+    <div class="example-list">
+      <span>[format]</span>       lossless or lossy · compression history · JPEG quality estimate<br>
+      <span>[chi_square]</span>   pixel value pair distribution · detects LSB replacement<br>
+      <span>[lsb_entropy]</span>  bit-plane randomness · stego LSBs are suspiciously uniform<br>
+      <span>[sample_pairs]</span> adjacent pixel correlation · LSB matching leaves a fingerprint<br>
+      <span>[block_var]</span>    8×8 block mean distribution · detects block-average encoding<br>
+      <span>[dct_chi2]</span>     JPEG DCT AC coefficient pairs · catches OutGuess / F5 / JPHide · Cicada 3301<br>
+      <span>[our_scheme]</span>   Almond Farm block-average v1 · magic + CRC verification<br>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const API = "http://localhost:8001";
+let currentFile = null;
+let currentReport = null;
+
+// ── Drop zone ────────────────────────────────────────────────────────────
+const dz = document.getElementById('dropZone');
+const fi = document.getElementById('fileInput');
+const preview = document.getElementById('preview');
+const dzLabel = document.getElementById('dzLabel');
+
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault(); dz.classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f) loadFile(f);
+});
+fi.addEventListener('change', () => { if (fi.files[0]) loadFile(fi.files[0]); });
+
+function loadFile(file) {
+  currentFile = file;
+  const reader = new FileReader();
+  reader.onload = e => {
+    preview.src = e.target.result;
+    preview.style.display = 'block';
+    dzLabel.innerHTML = `<span>${file.name}</span> · ${(file.size/1024).toFixed(1)} KB`;
+    document.getElementById('analyzeBtn').style.display = 'inline-block';
+    // reset
+    document.getElementById('verdictBanner').style.display = 'none';
+    document.getElementById('revealBtn').style.display = 'none';
+    document.getElementById('payloadBox').style.display = 'none';
+    document.getElementById('terminal').classList.remove('visible');
+    document.getElementById('terminal').innerHTML = '';
+    currentReport = null;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── Terminal output ──────────────────────────────────────────────────────
+const term = document.getElementById('terminal');
+
+function tline(html, delay = 0) {
+  return new Promise(resolve => setTimeout(() => {
+    term.innerHTML += html + '\n';
+    term.scrollTop = term.scrollHeight;
+    resolve();
+  }, delay));
+}
+
+function verdictClass(v) {
+  if (v === 'DETECTED') return 't-detected';
+  if (v === 'SUSPICIOUS') return 't-sus';
+  if (v === 'CLEAN') return 't-clean';
+  return 't-skipped';
+}
+
+function verdictIcon(v) {
+  if (v === 'DETECTED') return '[!!]';
+  if (v === 'SUSPICIOUS') return '[??]';
+  if (v === 'CLEAN') return '[ ✓]';
+  return '[--]';
+}
+
+// ── Analysis ─────────────────────────────────────────────────────────────
+async function runAnalysis() {
+  if (!currentFile) return;
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled = true;
+  btn.textContent = 'Running...';
+
+  term.innerHTML = '';
+  term.classList.add('visible');
+  document.getElementById('verdictBanner').style.display = 'none';
+  document.getElementById('revealBtn').style.display = 'none';
+  document.getElementById('payloadBox').style.display = 'none';
+
+  await tline(`<span class="t-prompt">$ stego analyze ${currentFile.name}</span>`);
+  await tline(`<span class="t-label">loading image...</span>`, 200);
+
+  // Read file as base64
+  const b64 = await new Promise(resolve => {
+    const r = new FileReader();
+    r.onload = e => resolve(e.target.result.split(',')[1]);
+    r.readAsDataURL(currentFile);
+  });
+
+  await tline(`<span class="t-label">image loaded · ${currentFile.size.toLocaleString()} bytes</span>`, 100);
+  await tline(`<span class="t-label">sending to analyzer...</span>`, 300);
+
+  let report;
+  try {
+    const res = await fetch(`${API}/analyze`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image_b64: b64, filename: currentFile.name }),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.detail || res.statusText);
+    }
+    report = await res.json();
+  } catch (e) {
+    // Fallback: run browser-side analysis (no server needed)
+    await tline(`<span class="t-sus">⚠ API offline — running browser analysis</span>`, 200);
+    report = await browserAnalyze(b64, currentFile);
+  }
+
+  currentReport = report;
+  await renderReport(report);
+
+  btn.disabled = false;
+  btn.textContent = 'Run Analysis';
+}
+
+async function renderReport(r) {
+  await tline(``, 100);
+  await tline(`<span class="t-label">─── format ──────────────────────────────</span>`, 50);
+  await tline(`<span class="t-label">  format</span>    <span class="t-value">${r.format.format}</span>   <span class="t-label">lossless</span> <span class="t-value">${r.format.lossless}</span>`, 80);
+  await tline(`<span class="t-label">  size</span>      <span class="t-value">${r.format.width}×${r.format.height}</span>   <span class="t-label">mode</span> <span class="t-value">${r.format.mode}</span>`, 50);
+  if (r.format.estimated_quality) {
+    await tline(`<span class="t-label">  quality</span>   <span class="t-value">≈${r.format.estimated_quality}</span>   <span class="t-label">recompressions</span> <span class="t-value">${r.format.estimated_recompressions}</span>`, 50);
+  }
+  await tline(`<span class="t-label">  sha256</span>    <span class="t-value" style="font-size:.65rem">${r.image_hash.slice(0,32)}…</span>`, 50);
+
+  await tline(``, 50);
+  await tline(`<span class="t-label">─── tests ───────────────────────────────</span>`, 80);
+
+  for (const test of r.tests) {
+    const cls = verdictClass(test.verdict);
+    const icon = verdictIcon(test.verdict);
+    const score = test.score > 0 ? ` <span class="t-label">score=${(test.score*100).toFixed(0)}%</span>` : '';
+    await tline(
+      `<span class="${cls}">${icon}</span> <span class="t-label">${test.name.toLowerCase().replace(/ /g,'_')}</span>${score}`,
+      120
+    );
+    await tline(`     <span style="color:rgba(255,255,255,.5);font-size:.68rem">${test.detail.slice(0,90)}</span>`, 30);
+  }
+
+  await tline(``, 100);
+  await tline(`<span class="t-label">─── verdict ─────────────────────────────</span>`, 80);
+
+  const vClass = r.verdict === 'PAYLOAD_DETECTED' ? 't-detected' : r.verdict === 'SUSPICIOUS' ? 't-sus' : 't-clean';
+  const vIcon  = r.verdict === 'PAYLOAD_DETECTED' ? '!! PAYLOAD DETECTED' : r.verdict === 'SUSPICIOUS' ? '?? SUSPICIOUS' : '✓  CLEAN';
+  await tline(`<span class="${vClass}">${vIcon}</span>   <span class="t-label">confidence</span> <span class="t-value">${(r.confidence*100).toFixed(0)}%</span>`, 150);
+
+  if (r.payload_scheme) {
+    await tline(`<span class="t-label">   scheme</span>   <span class="t-payload">${r.payload_scheme}</span>`, 80);
+    await tline(`<span class="t-label">   bytes</span>    <span class="t-payload">${r.payload_size_bytes}</span>`, 50);
+  }
+
+  await tline(`<span class="t-prompt">$ _</span>`, 200);
+
+  // verdict banner
+  const banner = document.getElementById('verdictBanner');
+  const bannerClass = r.verdict === 'PAYLOAD_DETECTED' ? 'detected' : r.verdict === 'SUSPICIOUS' ? 'sus' : 'clean';
+  const bannerText = r.verdict === 'PAYLOAD_DETECTED'
+    ? `!! payload detected · ${r.payload_size_bytes} bytes · ${r.payload_scheme}`
+    : r.verdict === 'SUSPICIOUS'
+    ? `?? suspicious · ${(r.confidence*100).toFixed(0)}% confidence · ${r.tests.filter(t=>t.verdict==='SUSPICIOUS').length} tests flagged`
+    : `✓ clean · no steganographic payload detected`;
+  banner.className = `verdict-banner ${bannerClass}`;
+  banner.textContent = bannerText;
+  banner.style.display = 'block';
+
+  // reveal button
+  if (r.payload_detected && r.payload_preview) {
+    document.getElementById('revealBtn').style.display = 'inline-block';
+  }
+}
+
+function revealPayload() {
+  if (!currentReport?.payload_preview) return;
+  const box = document.getElementById('payloadBox');
+  box.style.display = 'block';
+  try {
+    const parsed = JSON.parse(currentReport.payload_preview + (currentReport.payload_preview.endsWith('}') ? '' : '…'));
+    box.textContent = JSON.stringify(parsed, null, 2);
+  } catch {
+    box.textContent = currentReport.payload_preview;
+  }
+  document.getElementById('revealBtn').style.display = 'none';
+}
+
+// ── Browser-side fallback analysis (no server) ────────────────────────────
+async function browserAnalyze(b64, file) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      const cvs = document.createElement('canvas');
+      cvs.width = img.width; cvs.height = img.height;
+      const ctx = cvs.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const data = ctx.getImageData(0, 0, img.width, img.height).data;
+
+      // Chi-square on red channel
+      const counts = new Array(256).fill(0);
+      for (let i = 0; i < data.length; i += 4) counts[data[i]]++;
+      let chi2 = 0, pairs = 0;
+      for (let k = 0; k < 128; k++) {
+        const a = counts[2*k], b = counts[2*k+1];
+        const exp = (a+b)/2;
+        if (exp > 0) { chi2 += ((a-exp)**2 + (b-exp)**2)/exp; pairs++; }
+      }
+      const chiSuspicious = chi2 > pairs * 1.5;
+
+      // LSB entropy
+      let ones = 0, total = 0;
+      for (let i = 0; i < data.length; i += 4) { ones += data[i] & 1; total++; }
+      const lsbE = ones/total;
+      const entSuspicious = Math.abs(lsbE - 0.5) < 0.002;
+
+      // Block variance
+      const BSIZE = 8;
+      const bpr = Math.floor(img.width/BSIZE);
+      const bpc = Math.floor(img.height/BSIZE);
+      const blockMeans = [];
+      for (let br = 0; br < bpc; br++)
+        for (let bc = 0; bc < bpr; bc++) {
+          let sum = 0, cnt = 0;
+          for (let r = 0; r < BSIZE; r++)
+            for (let c = 0; c < BSIZE; c++) {
+              const idx = ((br*BSIZE+r)*img.width + bc*BSIZE+c)*4;
+              sum += (data[idx]+data[idx+1]+data[idx+2])/3; cnt++;
+            }
+          blockMeans.push(sum/cnt);
+        }
+      const mu = blockMeans.reduce((a,b)=>a+b,0)/blockMeans.length;
+      const near128 = blockMeans.filter(m=>Math.abs(m-128)<20).length/blockMeans.length;
+      const blockSuspicious = near128 > 0.6;
+
+      const numSus = [chiSuspicious, entSuspicious, blockSuspicious].filter(Boolean).length;
+      const verdict = blockSuspicious && chiSuspicious ? 'SUSPICIOUS' : numSus >= 2 ? 'SUSPICIOUS' : 'CLEAN';
+
+      resolve({
+        image_hash: "browser-analysis-no-sha256",
+        format: {
+          format: file.type.includes('png') ? 'PNG' : file.type.includes('jpeg') || file.type.includes('jpg') ? 'JPEG' : 'UNKNOWN',
+          lossless: file.type.includes('png'),
+          width: img.width, height: img.height,
+          channels: 3, mode: 'RGB',
+          estimated_quality: null, estimated_recompressions: 0,
+          file_size_bytes: file.size,
+        },
+        tests: [
+          { name:'Format Analysis', slug:'format', verdict:'CLEAN', score:0,
+            detail:`${file.type} · ${img.width}×${img.height} · ${(file.size/1024).toFixed(1)}KB`, data:{} },
+          { name:'LSB Chi-Square', slug:'chi_square',
+            verdict: chiSuspicious?'SUSPICIOUS':'CLEAN', score: chiSuspicious?.7:0,
+            detail:`χ²=${chi2.toFixed(1)} — ${chiSuspicious?'anomalous distribution':'natural distribution'}`, data:{chi2} },
+          { name:'Bit-Plane Entropy', slug:'lsb_entropy',
+            verdict: entSuspicious?'SUSPICIOUS':'CLEAN', score: entSuspicious?.65:0,
+            detail:`LSB balance: ${(lsbE*100).toFixed(2)}% ones — ${entSuspicious?'near-perfect randomness':'natural variation'}`, data:{} },
+          { name:'Block-Average Detector', slug:'block_variance',
+            verdict: blockSuspicious?'SUSPICIOUS':'CLEAN', score: blockSuspicious?.6:0,
+            detail:`${(near128*100).toFixed(0)}% blocks cluster near gray=128 — ${blockSuspicious?'suspicious':'natural'}`, data:{} },
+        ],
+        verdict,
+        confidence: numSus >= 2 ? 0.6 : 0.85,
+        payload_detected: false,
+        payload_scheme: null,
+        payload_size_bytes: null,
+        payload_preview: null,
+      });
+    };
+    img.src = `data:${file.type};base64,${b64}`;
+  });
+}
+</script>
+{{ end }}
