@@ -2,14 +2,14 @@
   "week_number": 3,
   "week_start": "2026-04-13",
   "week_end": "2026-04-19",
-  "checked_at": "2026-04-14T09:17:54.026043+00:00",
+  "checked_at": "2026-04-15T09:19:14.110203+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
     {
       "name": "Ellie",
-      "week_points": 7,
-      "total_hrs": 4,
+      "week_points": 9,
+      "total_hrs": 6,
       "picks": [
         {
           "player": "Kyle Schwarber",
@@ -46,7 +46,7 @@
               ]
             }
           ],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -57,12 +57,28 @@
           "is_injured": false,
           "draft_pick": 21,
           "proj_hr": null,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 0,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-14",
+              "opponent": "Tampa Bay Rays",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Munetaka Murakami homers (5) on a fly ball to right field. Miguel Vargas scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 1,
           "games_live": 0
         },
         {
@@ -73,12 +89,28 @@
           "is_injured": false,
           "draft_pick": 40,
           "proj_hr": null,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 1,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-14",
+              "opponent": "Los Angeles Dodgers",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Francisco Lindor homers (1) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -116,7 +148,7 @@
               ]
             }
           ],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -133,6 +165,281 @@
           "points": 0,
           "hr_games": [],
           "games_checked": 0,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Tyler",
+      "week_points": 5,
+      "total_hrs": 4,
+      "picks": [
+        {
+          "player": "Cal Raleigh",
+          "team": "SEA",
+          "team_id": 136,
+          "mlb_id": 663728,
+          "is_injured": false,
+          "draft_pick": 4,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 2,
+          "games_live": 0
+        },
+        {
+          "player": "Pete Alonso",
+          "team": "BAL",
+          "team_id": 110,
+          "mlb_id": 624413,
+          "is_injured": false,
+          "draft_pick": 8,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-13",
+              "opponent": "Arizona Diamondbacks",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 7,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Pete Alonso homers (2) on a fly ball to left center field. Taylor Ward scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 2,
+          "games_live": 0
+        },
+        {
+          "player": "CJ Abrams",
+          "team": "WSH",
+          "team_id": 120,
+          "mlb_id": 682928,
+          "is_injured": false,
+          "draft_pick": null,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-04-13",
+              "opponent": "Pittsburgh Pirates",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "CJ Abrams homers (5) on a fly ball to right field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-14",
+              "opponent": "Pittsburgh Pirates",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "CJ Abrams homers (6) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 2,
+          "games_live": 0
+        },
+        {
+          "player": "Ronald Acuna Jr",
+          "team": "ATL",
+          "team_id": 144,
+          "mlb_id": 660670,
+          "is_injured": false,
+          "draft_pick": 13,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 2,
+          "games_live": 0
+        },
+        {
+          "player": "Andy Pages",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 681624,
+          "is_injured": false,
+          "draft_pick": 61,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-04-13",
+              "opponent": "New York Mets",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Andy Pages homers (5) on a fly ball to left field. Kyle Tucker scores. Freddie Freeman scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 2,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Cam",
+      "week_points": 4,
+      "total_hrs": 3,
+      "picks": [
+        {
+          "player": "Riley Greene",
+          "team": "DET",
+          "team_id": 116,
+          "mlb_id": 682985,
+          "is_injured": false,
+          "draft_pick": 20,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 1,
+          "games_live": 0
+        },
+        {
+          "player": "Kyle Tucker",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 663656,
+          "is_injured": false,
+          "draft_pick": 17,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 2,
+          "games_live": 0
+        },
+        {
+          "player": "Vladimir Guerrero Jr",
+          "team": "TOR",
+          "team_id": 141,
+          "mlb_id": 665489,
+          "is_injured": false,
+          "draft_pick": 18,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 1,
+          "games_live": 0
+        },
+        {
+          "player": "Hunter Goodman",
+          "team": "COL",
+          "team_id": 115,
+          "mlb_id": 696100,
+          "is_injured": false,
+          "draft_pick": 22,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": true,
+          "has_3run_or_gs": false,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-04-14",
+              "opponent": "Houston Astros",
+              "home_away": "away",
+              "hrs_in_game": 2,
+              "game_points": 3,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Hunter Goodman homers (3) on a fly ball to left field."
+                },
+                {
+                  "inning": 5,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Hunter Goodman homers (4) on a fly ball to left center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 1,
+          "games_live": 0
+        },
+        {
+          "player": "Jose Ramirez",
+          "team": "CLE",
+          "team_id": 114,
+          "mlb_id": 608070,
+          "is_injured": false,
+          "draft_pick": 26,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-14",
+              "opponent": "St. Louis Cardinals",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Jos\u00e9 Ram\u00edrez homers (3) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 2,
           "games_live": 0
         }
       ]
@@ -177,7 +484,7 @@
               ]
             }
           ],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -209,7 +516,7 @@
               ]
             }
           ],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -225,7 +532,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -241,7 +548,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 1,
           "games_live": 0
         },
         {
@@ -257,142 +564,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Tyler",
-      "week_points": 4,
-      "total_hrs": 3,
-      "picks": [
-        {
-          "player": "Cal Raleigh",
-          "team": "SEA",
-          "team_id": 136,
-          "mlb_id": 663728,
-          "is_injured": false,
-          "draft_pick": 4,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 1,
-          "games_live": 0
-        },
-        {
-          "player": "Pete Alonso",
-          "team": "BAL",
-          "team_id": 110,
-          "mlb_id": 624413,
-          "is_injured": false,
-          "draft_pick": 8,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-13",
-              "opponent": "Arizona Diamondbacks",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 7,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Pete Alonso homers (2) on a fly ball to left center field. Taylor Ward scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 1,
-          "games_live": 0
-        },
-        {
-          "player": "CJ Abrams",
-          "team": "WSH",
-          "team_id": 120,
-          "mlb_id": 682928,
-          "is_injured": false,
-          "draft_pick": null,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-13",
-              "opponent": "Pittsburgh Pirates",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 1,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "CJ Abrams homers (5) on a fly ball to right field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 1,
-          "games_live": 0
-        },
-        {
-          "player": "Ronald Acuna Jr",
-          "team": "ATL",
-          "team_id": 144,
-          "mlb_id": 660670,
-          "is_injured": false,
-          "draft_pick": 13,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 1,
-          "games_live": 0
-        },
-        {
-          "player": "Andy Pages",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 681624,
-          "is_injured": false,
-          "draft_pick": 61,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-04-13",
-              "opponent": "New York Mets",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Andy Pages homers (5) on a fly ball to left field. Kyle Tucker scores. Freddie Freeman scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         }
       ]
@@ -415,7 +587,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 1,
           "games_live": 0
         },
         {
@@ -469,7 +641,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -485,7 +657,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -501,7 +673,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         }
       ]
@@ -524,7 +696,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -540,7 +712,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -556,7 +728,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 1,
           "games_live": 0
         },
         {
@@ -588,7 +760,7 @@
               ]
             }
           ],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -604,94 +776,110 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         }
       ]
     },
     {
-      "name": "Cam",
-      "week_points": 0,
-      "total_hrs": 0,
+      "name": "Wendy",
+      "week_points": 1,
+      "total_hrs": 1,
       "picks": [
         {
-          "player": "Riley Greene",
-          "team": "DET",
-          "team_id": 116,
-          "mlb_id": 682985,
+          "player": "Corey Seager",
+          "team": "TEX",
+          "team_id": 140,
+          "mlb_id": 608369,
           "is_injured": false,
-          "draft_pick": 20,
+          "draft_pick": 36,
           "proj_hr": null,
           "hrs": 0,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 2,
           "games_live": 0
         },
         {
-          "player": "Kyle Tucker",
+          "player": "Freddie Freeman",
           "team": "LAD",
           "team_id": 119,
-          "mlb_id": 663656,
+          "mlb_id": 518692,
           "is_injured": false,
-          "draft_pick": 17,
+          "draft_pick": 63,
           "proj_hr": null,
           "hrs": 0,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
-          "player": "Vladimir Guerrero Jr",
-          "team": "TOR",
-          "team_id": 141,
-          "mlb_id": 665489,
+          "player": "Pete Crow-Armstrong",
+          "team": "CHC",
+          "team_id": 112,
+          "mlb_id": 691718,
           "is_injured": false,
-          "draft_pick": 18,
+          "draft_pick": 59,
           "proj_hr": null,
           "hrs": 0,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 2,
           "games_live": 0
         },
         {
-          "player": "Hunter Goodman",
-          "team": "COL",
-          "team_id": 115,
-          "mlb_id": 696100,
+          "player": "Jo Adell",
+          "team": "LAA",
+          "team_id": 108,
+          "mlb_id": 666176,
           "is_injured": false,
-          "draft_pick": 22,
+          "draft_pick": 12,
           "proj_hr": null,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 0,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-14",
+              "opponent": "New York Yankees",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Jo Adell homers (2) on a fly ball to center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 2,
           "games_live": 0
         },
         {
-          "player": "Jose Ramirez",
-          "team": "CLE",
-          "team_id": 114,
-          "mlb_id": 608070,
+          "player": "Shea Langeliers",
+          "team": "ATH",
+          "team_id": 133,
+          "mlb_id": 669127,
           "is_injured": false,
-          "draft_pick": 26,
+          "draft_pick": 27,
           "proj_hr": null,
           "hrs": 0,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         }
       ]
@@ -714,7 +902,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 1,
           "games_live": 0
         },
         {
@@ -730,7 +918,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 1,
           "games_live": 0
         },
         {
@@ -746,7 +934,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -762,7 +950,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -778,7 +966,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 1,
           "games_live": 0
         }
       ]
@@ -801,7 +989,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -817,7 +1005,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -833,7 +1021,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 1,
           "games_live": 0
         },
         {
@@ -849,7 +1037,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         },
         {
@@ -865,94 +1053,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 1,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Wendy",
-      "week_points": 0,
-      "total_hrs": 0,
-      "picks": [
-        {
-          "player": "Corey Seager",
-          "team": "TEX",
-          "team_id": 140,
-          "mlb_id": 608369,
-          "is_injured": false,
-          "draft_pick": 36,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 1,
-          "games_live": 0
-        },
-        {
-          "player": "Freddie Freeman",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 518692,
-          "is_injured": false,
-          "draft_pick": 63,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 1,
-          "games_live": 0
-        },
-        {
-          "player": "Pete Crow-Armstrong",
-          "team": "CHC",
-          "team_id": 112,
-          "mlb_id": 691718,
-          "is_injured": false,
-          "draft_pick": 59,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 1,
-          "games_live": 0
-        },
-        {
-          "player": "Jo Adell",
-          "team": "LAA",
-          "team_id": 108,
-          "mlb_id": 666176,
-          "is_injured": false,
-          "draft_pick": 12,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 1,
-          "games_live": 0
-        },
-        {
-          "player": "Shea Langeliers",
-          "team": "ATH",
-          "team_id": 133,
-          "mlb_id": 669127,
-          "is_injured": false,
-          "draft_pick": 27,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 1,
+          "games_checked": 2,
           "games_live": 0
         }
       ]
