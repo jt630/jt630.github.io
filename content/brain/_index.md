@@ -1,5 +1,5 @@
 ---
-title: "Brain"
-description: "Feed the mind"
-tabTitle: "Brain"
+title: "The Lab"
+description: "Experiments, WIP, and ideas in progress"
+tabTitle: "The Lab"
 ---
