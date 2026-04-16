@@ -15,6 +15,7 @@ Usage:
 import random
 import sys
 import textwrap
+from pathlib import Path
 
 # ─── ANSI Colors ─────────────────────────────────────────────────────────────
 
@@ -354,6 +355,16 @@ TWISTS = {
     },
 }
 
+# ─── Roll counter ────────────────────────────────────────────────────────────
+
+COUNTER_FILE = Path(__file__).parent / "roll_count"
+
+def increment_roll_count():
+    count = int(COUNTER_FILE.read_text().strip()) if COUNTER_FILE.exists() else 0
+    count += 1
+    COUNTER_FILE.write_text(str(count))
+    return count
+
 # ─── Display ──────────────────────────────────────────────────────────────────
 
 W = 62  # terminal width
@@ -372,7 +383,7 @@ def wrap(text, indent=2):
     )
 
 
-def display_quest(cat_roll, size_roll, twist_roll):
+def display_quest(cat_roll, size_roll, twist_roll, roll_count=None):
     category = CATEGORIES[cat_roll]
     size = SIZES[size_roll]
     twist = TWISTS[twist_roll]
@@ -382,10 +393,12 @@ def display_quest(cat_roll, size_roll, twist_roll):
     scaled_xp = int(base_xp * size["xp_mult"])
     total_xp = scaled_xp + twist["xp_bonus"]
 
+    roll_label = f"roll the dice — earn the XP" if roll_count is None else f"roll #{roll_count}"
+
     print()
     print(line("━"))
     print(f"{BOLD}{PINK}{'ALMOND FARM  ·  QUEST BOARD':^{W}}{RESET}")
-    print(f"{DGRAY}{'roll the dice — earn the XP':^{W}}{RESET}")
+    print(f"{DGRAY}{roll_label:^{W}}{RESET}")
     print(line("━"))
     print()
 
@@ -450,7 +463,8 @@ def main():
         print("Usage: daily_quest.py [cat(1-8) size(1-4) twist(1-6)]")
         sys.exit(1)
 
-    display_quest(cat_roll, size_roll, twist_roll)
+    roll_count = increment_roll_count()
+    display_quest(cat_roll, size_roll, twist_roll, roll_count)
 
 
 if __name__ == "__main__":
