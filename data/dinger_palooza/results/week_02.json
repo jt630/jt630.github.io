@@ -7,9 +7,174 @@
   "status": "final",
   "members": [
     {
+      "name": "Jeremy",
+      "week_points": 8,
+      "total_hrs": 5,
+      "picks": [
+        {
+          "player": "Kyle Schwarber",
+          "team": "PHI",
+          "team_id": 143,
+          "mlb_id": 656941,
+          "is_injured": false,
+          "draft_pick": 3,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-04-11",
+              "opponent": "Arizona Diamondbacks",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Kyle Schwarber homers (4) on a fly ball to right field. Alec Bohm scores. Justin Crawford scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Yordan Alvarez",
+          "team": "HOU",
+          "team_id": 117,
+          "mlb_id": 670541,
+          "is_injured": false,
+          "draft_pick": 16,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-04-10",
+              "opponent": "Seattle Mariners",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Yordan Alvarez homers (5) on a fly ball to right field. Christian V\u00e1zquez scores. Jeremy Pe\u00f1a scores."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-11",
+              "opponent": "Seattle Mariners",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Yordan Alvarez homers (6) on a fly ball to right center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Giancarlo Stanton",
+          "team": "NYY",
+          "team_id": 147,
+          "mlb_id": 519317,
+          "is_injured": false,
+          "draft_pick": 57,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Elly De La Cruz",
+          "team": "CIN",
+          "team_id": 113,
+          "mlb_id": 682829,
+          "is_injured": false,
+          "draft_pick": 62,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-04-10",
+              "opponent": "Los Angeles Angels",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Elly De La Cruz homers (4) on a fly ball to right center field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-12",
+              "opponent": "Los Angeles Angels",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 3,
+                  "is_3run_or_more": true,
+                  "description": "Elly De La Cruz homers (5) on a fly ball to center field. Dane Myers scores. TJ Friedl scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 7,
+          "games_live": 0
+        },
+        {
+          "player": "Ryan McMahon",
+          "team": "NYY",
+          "team_id": 147,
+          "mlb_id": 641857,
+          "is_injured": false,
+          "draft_pick": null,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 5,
+          "games_live": 0
+        }
+      ]
+    },
+    {
       "name": "Jeff",
-      "week_points": 13,
-      "total_hrs": 9,
+      "week_points": 7,
+      "total_hrs": 6,
       "picks": [
         {
           "player": "Junior Caminero",
@@ -176,205 +341,12 @@
           "is_injured": false,
           "draft_pick": 94,
           "proj_hr": null,
-          "hrs": 3,
-          "multi_hr_game": true,
-          "has_3run_or_gs": false,
-          "points": 6,
-          "hr_games": [
-            {
-              "date": "2026-04-10",
-              "opponent": "Texas Rangers",
-              "home_away": "home",
-              "hrs_in_game": 3,
-              "game_points": 6,
-              "hr_details": [
-                {
-                  "inning": 2,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Max Muncy homers (2) on a fly ball to right center field."
-                },
-                {
-                  "inning": 4,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Max Muncy homers (3) on a fly ball to left center field."
-                },
-                {
-                  "inning": 9,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Max Muncy homers (4) on a fly ball to right center field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 6,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Jeremy",
-      "week_points": 8,
-      "total_hrs": 5,
-      "picks": [
-        {
-          "player": "Kyle Schwarber",
-          "team": "PHI",
-          "team_id": 143,
-          "mlb_id": 656941,
-          "is_injured": false,
-          "draft_pick": 3,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-04-11",
-              "opponent": "Arizona Diamondbacks",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Kyle Schwarber homers (4) on a fly ball to right field. Alec Bohm scores. Justin Crawford scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 6,
-          "games_live": 0
-        },
-        {
-          "player": "Yordan Alvarez",
-          "team": "HOU",
-          "team_id": 117,
-          "mlb_id": 670541,
-          "is_injured": false,
-          "draft_pick": 16,
-          "proj_hr": null,
-          "hrs": 2,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 3,
-          "hr_games": [
-            {
-              "date": "2026-04-10",
-              "opponent": "Seattle Mariners",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 8,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Yordan Alvarez homers (5) on a fly ball to right field. Christian V\u00e1zquez scores. Jeremy Pe\u00f1a scores."
-                }
-              ]
-            },
-            {
-              "date": "2026-04-11",
-              "opponent": "Seattle Mariners",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Yordan Alvarez homers (6) on a fly ball to right center field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 6,
-          "games_live": 0
-        },
-        {
-          "player": "Giancarlo Stanton",
-          "team": "NYY",
-          "team_id": 147,
-          "mlb_id": 519317,
-          "is_injured": false,
-          "draft_pick": 57,
-          "proj_hr": null,
           "hrs": 0,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
           "games_checked": 6,
-          "games_live": 0
-        },
-        {
-          "player": "Elly De La Cruz",
-          "team": "CIN",
-          "team_id": 113,
-          "mlb_id": 682829,
-          "is_injured": false,
-          "draft_pick": 62,
-          "proj_hr": null,
-          "hrs": 2,
-          "multi_hr_game": false,
-          "has_3run_or_gs": true,
-          "points": 3,
-          "hr_games": [
-            {
-              "date": "2026-04-10",
-              "opponent": "Los Angeles Angels",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 8,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Elly De La Cruz homers (4) on a fly ball to right center field."
-                }
-              ]
-            },
-            {
-              "date": "2026-04-12",
-              "opponent": "Los Angeles Angels",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 2,
-              "hr_details": [
-                {
-                  "inning": 9,
-                  "rbi": 3,
-                  "is_3run_or_more": true,
-                  "description": "Elly De La Cruz homers (5) on a fly ball to center field. Dane Myers scores. TJ Friedl scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 7,
-          "games_live": 0
-        },
-        {
-          "player": "Ryan McMahon",
-          "team": "NYY",
-          "team_id": 147,
-          "mlb_id": 641857,
-          "is_injured": false,
-          "draft_pick": null,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 5,
           "games_live": 0
         }
       ]

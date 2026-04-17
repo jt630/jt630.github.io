@@ -3,6 +3,8 @@
 {{ $week_key := printf "week_%02d" $week_num }}
 {{ $results  := index .Site.Data.dinger_palooza.results $week_key }}
 {{ $picks    := index .Site.Data.dinger_palooza.picks   $week_key }}
+{{ $official := .Site.Data.dinger_palooza.official_scores }}
+{{ $week_idx := sub $week_num 1 }}
 
 <div class="dp-page">
 
@@ -63,7 +65,8 @@
         <tr>
           <th class="dp-lb-rank">#</th>
           <th class="dp-lb-name">Manager</th>
-          <th class="dp-lb-total">Pts</th>
+          <th class="dp-lb-total">Ours</th>
+          {{ if $official }}<th class="dp-lb-total dp-lb-official-hdr">Jeff</th>{{ end }}
           <th class="dp-lb-wk">HRs</th>
           <th class="dp-lb-wk">2X+</th>
           <th class="dp-lb-wk">3R/GS</th>
@@ -79,10 +82,25 @@
           {{ if .multi_hr_game }}{{ $multi_hr = add $multi_hr 1 }}{{ end }}
           {{ if .has_3run_or_gs }}{{ $bonus_hr = add $bonus_hr 1 }}{{ end }}
         {{ end }}
+        {{ $sc := newScratch }}
+        {{ $sc.Set "off_pts" "" }}
+        {{ if $official }}
+          {{ $off_entry := index (where $official.members "name" $m.name) 0 }}
+          {{ with $off_entry }}
+            {{ if gt (len .weekly_points) $week_idx }}
+              {{ $sc.Set "off_pts" (index .weekly_points $week_idx) }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
         <tr class="dp-lb-row{{ if eq $i 0 }} dp-lb-row--leader{{ end }}">
           <td class="dp-lb-rank">{{ add $i 1 }}</td>
           <td class="dp-lb-name">{{ $m.name }}</td>
           <td class="dp-lb-total"><strong>{{ $m.week_points }}</strong></td>
+          {{ if $official }}
+          <td class="dp-lb-total dp-lb-official-val">
+            {{ $op := $sc.Get "off_pts" }}{{ if ne $op "" }}<strong>{{ $op }}</strong>{{ else }}&mdash;{{ end }}
+          </td>
+          {{ end }}
           <td class="dp-lb-wk {{ if gt $total_hrs 0 }}dp-lb-wk--scored{{ end }}">{{ if gt $total_hrs 0 }}{{ $total_hrs }}{{ else }}&mdash;{{ end }}</td>
           <td class="dp-lb-wk {{ if gt $multi_hr 0 }}dp-lb-wk--scored{{ end }}">{{ if gt $multi_hr 0 }}{{ $multi_hr }}{{ else }}&mdash;{{ end }}</td>
           <td class="dp-lb-wk {{ if gt $bonus_hr 0 }}dp-lb-wk--scored{{ end }}">{{ if gt $bonus_hr 0 }}{{ $bonus_hr }}{{ else }}&mdash;{{ end }}</td>
