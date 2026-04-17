@@ -2,7 +2,7 @@
   "week_number": 3,
   "week_start": "2026-04-13",
   "week_end": "2026-04-19",
-  "checked_at": "2026-04-16T09:19:13.884179+00:00",
+  "checked_at": "2026-04-17T09:17:27.401850+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
@@ -78,7 +78,7 @@
               ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -163,7 +163,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -185,165 +185,9 @@
       ]
     },
     {
-      "name": "Mason",
-      "week_points": 6,
-      "total_hrs": 5,
-      "picks": [
-        {
-          "player": "Aaron Judge",
-          "team": "NYY",
-          "team_id": 147,
-          "mlb_id": 592450,
-          "is_injured": false,
-          "draft_pick": 2,
-          "proj_hr": null,
-          "hrs": 3,
-          "multi_hr_game": true,
-          "has_3run_or_gs": false,
-          "points": 4,
-          "hr_games": [
-            {
-              "date": "2026-04-13",
-              "opponent": "Los Angeles Angels",
-              "home_away": "home",
-              "hrs_in_game": 2,
-              "game_points": 3,
-              "hr_details": [
-                {
-                  "inning": 1,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Aaron Judge homers (5) on a fly ball to left center field. Paul Goldschmidt scores."
-                },
-                {
-                  "inning": 6,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Aaron Judge homers (6) on a fly ball to left field."
-                }
-              ]
-            },
-            {
-              "date": "2026-04-15",
-              "opponent": "Los Angeles Angels",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 1,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Aaron Judge homers (7) on a fly ball to right field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Jordan Walker",
-          "team": "STL",
-          "team_id": 138,
-          "mlb_id": 691023,
-          "is_injured": false,
-          "draft_pick": null,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-13",
-              "opponent": "Cleveland Guardians",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 6,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Jordan Walker homers (8) on a line drive to left center field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Nick Kurtz",
-          "team": "ATH",
-          "team_id": 133,
-          "mlb_id": 701762,
-          "is_injured": false,
-          "draft_pick": 7,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Mickey Moniak",
-          "team": "COL",
-          "team_id": 115,
-          "mlb_id": 666160,
-          "is_injured": false,
-          "draft_pick": 91,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 2,
-          "games_live": 0
-        },
-        {
-          "player": "Bryce Harper",
-          "team": "PHI",
-          "team_id": 143,
-          "mlb_id": 547180,
-          "is_injured": false,
-          "draft_pick": 31,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-15",
-              "opponent": "Chicago Cubs",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 9,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Bryce Harper homers (4) on a fly ball to left center field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 3,
-          "games_live": 0
-        }
-      ]
-    },
-    {
       "name": "Cam",
-      "week_points": 5,
-      "total_hrs": 4,
+      "week_points": 7,
+      "total_hrs": 6,
       "picks": [
         {
           "player": "Riley Greene",
@@ -358,7 +202,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -406,7 +250,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -417,10 +261,10 @@
           "is_injured": false,
           "draft_pick": 22,
           "proj_hr": null,
-          "hrs": 2,
+          "hrs": 3,
           "multi_hr_game": true,
           "has_3run_or_gs": false,
-          "points": 3,
+          "points": 4,
           "hr_games": [
             {
               "date": "2026-04-14",
@@ -442,9 +286,24 @@
                   "description": "Hunter Goodman homers (4) on a fly ball to left center field."
                 }
               ]
+            },
+            {
+              "date": "2026-04-16",
+              "opponent": "Houston Astros",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 4,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Hunter Goodman homers (5) on a fly ball to left center field."
+                }
+              ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -455,10 +314,10 @@
           "is_injured": false,
           "draft_pick": 26,
           "proj_hr": null,
-          "hrs": 1,
+          "hrs": 2,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 1,
+          "points": 2,
           "hr_games": [
             {
               "date": "2026-04-14",
@@ -472,6 +331,192 @@
                   "rbi": 1,
                   "is_3run_or_more": false,
                   "description": "Jos\u00e9 Ram\u00edrez homers (3) on a fly ball to right field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-16",
+              "opponent": "Baltimore Orioles",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Jos\u00e9 Ram\u00edrez homers (4) on a fly ball to right center field. Chase DeLauter scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 4,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Mason",
+      "week_points": 7,
+      "total_hrs": 6,
+      "picks": [
+        {
+          "player": "Aaron Judge",
+          "team": "NYY",
+          "team_id": 147,
+          "mlb_id": 592450,
+          "is_injured": false,
+          "draft_pick": 2,
+          "proj_hr": null,
+          "hrs": 4,
+          "multi_hr_game": true,
+          "has_3run_or_gs": false,
+          "points": 5,
+          "hr_games": [
+            {
+              "date": "2026-04-13",
+              "opponent": "Los Angeles Angels",
+              "home_away": "home",
+              "hrs_in_game": 2,
+              "game_points": 3,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Aaron Judge homers (5) on a fly ball to left center field. Paul Goldschmidt scores."
+                },
+                {
+                  "inning": 6,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Aaron Judge homers (6) on a fly ball to left field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-15",
+              "opponent": "Los Angeles Angels",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Aaron Judge homers (7) on a fly ball to right field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-16",
+              "opponent": "Los Angeles Angels",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Aaron Judge homers (8) on a fly ball to left center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 4,
+          "games_live": 0
+        },
+        {
+          "player": "Jordan Walker",
+          "team": "STL",
+          "team_id": 138,
+          "mlb_id": 691023,
+          "is_injured": false,
+          "draft_pick": null,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-13",
+              "opponent": "Cleveland Guardians",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Jordan Walker homers (8) on a line drive to left center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Nick Kurtz",
+          "team": "ATH",
+          "team_id": 133,
+          "mlb_id": 701762,
+          "is_injured": false,
+          "draft_pick": 7,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 4,
+          "games_live": 0
+        },
+        {
+          "player": "Mickey Moniak",
+          "team": "COL",
+          "team_id": 115,
+          "mlb_id": 666160,
+          "is_injured": false,
+          "draft_pick": 91,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Bryce Harper",
+          "team": "PHI",
+          "team_id": 143,
+          "mlb_id": 547180,
+          "is_injured": false,
+          "draft_pick": 31,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-15",
+              "opponent": "Chicago Cubs",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Bryce Harper homers (4) on a fly ball to left center field."
                 }
               ]
             }
@@ -499,7 +544,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -531,7 +576,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -578,7 +623,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -632,6 +677,156 @@
       ]
     },
     {
+      "name": "Wendy",
+      "week_points": 5,
+      "total_hrs": 4,
+      "picks": [
+        {
+          "player": "Corey Seager",
+          "team": "TEX",
+          "team_id": 140,
+          "mlb_id": 608369,
+          "is_injured": false,
+          "draft_pick": 36,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-15",
+              "opponent": "Athletics",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Corey Seager homers (5) on a fly ball to right center field. Brandon Nimmo scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Freddie Freeman",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 518692,
+          "is_injured": false,
+          "draft_pick": 63,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Pete Crow-Armstrong",
+          "team": "CHC",
+          "team_id": 112,
+          "mlb_id": 691718,
+          "is_injured": false,
+          "draft_pick": 59,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Jo Adell",
+          "team": "LAA",
+          "team_id": 108,
+          "mlb_id": 666176,
+          "is_injured": false,
+          "draft_pick": 12,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": true,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-04-14",
+              "opponent": "New York Yankees",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Jo Adell homers (2) on a fly ball to center field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-16",
+              "opponent": "New York Yankees",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 4,
+                  "is_3run_or_more": true,
+                  "description": "Jo Adell hits a grand slam (3) to right field. Adam Frazier scores. Zach Neto scores. Mike Trout scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 4,
+          "games_live": 0
+        },
+        {
+          "player": "Shea Langeliers",
+          "team": "ATH",
+          "team_id": 133,
+          "mlb_id": 669127,
+          "is_injured": false,
+          "draft_pick": 27,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-15",
+              "opponent": "Texas Rangers",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Shea Langeliers homers (6) on a fly ball to left center field. Lawrence Butler scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 4,
+          "games_live": 0
+        }
+      ]
+    },
+    {
       "name": "Jeff",
       "week_points": 3,
       "total_hrs": 2,
@@ -649,7 +844,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -719,7 +914,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -806,7 +1001,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -822,7 +1017,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -854,7 +1049,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -870,150 +1065,15 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Wendy",
-      "week_points": 3,
-      "total_hrs": 3,
-      "picks": [
-        {
-          "player": "Corey Seager",
-          "team": "TEX",
-          "team_id": 140,
-          "mlb_id": 608369,
-          "is_injured": false,
-          "draft_pick": 36,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-15",
-              "opponent": "Athletics",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Corey Seager homers (5) on a fly ball to right center field. Brandon Nimmo scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Freddie Freeman",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 518692,
-          "is_injured": false,
-          "draft_pick": 63,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Pete Crow-Armstrong",
-          "team": "CHC",
-          "team_id": 112,
-          "mlb_id": 691718,
-          "is_injured": false,
-          "draft_pick": 59,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Jo Adell",
-          "team": "LAA",
-          "team_id": 108,
-          "mlb_id": 666176,
-          "is_injured": false,
-          "draft_pick": 12,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-14",
-              "opponent": "New York Yankees",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 1,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Jo Adell homers (2) on a fly ball to center field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Shea Langeliers",
-          "team": "ATH",
-          "team_id": 133,
-          "mlb_id": 669127,
-          "is_injured": false,
-          "draft_pick": 27,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-15",
-              "opponent": "Texas Rangers",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 6,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Shea Langeliers homers (6) on a fly ball to left center field. Lawrence Butler scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Kayla",
-      "week_points": 2,
-      "total_hrs": 2,
+      "week_points": 3,
+      "total_hrs": 3,
       "picks": [
         {
           "player": "Junior Caminero",
@@ -1023,10 +1083,10 @@
           "is_injured": false,
           "draft_pick": 6,
           "proj_hr": null,
-          "hrs": 1,
+          "hrs": 2,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 1,
+          "points": 2,
           "hr_games": [
             {
               "date": "2026-04-15",
@@ -1042,9 +1102,24 @@
                   "description": "Junior Caminero homers (3) on a line drive to left field."
                 }
               ]
+            },
+            {
+              "date": "2026-04-16",
+              "opponent": "Chicago White Sox",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 9,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Junior Caminero homers (4) on a line drive to left center field."
+                }
+              ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -1060,7 +1135,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -1108,7 +1183,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1124,7 +1199,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         }
       ]
@@ -1163,7 +1238,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1195,7 +1270,7 @@
               ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -1211,7 +1286,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1227,7 +1302,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         }
       ]
