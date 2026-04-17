@@ -33,13 +33,15 @@
   </div>
 
   <!-- ── Standings table ── -->
+  {{ $official := .Site.Data.dinger_palooza.official_scores }}
   <div class="dp-lb-wrap">
     <table class="dp-lb-table">
       <thead>
         <tr>
           <th class="dp-lb-rank">#</th>
           <th class="dp-lb-name">Manager</th>
-          <th class="dp-lb-total">Total</th>
+          <th class="dp-lb-total">Ours</th>
+          {{ if $official }}<th class="dp-lb-total dp-lb-official-hdr">Jeff</th>{{ end }}
           {{ range $i, $_ := (index $standings.members 0).weekly_points }}
           <th class="dp-lb-wk">Wk {{ add $i 1 }}</th>
           {{ end }}
@@ -47,7 +49,9 @@
       </thead>
       <tbody>
         {{ range $standings.members }}
+        {{ $member_name := .name }}
         {{ $isTop := eq .rank 1 }}
+        {{ $off_entry := index (where $official.members "name" $member_name) 0 }}
         <tr class="dp-lb-row{{ if $isTop }} dp-lb-row--leader{{ end }}">
           <td class="dp-lb-rank">
             {{ if $isTop }}
@@ -56,15 +60,29 @@
               {{ .rank }}
             {{ end }}
           </td>
-          <td class="dp-lb-name">
-            {{ .name }}
+          <td class="dp-lb-name">{{ $member_name }}</td>
+          <td class="dp-lb-total"><strong>{{ .total_points }}</strong></td>
+          {{ if $official }}
+          <td class="dp-lb-total dp-lb-official-val">
+            {{ with $off_entry }}<strong>{{ .total_points }}</strong>{{ else }}&mdash;{{ end }}
           </td>
-          <td class="dp-lb-total">
-            <strong>{{ .total_points }}</strong>
-          </td>
-          {{ range .weekly_points }}
-          <td class="dp-lb-wk {{ if gt . 0 }}dp-lb-wk--scored{{ end }}">
-            {{ if gt . 0 }}{{ . }}{{ else }}&mdash;{{ end }}
+          {{ end }}
+          {{ range $i, $pts := .weekly_points }}
+          {{ $sc := newScratch }}
+          {{ $sc.Set "off" "" }}
+          {{ with $off_entry }}
+            {{ if gt (len .weekly_points) $i }}
+              {{ $sc.Set "off" (index .weekly_points $i) }}
+            {{ end }}
+          {{ end }}
+          <td class="dp-lb-wk {{ if gt $pts 0 }}dp-lb-wk--scored{{ end }}">
+            {{ if gt $pts 0 }}{{ $pts }}{{ else }}&mdash;{{ end }}
+            {{ if $official }}
+            {{ $offVal := $sc.Get "off" }}
+            {{ if ne $offVal "" }}
+            <span class="dp-lb-jeff-pts">{{ $offVal }}</span>
+            {{ end }}
+            {{ end }}
           </td>
           {{ end }}
         </tr>

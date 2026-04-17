@@ -2298,6 +2298,9 @@ img {
 .dp-lb-crown { font-size: 1rem; }
 .dp-lb-name  { text-align: left !important; font-weight: 600; color: #ccc; }
 .dp-lb-total { font-size: 1rem; color: var(--pink); min-width: 50px; }
+.dp-lb-official-hdr { color: var(--gold) !important; }
+.dp-lb-official-val { color: var(--gold) !important; }
+.dp-lb-jeff-pts { display: block; font-size: 0.75em; color: var(--gold); opacity: 0.85; margin-top: 1px; }
 .dp-lb-wk    { color: #555; font-size: 0.85rem; min-width: 42px; }
 .dp-lb-wk--scored { color: #fff; font-weight: 600; }
 
