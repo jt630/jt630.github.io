@@ -2,14 +2,14 @@
   "week_number": 3,
   "week_start": "2026-04-13",
   "week_end": "2026-04-19",
-  "checked_at": "2026-04-17T09:17:27.401850+00:00",
+  "checked_at": "2026-04-18T08:51:24.605637+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
     {
       "name": "Ellie",
-      "week_points": 11,
-      "total_hrs": 7,
+      "week_points": 13,
+      "total_hrs": 8,
       "picks": [
         {
           "player": "Kyle Schwarber",
@@ -46,7 +46,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -57,10 +57,10 @@
           "is_injured": false,
           "draft_pick": 21,
           "proj_hr": null,
-          "hrs": 1,
+          "hrs": 2,
           "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
+          "has_3run_or_gs": true,
+          "points": 3,
           "hr_games": [
             {
               "date": "2026-04-14",
@@ -76,9 +76,24 @@
                   "description": "Munetaka Murakami homers (5) on a fly ball to right field. Miguel Vargas scores."
                 }
               ]
+            },
+            {
+              "date": "2026-04-17",
+              "opponent": "Athletics",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 7,
+                  "rbi": 4,
+                  "is_3run_or_more": true,
+                  "description": "Munetaka Murakami hits a grand slam (6) to center field. Chase Meidroth scores. Luisangel Acu\u00f1a scores. Andrew Benintendi scores."
+                }
+              ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -110,7 +125,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -163,7 +178,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -202,7 +217,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -234,7 +249,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -250,7 +265,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -350,7 +365,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
@@ -425,7 +440,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -457,7 +472,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -473,7 +488,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -489,7 +504,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -521,7 +536,138 @@
               ]
             }
           ],
+          "games_checked": 4,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Jeff",
+      "week_points": 6,
+      "total_hrs": 4,
+      "picks": [
+        {
+          "player": "Bobby Witt Jr",
+          "team": "KC",
+          "team_id": 118,
+          "mlb_id": 677951,
+          "is_injured": false,
+          "draft_pick": 19,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 4,
+          "games_live": 0
+        },
+        {
+          "player": "Ketel Marte",
+          "team": "ARI",
+          "team_id": 109,
+          "mlb_id": 606466,
+          "is_injured": false,
+          "draft_pick": 28,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": true,
+          "has_3run_or_gs": false,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-04-13",
+              "opponent": "Baltimore Orioles",
+              "home_away": "away",
+              "hrs_in_game": 2,
+              "game_points": 3,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Ketel Marte homers (3) on a fly ball to right field."
+                },
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Ketel Marte homers (4) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
           "games_checked": 3,
+          "games_live": 0
+        },
+        {
+          "player": "Drake Baldwin",
+          "team": "ATL",
+          "team_id": 144,
+          "mlb_id": 686948,
+          "is_injured": false,
+          "draft_pick": null,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 4,
+          "games_live": 0
+        },
+        {
+          "player": "Gunnar Henderson",
+          "team": "BAL",
+          "team_id": 110,
+          "mlb_id": 683002,
+          "is_injured": false,
+          "draft_pick": 44,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Max Muncy",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 571970,
+          "is_injured": false,
+          "draft_pick": 94,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": true,
+          "has_3run_or_gs": false,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-04-17",
+              "opponent": "Colorado Rockies",
+              "home_away": "away",
+              "hrs_in_game": 2,
+              "game_points": 3,
+              "hr_details": [
+                {
+                  "inning": 2,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Max Muncy homers (5) on a fly ball to center field."
+                },
+                {
+                  "inning": 5,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Max Muncy homers (6) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 4,
           "games_live": 0
         }
       ]
@@ -544,7 +690,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -576,7 +722,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -623,7 +769,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -639,7 +785,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -671,7 +817,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         }
       ]
@@ -710,7 +856,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -726,7 +872,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -742,7 +888,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -789,7 +935,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -821,124 +967,15 @@
               ]
             }
           ],
-          "games_checked": 4,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Jeff",
-      "week_points": 3,
-      "total_hrs": 2,
-      "picks": [
-        {
-          "player": "Bobby Witt Jr",
-          "team": "KC",
-          "team_id": 118,
-          "mlb_id": 677951,
-          "is_injured": false,
-          "draft_pick": 19,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Ketel Marte",
-          "team": "ARI",
-          "team_id": 109,
-          "mlb_id": 606466,
-          "is_injured": false,
-          "draft_pick": 28,
-          "proj_hr": null,
-          "hrs": 2,
-          "multi_hr_game": true,
-          "has_3run_or_gs": false,
-          "points": 3,
-          "hr_games": [
-            {
-              "date": "2026-04-13",
-              "opponent": "Baltimore Orioles",
-              "home_away": "away",
-              "hrs_in_game": 2,
-              "game_points": 3,
-              "hr_details": [
-                {
-                  "inning": 1,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Ketel Marte homers (3) on a fly ball to right field."
-                },
-                {
-                  "inning": 3,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Ketel Marte homers (4) on a fly ball to right field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 2,
-          "games_live": 0
-        },
-        {
-          "player": "Drake Baldwin",
-          "team": "ATL",
-          "team_id": 144,
-          "mlb_id": 686948,
-          "is_injured": false,
-          "draft_pick": null,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "Gunnar Henderson",
-          "team": "BAL",
-          "team_id": 110,
-          "mlb_id": 683002,
-          "is_injured": false,
-          "draft_pick": 44,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Max Muncy",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 571970,
-          "is_injured": false,
-          "draft_pick": 94,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Jeremy",
-      "week_points": 3,
-      "total_hrs": 3,
+      "week_points": 4,
+      "total_hrs": 4,
       "picks": [
         {
           "player": "Matt Olson",
@@ -969,7 +1006,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -980,10 +1017,10 @@
           "is_injured": false,
           "draft_pick": 16,
           "proj_hr": null,
-          "hrs": 1,
+          "hrs": 2,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 1,
+          "points": 2,
           "hr_games": [
             {
               "date": "2026-04-15",
@@ -999,9 +1036,24 @@
                   "description": "Yordan Alvarez homers (7) on a fly ball to right field."
                 }
               ]
+            },
+            {
+              "date": "2026-04-17",
+              "opponent": "St. Louis Cardinals",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Yordan Alvarez homers (8) on a fly ball to right field."
+                }
+              ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1017,7 +1069,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1049,7 +1101,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1065,7 +1117,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
@@ -1119,7 +1171,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1135,7 +1187,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1167,7 +1219,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1183,7 +1235,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1199,15 +1251,15 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Makeda",
-      "week_points": 1,
-      "total_hrs": 1,
+      "week_points": 3,
+      "total_hrs": 3,
       "picks": [
         {
           "player": "Shohei Ohtani",
@@ -1222,7 +1274,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -1233,12 +1285,28 @@
           "is_injured": false,
           "draft_pick": 38,
           "proj_hr": null,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-17",
+              "opponent": "San Francisco Giants",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 7,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "James Wood homers (6) on a fly ball to left center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1270,7 +1338,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1281,12 +1349,28 @@
           "is_injured": false,
           "draft_pick": 71,
           "proj_hr": null,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-17",
+              "opponent": "Tampa Bay Rays",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Oneil Cruz homers (6) on a fly ball to right center field. Konnor Griffin scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1302,7 +1386,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]

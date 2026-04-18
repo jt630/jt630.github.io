@@ -1,16 +1,16 @@
 {
   "season": 2026,
-  "last_updated": "2026-04-17T13:00:26.881337+00:00",
+  "last_updated": "2026-04-18T08:51:24.608343+00:00",
   "total_weeks": 3,
   "members": [
     {
       "name": "Jeremy",
-      "total_points": 24,
+      "total_points": 25,
       "rank": 1,
       "weekly_points": [
         13,
         8,
-        3
+        4
       ]
     },
     {
@@ -34,9 +34,29 @@
       ]
     },
     {
+      "name": "Ellie",
+      "total_points": 21,
+      "rank": 3,
+      "weekly_points": [
+        7,
+        1,
+        13
+      ]
+    },
+    {
+      "name": "Jeff",
+      "total_points": 21,
+      "rank": 3,
+      "weekly_points": [
+        8,
+        7,
+        6
+      ]
+    },
+    {
       "name": "Cam",
       "total_points": 20,
-      "rank": 4,
+      "rank": 6,
       "weekly_points": [
         10,
         3,
@@ -44,29 +64,9 @@
       ]
     },
     {
-      "name": "Ellie",
-      "total_points": 19,
-      "rank": 5,
-      "weekly_points": [
-        7,
-        1,
-        11
-      ]
-    },
-    {
-      "name": "Jeff",
-      "total_points": 18,
-      "rank": 6,
-      "weekly_points": [
-        8,
-        7,
-        3
-      ]
-    },
-    {
       "name": "Tyler",
       "total_points": 18,
-      "rank": 6,
+      "rank": 7,
       "weekly_points": [
         7,
         6,
@@ -85,12 +85,12 @@
     },
     {
       "name": "Makeda",
-      "total_points": 7,
+      "total_points": 9,
       "rank": 9,
       "weekly_points": [
         3,
         3,
-        1
+        3
       ]
     }
   ]
