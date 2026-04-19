@@ -1,0 +1,60 @@
+id: arm_manipulator
+name: Arm Manipulator (shoulder-to-wrist segment)
+region: arm
+group: manipulation
+
+description: |
+  The structural and actuated segment from shoulder joint through elbow to
+  wrist — the arm itself, distinct from the tools and hands it carries.
+  TRIGGER when any task requires positioning an end-effector or tool in 3D
+  space: fetching an object from a shelf, reaching to a bedside table, guiding
+  a hand-hold for balance support, or presenting a tool at a precise angle.
+  Elderly-care examples: retrieving a glass from the counter, lowering a grab
+  bar into reach, steadying an object while the resident opens it, positioning
+  the 3D printer over a work surface.
+  SKIP for fine-motor work at the fingertip level (delegate to hand_*) and
+  for load-bearing above the stated payload (do not lift a person).
+
+hardware:
+  slot: shoulder-mount            # mounts to the core chassis at the shoulder bay
+  degrees_of_freedom: 6           # shoulder (3 DOF) + elbow (1 DOF) + wrist (2 DOF)
+  reach_cm: 55                    # full extension from shoulder pivot
+  payload_kg: 2.0                 # continuous; 3.0 peak for <5 s
+  power_w: 30
+  deploy_time_ms: 400             # time from rest to operational pose
+  active_tool_slot: true          # wrist interface exposes the active-tool mount bay
+  envelope_cm: [12, 12, 60]       # folded; stowed along the core body
+  storage_volume_cm3: 0           # arm is body-mounted — no separate garage space
+
+preconditions:
+  - battery_pct >= 15
+  - clearance_cm >= 20            # minimum working envelope around the arm
+  - obstacle_clear: true          # no obstacle within arm's swept volume
+  - speed_cap_cms: 15             # if any human is within 80cm, cap to 15 cm/s
+  - voice_interruptible: true     # spoken halt freezes arm immediately at any point
+
+inputs:
+  target_pose: {type: pose6d, required: true}   # goal position + orientation
+  motion_profile: {type: enum, values: [gentle, standard, fast], default: gentle}
+  force_limit_n: {type: number, default: 10, range: [1, 30]}
+
+outputs:
+  reached: bool
+  final_pose: pose6d
+  contact_force_n: number
+
+composes_with:
+  - arm_3d_printer      # tool carried in the active-tool slot
+  - hand_paw_grip       # end-effector attached at wrist
+  - hand_pincer         # end-effector attached at wrist
+  - hand_fine_tip       # end-effector attached at wrist
+
+safety:
+  - voice_interruptible: true
+  - speed_cap_cms: 15 when human_within_cm <= 80
+  - hard_stop on obstacle_detected mid-motion
+  - force limit enforced at wrist; back-drive on unexpected contact force > 12 N
+  - no motion while active-tool is in cooldown state (e.g. post-print nozzle cooling)
+
+owned_by: jarvis
+canonical_example: walle         # deliberate, grounded reach — not a weapon arm

@@ -68,6 +68,8 @@ This file is the character sheet. Function-specific detail lives here:
 | `docs/goddard/SKILL-DIRECTORY.md` | Skill-directory priority tiers, storage budget, aesthetic note |
 | `docs/goddard/REGIONS.md` | The 8 body regions, boundaries, inter-region interfaces |
 | `docs/goddard/WORKFLOW.md` | Session types, Agent-tool dispatch, lane protocol, review checklist |
+| `docs/goddard/OPEN-QUESTIONS.md` | Cross-lane interfaces and schema questions awaiting adjudication |
+| `docs/goddard/regions/<region>.md` | Per-region responsibility, interfaces, decisions, open questions |
 | `content/brain/robot-organs.md` | Public-facing theory page (what the site shows) |
 | `content/brain/goddard-core-functions.md` | Wave 0 decisions — reflex loop, safety monitor, skill registry |
 
@@ -76,11 +78,11 @@ to its task → target files.
 
 ## Current state
 
-- Branch: `claude/robot-organs-skills-2TfDM`
+- Branch: `claude/goddard-wave-1-scaffold-elksr`
 - Identity + companion docs: **done** (this file, SCHEMA.md, SKILL-DIRECTORY.md, REGIONS.md, WORKFLOW.md)
-- Existing organs: 2 (`arm_3d_printer`, `skin_vacuum`) — `skin_lighter` and `heat_mold` removed (elderly-care pivot)
+- Existing organs: 26 across 8 regions (2 canonical from Wave 0 + 24 from Wave 1 lanes)
 - Wave 0 (core functions): **done** (`content/brain/goddard-core-functions.md`)
-- Wave 1 (region scaffolding in parallel): queued
+- Wave 1 (region scaffolding in parallel): **done** — 5 lanes, 24 new manifests, 8 region docs, 7 interface questions captured in OPEN-QUESTIONS.md
 - Mission: help elderly people live independently at home
 
 ## How to work with Goddard

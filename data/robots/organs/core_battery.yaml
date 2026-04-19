@@ -1,0 +1,58 @@
+id: core_battery
+name: Chassis Battery
+region: core
+group: power
+
+description: |
+  The primary energy store for the entire robot. Reports state-of-charge (SoC)
+  continuously to the reflex loop and power bus. Manages charge cycles,
+  enforces thermal limits during charge and discharge, and signals low-battery
+  states so the planner can guide Goddard to a dock before motion becomes unsafe.
+  TRIGGER on every reflex tick (SoC reporting); also triggered when charger
+  is connected, when thermal limits are approached, or when SoC falls below
+  any registered threshold.
+  Elderly-care context: a dead battery mid-task is a safety event, not an
+  inconvenience. If a resident is mid-fall, or Goddard is steadying a grab bar,
+  losing power is dangerous. The battery reports predicted time-to-empty so the
+  planner can finish or abort tasks before the floor drops out.
+  Does NOT cover consumable tanks (filament, water, butane) — those are guts region.
+  SKIP for USB or accessory power (brain SBC draws are reported separately);
+  this organ tracks the chassis drive battery only.
+
+hardware:
+  slot: chassis-embedded-core
+  power_w: 0                    # passive store; draw is net outflow, not self-draw
+  deploy_time_ms: 0
+  consumables: []
+  envelope_cm: [12, 8, 4]       # approximate chassis battery pack footprint
+  storage_volume_cm3: 0         # embedded — doesn't count against garage budget
+
+preconditions:
+  - cell_temp_c: {min: 0, max: 45}   # lithium operating window
+  - cell_voltage: {min: 3.0}         # low-voltage cutoff per cell
+
+inputs:
+  charger_connected: {type: bool, required: false}
+  charge_current_a: {type: number, required: false}
+  ambient_temp_c: {type: number, required: true}
+
+outputs:
+  battery_pct: number            # 0–100 state of charge
+  estimated_minutes_remaining: number
+  cell_temp_c: number
+  charging: bool
+  charge_cycle_count: number     # for longevity tracking
+  low_battery_flag: bool         # true when battery_pct < 15
+
+composes_with:
+  - core_power_bus               # supplies capacity figure to bus allocator
+  - core_reflex_loop             # SoC feeds precondition evaluations every tick
+
+safety:
+  - voice_interruptible: true    # resident can ask for battery status at any time
+  - charging halts if cell_temp_c > 40C
+  - low_battery_flag triggers dock-seeking intent in planner at battery_pct = 15
+  - hard cutoff at battery_pct = 3 to preserve safe-pose capacity
+
+owned_by: goddard
+canonical_example: walle        # solar + scavenge survivability archetype; same frugal ethos

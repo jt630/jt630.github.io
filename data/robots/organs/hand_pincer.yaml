@@ -1,0 +1,59 @@
+id: hand_pincer
+name: Two-Finger Pincer (precision end-effector)
+region: hands
+group: manipulation
+
+description: |
+  A two-finger precision pincer mounted at the arm's wrist interface. Rigid
+  finger tips with rubber-coated inner faces for grip. Designed for small
+  objects and confident, firmer grasps where the paw grip is too bulky or
+  imprecise.
+  TRIGGER when the target object is small, narrow, or needs a positive hold
+  rather than a gentle cradle.
+  Elderly-care examples: picking up dropped keys from the floor, retrieving
+  a pen or stylus, pulling a bottle cap off a shelf edge, recovering a
+  slipped hearing-aid battery, handing over a credit card or ID.
+  SKIP for contact with bare skin (use hand_paw_grip — pincer tips can
+  pinch), for objects smaller than 4 mm (use hand_fine_tip), and for
+  anything requiring sustained gripping force above 35 N.
+
+hardware:
+  slot: wrist-interface           # attaches to arm_manipulator wrist mount bay
+  grip_force_n: {max: 35, default: 12}
+  span_cm: {min: 0.4, max: 8}     # finger opening range
+  digit_count: 2
+  tip_material: rubber-coated aluminum
+  power_w: 5
+  deploy_time_ms: 250
+  envelope_cm: [5, 4, 12]
+  storage_volume_cm3: 240
+
+preconditions:
+  - battery_pct >= 5
+  - arm_manipulator: ready
+  - obstacle_clear: true
+  - voice_interruptible: true
+
+inputs:
+  target_object: {type: descriptor, required: true}
+  grip_force_n: {type: number, default: 12, range: [2, 35]}
+  approach_axis: {type: vector3, required: false}   # optional preferred approach
+
+outputs:
+  grasped: bool
+  contact_force_n: number
+  slip_detected: bool
+
+composes_with:
+  - arm_manipulator     # arm positions the pincer over the target
+  - skin_vacuum         # vacuum can anchor small items for easier pickup
+
+safety:
+  - voice_interruptible: true
+  - force_limit_n: 35 hard cap
+  - do NOT apply pincer to skin contact — redirect to hand_paw_grip
+  - back-drive on unexpected resistance > 40 N
+  - release and retract if object_size_mm < 4 at close distance — may trap fragile items
+
+owned_by: jarvis
+canonical_example: r2d2          # deployable precision tool on demand

@@ -1,0 +1,60 @@
+id: leg_wheel
+name: Wheeled Locomotion Mode
+region: legs
+group: movement
+
+description: |
+  Retracts walking legs and deploys inline wheels for fast, quiet travel on
+  flat, open floor. Quieter than the walking gait and more power-efficient over
+  longer stretches of smooth hardwood, tile, or low-nap carpet.
+  TRIGGER for open-floor transits where the path is clear of thresholds and
+  loose rugs — long hallways, large living areas, kitchen-to-bedroom runs when
+  the resident is seated and the floor is confirmed flat and clear.
+  Elderly-care note: same human-proximity speed caps as walking mode apply.
+  SKIP for doorway thresholds above the bump_height threshold, any carpet or
+  area rug detected, stairs, ramps steeper than 5 degrees, or wet floors.
+  The safety monitor must confirm floor_type: hard_flat before wheeled mode
+  is permitted.
+
+hardware:
+  slot: chassis-legs-quad-wheel
+  power_w: 10                    # lower draw than walking gait at cruise
+  deploy_time_ms: 800            # leg-retract and wheel-deploy transition
+  consumables: []
+  envelope_cm: [18, 18, 8]       # lower profile than walk mode; wheels flush to chassis
+
+preconditions:
+  - battery_pct >= 10
+  - floor_type: hard_flat        # confirmed by sensing; rejects on carpet/rug
+  - obstacle_clear: true         # no loose rugs, pets, cords in path
+  - wet_floor_index <= 0.1       # tighter than walk mode; wheels offer less stability on wet
+  - floor_hazard_flag: false
+  - bump_height_mm <= 5          # thresholds above 5 mm reject wheeled mode
+  - thigh_joint_temp_c < 65      # thermal gate via thigh_joint
+
+inputs:
+  destination: {type: pose, required: true}
+  speed_preset: {type: enum, values: [cruise, slow_approach], default: cruise}
+  human_proximity_cm: {type: number, required: false}  # injected by safety monitor each tick
+
+outputs:
+  pose_reached: bool
+  distance_traveled_cm: number
+  transit_time_s: number
+
+composes_with:
+  - thigh_joint                  # joint holds locked position during wheel mode
+  - core_reflex_loop             # reflex tick monitors wheel state and balance
+  - core_safety_monitor          # pre-call and mid-call safety evaluation
+
+safety:
+  - voice_interruptible: true    # resident voice command stops wheels immediately
+  - speed_cap_cms: 25            # absolute max in open floor
+  - speed_cap_near_human_cms: 12 # hard cap when human_proximity_cm <= 120
+  - fall_approach_speed_cms: 8   # same cautious cap as walking mode near a fall event
+  - auto_transition_to_walk: true # if floor_type changes mid-transit, switch to leg_walk
+  - wet_floor_abort: true        # halts and flags for operator review
+  - safety monitor cannot be bypassed
+
+owned_by: goddard
+canonical_example: r2d2          # wheeled-base locomotion archetype

@@ -1,0 +1,52 @@
+id: skin_speaker
+name: Speaker — Voice Output
+region: skin
+group: communication
+
+description: |
+  Full-range speaker embedded in the chassis panel, calibrated for speech
+  intelligibility with older ears: clear, unhurried, lower-pitched response
+  that cuts through ambient household noise without distortion at comfortable
+  volumes. Driven by a small DSP that applies a gentle presence boost and a
+  slow-release limiter to protect against sudden loud sounds.
+  TRIGGER whenever Goddard needs to speak: status updates, safety warnings,
+  confirmation of completed tasks, gentle check-ins, medication reminders,
+  and responses to resident voice commands.
+  Elderly-care framing: loudness calibration matters — too quiet and a
+  resident with mild hearing loss misses the message; too loud and it
+  startles. The default volume level is set at first-run setup and remembered.
+  SKIP for high-fidelity audio playback, music, or entertainment audio —
+  this speaker is voice-optimized, not audiophile-grade.
+
+hardware:
+  slot: chassis-panel-front-1        # front panel, forward-facing, voice projection
+  power_w: 3
+  deploy_time_ms: 0                  # always ready; no deploy step
+  consumables: []
+  envelope_cm: [5, 3, 2]
+  storage_volume_cm3: 30             # fixed-install; counts against skin bay budget
+
+preconditions:
+  - system_powered: true
+
+inputs:
+  utterance: {type: string, required: true}
+  volume_pct: {type: number, default: 65, range: [10, 100]}
+  priority: {type: enum, values: [normal, alert, urgent], default: normal}
+
+outputs:
+  utterance_complete: bool
+  duration_s: number
+
+composes_with:
+  - brain_intent_queue               # planner routes all utterances through the queue
+  - core_safety_monitor              # urgent priority bypasses queue for safety announcements
+
+safety:
+  - voice_interruptible: true
+  - urgent utterances preempt all other audio immediately
+  - volume_pct may be overridden down by caregiver profile, never up without consent
+  - sudden-onset sounds (alerts) ramped over 80ms to avoid startle
+
+owned_by: jarvis
+canonical_example: baymax            # patient, clear, reassuring voice — medical companion

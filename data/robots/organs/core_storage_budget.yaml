@@ -1,0 +1,57 @@
+id: core_storage_budget
+name: Storage Budget Accountant
+region: core
+group: sequence_reading
+
+description: |
+  The formal "one-car garage" accounting layer referenced in SKILL-DIRECTORY.md.
+  Tracks storage_volume_cm3 advisories across all non-embedded organs and
+  advises the planner when a tool-swap is expensive — i.e., when loading a
+  new tool would require first stowing another to stay within the garage budget.
+  TRIGGER when the planner queries tool availability, when a new organ manifest
+  is loaded at boot, or when a composed skill chain would require more concurrent
+  storage than the garage cap allows.
+  Elderly-care context: Goddard's compact cat-sized chassis can't carry everything
+  at once. If a resident needs both a printed grip adapter and a vacuum cleanup,
+  the planner needs to know whether both tools fit, or whether a swap is required.
+  This organ makes that cost explicit so the planner doesn't silently commit to
+  an impossible load-out and fail mid-task.
+  SKIP for embedded (tier-1) organs — their storage_volume_cm3 counts against
+  the skin region's local bay budget, not this garage. Skip also for firmware-only
+  organs (core_reflex_loop, core_safety_monitor, core_power_bus, core_battery)
+  which have storage_volume_cm3: 0.
+
+hardware:
+  slot: chassis-embedded-core
+  power_w: 0                    # planner-consulted logic only
+  deploy_time_ms: 0
+  consumables: []
+  envelope_cm: [0, 0, 0]        # firmware
+
+preconditions:
+  - skill_registry_loaded: true  # manifests must be in memory before accounting
+
+inputs:
+  manifest_list: {type: list, required: true}        # all loaded organ manifests
+  active_tools: {type: list, required: false}         # currently loaded tools
+  proposed_tool: {type: string, required: false}      # organ id being considered
+
+outputs:
+  garage_cap_cm3: number         # total budget (config, default: 8000)
+  used_cm3: number               # sum of active non-embedded storage_volume_cm3
+  remaining_cm3: number
+  swap_required: bool            # true if proposed_tool doesn't fit without stowing
+  stow_candidates: list          # organ ids that could be stowed to make room
+  advisory: string               # human-readable planner hint
+
+composes_with:
+  - core_reflex_loop             # registry loaded at boot before budget is computed
+  - core_power_bus               # cross-checks: power-heavy tools also flag here
+
+safety:
+  - voice_interruptible: true    # resident can ask "what do you have loaded?" at any time
+  - advisory output is non-binding; planner may override with explicit intent,
+    but override is logged for review
+
+owned_by: jarvis                 # planner-consulted; not autonomic
+canonical_example: jarvis        # operator/dispatch archetype — reads the menu, advises

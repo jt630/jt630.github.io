@@ -1,0 +1,59 @@
+id: core_safety_monitor
+name: Safety Monitor
+region: core
+group: sensing
+
+description: |
+  Non-override-able watchdog that gates every skill call. Runs on every reflex tick.
+  Has three powers: pre-call precondition check (refuses skill if any condition fails),
+  mid-call interrupt (aborts running skill if a flag trips during execution),
+  and hard stop (emergency halt — safe pose immediately, all motion ceases).
+  TRIGGER before any skill fires, and continuously while any skill runs.
+  Elderly-care rules enforced by this monitor:
+    - No fast motion near humans: speed caps when any person detected within 1m.
+    - Obstacle-aware for walkers and canes: path planning must account for mobility
+      aids, not just the person's body. A cane entering the arm's sweep radius
+      triggers a precondition failure and halts the pending motion.
+    - Voice-interruptible always: any resident voice command halts or redirects
+      Goddard mid-action. The person is always in control.
+    - Thermal limits enforced: no reachable surface may exceed safe skin-contact
+      temperature. Post-print nozzle cooldown is enforced before proximate motion.
+    - No exposed heating elements, no open flame, no fast-spinning parts near humans.
+  SKIP for passive sensing skills (vision, audio, proprioception) — these run
+  through the monitor's flag aggregation path, not the pre-call check path.
+  The monitor does NOT handle network security, software integrity, or data privacy;
+  those are brain-region concerns.
+
+hardware:
+  slot: chassis-embedded-core
+  power_w: 1
+  deploy_time_ms: 0             # always running
+  consumables: []
+  envelope_cm: [0, 0, 0]        # firmware
+
+preconditions:
+  - system_powered: true
+  - sbc_boot_complete: true
+
+inputs:
+  skill_id: {type: string, required: true}         # skill about to fire or running
+  skill_preconditions: {type: list, required: true} # from manifest preconditions block
+  sensor_flags: {type: map, required: true}         # live sensor state
+  human_proximity_cm: {type: number, required: true}
+  mobility_aid_detected: {type: bool, required: true}
+  thermal_surface_c: {type: number, required: true}
+  voice_command_pending: {type: bool, required: false}
+
+outputs:
+  cleared: bool                  # true = skill is cleared to run
+  interrupt: bool                # true = abort currently running skill
+  hard_stop: bool                # true = emergency halt, all motion
+  refusal_reason: string         # human-readable explanation when cleared=false
+
+safety:
+  - voice_interruptible: true
+  - this organ itself cannot be disabled or bypassed by any other organ
+  - hard_stop triggers on fall_detection_event, panic_button, or unrecoverable_safety_flag
+
+owned_by: goddard
+canonical_example: goddard
