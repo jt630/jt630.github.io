@@ -1,178 +1,203 @@
 ---
 title: "Robot Organs"
 date: 2026-04-19
-description: "Theorizing robot design — organs as skills, physical + logical, with a Goddard brain that reads YAML manifests"
+description: "Robot design theory — organs as YAML-manifest skills, modular like the ISS, governed by Goddard the AI conductor agent"
 draft: false
 ---
 
-Robots are the most important design project to work on right now. Product design,
-program design, workflow design — robots are where all three converge and where
-the future actually gets paved. This page is the running theory doc.
+## The pitch
 
-**Brain before body.** It's strange that we built AI before we built useful
-robots, but it actually tracks: the brain has to exist before the form around
-it makes sense. You design the organism mind-first, then grow the body that
-fits it. Agentic AI is the nervous system. Hardware is scaffolding we hang
-on it.
+Robotics design is the new edge to house AI. We built the brain before the
+body — which tracks, because you design the organism mind-first and grow
+hardware around a mind that already knows what to do. Robots will need
+skills, and every useful skill is three things fused: **logic, structure,
+and hardware interface.** The 3D printer organ proves it — take away any
+leg and "3D print" isn't a capability the robot has.
 
-So we build **the brain first** — a skill library the robot can call into —
-and the chassis comes after.
+Goddard is **modular like the ISS.** Standardized docking ports (the
+manifest schema). Independent teams contributing modules (parallel Claude
+sessions). Incremental build-out (region by region). No single point of
+origin. Every organ is a bay that speaks a known protocol.
+
+The YAML manifest library is an **interface for an AI conductor agent** —
+and that agent is Goddard itself. Goddard reads its own manifests and
+dispatches its own organs. The same pattern that makes agentic AI work in
+software works in hardware: tools all the way up.
+
+**Brain before body.** Build the skill library first. The chassis follows.
 
 ## Thesis
 
-**A robot is a hardware interface over an agentic AI skill library.**
+A robot is a hardware interface over an agentic AI skill library. Every
+skill an agent has in software (search, summarize, fetch, write) has a
+physical analog (locomote, grasp, fabricate, sense). The skills folder
+pattern — discrete, callable, documented — is the same pattern. Robots
+just give skills a body.
 
-Every skill an agent has in software (search, summarize, fetch, write) has a
-physical analog in a robot: locomote, grasp, fabricate, sense. The skills folder
-pattern — discrete, callable, documented — is the same pattern. Robots just
-give skills a body.
-
-So: **organs = skills**. Each organ has
+So: **organs = skills.** Each organ has
 - a **physical design** (hardware that executes it)
-- a **logical design** (the skill manifest that governs it, matching the agentic skill spec)
+- a **logical design** (the YAML manifest that governs it, matching the
+  agentic skill spec)
 
 ## Meet Goddard
 
-The robot is **Goddard.** One name, one character, one assistant.
+**Goddard is an AI agent defined by `GODDARD.md` at the repo root.** When
+a Claude session loads that file, it *is* Goddard. The conductor session
+the curator talks to — that's Goddard in the driver's seat. Parallel
+sub-sessions act on behalf of Goddard, scaffolding organs and regions of
+the future body.
 
-Internally Goddard has three layers, but only one of them talks to me:
+This is the agent.md pattern: one persona, one voice, defined by a
+markdown spec. The robot and the conductor are the same entity. When
+hardware eventually arrives, the same Goddard migrates from a Claude
+session onto a physical body. The manifests stop being thought
+experiments and become callable actuators. Same schema. Same dispatch.
 
-1. **Curator (me)** — taste, context, direction. I say what matters.
-2. **Goddard** — the whole robot. Reads my intent, plans, calls skills, acts.
-   Has an internal planner (the thing other stacks call "Jarvis") and an
-   internal reflex loop (balance, obstacle avoid, battery, heartbeat) — but
-   they're not separate personalities. They're just Goddard's subsystems.
-3. **The skill library** — the brain content. YAML manifests that describe
-   every organ Goddard can invoke. This is the artifact we build first.
+## Body regions (the ISS bays)
 
-Collapsing Jarvis into Goddard matters: one character, one voice, one body.
-The planner is a component, not a co-star.
+Eight regions. Every organ lives in exactly one. Parallel sessions own
+one region each and can't collide.
 
-## The brain: a YAML skill library
+- **brain** — compute, skill registry, planner, memory, intent queue
+- **core** — power distribution, reflex loop, safety monitor, bus
+- **guts** — consumables tanks, waste, fabrication support
+- **arm** — shoulder-to-wrist manipulator, mount-bays for tools
+- **hands** — end-effectors (paw, pincer, fine tip), tool change
+- **legs** — walking, wheeled, climbing locomotion
+- **thighs** — leg attachment, high-torque joints, power routing
+- **skin** — chassis panels, gadget bays, embedded sensors
 
-The skill library lives in `data/robots/`. Every organ is a YAML manifest.
-Goddard reads the registry at boot and knows what it can do.
+## The CD-changer — mount-bays, magazines, and call priority
 
-The manifest schema mirrors the Claude Code skill card pattern (`id`,
-`description` with trigger rules, hardware analog of `allowed-tools`) and
-adds hardware-specific fields so the same file drives both AI dispatch and
-physical execution:
+Arms are expensive. We can't give every arm a dedicated copy of every
+fabrication or gadget tool. So arms share hardware via a **CD-changer
+pattern**, borrowed from CNC machines and 90s car stereos.
+
+- **Mount-bay** — standardized physical + electrical interface on an arm
+  (e.g. `arm-mount-v1`). The ISS docking port analog.
+- **Tool** — any organ whose `requires_mount` matches a mount-bay. Tools
+  live idle in storage and swap into the active slot on demand.
+- **Magazine** — the arm's local tool carousel. Fast swap.
+- **Storage budget** — the "one-car garage." The whole robot has a
+  bounded `storage_volume_cm3` across idle tools. Hard cap.
+
+But the CD-changer isn't just a physical mechanic — it's a **call-priority
+system.** At skill-call time Goddard's planner ranks candidates by how
+expensive they are to reach:
+
+| Tier | State | Access cost |
+|---|---|---|
+| 1. **Embedded** | Fixed on skin (lighter, vacuum) | 0 — always ready |
+| 2. **Mounted (active)** | Already docked in an arm slot | 0 — already active |
+| 3. **Magazine** | On-arm carousel, needs tool_change | a few seconds |
+| 4. **Storage** | In the garage, retrieve + change | longer, may be declined |
+
+On-body skills (tiers 1-2) are top priority. Storage-accessible skills are
+lower priority because they cost time to reach. This lets us carry a HUGE
+library of skills — only a few stay resident; the rest live in the garage
+until called. Full spec in `data/robots/CD-CHANGER.md`.
+
+## Manifest schema
+
+Every organ is a YAML file in `data/robots/organs/`. Canonical example
+lives at `data/robots/organs/arm_3d_printer.yaml`. Schema in brief:
 
 ```yaml
-id: 3d_printer_arm
-name: 3D Printer Arm
-group: fabrication
+id: arm_3d_printer
+name: 3D Printer (arm-mounted tool)
+region: arm                        # physical axis
+group: fabrication                 # functional axis
 
 description: |
-  Extrudes thermoplastic filament into arbitrary 3D shapes.
-  TRIGGER when the robot needs a small rigid object (<15x15x20cm, <2kg)
-  that isn't on hand and can be printed in under ~10 min.
-  SKIP for metal, food-contact, or load-bearing parts.
+  TRIGGER when ... SKIP when ...
+  (routing prompt — Goddard's planner reads this to decide when to call)
 
 hardware:
-  slot: arm-primary
+  slot: active-tool
   power_w: 45
   deploy_time_ms: 1200
-  consumables: [pla_filament]
+  storage_volume_cm3: 1800         # "garage space" when idle
   envelope_cm: [15, 15, 20]
 
-preconditions:
-  - battery_pct >= 20
-  - ambient_temp_c: {min: 15, max: 35}
+requires_mount: arm-mount-v1       # docks into any arm with this bay
+tool_change_time_s: 4
 
-inputs:
-  model_stl: {type: path, required: true}
-  infill_pct: {type: number, default: 20}
-
-composes_with:
-  - heat_mold
-  - vacuum
-  - lighter
-
-safety:
-  - no flammables within 30cm during 60s cooldown
+preconditions: [...]
+inputs: { ... }
+outputs: { ... }
+composes_with: [heat_mold, skin_vacuum, skin_lighter]
+safety: [...]
+owned_by: jarvis                   # jarvis (planner) | goddard (reflex)
+canonical_example: r2d2
 ```
+
+Two axes on every organ — filter by `region` to plan hardware, by `group`
+to plan capability.
 
 The `description` block is a routing prompt — Goddard reads it to decide
 when to call the skill, exactly the way an LLM reads a skill card.
 
-The `composes_with` list is the superpower: skills reference other skills
-by id, and a composed skill (see `heat_mold.yaml`) is just a manifest that
-runs a sequence. No bespoke code per combination.
+The `composes_with` list is the superpower. Skills reference other skills
+by id, and a composed skill is just a manifest that runs a sequence. No
+bespoke code per combination. See `heat_mold.yaml` for the canonical
+composed example.
 
 ### Current registry
 
-- **`skill_groups.yaml`** — the organ taxonomy (movement, manipulation,
-  fabrication, sensing, sequence_reading, power, communication, gadgets)
-- **`sci_fi_catalog.yaml`** — canonical sci-fi robots tagged by skill group,
-  used to find gaps in the design space
-- **`organs/3d_printer_arm.yaml`** — on-demand fabrication
-- **`organs/lighter.yaml`** — flick-out flame gadget
-- **`organs/vacuum.yaml`** — retractable suction gadget
-- **`organs/heat_mold.yaml`** — composed skill (lighter + printer) that
-  reshapes printed parts after extrusion
-
-### Organ groups
-
-- **movement** — walking legs, wheeled legs, climbing legs, hovering, swimming
-- **manipulation** — grasp, press, twist, fine-motor
-- **fabrication** — 3D print, weld, cut, assemble, heat+mold
-- **sensing** — vision, audio, thermal, chemical, proprioception
-- **sequence_reading** — the spinal cord. Dispatch + planner + skill registry.
-  The callable library itself is here.
-- **power** — charge, scavenge, solar, battery
-- **communication** — speak, signal, network
-- **gadgets** — concealed single-purpose tools that flick out (Q-branch layer)
+- **`GODDARD.md`** (repo root) — the agent identity spec
+- **`data/robots/skill_groups.yaml`** — functional taxonomy
+- **`data/robots/sci_fi_catalog.yaml`** — canon robots tagged
+- **`data/robots/organs/arm_3d_printer.yaml`** — canonical schema example
+- **`data/robots/organs/skin_lighter.yaml`** — flick-out flame
+- **`data/robots/organs/skin_vacuum.yaml`** — retractable suction
+- **`data/robots/organs/heat_mold.yaml`** — composed (lighter + printer)
 
 ## Sci-fi catalog — finding gaps
 
 Tagged canon lives in `sci_fi_catalog.yaml`. Early observations:
 
 - Very few canonical robots treat **fabrication** as a primary organ.
-  R2-D2 and Wall-E gesture at it; nobody lives there. Our spy-cat with the
-  3D-printer arm + heat-mold skill is in open territory.
-- The **gadgets** group is dominated by R2-D2. Huge design space wide open.
+  R2-D2 and Wall-E gesture at it; nobody lives there. Goddard's
+  printer arm + heat-mold occupies open territory.
+- **Gadgets** is dominated by R2-D2. Huge design space wide open.
 - **Soft-body** (Baymax) is an underused chassis. Worth borrowing from.
 
 ## Form factor (chassis comes later)
 
-Sketch for when the brain is ready:
+Many-legged, asymmetric locomotion. One leg walks, one leg wheels.
+Spider-scorpion chassis, low and stable, can climb. Abstract toward
+**cat, not dog.** Independent, curious, doesn't need constant approval.
 
-Many-legged, asymmetric locomotion. One leg walks, one leg wheels. Spider-scorpion
-chassis, low and stable, can climb. Abstract the vibe toward **cat, not dog.**
-Independent, curious, doesn't need constant approval.
+**Style: James Bond gadget cat.** Q-branch, not Boston Dynamics. Organs
+as concealed gadgets. Every tool lives flush with the body until called.
 
-**Style: James Bond gadget cat.** Q-branch, not Boston Dynamics. Organs as
-concealed gadgets, not visible appendages. Every tool lives flush with the
-body until called.
-
-Starter gadget loadout:
-- Flick-out **lighter** — localized controlled flame
-- Retractable **vacuum** — cleanup, sampling, adhesion
-- **3D printer arm** — extrude polymer on demand
-- **Heat + mold** — composes lighter + printer to reshape extrusions into
-  forms the printer alone can't make
+Starter loadout:
+- Flick-out **lighter** in skin
+- Retractable **vacuum** in skin
+- **3D printer** as an arm-mounted tool
+- **Heat + mold** composed skill
+- Magazine of additional arm tools (pincer, fine-tip, laser pointer,
+  grappling hook — TBD by the arm scaffolding lane)
 
 ## Open questions
 
-- What's the minimum viable organ set for a useful house robot?
-- How does the composed-skill runtime actually execute a manifest? Sequential
-  by default with explicit handoff steps? A DAG?
-- Is the reflex loop inside Goddard a skill group (`movement` + `power` +
-  `sensing` owned_by: goddard) or a separate runtime that sits under the
-  skill registry?
-- How do I version hardware the way I version skills? Swappable attachments
-  that ship their own manifest?
-- What's the smallest end-to-end demo? Maybe: Goddard reads one manifest,
-  plans one call, fires one actuator. Everything after that is scale.
+- Minimum viable organ set for a useful house robot?
+- How does the composed-skill runtime execute a manifest — sequential with
+  handoff steps, a DAG, or an LLM-planned chain?
+- Is the reflex loop a skill group (`movement` + `power` + `sensing` all
+  `owned_by: goddard`) or a separate runtime beneath the registry?
+- How is hardware versioned — swappable attachments shipping their own
+  manifest? Who adjudicates mount-bay compatibility?
+- Smallest end-to-end demo: Goddard reads one manifest, plans one call,
+  fires one simulated actuator. Everything after that is scale.
 
 ## Why this matters
 
-I'm learning to use AI tools by building real things. Robot design is the
-long-arc version of the same workflow: specs, skill libraries, tool-calling
-agents, human-in-the-loop curation. If I can design Goddard's brain as a
-YAML skill library that an AI operates, I've internalized the agentic
-pattern at a level deeper than any chatbot project can teach.
+The curator is learning to use AI tools by building real things. Robot
+design is the long-arc version of the same workflow: specs, skill
+libraries, tool-calling agents, human-in-the-loop curation. Design
+Goddard's brain as a YAML skill library that an AI operates, and you've
+internalized the agentic pattern deeper than any chatbot project teaches.
 
-Brain first. Library first. The body fits itself around a mind that already
-knows what to do.
+Brain first. Library first. ISS-modular. The body fits itself around a
+mind that already knows what to do.

@@ -1,5 +1,6 @@
-id: vacuum
+id: skin_vacuum
 name: Retractable Vacuum
+region: skin
 group: gadgets
 
 description: |
@@ -16,6 +17,7 @@ hardware:
   deploy_time_ms: 600
   consumables: []
   envelope_cm: [3, 3, 18]
+  storage_volume_cm3: 170       # fixed-install; counts against skin bay budget
 
 preconditions:
   - battery_pct >= 5
@@ -32,9 +34,11 @@ outputs:
   adhesion_held: bool
 
 composes_with:
-  - 3d_printer_arm     # cleanup after print
-  - paw_grip           # vacuum stabilizes chassis while paw manipulates
+  - arm_3d_printer     # cleanup after print
+  - hand_paw_grip      # vacuum stabilizes chassis while paw manipulates
 
 safety:
-  - do not sample flammables above lighter-proximity threshold
+  - do not sample flammables above skin_lighter proximity threshold
   - reject intake if object_size_mm > 5 detected at nozzle
+
+owned_by: jarvis

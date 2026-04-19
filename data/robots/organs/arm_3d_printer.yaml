@@ -1,0 +1,55 @@
+# Canonical schema example. Read this before authoring any other organ.
+# This is a TOOL — it occupies an arm mount-bay via the CD-changer pattern.
+# The arm itself (which declares the mount-bay) is a separate organ.
+
+id: arm_3d_printer
+name: 3D Printer (arm-mounted tool)
+region: arm
+group: fabrication
+
+description: |
+  Extrudes thermoplastic filament into arbitrary 3D shapes from a sliced model.
+  TRIGGER when the robot needs a small rigid object (<15x15x20cm, <2kg load)
+  that isn't on hand and can be printed in under ~10 min.
+  SKIP for metal parts, food-contact items, heat-resistant parts (>60C),
+  or anything structurally critical.
+
+hardware:
+  slot: active-tool          # occupies the arm's active mount-bay when in use
+  power_w: 45
+  deploy_time_ms: 1200
+  consumables: [pla_filament]
+  envelope_cm: [15, 15, 20]
+  storage_volume_cm3: 1800   # "garage space" consumed when this tool sits idle
+
+requires_mount: arm-mount-v1 # docks into any arm declaring this mount_bay type
+tool_change_time_s: 4        # magazine -> active slot swap time
+
+preconditions:
+  - battery_pct >= 20
+  - ambient_temp_c: {min: 15, max: 35}
+  - clearance_cm >= 25
+  - filament_remaining_g >= 10
+  - currently_mounted: true  # tool_change must have docked this before use
+
+inputs:
+  model_stl: {type: path, required: true}
+  infill_pct: {type: number, default: 20, range: [5, 100]}
+  color: {type: enum, values: [black, white, red], default: black}
+
+outputs:
+  object: physical
+  print_time_s: number
+  filament_used_g: number
+
+composes_with:
+  - heat_mold                # soften + press post-print
+  - skin_vacuum              # cleanup of support material + stray strands
+  - skin_lighter             # (indirect) heat source for field repairs
+
+safety:
+  - no flammables within 30cm during 60s cooldown
+  - surface must be level within 5deg
+
+owned_by: jarvis             # planner subsystem (not reflex loop)
+canonical_example: r2d2      # closest sci-fi analog in sci_fi_catalog.yaml
