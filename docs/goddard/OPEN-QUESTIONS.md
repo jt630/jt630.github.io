@@ -121,7 +121,7 @@ group-of-one labels later.
   enough, and a bulk reassignment deserves its own review. Captured as a
   possible future follow-up, not blocking.
 
-**Commit:** `<pending>`
+**Commit:** `e4815bc`
 
 ## Q8 — Compute topology: centralized SBC vs. per-organ autonomy — RAISED
 
