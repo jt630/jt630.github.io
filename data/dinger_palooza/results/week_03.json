@@ -2,14 +2,14 @@
   "week_number": 3,
   "week_start": "2026-04-13",
   "week_end": "2026-04-19",
-  "checked_at": "2026-04-18T08:51:24.605637+00:00",
+  "checked_at": "2026-04-19T08:54:16.956520+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
     {
       "name": "Ellie",
-      "week_points": 13,
-      "total_hrs": 8,
+      "week_points": 14,
+      "total_hrs": 9,
       "picks": [
         {
           "player": "Kyle Schwarber",
@@ -46,7 +46,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -57,10 +57,10 @@
           "is_injured": false,
           "draft_pick": 21,
           "proj_hr": null,
-          "hrs": 2,
+          "hrs": 3,
           "multi_hr_game": false,
           "has_3run_or_gs": true,
-          "points": 3,
+          "points": 4,
           "hr_games": [
             {
               "date": "2026-04-14",
@@ -91,9 +91,24 @@
                   "description": "Munetaka Murakami hits a grand slam (6) to center field. Chase Meidroth scores. Luisangel Acu\u00f1a scores. Andrew Benintendi scores."
                 }
               ]
+            },
+            {
+              "date": "2026-04-18",
+              "opponent": "Athletics",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 7,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Munetaka Murakami homers (7) on a fly ball to center field."
+                }
+              ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -125,7 +140,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -178,7 +193,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -201,8 +216,8 @@
     },
     {
       "name": "Cam",
-      "week_points": 7,
-      "total_hrs": 6,
+      "week_points": 8,
+      "total_hrs": 7,
       "picks": [
         {
           "player": "Riley Greene",
@@ -217,7 +232,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -228,10 +243,10 @@
           "is_injured": false,
           "draft_pick": 17,
           "proj_hr": null,
-          "hrs": 1,
+          "hrs": 2,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 1,
+          "points": 2,
           "hr_games": [
             {
               "date": "2026-04-15",
@@ -247,9 +262,24 @@
                   "description": "Kyle Tucker homers (2) on a fly ball to right field."
                 }
               ]
+            },
+            {
+              "date": "2026-04-18",
+              "opponent": "Colorado Rockies",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Kyle Tucker homers (3) on a fly ball to right center field. Shohei Ohtani scores."
+                }
+              ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -265,7 +295,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -318,7 +348,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -365,15 +395,15 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Mason",
-      "week_points": 7,
-      "total_hrs": 6,
+      "week_points": 8,
+      "total_hrs": 7,
       "picks": [
         {
           "player": "Aaron Judge",
@@ -440,7 +470,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -472,7 +502,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -483,12 +513,28 @@
           "is_injured": false,
           "draft_pick": 7,
           "proj_hr": null,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 5,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-18",
+              "opponent": "Chicago White Sox",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 7,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Nick Kurtz homers (2) on a fly ball to right field. Shea Langeliers scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -504,7 +550,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -536,15 +582,15 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Jeff",
-      "week_points": 6,
-      "total_hrs": 4,
+      "week_points": 7,
+      "total_hrs": 5,
       "picks": [
         {
           "player": "Bobby Witt Jr",
@@ -559,7 +605,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -597,7 +643,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -613,7 +659,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -624,12 +670,28 @@
           "is_injured": false,
           "draft_pick": 44,
           "proj_hr": null,
-          "hrs": 0,
+          "hrs": 1,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 5,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-18",
+              "opponent": "Cleveland Guardians",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Gunnar Henderson homers (7) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -667,7 +729,172 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Jeremy",
+      "week_points": 5,
+      "total_hrs": 5,
+      "picks": [
+        {
+          "player": "Matt Olson",
+          "team": "ATL",
+          "team_id": 144,
+          "mlb_id": 621566,
+          "is_injured": false,
+          "draft_pick": 14,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-15",
+              "opponent": "Miami Marlins",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 7,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Matt Olson homers (5) on a fly ball to right field. Drake Baldwin scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Yordan Alvarez",
+          "team": "HOU",
+          "team_id": 117,
+          "mlb_id": 670541,
+          "is_injured": false,
+          "draft_pick": 16,
+          "proj_hr": null,
+          "hrs": 3,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 3,
+          "hr_games": [
+            {
+              "date": "2026-04-15",
+              "opponent": "Colorado Rockies",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Yordan Alvarez homers (7) on a fly ball to right field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-17",
+              "opponent": "St. Louis Cardinals",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Yordan Alvarez homers (8) on a fly ball to right field."
+                }
+              ]
+            },
+            {
+              "date": "2026-04-18",
+              "opponent": "St. Louis Cardinals",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Yordan Alvarez homers (9) on a fly ball to center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Ezequiel Tovar",
+          "team": "COL",
+          "team_id": 115,
+          "mlb_id": 678662,
+          "is_injured": false,
+          "draft_pick": null,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 5,
+          "games_live": 0
+        },
+        {
+          "player": "Lawrence Butler",
+          "team": "ATH",
+          "team_id": 133,
+          "mlb_id": 671732,
+          "is_injured": false,
+          "draft_pick": 79,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-13",
+              "opponent": "Texas Rangers",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Lawrence Butler homers (2) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Jazz Chisholm Jr",
+          "team": "NYY",
+          "team_id": 147,
+          "mlb_id": 665862,
+          "is_injured": false,
+          "draft_pick": 34,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 6,
           "games_live": 0
         }
       ]
@@ -690,7 +917,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -722,7 +949,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -769,7 +996,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -785,7 +1012,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -817,7 +1044,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         }
       ]
@@ -856,7 +1083,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -872,7 +1099,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -888,7 +1115,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -935,7 +1162,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -967,55 +1194,39 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         }
       ]
     },
     {
-      "name": "Jeremy",
+      "name": "Makeda",
       "week_points": 4,
       "total_hrs": 4,
       "picks": [
         {
-          "player": "Matt Olson",
-          "team": "ATL",
-          "team_id": 144,
-          "mlb_id": 621566,
+          "player": "Shohei Ohtani",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 660271,
           "is_injured": false,
-          "draft_pick": 14,
+          "draft_pick": 1,
           "proj_hr": null,
-          "hrs": 1,
+          "hrs": 0,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-15",
-              "opponent": "Miami Marlins",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 7,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Matt Olson homers (5) on a fly ball to right field. Drake Baldwin scores."
-                }
-              ]
-            }
-          ],
+          "points": 0,
+          "hr_games": [],
           "games_checked": 4,
           "games_live": 0
         },
         {
-          "player": "Yordan Alvarez",
-          "team": "HOU",
-          "team_id": 117,
-          "mlb_id": 670541,
+          "player": "James Wood",
+          "team": "WSH",
+          "team_id": 120,
+          "mlb_id": 695578,
           "is_injured": false,
-          "draft_pick": 16,
+          "draft_pick": 38,
           "proj_hr": null,
           "hrs": 2,
           "multi_hr_game": false,
@@ -1023,62 +1234,46 @@
           "points": 2,
           "hr_games": [
             {
-              "date": "2026-04-15",
-              "opponent": "Colorado Rockies",
+              "date": "2026-04-17",
+              "opponent": "San Francisco Giants",
               "home_away": "home",
               "hrs_in_game": 1,
               "game_points": 1,
               "hr_details": [
                 {
-                  "inning": 3,
+                  "inning": 7,
                   "rbi": 1,
                   "is_3run_or_more": false,
-                  "description": "Yordan Alvarez homers (7) on a fly ball to right field."
+                  "description": "James Wood homers (6) on a fly ball to left center field."
                 }
               ]
             },
             {
-              "date": "2026-04-17",
-              "opponent": "St. Louis Cardinals",
+              "date": "2026-04-18",
+              "opponent": "San Francisco Giants",
               "home_away": "home",
               "hrs_in_game": 1,
               "game_points": 1,
               "hr_details": [
                 {
-                  "inning": 3,
+                  "inning": 1,
                   "rbi": 1,
                   "is_3run_or_more": false,
-                  "description": "Yordan Alvarez homers (8) on a fly ball to right field."
+                  "description": "James Wood homers (7) on a fly ball to left center field."
                 }
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
-          "player": "Ezequiel Tovar",
-          "team": "COL",
-          "team_id": 115,
-          "mlb_id": 678662,
+          "player": "Elly De La Cruz",
+          "team": "CIN",
+          "team_id": 113,
+          "mlb_id": 682829,
           "is_injured": false,
-          "draft_pick": null,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Lawrence Butler",
-          "team": "ATH",
-          "team_id": 133,
-          "mlb_id": 671732,
-          "is_injured": false,
-          "draft_pick": 79,
+          "draft_pick": 62,
           "proj_hr": null,
           "hrs": 1,
           "multi_hr_game": false,
@@ -1086,17 +1281,17 @@
           "points": 1,
           "hr_games": [
             {
-              "date": "2026-04-13",
-              "opponent": "Texas Rangers",
+              "date": "2026-04-15",
+              "opponent": "San Francisco Giants",
               "home_away": "home",
               "hrs_in_game": 1,
               "game_points": 1,
               "hr_details": [
                 {
-                  "inning": 8,
+                  "inning": 4,
                   "rbi": 1,
                   "is_3run_or_more": false,
-                  "description": "Lawrence Butler homers (2) on a fly ball to right field."
+                  "description": "Elly De La Cruz homers (6) on a fly ball to center field."
                 }
               ]
             }
@@ -1105,19 +1300,51 @@
           "games_live": 0
         },
         {
-          "player": "Jazz Chisholm Jr",
-          "team": "NYY",
-          "team_id": 147,
-          "mlb_id": 665862,
+          "player": "Oneil Cruz",
+          "team": "PIT",
+          "team_id": 134,
+          "mlb_id": 665833,
           "is_injured": false,
-          "draft_pick": 34,
+          "draft_pick": 71,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-04-17",
+              "opponent": "Tampa Bay Rays",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Oneil Cruz homers (6) on a fly ball to right center field. Konnor Griffin scores."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Zach Neto",
+          "team": "LAA",
+          "team_id": 108,
+          "mlb_id": 687263,
+          "is_injured": false,
+          "draft_pick": 43,
           "proj_hr": null,
           "hrs": 0,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         }
       ]
@@ -1171,7 +1398,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1187,7 +1414,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1219,7 +1446,7 @@
               ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -1235,7 +1462,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1245,141 +1472,6 @@
           "mlb_id": 679529,
           "is_injured": false,
           "draft_pick": 35,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 4,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Makeda",
-      "week_points": 3,
-      "total_hrs": 3,
-      "picks": [
-        {
-          "player": "Shohei Ohtani",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 660271,
-          "is_injured": false,
-          "draft_pick": 1,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 3,
-          "games_live": 0
-        },
-        {
-          "player": "James Wood",
-          "team": "WSH",
-          "team_id": 120,
-          "mlb_id": 695578,
-          "is_injured": false,
-          "draft_pick": 38,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-17",
-              "opponent": "San Francisco Giants",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 7,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "James Wood homers (6) on a fly ball to left center field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Elly De La Cruz",
-          "team": "CIN",
-          "team_id": 113,
-          "mlb_id": 682829,
-          "is_injured": false,
-          "draft_pick": 62,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-15",
-              "opponent": "San Francisco Giants",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 4,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Elly De La Cruz homers (6) on a fly ball to center field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 4,
-          "games_live": 0
-        },
-        {
-          "player": "Oneil Cruz",
-          "team": "PIT",
-          "team_id": 134,
-          "mlb_id": 665833,
-          "is_injured": false,
-          "draft_pick": 71,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-04-17",
-              "opponent": "Tampa Bay Rays",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 6,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Oneil Cruz homers (6) on a fly ball to right center field. Konnor Griffin scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Zach Neto",
-          "team": "LAA",
-          "team_id": 108,
-          "mlb_id": 687263,
-          "is_injured": false,
-          "draft_pick": 43,
           "proj_hr": null,
           "hrs": 0,
           "multi_hr_game": false,
