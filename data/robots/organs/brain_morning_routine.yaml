@@ -1,0 +1,166 @@
+# Composed skill: the resident's morning routine. Memory-driven — Goddard
+# reads the resident's stored preferences and schedule before acting, so
+# the routine bends to her life instead of imposing a template.
+#
+# Lead organ: brain_memory (routines are only as good as the memory they
+# consult). Region lives with the lead organ per composed-skill convention.
+#
+# Cross-lane note: composes references brain_medication_reminder, which
+# Lane C is authoring in parallel. The id is expected to resolve after
+# both manifests merge; Goddard will verify during review.
+
+id: brain_morning_routine
+name: Morning Routine
+kind: composed
+region: brain
+group: sequence_reading
+
+description: |
+  Gentle, memory-driven wake-up sequence. Fires at the caregiver-set wake
+  window stored in brain_memory. Goddard reads the resident's morning
+  preferences (preferred greeting name, wake-window tolerance, whether
+  she likes quiet mornings or a bit of conversation, any morning
+  medication on schedule), then greets her at low volume, reminds her
+  about medication if one is due, asks how she slept, and logs her
+  response for the caregiver's morning review.
+  TRIGGER at the start of the caregiver-set wake window when the
+  scheduler enqueues a morning_routine intent and no higher-priority
+  intent is on the queue. Goddard never wakes a resident earlier than
+  the window; she wakes on her own clock, Goddard catches up to her.
+  Elderly-care example: at 7:30 on a Tuesday Goddard speaks from the
+  bedside panel, low and unhurried: "Good morning, Mrs. Alvarez. It is
+  about time for your morning pill — I will bring it over when you are
+  ready. How did you sleep?" She answers "fine, a little stiff." Goddard
+  logs "slept: fine; note: stiffness" to brain_memory for the caregiver
+  dashboard and stands down until she calls for something.
+  Voice: warm, patient home-aide tone. Never "INITIATING MORNING
+  PROTOCOL." Never cheerful-alarm-clock energy. The goal is the
+  experience of waking up with a kind person already in the room who is
+  not in a hurry.
+  SKIP if the resident has already initiated her morning by speaking
+  first (she said "good morning" before the window fired) — skip the
+  greeting and jump straight to the medication check, because she has
+  self-greeted and does not need a second hello.
+  SKIP when voice_interruptible is false or skin_speaker is offline —
+  we will not fire a routine we cannot gracefully stop.
+
+composes:
+  - skill: brain_memory
+    role: read_morning_preferences
+    with:
+      query: {key: morning_preferences, fields: [preferred_name, greeting_style, wake_tolerance_min, morning_medication_scheduled]}
+  - skill: skin_speaker
+    role: gentle_greeting
+    with:
+      utterance: "Good morning, Mrs. [name]. I hope you rested well."
+      volume_pct: 40
+      priority: normal
+  - skill: brain_medication_reminder
+    role: morning_medication
+    only_if: morning_medication_scheduled == true
+    # Cross-lane dependency: brain_medication_reminder is authored by
+    # Lane C in parallel. Id expected to resolve after both merge.
+  - skill: skin_speaker
+    role: check_in
+    with:
+      utterance: "How did you sleep?"
+      volume_pct: 45
+      priority: normal
+  - skill: skin_mic
+    role: await_response
+    with:
+      wake_word_enabled: false
+      timeout_s: 15
+  - skill: brain_memory
+    role: log_morning_checkin
+    with:
+      update: {key: daily_log, field: morning_checkin, value: captured_response}
+      caregiver_auth: false
+
+preconditions:
+  - brain_compute_online: true
+  - storage_writable: true
+  - system_powered: true
+  - sbc_boot_complete: true
+  - skin_speaker_online: true
+  - skin_mic_online: true
+  - voice_interruptible: true
+  - scheduler_window_active: morning
+
+fallback:
+  # The whole routine must retreat with dignity on any soft "no." Silence
+  # is not consent to keep going — silence means "she is not ready yet."
+  - trigger: resident_response contains "not yet" OR resident_response contains "leave me alone" OR resident_response contains "later"
+    recovery:
+      - skill: skin_speaker
+        role: retreat_gently
+        with:
+          utterance: "Of course. I will check back in a little while."
+          volume_pct: 40
+          priority: normal
+      - skill: brain_memory
+        role: log_retreat
+        with:
+          update: {key: daily_log, field: morning_retreat_reason, value: resident_declined}
+      - reschedule:
+          intent: morning_routine
+          delay_min: 15
+      - abort: true
+  - trigger: response_timeout_reached AND no_utterance_captured
+    recovery:
+      # She may be still asleep, or in the bathroom, or simply not in the
+      # mood to chat. We do not interrogate her. We log the quiet morning
+      # and hold; brain_check_in will catch anything genuinely concerning.
+      - skill: brain_memory
+        role: log_quiet_morning
+        with:
+          update: {key: daily_log, field: morning_checkin, value: no_response_captured}
+      - abort: true
+  - trigger: skin_speaker_offline OR skin_mic_offline
+    recovery:
+      # Cannot run a conversational routine without ears and a mouth.
+      # We defer rather than escalate — this is not a safety event.
+      - log: morning_routine_deferred_hardware
+      - enqueue:
+          intent: caregiver_diagnostic_check
+          source: sensor
+          priority_hint: scheduled
+      - abort: true
+  - trigger: brain_medication_reminder_failed
+    recovery:
+      # Medication sub-skill failing is a caregiver-tier event, not a
+      # resident-tier one. We finish the check-in softly and escalate.
+      - skill: skin_speaker
+        role: soft_handoff
+        with:
+          utterance: "I am going to ask your caregiver to double-check
+            your morning medicine today. Nothing for you to worry about."
+          volume_pct: 45
+          priority: normal
+      - enqueue:
+          intent: caregiver_medication_review
+          source: sensor
+          priority_hint: safety
+
+voice_lines:
+  # Reviewable copy — every utterance in this routine should sound like
+  # a person saying it, not a machine reading it. Keep them here for
+  # caregiver tuning.
+  greeting: "Good morning, Mrs. [name]. I hope you rested well."
+  check_in: "How did you sleep?"
+  retreat: "Of course. I will check back in a little while."
+  soft_handoff: "I am going to ask your caregiver to double-check your
+    morning medicine today. Nothing for you to worry about."
+
+safety:
+  - voice_interruptible: true
+  - volume_pct never exceeds 55 during morning routine (default 40)
+  - skin_speaker 80ms ramp honored on every utterance (no startle)
+  - no chain step advances while resident is actively speaking
+  - 'resident saying "not yet" or staying silent always retreats; never escalates to a second prompt in the same window'
+  - medication reminder only fires if brain_memory confirms one is scheduled today
+
+owned_by: jarvis
+canonical_example: baymax    # patient, low-volume companion; the morning
+                             # routine is Baymax-tier care, not Jarvis-tier
+                             # operational dispatch

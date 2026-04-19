@@ -1,0 +1,228 @@
+# Composed skill: a soft welfare check when the home has been quiet longer
+# than usual. Memory-driven — "longer than usual" is a resident-specific
+# number set by the caregiver, not a global constant. Some residents nap
+# more than others; a threshold that reassures one resident would
+# interrogate another.
+#
+# Lead organ: brain_memory. The first step of every check-in is asking
+# memory what quiet means for this person, and where she was last seen.
+# Only then does Goddard consider whether to approach.
+#
+# This is explicitly NOT leg_fall_response. Fall response is a detected
+# safety event arriving on the intent queue at priority: safety. Check-in
+# is the slower, "I haven't heard from you in a while" energy — a
+# companion noticing the quiet, not a rescue protocol firing.
+#
+# Cross-lane note: no cross-lane dependencies. leg_walk and leg_fall_response
+# both exist (Lane C) and are referenced only by id.
+
+id: brain_check_in
+name: Welfare Check-in
+kind: composed
+region: brain
+group: sequence_reading
+
+description: |
+  Soft welfare check when ambient quiet exceeds the resident's personalized
+  threshold. Goddard reads from brain_memory what "longer than usual" means
+  for this resident (some folks nap two hours, some forty minutes — the
+  caregiver sets it) and the resident's last known location. If the quiet
+  threshold is exceeded, Goddard walks cautiously to a spot outside the
+  80 cm personal-space bubble, speaks at moderate volume, and waits. If
+  the resident answers normally, Goddard apologizes for bothering her and
+  retreats. If there is no response, Goddard does NOT approach further and
+  does NOT touch — she enqueues a safety-priority caregiver alert on
+  brain_intent_queue and holds position.
+  TRIGGER when the ambient quiet timer (tracked by skin_mic silence plus
+  skin_sensor_array no-motion) exceeds the resident's personalized
+  quiet_threshold_min stored in brain_memory, and no higher-priority intent
+  is on the queue. This is NOT a fall_detection_event — that path is
+  leg_fall_response.
+  Elderly-care example: it is 2pm and Mrs. Alvarez has been still and
+  quiet for 95 minutes — her stored threshold is 90. Goddard walks at
+  cautious speed to the living room doorway, stops a full meter from her
+  chair, and speaks softly: "Hi Mrs. Alvarez — it is just me. I have
+  not heard from you in a bit. Is everything all right?" She answers
+  "oh I was just reading, thank you." Goddard says "sorry for bothering
+  you — I will let you be," logs the check-in, and retreats. No alert
+  fires; no one is woken up for a quiet afternoon.
+  Voice: "I haven't heard from you in a while" energy. Never "ACTIVATE
+  RESPONSE PROTOCOL." The whole tone should read like a neighbor poking
+  their head in, not a medical alarm.
+  SKIP if a fall_detection_event is in the intent queue — leg_fall_response
+  owns that path and should already be firing.
+  SKIP if the resident has an active do-not-disturb flag in brain_memory
+  (she is napping intentionally, watching a movie, on a phone call).
+  SKIP if voice_interruptible is false or skin_speaker or skin_mic are
+  offline — the check-in must be stoppable and two-way.
+
+composes:
+  - skill: brain_memory
+    role: read_quiet_threshold_and_last_location
+    with:
+      query:
+        key: welfare_check_profile
+        fields:
+          - preferred_name
+          - quiet_threshold_min
+          - last_known_location
+          - do_not_disturb_active
+          - nap_pattern
+  - skill: brain_memory
+    role: check_do_not_disturb
+    # Abort path handled in fallback: dnd_active short-circuits the chain.
+    only_if: do_not_disturb_active == false
+  - skill: leg_walk
+    role: approach_last_known_location
+    only_if: do_not_disturb_active == false AND quiet_threshold_exceeded == true
+    with:
+      speed_preset: cautious
+      # Stop outside the 80 cm personal-space bubble. Do not cross it
+      # during a welfare check — this is not an emergency approach.
+      stop_distance_cm: 100
+  - skill: skin_speaker
+    role: soft_checkin_from_doorway
+    with:
+      utterance: "Hi Mrs. [name] — it is just me. I have not heard from
+        you in a bit. Is everything all right?"
+      volume_pct: 55
+      priority: normal
+  - skill: skin_mic
+    role: await_response
+    with:
+      wake_word_enabled: false
+      timeout_s: 12
+  - skill: skin_speaker
+    role: apologize_and_retreat
+    only_if: resident_responded_normally == true
+    with:
+      utterance: "Sorry for bothering you — I will let you be."
+      volume_pct: 50
+      priority: normal
+  - skill: brain_memory
+    role: log_checkin_outcome
+    with:
+      update:
+        key: daily_log
+        field: welfare_checkin
+        value: captured_outcome
+      caregiver_auth: false
+
+preconditions:
+  - brain_compute_online: true
+  - storage_writable: true
+  - system_powered: true
+  - sbc_boot_complete: true
+  - skin_speaker_online: true
+  - skin_mic_online: true
+  - voice_interruptible: true
+  # leg_walk preconditions apply transitively via the composed chain;
+  # core_safety_monitor evaluates them before leg_walk fires.
+
+fallback:
+  - trigger: do_not_disturb_active == true
+    # Resident has flagged she does not want to be checked on. Respect it.
+    # Log the quiet period anyway so the caregiver can review later.
+    recovery:
+      - skill: brain_memory
+        role: log_dnd_skip
+        with:
+          update:
+            key: daily_log
+            field: welfare_checkin
+            value: skipped_do_not_disturb
+      - abort: true
+  - trigger: resident_response contains "I am fine" OR resident_response contains "im fine" OR resident_response contains "I'm fine" OR resident_response contains "just reading" OR resident_response contains "just resting" OR resident_response contains "leave me alone" OR resident_response contains "not now"
+    # A normal answer. Apologize, log, retreat. No alert.
+    recovery:
+      - skill: skin_speaker
+        role: apologize_and_retreat
+        with:
+          utterance: "Sorry for bothering you — I will let you be."
+          volume_pct: 50
+          priority: normal
+      - skill: brain_memory
+        role: log_normal_checkin
+        with:
+          update:
+            key: daily_log
+            field: welfare_checkin
+            value: resident_ok
+      - abort: true
+  - trigger: response_timeout_reached AND no_utterance_captured
+    # Silence after a welfare check is the signal the skill exists for.
+    # Do NOT approach further. Do NOT touch. Hold position outside the
+    # 80 cm bubble, file a safety-priority caregiver alert, and wait.
+    recovery:
+      - skill: skin_speaker
+        role: announce_holding_and_calling
+        with:
+          utterance: "I did not hear you answer, so I am going to let
+            your caregiver know. I am right here if you need me."
+          volume_pct: 60
+          priority: alert
+      - skill: brain_intent_queue
+        role: enqueue_caregiver_welfare_alert
+        with:
+          priority_hint: safety
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: welfare_checkin_no_response
+            resident_state: unknown_quiet_exceeded
+            robot_location: holding_outside_personal_space
+      - skill: brain_memory
+        role: log_no_response_alert
+        with:
+          update:
+            key: daily_log
+            field: welfare_checkin
+            value: no_response_alert_filed
+      - hold: station_outside_personal_space_bubble
+        until: caregiver_arrival OR resident_responds
+  - trigger: skin_speaker_offline OR skin_mic_offline
+    # Cannot run a two-way check without voice in and voice out. Defer
+    # with a diagnostic rather than approaching silently — a silent
+    # approach is the scary version of this skill.
+    recovery:
+      - log: welfare_checkin_deferred_hardware
+      - enqueue:
+          intent: caregiver_diagnostic_check
+          source: sensor
+          priority_hint: scheduled
+      - abort: true
+  - trigger: fall_detection_event_active
+    # A real fall outranks a welfare check. Yield to leg_fall_response.
+    recovery:
+      - log: welfare_checkin_yielded_to_fall_response
+      - abort: true
+
+voice_lines:
+  # Reviewable copy — read aloud through skin_speaker. Tone target:
+  # a neighbor poking their head in, not a medical alarm.
+  soft_checkin: "Hi Mrs. [name] — it is just me. I have not heard from
+    you in a bit. Is everything all right?"
+  apologize_and_retreat: "Sorry for bothering you — I will let you be."
+  no_response_alert: "I did not hear you answer, so I am going to let
+    your caregiver know. I am right here if you need me."
+
+safety:
+  - voice_interruptible: true
+  - approach_speed_preset: cautious  # routes through leg_walk's speed caps
+  - never_cross_personal_space_bubble_cm: 80  # welfare-check posture, not fall-response
+  - never_touch_resident: true
+  - never_lift_resident: true
+  - volume_pct never exceeds 65 during a welfare check
+  - skin_speaker 80ms ramp honored so the first word does not startle
+  - do_not_disturb flag in brain_memory is always honored
+  - silence triggers a caregiver alert, not a closer approach
+  - this skill yields to leg_fall_response whenever a fall event is active
+
+owned_by: jarvis
+# canonical_example rationale: Baymax. The scene here is a soft,
+# conversational "are you all right?" from across the room, not a
+# tactical dispatch. Baymax's bedside manner is the right reference —
+# patient, low-volume, always offering the resident an easy way to wave
+# him off. Jarvis would be the wrong choice: Jarvis narrates operations,
+# Baymax checks on people.
+canonical_example: baymax

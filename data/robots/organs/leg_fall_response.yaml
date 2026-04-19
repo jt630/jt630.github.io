@@ -1,0 +1,228 @@
+# Composed skill: fall detection triggers an approach-announce-stay-report
+# sequence. The most safety-critical composed skill in the library.
+#
+# Lead organ choice: leg_walk is lead (not leg_wheel). Justification: a
+# fall event frequently happens near walkers, canes, rugs, thresholds,
+# and furniture displaced by the fall itself. leg_walk handles uneven
+# surfaces and thresholds that leg_wheel rejects outright (bump_height_mm
+# <= 5, no carpet). A wheeled approach that auto-transitions to walk
+# mid-route wastes time exactly when we cannot afford it, and leg_wheel's
+# preconditions (floor_type: hard_flat, no rugs) are too brittle for a
+# household floor that may now include a person, a cane, and a tipped
+# chair. leg_walk also cites fall_approach_speed_cms: 8 directly in its
+# safety block — we use that value as-authored.
+#
+# Tier inheritance: leg_walk is tier-1 embedded, skin_speaker tier-1,
+# brain_intent_queue tier-1, hand_paw_grip tier-3 stored — the chain is
+# tier 3. But paw_grip is only used if the resident asks for a grip;
+# the default approach-announce-stay path is tier 1.
+#
+# owned_by decision: jarvis. See manifest description for reasoning.
+
+id: leg_fall_response
+name: Fall Response — Approach, Announce, Stay, Report
+kind: composed
+region: legs
+group: movement
+
+description: |
+  The human-side response to a detected fall. Goddard approaches the
+  resident cautiously, announces herself before she is close enough to
+  startle, holds position nearby, offers a stabilizing grip if asked,
+  and enqueues a safety-priority alert for the caregiver. She does not
+  lift. She does not move the resident. Her role is approach, announce,
+  stay, and report — the human responder does the lifting.
+  TRIGGER on a fall_detection_event arriving in brain_intent_queue with
+  priority: safety. The event is reflex-injected per brain_intent_queue's
+  existing priority model, so the planner sees it at the front of the
+  queue on the next tick.
+  Elderly-care framing: a fall is frightening enough on its own. The
+  worst thing a robot can do is arrive fast, arrive silently, and loom.
+  Goddard approaches at leg_walk's fall_approach_speed_cms: 8 — cited
+  from leg_walk.yaml, not invented — announces herself through the
+  speaker at moderate volume before crossing the 80 cm threshold, and
+  then stays. Voice-interruptible the whole way. If the resident says
+  "I am fine, go away," Goddard halts the approach and still files
+  the caregiver alert, because the alert is not negotiable.
+  SKIP attempting to lift, roll, drag, or otherwise move the resident.
+  SKIP any "rescue" framing. SKIP rushing — there is no version of
+  this skill where speed matters more than calm. Human responders
+  handle the physical lift; Goddard's job is to be present and to
+  have already told someone.
+
+  owned_by reasoning: jarvis, not goddard. The triggering event
+  (fall_detection_event) is reflex-injected into the intent queue with
+  priority safety per brain_intent_queue.yaml, so planner mediation at
+  10 Hz is fast enough — the reflex loop has already flagged the event
+  before the planner draws it. Per goddard-core-functions.md, the reflex
+  loop owns movement, power, and sensing; this skill is orchestration
+  (approach + announce + stay + report), which is planner territory.
+  Making it reflex-owned would bypass planner mediation the skill
+  actually wants — checking memory for the resident's name, for
+  instance, so the first words are "Margaret, I am right here," not
+  a generic announcement.
+
+composes:
+  - skill: leg_walk
+    role: approach_resident
+    with:
+      speed_preset: slow_approach
+      # fall_approach_speed_cms: 8 is cited from leg_walk.yaml safety
+      # block; the slow_approach preset routes through that cap.
+  - skill: skin_speaker
+    role: announce_presence_at_distance
+    with:
+      # Speak before closing to within 80 cm. Do not startle.
+      utterance: "I am on my way to you. I can see you — stay still,
+        I will be right there. Help is already coming."
+      volume_pct: 60
+      priority: alert
+  - skill: brain_intent_queue
+    role: enqueue_caregiver_alert
+    with:
+      priority_hint: safety
+      source: sensor
+      raw_intent:
+        type: caregiver_alert
+        reason: fall_detected
+        resident_state: fallen
+        robot_location: en_route_to_resident
+  - skill: skin_speaker
+    role: announce_arrival
+    with:
+      utterance: "I am here now. I am not going to try to lift you.
+        Help is on the way. If you would like something to hold onto,
+        just ask me and I will offer you my paw."
+      volume_pct: 55
+      priority: normal
+  - skill: hand_paw_grip
+    role: offer_stabilizing_grip
+    # Only fires if the resident asks for a grip. The paw is offered,
+    # not placed — the resident initiates contact.
+    only_if: resident_requested_grip
+    with:
+      motion_profile: gentle
+      grip_force_n: 5
+  - skill: brain_intent_queue
+    role: hold_station_and_report
+    with:
+      priority_hint: safety
+      source: sensor
+      raw_intent:
+        type: caregiver_status
+        reason: standing_by_with_resident
+
+preconditions:
+  # Union of lead (leg_walk) preconditions plus coordination checks for
+  # announcement, queue, and optional grip. voice_interruptible is
+  # non-negotiable at every step per goddard-core-functions.md.
+  - battery_pct >= 10
+  - obstacle_clear: true
+  - wet_floor_index <= 0.2
+  - floor_hazard_flag: false
+  - thigh_joint_temp_c < 65
+  - system_powered: true
+  - brain_compute_online: true
+  - voice_interruptible: true
+
+fallback:
+  # Fallbacks are written as spoken sentences — they will be read aloud
+  # through skin_speaker. The robot never forces a path, never lifts,
+  # never leaves the resident without knowing help is coming.
+  - trigger: obstacle_clear == false
+    # The resident fell behind a cart, a cane, or a tipped chair.
+    # Hold position, announce the situation, escalate the alert.
+    recovery:
+      - skill: skin_speaker
+        role: announce_blocked_path
+        with:
+          utterance: "I can see you but I cannot reach you safely —
+            there is something in the way. Help is on the way. Stay
+            as still as you can and try to breathe slowly. I am right
+            here with you."
+          volume_pct: 65
+          priority: alert
+      - skill: brain_intent_queue
+        role: escalate_alert
+        with:
+          priority_hint: safety
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: fall_detected_path_blocked
+            urgency: urgent
+            robot_location: holding_position_path_blocked
+      - hold: station_at_nearest_safe_pose
+        until: caregiver_arrival OR obstacle_clear == true
+  - trigger: wet_floor_index > 0.2
+    # The resident fell in a wet area (bathroom, kitchen spill).
+    # leg_walk will not cross; Goddard holds at the nearest dry edge
+    # and speaks from there.
+    recovery:
+      - skill: skin_speaker
+        role: announce_wet_floor
+        with:
+          utterance: "The floor between us is wet and I cannot cross
+            it safely. I am staying as close as I can. Help is on the
+            way. Please do not try to stand up on your own — I will
+            stay right here and talk with you."
+          volume_pct: 65
+          priority: alert
+      - skill: brain_intent_queue
+        role: escalate_alert
+        with:
+          priority_hint: safety
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: fall_detected_wet_floor_block
+            urgency: urgent
+      - hold: station_at_nearest_dry_pose
+        until: caregiver_arrival
+  - trigger: balance_sub_loop_unhealthy
+    # leg_walk's 100 Hz balance sub-loop reports healthy=false.
+    # core_safety_monitor treats this as a precondition failure for
+    # leg_walk per SCHEMA.md § Sub-loops. Goddard cannot approach;
+    # she reports and stays in place.
+    recovery:
+      - skill: skin_speaker
+        role: announce_cannot_approach
+        with:
+          utterance: "I am having trouble staying steady on my feet
+            and I do not want to fall near you. I have called your
+            caregiver already — help is coming. I am right here."
+          volume_pct: 65
+          priority: alert
+      - skill: brain_intent_queue
+        role: escalate_alert
+        with:
+          priority_hint: safety
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: fall_detected_robot_balance_fault
+            urgency: urgent
+
+safety:
+  # Elderly-care rules from goddard-core-functions.md — non-negotiable:
+  # no fast motion near humans, voice-interruptible always,
+  # obstacle-aware for walkers and canes, hard stop via core_safety_monitor.
+  - voice_interruptible: true
+  - fall_approach_speed_cms: 8   # cited from leg_walk.yaml — not invented here
+  - speed_cap_cms: 15 when human_proximity_cm <= 120
+  - announce_before_closing_to_cm: 80   # speak before the resident can be startled
+  - never_attempt_lift: true            # human responders do the lifting
+  - never_move_resident: true
+  - obstacle_clear required; on failure, hold position and escalate alert
+  - mobility_aid_detected biases path planning — walkers and canes are first-class obstacles
+  - hard_stop_available: core_safety_monitor  # panic button, unrecoverable flag
+  - caregiver_alert is non-negotiable — filed even if the resident waves Goddard off
+  - voice_interruptible at every step; resident can halt approach, halt speech,
+    or decline the paw grip without any impact on the alert already filed
+
+owned_by: jarvis
+# canonical_example: baymax — the scene is Baymax's, not Goddard's: approach
+# a fallen person warmly, announce presence, offer a steadying contact, stay.
+# Picked over goddard/r2d2 because the voice-first, soft-contact, never-lift
+# posture is Baymax's signature and it frames the skill correctly for reviewers.
+canonical_example: baymax

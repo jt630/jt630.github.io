@@ -1,0 +1,91 @@
+id: arm_retrieve_dropped
+name: Retrieve Dropped Item (cautious floor approach)
+region: arm
+group: manipulation
+kind: composed
+
+description: |
+  Specialized retrieval for an item that has just fallen to the floor near a
+  seated or standing resident. The approach is deliberately unhurried — an
+  older adult may already be leaning down to pick it up themselves, and a
+  fast-moving robot at ankle level is exactly the wrong thing to introduce.
+  TRIGGER when the sensor array or the resident reports a small item on the
+  floor within the room: dropped pills, a pen, keys, a hearing aid, a
+  medication cup.
+  Elderly-care example: a resident tips their pill cup and two tablets roll
+  onto the rug. Goddard approaches at the slow "fall approach" pace so as
+  not to startle, verbally notes what it's doing ("I see the pills — I'll
+  pick them up for you"), uses the pincer for the tablets and the paw for
+  the cup, and hands both back with a steady voice.
+  SKIP if the item is near a person who has themselves fallen — that's a
+  fall-response scenario, not a retrieval one, and goes through the fall
+  response pathway. SKIP for sharp items (broken glass), liquids, or any
+  item flagged by the safety monitor as a floor hazard.
+
+composes:
+  - skill: skin_sensor_array
+    role: locate_item_on_floor
+  - skill: leg_walk
+    role: cautious_approach
+    with: {speed_preset: slow_approach}
+  - skill: arm_manipulator
+    role: lower_to_floor_reach
+    with: {motion_profile: gentle}
+  - skill: hand_pincer
+    role: pick_small_rigid_item
+    with: {grip_force_n: 8}
+  - skill: hand_paw_grip
+    role: pick_soft_or_container_item
+    with: {motion_profile: gentle, grip_force_n: 4}
+  - skill: leg_walk
+    role: return_to_resident
+    with: {speed_preset: cautious}
+  - skill: skin_speaker
+    role: narrate_and_handoff
+    with: {priority: normal, volume_pct: 60}
+
+preconditions:
+  - battery_pct >= 15
+  - obstacle_clear: true
+  - voice_interruptible: true
+  - floor_hazard_flag: false         # no spills, no broken glass, no liquids
+  - path_clear_to_item: true
+  - "fall_approach_speed_cms: 8"     # reuse leg_walk's cautious cap — do not exceed
+  - "speed_cap_cms: 15 when human_within_cm <= 120"
+  - item_on_floor_confirmed: true    # sensor or resident report
+  - item_is_not_in_resident_hand: true
+
+fallback:
+  - when: resident_reaching_for_item
+    action: pause_and_offer
+    utterance: "I see you're getting it — would you like me to pick it up, or would you rather do it yourself?"
+    notes: |
+      If the resident is already bending toward the item, Goddard stops at a
+      respectful distance and asks first. Autonomy matters more than speed.
+  - when: floor_hazard_detected
+    action: decline_and_alert
+    utterance: "There's something on the floor I shouldn't touch safely. I'll let your caregiver know and stay nearby."
+  - when: grasp_failed
+    action: retract_and_narrate
+    notes: |
+      If the pincer or paw returns grasped=false after two attempts, the arm
+      lifts clear of the floor to a safe neutral pose — never abandoned at a
+      reach. Goddard speaks: "I couldn't get a good hold on that one. I'll
+      leave it where it is and let someone know." Caregiver is alerted.
+  - when: item_is_medication_and_count_wrong
+    action: retrieve_what_is_visible_and_flag
+    utterance: "I picked up what I could see. Please double-check the count before you take them — I'll note this for your caregiver."
+
+composes_with:
+  - arm_fetch_object
+  - arm_hand_from_shelf
+
+safety:
+  - voice_interruptible: true
+  - approach speed never exceeds leg_walk's fall_approach_speed_cms (8 cm/s) in this mode
+  - pincer is the default for small rigid items; paw grip whenever contact with a person's hand is likely at handoff
+  - handoff is always at a full stop with the arm at resident reach height — never drop items into a lap
+  - medication items flagged to caregiver log automatically for count verification
+
+owned_by: jarvis
+canonical_example: baymax         # patient, low, quiet — a healthcare companion at floor level

@@ -1,0 +1,147 @@
+# Composed skill: resident spills something, Goddard approaches cautiously
+# and uses the embedded vacuum to clean it up, depositing debris in the
+# sealed waste bay. Lead organ is skin_vacuum, so the manifest lives in
+# the skin region per SCHEMA.md § Composed skills.
+#
+# Tier inheritance: skin_vacuum is tier-1 embedded and guts_waste_bay is
+# tier-1 internal, so the chain is tier 1 — always ready.
+
+id: skin_spill_cleanup
+name: Spill Cleanup
+kind: composed
+region: skin
+group: gadgets
+
+description: |
+  Approaches a small household spill cautiously, extends the chassis vacuum,
+  collects the debris, and deposits it in the sealed waste bay. The lead
+  organ is skin_vacuum and every intake rule it enforces still applies —
+  nothing larger than 5 mm, nothing hot, nothing sharp. Those cases route
+  to a verbal fallback, not a forced pickup.
+  TRIGGER when the resident spills something small and dry or small and
+  wet that is safe for the embedded vacuum — dropped cereal, a splash of
+  water, a few crumbs on the kitchen floor, a scatter of dry pills (which
+  the caregiver will re-dose; Goddard recovers the floor, not the dose).
+  Goddard approaches slowly, announces herself, asks if the resident
+  would like help, then cleans once permission is given or the resident
+  has stepped back.
+  Elderly-care framing: a spill on the floor is a trip hazard before it
+  is anything else. The priority is removing it without startling the
+  resident and without trying to pick up something the vacuum cannot
+  safely handle. A broken mug is a caregiver job, not a Goddard job.
+  SKIP for anything larger than 5 mm diameter (broken glass, ceramic
+  shards, large food pieces), anything hot (spilled tea, hot oil),
+  anything sharp, any biological fluid beyond residential care standards,
+  and any spill on stairs. Those cases route to the verbal caregiver
+  fallback below. SKIP also if the waste bay is at or above 90 percent
+  capacity — Goddard refuses intake and announces the bay is full.
+
+composes:
+  - skill: leg_walk
+    role: approach_spill
+    with:
+      speed_preset: cautious
+  - skill: skin_speaker
+    role: announce_approach
+    with:
+      utterance: "I noticed a spill. Let me tidy it up for you — please
+        step back a little so I can reach it."
+      priority: normal
+  - skill: skin_vacuum
+    role: collect_debris
+    with:
+      mode: cleanup
+      duration_s: 12
+      suction_pct: 70
+  - skill: guts_waste_bay
+    role: deposit_debris
+    with:
+      intake_trigger: true
+  - skill: skin_speaker
+    role: announce_complete
+    with:
+      utterance: "All tidied up. The floor is clear."
+      priority: normal
+
+preconditions:
+  # Union of lead sub-skill preconditions plus coordination checks.
+  - battery_pct >= 10
+  - obstacle_clear: true
+  - wet_floor_index <= 0.2
+  - floor_hazard_flag: false
+  - filter_clean: true
+  - specimen_bay_capacity_ml > 0
+  - waste_bay_fill_pct < 90
+  - voice_interruptible: true
+
+fallback:
+  # Fallbacks are written as spoken sentences — they will be read aloud
+  # through skin_speaker. Goddard never forces a pickup and never leaves
+  # the resident unsure what is happening.
+  - trigger: "object_size_mm > 5 detected at nozzle"
+    recovery:
+      - skill: skin_speaker
+        role: announce_oversize
+        with:
+          utterance: "That piece is a little too big for me to handle
+            safely. Let me get a caregiver to clean this one up. Please
+            be careful where you step until they arrive."
+          priority: alert
+      - log: oversize_intake_refused
+  - trigger: "spill_temperature_c > 45"
+    recovery:
+      - skill: skin_speaker
+        role: announce_hot_spill
+        with:
+          utterance: "This spill is still hot — I am not going to pick
+            it up until it cools. Let me get a caregiver to help. Please
+            take a step back and give it a minute."
+          priority: alert
+      - log: hot_spill_refused
+  - trigger: sharp_object_detected
+    recovery:
+      - skill: skin_speaker
+        role: announce_sharp
+        with:
+          utterance: "I can see something sharp in this spill, so I am
+            not going to sweep it. Let me get a caregiver. Please stay
+            where you are — I do not want you stepping on it."
+          priority: alert
+      - log: sharp_object_refused
+  - trigger: waste_bay_fill_pct >= 90
+    recovery:
+      - skill: skin_speaker
+        role: announce_bay_full
+        with:
+          utterance: "My waste bay is full, so I cannot tidy this up
+            right now. I am going to let your caregiver know so they
+            can empty me and we can try again. Please be careful where
+            you step."
+          priority: alert
+      - log: waste_bay_full_refused
+  - trigger: filter_clean == false
+    recovery:
+      - skill: skin_speaker
+        role: announce_filter
+        with:
+          utterance: "My vacuum filter needs a quick clean before I can
+            sweep this up. I will let your caregiver know. Please take
+            care near the spill in the meantime."
+          priority: alert
+      - log: filter_blocked_refused
+
+safety:
+  # Restated elderly-care rules (non-negotiable, per goddard-core-functions.md):
+  # voice-interruptible at every step, speed caps for near-human motion,
+  # and the lead organ's hot/size/sharp rejection rules remain dominant.
+  - voice_interruptible: true
+  - speed_cap_cms: 15 when human_proximity_cm <= 120
+  - reject intake if object_size_mm > 5 detected at nozzle
+  - reject intake if spill_temperature_c > 45
+  - reject intake if sharp_object_detected
+  - obstacle_clear required throughout approach (walkers and canes count)
+  - waste_bay_fill_pct < 90 enforced at start; abort and announce if reached mid-chain
+  - safety monitor cannot be bypassed; preconditions re-evaluated at each 10 Hz tick
+
+owned_by: jarvis  # planner-mediated: tidying is not lifecycle-critical movement
+canonical_example: walle  # self-contained cleanup and waste-bay pairing matches Wall-E's core loop

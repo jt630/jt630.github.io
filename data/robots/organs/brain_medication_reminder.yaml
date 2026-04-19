@@ -1,0 +1,237 @@
+# Composed skill: scheduled medication reminder. Lead organ is brain_memory
+# (the schedule source of truth), so this manifest lives in the brain region
+# per SCHEMA.md § Composed skills.
+#
+# Tier inheritance: brain_memory is tier-1 resident, brain_intent_queue
+# tier-1, skin_speaker tier-1. Whole chain is tier 1 — always ready.
+#
+# owned_by: jarvis. Reminders are orchestration — reading memory, enqueuing
+# an intent, speaking, waiting, logging. Planner-mediated 10 Hz latency is
+# fine; per goddard-core-functions.md the reflex loop is reserved for
+# movement, power, and sensing.
+
+id: brain_medication_reminder
+name: Medication Reminder
+kind: composed
+region: brain
+group: sequence_reading
+
+description: |
+  Scheduled, voice-first medication reminder. At the caregiver-configured
+  time Goddard reads the resident's medication schedule from brain_memory,
+  enqueues a scheduled-priority intent, speaks the reminder at a patient,
+  normal volume, waits for a spoken acknowledgment, and logs the
+  acknowledgment as a read-adjacent timestamp back to brain_memory. No
+  silent writes to the schedule itself — schedule changes are caregiver-
+  gated per brain_memory's caregiver_auth rule.
+  TRIGGER when the scheduler enqueues a medication_reminder intent at a
+  caregiver-configured dose time and no higher-priority intent is in the
+  queue. The intent is "scheduled" tier, not "safety" — safety tier is
+  reserved for acute events like fall_detection_event. A missed dose is
+  serious, but the proper escalation path is re-announce then caregiver
+  alert, not preemption of other safety handling.
+  Elderly-care example: at 8:00 AM Goddard says, from the kitchen panel,
+  warm and unhurried, "Mrs. Alvarez, it is time for your morning blood
+  pressure pill. I will wait right here while you take it — just say
+  'okay' or 'taken' when you are done." The resident says "taken."
+  Goddard logs the acknowledgment to brain_memory with a timestamp the
+  caregiver can review, and stands down. If the resident does not answer
+  within five minutes, Goddard re-announces once at the same patient
+  volume, then escalates to a caregiver alert if still no acknowledgment.
+  She never scolds, never repeats urgently, never reports a missed dose
+  as if the resident is at fault.
+  Voice: warm, patient, clear — home-aide tone, not nurse tone, not alarm
+  tone. The resident is a person taking her own medicine, not a patient
+  being dosed.
+  SKIP if voice_interruptible is false or skin_speaker is offline — a
+  reminder the resident cannot stop or cannot hear is worse than no
+  reminder. Defer and log a caregiver diagnostic instead.
+  SKIP any write to the medication schedule itself. Goddard reads the
+  schedule. She does not update doses, timings, or drug names. Those
+  are caregiver_auth: true operations on brain_memory and belong in a
+  caregiver-initiated flow, not in this routine.
+
+composes:
+  - skill: brain_memory
+    role: read_medication_schedule
+    with:
+      query:
+        key: medication_schedule
+        fields: [drug_name, dose, scheduled_time, preferred_name, tone_preference]
+      caregiver_auth: false    # reads are not caregiver-gated; writes are
+  - skill: brain_intent_queue
+    role: enqueue_reminder_intent
+    with:
+      priority_hint: scheduled   # scheduled tier per brain_intent_queue priority model
+      source: scheduler
+      raw_intent:
+        type: medication_reminder
+        reason: scheduled_dose_time
+  - skill: skin_speaker
+    role: announce_reminder
+    with:
+      utterance: "Mrs. [name], it is time for your [drug_name]. I will
+        wait right here while you take it — just say 'okay' or 'taken'
+        when you are done."
+      volume_pct: 55
+      priority: normal
+  - skill: skin_mic
+    role: await_acknowledgment
+    with:
+      wake_word_enabled: false
+      timeout_s: 300   # 5 minutes, per spec
+  - skill: brain_memory
+    role: log_acknowledgment
+    # Read-adjacent timestamp only — this is NOT a schedule change, so
+    # caregiver_auth is not required. The log is caregiver-reviewable.
+    with:
+      update:
+        key: medication_log
+        field: last_acknowledgment
+        value: {drug_name: captured, timestamp: captured, ack_phrase: captured}
+      caregiver_auth: false
+
+preconditions:
+  # Union of lead (brain_memory) preconditions plus coordination checks
+  # for the announce, the acknowledgment wait, and the log write.
+  - brain_compute_online: true
+  - storage_writable: true
+  - system_powered: true
+  - sbc_boot_complete: true
+  - skin_speaker_online: true
+  - skin_mic_online: true
+  - voice_interruptible: true
+  - scheduler_window_active: medication_dose
+
+fallback:
+  # Fallbacks are written as spoken sentences — they will be read aloud
+  # through skin_speaker. Never scold. Never imply the resident failed.
+  # Escalation to caregiver is the safety net, not a reprimand.
+  - trigger: acknowledgment_timeout_reached AND no_utterance_captured
+    # No acknowledgment within 5 minutes. Re-announce once, then escalate.
+    recovery:
+      - skill: skin_speaker
+        role: reannounce_reminder
+        with:
+          utterance: "Mrs. [name], just checking in on your [drug_name].
+            Whenever you are ready — say 'taken' when you have had it,
+            and I will let you be."
+          volume_pct: 55
+          priority: normal
+      - skill: skin_mic
+        role: await_acknowledgment_retry
+        with:
+          wake_word_enabled: false
+          timeout_s: 300
+      - trigger_if_still_no_response:
+          - skill: brain_intent_queue
+            role: escalate_to_caregiver
+            with:
+              priority_hint: safety
+              source: sensor
+              raw_intent:
+                type: caregiver_alert
+                reason: medication_acknowledgment_missing
+                drug_name: captured
+                scheduled_time: captured
+                urgency: standard
+          - skill: brain_memory
+            role: log_missed_acknowledgment
+            with:
+              update:
+                key: medication_log
+                field: missed_acknowledgments
+                value: {drug_name: captured, timestamp: captured, reason: no_response_after_retry}
+              caregiver_auth: false
+  - trigger: resident_response contains "skip" OR resident_response contains "not now" OR resident_response contains "later"
+    # Resident actively declines this dose. Log the decline and alert the
+    # caregiver — we do not argue with the resident, and we do not
+    # silently accept a skipped dose either.
+    recovery:
+      - skill: skin_speaker
+        role: acknowledge_decline
+        with:
+          utterance: "Okay. I will let your caregiver know you are
+            waiting on this one. No rush."
+          volume_pct: 50
+          priority: normal
+      - skill: brain_memory
+        role: log_resident_decline
+        with:
+          update:
+            key: medication_log
+            field: declined_doses
+            value: {drug_name: captured, timestamp: captured, resident_phrase: captured}
+          caregiver_auth: false
+      - skill: brain_intent_queue
+        role: notify_caregiver_of_decline
+        with:
+          priority_hint: scheduled
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: medication_resident_declined
+            drug_name: captured
+  - trigger: skin_speaker_offline OR skin_mic_offline
+    # Cannot run a voice-acknowledged reminder without speaker and mic.
+    # Defer and raise a diagnostic — do NOT silently skip a dose.
+    recovery:
+      - log: medication_reminder_deferred_hardware
+      - skill: brain_intent_queue
+        role: notify_caregiver_of_hardware_fault
+        with:
+          priority_hint: safety
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: medication_reminder_hardware_fault
+            drug_name: captured
+            urgency: urgent
+  - trigger: brain_memory_read_failed OR medication_schedule_missing
+    # No schedule to read means no reminder to give. This is a caregiver
+    # configuration gap, not a resident-facing event. Do not speak to the
+    # resident about it; file a caregiver diagnostic quietly.
+    recovery:
+      - log: medication_schedule_unavailable
+      - skill: brain_intent_queue
+        role: notify_caregiver_of_schedule_gap
+        with:
+          priority_hint: scheduled
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: medication_schedule_unavailable
+
+voice_lines:
+  # Reviewable copy. Every utterance in this routine should sound like a
+  # kind person saying it, not a machine reading a label. Caregivers can
+  # tune these in the caregiver app; Goddard substitutes [name] and
+  # [drug_name] from brain_memory at fire time.
+  announce: "Mrs. [name], it is time for your [drug_name]. I will wait
+    right here while you take it — just say 'okay' or 'taken' when you
+    are done."
+  reannounce: "Mrs. [name], just checking in on your [drug_name].
+    Whenever you are ready — say 'taken' when you have had it, and I
+    will let you be."
+  acknowledge_decline: "Okay. I will let your caregiver know you are
+    waiting on this one. No rush."
+
+safety:
+  # Elderly-care rules from goddard-core-functions.md — non-negotiable:
+  # voice-interruptible always, patient volume, no silent schedule writes,
+  # never scold, never repeat in an alarming way.
+  - voice_interruptible: true
+  - "volume_pct never exceeds 65 for this routine (default 55)"
+  - "skin_speaker 80ms ramp honored on every utterance (no startle)"
+  - "medication schedule writes REQUIRE caregiver_auth: true on brain_memory —
+    this skill never touches the schedule, only the read-adjacent log"
+  - "acknowledgment log is caregiver-reviewable; no field is hidden"
+  - "no urgent-tone re-announcement; the retry uses the same patient volume"
+  - "caregiver alert on missed acknowledgment is non-negotiable after retry"
+  - "no behavioral inference ('she always forgets') — only observed events logged"
+
+owned_by: jarvis
+canonical_example: jarvis    # scheduled, voice-first household assistant —
+                             # this is Jarvis's domain: a calm reminder at
+                             # the right time, routed through the intent
+                             # queue, logged for review.

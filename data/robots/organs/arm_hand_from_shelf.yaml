@@ -1,0 +1,94 @@
+id: arm_hand_from_shelf
+name: Hand Item From Shelf (overhead or bedside retrieval)
+region: arm
+group: manipulation
+kind: composed
+
+description: |
+  Reach to a shelf or bedside surface above the resident's comfortable reach,
+  retrieve a named item, and hand it to the seated or reclined resident at a
+  gentle height. Designed for the moment an older adult should not be standing
+  on tiptoe or twisting to reach.
+  TRIGGER when the resident names an item on a shelf, a bedside table, a
+  high cabinet, or any surface that would otherwise require them to stand,
+  stretch, or reach overhead.
+  Elderly-care example: a resident in bed asks for the water bottle on the
+  top shelf of the nightstand hutch. Goddard checks the estimated weight
+  against the arm's 2 kg continuous payload, travels to the shelf, extends
+  the arm, grasps with the paw, lowers the item to the resident's seated
+  reach height, and speaks a calm "Here you go" as they take it.
+  SKIP for items exceeding the 2 kg payload — Goddard must decline verbally
+  before attempting the lift, not mid-reach. SKIP for fragile decor on open
+  display (glass, ceramics on exposed shelves) unless the resident has
+  explicitly confirmed. SKIP for stovetops, ovens, or any hot surface.
+
+composes:
+  - skill: leg_walk
+    role: travel_to_shelf
+    with: {speed_preset: normal}
+  - skill: arm_manipulator
+    role: extend_to_shelf_height
+    with: {motion_profile: gentle, force_limit_n: 8}
+  - skill: hand_paw_grip
+    role: grasp_shelf_item
+    with: {motion_profile: gentle, grip_force_n: 6}
+  - skill: arm_manipulator
+    role: lower_to_handoff_height
+    with: {motion_profile: gentle}
+  - skill: leg_walk
+    role: return_to_resident
+    with: {speed_preset: cautious}
+  - skill: skin_speaker
+    role: handoff_confirmation
+    with: {priority: normal, volume_pct: 65}
+
+preconditions:
+  - battery_pct >= 20
+  - obstacle_clear: true
+  - voice_interruptible: true
+  - shelf_height_cm <= 55              # within arm_manipulator.reach_cm
+  - item_weight_kg <= 2.0               # arm_manipulator continuous payload — hard gate
+  - item_weight_estimate_available: true
+  - "speed_cap_cms: 15 when human_within_cm <= 120"
+  - clearance_cm >= 20                  # working envelope at the shelf face
+  - shelf_surface_stable: true          # not a wobbly stand or stack
+
+fallback:
+  - when: item_exceeds_payload
+    action: decline_before_attempt
+    utterance: "That one looks a little too heavy for me to lift down safely. I'd rather not risk dropping it — would you like me to let your caregiver know so they can hand it to you?"
+    notes: |
+      Payload check happens BEFORE arm extension. Never attempt-and-fail
+      mid-lift — a dropped item from shelf height is both a damage risk and
+      a startle risk to the resident.
+  - when: shelf_out_of_reach
+    action: verbal_decline
+    utterance: "That shelf is a little higher than I can reach. I'll ask your caregiver to help with that one."
+  - when: item_not_found_on_shelf
+    action: return_empty_handed
+    utterance: "I looked on the top shelf and didn't see it there. Could it be somewhere else?"
+  - when: grasp_failed
+    action: retract_to_neutral_and_narrate
+    notes: |
+      If the paw reports grasped=false after two gentle attempts, the arm
+      retracts clear of the shelf to a safe neutral pose before any travel —
+      never leave the arm extended into a shelf after a failure. Goddard
+      speaks: "I couldn't quite get a grip on it up there. I'll leave it in
+      place and let your caregiver know." No mid-reach freeze, no dropped item.
+  - when: shelf_contents_shifted_mid_reach
+    action: hold_and_alert
+    utterance: "Something moved up there. I'm going to stop and wait — could you have someone take a look?"
+
+composes_with:
+  - arm_fetch_object
+  - arm_retrieve_dropped
+
+safety:
+  - voice_interruptible: true
+  - payload_check_before_lift: true       # gate the lift, not the recovery
+  - paw_grip_only for any item that will be handed directly to the resident
+  - handoff always ends below shoulder height of a seated resident — never overhead
+  - no reach into a shelf with hot contents (kettle, toaster oven) under any descriptor
+
+owned_by: jarvis
+canonical_example: baymax         # gentle overhead assistance, safe handoff height

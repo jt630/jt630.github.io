@@ -78,11 +78,15 @@ to its task → target files.
 
 ## Current state
 
-- Branch: `claude/goddard-wave-1-scaffold-elksr`
+- Branch: `claude/goddard-wave-2-composed-vvKDt`
 - Identity + companion docs: **done** (this file, SCHEMA.md, SKILL-DIRECTORY.md, REGIONS.md, WORKFLOW.md)
-- Existing organs: 26 across 8 regions (2 canonical from Wave 0 + 24 from Wave 1 lanes)
+- Existing organs: 37 across 8 regions (2 canonical from Wave 0 + 24 from Wave 1 lanes + 11 Wave 2 composed skills)
+- Functional groups: **9** — added `infrastructure` (Q7 resolution) for substrate organs like `brain_compute`
 - Wave 0 (core functions): **done** (`content/brain/goddard-core-functions.md`)
-- Wave 1 (region scaffolding in parallel): **done** — 5 lanes, 24 new manifests, 8 region docs, 7 interface questions captured in OPEN-QUESTIONS.md
+- Wave 1 (region scaffolding in parallel): **done** — 5 lanes, 24 new manifests, 8 region docs
+- Wave 2 Phase A (open questions adjudicated): **done** — Q1 (sub-loops), Q5 (registration + three-bucket storage), Q6 (voice interpretation deferred with framing), Q7 (infrastructure group) RESOLVED; Q8 (compute topology) RAISED for later; Q2/Q3/Q4 defer to hardware prototyping
+- Wave 2 Phase B (composed skills in parallel): **done** — 4 lanes, 11 new `kind: composed` manifests across fabrication, fetch/retrieval, safety/care, and daily routines
+- Schema additions: `## Registration protocol` (manifest load IS the handshake), `## Sub-loops` (modular `sub_loop:` block + `proprioception_v1` payload shape), three storage buckets (`main_garage`, `skin_bay`, `guts_bays`) in `data/robots/chassis_budgets.yaml`
 - Mission: help elderly people live independently at home
 
 ## How to work with Goddard

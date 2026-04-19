@@ -1,0 +1,107 @@
+# Composed skill: print a small part, then sweep up the support-material
+# debris and stray filament strands. The 3D printer is the lead organ, so
+# this manifest lives in the arm region.
+#
+# Tier inheritance: inherits max tier of its sub-skills per SKILL-DIRECTORY.md.
+# arm_3d_printer is a tier-3 stored tool (main_garage, storage_volume_cm3: 1800),
+# skin_vacuum is tier-1 embedded — so this composed skill is tier 3.
+
+id: arm_print_and_clean
+name: Print and Clean Up
+kind: composed
+region: arm
+group: fabrication
+
+description: |
+  Prints a small rigid part on the arm-mounted 3D printer, waits for the
+  nozzle to cool to a human-safe temperature, and then sweeps the build
+  area with the embedded skin vacuum to collect support material, stray
+  strands, and purge blobs before the resident comes near.
+  TRIGGER when the resident (or the planner on her behalf) has asked for
+  a small printable part and the surrounding area will need tidying
+  afterward — which is almost always the case for PLA prints. This is the
+  default "make a thing" chain; the bare arm_3d_printer is only for cases
+  where cleanup will be handled separately.
+  Elderly-care examples: a resident asks for a fresh rubber ferrule for
+  her cane, Goddard prints it on the kitchen counter and vacuums the
+  little support-material curls so she does not step on them later;
+  same flow for a replacement pill-organizer tab, an eyeglass arm tip,
+  or an arthritis-friendly jar-opener grip. Elderly feet do not bounce
+  back from a stray plastic shard underfoot — the cleanup is as much
+  of the care task as the print.
+  SKIP when the print will not produce support-material debris (very
+  small free-standing prints with no supports) and the caregiver has
+  already indicated she will tidy — but in doubt, run this chain.
+
+composes:
+  - skill: arm_3d_printer
+    role: print
+    with:
+      infill_pct: 20
+  - skill: skin_vacuum
+    role: sweep_debris
+    with:
+      mode: cleanup
+      duration_s: 15
+      suction_pct: 70
+
+preconditions:
+  # Union of lead sub-skill preconditions (arm_3d_printer) plus a coordination
+  # check that the vacuum is actually usable before we commit to the chain.
+  - battery_pct >= 25
+  - ambient_temp_c: {min: 15, max: 35}
+  - clearance_cm >= 25
+  - filament_remaining_g >= 10
+  - no_human_within_cm: 40
+  - skin_vacuum_filter_clean: true
+  - specimen_bay_capacity_ml > 0
+  - voice_interruptible: true
+
+fallback:
+  # The vacuum can drop out mid-chain (filter clogged, specimen bay filled
+  # during a separate task, panel jammed). We never strand the resident
+  # next to a warm build plate surrounded by plastic crumbs.
+  - trigger: skin_vacuum_filter_clean == false
+    recovery:
+      - skill: skin_speaker
+        role: announce_cleanup_deferred
+        with:
+          utterance: "The part is printed and cooling. Please leave the area
+            around the build plate for me — the vacuum needs a quick filter
+            change before I can sweep up the bits. I will come back and
+            finish tidying in a few minutes."
+          priority: alert
+      - hold: build_area_restricted
+        until: caregiver_ack OR skin_vacuum_filter_clean == true
+  - trigger: skin_vacuum_offline
+    recovery:
+      - skill: skin_speaker
+        role: announce_cleanup_deferred
+        with:
+          utterance: "Your part is ready. I could not tidy the support
+            material this time. Please wait for me or your caregiver to
+            clear the debris before walking near the printer."
+          priority: alert
+      - hold: build_area_restricted
+        until: caregiver_ack
+  - trigger: arm_3d_printer_failed
+    recovery:
+      - skill: skin_speaker
+        role: announce_print_failed
+        with:
+          utterance: "The print did not come out this time. I will let
+            your caregiver know and we can try again later."
+          priority: normal
+      - log: print_failure
+
+safety:
+  # Inherited + coordination safety. The hot-nozzle rule from arm_3d_printer
+  # still dominates; the vacuum must never deploy into a hot build area.
+  - nozzle_temp_c < 50 before skin_vacuum deploys
+  - no flammables within 30cm during 60s cooldown
+  - surface must be level within 5deg
+  - reject vacuum intake if object_size_mm > 5 detected at nozzle
+  - voice_interruptible: true
+
+owned_by: jarvis
+canonical_example: r2d2    # print-and-tidy handiwork, inherited from the lead organ
