@@ -9,7 +9,7 @@ Every organ has both:
 
 - `region` — physical axis: `brain | core | guts | arm | hands | legs | thighs | skin`
 - `group` — functional axis: `movement | manipulation | fabrication | sensing |
-  sequence_reading | power | communication | gadgets`
+  sequence_reading | power | communication | gadgets | infrastructure`
 
 Filter by region to plan hardware. Filter by group to plan capability.
 
@@ -64,6 +64,94 @@ owned_by: jarvis                   # jarvis (planner) | goddard (reflex loop)
 canonical_example: r2d2            # nearest sci-fi robot in sci_fi_catalog.yaml
 ```
 
+## Registration protocol
+
+Every module joins the robot through a single handshake: **manifest load is
+registration.** When `brain_skill_registry` reads a manifest from
+`data/robots/organs/` at boot, it performs the full handshake in one pass.
+There is no parallel push-register path. A module announces itself by
+shipping a manifest; the registry scan is the announcement.
+
+At each manifest load, the registry:
+
+1. **Validates** required fields (see § Validation below). A manifest that
+   fails validation is rejected and logged — it does not join the robot.
+2. **Routes `hardware.storage_volume_cm3`** to the correct bucket via
+   `hardware.slot:` prefix (caps live in
+   `data/robots/chassis_budgets.yaml`):
+   - `chassis-*` → `skin_bay` (tier-1 embedded chassis organs)
+   - `guts-bay-*` → `guts_bays` (internal consumable compartments)
+   - anything else with `storage_volume_cm3 > 0` → `main_garage`
+     (loadable tier-3-4 tools)
+3. **Registers `sub_loop:` declarations** (if present) with
+   `core_reflex_loop`'s supervisor table, so the command module reads the
+   sub-loop's report envelope each main tick (see § Sub-loops).
+4. **Installs `preconditions`** for `core_safety_monitor` to evaluate
+   before any dispatch of this skill.
+5. **Returns** `{registered: true, bucket: <id|null>,
+   sub_loop_supervised: bool, precondition_count: N}` to the caller — today
+   the boot scanner, tomorrow the hot-reload path.
+
+When hot-reload lands in v2 it reuses the same handshake with a teardown
+step before re-registration. One protocol, one code path, forever.
+
+## Sub-loops
+
+Some organs run inner loops faster than the main 10 Hz reflex tick. `leg_walk`'s
+100 Hz balance sub-loop is the canonical example. Not every configuration has
+one — a stationary countertop companion has no balance loop at all. Sub-loops
+are therefore modular and discovered, not assumed.
+
+An organ that owns an inner loop declares it in a manifest-level `sub_loop:`
+block:
+
+```yaml
+sub_loop:
+  id: balance                       # unique across the robot
+  hz: 100                           # target cadence
+  criticality: safety               # safety | performance | comfort
+  payload_shape: proprioception_v1  # named shape (see below)
+```
+
+At boot the skill registry collects every `sub_loop:` declaration. On every
+main tick `core_reflex_loop` reads a uniform report envelope from each
+registered sub-loop:
+
+```yaml
+sub_loop_report:
+  id: string
+  hz_actual: number      # observed cadence, for health check
+  missed_ticks: number   # cumulative since boot
+  healthy: bool          # within cadence tolerance, no unhandled overruns
+  payload: object        # shape determined by payload_shape
+```
+
+The command module (core) supervises. On every tick `core_reflex_loop` checks
+the `healthy` flag for each report; `core_safety_monitor` treats any
+`criticality: safety` sub-loop with `healthy: false` as a precondition failure
+for every skill that depends on that sub-loop, until health is restored.
+Configurations without a given sub-loop simply omit the id from
+`sub_loop_reports`; an empty map is valid.
+
+### Named payload shapes
+
+Each `payload_shape:` is declared once and reused. Current shapes:
+
+```yaml
+# proprioception_v1 — emitted by leg_walk's 100 Hz balance sub-loop
+pitch_deg: number
+roll_deg: number
+yaw_rate_dps: number
+per_leg_contact: [bool, bool, bool, bool]
+com_offset_cm: [number, number]   # x, y from chassis center, cm
+corrections_n: number              # balance corrections absorbed since last main tick
+stable: bool                       # rolled-up "upright and safe"
+joint_saturation: bool             # any hip at >=90% max_torque
+```
+
+New payload shapes are proposed in a PR and promoted into this section by
+Goddard. The `_v1` suffix reserves space for breaking changes later.
+
 ## Composed skills
 
 A composed skill uses `kind: composed` + a `composes:` block instead of raw
@@ -113,7 +201,7 @@ Optional but expected:
 Before merging a PR, Goddard runs these checks:
 - All required fields present
 - `region` is one of the 8 regions
-- `group` is one of the 8 functional groups
+- `group` is one of the 9 functional groups
 - Every id in `composes_with` resolves to an existing organ
 - `hugo --minify` passes (build health)
 

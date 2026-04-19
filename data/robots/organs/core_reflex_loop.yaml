@@ -8,9 +8,16 @@ description: |
   is anything wrong? Is there an intent waiting? Do the safety flags permit acting?
   TRIGGER on every powered-on tick — this organ never sleeps while the robot is active.
   It drains the intent queue, fires owned_by:goddard skills (movement, power, sensing),
-  and polls the safety monitor before any action is dispatched.
+  polls the safety monitor before any action is dispatched, and supervises every
+  sub-loop registered in the skill registry (see SCHEMA.md § Sub-loops). On each
+  tick it reads a sub_loop_report from every registered sub-loop and checks the
+  healthy flag; any criticality:safety sub-loop with healthy:false is raised to
+  core_safety_monitor as a precondition failure for its dependent skills.
   Elderly-care context: if a resident calls out or a fall-detection event arrives,
   the reflex loop is the first system to receive it — no planner latency, no queue wait.
+  Modular note: sub_loop_reports is optional — a stationary configuration with no
+  legs registers no balance sub-loop and core tolerates an empty map. Presence of
+  a sub-loop is discovered at boot, not assumed.
   SKIP for planner-mediated (owned_by:jarvis) skills — those enter the intent queue
   and are dispatched by the sequence_reading layer, not here.
 
@@ -28,7 +35,8 @@ preconditions:
 inputs:
   intent_queue: {type: queue, required: false}   # drained each tick if non-empty
   safety_flags: {type: map, required: true}       # live flag map from safety monitor
-  proprioception_state: {type: map, required: true}
+  sub_loop_reports: {type: map, required: false}  # sub_loop id -> sub_loop_report;
+                                                  # empty map is valid (legless/stationary configs)
 
 outputs:
   tick_count: number             # cumulative ticks since boot
@@ -43,8 +51,8 @@ composes_with:
 
 safety:
   - voice_interruptible: true    # any spoken command from resident pre-empts current intent
-  - 100Hz balance sub-loop owned by legs region reports state into this loop each tick;
-    leg region is responsible for that sub-loop's cadence
+  - every sub-loop in sub_loop_reports is checked each tick; criticality:safety
+    sub-loops with healthy:false block their dependent skills until recovery
   - safety monitor evaluation is non-override-able; reflex loop cannot bypass it
 
 owned_by: goddard

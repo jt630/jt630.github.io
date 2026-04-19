@@ -1,0 +1,164 @@
+# Composed skill: the resident's evening wind-down. Memory-driven — the
+# exact shape of "getting ready for bed" is hers, not ours, and lives in
+# brain_memory. This routine reads those preferences, reminds her about
+# evening medication if one is scheduled, offers to fetch anything she
+# wants at the bedside, logs completion, and then retreats to a
+# low-activity pose for the night.
+#
+# Lead organ: brain_memory. Ends with Goddard standing down — no active
+# skills fire after the routine completes unless a new intent arrives.
+
+id: brain_evening_routine
+name: Evening Routine
+kind: composed
+region: brain
+group: sequence_reading
+
+description: |
+  Gentle wind-down at the caregiver-set evening window. Goddard reads the
+  resident's evening preferences from brain_memory (preferred name,
+  evening medication schedule, typical bedside requests, whether she
+  likes the routine announced or would rather Goddard just be available),
+  speaks a soft "it is about time for bed" reminder, fires the medication
+  reminder if scheduled, asks if she needs anything before settling in,
+  enqueues any fetch-intent she names (a glass of water, the TV remote,
+  her reading glasses — the fetch itself is a downstream intent, not
+  part of this manifest), logs routine completion to brain_memory, and
+  retreats to a low-activity pose for the night.
+  TRIGGER at the start of the caregiver-set evening wind-down window
+  when the scheduler enqueues an evening_routine intent and no
+  higher-priority intent is on the queue.
+  Elderly-care example: at 9:30 Goddard speaks quietly from the sofa
+  panel: "It is about time for bed, Mrs. Alvarez. Your evening pill is
+  due — I will bring it over whenever you are ready." She takes the
+  medication cue, then says "bring me a glass of water, would you?"
+  Goddard logs "evening routine complete; fetch: water_glass" and
+  enqueues the water-glass fetch as a follow-on intent. Routine ends;
+  Goddard retreats to its low-power corner and does nothing further
+  unless called.
+  Voice: softer than morning. Low, unhurried, almost sleepy in tempo.
+  Never "END OF DAY PROTOCOL." Never announces its own retreat — it
+  just goes quiet.
+  SKIP if the resident has already said she is going to bed in the
+  same intent turn — she has self-initiated wind-down, so route
+  directly to the medication check and skip the announcement.
+  SKIP when voice_interruptible is false or skin_speaker is offline.
+
+composes:
+  - skill: brain_memory
+    role: read_evening_preferences
+    with:
+      query: {key: evening_preferences, fields: [preferred_name, announcement_style, evening_medication_scheduled, typical_bedside_requests]}
+  - skill: skin_speaker
+    role: windown_announcement
+    with:
+      utterance: "It is about time for bed, Mrs. [name]."
+      volume_pct: 40
+      priority: normal
+  - skill: brain_medication_reminder
+    role: evening_medication
+    only_if: evening_medication_scheduled == true
+    # Cross-lane dependency: brain_medication_reminder is authored by
+    # Lane C in parallel. Id expected to resolve after both merge.
+  - skill: skin_speaker
+    role: offer_help
+    with:
+      utterance: "Anything you need before you settle in?"
+      volume_pct: 45
+      priority: normal
+  - skill: skin_mic
+    role: await_request
+    with:
+      wake_word_enabled: false
+      timeout_s: 20
+  - skill: brain_intent_queue
+    role: enqueue_bedside_request
+    only_if: bedside_request_captured == true
+    with:
+      # Fetch itself is downstream; this routine only enqueues the intent.
+      intent: bedside_fetch
+      source: voice
+      priority_hint: explicit
+  - skill: brain_memory
+    role: log_evening_completion
+    with:
+      update: {key: daily_log, field: evening_routine, value: completed}
+      caregiver_auth: false
+
+preconditions:
+  - brain_compute_online: true
+  - storage_writable: true
+  - system_powered: true
+  - sbc_boot_complete: true
+  - skin_speaker_online: true
+  - skin_mic_online: true
+  - voice_interruptible: true
+  - scheduler_window_active: evening
+
+fallback:
+  - trigger: resident_response contains "not yet" OR resident_response contains "leave me alone" OR resident_response contains "in a minute"
+    recovery:
+      - skill: skin_speaker
+        role: retreat_gently
+        with:
+          utterance: "No hurry. I will check in again shortly."
+          volume_pct: 40
+          priority: normal
+      - skill: brain_memory
+        role: log_retreat
+        with:
+          update: {key: daily_log, field: evening_retreat_reason, value: resident_declined}
+      - reschedule:
+          intent: evening_routine
+          delay_min: 15
+      - abort: true
+  - trigger: response_timeout_reached AND no_utterance_captured
+    recovery:
+      # Silence at bedtime is often "I am fine, goodnight." We log and
+      # retreat. brain_check_in will catch anything worrying overnight.
+      - skill: brain_memory
+        role: log_quiet_evening
+        with:
+          update: {key: daily_log, field: evening_routine, value: no_response_captured}
+      - abort: true
+  - trigger: skin_speaker_offline OR skin_mic_offline
+    recovery:
+      - log: evening_routine_deferred_hardware
+      - enqueue:
+          intent: caregiver_diagnostic_check
+          source: sensor
+          priority_hint: scheduled
+      - abort: true
+  - trigger: brain_medication_reminder_failed
+    recovery:
+      - skill: skin_speaker
+        role: soft_handoff
+        with:
+          utterance: "I am going to ask your caregiver to double-check
+            your evening medicine tonight. Nothing for you to worry about."
+          volume_pct: 45
+          priority: normal
+      - enqueue:
+          intent: caregiver_medication_review
+          source: sensor
+          priority_hint: safety
+
+voice_lines:
+  windown: "It is about time for bed, Mrs. [name]."
+  offer_help: "Anything you need before you settle in?"
+  retreat: "No hurry. I will check in again shortly."
+  soft_handoff: "I am going to ask your caregiver to double-check your
+    evening medicine tonight. Nothing for you to worry about."
+
+safety:
+  - voice_interruptible: true
+  - volume_pct never exceeds 55 during evening routine (default 40)
+  - skin_speaker 80ms ramp honored on every utterance
+  - routine ends by standing down; no follow-on active skills fire unless a new intent arrives
+  - bedside fetch is enqueued, not executed, by this routine
+  - medication reminder only fires if brain_memory confirms one is scheduled tonight
+
+owned_by: jarvis
+canonical_example: baymax    # quiet evening companion tone matches
+                             # Baymax's bedside manner more than Jarvis's
+                             # operational dispatch

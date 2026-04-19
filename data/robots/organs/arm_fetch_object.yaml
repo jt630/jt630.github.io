@@ -1,0 +1,86 @@
+id: arm_fetch_object
+name: Fetch Object (navigate, grasp, return)
+region: arm
+group: manipulation
+kind: composed
+
+description: |
+  General-purpose fetch sequence. Goddard travels to a described object,
+  positions the arm, picks up with the appropriate hand, and returns to the
+  resident to hand it over with a short spoken confirmation.
+  TRIGGER when the resident asks for a specific, portable, on-hand item
+  that is not already in the robot's immediate workspace — "Goddard, could
+  you bring me the TV remote off the coffee table," "would you grab my
+  reading glasses from the kitchen counter," "please fetch the book on the
+  side table."
+  Elderly-care example: a resident settled on the couch asks for the TV
+  remote on the coffee table. Goddard walks over at a calm pace, eases the
+  remote into a soft paw grip, walks back, and offers it at a comfortable
+  height with a gentle "Here you go, Mrs. Alvarez."
+  SKIP for objects heavier than the arm payload (2 kg continuous — hand off
+  to a caregiver verbally), objects on shelves above resident reach (use
+  arm_hand_from_shelf for that framing and its payload fallback), and items
+  that have just been dropped mid-task (use arm_retrieve_dropped so the
+  cautious approach kicks in).
+
+composes:
+  - skill: leg_walk
+    role: travel_to_object
+    with: {speed_preset: normal}
+  - skill: arm_manipulator
+    role: position_over_target
+    with: {motion_profile: gentle}
+  - skill: hand_paw_grip
+    role: grasp_object
+    with: {motion_profile: gentle, grip_force_n: 5}
+  - skill: leg_walk
+    role: return_to_resident
+    with: {speed_preset: cautious}
+  - skill: skin_speaker
+    role: handoff_confirmation
+    with: {priority: normal, volume_pct: 65}
+
+preconditions:
+  - battery_pct >= 15
+  - obstacle_clear: true
+  - voice_interruptible: true
+  - target_described: true           # resident utterance parsed to a locatable object
+  - object_payload_kg <= 2.0         # arm_manipulator continuous payload limit
+  - "speed_cap_cms: 15 when human_within_cm <= 120"   # per leg_walk / leg_wheel
+  - path_clear_to_object: true
+
+fallback:
+  - when: object_not_found
+    action: return_empty_handed
+    utterance: "I couldn't find the remote on the coffee table. Would you like me to check somewhere else?"
+  - when: grasp_failed
+    action: release_safely_and_return
+    notes: |
+      If hand_paw_grip reports grasped=false after two gentle attempts, the arm
+      retracts to a neutral pose, Goddard returns without the item, and speaks:
+      "I wasn't able to pick that one up cleanly. I'll leave it where it is so
+      it doesn't get lost. Could you ask a caregiver, or would you like me to
+      try a different item?"
+  - when: object_exceeds_payload
+    action: verbal_decline_before_attempt
+    utterance: "That one looks a little heavy for me to carry safely. I'll leave it in place — would you like me to let your caregiver know?"
+  - when: path_blocked_mid_travel
+    action: hold_safe_pose_and_alert
+    notes: |
+      If a new obstacle appears mid-route, Goddard pauses in a stable stance,
+      does not attempt to squeeze past, and speaks: "There's something in my
+      way. I'm going to wait here for a moment — could you help me clear the
+      path, or should I come back later?" Alerts caregiver if unresolved in 60 s.
+
+composes_with:
+  - arm_retrieve_dropped
+  - arm_hand_from_shelf
+
+safety:
+  - voice_interruptible: true
+  - never hand off an object while in motion — always come to a full stop first
+  - paw grip is the default hand for any fetch that may involve person contact
+  - if object descriptor is ambiguous, ask the resident before traveling
+
+owned_by: jarvis
+canonical_example: baymax         # patient companion retrieval, gentle handoff

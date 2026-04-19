@@ -1,0 +1,144 @@
+# Composed skill: resident- (or planner-) detected need for a small
+# household part, checked against the resident's approved-parts list,
+# confirmed verbally, then fabricated and cleaned up via
+# arm_print_and_clean. This is a composition of a composition — the
+# registry resolves composes: recursively.
+#
+# Tier inheritance: inherits max tier of its sub-skills per SKILL-DIRECTORY.md.
+# The deepest sub-skill is arm_3d_printer (tier-3 stored tool); everything
+# else is tier 1 or 2 — so this composed skill is tier 3.
+
+id: arm_print_on_demand
+name: Print on Demand (with Consent)
+kind: composed
+region: arm
+group: fabrication
+
+description: |
+  End-to-end "make the thing the resident needs" chain. The planner
+  identifies a candidate small part (from a spoken request, a scheduled
+  reminder, or a sensor cue such as a cracked cane ferrule spotted by the
+  sensor array), checks brain_memory to confirm the part is on the
+  resident's approved-parts list, asks the resident aloud for consent
+  through the chassis speaker, waits for a verbal "yes" via the mic
+  array, and only then fires arm_print_and_clean to actually fabricate
+  and tidy up.
+  TRIGGER when the planner has a concrete small-part need and some
+  confidence the resident will want it printed — a replacement eyeglass
+  arm tip after one broke, a fresh cane rubber ferrule when the old one
+  is worn, a spare pill-organizer tab before the next medication refill.
+  This is the default path for unsolicited fabrication; Goddard never
+  prints a household part without asking first.
+  Elderly-care framing: consent is not ceremony, it is care. A resident
+  who finds a new plastic part on her counter that she did not ask for
+  loses a small piece of agency, even if the part is useful. Spending
+  eight seconds asking — "I noticed your cane tip is worn. Would you
+  like me to print a new one now? It will take about six minutes." —
+  is the whole difference between a helper and an imposition. The
+  approved-parts list in brain_memory is set up once with the caregiver
+  so routine replacements (ferrules, tabs, eyeglass tips) are pre-scoped;
+  anything outside the list requires caregiver confirmation, not just
+  resident consent.
+  SKIP when the resident has explicitly requested the part in the same
+  intent turn — she has already consented, so route directly to
+  arm_print_and_clean. SKIP also for any part not on the approved list:
+  escalate to caregiver via the intent queue instead of asking the
+  resident to adjudicate unfamiliar fabrication.
+
+composes:
+  - skill: brain_memory
+    role: verify_approved_part
+    with:
+      query: {key: approved_parts_list, match: candidate_part_id}
+  - skill: skin_speaker
+    role: request_consent
+    with:
+      utterance: "I can print a replacement for that now. It will take
+        about six minutes and I will tidy up afterward. Would you like
+        me to go ahead?"
+      priority: normal
+  - skill: skin_mic
+    role: await_consent
+    with:
+      wake_word_enabled: false
+      timeout_s: 20
+  - skill: arm_print_and_clean
+    role: fabricate_and_tidy
+
+preconditions:
+  # Union of the sub-chain's preconditions plus consent-coordination checks.
+  - battery_pct >= 25
+  - ambient_temp_c: {min: 15, max: 35}
+  - clearance_cm >= 25
+  - filament_remaining_g >= 10
+  - no_human_within_cm: 40
+  - skin_vacuum_filter_clean: true
+  - specimen_bay_capacity_ml > 0
+  - brain_compute_online: true
+  - storage_writable: true
+  - system_powered: true
+  - sbc_boot_complete: true
+  - voice_interruptible: true
+
+fallback:
+  # Consent is the load-bearing gate. If we do not hear a clear "yes"
+  # within the timeout, we stand down and tell the resident we heard
+  # nothing — we do not assume silence means consent, and we do not
+  # badger her with a second prompt right away.
+  - trigger: voice_command_pending == false AND consent_timeout_reached
+    recovery:
+      - skill: skin_speaker
+        role: announce_standdown
+        with:
+          utterance: "No trouble — I will leave it for now. Just let me
+            know if you would like that part later."
+          priority: normal
+      - log: print_on_demand_aborted_no_consent
+      - abort: true
+  - trigger: consent_response == "no"
+    recovery:
+      - skill: skin_speaker
+        role: announce_standdown
+        with:
+          utterance: "Understood. I will not print it."
+          priority: normal
+      - log: print_on_demand_declined_by_resident
+      - abort: true
+  - trigger: approved_part == false
+    recovery:
+      # Part is not on the resident's approved list — escalate to the
+      # caregiver via the intent queue rather than asking the resident
+      # to adjudicate something she may not recognize.
+      - skill: skin_speaker
+        role: announce_caregiver_review
+        with:
+          utterance: "I will check with your caregiver before printing
+            that one. Nothing for you to do."
+          priority: normal
+      - enqueue:
+          intent: caregiver_review_part
+          source: sensor
+          priority_hint: scheduled
+      - abort: true
+  - trigger: arm_print_and_clean_failed
+    recovery:
+      - skill: skin_speaker
+        role: announce_chain_failed
+        with:
+          utterance: "Something went wrong partway through. I have paused
+            and let your caregiver know — please stay clear of the
+            printer area for now."
+          priority: alert
+      - hold: build_area_restricted
+        until: caregiver_ack
+
+safety:
+  # Consent cannot be bypassed. The mic must be live; if it is not, the
+  # safety monitor will already have halted motion, but we double-gate here.
+  - skin_mic must be online for consent capture
+  - no print begins without consent_response == "yes"
+  - approved_part must be true OR caregiver_auth must be true
+  - voice_interruptible: true
+
+owned_by: jarvis
+canonical_example: baymax    # patient check-in, explicit consent, then care

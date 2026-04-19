@@ -6,6 +6,13 @@ group: sequence_reading
 description: |
   Boot-time file-scan of data/robots/organs/ that builds an in-memory map
   of every organ manifest indexed by id. The planner's callable menu.
+  This scan IS the registration handshake (see SCHEMA.md § Registration
+  protocol): for each manifest loaded, the registry validates required
+  fields, routes hardware.storage_volume_cm3 to core_storage_budget's
+  bucket (skin_bay / guts_bays / main_garage), hands any sub_loop:
+  declaration to core_reflex_loop's supervisor table, and installs the
+  manifest's preconditions for core_safety_monitor. One protocol,
+  one code path — future hot-reload reuses it.
   TRIGGER at system startup — the registry loads before any intent can be
   dispatched. The planner queries it by skill id to retrieve full manifest
   details including preconditions, hardware requirements, and safety rules.

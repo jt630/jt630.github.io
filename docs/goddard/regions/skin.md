@@ -66,13 +66,18 @@ doing. This supports trust.
   emits `voice_command_pending`; brain_intent_queue normalizes recognized speech
   into intents. The speech recognition step between these two is unassigned — it
   presumably lives in brain_compute, but no manifest claims it yet. Requesting
-  brain lane clarification.
-- **Skin bay budget accounting.** Current `storage_volume_cm3` totals across
-  skin organs: skin_mic 12, skin_speaker 30, skin_sensor_array 480,
-  skin_vacuum 170 = 692 cm³. No formal skin bay budget cap has been declared.
-  Requesting a cap number from core lane (or confirmation that core_storage_budget
-  tracks skin separately from the main garage).
+  brain lane clarification. (Tracked as Q6 in OPEN-QUESTIONS.md.)
 - **Multi-panel slot collision.** skin_sensor_array uses `slot: chassis-panel-ring-1`
   (full circumference). If a future organ needs a panel slot on the ring, there
   may be a conflict. A panel map showing which slots are occupied would prevent
   this — could live in this doc once the hardware spec firms up.
+
+## Resolved
+
+- **Skin bay budget accounting (Q5).** Skin region is now bucketed formally.
+  `core_storage_budget` tracks the `skin_bay` bucket separately from
+  `main_garage` and `guts_bays`; routing happens at registration via the
+  `chassis-*` slot prefix. MVP cap: 1000 cm³
+  (`data/robots/chassis_budgets.yaml`). Current skin total is 692 cm³
+  (mic 12 + speaker 30 + sensor_array 480 + vacuum 170), well under cap.
+  See SCHEMA.md § Registration protocol.
