@@ -32,6 +32,12 @@ Key decisions:
   build; Orin Nano when on-device inference is needed for voice or vision.
 - **"Jarvis" is a label, not a persona.** The planner subsystem is named for
   clarity in `owned_by` fields. There is one robot and one voice: Goddard.
+- **`brain_compute` lives in `group: infrastructure`** (added in Q7
+  resolution). Compute is substrate — it doesn't act on the world, it runs
+  the organs that do. The old `group: sensing` assignment was a pragmatic
+  stretch; `infrastructure` is the honest category and leaves room for
+  other substrate organs (runtime supervisor, inter-organ bus) to share
+  the label without further schema churn.
 
 Open questions:
 

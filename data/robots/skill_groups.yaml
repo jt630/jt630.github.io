@@ -56,3 +56,14 @@ groups:
     callable_pattern: deploy(gadget_id) / stow(gadget_id)
     owned_by: jarvis
     examples: [lighter, vacuum, grappling_hook, laser_pointer]
+
+  - id: infrastructure
+    description: |
+      Substrate that other groups depend on — compute, runtime supervision,
+      storage accounting, the inter-organ bus. Infrastructure organs do not
+      act on the world directly; they make the organs that do act possible.
+      Always-on by nature. A missing infrastructure organ is a ship-stopper
+      for every group that names it as a precondition.
+    callable_pattern: infrastructure(action, scope)
+    owned_by: goddard     # substrate for the autonomic layer; command-module territory
+    examples: [sbc_compute, reflex_runtime, safety_watchdog, storage_budget]

@@ -9,7 +9,7 @@ Every organ has both:
 
 - `region` — physical axis: `brain | core | guts | arm | hands | legs | thighs | skin`
 - `group` — functional axis: `movement | manipulation | fabrication | sensing |
-  sequence_reading | power | communication | gadgets`
+  sequence_reading | power | communication | gadgets | infrastructure`
 
 Filter by region to plan hardware. Filter by group to plan capability.
 
@@ -170,7 +170,7 @@ Optional but expected:
 Before merging a PR, Goddard runs these checks:
 - All required fields present
 - `region` is one of the 8 regions
-- `group` is one of the 8 functional groups
+- `group` is one of the 9 functional groups
 - Every id in `composes_with` resolves to an existing organ
 - `hugo --minify` passes (build health)
 

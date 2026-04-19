@@ -1,7 +1,7 @@
 id: brain_compute
 name: SBC Compute Substrate
 region: brain
-group: sensing
+group: infrastructure
 
 description: |
   The physical compute substrate — a Raspberry Pi 5 or Jetson Orin Nano
