@@ -111,7 +111,7 @@ rule), updated `data/robots/organs/brain_skill_registry.yaml` (names the
 handshake), new SCHEMA.md § Registration protocol, updated SKILL-DIRECTORY.md
 § Storage budget (three buckets), region docs core.md + skin.md.
 
-**Commit:** `<pending>`
+**Commit:** `5d2be2a`
 
 ## Q6 — Speech-to-text path (skin ↔ brain)
 
