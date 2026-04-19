@@ -6,9 +6,11 @@ group: gadgets
 description: |
   Extends a short flexible suction tube from a chassis panel for pickup,
   cleanup, or adhesion.
-  TRIGGER to collect small debris (dust, crumbs, stray filament), sample
-  powders or liquids into the specimen bay, or anchor to a smooth surface
-  for stability during manipulation.
+  TRIGGER to collect small debris (dust, crumbs, stray filament, spilled
+  pills), sample powders or liquids into the specimen bay, or anchor to a
+  smooth surface for stability during manipulation.
+  Elderly-care examples: spill cleanup, sweeping up dropped medication,
+  post-print support-material removal.
   SKIP for items >5mm diameter (use paw_grip) or anything hot/sharp.
 
 hardware:
@@ -38,7 +40,7 @@ composes_with:
   - hand_paw_grip      # vacuum stabilizes chassis while paw manipulates
 
 safety:
-  - do not sample flammables above skin_lighter proximity threshold
   - reject intake if object_size_mm > 5 detected at nozzle
+  - voice_interruptible: true
 
 owned_by: jarvis

@@ -14,7 +14,7 @@ sessions own one region each so they never collide on files.
 | **hands** | end-effectors (paw, pincer, fine tip), tool change | `data/robots/organs/hand_*.yaml` |
 | **legs** | walking, wheeled, climbing locomotion | `data/robots/organs/leg_*.yaml` |
 | **thighs** | leg attachment, high-torque joints, power routing to legs | `data/robots/organs/thigh_*.yaml` |
-| **skin** | chassis panels, embedded gadgets (lighter, vacuum), sensors on skin | `data/robots/organs/skin_*.yaml` |
+| **skin** | chassis panels, embedded gadgets (vacuum, sensors), chassis panels | `data/robots/organs/skin_*.yaml` |
 
 Every organ filename starts with its region prefix. Goddard rejects
 manifests in the wrong file or without a `region:` field.
@@ -34,20 +34,20 @@ Example (illustrative):
 ```markdown
 # Region: arm
 
-The arm spans from the shoulder joint through the wrist to the mount-bay
-where tools dock. Arms are the CD-changer chassis — they expose bays and
-manage the magazine carousel.
+The arm spans from the shoulder joint through the wrist to the active-tool
+slot. Arms are the primary manipulation region — they carry and deploy tools
+for fabrication, fetching, and assisted living tasks.
 
 Interfaces with:
 - thighs / core — power handoff at the shoulder
-- hands — tool-change protocol at the mount-bay
+- hands — end-effector handoff at the wrist interface
 - skin — no direct interface; skin-mounted gadgets are separate
 - brain — accepts manipulation intents via the bus
 
 Key decisions:
-- Mount-bay type v1 uses a 6-pin electrical + mechanical quick-release
-- Magazine holds 4 tools; tier-3 swap budget is ~4 seconds
-- One arm may expose multiple bay types later (tight tools vs. coarse tools)
+- Active arm tool is the skill-directory tier-2 context (see SKILL-DIRECTORY.md)
+- Skill availability tiers 3-4 are determined by setup time, not physical magazine
+- One arm may carry multiple tool profiles later (fine manipulation vs. power grip)
 ```
 
 ## Inter-region interfaces

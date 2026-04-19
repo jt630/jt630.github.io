@@ -21,7 +21,7 @@ name: 3D Printer (arm-mounted tool)
 region: arm
 group: fabrication
 
-# "kind: composed" for skills that chain other skills (see heat_mold).
+# "kind: composed" for skills that chain other skills.
 # Omit for atomic skills that drive hardware.
 # kind: composed
 
@@ -36,16 +36,12 @@ hardware:
   deploy_time_ms: 1200
   consumables: [pla_filament]
   envelope_cm: [15, 15, 20]
-  storage_volume_cm3: 1800         # "garage space" consumed when idle
-
-requires_mount: arm-mount-v1       # (tools only) docks into matching mount-bay
-tool_change_time_s: 4              # (tools only) magazine -> active slot time
+  storage_volume_cm3: 1800         # advisory: "garage space" when not in use
 
 preconditions:
   - battery_pct >= 20
   - ambient_temp_c: {min: 15, max: 35}
   - clearance_cm >= 25
-  - currently_mounted: true        # (tools only) must be docked first
 
 inputs:
   model_stl: {type: path, required: true}
@@ -58,9 +54,7 @@ outputs:
   filament_used_g: number
 
 composes_with:                     # other organs that chain with this one
-  - heat_mold
   - skin_vacuum
-  - skin_lighter
 
 safety:
   - no flammables within 30cm during 60s cooldown
@@ -73,19 +67,19 @@ canonical_example: r2d2            # nearest sci-fi robot in sci_fi_catalog.yaml
 ## Composed skills
 
 A composed skill uses `kind: composed` + a `composes:` block instead of raw
-hardware fields. Example (`heat_mold.yaml`):
+hardware fields. Example (illustrative — a print-then-cleanup sequence):
 
 ```yaml
-id: heat_mold
+id: arm_print_and_clean
 kind: composed
 region: arm         # composed skill lives in the region of its lead organ
 group: fabrication
 
 composes:
-  - skill: skin_lighter
-    with: {duration_s: 4, flame_height_mm: 10}
   - skill: arm_3d_printer
-    role: press_tool
+    role: print
+  - skill: skin_vacuum
+    with: {mode: cleanup, duration_s: 10}
 
 preconditions:
   - last_print_within_s <= 180
@@ -112,6 +106,7 @@ Optional but expected:
 - `composes_with`
 - `safety`
 - `canonical_example`
+- `storage_volume_cm3` (advisory — omit for embedded/skin-panel organs)
 
 ## Validation
 
@@ -120,7 +115,6 @@ Before merging a PR, Goddard runs these checks:
 - `region` is one of the 8 regions
 - `group` is one of the 8 functional groups
 - Every id in `composes_with` resolves to an existing organ
-- `requires_mount` (if present) matches a known mount-bay type
 - `hugo --minify` passes (build health)
 
 Schema drift (new fields introduced by a lane) must be proposed — Goddard

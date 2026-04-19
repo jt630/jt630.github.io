@@ -69,12 +69,13 @@ For every incoming PR (from Agent call or separate session):
   (with TRIGGER + SKIP), `hardware`, `preconditions`, `owned_by`
 - `region` matches filename prefix (e.g. `arm_*.yaml` has `region: arm`)
 - `composes_with` ids all resolve to existing organs
-- `requires_mount` (if present) matches a known mount-bay type
-- `storage_volume_cm3` present on any tool that's not embedded
+- `storage_volume_cm3` present on any tool that's not embedded (advisory)
 - No edits to files outside the lane's region ownership
 - No schema drift — new fields promoted, renamed, or rejected
-- Voice check: region docs written in the Goddard voice (tight, first
-  person, no sub-personalities)
+- Voice check: region docs written in the Goddard voice (warm, patient,
+  clear — competent home aide tone, no spy-gadget framing)
+- Safety check: no hot-surface or open-flame skills; motion skills include
+  elderly-care preconditions (obstacle_clear, voice_interruptible)
 
 ## Dispatching with the Agent tool
 

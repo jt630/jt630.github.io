@@ -53,6 +53,10 @@ hardware eventually arrives, the same Goddard migrates from a Claude
 session onto a physical body. The manifests stop being thought
 experiments and become callable actuators. Same schema. Same dispatch.
 
+**North star: help elderly people live independently at home.** Every
+design decision flows from this. A robot that frightens a grandma has
+already failed.
+
 ## Body regions (the ISS bays)
 
 Eight regions. Every organ lives in exactly one. Parallel sessions own
@@ -61,41 +65,33 @@ one region each and can't collide.
 - **brain** — compute, skill registry, planner, memory, intent queue
 - **core** — power distribution, reflex loop, safety monitor, bus
 - **guts** — consumables tanks, waste, fabrication support
-- **arm** — shoulder-to-wrist manipulator, mount-bays for tools
+- **arm** — shoulder-to-wrist manipulator, active-tool slot
 - **hands** — end-effectors (paw, pincer, fine tip), tool change
 - **legs** — walking, wheeled, climbing locomotion
 - **thighs** — leg attachment, high-torque joints, power routing
-- **skin** — chassis panels, gadget bays, embedded sensors
+- **skin** — chassis panels, embedded gadgets (vacuum, sensors)
 
-## The CD-changer — mount-bays, magazines, and call priority
+## The skill directory — priority tiers
 
-Arms are expensive. We can't give every arm a dedicated copy of every
-fabrication or gadget tool. So arms share hardware via a **CD-changer
-pattern**, borrowed from CNC machines and 90s car stereos.
+Arms can't carry every tool simultaneously. So the planner uses a
+**skill-directory priority system**: a logical ordering that tells it how
+quickly each skill can be made ready.
 
-- **Mount-bay** — standardized physical + electrical interface on an arm
-  (e.g. `arm-mount-v1`). The ISS docking port analog.
-- **Tool** — any organ whose `requires_mount` matches a mount-bay. Tools
-  live idle in storage and swap into the active slot on demand.
-- **Magazine** — the arm's local tool carousel. Fast swap.
-- **Storage budget** — the "one-car garage." The whole robot has a
-  bounded `storage_volume_cm3` across idle tools. Hard cap.
+| Tier | State | Example | Planner cost |
+|---|---|---|---|
+| 1. **Embedded** | Fixed in chassis, always active | `skin_vacuum` | 0 — always ready |
+| 2. **Mounted (active)** | Loaded in the active tool slot | Session's primary tool | 0 — already active |
+| 3. **Magazine** | Available, brief setup needed | Additional arm tools | setup_time_s |
+| 4. **Storage** | Available, retrieval + setup needed | Infrequently used tools | retrieve + setup |
 
-But the CD-changer isn't just a physical mechanic — it's a **call-priority
-system.** At skill-call time Goddard's planner ranks candidates by how
-expensive they are to reach:
+On-body skills (tiers 1–2) are top priority. Storage-accessible skills cost
+time to reach, and the planner accounts for that cost. This lets Goddard
+carry a large skill library — only a few skills stay resident at any moment.
 
-| Tier | State | Access cost |
-|---|---|---|
-| 1. **Embedded** | Fixed on skin (lighter, vacuum) | 0 — always ready |
-| 2. **Mounted (active)** | Already docked in an arm slot | 0 — already active |
-| 3. **Magazine** | On-arm carousel, needs tool_change | a few seconds |
-| 4. **Storage** | In the garage, retrieve + change | longer, may be declined |
-
-On-body skills (tiers 1-2) are top priority. Storage-accessible skills are
-lower priority because they cost time to reach. This lets us carry a HUGE
-library of skills — only a few stay resident; the rest live in the garage
-until called. Full spec in `data/robots/CD-CHANGER.md`.
+The "CD-changer" name lives on as an aesthetic cue. Goddard's chassis leans
+**90s translucent plastic** — iMac G3, Gameboy Color, Tamagotchi. Colorful,
+see-through, approachable. Nothing about Goddard should look tactical or
+intimidating. Full spec in `docs/goddard/SKILL-DIRECTORY.md`.
 
 ## Manifest schema
 
@@ -116,16 +112,13 @@ hardware:
   slot: active-tool
   power_w: 45
   deploy_time_ms: 1200
-  storage_volume_cm3: 1800         # "garage space" when idle
+  storage_volume_cm3: 1800         # advisory: "garage space" when idle
   envelope_cm: [15, 15, 20]
-
-requires_mount: arm-mount-v1       # docks into any arm with this bay
-tool_change_time_s: 4
 
 preconditions: [...]
 inputs: { ... }
 outputs: { ... }
-composes_with: [heat_mold, skin_vacuum, skin_lighter]
+composes_with: [skin_vacuum]
 safety: [...]
 owned_by: jarvis                   # jarvis (planner) | goddard (reflex)
 canonical_example: r2d2
@@ -139,8 +132,7 @@ when to call the skill, exactly the way an LLM reads a skill card.
 
 The `composes_with` list is the superpower. Skills reference other skills
 by id, and a composed skill is just a manifest that runs a sequence. No
-bespoke code per combination. See `heat_mold.yaml` for the canonical
-composed example.
+bespoke code per combination.
 
 ### Current registry
 
@@ -148,9 +140,7 @@ composed example.
 - **`data/robots/skill_groups.yaml`** — functional taxonomy
 - **`data/robots/sci_fi_catalog.yaml`** — canon robots tagged
 - **`data/robots/organs/arm_3d_printer.yaml`** — canonical schema example
-- **`data/robots/organs/skin_lighter.yaml`** — flick-out flame
 - **`data/robots/organs/skin_vacuum.yaml`** — retractable suction
-- **`data/robots/organs/heat_mold.yaml`** — composed (lighter + printer)
 
 ## Sci-fi catalog — finding gaps
 
@@ -158,36 +148,37 @@ Tagged canon lives in `sci_fi_catalog.yaml`. Early observations:
 
 - Very few canonical robots treat **fabrication** as a primary organ.
   R2-D2 and Wall-E gesture at it; nobody lives there. Goddard's
-  printer arm + heat-mold occupies open territory.
+  printer arm occupies open territory.
 - **Gadgets** is dominated by R2-D2. Huge design space wide open.
-- **Soft-body** (Baymax) is an underused chassis. Worth borrowing from.
+- **Soft-body** (Baymax) is an underused chassis. Worth borrowing from —
+  and Baymax's caregiver mission aligns directly with Goddard's.
 
 ## Form factor (chassis comes later)
 
-Many-legged, asymmetric locomotion. One leg walks, one leg wheels.
-Spider-scorpion chassis, low and stable, can climb. Abstract toward
-**cat, not dog.** Independent, curious, doesn't need constant approval.
+Cat-sized, cat-tempered: calm, small, non-threatening. The cat reference
+is about scale and temperament only — not spy gadgetry. A scared grandma
+cannot see a scorpion. Goddard must look like something a 75-year-old
+would trust near their medication.
 
-**Style: James Bond gadget cat.** Q-branch, not Boston Dynamics. Organs
-as concealed gadgets. Every tool lives flush with the body until called.
+**Chassis aesthetic: 90s translucent plastic.** iMac G3 lineage. Friendly,
+approachable, non-military. This is a deliberate mission constraint, not
+just a style preference.
 
-Starter loadout:
-- Flick-out **lighter** in skin
-- Retractable **vacuum** in skin
-- **3D printer** as an arm-mounted tool
-- **Heat + mold** composed skill
-- Magazine of additional arm tools (pincer, fine-tip, laser pointer,
-  grappling hook — TBD by the arm scaffolding lane)
+Starter loadout focused on elderly care:
+- Retractable **vacuum** in skin (spills, dropped pills)
+- **3D printer** as an arm-mounted tool (eyeglass tips, cane ferrules,
+  arthritis grips)
+- End-effectors for **fetch-small-items**, **open jars**, **open doors**
+- Communication organ for **video calls to family**, **read aloud**,
+  **medication reminders**
 
 ## Open questions
 
-- Minimum viable organ set for a useful house robot?
+- Minimum viable organ set for a useful elderly-care house robot?
 - How does the composed-skill runtime execute a manifest — sequential with
   handoff steps, a DAG, or an LLM-planned chain?
 - Is the reflex loop a skill group (`movement` + `power` + `sensing` all
   `owned_by: goddard`) or a separate runtime beneath the registry?
-- How is hardware versioned — swappable attachments shipping their own
-  manifest? Who adjudicates mount-bay compatibility?
 - Smallest end-to-end demo: Goddard reads one manifest, plans one call,
   fires one simulated actuator. Everything after that is scale.
 
