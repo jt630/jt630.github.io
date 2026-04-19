@@ -34,7 +34,7 @@ block), `data/robots/organs/core_reflex_loop.yaml` (swaps
 `proprioception_state: required` → `sub_loop_reports: optional`),
 `docs/goddard/regions/legs.md`, `docs/goddard/regions/core.md`.
 
-**Commit:** _see Q1-resolution commit on `claude/goddard-wave-2-composed-vvKDt`_
+**Commit:** `e7d0cc1`
 
 ## Q2 — Shoulder handshake (core/thighs ↔ arm)
 
