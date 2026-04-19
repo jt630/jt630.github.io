@@ -9,6 +9,12 @@ Robots are the most important design project to work on right now. Product desig
 program design, workflow design — robots are where all three converge and where
 the future actually gets paved. This page is the running theory doc.
 
+**Brain before body.** It's strange that we built AI before we built useful
+robots, but it actually tracks: the brain has to exist before the form around
+it makes sense. You design the organism mind-first, then grow the body that
+fits it. Agentic AI is the nervous system. Hardware is scaffolding we hang
+on it.
+
 ## Thesis
 
 **A robot is a hardware interface over an agentic AI skill library.**
@@ -63,6 +69,24 @@ so the robot can summon physical objects on demand.
 
 Abstract the vibe toward **cat, not dog.** Independent, curious, doesn't need
 constant approval. Goddard (Jimmy Neutron) is the reference point but cat-coded.
+
+### Style: James Bond spy cat
+
+The aesthetic target is a **gadget cat** — a small, elegant body with hidden
+tools that flick out on demand. Q-branch, not Boston Dynamics. Organs as
+concealed gadgets, not visible appendages.
+
+Starter loadout:
+- **Lighter** — flick-out flame. Small, controlled heat source.
+- **Vacuum** — retractable suction. Cleanup, sample collection, adhesion.
+- **3D printer arm** — extrude polymer on demand.
+- **Heat + mold skill** — pair the lighter (or a dedicated heat element) with
+  the printer so the robot can *reshape* printed objects after extrusion. Print
+  → soften → press into final form. This unlocks parts the printer alone can't
+  produce (curves, joins, field repairs).
+
+Every gadget lives flush with the body until called, then deploys. The skill
+manifest declares which panel it hides behind and how long deploy takes.
 
 ## Sci-fi assistant catalog
 
