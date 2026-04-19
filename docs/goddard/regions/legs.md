@@ -35,6 +35,12 @@ Key decisions:
   8 cm/s — a cautious approach, never an urgent rush.
 - No stair descent without `handrail_assist_active`. The precondition is a
   guard, not a preference.
+- **Balance sub-loop declared via the `sub_loop:` block on `leg_walk.yaml`**
+  (id: `balance`, hz: 100, criticality: `safety`, payload_shape:
+  `proprioception_v1`). Core supervises it each main tick; on `healthy:
+  false` every motion skill that depends on the balance loop loses its
+  preconditions until recovery. Legless configurations simply don't register
+  this sub-loop and core tolerates its absence. See SCHEMA.md § Sub-loops.
 
 Open questions:
 

@@ -5,17 +5,36 @@ region scaffolding. Goddard reviews and adjudicates here before lanes hard-code
 assumptions. Entries are resolved by editing this file (mark RESOLVED with the
 decision) or promoted into the owning region's manifest once answered.
 
-## Q1 — Balance sub-loop state shape (legs ↔ core)
+## Q1 — Balance sub-loop state shape (legs ↔ core) — RESOLVED
 
-`leg_walk` owns the 100 Hz balance sub-loop and reports state into
-`core_reflex_loop` each 10 Hz main tick. The handshake is described in prose
-but has no formal `outputs:` schema that core can consume.
+Resolved via the modular `sub_loop:` block + uniform `sub_loop_report`
+envelope. Goddard is modular (ISS-style): not every configuration has legs,
+and the schema must tolerate that. Fixing a single `proprioception_state`
+shape on `core_reflex_loop.inputs` would have forced every config to ship a
+balance loop.
 
-**Decision needed:** exact field list and types that `core_reflex_loop.yaml`
-reads as `proprioception_state` each tick. Candidate: `{pitch_deg,
-roll_deg, yaw_rate_dps, per_leg_contact[4], com_offset_cm[2], corrections_n}`.
+**Decision:**
 
-**Owners:** legs (emits), core (consumes).
+- Any organ that runs an inner loop declares it in a manifest-level
+  `sub_loop:` block: `{id, hz, criticality, payload_shape}`.
+- Core reads a uniform `sub_loop_report` envelope keyed by id on every main
+  tick: `{id, hz_actual, missed_ticks, healthy, payload}`. Empty map is
+  valid.
+- The command module (core) supervises: any `criticality: safety` sub-loop
+  with `healthy: false` raises a precondition failure for every skill that
+  depends on it, until recovery.
+- `proprioception_v1` is the first named payload shape: `pitch_deg, roll_deg,
+  yaw_rate_dps, per_leg_contact[4], com_offset_cm[2], corrections_n, stable,
+  joint_saturation`. New shapes are proposed by PR and promoted into
+  SCHEMA.md.
+
+Edits shipped in this resolution: `docs/goddard/SCHEMA.md` (§ Sub-loops + §
+Named payload shapes), `data/robots/organs/leg_walk.yaml` (adds `sub_loop:`
+block), `data/robots/organs/core_reflex_loop.yaml` (swaps
+`proprioception_state: required` → `sub_loop_reports: optional`),
+`docs/goddard/regions/legs.md`, `docs/goddard/regions/core.md`.
+
+**Commit:** _see Q1-resolution commit on `claude/goddard-wave-2-composed-vvKDt`_
 
 ## Q2 — Shoulder handshake (core/thighs ↔ arm)
 

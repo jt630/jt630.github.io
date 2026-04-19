@@ -59,10 +59,17 @@ Core owns four always-on systems and one planner-consulted accountant:
   composed skill is mid-execution and skin (gadget) power is cut, does the
   composed skill abort, pause, or degrade gracefully? The power bus and reflex
   loop need a shared protocol for this.
-- The 100 Hz balance sub-loop interface between legs and core is described in
-  words but not yet formal in either region's schema. The legs lane should
-  define the state shape that feeds back into the reflex loop; core will consume
-  it. Cross-lane interface request pending.
 - `core_storage_budget` garage cap defaults to 8000 cm³ (config). Where does
   that config live? It should be a named constant the planner can inspect, not
   a hardcoded number buried in firmware.
+
+## Resolved
+
+- **Sub-loop supervision (Q1).** Core is the command module that supervises
+  every registered sub-loop. Fast inner loops (legs' 100 Hz balance, future
+  arm compliance, thermal watchdogs) declare themselves via the `sub_loop:`
+  manifest block; `core_reflex_loop` reads a uniform `sub_loop_report` from
+  each registered id each main tick and gates dependent skills on
+  `healthy: true`. Modular: a configuration without a given sub-loop simply
+  doesn't register it and core tolerates the absence. See SCHEMA.md §
+  Sub-loops.

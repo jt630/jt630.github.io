@@ -43,6 +43,12 @@ outputs:
   gait_cycles: number
   balance_corrections: number    # count of 100 Hz sub-loop corrections applied
 
+sub_loop:
+  id: balance                    # unique sub-loop id; core reads reports keyed by id
+  hz: 100                        # target cadence — balance cannot wait for a main tick
+  criticality: safety            # unhealthy balance gates every motion skill that depends on it
+  payload_shape: proprioception_v1  # see SCHEMA.md § Sub-loops for field list
+
 composes_with:
   - thigh_joint                  # hip articulation at each step
   - core_reflex_loop             # runs under reflex tick; balance sub-loop feeds state here
@@ -54,7 +60,8 @@ safety:
   - fall_approach_speed_cms: 8   # max speed when navigating toward a detected fall event
   - no_stair_descent_without_handrail_assist
   - wet_floor_abort: true        # gait halts and reports if wet_floor_index rises mid-walk
-  - 100Hz_balance_sub_loop: owned by this organ; reports state into core_reflex_loop each tick
+  - "balance sub-loop declared in the sub_loop: block above (100 Hz, criticality: safety);
+    core supervises its sub_loop_report each main tick and gates this skill on healthy=true"
   - safety monitor cannot be bypassed; all preconditions re-evaluated mid-walk at each 10 Hz tick
 
 owned_by: goddard
