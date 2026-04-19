@@ -1,0 +1,60 @@
+id: thigh_power_route
+name: Power Route (thigh bus to legs)
+region: thighs
+group: power
+
+description: |
+  Routes power from the core_power_bus down through the thigh assembly to
+  the leg joints and locomotion actuators. Manages per-leg power allocation,
+  monitors draw against the total leg power budget, and enforces brown-out
+  priority: balance authority is the last thing surrendered under low-power
+  conditions.
+  TRIGGER automatically on every power tick when the robot is active. Not
+  dispatched by the planner — it is always running while the robot is upright.
+  Elderly-care note: this organ ensures that even during a battery low-warning
+  event, the robot can stay balanced and upright. A robot that topples during a
+  brown-out is a hazard to a nearby resident. Balance and safe pose hold always
+  have power priority over any non-essential motion.
+  SKIP for any leg power demand that would drop the total power draw below
+  the balance_authority_reserve_w threshold — non-balance leg motion is
+  yielded first, always.
+
+hardware:
+  slot: chassis-thigh-power-rail  # passive bus, one per thigh segment
+  power_w: 2                      # routing logic overhead; actual leg load is pass-through
+  deploy_time_ms: 0               # always active
+  consumables: []
+  envelope_cm: [4, 2, 10]         # rail housing per thigh segment
+
+preconditions:
+  - core_power_bus_online: true
+  - battery_pct >= 5              # minimum to maintain balance authority
+
+inputs:
+  requested_power_w: {type: number, required: true}    # demand from leg actuators
+  battery_pct: {type: number, required: true}          # live battery state
+  balance_authority_active: {type: bool, required: true}  # flag from 100 Hz sub-loop
+
+outputs:
+  allocated_power_w: number       # actual power delivered to legs
+  balance_power_w: number         # power reserved for balance authority
+  load_shed_reason: string        # null unless load was shed; names the yielded skill
+
+composes_with:
+  - thigh_joint                   # direct power consumer on this route
+  - leg_walk                      # locomotion load recipient
+  - leg_wheel                     # wheel drive load recipient
+  - core_power_bus                # upstream power source
+  - core_battery                  # read for battery_pct precondition and load decisions
+  - core_reflex_loop              # reports power state each 10 Hz tick
+
+safety:
+  - voice_interruptible: true     # power route can shed non-balance load on voice halt
+  - balance_authority_reserve_w: 6  # minimum watts always held for balance; never yielded
+  - brown_out_priority: [balance_hold, safe_pose, non_motion_sensors, locomotion]
+    # order of load shedding under low power: locomotion yields first
+  - over_draw_cutoff: true        # cuts power to leg actuators if draw exceeds rated rail capacity
+  - safety monitor cannot be bypassed; thermal and power flags evaluated each tick
+
+owned_by: goddard
+canonical_example: walle          # autonomous power management under constraint

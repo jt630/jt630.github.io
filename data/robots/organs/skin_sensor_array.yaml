@@ -1,0 +1,58 @@
+id: skin_sensor_array
+name: Sensor Array — Exteroceptive Suite
+region: skin
+group: sensing
+
+description: |
+  The outward-facing sensing suite embedded across chassis panels: RGB-D
+  depth cameras (360-degree stereo pair), short-range LIDAR for floor-plane
+  mapping and leg obstacle detection, and capacitive touch/pressure sensors
+  on outer chassis surfaces. Together these maintain a live spatial map of
+  Goddard's immediate environment and feed the obstacle_clear flag that gates
+  all motion skills.
+  TRIGGER always — the sensor array is continuously active from boot. It
+  publishes obstacle_clear, human_proximity_cm, and mobility_aid_detected
+  to core_safety_monitor on every reflex tick.
+  Elderly-care framing: walkers, canes, oxygen tubes, and low furniture are
+  common hazards in a home where an older adult lives. The LIDAR's 5cm floor
+  scan catches these before any leg motion commits. The RGB-D pair identifies
+  a person and tracks their mobility aid separately so the safety monitor can
+  apply the correct speed cap.
+  SKIP for long-range navigation (>5m) — that task requires higher-level
+  mapping from brain_planner.
+
+hardware:
+  slot: chassis-panel-ring-1         # distributed across all chassis panels
+  power_w: 6
+  deploy_time_ms: 0                  # always active
+  consumables: []
+  envelope_cm: [30, 4, 4]           # ring of sensors around full chassis circumference
+  storage_volume_cm3: 480            # fixed-install; counts against skin bay budget
+
+preconditions:
+  - system_powered: true
+  - sbc_boot_complete: true
+
+inputs:
+  scan_rate_hz: {type: number, default: 10, range: [5, 30]}
+  lidar_range_cm: {type: number, default: 150, range: [20, 300]}
+
+outputs:
+  obstacle_clear: bool               # primary gate for all motion skills
+  human_proximity_cm: number         # consumed by core_safety_monitor
+  mobility_aid_detected: bool        # cane/walker flag for speed-cap logic
+  depth_map: object                  # 3D occupancy grid, consumed by brain_planner
+  chassis_touch: bool                # contact event on outer skin
+
+composes_with:
+  - core_safety_monitor              # obstacle_clear and proximity flags are hard inputs
+  - brain_planner                    # depth_map feeds path planning
+  - leg_walk                         # obstacle_clear is a motion precondition
+
+safety:
+  - voice_interruptible: true
+  - sensor_array_offline event triggers motion-halt safety flag in core_safety_monitor
+  - depth_map latency > 50ms triggers a degraded-mode alert and slows leg speed cap
+
+owned_by: goddard
+canonical_example: r2d2              # always-on environmental awareness, embedded in chassis

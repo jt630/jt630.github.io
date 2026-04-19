@@ -1,0 +1,51 @@
+id: core_reflex_loop
+name: Reflex Loop (10 Hz main loop)
+region: core
+group: sensing
+
+description: |
+  The heartbeat of the robot. Runs at 10 Hz and evaluates every tick:
+  is anything wrong? Is there an intent waiting? Do the safety flags permit acting?
+  TRIGGER on every powered-on tick — this organ never sleeps while the robot is active.
+  It drains the intent queue, fires owned_by:goddard skills (movement, power, sensing),
+  and polls the safety monitor before any action is dispatched.
+  Elderly-care context: if a resident calls out or a fall-detection event arrives,
+  the reflex loop is the first system to receive it — no planner latency, no queue wait.
+  SKIP for planner-mediated (owned_by:jarvis) skills — those enter the intent queue
+  and are dispatched by the sequence_reading layer, not here.
+
+hardware:
+  slot: chassis-embedded-core
+  power_w: 3
+  deploy_time_ms: 0             # always running; zero deploy cost
+  consumables: []
+  envelope_cm: [0, 0, 0]        # firmware — no physical envelope
+
+preconditions:
+  - system_powered: true
+  - sbc_boot_complete: true
+
+inputs:
+  intent_queue: {type: queue, required: false}   # drained each tick if non-empty
+  safety_flags: {type: map, required: true}       # live flag map from safety monitor
+  proprioception_state: {type: map, required: true}
+
+outputs:
+  tick_count: number             # cumulative ticks since boot
+  active_skill_id: string        # id of the skill fired this tick, or null
+  queue_depth: number            # intents remaining after this tick's drain
+  safety_flag_snapshot: map      # state of all flags at tick time
+
+composes_with:
+  - core_safety_monitor          # evaluated before every skill dispatch
+  - core_power_bus               # checks power state each tick
+  - core_battery                 # reads battery_pct for precondition eval
+
+safety:
+  - voice_interruptible: true    # any spoken command from resident pre-empts current intent
+  - 100Hz balance sub-loop owned by legs region reports state into this loop each tick;
+    leg region is responsible for that sub-loop's cadence
+  - safety monitor evaluation is non-override-able; reflex loop cannot bypass it
+
+owned_by: goddard
+canonical_example: goddard      # autonomic layer — namesake archetype

@@ -1,0 +1,53 @@
+id: brain_skill_registry
+name: Skill Registry
+region: brain
+group: sequence_reading
+
+description: |
+  Boot-time file-scan of data/robots/organs/ that builds an in-memory map
+  of every organ manifest indexed by id. The planner's callable menu.
+  TRIGGER at system startup — the registry loads before any intent can be
+  dispatched. The planner queries it by skill id to retrieve full manifest
+  details including preconditions, hardware requirements, and safety rules.
+  The registry never surfaces a skill whose region is inaccessible (e.g. an
+  arm tool when no arm is mounted), and it annotates each entry with its
+  inferred SKILL-DIRECTORY tier so the planner can prefer lower-cost options.
+  Elderly-care framing: in a home environment, the skill set changes slowly.
+  A new organ may be added (caregiver attaches a specialized arm tool), but
+  the resident should never notice a moment where Goddard "doesn't know" a
+  skill it had yesterday. Boot-time load is the safest guarantee of
+  consistency.
+  SKIP hot-reload — deferred to v2 per Wave 0. If an organ file is added
+  or changed, a controlled restart is required to update the live registry.
+  SKIP any manifest that fails schema validation (missing required fields);
+  log the rejection and continue loading the rest.
+
+hardware:
+  slot: chassis-bay-head          # runs in RAM on the head SBC
+  power_w: 1                      # negligible — in-memory map, no active I/O
+  deploy_time_ms: 800             # cold scan of organs/ directory at boot
+  consumables: []
+
+preconditions:
+  - brain_compute_online: true
+  - organs_dir_readable: true
+
+inputs:
+  organs_path: {type: path, default: "data/robots/organs/"}
+  validate_schema: {type: bool, default: true}
+
+outputs:
+  registry_map: {type: object}    # id → full manifest, loaded into memory
+  load_errors: {type: array}      # manifests that failed validation at boot
+  skill_count: {type: number}
+
+composes_with:
+  - brain_planner                 # planner queries registry at dispatch time
+
+safety:
+  - reject manifests missing required fields; never silently ignore schema errors
+  - log all load_errors to caregiver-accessible diagnostics
+  - voice_interruptible: true
+
+owned_by: jarvis
+canonical_example: jarvis        # operator-layer knowledge index

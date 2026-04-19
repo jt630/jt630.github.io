@@ -1,0 +1,56 @@
+id: brain_planner
+name: Task Planner
+region: brain
+group: sequence_reading
+
+description: |
+  The planner subsystem. Drains intents from brain_intent_queue, resolves
+  the best matching skill from brain_skill_registry using SKILL-DIRECTORY
+  priority tiers (embedded first, stored last), and either dispatches to
+  the reflex loop (owned_by: goddard skills) or runs its own sequential
+  execution plan (owned_by: jarvis skills).
+  TRIGGER when an intent arrives in the queue — a resident asking for help,
+  a scheduled medication reminder, an inferred routine step (morning tray,
+  evening lights-down). The planner triages by priority order before
+  dispatching: safety actions supersede explicit requests, which supersede
+  scheduled tasks, which supersede inferred habits.
+  Elderly-care framing: the planner knows it is in a home, not a warehouse.
+  It never surfaces a skill whose preconditions exclude the current room,
+  never chains a long motion sequence while a person is in the path, and
+  always yields to a voice interrupt before committing to the next step.
+  SKIP direct hardware calls — the planner orchestrates, it does not actuate.
+  SKIP any intent whose safety preconditions cannot be satisfied; route
+  instead to a verbal explanation of why the task cannot proceed right now.
+
+hardware:
+  slot: chassis-bay-head          # runs on the SBC in the head unit
+  power_w: 4                      # compute overhead on top of brain_compute baseline
+  deploy_time_ms: 0               # always resident, no setup
+  consumables: []
+
+preconditions:
+  - brain_compute_online: true
+  - brain_skill_registry_loaded: true
+  - brain_intent_queue_ready: true
+
+inputs:
+  intent: {type: object, required: true}   # drained from brain_intent_queue
+  priority_override: {type: enum, values: [safety, explicit, scheduled, inferred], required: false}
+
+outputs:
+  dispatch_plan: {type: array}    # ordered list of skill calls
+  refused_reason: {type: string}  # set when intent cannot be satisfied safely
+
+composes_with:
+  - brain_skill_registry          # looks up skills by id
+  - brain_intent_queue            # drains intents
+  - brain_memory                  # reads routines, preferences, scheduled tasks
+
+safety:
+  - never dispatch a skill whose preconditions are unmet
+  - yield execution immediately on voice interrupt before the next step fires
+  - voice_interruptible: true
+  - log all refused intents with reason for caregiver review
+
+owned_by: jarvis
+canonical_example: jarvis        # LLM operator layer — dispatch is its core role

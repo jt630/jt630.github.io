@@ -1,0 +1,51 @@
+id: guts_waste_bay
+name: Sealed Waste Bay
+region: guts
+group: power
+
+description: |
+  Internal sealed compartment that collects and contains debris from vacuum
+  intake, trimmed 3D-print support material, and disposable item pickup.
+  A one-way intake valve accepts material from skin_vacuum and from the arm's
+  manipulation zone; a tamper-evident door permits service-cycle emptying only.
+  TRIGGER automatically whenever skin_vacuum deposits material, post-print
+  support scraps are trimmed, or a disposable item (used tissue, soiled pad)
+  is carried to the bay for containment.
+  Elderly-care examples: collecting spilled medication or dropped food without
+  leaving debris on the floor; containing used tissues from a sick resident
+  until a carer empties the bay; isolating sharp print-support fragments so
+  they can't be stepped on.
+  SKIP for hazardous or biohazard waste beyond a residential care standard —
+  bay is not a medical sharps container and must never be used for needles.
+
+hardware:
+  slot: guts-bay-waste
+  power_w: 1                         # intake valve actuator only
+  deploy_time_ms: 200                # valve open time
+  consumables: []
+  envelope_cm: [10, 8, 14]
+  storage_volume_cm3: 1120           # advisory: internal guts bay volume
+
+preconditions:
+  - system_powered: true
+  - waste_bay_fill_pct < 90          # refuse intake if nearly full
+
+inputs:
+  intake_trigger: {type: bool, required: true}
+
+outputs:
+  waste_bay_fill_pct: number         # 0–100; reported continuously
+  bay_sealed: bool                   # true when door is fully latched
+
+composes_with:
+  - skin_vacuum                      # primary source of deposited material
+  - arm_3d_printer                   # support-material scraps routed here post-print
+
+safety:
+  - bay door locks during normal operation; opens only during service cycle
+  - waste_bay_fill_pct >= 90 triggers full-bay alert to caregiver before next task
+  - no odor seal breach: door gasket must be intact (checked at service)
+  - voice_interruptible: true        # intake pauses immediately on voice command
+
+owned_by: jarvis
+canonical_example: walle             # self-contained waste/scavenger bay

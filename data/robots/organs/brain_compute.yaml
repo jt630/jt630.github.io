@@ -1,0 +1,64 @@
+id: brain_compute
+name: SBC Compute Substrate
+region: brain
+group: sensing
+
+description: |
+  The physical compute substrate — a Raspberry Pi 5 or Jetson Orin Nano
+  class single-board computer mounted in the head unit. Runs the 10 Hz
+  reflex main loop, the 100 Hz balance sub-loop, and all brain-region
+  software (planner, skill registry, memory, intent queue). The SBC is
+  the hardware that makes the brain a brain.
+  TRIGGER at power-on: the SBC boots, mounts persistent storage, and starts
+  the reflex loop before any other organ initializes. All other brain organs
+  declare a precondition of brain_compute_online: true — this is the
+  substrate they run on.
+  Elderly-care framing: the SBC is sized for real-time responsiveness on
+  available hardware today, not speculative future silicon. Pi 5 is the
+  conservative baseline (broadly available, well-documented, community-tested
+  in home robotics). Jetson Orin Nano class is the performance target when
+  on-device inference for voice or vision is needed. Both are plausible in
+  a cat-sized chassis. Neither requires exotic supply chains or engineering
+  heroics — which matters for a home device that caregivers and family
+  members may eventually need to service.
+  SKIP tasks requiring GPU-class compute that cannot tolerate the Jetson's
+  thermal envelope inside a small chassis. If an inference workload exceeds
+  the on-device budget, it is deferred to a local home hub or explicitly
+  out-of-scope.
+
+hardware:
+  slot: chassis-bay-head          # fixed mount in the head unit
+  power_w: 8                      # Pi 5 baseline; Orin Nano peaks ~10W
+  deploy_time_ms: 18000           # full Linux boot to reflex-loop-ready (~18s)
+  consumables: []
+  envelope_cm: [8, 6, 2]         # Pi 5 form factor, fits in cat-head chassis
+  storage_volume_cm3: 96          # physical footprint of the SBC in the bay
+
+preconditions:
+  - power_rail_5v_stable: true
+  - thermal_c: {max: 75}          # SBC throttles above this; reflex loop degrades
+
+inputs:
+  boot_config: {type: path, default: "/boot/config.txt"}
+  target_loop_hz: {type: number, default: 10}
+  balance_loop_hz: {type: number, default: 100}
+
+outputs:
+  compute_online: {type: bool}
+  cpu_load_pct: {type: number}
+  thermal_c: {type: number}
+  uptime_s: {type: number}
+
+composes_with:
+  - brain_planner                 # runs on this substrate
+  - brain_skill_registry          # runs on this substrate
+  - brain_memory                  # persists to this substrate's storage
+  - brain_intent_queue            # runs on this substrate
+
+safety:
+  - thermal throttle at 70C, hard shutdown at 80C
+  - reflex loop watchdog: if main loop misses 5 consecutive ticks, enter safe-stop
+  - voice_interruptible: true
+
+owned_by: goddard                 # SBC is reflex infrastructure — powers the autonomic layer
+canonical_example: r2d2           # astromech compute core: always-on substrate in a small chassis

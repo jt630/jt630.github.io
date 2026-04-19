@@ -1,0 +1,58 @@
+id: core_power_bus
+name: Power Distribution Bus
+region: core
+group: power
+
+description: |
+  Routes battery power to every region. Maintains per-region budgets,
+  enforces brown-out priority cuts, and is the single authority on who
+  gets power when supply is constrained.
+  TRIGGER on every reflex tick: continuously monitors draw versus available
+  capacity and adjusts region allocations. Also triggered by any brown-out
+  event or explicit power-budget query from the planner.
+  Priority order when supply is constrained (highest to lowest):
+    1. core (safety monitor, reflex loop — never cut)
+    2. brain (planner stays live for graceful degradation messaging)
+    3. legs / thighs (stability — a falling robot is a safety hazard for residents)
+    4. arm / hands (active task, if in progress — paused gracefully)
+    5. skin (embedded gadgets — suspended)
+    6. guts (fabrication support — suspended)
+  Elderly-care context: motion capability is preserved over gadget capability
+  during brown-out. A resident counting on Goddard to bring medication or
+  steady a grab bar must not find the robot stranded mid-task because a
+  non-essential gadget drained the battery.
+  SKIP for per-region internal power routing (each region manages its own
+  internal draw); the bus only handles the handoff from battery to region headers.
+
+hardware:
+  slot: chassis-embedded-core
+  power_w: 2                    # bus controller draw only; payload varies
+  deploy_time_ms: 0
+  consumables: []
+  envelope_cm: [0, 0, 0]        # embedded bus logic
+
+preconditions:
+  - battery_pct >= 1            # hard floor — below this, bus enters emergency mode
+  - core_battery: {status: online}
+
+inputs:
+  region_draw_requests: {type: map, required: true}   # per-region requested watts
+  battery_available_w: {type: number, required: true}
+  battery_pct: {type: number, required: true}
+
+outputs:
+  region_allocations: map        # per-region granted watts
+  brown_out_active: bool
+  suspended_regions: list        # regions currently cut
+  bus_efficiency_pct: number
+
+composes_with:
+  - core_battery                 # reads supply capacity, reports allocation load
+
+safety:
+  - voice_interruptible: true    # planner can re-query allocation mid-task on voice command
+  - core region allocation is never cut, even under brown-out
+  - brown-out transitions are logged with timestamp and battery_pct snapshot
+
+owned_by: goddard
+canonical_example: goddard

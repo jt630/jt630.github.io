@@ -1,0 +1,50 @@
+id: guts_water_tank
+name: Clean Water Reservoir
+region: guts
+group: power
+
+description: |
+  Swappable/refillable reservoir of clean water that supports light cleaning
+  tasks, humidifier-assist, and pet-bowl top-up. A pump and micro-valve route
+  water to whichever tool requests it via the internal supply bus.
+  TRIGGER for any task that calls for a controlled volume of clean water:
+  light surface cleaning, filling a pet's bowl, misting a humidifier, or
+  rinsing a dispensed medication cup.
+  Elderly-care examples: topping up a pet water dish without the resident
+  needing to lift and carry a heavy bowl; misting a small humidifier placed
+  near a bed; wiping a hard surface spill with a damp cloth held by the paw.
+  SKIP for large-volume tasks (>500 ml per job) or hot water — reservoir
+  is ambient-temperature clean water only.
+
+hardware:
+  slot: guts-bay-water
+  power_w: 3                         # pump + valve actuator
+  deploy_time_ms: 400                # pump prime time
+  consumables: [clean_water]
+  envelope_cm: [10, 8, 18]
+  storage_volume_cm3: 1440           # advisory: internal guts bay volume
+
+preconditions:
+  - system_powered: true
+  - guts_bay_sealed: true
+  - water_volume_ml > 0
+
+inputs:
+  dispense_volume_ml: {type: number, required: true, range: [1, 500]}
+  flow_rate_mlps: {type: number, default: 5, range: [1, 30]}
+
+outputs:
+  water_volume_ml: number            # current fill level; reported continuously
+  dispensed_ml: number               # volume delivered in last action
+  refill_needed: bool                # true when water_volume_ml < 50
+
+composes_with:
+  - hand_paw_grip                    # paw carries damp cloth or fills a bowl
+
+safety:
+  - water_volume_ml < 50 triggers low-water alert to caregiver
+  - never dispense water while chassis is on a sloped surface (>10deg)
+  - voice_interruptible: true        # stop dispense immediately on voice command
+
+owned_by: jarvis
+canonical_example: walle             # autonomous resource management, scavenger spirit

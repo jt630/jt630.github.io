@@ -21,8 +21,10 @@ manifests in the wrong file or without a `region:` field.
 
 ## Region docs
 
-Each region gets a short markdown doc at `data/robots/regions/<region>.md`
-authored by its scaffolding lane. The doc covers:
+Each region gets a short markdown doc at `docs/goddard/regions/<region>.md`
+authored by its scaffolding lane. (Hugo's `data/` directory only ingests
+structured formats — JSON/YAML/TOML/XML — so Markdown region docs live
+alongside the other architecture docs under `docs/goddard/`.) The doc covers:
 
 1. What the region is responsible for
 2. What the region interfaces with (which other regions, via what)

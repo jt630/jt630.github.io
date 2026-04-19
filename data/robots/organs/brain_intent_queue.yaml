@@ -1,0 +1,54 @@
+id: brain_intent_queue
+name: Intent Queue
+region: brain
+group: sequence_reading
+
+description: |
+  Ingests intents from all sources — voice commands, sensor-derived triggers,
+  scheduled events, and caregiver-set reminders — and presents them to the
+  planner in priority order: safety > explicit request > scheduled > inferred.
+  TRIGGER whenever a new intent arrives from any source. The queue normalizes
+  the intent into a standard object (type, payload, source, timestamp,
+  priority) before the planner drains it, so the planner never needs to
+  know whether an intent came from a spoken word or a motion sensor.
+  Elderly-care framing: a resident asking for help gets immediate attention
+  (explicit request tier). A medication reminder fires on schedule whether
+  or not she asked for it (scheduled tier). Goddard noticing she hasn't
+  moved in two hours triggers a gentle check-in (inferred tier) — but only
+  after any explicit request has been handled. The priority ordering ensures
+  that small conveniences never delay safety responses.
+  SKIP holding more than one safety-tier intent simultaneously — a safety
+  intent displaces any other safety intent already queued (most recent wins).
+  SKIP executing intents directly; the queue is a buffer and a sorter, not
+  an actuator.
+
+hardware:
+  slot: chassis-bay-head          # in-memory queue on the head SBC
+  power_w: 1                      # lightweight ring buffer, negligible overhead
+  deploy_time_ms: 0               # always resident alongside brain_compute
+  consumables: []
+
+preconditions:
+  - brain_compute_online: true
+
+inputs:
+  raw_intent: {type: object, required: true}   # from voice, sensor, scheduler, or caregiver app
+  source: {type: enum, values: [voice, sensor, scheduler, caregiver], required: true}
+  priority_hint: {type: enum, values: [safety, explicit, scheduled, inferred], required: false}
+
+outputs:
+  queued_intent: {type: object}   # normalized intent ready for planner
+  queue_depth: {type: number}     # current number of pending intents
+  dropped_reason: {type: string}  # set if an intent was displaced or rejected
+
+composes_with:
+  - brain_planner                 # planner drains this queue
+
+safety:
+  - safety-tier intents preempt all others immediately
+  - never drop an explicit resident request without logging the reason
+  - voice_interruptible: true
+  - queue_depth > 10 triggers a diagnostic alert to caregiver
+
+owned_by: jarvis
+canonical_example: jarvis        # dispatch sequencer — intent routing is operator territory

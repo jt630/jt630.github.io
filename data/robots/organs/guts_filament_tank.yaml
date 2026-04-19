@@ -1,0 +1,48 @@
+id: guts_filament_tank
+name: PLA Filament Tank
+region: guts
+group: fabrication
+
+description: |
+  Internal swappable cartridge that stores and feeds PLA filament to
+  arm_3d_printer. Maintains a spool of filament in a humidity-controlled
+  compartment and routes it via a PTFE-lined bowden path to the arm's
+  active-tool slot.
+  TRIGGER when arm_3d_printer is active or being prepared — the printer
+  consults filament_remaining_g as a precondition before any print run.
+  Elderly-care examples: keeping the filament supply topped up so Goddard
+  can fabricate small replacement parts (cane tips, grip inserts, pill
+  organizer tabs) without interrupting a task to ask for a cartridge swap.
+  SKIP for non-PLA materials or prints requiring a different diameter
+  filament; swapping cartridge resolves this.
+
+hardware:
+  slot: guts-bay-filament
+  power_w: 2                         # humidity sensor + feed motor
+  deploy_time_ms: 0                  # always resident; passive feed
+  consumables: [pla_filament]
+  envelope_cm: [12, 8, 20]
+  storage_volume_cm3: 1920           # advisory: internal guts bay volume
+
+preconditions:
+  - system_powered: true
+  - guts_bay_sealed: true            # cartridge door must be latched
+
+inputs:
+  cartridge_swap: {type: bool, required: false, default: false}
+
+outputs:
+  filament_remaining_g: number       # consumed as precondition by arm_3d_printer
+  cartridge_installed: bool
+  humidity_pct: number               # moisture inside cartridge bay
+
+composes_with:
+  - arm_3d_printer                   # primary consumer of filament_remaining_g
+
+safety:
+  - cartridge door must latch fully before any print job dispatched
+  - filament_remaining_g < 10 triggers low-supply alert to caregiver
+  - voice_interruptible: true        # swap request mid-task is safe to honor
+
+owned_by: jarvis
+canonical_example: r2d2              # concealed consumable bay, ready on demand

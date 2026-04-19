@@ -1,0 +1,53 @@
+id: skin_mic
+name: Microphone Array
+region: skin
+group: sensing
+
+description: |
+  Beamforming microphone array embedded in the chassis panels, providing
+  360-degree voice capture with source-direction estimation. This is the
+  primary input channel for all voice interaction with Goddard.
+  TRIGGER always — the microphone is continuously active. It feeds
+  voice_command_pending into core_safety_monitor on every reflex tick.
+  Elderly-care framing: an older resident may call out from any room,
+  any chair, any distance. The array must capture a normal conversational
+  voice across a living room — not require shouting or a specific facing.
+  SKIP for music or ambient sound recording; this array is tuned for
+  speech intelligibility, not wideband audio fidelity.
+  SAFETY CRITICAL: loss of skin_mic disables the voice-interruptible
+  safety guarantee for ALL motion skills. If the mic array goes offline,
+  core_safety_monitor must halt all non-reflex motion until it recovers.
+  A robot that cannot hear a resident say "stop" must not move.
+
+hardware:
+  slot: chassis-panel-top-1          # top panel, centered, 360-degree coverage
+  power_w: 1
+  deploy_time_ms: 0                  # always active; no deploy step
+  consumables: []
+  envelope_cm: [6, 2, 1]
+  storage_volume_cm3: 12             # fixed-install; counts against skin bay budget
+
+preconditions:
+  - system_powered: true
+  - sbc_boot_complete: true
+
+inputs:
+  gain_db: {type: number, default: 0, range: [-10, 20]}
+  wake_word_enabled: {type: bool, default: true}
+
+outputs:
+  voice_command_pending: bool        # high-priority flag consumed by core_safety_monitor
+  audio_direction_deg: number        # source bearing 0–359
+  ambient_db: number                 # background noise level
+
+composes_with:
+  - core_safety_monitor              # voice_command_pending is a hard interrupt input
+  - brain_intent_queue               # recognized intents enqueued here
+
+safety:
+  - voice_interruptible: true
+  - mic_offline event triggers motion-halt safety flag in core_safety_monitor
+  - gain must not saturate on a normal conversational voice at 3m distance
+
+owned_by: goddard
+canonical_example: goddard           # always-on companion awareness

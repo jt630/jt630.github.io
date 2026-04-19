@@ -1,0 +1,60 @@
+id: hand_paw_grip
+name: Soft Paw Grip (compliant end-effector)
+region: hands
+group: manipulation
+
+description: |
+  A soft, compliant paw-style end-effector mounted at the arm's wrist
+  interface. Uses gentle enclosing contact across a padded palm and four
+  flexible digits to cradle everyday objects without pinching.
+  TRIGGER for daily-life grasps where gentleness matters: picking up a
+  ceramic mug, retrieving a TV remote, handing a glass of water to a
+  resident, supporting a person's forearm during stand-up assistance.
+  Elderly-care examples: delivering a medication cup, fetching a book from
+  a low shelf, handing over a phone, offering a steadying grip on a wrist.
+  Elderly skin bruises easily — this grip is always the first choice
+  when contact with a person or fragile object is possible.
+  SKIP for objects smaller than 2 cm (use hand_pincer or hand_fine_tip),
+  objects requiring sustained force > 15 N, or anything with sharp edges
+  that would damage the soft digit material.
+
+hardware:
+  slot: wrist-interface           # attaches to arm_manipulator wrist mount bay
+  grip_force_n: {max: 15, default: 5}   # intentionally low — safety margin
+  span_cm: {min: 3, max: 14}      # usable grasp diameter range
+  digit_count: 4
+  material: silicone-foam composite    # compliant, washable, non-marking
+  power_w: 4
+  deploy_time_ms: 200
+  envelope_cm: [8, 8, 10]
+  storage_volume_cm3: 320         # hand parks in wrist bay when not in use
+
+preconditions:
+  - battery_pct >= 5
+  - arm_manipulator: ready        # wrist interface must be present
+  - obstacle_clear: true
+  - voice_interruptible: true
+
+inputs:
+  target_object: {type: descriptor, required: true}
+  grip_force_n: {type: number, default: 5, range: [1, 15]}
+  motion_profile: {type: enum, values: [gentle, standard], default: gentle}
+
+outputs:
+  grasped: bool
+  contact_force_n: number
+  slip_detected: bool
+
+composes_with:
+  - arm_manipulator     # arm positions the paw; paw closes around target
+  - skin_vacuum         # vacuum can stabilize chassis or assist small-item pickup
+
+safety:
+  - voice_interruptible: true
+  - force_limit_n: 15 hard cap — no override permitted
+  - back-drive on unexpected resistance: release immediately if resistance > 18 N
+  - do not apply grip to a person's hand without motion_profile: gentle
+  - no sharp-edge contact — reject grasp if edge_detected on target surface
+
+owned_by: jarvis
+canonical_example: baymax        # soft-body, safe-contact, gentle by design

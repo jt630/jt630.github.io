@@ -1,0 +1,60 @@
+id: hand_fine_tip
+name: Fine Tip Manipulator (single-point end-effector)
+region: hands
+group: manipulation
+
+description: |
+  A single retractable tip with a 2 mm padded contact point for precise
+  single-point interactions. Not a gripper — this tip pushes, nudges,
+  threads, and presses. No load-bearing grasp capability at all.
+  TRIGGER when the action is a deliberate press, poke, or thread rather
+  than a grasp.
+  Elderly-care examples: pressing a small button on a hearing aid or
+  thermostat, nudging a dropped pill to a more reachable spot, threading a
+  needle eye for a resident with reduced hand dexterity, plugging a micro-USB
+  or USB-C cable into a tight port, pressing an elevator floor button,
+  tapping a touchscreen with precision.
+  SKIP for any load-bearing grasp — this tip carries no grip capability.
+  SKIP for force above 8 N — soft tissues and small devices are easily
+  damaged. SKIP for objects larger than 20 mm that require encircling contact.
+
+hardware:
+  slot: wrist-interface           # attaches to arm_manipulator wrist mount bay
+  tip_force_n: {max: 8, default: 2}
+  tip_diameter_mm: 2
+  tip_material: silicone (medical-grade)
+  extension_mm: 35                # how far tip extends from wrist face
+  power_w: 2
+  deploy_time_ms: 150
+  envelope_cm: [3, 3, 8]
+  storage_volume_cm3: 70          # very small — stores in wrist recess
+
+preconditions:
+  - battery_pct >= 3
+  - arm_manipulator: ready
+  - obstacle_clear: true
+  - voice_interruptible: true
+  - speed_cap_cms: 5              # fine work — always slow approach
+
+inputs:
+  target_point: {type: pose6d, required: true}
+  action: {type: enum, values: [press, nudge, thread, plug], required: true}
+  force_n: {type: number, default: 2, range: [0.5, 8]}
+
+outputs:
+  action_completed: bool
+  contact_force_n: number
+
+composes_with:
+  - arm_manipulator     # arm positions the tip; fine_tip provides the contact
+
+safety:
+  - voice_interruptible: true
+  - force_limit_n: 8 hard cap — medical-grade contact only
+  - approach speed capped at 5 cm/s regardless of arm motion_profile
+  - back-drive on unexpected resistance > 10 N
+  - no action near eyes, ears, or oral cavity without explicit operator override
+  - tip retracts to safe position on any obstacle or contact-force spike
+
+owned_by: jarvis
+canonical_example: data          # precise, careful, humanoid fine-motor skill

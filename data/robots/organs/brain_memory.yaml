@@ -1,0 +1,59 @@
+id: brain_memory
+name: Resident Memory
+region: brain
+group: sequence_reading
+
+description: |
+  Persistent store of the resident's routines, preferences, medication
+  schedule, and daily rhythms. Written to durable storage (SD card or
+  eMMC) so it survives power cycles and reboots.
+  TRIGGER whenever the planner needs to contextualize an intent — "is this
+  the resident's usual lunch time?", "what dose did she take this morning?",
+  "does she prefer the lights dim by 8pm?" Memory answers these queries so
+  the planner can act with appropriate confidence rather than asking the
+  resident to repeat themselves.
+  Elderly-care framing: memory is dignity infrastructure. A resident who has
+  to re-explain her medication routine every morning has lost something. The
+  memory organ encodes those routines once — confirmed by the resident or her
+  caregiver — and Goddard carries them forward. Updates to the medication
+  schedule are caregiver-gated; the resident alone cannot silently change
+  a drug timing without acknowledgment.
+  SKIP storing any data that is not needed for care tasks. Memory is not a
+  surveillance log. No audio recordings, no motion trails, no behavioral
+  inferences that were not explicitly confirmed. What is stored is the
+  minimum needed to do the job kindly.
+  Privacy posture: data lives on-device only. No cloud sync without
+  explicit caregiver opt-in. Memory contents are readable by the resident
+  and caregiver on request.
+
+hardware:
+  slot: chassis-bay-head          # persisted on head-unit storage
+  power_w: 1                      # idle read/write; no active compute
+  deploy_time_ms: 400             # load from disk at boot
+  consumables: []
+  storage_volume_cm3: 0           # no physical volume — uses SBC internal storage
+
+preconditions:
+  - brain_compute_online: true
+  - storage_writable: true
+
+inputs:
+  query: {type: object, required: false}     # key-based lookup from planner
+  update: {type: object, required: false}    # caregiver-confirmed data write
+  caregiver_auth: {type: bool, default: false}  # required for medication updates
+
+outputs:
+  record: {type: object}          # returned data matching the query
+  write_confirmed: {type: bool}   # true if an update was persisted
+
+composes_with:
+  - brain_planner                 # planner reads routines + schedules
+
+safety:
+  - medication schedule updates require caregiver_auth: true
+  - no behavioral inferences stored without explicit confirmation
+  - all stored fields are human-readable and reviewable on request
+  - voice_interruptible: true
+
+owned_by: jarvis
+canonical_example: jarvis        # ambient knowledge store, no body required

@@ -1,0 +1,62 @@
+id: thigh_joint
+name: Hip Joint (high-torque)
+region: thighs
+group: movement
+
+description: |
+  The high-torque articulated joint connecting each leg assembly to the main
+  chassis. Provides hip-level range of motion, absorbs lateral balance
+  corrections, and transmits load forces between the legs and the chassis
+  frame during walking, standing, and wheeled modes.
+  TRIGGER automatically: this joint is always active when the robot is
+  standing or moving. It is engaged by leg_walk and leg_wheel; it does not
+  have an independent dispatch trigger.
+  Elderly-care note: smooth, low-jerk motion at the hip is essential so
+  the robot never lurches unexpectedly near a resident. The 100 Hz balance
+  sub-loop (owned by leg_walk) feeds micro-corrections into this joint
+  continuously while standing.
+  SKIP for any motion that would exceed max_torque_nm — the joint refuses
+  and halts rather than strip. Thermal protection kicks in before hardware
+  damage can occur.
+
+hardware:
+  slot: chassis-hip-quad          # four joints, one per leg
+  power_w: 8                      # per joint; 32 W total at full load
+  deploy_time_ms: 0               # always engaged when robot is upright
+  consumables: []
+  envelope_cm: [6, 6, 8]          # per joint housing
+  max_torque_nm: 12               # hard limit; refuses motion above this
+  thermal_limit_c: 70             # shuts down joint if exceeded; reports to safety monitor
+
+preconditions:
+  - battery_pct >= 8              # minimum to hold standing pose safely
+  - thigh_joint_temp_c < 70       # self-monitored thermal gate
+  - core_power_bus_online: true   # power routing confirmed before motion
+
+inputs:
+  balance_correction: {type: vector3, required: false}  # fed from 100 Hz sub-loop each tick
+  target_angle_deg: {type: number, required: false}     # explicit angle command from gait planner
+  load_estimate_g: {type: number, required: false}      # chassis weight estimate for torque scaling
+
+outputs:
+  current_angle_deg: number
+  torque_applied_nm: number
+  joint_temp_c: number
+  correction_absorbed: bool       # true if a balance correction was applied this tick
+
+composes_with:
+  - leg_walk                      # walk gait drives joint angles each gait cycle
+  - leg_wheel                     # holds locked hip angle during wheel transit
+  - thigh_power_route             # receives power from power route organ
+  - core_reflex_loop              # reports joint state each 10 Hz tick
+  - core_safety_monitor           # thermal and torque flags evaluated pre-motion
+
+safety:
+  - voice_interruptible: true     # halt-in-place if voice command received
+  - torque_refusal: true          # joint refuses command if torque would exceed max_torque_nm
+  - thermal_shutdown_c: 70        # joint halts and flags core_safety_monitor if temp reached
+  - jerk_limit: true              # smooths all corrections to prevent sudden lurches near residents
+  - safety monitor cannot be bypassed
+
+owned_by: goddard
+canonical_example: goddard       # quadruped joint control — autonomic layer archetype

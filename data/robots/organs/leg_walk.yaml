@@ -1,0 +1,61 @@
+id: leg_walk
+name: Walking Gait (four-leg)
+region: legs
+group: movement
+
+description: |
+  Four-legged walking gait for room-to-room navigation and general indoor locomotion.
+  TRIGGER for navigating around a resident — moving between rooms, approaching a
+  person who has called for help, repositioning during a task like medication delivery
+  or fall-response approach. Preferred over wheeled mode on uneven surfaces, low-pile
+  carpet, and doorway thresholds.
+  Elderly-care note: gait speed is reduced automatically when a person is within
+  120 cm. Approach to a detected fall event uses cautious-approach speed only —
+  never an urgent rush that could startle or collide with the resident.
+  SKIP for stairs without handrail-assist organ active, wet floors above the
+  wet_floor_threshold sensor value, or any surface flagged as hazardous by the
+  safety monitor.
+
+hardware:
+  slot: chassis-legs-quad
+  power_w: 18
+  deploy_time_ms: 200            # gait init from standing pose
+  consumables: []
+  envelope_cm: [20, 20, 12]      # per-leg swing envelope at walking speed
+
+preconditions:
+  - battery_pct >= 10
+  - obstacle_clear: true         # walkers, canes, pet bowls, throw rugs all count
+  - wet_floor_index <= 0.2       # sensor value; abort if floor is wet beyond threshold
+  - floor_hazard_flag: false     # set by safety monitor; covers spills, loose rugs
+  - handrail_assist_active: true  # required if any stair segment in path
+    only_if: path_contains_stairs
+  - thigh_joint_temp_c < 65      # thermal gate via thigh_joint
+
+inputs:
+  destination: {type: pose, required: true}
+  speed_preset: {type: enum, values: [cautious, normal, slow_approach], default: normal}
+  human_proximity_cm: {type: number, required: false}  # injected by safety monitor each tick
+
+outputs:
+  pose_reached: bool
+  distance_traveled_cm: number
+  gait_cycles: number
+  balance_corrections: number    # count of 100 Hz sub-loop corrections applied
+
+composes_with:
+  - thigh_joint                  # hip articulation at each step
+  - core_reflex_loop             # runs under reflex tick; balance sub-loop feeds state here
+  - core_safety_monitor          # pre-call and mid-call safety evaluation
+
+safety:
+  - voice_interruptible: true    # any resident voice command halts gait immediately
+  - speed_cap_cms: 15            # hard cap when human_proximity_cm <= 120
+  - fall_approach_speed_cms: 8   # max speed when navigating toward a detected fall event
+  - no_stair_descent_without_handrail_assist
+  - wet_floor_abort: true        # gait halts and reports if wet_floor_index rises mid-walk
+  - 100Hz_balance_sub_loop: owned by this organ; reports state into core_reflex_loop each tick
+  - safety monitor cannot be bypassed; all preconditions re-evaluated mid-walk at each 10 Hz tick
+
+owned_by: goddard
+canonical_example: goddard      # quadruped locomotion — namesake archetype
