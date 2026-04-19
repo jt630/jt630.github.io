@@ -1,0 +1,98 @@
+# Canonical sci-fi robot assistants, tagged by skill group.
+# Use this to find gaps: which skill combinations haven't been tried?
+# Which robots do one thing so well they become the category archetype?
+
+robots:
+  - id: goddard
+    source: Jimmy Neutron
+    form: dog-sized quadruped, retractable limbs
+    skill_groups: [movement, sensing, communication, gadgets, power]
+    vibe: loyal companion, compact utility, deeply personal
+    archetype_for: autonomic_layer
+    notes: Namesake for the reflex/cycling layer in our stack.
+
+  - id: jarvis
+    source: Iron Man
+    form: ambient — no body, lives in the suit and the house
+    skill_groups: [sequence_reading, communication, sensing]
+    vibe: tool-calling operator, dry wit, infinite patience
+    archetype_for: operator_layer
+    notes: Namesake for the LLM operator in our stack.
+
+  - id: r2d2
+    source: Star Wars
+    form: astromech — wheeled barrel with deployable tools
+    skill_groups: [movement, fabrication, gadgets, sequence_reading, communication]
+    vibe: gadget cat before the gadget cat, absurd competence
+    archetype_for: spy_cat_loadout
+    notes: Key reference — concealed tools that flick out. Most aligned with our vision.
+
+  - id: bb8
+    source: Star Wars
+    form: rolling sphere + magnetic head
+    skill_groups: [movement, communication, sensing]
+    vibe: emotive, minimal, single-mode locomotion done extremely well
+
+  - id: walle
+    source: Wall-E
+    form: tracked base, compactor chest, expressive eyes
+    skill_groups: [movement, manipulation, fabrication, sensing, power]
+    vibe: solo autonomy, scavenger, emotional range
+    notes: Solar power + scavenging is the survivability archetype.
+
+  - id: eve
+    source: Wall-E
+    form: flying pod, integrated weapon, smooth shell
+    skill_groups: [movement, sensing, manipulation, communication]
+    vibe: sleek, single-mission, high-capability
+
+  - id: baymax
+    source: Big Hero 6
+    form: inflatable soft-body humanoid
+    skill_groups: [sensing, manipulation, communication]
+    vibe: single-purpose (medical), soft-safe, gentle
+    notes: Soft-body is an underused chassis choice.
+
+  - id: tars
+    source: Interstellar
+    form: rectangular slab with articulated segments
+    skill_groups: [movement, manipulation, sequence_reading, communication]
+    vibe: modular, humor-parameterized, rugged
+    notes: Tunable personality is a skill in itself.
+
+  - id: iron_giant
+    source: The Iron Giant
+    form: giant humanoid, self-reassembling
+    skill_groups: [movement, manipulation, sensing, communication]
+    vibe: scale, pacifist default, dormant power
+
+  - id: data
+    source: Star Trek TNG
+    form: humanoid android
+    skill_groups: [sequence_reading, manipulation, sensing, communication]
+    vibe: general intelligence, humanoid form factor
+
+  - id: chappie
+    source: Chappie
+    form: humanoid with exposed frame
+    skill_groups: [movement, manipulation, sequence_reading, communication]
+    vibe: street-level learning, developmental
+
+  - id: astro_boy
+    source: Astro Boy
+    form: humanoid child
+    skill_groups: [movement, manipulation, sensing, communication, power, gadgets]
+    vibe: flight + strength + emotional range
+
+  - id: hk47
+    source: KOTOR
+    form: humanoid droid
+    skill_groups: [manipulation, sensing, communication]
+    vibe: combat specialist, personality-forward
+
+# Gaps worth noting:
+# - Very few canonical robots emphasize `fabrication` as a primary organ.
+#   R2-D2 and Wall-E gesture at it; nobody really lives there.
+#   Our spy-cat with the 3D-printer arm + heat-mold skill occupies open territory.
+# - `gadgets` group is dominated by R2-D2. Huge design space wide open.
+# - Soft-body (Baymax) is an underused chassis. Gadget cat could borrow from it.

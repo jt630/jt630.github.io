@@ -1,0 +1,46 @@
+id: skin_vacuum
+name: Retractable Vacuum
+region: skin
+group: gadgets
+
+description: |
+  Extends a short flexible suction tube from a chassis panel for pickup,
+  cleanup, or adhesion.
+  TRIGGER to collect small debris (dust, crumbs, stray filament, spilled
+  pills), sample powders or liquids into the specimen bay, or anchor to a
+  smooth surface for stability during manipulation.
+  Elderly-care examples: spill cleanup, sweeping up dropped medication,
+  post-print support-material removal.
+  SKIP for items >5mm diameter (use paw_grip) or anything hot/sharp.
+
+hardware:
+  slot: chassis-panel-right-2
+  power_w: 12
+  deploy_time_ms: 600
+  consumables: []
+  envelope_cm: [3, 3, 18]
+  storage_volume_cm3: 170       # fixed-install; counts against skin bay budget
+
+preconditions:
+  - battery_pct >= 5
+  - specimen_bay_capacity_ml > 0   # only if sampling mode
+  - filter_clean: true
+
+inputs:
+  mode: {type: enum, values: [cleanup, sample, adhere], default: cleanup}
+  duration_s: {type: number, default: 10}
+  suction_pct: {type: number, default: 60, range: [10, 100]}
+
+outputs:
+  volume_collected_ml: number
+  adhesion_held: bool
+
+composes_with:
+  - arm_3d_printer     # cleanup after print
+  - hand_paw_grip      # vacuum stabilizes chassis while paw manipulates
+
+safety:
+  - reject intake if object_size_mm > 5 detected at nozzle
+  - voice_interruptible: true
+
+owned_by: jarvis
