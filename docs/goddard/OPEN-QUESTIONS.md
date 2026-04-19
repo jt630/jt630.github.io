@@ -113,17 +113,29 @@ handshake), new SCHEMA.md § Registration protocol, updated SKILL-DIRECTORY.md
 
 **Commit:** `5d2be2a`
 
-## Q6 — Speech-to-text path (skin ↔ brain)
+## Q6 — Voice interpretation path (skin ↔ brain) — DEFERRED (low priority)
 
 `skin_mic` captures raw audio and flags `voice_command_pending`, but the
-path from raw audio to normalized intents on `brain_intent_queue` has no
-named organ. Likely candidates: `brain_compute` (absorb the STT workload)
-or a new `brain_stt` manifest.
+path from audio to normalized intents on `brain_intent_queue` has no named
+organ.
 
-**Decision needed:** own STT in a new organ, or fold it into `brain_compute`'s
-scope.
+**Framing for when this is picked back up:** modern multimodal LLMs (Claude
+etc.) take audio bytes natively and return structured text. There is no
+separate speech-to-text step to name; there is a *voice interpreter* that
+calls an LLM with audio in, intent out. Likely shape: a new
+`brain_voice_interpreter` manifest (region: brain, group: sensing,
+owned_by: jarvis, composes_with: [skin_mic, brain_intent_queue,
+brain_compute]) whose MVP implementation is one LLM call, later swappable
+for an on-device model. Keeps the intent_queue as the uniform decoupling
+point for voice / sensor / scheduled intents. Privacy posture matters —
+caregiver opt-in gate required if audio leaves the device.
 
-**Owners:** brain.
+**Deferred rationale:** Wave 2 composed skills don't require voice
+interpretation. They use `voice_interruptible` (any voice present → halt),
+which skin_mic already provides. Full intent interpretation is only needed
+once we wire up resident-initiated commands — not a Wave 2 blocker.
+
+**Owners (when resumed):** brain.
 
 ## Q7 — `brain_compute` group fit — RESOLVED
 
