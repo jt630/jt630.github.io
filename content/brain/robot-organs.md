@@ -1,7 +1,7 @@
 ---
 title: "Robot Organs"
 date: 2026-04-19
-description: "Theorizing robot design — organs as skills, physical + logical, with a Jarvis/Goddard control stack"
+description: "Theorizing robot design — organs as skills, physical + logical, with a Goddard brain that reads YAML manifests"
 draft: false
 ---
 
@@ -15,6 +15,9 @@ it makes sense. You design the organism mind-first, then grow the body that
 fits it. Agentic AI is the nervous system. Hardware is scaffolding we hang
 on it.
 
+So we build **the brain first** — a skill library the robot can call into —
+and the chassis comes after.
+
 ## Thesis
 
 **A robot is a hardware interface over an agentic AI skill library.**
@@ -25,111 +28,151 @@ pattern — discrete, callable, documented — is the same pattern. Robots just
 give skills a body.
 
 So: **organs = skills**. Each organ has
-- a **physical design** (the hardware that executes it)
-- a **logical design** (the skill that governs it, matching the agentic skill spec)
+- a **physical design** (hardware that executes it)
+- a **logical design** (the skill manifest that governs it, matching the agentic skill spec)
 
-## The control stack
+## Meet Goddard
 
-Three layers, borrowed from how I already work with AI:
+The robot is **Goddard.** One name, one character, one assistant.
 
-1. **Curator (me)** — taste, context, direction. The operator that decides what
-   matters. Not replaceable.
-2. **Jarvis** — the tool-calling LLM. Receives my intent, plans, calls skills,
-   reports back. This is the conversational surface.
-3. **Goddard** — the basic cycling functionality. Heartbeat, balance, obstacle
-   avoidance, battery management. Always running, never asks permission. This
-   is the reflex / autonomic layer.
+Internally Goddard has three layers, but only one of them talks to me:
 
-Jarvis plans. Goddard keeps the body alive. I decide what's worth doing.
+1. **Curator (me)** — taste, context, direction. I say what matters.
+2. **Goddard** — the whole robot. Reads my intent, plans, calls skills, acts.
+   Has an internal planner (the thing other stacks call "Jarvis") and an
+   internal reflex loop (balance, obstacle avoid, battery, heartbeat) — but
+   they're not separate personalities. They're just Goddard's subsystems.
+3. **The skill library** — the brain content. YAML manifests that describe
+   every organ Goddard can invoke. This is the artifact we build first.
 
-## Skill groups (organ taxonomy)
+Collapsing Jarvis into Goddard matters: one character, one voice, one body.
+The planner is a component, not a co-star.
 
-Skills cluster by function. First pass:
+## The brain: a YAML skill library
 
-- **Movement** — walking legs, wheeled legs, climbing legs, hovering, swimming
-- **Manipulation** — grasp, press, twist, fine-motor
-- **Fabrication** — 3D print, weld, cut, assemble
-- **Sensing** — vision, audio, thermal, chemical, proprioception
-- **Sequence reading** — the spinal cord. Main skills folder with callable
-  skills that fit certain attachments, layouts, and supplies. This is where
-  skill dispatch lives.
-- **Power** — charge, scavenge, solar
-- **Communication** — speak, signal, network
+The skill library lives in `data/robots/`. Every organ is a YAML manifest.
+Goddard reads the registry at boot and knows what it can do.
 
-Each group is a folder. Each skill inside is a callable unit with hardware
-requirements declared up front (like a skill's `allowed-tools`, but for
-physical attachments).
+The manifest schema mirrors the Claude Code skill card pattern (`id`,
+`description` with trigger rules, hardware analog of `allowed-tools`) and
+adds hardware-specific fields so the same file drives both AI dispatch and
+physical execution:
 
-## Form factor
+```yaml
+id: 3d_printer_arm
+name: 3D Printer Arm
+group: fabrication
 
-Starting sketch: **many-legged, asymmetric locomotion.** One leg walks, one
-leg wheels. Maybe four of each. Spider-scorpion chassis so the body is low,
-stable, and can climb. Arms are separate — at least one arm is a 3D printer
-so the robot can summon physical objects on demand.
+description: |
+  Extrudes thermoplastic filament into arbitrary 3D shapes.
+  TRIGGER when the robot needs a small rigid object (<15x15x20cm, <2kg)
+  that isn't on hand and can be printed in under ~10 min.
+  SKIP for metal, food-contact, or load-bearing parts.
 
-Abstract the vibe toward **cat, not dog.** Independent, curious, doesn't need
-constant approval. Goddard (Jimmy Neutron) is the reference point but cat-coded.
+hardware:
+  slot: arm-primary
+  power_w: 45
+  deploy_time_ms: 1200
+  consumables: [pla_filament]
+  envelope_cm: [15, 15, 20]
 
-### Style: James Bond spy cat
+preconditions:
+  - battery_pct >= 20
+  - ambient_temp_c: {min: 15, max: 35}
 
-The aesthetic target is a **gadget cat** — a small, elegant body with hidden
-tools that flick out on demand. Q-branch, not Boston Dynamics. Organs as
-concealed gadgets, not visible appendages.
+inputs:
+  model_stl: {type: path, required: true}
+  infill_pct: {type: number, default: 20}
 
-Starter loadout:
-- **Lighter** — flick-out flame. Small, controlled heat source.
-- **Vacuum** — retractable suction. Cleanup, sample collection, adhesion.
-- **3D printer arm** — extrude polymer on demand.
-- **Heat + mold skill** — pair the lighter (or a dedicated heat element) with
-  the printer so the robot can *reshape* printed objects after extrusion. Print
-  → soften → press into final form. This unlocks parts the printer alone can't
-  produce (curves, joins, field repairs).
+composes_with:
+  - heat_mold
+  - vacuum
+  - lighter
 
-Every gadget lives flush with the body until called, then deploys. The skill
-manifest declares which panel it hides behind and how long deploy takes.
+safety:
+  - no flammables within 30cm during 60s cooldown
+```
 
-## Sci-fi assistant catalog
+The `description` block is a routing prompt — Goddard reads it to decide
+when to call the skill, exactly the way an LLM reads a skill card.
 
-To design well I need to know the canon. Pull the reference robots, tag each
-one by skills, see what clusters.
+The `composes_with` list is the superpower: skills reference other skills
+by id, and a composed skill (see `heat_mold.yaml`) is just a manifest that
+runs a sequence. No bespoke code per combination.
 
-*TODO: build this table. Candidates to start:*
+### Current registry
 
-- Goddard (Jimmy Neutron) — loyalty, companion, compact utility
-- Jarvis (Iron Man) — tool-caller, ambient assistant, no body
-- R2-D2 — fabrication, hacking, sequence reading
-- BB-8 — rolling locomotion, projection
-- Wall-E — manipulation, scavenging, solo autonomy
-- Baymax — sensing (medical), soft-body, single-purpose
-- TARS / CASE (Interstellar) — modular locomotion, humor parameter
-- EVE (Wall-E) — flight, sensing, fabrication-adjacent
-- The Iron Giant — scale, defense, self-reassembly
-- Data (Star Trek) — general intelligence, humanoid
-- HK-47 (KOTOR) — combat, personality
-- Chappie — learning, street-level
-- Astro Boy — flight, strength, emotional range
+- **`skill_groups.yaml`** — the organ taxonomy (movement, manipulation,
+  fabrication, sensing, sequence_reading, power, communication, gadgets)
+- **`sci_fi_catalog.yaml`** — canonical sci-fi robots tagged by skill group,
+  used to find gaps in the design space
+- **`organs/3d_printer_arm.yaml`** — on-demand fabrication
+- **`organs/lighter.yaml`** — flick-out flame gadget
+- **`organs/vacuum.yaml`** — retractable suction gadget
+- **`organs/heat_mold.yaml`** — composed skill (lighter + printer) that
+  reshapes printed parts after extrusion
 
-Next pass: build the tag matrix. Which skills show up most? Which combos haven't
-been tried?
+### Organ groups
+
+- **movement** — walking legs, wheeled legs, climbing legs, hovering, swimming
+- **manipulation** — grasp, press, twist, fine-motor
+- **fabrication** — 3D print, weld, cut, assemble, heat+mold
+- **sensing** — vision, audio, thermal, chemical, proprioception
+- **sequence_reading** — the spinal cord. Dispatch + planner + skill registry.
+  The callable library itself is here.
+- **power** — charge, scavenge, solar, battery
+- **communication** — speak, signal, network
+- **gadgets** — concealed single-purpose tools that flick out (Q-branch layer)
+
+## Sci-fi catalog — finding gaps
+
+Tagged canon lives in `sci_fi_catalog.yaml`. Early observations:
+
+- Very few canonical robots treat **fabrication** as a primary organ.
+  R2-D2 and Wall-E gesture at it; nobody lives there. Our spy-cat with the
+  3D-printer arm + heat-mold skill is in open territory.
+- The **gadgets** group is dominated by R2-D2. Huge design space wide open.
+- **Soft-body** (Baymax) is an underused chassis. Worth borrowing from.
+
+## Form factor (chassis comes later)
+
+Sketch for when the brain is ready:
+
+Many-legged, asymmetric locomotion. One leg walks, one leg wheels. Spider-scorpion
+chassis, low and stable, can climb. Abstract the vibe toward **cat, not dog.**
+Independent, curious, doesn't need constant approval.
+
+**Style: James Bond gadget cat.** Q-branch, not Boston Dynamics. Organs as
+concealed gadgets, not visible appendages. Every tool lives flush with the
+body until called.
+
+Starter gadget loadout:
+- Flick-out **lighter** — localized controlled flame
+- Retractable **vacuum** — cleanup, sampling, adhesion
+- **3D printer arm** — extrude polymer on demand
+- **Heat + mold** — composes lighter + printer to reshape extrusions into
+  forms the printer alone can't make
 
 ## Open questions
 
 - What's the minimum viable organ set for a useful house robot?
-- How does a skill declare its hardware requirements? (Like a manifest — "needs
-  arm-slot-A, power > 20W, clearance 30cm")
-- Is Goddard one skill or a supervisor process that calls many?
-- How do I version hardware the way I version code? Swappable attachments that
-  declare their own capability?
-- What does the "skills folder" actually look like on the robot? A literal
-  filesystem? A capability registry? Both?
+- How does the composed-skill runtime actually execute a manifest? Sequential
+  by default with explicit handoff steps? A DAG?
+- Is the reflex loop inside Goddard a skill group (`movement` + `power` +
+  `sensing` owned_by: goddard) or a separate runtime that sits under the
+  skill registry?
+- How do I version hardware the way I version skills? Swappable attachments
+  that ship their own manifest?
+- What's the smallest end-to-end demo? Maybe: Goddard reads one manifest,
+  plans one call, fires one actuator. Everything after that is scale.
 
 ## Why this matters
 
 I'm learning to use AI tools by building real things. Robot design is the
 long-arc version of the same workflow: specs, skill libraries, tool-calling
-agents, human-in-the-loop curation. If I can design a robot's organ stack,
-I've internalized the agentic pattern at a level deeper than any chatbot
-project can teach.
+agents, human-in-the-loop curation. If I can design Goddard's brain as a
+YAML skill library that an AI operates, I've internalized the agentic
+pattern at a level deeper than any chatbot project can teach.
 
-This is how we get from here to there — with this and that, and a clear map
-of how the pieces compose.
+Brain first. Library first. The body fits itself around a mind that already
+knows what to do.

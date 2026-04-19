@@ -1,0 +1,58 @@
+# Robot organ taxonomy.
+# Each skill group is a folder of callable organ manifests.
+# Jarvis (the operator) reads these to know what categories of action exist.
+# Goddard (the autonomic layer) owns the always-on skills from movement + power.
+
+groups:
+  - id: movement
+    description: Locomotion across surfaces, through fluids, or through air.
+    callable_pattern: move(destination, constraints)
+    owned_by: goddard     # reflex layer handles walking/balance without asking
+    examples: [leg_walker, leg_wheel, leg_climber, hover, swim]
+
+  - id: manipulation
+    description: Apply force to the world — grasp, press, twist, fine-motor.
+    callable_pattern: manipulate(target, action, force)
+    owned_by: jarvis
+    examples: [paw_grip, pincer, fine_tip]
+
+  - id: fabrication
+    description: Create or reshape physical objects on demand.
+    callable_pattern: fabricate(spec, material)
+    owned_by: jarvis
+    examples: [3d_printer_arm, heat_mold, welder, cutter]
+
+  - id: sensing
+    description: Acquire information about the world or the robot's own state.
+    callable_pattern: sense(modality, region)
+    owned_by: goddard     # proprioception + obstacle detection are autonomic
+    examples: [vision, audio, thermal, chemical, proprioception]
+
+  - id: sequence_reading
+    description: |
+      The spinal cord. The dispatch layer that routes intents to skills,
+      chains skills into plans, and holds the skill manifest registry.
+      This is where the "skills folder" lives — the callable library.
+    callable_pattern: dispatch(intent) -> [skill_calls]
+    owned_by: jarvis
+    examples: [skill_registry, planner, composer]
+
+  - id: power
+    description: Acquire, store, and allocate energy.
+    callable_pattern: power(action, budget)
+    owned_by: goddard
+    examples: [battery, solar_panel, charge_dock, scavenge]
+
+  - id: communication
+    description: Transmit and receive information outside the body.
+    callable_pattern: comm(channel, payload)
+    owned_by: jarvis
+    examples: [speak, signal_light, mesh_radio, network]
+
+  - id: gadgets
+    description: |
+      Concealed single-purpose tools that flick out on demand. The Q-branch
+      layer. Each gadget lives flush with the chassis until summoned.
+    callable_pattern: deploy(gadget_id) / stow(gadget_id)
+    owned_by: jarvis
+    examples: [lighter, vacuum, grappling_hook, laser_pointer]

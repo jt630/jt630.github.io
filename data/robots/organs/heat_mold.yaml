@@ -1,0 +1,39 @@
+id: heat_mold
+name: Heat + Mold
+group: fabrication
+kind: composed    # this skill is a composition of other skills
+
+description: |
+  Softens a freshly printed thermoplastic part with controlled heat, then
+  presses or bends it into a final form the printer alone can't produce
+  (smooth curves, snap-fits, joins, field repairs).
+  TRIGGER after 3d_printer_arm when the target geometry requires post-forming.
+  SKIP for non-thermoplastics or parts that have fully cured past working temp.
+
+composes:
+  - skill: lighter
+    with: {duration_s: 4, flame_height_mm: 10}
+  - skill: 3d_printer_arm
+    role: press_tool     # uses the arm's end-effector as the forming jig
+
+preconditions:
+  - last_print_within_s <= 180
+  - part_material: pla
+  - both lighter and 3d_printer_arm satisfy their own preconditions
+
+inputs:
+  target_profile: {type: enum, values: [bend, flatten, join, snap_fit]}
+  hold_time_s: {type: number, default: 8}
+
+outputs:
+  formed: bool
+  deformation_mm: number
+
+safety:
+  - lighter auto-extinguishes before arm press to avoid flame contact
+  - thermal camera must confirm surface <120C before handoff
+
+notes: |
+  This is the key argument for YAML-first, AI-operated skills: a composed
+  skill is just a manifest that references other manifests. Goddard's brain
+  reads this file and runs lighter -> arm-press without any bespoke code.
