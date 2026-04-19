@@ -59,9 +59,6 @@ Core owns four always-on systems and one planner-consulted accountant:
   composed skill is mid-execution and skin (gadget) power is cut, does the
   composed skill abort, pause, or degrade gracefully? The power bus and reflex
   loop need a shared protocol for this.
-- `core_storage_budget` garage cap defaults to 8000 cm³ (config). Where does
-  that config live? It should be a named constant the planner can inspect, not
-  a hardcoded number buried in firmware.
 
 ## Resolved
 
@@ -73,3 +70,11 @@ Core owns four always-on systems and one planner-consulted accountant:
   `healthy: true`. Modular: a configuration without a given sub-loop simply
   doesn't register it and core tolerates the absence. See SCHEMA.md §
   Sub-loops.
+- **Storage accounting + registration protocol (Q5).** Manifest load is the
+  registration handshake — one protocol for every module joining the robot.
+  Storage splits across three buckets (`main_garage`, `skin_bay`,
+  `guts_bays`), routed at registration via `hardware.slot:` prefix. Caps
+  live in `data/robots/chassis_budgets.yaml`. `core_storage_budget` reports
+  per-bucket declared/loaded/available plus a rolled-up chassis total.
+  See SCHEMA.md § Registration protocol and SKILL-DIRECTORY.md § Storage
+  budget.

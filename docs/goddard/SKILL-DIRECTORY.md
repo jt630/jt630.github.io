@@ -52,14 +52,30 @@ away — this is an advisory hint to the planner, not a hard rule.
 
 ## Storage budget
 
-The whole robot has a conceptual `storage_volume_cm3` cap — the "one-car garage."
+Storage is split across three physically-separate buckets, each with its own
+cap. Caps live in `data/robots/chassis_budgets.yaml` — one file, one truth,
+overridable per chassis variant.
 
-- Each non-embedded organ declares its `storage_volume_cm3` (optional advisory)
-- This is an intuition field: a big number means "this tool is large and would
-  live on a shelf, not on the robot's body"
-- Core region owns the formal accounting once `core_storage_budget.yaml` exists
-- Embedded (tier 1) skills count against the skin region's local bay budget,
-  not the main garage
+| Bucket | What lives here | Routing rule (on `hardware.slot:`) | Default cap |
+|---|---|---|---|
+| `main_garage` | Loadable tier-3-4 tools | anything not prefixed `chassis-` or `guts-bay-`, volume > 0 | 8000 cm³ |
+| `skin_bay` | Tier-1 embedded chassis organs | prefix `chassis-` | 1000 cm³ |
+| `guts_bays` | Internal consumable compartments | prefix `guts-bay-` | 5000 cm³ |
+
+`core_storage_budget` computes per-bucket `declared_cm3`, `loaded_cm3`, and
+`available_cm3`, plus a rolled-up `chassis_total_loaded_cm3` as an umbrella
+advisory. Only `main_garage` has a swappable subset — `skin_bay` and
+`guts_bays` organs are always loaded by definition, so declared equals loaded
+for those buckets.
+
+A large `storage_volume_cm3` on a main_garage-routed organ is a signal that
+the tool is bulky and likely stored away — the planner uses this as an
+ordering hint, not a hard rule. The hard rule is the per-bucket cap.
+
+Routing happens at the registration protocol (see SCHEMA.md § Registration):
+the registry reads `hardware.slot:`, picks the bucket, and hands the
+advisory to `core_storage_budget`. No per-organ declaration of which bucket
+they live in — the slot prefix is the answer.
 
 ## Why this matters
 

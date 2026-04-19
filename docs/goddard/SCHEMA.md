@@ -64,6 +64,37 @@ owned_by: jarvis                   # jarvis (planner) | goddard (reflex loop)
 canonical_example: r2d2            # nearest sci-fi robot in sci_fi_catalog.yaml
 ```
 
+## Registration protocol
+
+Every module joins the robot through a single handshake: **manifest load is
+registration.** When `brain_skill_registry` reads a manifest from
+`data/robots/organs/` at boot, it performs the full handshake in one pass.
+There is no parallel push-register path. A module announces itself by
+shipping a manifest; the registry scan is the announcement.
+
+At each manifest load, the registry:
+
+1. **Validates** required fields (see § Validation below). A manifest that
+   fails validation is rejected and logged — it does not join the robot.
+2. **Routes `hardware.storage_volume_cm3`** to the correct bucket via
+   `hardware.slot:` prefix (caps live in
+   `data/robots/chassis_budgets.yaml`):
+   - `chassis-*` → `skin_bay` (tier-1 embedded chassis organs)
+   - `guts-bay-*` → `guts_bays` (internal consumable compartments)
+   - anything else with `storage_volume_cm3 > 0` → `main_garage`
+     (loadable tier-3-4 tools)
+3. **Registers `sub_loop:` declarations** (if present) with
+   `core_reflex_loop`'s supervisor table, so the command module reads the
+   sub-loop's report envelope each main tick (see § Sub-loops).
+4. **Installs `preconditions`** for `core_safety_monitor` to evaluate
+   before any dispatch of this skill.
+5. **Returns** `{registered: true, bucket: <id|null>,
+   sub_loop_supervised: bool, precondition_count: N}` to the caller — today
+   the boot scanner, tomorrow the hot-reload path.
+
+When hot-reload lands in v2 it reuses the same handshake with a teardown
+step before re-registration. One protocol, one code path, forever.
+
 ## Sub-loops
 
 Some organs run inner loops faster than the main 10 Hz reflex tick. `leg_walk`'s

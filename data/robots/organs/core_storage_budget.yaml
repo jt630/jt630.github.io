@@ -4,22 +4,33 @@ region: core
 group: sequence_reading
 
 description: |
-  The formal "one-car garage" accounting layer referenced in SKILL-DIRECTORY.md.
-  Tracks storage_volume_cm3 advisories across all non-embedded organs and
-  advises the planner when a tool-swap is expensive — i.e., when loading a
-  new tool would require first stowing another to stay within the garage budget.
-  TRIGGER when the planner queries tool availability, when a new organ manifest
-  is loaded at boot, or when a composed skill chain would require more concurrent
-  storage than the garage cap allows.
-  Elderly-care context: Goddard's compact cat-sized chassis can't carry everything
-  at once. If a resident needs both a printed grip adapter and a vacuum cleanup,
-  the planner needs to know whether both tools fit, or whether a swap is required.
-  This organ makes that cost explicit so the planner doesn't silently commit to
-  an impossible load-out and fail mid-task.
-  SKIP for embedded (tier-1) organs — their storage_volume_cm3 counts against
-  the skin region's local bay budget, not this garage. Skip also for firmware-only
-  organs (core_reflex_loop, core_safety_monitor, core_power_bus, core_battery)
-  which have storage_volume_cm3: 0.
+  The "one-car garage" accounting layer referenced in SKILL-DIRECTORY.md, now
+  split across three physically-separate compartments: the main garage (loadable
+  tier-3-4 tools), the skin bay (chassis-embedded tier-1 organs), and the guts
+  bays (internal consumable compartments). Each bucket has its own cap, and
+  core_storage_budget reports a rolled-up chassis_total_loaded_cm3 as an
+  umbrella advisory.
+  TRIGGER at boot via the registration protocol (see SCHEMA.md § Registration):
+  brain_skill_registry hands each loaded manifest here, the accountant inspects
+  hardware.slot to route storage_volume_cm3 to the right bucket, and the caps
+  from data/robots/chassis_budgets.yaml define the ceilings. Also triggered at
+  runtime when the planner asks whether a proposed tool fits the main garage
+  without requiring a stow, or when active_tools changes.
+  Elderly-care context: Goddard's compact cat-sized chassis can't carry
+  everything at once. If a resident needs both a printed grip adapter and a
+  vacuum cleanup, the planner needs to know whether both tools fit, or whether
+  a swap is required. This organ makes that cost explicit per bucket so the
+  planner doesn't silently commit to an impossible load-out and fail mid-task.
+  Routing rule at registration:
+    - hardware.slot starts with "chassis-"   -> skin_bay
+    - hardware.slot starts with "guts-bay-"  -> guts_bays
+    - otherwise (loadable slots like active-tool, wrist-interface,
+      shoulder-mount) with storage_volume_cm3 > 0  -> main_garage
+  SKIP for firmware-only organs with storage_volume_cm3: 0 (reflex_loop,
+  safety_monitor, power_bus, battery) — they register but add zero volume.
+  SKIP runtime loaded_cm3 accounting for the skin_bay and guts_bays buckets;
+  embedded organs are always loaded by definition, so declared == loaded for
+  those buckets. Only the main_garage has a swappable subset.
 
 hardware:
   slot: chassis-embedded-core
@@ -29,20 +40,37 @@ hardware:
   envelope_cm: [0, 0, 0]        # firmware
 
 preconditions:
-  - skill_registry_loaded: true  # manifests must be in memory before accounting
+  - skill_registry_loaded: true    # manifests must be in memory before accounting
+  - chassis_budgets_loaded: true   # data/robots/chassis_budgets.yaml read at boot
 
 inputs:
   manifest_list: {type: list, required: true}        # all loaded organ manifests
-  active_tools: {type: list, required: false}         # currently loaded tools
-  proposed_tool: {type: string, required: false}      # organ id being considered
+  chassis_budgets: {type: object, required: true}    # from data/robots/chassis_budgets.yaml
+  active_tools: {type: list, required: false}        # currently loaded main_garage tools
+  proposed_tool: {type: string, required: false}     # organ id being considered
 
 outputs:
-  garage_cap_cm3: number         # total budget (config, default: 8000)
-  used_cm3: number               # sum of active non-embedded storage_volume_cm3
-  remaining_cm3: number
-  swap_required: bool            # true if proposed_tool doesn't fit without stowing
-  stow_candidates: list          # organ ids that could be stowed to make room
-  advisory: string               # human-readable planner hint
+  # main_garage bucket — loadable tier-3-4 tools
+  main_garage_cap_cm3: number
+  main_garage_declared_cm3: number
+  main_garage_loaded_cm3: number
+  main_garage_available_cm3: number
+  # skin_bay bucket — chassis-embedded tier-1 organs (always loaded)
+  skin_bay_cap_cm3: number
+  skin_bay_declared_cm3: number
+  skin_bay_loaded_cm3: number
+  skin_bay_available_cm3: number
+  # guts_bays bucket — internal consumable compartments (always present)
+  guts_bays_cap_cm3: number
+  guts_bays_declared_cm3: number
+  guts_bays_loaded_cm3: number
+  guts_bays_available_cm3: number
+  # rolled-up umbrella advisory
+  chassis_total_loaded_cm3: number
+  # swap logic (main_garage only)
+  swap_required: bool
+  stow_candidates: list
+  advisory: string
 
 composes_with:
   - core_reflex_loop             # registry loaded at boot before budget is computed

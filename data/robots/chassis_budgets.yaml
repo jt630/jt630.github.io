@@ -1,0 +1,18 @@
+# Per-chassis storage caps for the skill-directory accountant.
+# core_storage_budget reads this at boot. One file, one truth.
+# Override per chassis variant (MVP cat-sized, larger home-hub dock, etc.)
+# by editing these values — the logic lives in core_storage_budget.yaml.
+#
+# Routing rule (applied by the registration protocol — SCHEMA.md § Registration):
+#   hardware.slot starts with "chassis-"   -> skin_bay
+#   hardware.slot starts with "guts-bay-"  -> guts_bays
+#   otherwise (slot = active-tool, wrist-interface, shoulder-mount, ...)
+#     with storage_volume_cm3 > 0          -> main_garage
+
+defaults:
+  main_garage_cm3: 8000    # stowed / tier-3-4 loadable tool library
+  skin_bay_cm3: 1000       # embedded (tier-1) chassis-panel and chassis-embedded organs
+  guts_bays_cm3: 5000      # internal consumable compartments (filament, water, waste)
+
+# Advisory umbrella — not a hard cap, just a rolled-up report surface.
+# chassis_total_cm3 is computed as the sum of loaded volume across buckets.

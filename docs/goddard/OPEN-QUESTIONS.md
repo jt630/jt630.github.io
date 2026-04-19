@@ -72,19 +72,46 @@ currently owned.
 
 **Owners:** thighs (consumer), skin/chassis (provider of both answers).
 
-## Q5 — Storage-budget accounting model (core ↔ all regions)
+## Q5 — Storage-budget accounting model (core ↔ all regions) — RESOLVED
 
-`core_storage_budget` is the "one-car garage" accountant. Two open pieces:
+The "discovery" split dissolved — we define the protocol, and the protocol
+is manifest load. One handshake for every module joining the robot. Storage
+accounting, sub-loop announcement, and precondition installation all happen
+in that single pass.
 
-1. **Discovery model:** push-register (each non-embedded organ calls in at
-   boot) vs. boot-scan (core reads every manifest's `storage_volume_cm3`
-   directly). Boot-scan is simpler and matches the skill-registry pattern.
-2. **Separate buckets:** skin bay (embedded gadgets, tier 1) is separate
-   from the main garage per SKILL-DIRECTORY.md — guts bays add a third
-   bucket (internal consumables). Should all three roll up to a single cap,
-   or be enforced independently?
+**Decision:**
 
-**Owners:** core (accountant), every region with `storage_volume_cm3`.
+1. **Registration protocol (new, documented in SCHEMA.md § Registration).**
+   Manifest load IS the handshake. `brain_skill_registry`'s boot scan
+   validates required fields, routes `storage_volume_cm3` to a bucket, hands
+   sub_loop declarations to core's supervisor, and installs preconditions
+   on the safety monitor — all in one pass. No parallel push-register path.
+   Hot-reload (v2) reuses the same handshake with a teardown step.
+2. **Three buckets, each independently capped:** `main_garage`, `skin_bay`,
+   `guts_bays`. Routing rule at registration, based on `hardware.slot:`
+   prefix:
+   - `chassis-*` → `skin_bay`
+   - `guts-bay-*` → `guts_bays`
+   - anything else with `storage_volume_cm3 > 0` → `main_garage`
+3. **Caps live in `data/robots/chassis_budgets.yaml`** (new file). Defaults:
+   main_garage 8000, skin_bay 1000, guts_bays 5000. Override per chassis
+   variant by editing that one file.
+4. **`core_storage_budget` reports per-bucket declared / loaded /
+   available** plus a rolled-up `chassis_total_loaded_cm3` advisory. Only
+   `main_garage` has a swappable subset — embedded buckets are always
+   loaded by definition.
+5. **Registration handshake also announces sub-loops.** A module that ships
+   a `sub_loop:` block is registered with core_reflex_loop's supervisor at
+   the same moment its storage is routed. One protocol announces the loops
+   it owns.
+
+Shipped in this resolution: new `data/robots/chassis_budgets.yaml`, updated
+`data/robots/organs/core_storage_budget.yaml` (bucketed outputs + routing
+rule), updated `data/robots/organs/brain_skill_registry.yaml` (names the
+handshake), new SCHEMA.md § Registration protocol, updated SKILL-DIRECTORY.md
+§ Storage budget (three buckets), region docs core.md + skin.md.
+
+**Commit:** `<pending>`
 
 ## Q6 — Speech-to-text path (skin ↔ brain)
 
