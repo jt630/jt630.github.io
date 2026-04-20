@@ -131,6 +131,7 @@ fallback:
           priority: alert
       - hold: build_area_restricted
         until: caregiver_ack
+        requires_consent: access_restriction
 
 safety:
   # Consent cannot be bypassed. The mic must be live; if it is not, the

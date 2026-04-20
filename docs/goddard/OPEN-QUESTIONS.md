@@ -162,41 +162,117 @@ group-of-one labels later.
 
 **Commit:** `e4815bc`
 
-## Q8 — Compute topology: centralized SBC vs. per-organ autonomy — RAISED
+## Q8 — Compute topology: centralized SBC vs. per-organ autonomy — RESOLVED
 
-Surfaced while resolving Q7. Today every brain organ names
-`brain_compute_online: true` as a precondition, which implies a single head-
-unit SBC runs everything. But the MVP framing is "Goddard's core is a
-portable substrate that plugs into modules that may bring their own
-compute." That pushes back on the single-substrate assumption.
+Resolved via the **hybrid / declared-autonomy** topology. The MVP stays
+centralized by default (every Wave 1-2 organ schedules on the host SBC
+and declares `brain_compute_online: true`), but the schema now carries
+an optional `compute_runtime:` block so a future module can bring its
+own silicon without a schema break. Same modular primitive shape as
+Q1's `sub_loop:` — declare what you own, core discovers.
 
-Three topologies to consider:
+**Decision:**
 
-1. **Centralized (current).** One SBC runs the reflex loop, planner, and
-   every brain organ. Simple, cheap. Weakness: a manufacturer who wants to
-   dock Goddard's core into a module with its own MCU-driven balance loop
-   or vision pipeline has to disable their silicon and route everything
-   through Goddard's SBC.
+- `compute_runtime:` is an optional manifest-level block with
+  `location: host_sbc | on_board | external_hub`, plus advisory
+  `processor:`, `bus_protocol:`, `report_cadence_hz:` fields.
+- **Default (block omitted):** `location: host_sbc`. Honors
+  `brain_compute_online: true` as a precondition. All 37 existing
+  manifests remain valid without edits.
+- **`location: on_board`:** organ is externally scheduled on its own
+  silicon. Registry reserves a supervision slot; core reads the
+  organ's `sub_loop_report` over the bus. Organ MUST declare a
+  `bus_protocol:` and SHOULD declare either a `sub_loop:` or an output
+  envelope. Organ declares its own liveness via a
+  `compute_runtime_ready: true` precondition, which
+  `core_safety_monitor` evaluates the same way as
+  `brain_compute_online: true`.
+- **`location: external_hub`:** reserved for caregiver-dashboard or
+  voice-interpretation-gateway modules (see Q6 framing). Schema
+  accepts it; no Wave 1-2 organ uses it yet.
+- Hot-reload and hot-swap of autonomous modules reuse the same
+  registration handshake from Q5 with a teardown step. One protocol,
+  one code path.
 
-2. **Per-organ autonomy.** Each organ declares its own `compute_runtime:`
-   (on-board MCU vs. host-SBC vs. external hub) and the registry schedules
-   accordingly. Organs with `compute_runtime: on_board` run their inner
-   loops on local silicon and only post results to core via the bus.
-   Flexible, but means every organ manifest carries a runtime block.
+Shipped in this resolution: new `## Compute runtime` section in
+`docs/goddard/SCHEMA.md`. No manifest rewrites — Wave 1-2 organs are
+host_sbc-by-default, which matches their existing
+`brain_compute_online: true` preconditions exactly.
 
-3. **Hybrid (the "maybe both" option).** Goddard's MVP ships as a
-   centralized SBC by default, but the schema allows organs to opt-in to
-   local autonomy via a `compute_runtime: on_board` declaration. Wave 1
-   organs stay centralized; future modules can declare otherwise without a
-   schema break. This is the same modular primitive as Q1's `sub_loop:`
-   block — declare what you own, core discovers.
+**Commit:** `1b35366`
 
-**Decision needed:** which topology to bake into the MVP schema. Likely
-(3) given the Q1 precedent, but needs explicit curator adjudication before
-any organ starts declaring `compute_runtime:`.
+## Q9 — Morality module: how is intervention consent declared and enforced? — RESOLVED
 
-**Dependencies:** touches every brain organ's preconditions
-(`brain_compute_online: true`), SCHEMA.md (new optional manifest block),
-and possibly a new sub-group of the `infrastructure` group.
+Raised and resolved in the same session as Q8, because the two
+questions share a substrate: Q8 established that vendor modules can
+bring their own silicon, and Q9 establishes that the nervous system
+and those modules must also negotiate a shared moral contract before
+any intervention primitive fires. Without Q9, the Phase B `hold:`
+work would ship a schema that doesn't know whose morality it encodes.
 
-**Owners:** Goddard (schema), brain region (primary consumer).
+**Framing.** Morality is not a universal the schema can hardcode —
+different residents, caregivers, operators, and jurisdictions
+legitimately hold different positions on physical intervention, voice
+override, recording consent, and restraint. The schema therefore
+encodes the *slots where morality gets declared*, not the morality
+itself. Goddard ships the nervous system; deployment declares the
+policy; vendor modules declare their floor; core refuses to operate
+any combination that is internally inconsistent.
+
+**Decision.**
+
+- Add a manifest-level `morality:` block with `requires:` (consent
+  keys the module needs) and `clauses:` (vendor-hardcoded floors,
+  each with `overridable: true|false`).
+- Add a deployment-level `config/morality_profile.yaml` with three
+  layers:
+  - `jurisdiction:` — geofenced, auto-synced from a signed ordinance
+    index, read-only to the deployment.
+  - `inherited_from_ordinance:` — auto-populated by the jurisdiction
+    sync; defines the ceiling and floor the declared layer must
+    respect.
+  - `declared:` — caregiver/resident-set policy, bounded by
+    `inherited_from_ordinance:`.
+- Add a `requires_consent: <key>` pointer to every action that
+  invokes an intervention primitive (`hold:`, catch reflexes, voice
+  overrides, recording-on actions, physical-guidance actions).
+- Registration handshake gates on consistency of all three layers.
+  Modules whose morality decisions are unresolved register as inert,
+  caregiver is notified, log records why.
+- Authoritative list of consent keys lives in
+  `docs/goddard/MORALITY.md` (Goddard-owned), so adding a primitive
+  consent key is a documentation change, not a schema revision.
+- Reflex-speed decisions are governed strictly by the declared policy
+  (sub-second, offline). Slower decisions (medication reminders,
+  wellness prompts) MAY defer to Anthropic-model judgment within the
+  interior the declared policy leaves open. The model never weakens a
+  declared prohibition.
+
+**Why jurisdiction is first-class, not runtime-only.** Most declared
+policy will inherit from geofenced municipal ordinances rather than
+be authored from scratch per-deployment. Promoting
+`inherited_from_ordinance:` into the schema makes the layering
+auditable by caregivers, visible to vendor modules at registration,
+and resilient to jurisdiction-sync failures (a module can refuse to
+register if its `last_sync:` is stale beyond a clause-declared
+threshold).
+
+**Why modules carry non-overridable clauses.** Ecosystem trust. A
+vendor publishing a module takes on their own moral exposure — an arm
+manufacturer declaring a 40 N contact-force cap is publishing their
+floor for residents and caregivers to audit at registration. The
+nervous system respecting that floor is how the ecosystem stays
+open-source-protocols-all-the-way-down rather than devolving into
+each vendor negotiating bilaterally with Goddard.
+
+**Shipped in this resolution:**
+- New `## Module grammars` section in `SCHEMA.md` (Wave 3 Item 1,
+  codifying the vendor-grammar silo).
+- New `## Morality module` section in `SCHEMA.md` (Wave 3 Item 2,
+  codifying the three-layer consent model).
+- Phase B3 (`hold: <state>`) acquires a required `requires_consent:`
+  pointer before it lands.
+- Follow-up doc stub to create: `docs/goddard/MORALITY.md` —
+  authoritative registry of consent keys, deferred to a later wave.
+
+**Commit:** `1e0cb51`

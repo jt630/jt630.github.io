@@ -73,6 +73,7 @@ fallback:
           priority: alert
       - hold: build_area_restricted
         until: caregiver_ack OR skin_vacuum_filter_clean == true
+        requires_consent: access_restriction
   - trigger: skin_vacuum_offline
     recovery:
       - skill: skin_speaker
@@ -84,6 +85,7 @@ fallback:
           priority: alert
       - hold: build_area_restricted
         until: caregiver_ack
+        requires_consent: access_restriction
   - trigger: arm_3d_printer_failed
     recovery:
       - skill: skin_speaker
