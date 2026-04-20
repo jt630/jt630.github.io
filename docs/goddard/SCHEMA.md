@@ -410,6 +410,104 @@ composes:
   [Module grammars](#module-grammars)) and evaluated by that module's
   runtime, not by the core composer.
 
+## Fallback and recovery
+
+Any manifest MAY declare a `fallback:` block: a list of
+`trigger: ... recovery: [...]` clauses evaluated in order. The first
+trigger whose expression matches the current failure condition runs
+its recovery list and the chain ends on whatever terminal action the
+list reaches (`abort:`, a completed skill call, etc.).
+
+```yaml
+fallback:
+  - trigger: <expression>
+    recovery:
+      - <recovery action>
+      - <recovery action>
+      - abort: true
+```
+
+Trigger expressions use the same grammar as `preconditions:` and
+`only_if:` — boolean over blackboard keys, joined by `AND`/`OR`.
+String membership via `contains` is permitted where the blackboard
+key is a string (e.g. `resident_response contains "not yet"`).
+
+### Recovery actions
+
+A recovery list is heterogeneous. The currently-defined action types:
+
+- **Skill invocation** — `skill: <id>` with the usual `role:` and
+  `with:` fields. Executes a sub-skill as part of the recovery.
+- **`reschedule:` — defer the parent intent.** See dedicated section
+  below. (Wave 3 Phase B2.)
+- **`hold:` / `until:` — pause in a declared safe state.** See
+  dedicated section below. (Wave 3 Phase B3.)
+- **`abort: true`** — terminate the chain; the runtime treats the
+  recovery as complete and does not propagate the original failure
+  upward.
+- **`log: <key>`** — emit a structured log event under the given key
+  for caregiver-tier review. Advisory only; does not terminate.
+- **`enqueue:`** — place an intent on the brain's intent queue for
+  later consideration. Shape:
+  ```yaml
+  - enqueue:
+      intent: <intent_id>
+      source: <sensor|schedule|caregiver|…>
+      priority_hint: <scheduled|normal|elevated>
+  ```
+  Advisory; does not terminate. The intent queue organ decides when
+  and whether to run the intent.
+
+### `reschedule:` — defer the parent intent
+
+`reschedule:` re-queues the manifest's own intent for a later
+attempt. Used when the resident has soft-declined an interaction
+(morning routine, evening routine, check-in) and the robot wants to
+back off without giving up entirely.
+
+```yaml
+- reschedule:
+    intent: morning_routine
+    delay_min: 15
+```
+
+**Fields.**
+
+- `intent:` (required) — the intent-queue key to re-enqueue. By
+  convention, matches the parent manifest's primary intent id.
+- `delay_min:` (required) — integer minutes to defer before the
+  scheduler considers the intent again.
+
+**Semantics.**
+
+- `reschedule:` is non-terminal. The recovery list continues past it.
+  Pair with a subsequent `abort: true` to end the current chain, as
+  the two live sites do:
+  ```yaml
+  recovery:
+    - skill: skin_speaker
+      role: retreat_gently
+      with: { utterance: "Of course. I will check back in a little while.", volume_pct: 40 }
+    - reschedule: { intent: morning_routine, delay_min: 15 }
+    - abort: true
+  ```
+- Reschedule stacking: if the intent queue already holds a pending
+  instance of the named intent, `reschedule:` updates the scheduled
+  time to the later of (existing, now + delay_min). The robot does
+  not accumulate duplicate future attempts.
+- `delay_min: 0` is valid but discouraged — it means "retry
+  immediately," which is better expressed by omitting the
+  `reschedule:` action and letting the chain's natural retry branch
+  handle it.
+- Ceiling: the intent queue organ MAY cap repeated reschedules of
+  the same intent per day. That cap is an intent-queue policy, not a
+  schema concern; manifests do not need to reason about it.
+
+`reschedule:` is distinct from `enqueue:`. `enqueue:` places a *new*
+intent on the queue (often a different intent than the parent).
+`reschedule:` defers the *current* intent. Use `enqueue:` to hand off
+to a different workflow; use `reschedule:` to back off and try again.
+
 ## Required fields
 
 Every manifest MUST have:
