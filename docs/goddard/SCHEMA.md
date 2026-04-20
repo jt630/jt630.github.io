@@ -374,6 +374,42 @@ preconditions:
 The runtime resolves `composes:` into a sequential plan. Sub-skill failure
 aborts the chain unless the composed skill declares a `fallback:` branch.
 
+### Conditional sub-skills — `only_if:`
+
+Any entry in `composes:` MAY carry an optional `only_if:` field. The
+sub-skill fires only when the expression evaluates true at the moment
+the chain reaches that step; otherwise it is skipped and the chain
+continues to the next entry.
+
+```yaml
+composes:
+  - skill: brain_memory
+    role: check_do_not_disturb
+  - skill: leg_walk
+    role: approach_last_known_location
+    only_if: do_not_disturb_active == false AND quiet_threshold_exceeded == true
+  - skill: skin_speaker
+    role: apologize_and_retreat
+    only_if: resident_responded_normally == true
+```
+
+**Semantics.**
+
+- The expression is evaluated against the runtime's blackboard at the
+  instant the step is reached, not at chain-plan time. A flag written
+  by an earlier sub-skill in the same chain is visible.
+- Skipping is not a failure. A skipped entry does not trigger
+  `fallback:`; the chain continues with its success path.
+- Expression grammar is the same as `preconditions:` — boolean
+  comparisons against blackboard keys, joined by `AND`/`OR`. Keep
+  expressions short; move complex gating into a dedicated check-skill
+  earlier in the chain.
+- `only_if:` on a composes entry is distinct from `only_if:` appearing
+  inside a vendor module's precondition clause. The former is the core
+  grammar documented here. The latter is vendor-local (see
+  [Module grammars](#module-grammars)) and evaluated by that module's
+  runtime, not by the core composer.
+
 ## Required fields
 
 Every manifest MUST have:
