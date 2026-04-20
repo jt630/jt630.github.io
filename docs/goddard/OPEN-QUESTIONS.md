@@ -240,8 +240,8 @@ any combination that is internally inconsistent.
   Modules whose morality decisions are unresolved register as inert,
   caregiver is notified, log records why.
 - Authoritative list of consent keys lives in
-  `docs/goddard/MORALITY.md` (Goddard-owned), so adding a primitive
-  consent key is a documentation change, not a schema revision.
+  [`docs/goddard/MORALITY.md`](MORALITY.md) (Goddard-owned), so adding a
+  primitive consent key is a documentation change, not a schema revision.
 - Reflex-speed decisions are governed strictly by the declared policy
   (sub-second, offline). Slower decisions (medication reminders,
   wellness prompts) MAY defer to Anthropic-model judgment within the
@@ -272,7 +272,8 @@ each vendor negotiating bilaterally with Goddard.
   codifying the three-layer consent model).
 - Phase B3 (`hold: <state>`) acquires a required `requires_consent:`
   pointer before it lands.
-- Follow-up doc stub to create: `docs/goddard/MORALITY.md` —
-  authoritative registry of consent keys, deferred to a later wave.
+- Follow-up doc stub created in Wave 4:
+  [`docs/goddard/MORALITY.md`](MORALITY.md) — authoritative registry of
+  consent keys, resident-facing hold states, and module clauses.
 
 **Commit:** `1e0cb51`

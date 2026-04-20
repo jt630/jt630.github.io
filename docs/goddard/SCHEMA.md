@@ -331,12 +331,13 @@ resolved policy.
 
 This SCHEMA.md defines the morality module's *shape* — fields,
 layering rules, handshake semantics. The authoritative list of
-consent keys is maintained separately in
-`docs/goddard/MORALITY.md` (Goddard-owned), so that adding a new
-primitive consent key is a documentation change, not a schema
-revision. Modules that declare a `requires:` key not present in the
-current MORALITY.md register as inert, same as any other unresolved
-morality decision.
+consent keys, resident-facing hold states, and published module
+clauses is maintained separately in
+[`docs/goddard/MORALITY.md`](MORALITY.md) (Goddard-owned), so that
+adding a new primitive consent key is a documentation change, not a
+schema revision. Modules that declare a `requires:` key not present
+in the current MORALITY.md register as inert, same as any other
+unresolved morality decision.
 
 ### Relationship to Anthropic-model judgment
 
@@ -567,14 +568,9 @@ manifests hardens this convention from "should" to "must" at
 registration time — a module asserting that clause cannot enter a
 resident-facing hold without a paired utterance.
 
-**Resident-facing hold state registry.** The current list of
-resident-facing hold states in the library:
-
-| `hold:` state            | Consent key         |
-|--------------------------|---------------------|
-| `build_area_restricted`  | `access_restriction`|
-
-The authoritative mapping lives in `docs/goddard/MORALITY.md`
+**Resident-facing hold state registry.** The authoritative mapping of
+resident-facing hold states to consent keys lives in
+[`docs/goddard/MORALITY.md`](MORALITY.md#resident-facing-hold-states)
 (Goddard-owned). New resident-facing hold states are added there, not
 by editing SCHEMA.md. Robot-self pose states are not registry-tracked
 — they are free-form state ids local to the organ that declares them.
@@ -634,10 +630,10 @@ currently-used tokens:
 | `[drug_name]`  | `brain_memory.current_medication`    |
 
 New tokens are added by registering a key in `brain_memory` with the
-same name and are documented in `docs/goddard/MEMORY.md`
-(Goddard-owned). Tokens referencing unregistered memory keys cause
-the organ to register as inert, same as any other missing-dependency
-failure.
+same name and are documented in
+[`docs/goddard/MEMORY.md`](MEMORY.md#token-backed-keys) (Goddard-owned).
+Tokens referencing unregistered memory keys cause the organ to register
+as inert, same as any other missing-dependency failure.
 
 ### Consumption pattern — current and forward
 
@@ -756,12 +752,11 @@ authoritative source for preferences, schedules, and thresholds.
 ### Authoritative registry
 
 The authoritative list of canonical memory keys, their category, and
-their shape lives in `docs/goddard/MEMORY.md` (Goddard-owned). New
-keys are added there, not by inventing them in manifests. Manifests
-referencing unregistered keys register as inert — same handshake rule
-that governs unresolved consent keys per the morality module.
-`MEMORY.md` itself is stubbed in a later wave; Wave 3 commits only
-the conventions that the existing keys already follow.
+their shape lives in [`docs/goddard/MEMORY.md`](MEMORY.md)
+(Goddard-owned). New keys are added there, not by inventing them in
+manifests. Manifests referencing unregistered keys register as inert
+— same handshake rule that governs unresolved consent keys per the
+morality module.
 
 ## Required fields
 
