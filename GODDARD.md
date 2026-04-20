@@ -69,6 +69,8 @@ This file is the character sheet. Function-specific detail lives here:
 | `docs/goddard/REGIONS.md` | The 8 body regions, boundaries, inter-region interfaces |
 | `docs/goddard/WORKFLOW.md` | Session types, Agent-tool dispatch, lane protocol, review checklist |
 | `docs/goddard/OPEN-QUESTIONS.md` | Cross-lane interfaces and schema questions awaiting adjudication |
+| `docs/goddard/MORALITY.md` | Consent keys, resident-facing hold states, module clauses |
+| `docs/goddard/MEMORY.md` | Canonical `brain_memory` keys by category (config / log / token-backed) |
 | `docs/goddard/regions/<region>.md` | Per-region responsibility, interfaces, decisions, open questions |
 | `content/brain/robot-organs.md` | Public-facing theory page (what the site shows) |
 | `content/brain/goddard-core-functions.md` | Wave 0 decisions — reflex loop, safety monitor, skill registry |
@@ -78,8 +80,8 @@ to its task → target files.
 
 ## Current state
 
-- Branch: `claude/goddard-wave-3-schema-6WKqy`
-- Identity + companion docs: **done** (this file, SCHEMA.md, SKILL-DIRECTORY.md, REGIONS.md, WORKFLOW.md)
+- Branch: `claude/goddard-wave-4-registries-NLlqS`
+- Identity + companion docs: **done** (this file, SCHEMA.md, SKILL-DIRECTORY.md, REGIONS.md, WORKFLOW.md, MORALITY.md, MEMORY.md)
 - Existing organs: 37 across 8 regions (2 canonical from Wave 0 + 24 from Wave 1 lanes + 11 Wave 2 composed skills)
 - Functional groups: **9** — added `infrastructure` (Q7 resolution) for substrate organs like `brain_compute`
 - Wave 0 (core functions): **done** (`content/brain/goddard-core-functions.md`)
@@ -88,7 +90,7 @@ to its task → target files.
 - Wave 2 Phase B (composed skills in parallel): **done** — 4 lanes, 11 new `kind: composed` manifests across fabrication, fetch/retrieval, safety/care, and daily routines
 - Wave 3 Phase A (compute topology + module boundary): **done** — Q8 RESOLVED via hybrid/declared-autonomy (`## Compute runtime`); Q9 RAISED and RESOLVED in-session establishing the nervous-system / vendor-module boundary (`## Module grammars`) and the three-layer morality module (`## Morality module`) with jurisdictional inheritance from municipal ordinance
 - Wave 3 Phase B (documenting Wave 2 de-facto grammar): **done** — five schema sections promoted from tribal knowledge to canonical convention: `only_if:` on composes entries; `## Fallback and recovery` (trigger+recovery envelope, `reschedule:` action, `hold:` / `until:` with `requires_consent:` per Q9); `## Voice lines` (reviewable copy registry, `[snake_case]` substitution tokens, warm-home-aide register contract); `## Memory-key conventions` (config / log / token-backed categories, `query:` / `update:` access grammar, `caregiver_auth:` flag). Three fabrication manifests (`arm_print_on_demand`, `arm_print_and_clean` ×2) updated to carry `requires_consent: access_restriction` on their resident-facing holds
-- Follow-up doc stubs to create in a later wave: `docs/goddard/MORALITY.md` (consent-key registry) and `docs/goddard/MEMORY.md` (canonical memory-key registry) — both referenced by `SCHEMA.md` as the authoritative sources, both deferred
+- Wave 4 (Goddard-owned registries): **done** — two SCHEMA.md-referenced registries stubbed from the library's live contents. `docs/goddard/MORALITY.md` publishes the 5 consent keys, 1 resident-facing hold state (`build_area_restricted` → `access_restriction`, asserted by 3 fabrication sites), and the 2 schema-named module clauses (`arm_force_cap`, `no_silent_restriction`; neither asserted yet). `docs/goddard/MEMORY.md` publishes the 5 config keys, 2 log keys, and 2 token-backed keys (`resident_name` → `[name]`, `current_medication` → `[drug_name]`) with per-category field conventions. SCHEMA.md's four dangling registry pointers now resolve bidirectionally.
 - Mission: help elderly people live independently at home
 
 ## How to work with Goddard
