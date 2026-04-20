@@ -665,6 +665,104 @@ of utterances that satisfy that pairing lives in its own
 `voice_lines:` block. Separating *what the robot says* from *when it
 says it* lets caregivers tune one without risking the other.
 
+## Memory-key conventions
+
+Organs read and write shared state through `brain_memory`. The keys
+involved are canonical — multiple organs reference the same key for
+the same purpose, so naming drift fragments the caregiver's view of
+the resident. This section defines the conventions so new organs and
+new memory keys follow the existing shape.
+
+### Key categories
+
+Memory keys partition by who writes them and how organs consume
+them.
+
+- **Config keys** — caregiver-authored, organ-read. Singular-noun
+  snake_case. Hold the resident's preferences, schedules, and
+  thresholds that the caregiver tunes through the caregiver app.
+  Currently in use: `morning_preferences`, `evening_preferences`,
+  `welfare_check_profile`, `medication_schedule`,
+  `approved_parts_list`.
+- **Log keys** — organ-authored, caregiver-read. Named
+  `<domain>_log`. Append-style per-day records of what happened.
+  Currently in use: `daily_log`, `medication_log`.
+- **Token-backed keys** — single scalar values referenced by
+  `voice_lines:` substitution tokens. Token `[snake_case]` resolves
+  to `brain_memory.snake_case`. Currently in use: `resident_name`
+  (→ `[name]`), `current_medication` (→ `[drug_name]`).
+
+### Access grammar
+
+Sub-skill invocations of `brain_memory` use two `with:` shapes —
+`query:` for reads, `update:` for writes.
+
+**Read by field set:**
+
+```yaml
+- skill: brain_memory
+  role: read_morning_profile
+  with:
+    query:
+      key: morning_preferences
+      fields: [preferred_name, greeting_style, wake_tolerance_min]
+```
+
+**Read by id match** (lookup within a list-valued key):
+
+```yaml
+- skill: brain_memory
+  role: validate_part_is_approved
+  with:
+    query:
+      key: approved_parts_list
+      match: candidate_part_id
+```
+
+**Targeted write:**
+
+```yaml
+- skill: brain_memory
+  role: log_checkin_outcome
+  with:
+    update:
+      key: daily_log
+      field: welfare_checkin
+      value: captured_outcome
+```
+
+### Caregiver authority
+
+Writes MAY declare `caregiver_auth: <bool>` alongside `update:`. When
+`true`, the write is held in a pending queue until the caregiver
+approves it via the caregiver app; when `false` (the current default
+on log-key writes), the write lands immediately. Config-key writes
+SHOULD declare `caregiver_auth: true` — caregivers are the
+authoritative source for preferences, schedules, and thresholds.
+
+### Field-level conventions
+
+- Log-key fields are snake_case nouns describing what is being logged
+  (`morning_checkin`, `evening_routine`, `welfare_checkin`,
+  `morning_retreat_reason`).
+- Log-key values are snake_case enums describing the outcome
+  (`captured_response`, `resident_declined`, `no_response_captured`,
+  `skipped_do_not_disturb`). Keep the enum small per field; caregiver
+  dashboards render these verbatim.
+- Config-key fields are snake_case nouns (`preferred_name`,
+  `do_not_disturb_active`, `wake_tolerance_min`). Booleans end in
+  `_active` or `_scheduled`. Durations end in `_min` or `_s`.
+
+### Authoritative registry
+
+The authoritative list of canonical memory keys, their category, and
+their shape lives in `docs/goddard/MEMORY.md` (Goddard-owned). New
+keys are added there, not by inventing them in manifests. Manifests
+referencing unregistered keys register as inert — same handshake rule
+that governs unresolved consent keys per the morality module.
+`MEMORY.md` itself is stubbed in a later wave; Wave 3 commits only
+the conventions that the existing keys already follow.
+
 ## Required fields
 
 Every manifest MUST have:
