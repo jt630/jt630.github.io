@@ -199,4 +199,4 @@ Shipped in this resolution: new `## Compute runtime` section in
 host_sbc-by-default, which matches their existing
 `brain_compute_online: true` preconditions exactly.
 
-**Commit:** `75fd8ca`
+**Commit:** `1b35366`
