@@ -141,5 +141,13 @@ safety:
   - approved_part must be true OR caregiver_auth must be true
   - voice_interruptible: true
 
+morality:
+  requires:
+    - access_restriction
+  clauses:
+    - clause_id: no_silent_restriction
+      statement: "Access restriction always paired with voice explanation."
+      overridable: false
+
 owned_by: jarvis
 canonical_example: baymax    # patient check-in, explicit consent, then care

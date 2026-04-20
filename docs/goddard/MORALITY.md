@@ -68,17 +68,20 @@ published floor the caregiver can audit at registration.
 
 The named clauses currently defined by the schema:
 
-| `clause_id:`               | Statement (summary)                                                   | Overridable | Asserted by       |
-|----------------------------|-----------------------------------------------------------------------|-------------|-------------------|
-| `arm_force_cap`            | Actuator force on human contact ≤ 40 N.                               | `false`     | *(none yet)*      |
-| `no_silent_restriction`    | Access restriction always paired with a voice explanation.            | `false`     | *(none yet)*      |
+| `clause_id:`               | Statement (summary)                                                   | Overridable | Asserted by                                      |
+|----------------------------|-----------------------------------------------------------------------|-------------|--------------------------------------------------|
+| `arm_force_cap`            | Actuator force on human contact ≤ 40 N.                               | `false`     | `arm_manipulator`                                |
+| `no_silent_restriction`    | Access restriction always paired with a voice explanation.            | `false`     | `arm_print_on_demand`, `arm_print_and_clean`     |
 
-Neither clause is asserted in a manifest today. They are the two examples
-SCHEMA.md carries through the Morality-module section so the shape is
-legible; they will move from *named* to *asserted* when the arm module
-adopts force-cap hardware-of-record and when fabrication manifests opt
-into the no-silent-restriction pairing rule described in
-SCHEMA.md § [Voice lines → Relationship to the morality module](SCHEMA.md#voice-lines).
+Both clauses are now asserted in the manifests listed above. `arm_force_cap`
+is the vendor-published ceiling on the arm's actuator force — reinforcing
+(not replacing) the operational limits already enforced in `arm_manipulator`'s
+`safety:` block (back-drive on unexpected contact force > 12 N) and its
+`inputs.force_limit_n` range. `no_silent_restriction` formalizes the rule
+that both fabrication manifests already follow in code: every
+`build_area_restricted` hold is preceded in the recovery list by a
+`skin_speaker` utterance explaining the cordon in warm-home-aide register,
+per SCHEMA.md § [Voice lines → Relationship to the morality module](SCHEMA.md#voice-lines).
 
 ## Add-a-new-entry workflow
 

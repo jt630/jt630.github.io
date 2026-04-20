@@ -56,5 +56,11 @@ safety:
   - force limit enforced at wrist; back-drive on unexpected contact force > 12 N
   - no motion while active-tool is in cooldown state (e.g. post-print nozzle cooling)
 
+morality:
+  clauses:
+    - clause_id: arm_force_cap
+      statement: "Actuator force on human contact ≤ 40 N."
+      overridable: false
+
 owned_by: jarvis
 canonical_example: walle         # deliberate, grounded reach — not a weapon arm

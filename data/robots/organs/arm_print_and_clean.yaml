@@ -105,5 +105,13 @@ safety:
   - reject vacuum intake if object_size_mm > 5 detected at nozzle
   - voice_interruptible: true
 
+morality:
+  requires:
+    - access_restriction
+  clauses:
+    - clause_id: no_silent_restriction
+      statement: "Access restriction always paired with voice explanation."
+      overridable: false
+
 owned_by: jarvis
 canonical_example: r2d2    # print-and-tidy handiwork, inherited from the lead organ
