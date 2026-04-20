@@ -583,6 +583,88 @@ by editing SCHEMA.md. Robot-self pose states are not registry-tracked
 and `until:` omitted are both invalid. A hold without a release
 condition is a stuck robot, not a safe state.
 
+## Voice lines
+
+Any manifest whose chain produces utterances MAY declare a top-level
+`voice_lines:` block — a registry of the utterances the organ speaks
+through `skin_speaker`. Keys are stable snake_case identifiers; values
+are the utterance strings. The block is a sibling of `safety:`,
+`fallback:`, and `composes:`.
+
+```yaml
+voice_lines:
+  greeting:     "Good morning, Mrs. [name]. I hope you rested well."
+  check_in:     "How did you sleep?"
+  retreat:      "Of course. I will check back in a little while."
+  soft_handoff: "I am going to ask your caregiver to double-check your
+                 morning medicine today. Nothing for you to worry about."
+```
+
+### Purpose
+
+`voice_lines:` is **reviewable copy**. Caregivers tune copy here
+(through the caregiver app in production, through PRs today) without
+touching chain logic. Putting utterances in one place makes the
+organ's voice register auditable: anyone reading the manifest can see
+every thing the robot might say, separated from the question of when
+it says it.
+
+### Register contract
+
+Every entry in `voice_lines:` SHOULD sound like a warm neighbor poking
+their head in, not a medical alarm. Per-organ comments (preamble
+inside the `voice_lines:` block) describe the tonal target the
+caregiver should preserve when tuning — e.g. *"a person saying it,
+not a machine reading it,"* *"a neighbor poking their head in, not a
+medical alarm."* These annotations are not schema-enforced but they
+are the operational definition of the warm-home-aide register that
+the broader system stakes itself on. Reviewers SHOULD push back on
+copy that drifts toward clinical, corporate, or alarmist tone.
+
+### Substitution tokens
+
+Utterance strings MAY contain substitution tokens in
+`[snake_case]` form. At fire time, the runtime resolves each token
+against `brain_memory` using the token name as the memory key. The
+currently-used tokens:
+
+| Token          | Resolved from                        |
+|----------------|--------------------------------------|
+| `[name]`       | `brain_memory.resident_name`         |
+| `[drug_name]`  | `brain_memory.current_medication`    |
+
+New tokens are added by registering a key in `brain_memory` with the
+same name and are documented in `docs/goddard/MEMORY.md`
+(Goddard-owned). Tokens referencing unregistered memory keys cause
+the organ to register as inert, same as any other missing-dependency
+failure.
+
+### Consumption pattern — current and forward
+
+Sub-skill invocations today duplicate the utterance string verbatim
+inside their `with: utterance: "..."` field. The `voice_lines:` block
+serves as the canonical source; the duplication is known tech debt
+from before this section existed.
+
+Forward direction — not required in Wave 3 — is `utterance_ref:
+<key>` on `skin_speaker` invocations, resolved at plan time to the
+corresponding `voice_lines:` entry. The migration is deferred to a
+later wave so existing manifests remain valid as-is; this section
+documents the intent so the forward path is legible to future
+authors.
+
+### Relationship to the morality module
+
+Resident-facing intervention primitives (notably resident-facing
+`hold:` actions per [Morality module](#morality-module)) expect a
+paired voice-line that explains the intervention in the organ's
+declared register. A manifest asserting the
+`no_silent_restriction` clause (fabrication-class organs) cannot
+enter a resident-facing hold without a paired utterance; the registry
+of utterances that satisfy that pairing lives in its own
+`voice_lines:` block. Separating *what the robot says* from *when it
+says it* lets caregivers tune one without risking the other.
+
 ## Required fields
 
 Every manifest MUST have:
