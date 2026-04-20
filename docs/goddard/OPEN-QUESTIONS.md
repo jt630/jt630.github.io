@@ -275,4 +275,4 @@ each vendor negotiating bilaterally with Goddard.
 - Follow-up doc stub to create: `docs/goddard/MORALITY.md` —
   authoritative registry of consent keys, deferred to a later wave.
 
-**Commit:** `PENDING`
+**Commit:** `1e0cb51`
