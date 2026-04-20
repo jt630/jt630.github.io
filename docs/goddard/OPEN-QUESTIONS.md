@@ -200,3 +200,79 @@ host_sbc-by-default, which matches their existing
 `brain_compute_online: true` preconditions exactly.
 
 **Commit:** `1b35366`
+
+## Q9 — Morality module: how is intervention consent declared and enforced? — RESOLVED
+
+Raised and resolved in the same session as Q8, because the two
+questions share a substrate: Q8 established that vendor modules can
+bring their own silicon, and Q9 establishes that the nervous system
+and those modules must also negotiate a shared moral contract before
+any intervention primitive fires. Without Q9, the Phase B `hold:`
+work would ship a schema that doesn't know whose morality it encodes.
+
+**Framing.** Morality is not a universal the schema can hardcode —
+different residents, caregivers, operators, and jurisdictions
+legitimately hold different positions on physical intervention, voice
+override, recording consent, and restraint. The schema therefore
+encodes the *slots where morality gets declared*, not the morality
+itself. Goddard ships the nervous system; deployment declares the
+policy; vendor modules declare their floor; core refuses to operate
+any combination that is internally inconsistent.
+
+**Decision.**
+
+- Add a manifest-level `morality:` block with `requires:` (consent
+  keys the module needs) and `clauses:` (vendor-hardcoded floors,
+  each with `overridable: true|false`).
+- Add a deployment-level `config/morality_profile.yaml` with three
+  layers:
+  - `jurisdiction:` — geofenced, auto-synced from a signed ordinance
+    index, read-only to the deployment.
+  - `inherited_from_ordinance:` — auto-populated by the jurisdiction
+    sync; defines the ceiling and floor the declared layer must
+    respect.
+  - `declared:` — caregiver/resident-set policy, bounded by
+    `inherited_from_ordinance:`.
+- Add a `requires_consent: <key>` pointer to every action that
+  invokes an intervention primitive (`hold:`, catch reflexes, voice
+  overrides, recording-on actions, physical-guidance actions).
+- Registration handshake gates on consistency of all three layers.
+  Modules whose morality decisions are unresolved register as inert,
+  caregiver is notified, log records why.
+- Authoritative list of consent keys lives in
+  `docs/goddard/MORALITY.md` (Goddard-owned), so adding a primitive
+  consent key is a documentation change, not a schema revision.
+- Reflex-speed decisions are governed strictly by the declared policy
+  (sub-second, offline). Slower decisions (medication reminders,
+  wellness prompts) MAY defer to Anthropic-model judgment within the
+  interior the declared policy leaves open. The model never weakens a
+  declared prohibition.
+
+**Why jurisdiction is first-class, not runtime-only.** Most declared
+policy will inherit from geofenced municipal ordinances rather than
+be authored from scratch per-deployment. Promoting
+`inherited_from_ordinance:` into the schema makes the layering
+auditable by caregivers, visible to vendor modules at registration,
+and resilient to jurisdiction-sync failures (a module can refuse to
+register if its `last_sync:` is stale beyond a clause-declared
+threshold).
+
+**Why modules carry non-overridable clauses.** Ecosystem trust. A
+vendor publishing a module takes on their own moral exposure — an arm
+manufacturer declaring a 40 N contact-force cap is publishing their
+floor for residents and caregivers to audit at registration. The
+nervous system respecting that floor is how the ecosystem stays
+open-source-protocols-all-the-way-down rather than devolving into
+each vendor negotiating bilaterally with Goddard.
+
+**Shipped in this resolution:**
+- New `## Module grammars` section in `SCHEMA.md` (Wave 3 Item 1,
+  codifying the vendor-grammar silo).
+- New `## Morality module` section in `SCHEMA.md` (Wave 3 Item 2,
+  codifying the three-layer consent model).
+- Phase B3 (`hold: <state>`) acquires a required `requires_consent:`
+  pointer before it lands.
+- Follow-up doc stub to create: `docs/goddard/MORALITY.md` —
+  authoritative registry of consent keys, deferred to a later wave.
+
+**Commit:** `PENDING`

@@ -196,6 +196,159 @@ Hot-reload and hot-swap of autonomous modules reuse the same
 registration handshake with a teardown step, same as `sub_loop:`. One
 protocol, one code path.
 
+## Module grammars
+
+Vendor modules that opt into local autonomy (`compute_runtime.location`
+of `on_board` or `external_hub`) operate in their own grammatical
+namespace. They are foreign code speaking an open-source protocol to
+core, not native organs of the nervous system. The only contract
+between them and core is the registration handshake — compute runtime,
+bus protocol, liveness signal, sub-loop report envelope — and the
+morality handshake (see next section).
+
+Consequences:
+
+- **Keyword reuse is permitted inside vendor manifests.** A vendor
+  module MAY use schema keywords (e.g. `only_if:`) in positions that
+  differ from the native grammar documented in this file. Those
+  keywords are evaluated by the module's own runtime, not by core.
+  Example: `leg_walk` uses `only_if:` inside a precondition clause as
+  a module-local construct — legitimate within that module's grammar,
+  not reconciled with core's `only_if:` on `composes:` entries.
+- **Core does not parse vendor manifest bodies beyond the handshake
+  surface.** Validation against this SCHEMA.md applies only to organs
+  that schedule on `host_sbc` (the default, Wave 1-2 baseline). Vendor
+  manifests are validated by their own module runtime; core only
+  validates the envelope fields required for registration.
+- **Vendor modules remain probeable.** Core MAY introspect a vendor
+  module's declared morality clauses, declared sub-loop report, and
+  declared output envelopes. Anything the vendor did not declare in
+  the handshake surface is opaque to core by design.
+
+This preserves the portable-core thesis: Goddard's nervous system
+defines its own canonical vocabulary, vendor modules define theirs,
+and the schema refuses to force a unified grammar where two runtimes
+legitimately speak differently.
+
+## Morality module
+
+Intervention primitives (physical contact, movement restriction,
+access restriction, voice overrides, memory retention of sensitive
+content) carry autonomy cost. Which costs are acceptable is not a
+universal — it varies by resident, caregiver, operator, and
+jurisdiction. The morality module is the registration gate where
+those costs are declared and negotiated before any module that
+carries them becomes operational.
+
+A module that invokes any intervention primitive is **unusable until
+its morality decisions are resolved**. Unresolved modules register as
+inert, the caregiver dashboard is notified, and the registration log
+records why.
+
+### Three layers
+
+Policy is composed from three declarations, highest precedence first:
+
+1. **Jurisdiction layer** (geofenced, auto-synced, read-only to the
+   deployment). Core resolves the deployment's location to a
+   jurisdiction tuple (country, state, municipality) and inherits the
+   applicable ordinance policy from a signed ordinance index. This
+   layer defines what a deployment MAY authorize — caregivers cannot
+   grant permissions their municipality forbids, and cannot forbid
+   protections their municipality mandates.
+2. **Declared layer** (per deployment, caregiver/resident-set). Within
+   the bounds the jurisdiction layer allows, the deployment declares
+   its own policy — which interventions the resident consents to,
+   which are voice-only, which are forbidden.
+3. **Module-clause layer** (per manifest, vendor-hardcoded). Each
+   module declares the consent keys it requires to operate and any
+   clauses it treats as non-negotiable from its own side (e.g. a
+   vendor-declared actuator force cap). Core must honor every
+   `overridable: false` clause; the deployment cannot configure them
+   away.
+
+Registration succeeds only if all three layers are consistent. Any
+contradiction — declared layer grants a permission the jurisdiction
+layer forbids; module requires a consent key the declared layer has
+not granted; module's non-overridable clause conflicts with declared
+policy — leaves the module inert.
+
+### Deployment shape
+
+```yaml
+# config/morality_profile.yaml — one per deployment
+morality_profile:
+  jurisdiction:
+    country: US
+    state: CA
+    municipality: "San Francisco"
+    ordinance_index: "ca-sf-2026-q2.signed"
+    last_sync: 2026-04-18T09:12:00Z
+
+  inherited_from_ordinance:           # read-only; auto-populated at sync
+    physical_restraint:               forbidden_without_judicial_order
+    recording_consent:                bilateral_required
+    access_restriction:               allowed_with_voice_explanation
+
+  declared:                           # caregiver/resident-set
+    physical_catch_involuntary_fall:  allowed
+    physical_catch_deliberate_fall:   forbidden
+    physical_guidance:                voice_only
+    imminent_death_override:          allowed
+```
+
+### Module shape
+
+```yaml
+morality:
+  requires:                           # consent keys the module needs
+    - access_restriction
+    - physical_guidance
+
+  clauses:                            # vendor-hardcoded floors
+    - clause_id: arm_force_cap
+      statement: "Actuator force on human contact ≤ 40 N."
+      overridable: false
+    - clause_id: no_silent_restriction
+      statement: "Access restriction always paired with voice explanation."
+      overridable: false
+```
+
+### Action-level pointer
+
+Any action that invokes an intervention primitive MUST declare which
+consent key authorizes it. The runtime gates the action on the
+resolved policy.
+
+```yaml
+- action: hold
+  state: build_area_restricted
+  requires_consent: access_restriction
+  until: build_chain_complete
+```
+
+### Scope of declared consent keys
+
+This SCHEMA.md defines the morality module's *shape* — fields,
+layering rules, handshake semantics. The authoritative list of
+consent keys is maintained separately in
+`docs/goddard/MORALITY.md` (Goddard-owned), so that adding a new
+primitive consent key is a documentation change, not a schema
+revision. Modules that declare a `requires:` key not present in the
+current MORALITY.md register as inert, same as any other unresolved
+morality decision.
+
+### Relationship to Anthropic-model judgment
+
+The declared policy is the non-negotiable *floor* — it governs
+reflex-speed decisions (sub-second intervention windows, offline
+operation) where a round-trip to an external model is not viable.
+Above that floor, slower and context-heavy decisions (whether to
+offer a medication reminder now, whether to interrupt a phone call
+for a wellness prompt) MAY defer to model judgment within the bounds
+the declared policy allows. The model never weakens a declared
+prohibition; it only operates in the interior the policy leaves open.
+
 ## Composed skills
 
 A composed skill uses `kind: composed` + a `composes:` block instead of raw
