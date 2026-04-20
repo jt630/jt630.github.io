@@ -162,41 +162,41 @@ group-of-one labels later.
 
 **Commit:** `e4815bc`
 
-## Q8 — Compute topology: centralized SBC vs. per-organ autonomy — RAISED
+## Q8 — Compute topology: centralized SBC vs. per-organ autonomy — RESOLVED
 
-Surfaced while resolving Q7. Today every brain organ names
-`brain_compute_online: true` as a precondition, which implies a single head-
-unit SBC runs everything. But the MVP framing is "Goddard's core is a
-portable substrate that plugs into modules that may bring their own
-compute." That pushes back on the single-substrate assumption.
+Resolved via the **hybrid / declared-autonomy** topology. The MVP stays
+centralized by default (every Wave 1-2 organ schedules on the host SBC
+and declares `brain_compute_online: true`), but the schema now carries
+an optional `compute_runtime:` block so a future module can bring its
+own silicon without a schema break. Same modular primitive shape as
+Q1's `sub_loop:` — declare what you own, core discovers.
 
-Three topologies to consider:
+**Decision:**
 
-1. **Centralized (current).** One SBC runs the reflex loop, planner, and
-   every brain organ. Simple, cheap. Weakness: a manufacturer who wants to
-   dock Goddard's core into a module with its own MCU-driven balance loop
-   or vision pipeline has to disable their silicon and route everything
-   through Goddard's SBC.
+- `compute_runtime:` is an optional manifest-level block with
+  `location: host_sbc | on_board | external_hub`, plus advisory
+  `processor:`, `bus_protocol:`, `report_cadence_hz:` fields.
+- **Default (block omitted):** `location: host_sbc`. Honors
+  `brain_compute_online: true` as a precondition. All 37 existing
+  manifests remain valid without edits.
+- **`location: on_board`:** organ is externally scheduled on its own
+  silicon. Registry reserves a supervision slot; core reads the
+  organ's `sub_loop_report` over the bus. Organ MUST declare a
+  `bus_protocol:` and SHOULD declare either a `sub_loop:` or an output
+  envelope. Organ declares its own liveness via a
+  `compute_runtime_ready: true` precondition, which
+  `core_safety_monitor` evaluates the same way as
+  `brain_compute_online: true`.
+- **`location: external_hub`:** reserved for caregiver-dashboard or
+  voice-interpretation-gateway modules (see Q6 framing). Schema
+  accepts it; no Wave 1-2 organ uses it yet.
+- Hot-reload and hot-swap of autonomous modules reuse the same
+  registration handshake from Q5 with a teardown step. One protocol,
+  one code path.
 
-2. **Per-organ autonomy.** Each organ declares its own `compute_runtime:`
-   (on-board MCU vs. host-SBC vs. external hub) and the registry schedules
-   accordingly. Organs with `compute_runtime: on_board` run their inner
-   loops on local silicon and only post results to core via the bus.
-   Flexible, but means every organ manifest carries a runtime block.
+Shipped in this resolution: new `## Compute runtime` section in
+`docs/goddard/SCHEMA.md`. No manifest rewrites — Wave 1-2 organs are
+host_sbc-by-default, which matches their existing
+`brain_compute_online: true` preconditions exactly.
 
-3. **Hybrid (the "maybe both" option).** Goddard's MVP ships as a
-   centralized SBC by default, but the schema allows organs to opt-in to
-   local autonomy via a `compute_runtime: on_board` declaration. Wave 1
-   organs stay centralized; future modules can declare otherwise without a
-   schema break. This is the same modular primitive as Q1's `sub_loop:`
-   block — declare what you own, core discovers.
-
-**Decision needed:** which topology to bake into the MVP schema. Likely
-(3) given the Q1 precedent, but needs explicit curator adjudication before
-any organ starts declaring `compute_runtime:`.
-
-**Dependencies:** touches every brain organ's preconditions
-(`brain_compute_online: true`), SCHEMA.md (new optional manifest block),
-and possibly a new sub-group of the `infrastructure` group.
-
-**Owners:** Goddard (schema), brain region (primary consumer).
+**Commit:** `75fd8ca`

@@ -152,6 +152,50 @@ joint_saturation: bool             # any hip at >=90% max_torque
 New payload shapes are proposed in a PR and promoted into this section by
 Goddard. The `_v1` suffix reserves space for breaking changes later.
 
+## Compute runtime
+
+Most organs run on the host SBC (`brain_compute`). Some modules ship with
+their own silicon — an MCU on a custom arm, a vision accelerator on a
+next-gen sensor array — and the schema needs to tolerate that without a
+break. The primitive is modular, same pattern as `sub_loop:`: declare
+what you own, core discovers.
+
+Organs opt in to local autonomy with an optional manifest-level
+`compute_runtime:` block:
+
+```yaml
+compute_runtime:
+  location: on_board          # host_sbc | on_board | external_hub
+  processor: "stm32f4"        # advisory: brand/model for caregiver diagnostics
+  bus_protocol: "can"         # how the organ talks to core (can | i2c | usb-hid | tcp | ...)
+  report_cadence_hz: 50       # how often the organ posts to core
+```
+
+Omitting the block is the default — the organ runs on the host SBC, and
+`brain_compute_online: true` remains a valid precondition for it. That
+default covers every Wave 1-2 organ without edits.
+
+At registration, the skill registry reads `compute_runtime:` and routes:
+
+- `location: host_sbc` (or omitted) — organ schedules on the host SBC.
+  `brain_compute_online: true` is an honored precondition.
+- `location: on_board` — organ is externally scheduled on its own
+  silicon. Core reserves a supervision slot and reads the organ's
+  `sub_loop_report` (if declared) each main tick over the bus. The
+  organ MUST declare `bus_protocol:` and SHOULD declare either a
+  `sub_loop:` or an output envelope so core has a health signal.
+  `brain_compute_online: true` does not gate the organ — the organ
+  declares its own liveness via `compute_runtime_ready: true` on its
+  precondition list, which `core_safety_monitor` evaluates the same
+  way it evaluates `brain_compute_online: true`.
+- `location: external_hub` — reserved for modules that run on a paired
+  home-hub (caregiver dashboard host, voice-interpretation gateway per
+  Q6). Schema accepts it; no Wave 1-2 organ uses it yet.
+
+Hot-reload and hot-swap of autonomous modules reuse the same
+registration handshake with a teardown step, same as `sub_loop:`. One
+protocol, one code path.
+
 ## Composed skills
 
 A composed skill uses `kind: composed` + a `composes:` block instead of raw
