@@ -508,6 +508,81 @@ intent on the queue (often a different intent than the parent).
 `reschedule:` defers the *current* intent. Use `enqueue:` to hand off
 to a different workflow; use `reschedule:` to back off and try again.
 
+### `hold:` / `until:` — pause in a declared safe state
+
+`hold: <state_id>` instructs the runtime to suspend forward motion of
+the chain and place the robot — or the affected environment — in a
+named safe state. The hold releases when the paired `until:` condition
+evaluates true. Both fields are required together; one is meaningless
+without the other.
+
+```yaml
+- hold: station_at_nearest_safe_pose
+  until: caregiver_arrival OR obstacle_clear == true
+```
+
+**Two flavors, one grammar.** A hold state either acts on the robot
+itself or acts on the resident / environment. The grammar is the
+same; the morality implications differ.
+
+**Robot-self holds** — the robot holds its own pose and does not
+move. No autonomy cost to the resident. No `requires_consent:` needed.
+
+```yaml
+# leg_fall_response — robot stations itself out of the way until help arrives
+- hold: station_at_nearest_safe_pose
+  until: caregiver_arrival OR obstacle_clear == true
+
+# brain_check_in — robot holds outside the resident's personal-space bubble
+- hold: station_outside_personal_space_bubble
+  until: caregiver_arrival OR resident_responds
+```
+
+**Resident-facing holds** — the robot enforces a keep-out zone,
+movement restriction, or other access restriction on the resident's
+environment. This is an intervention primitive and MUST carry a
+`requires_consent: <key>` pointer (see [Morality module](#morality-module)).
+Registration fails for any resident-facing hold that omits it.
+
+```yaml
+# arm_print_on_demand — keeps the resident clear of the warm build plate
+- hold: build_area_restricted
+  until: caregiver_ack
+  requires_consent: access_restriction
+```
+
+**`until:` grammar.** Shares the boolean expression syntax of
+`preconditions:`, `only_if:`, and `trigger:` — blackboard keys joined
+by `AND`/`OR`, equality and comparison operators, `contains` for
+string membership. Event-like keys (`caregiver_arrival`,
+`caregiver_ack`, `resident_responds`) resolve true when the
+corresponding event fires and remain true from that point onward in
+the hold's scope.
+
+**Expected pairings.** Every resident-facing hold SHOULD be preceded
+in the recovery list by a voice-line explaining the hold in
+warm-home-aide register (see [`voice_lines:`](#voice-lines)). The
+Morality module's `no_silent_restriction` clause on fabrication-class
+manifests hardens this convention from "should" to "must" at
+registration time — a module asserting that clause cannot enter a
+resident-facing hold without a paired utterance.
+
+**Resident-facing hold state registry.** The current list of
+resident-facing hold states in the library:
+
+| `hold:` state            | Consent key         |
+|--------------------------|---------------------|
+| `build_area_restricted`  | `access_restriction`|
+
+The authoritative mapping lives in `docs/goddard/MORALITY.md`
+(Goddard-owned). New resident-facing hold states are added there, not
+by editing SCHEMA.md. Robot-self pose states are not registry-tracked
+— they are free-form state ids local to the organ that declares them.
+
+**No forever-holds.** `until: true` (an always-satisfied condition)
+and `until:` omitted are both invalid. A hold without a release
+condition is a stuck robot, not a safe state.
+
 ## Required fields
 
 Every manifest MUST have:
