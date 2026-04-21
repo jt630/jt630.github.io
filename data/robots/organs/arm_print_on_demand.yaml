@@ -80,6 +80,24 @@ preconditions:
   - sbc_boot_complete: true
   - voice_interruptible: true
 
+voice_lines:
+  # Register target: a neighbor offering a small favor, not a clerk running a
+  # transaction. Ask once, accept either answer gracefully, never escalate tone
+  # unless the situation has already escalated (chain failure near a warm plate).
+  # Caregivers tuning these SHOULD preserve the "six minutes" concreteness —
+  # vague time estimates read as evasive to an 80-year-old.
+  request_consent:       "I can print a replacement for that now. It will take
+                          about six minutes and I will tidy up afterward.
+                          Would you like me to go ahead?"
+  standdown_no_answer:   "No trouble — I will leave it for now. Just let me
+                          know if you would like that part later."
+  standdown_declined:    "Understood. I will not print it."
+  caregiver_review:      "I will check with your caregiver before printing
+                          that one. Nothing for you to do."
+  chain_failed_hold:     "Something went wrong partway through. I have paused
+                          and let your caregiver know — please stay clear of
+                          the printer area for now."
+
 fallback:
   # Consent is the load-bearing gate. If we do not hear a clear "yes"
   # within the timeout, we stand down and tell the resident we heard

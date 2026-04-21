@@ -57,6 +57,25 @@ preconditions:
   - specimen_bay_capacity_ml > 0
   - voice_interruptible: true
 
+voice_lines:
+  # Register target: a person saying it, not a machine reading it. Every hold
+  # here is resident-facing (warm build plate, plastic debris underfoot) so the
+  # utterance needs to explain WHY to stay back, not just issue a cordon order.
+  # Caregivers tuning these SHOULD keep the "please wait for me or your
+  # caregiver" framing — it gives the resident a clear out, not a dead end.
+  cleanup_deferred_filter:   "The part is printed and cooling. Please leave
+                              the area around the build plate for me — the
+                              vacuum needs a quick filter change before I can
+                              sweep up the bits. I will come back and finish
+                              tidying in a few minutes."
+  cleanup_deferred_offline:  "Your part is ready. I could not tidy the support
+                              material this time. Please wait for me or your
+                              caregiver to clear the debris before walking
+                              near the printer."
+  print_failed:              "The print did not come out this time. I will
+                              let your caregiver know and we can try again
+                              later."
+
 fallback:
   # The vacuum can drop out mid-chain (filter clogged, specimen bay filled
   # during a separate task, panel jammed). We never strand the resident

@@ -80,7 +80,7 @@ to its task → target files.
 
 ## Current state
 
-- Branch: `claude/goddard-wave-4-registries-NLlqS`
+- Branch: `claude/goddard-wave-6-voice-lines-81ykz`
 - Identity + companion docs: **done** (this file, SCHEMA.md, SKILL-DIRECTORY.md, REGIONS.md, WORKFLOW.md, MORALITY.md, MEMORY.md)
 - Existing organs: 37 across 8 regions (2 canonical from Wave 0 + 24 from Wave 1 lanes + 11 Wave 2 composed skills)
 - Functional groups: **9** — added `infrastructure` (Q7 resolution) for substrate organs like `brain_compute`
@@ -91,6 +91,8 @@ to its task → target files.
 - Wave 3 Phase A (compute topology + module boundary): **done** — Q8 RESOLVED via hybrid/declared-autonomy (`## Compute runtime`); Q9 RAISED and RESOLVED in-session establishing the nervous-system / vendor-module boundary (`## Module grammars`) and the three-layer morality module (`## Morality module`) with jurisdictional inheritance from municipal ordinance
 - Wave 3 Phase B (documenting Wave 2 de-facto grammar): **done** — five schema sections promoted from tribal knowledge to canonical convention: `only_if:` on composes entries; `## Fallback and recovery` (trigger+recovery envelope, `reschedule:` action, `hold:` / `until:` with `requires_consent:` per Q9); `## Voice lines` (reviewable copy registry, `[snake_case]` substitution tokens, warm-home-aide register contract); `## Memory-key conventions` (config / log / token-backed categories, `query:` / `update:` access grammar, `caregiver_auth:` flag). Three fabrication manifests (`arm_print_on_demand`, `arm_print_and_clean` ×2) updated to carry `requires_consent: access_restriction` on their resident-facing holds
 - Wave 4 (Goddard-owned registries): **done** — two SCHEMA.md-referenced registries stubbed from the library's live contents. `docs/goddard/MORALITY.md` publishes the 5 consent keys, 1 resident-facing hold state (`build_area_restricted` → `access_restriction`, asserted by 3 fabrication sites), and the 2 schema-named module clauses (`arm_force_cap`, `no_silent_restriction`; neither asserted yet). `docs/goddard/MEMORY.md` publishes the 5 config keys, 2 log keys, and 2 token-backed keys (`resident_name` → `[name]`, `current_medication` → `[drug_name]`) with per-category field conventions. SCHEMA.md's four dangling registry pointers now resolve bidirectionally.
+- Wave 5 (registry clauses go live): **done** — MORALITY.md's two module-clause rows moved from named-but-not-asserted to asserted-by-a-real-manifest. `arm_manipulator` publishes `arm_force_cap` (≤ 40 N, `overridable: false`) as the vendor ceiling above its existing operational safety (12 N back-drive, [1, 30] force-limit range). `arm_print_on_demand` and `arm_print_and_clean` publish `no_silent_restriction` and declare `requires: [access_restriction]`, formalizing the voice-line-before-`hold:` pairing their recovery lists already followed.
+- Wave 6 (voice_lines canonicalization, fabrication lane): **done** — top-level `voice_lines:` blocks added to `arm_print_on_demand` (5 utterances) and `arm_print_and_clean` (3 utterances), making the three fabrication manifests the first to carry SCHEMA § Voice lines' reviewable-copy registry. Each block includes a register-contract preamble (warm-home-aide tonal target, caregiver-tuning guidance). `with: utterance: "..."` duplicates retained per SCHEMA's staged migration; the `utterance_ref:` swap is deferred to a later wave.
 - Mission: help elderly people live independently at home
 
 ## How to work with Goddard
