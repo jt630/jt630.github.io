@@ -55,6 +55,22 @@ preconditions:
   - item_on_floor_confirmed: true    # sensor or resident report
   - item_is_not_in_resident_hand: true
 
+voice_lines:
+  # Register target: low voice, floor level, not hovering. Autonomy-first
+  # framing — the "resident_reaching" line ASKS, it does not announce.
+  # The medication-count line is written to flag uncertainty WITHOUT
+  # alarming; "please double-check" is the key phrase caregivers should
+  # preserve when tuning.
+  resident_reaching:             "I see you're getting it — would you
+                                  like me to pick it up, or would you
+                                  rather do it yourself?"
+  floor_hazard:                  "There's something on the floor I
+                                  shouldn't touch safely. I'll let your
+                                  caregiver know and stay nearby."
+  medication_count_uncertain:    "I picked up what I could see. Please
+                                  double-check the count before you take
+                                  them — I'll note this for your caregiver."
+
 fallback:
   - when: resident_reaching_for_item
     action: pause_and_offer
