@@ -53,6 +53,25 @@ preconditions:
   - clearance_cm >= 20                  # working envelope at the shelf face
   - shelf_surface_stable: true          # not a wobbly stand or stack
 
+voice_lines:
+  # Register target: someone saying "let me handle this for you" without
+  # performing competence. The payload-decline and out-of-reach utterances
+  # BOTH route the resident to a caregiver — caregivers tuning these SHOULD
+  # preserve that handoff; removing it leaves the resident alone with a
+  # problem the robot just announced it cannot solve.
+  item_too_heavy:           "That one looks a little too heavy for me to
+                             lift down safely. I'd rather not risk dropping
+                             it — would you like me to let your caregiver
+                             know so they can hand it to you?"
+  shelf_out_of_reach:       "That shelf is a little higher than I can
+                             reach. I'll ask your caregiver to help with
+                             that one."
+  item_not_found:           "I looked on the top shelf and didn't see it
+                             there. Could it be somewhere else?"
+  shelf_contents_shifted:   "Something moved up there. I'm going to stop
+                             and wait — could you have someone take a
+                             look?"
+
 fallback:
   - when: item_exceeds_payload
     action: decline_before_attempt

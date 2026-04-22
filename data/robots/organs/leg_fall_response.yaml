@@ -125,6 +125,39 @@ preconditions:
   - brain_compute_online: true
   - voice_interruptible: true
 
+voice_lines:
+  # Register target: calm, low, present. These utterances are spoken to a
+  # person who has just fallen — the single highest-stakes copy in the
+  # library. Caregivers tuning these MUST preserve: (1) "help is coming"
+  # somewhere in every line except the routine arrival, (2) "I am not
+  # going to try to lift you" on arrival, so the resident knows what the
+  # robot will and won't do, (3) "I am right here" as the closing
+  # grounding phrase. Remove those and the scene reads as abandonment.
+  # Never let this copy drift toward clinical ("adverse event detected"),
+  # corporate ("your caregiver has been notified"), or rushed — a fallen
+  # 80-year-old needs a voice that sounds like it is sitting down with
+  # her, not alerting a console.
+  approach_en_route:      "I am on my way to you. I can see you — stay
+                           still, I will be right there. Help is already
+                           coming."
+  arrival_reassurance:    "I am here now. I am not going to try to lift
+                           you. Help is on the way. If you would like
+                           something to hold onto, just ask me and I
+                           will offer you my paw."
+  blocked_path:           "I can see you but I cannot reach you safely
+                           — there is something in the way. Help is on
+                           the way. Stay as still as you can and try to
+                           breathe slowly. I am right here with you."
+  wet_floor_hold:         "The floor between us is wet and I cannot
+                           cross it safely. I am staying as close as I
+                           can. Help is on the way. Please do not try
+                           to stand up on your own — I will stay right
+                           here and talk with you."
+  balance_fault_hold:     "I am having trouble staying steady on my
+                           feet and I do not want to fall near you. I
+                           have called your caregiver already — help is
+                           coming. I am right here."
+
 fallback:
   # Fallbacks are written as spoken sentences — they will be read aloud
   # through skin_speaker. The robot never forces a path, never lifts,

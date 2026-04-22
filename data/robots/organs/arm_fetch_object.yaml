@@ -49,6 +49,17 @@ preconditions:
   - "speed_cap_cms: 15 when human_within_cm <= 120"   # per leg_walk / leg_wheel
   - path_clear_to_object: true
 
+voice_lines:
+  # Register target: a courteous housemate offering to re-try, not a
+  # transaction log announcing a failure code. Keep the open-ended
+  # question at the end of "not found" / "too heavy" — it gives the
+  # resident a next step, not a dead end.
+  object_not_found:  "I couldn't find the remote on the coffee table.
+                      Would you like me to check somewhere else?"
+  object_too_heavy:  "That one looks a little heavy for me to carry
+                      safely. I'll leave it in place — would you like
+                      me to let your caregiver know?"
+
 fallback:
   - when: object_not_found
     action: return_empty_handed

@@ -74,6 +74,40 @@ preconditions:
   - waste_bay_fill_pct < 90
   - voice_interruptible: true
 
+voice_lines:
+  # Register target: a housemate handling a small mess, not a safety
+  # protocol announcing hazards. Five of these utterances refuse intake
+  # (oversize, hot, sharp, bay_full, filter) — each one SHOULD include
+  # BOTH a reason the robot is standing down AND a "please be careful
+  # where you step" framing. The resident is left standing near the
+  # spill until the caregiver arrives; the copy has to keep her safe
+  # during that gap, not just log the refusal.
+  approach:                "I noticed a spill. Let me tidy it up for
+                            you — please step back a little so I can
+                            reach it."
+  complete:                "All tidied up. The floor is clear."
+  oversize_refused:        "That piece is a little too big for me to
+                            handle safely. Let me get a caregiver to
+                            clean this one up. Please be careful where
+                            you step until they arrive."
+  hot_spill_refused:       "This spill is still hot — I am not going
+                            to pick it up until it cools. Let me get a
+                            caregiver to help. Please take a step back
+                            and give it a minute."
+  sharp_refused:           "I can see something sharp in this spill,
+                            so I am not going to sweep it. Let me get
+                            a caregiver. Please stay where you are —
+                            I do not want you stepping on it."
+  bay_full_refused:        "My waste bay is full, so I cannot tidy
+                            this up right now. I am going to let your
+                            caregiver know so they can empty me and
+                            we can try again. Please be careful where
+                            you step."
+  filter_blocked_refused:  "My vacuum filter needs a quick clean
+                            before I can sweep this up. I will let
+                            your caregiver know. Please take care near
+                            the spill in the meantime."
+
 fallback:
   # Fallbacks are written as spoken sentences — they will be read aloud
   # through skin_speaker. Goddard never forces a pickup and never leaves
