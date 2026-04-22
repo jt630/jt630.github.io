@@ -22,8 +22,8 @@ see SCHEMA.md § [Morality module](SCHEMA.md#morality-module).
 ## Consent keys
 
 Consent keys are named by modules in their `morality.requires:` list and
-named by deployments in `config/morality_profile.yaml` under `declared:`.
-They are the shared vocabulary both sides negotiate in.
+named by deployments in `data/robots/morality_profile.yaml` under
+`declared:`. They are the shared vocabulary both sides negotiate in.
 
 | Key                                | Primitive governed                                                                                  |
 |------------------------------------|------------------------------------------------------------------------------------------------------|
@@ -82,6 +82,39 @@ that both fabrication manifests already follow in code: every
 `build_area_restricted` hold is preceded in the recovery list by a
 `skin_speaker` utterance explaining the cordon in warm-home-aide register,
 per SCHEMA.md § [Voice lines → Relationship to the morality module](SCHEMA.md#voice-lines).
+
+## Deployment profiles
+
+The three-layer handshake only resolves once a real deployment takes
+positions on the consent keys above. That per-deployment artifact is the
+**morality profile**. Its shape is defined in SCHEMA.md
+§ [Deployment shape](SCHEMA.md#deployment-shape): a jurisdiction tuple, a
+read-only `inherited_from_ordinance:` block, and a `declared:` block with
+one position (`allowed | forbidden | voice_only`) per consent key.
+
+The canonical reference profile lives at
+[`data/robots/morality_profile.yaml`](../../data/robots/morality_profile.yaml).
+It is the first concrete instantiation of the module — the resident is
+Mrs. Alvarez (early-80s, lives alone, mild balance decline post-hip
+replacement; the same persona named in `arm_fetch_object`'s elderly-care
+example), the jurisdiction is US / CA / San Francisco, and every declared
+position carries a one-line caregiver-rationale comment so the audit trail
+is inline with the decision.
+
+Per-deployment is per-file. Each new deployment gets its own
+`morality_profile.yaml` at the same path in its own repo / config bundle,
+not a template directory here — multi-tenancy is a future concern. Future
+profiles SHOULD mirror the reference file's shape: a persona blurb at the
+top, the jurisdiction tuple, the ordinance-inherited block, one declared
+position per consent key with reasoning, and a registration-outcomes walk
+at the bottom so a reader can trace each asserting manifest through the
+three layers.
+
+A new profile MUST NOT reference consent keys, hold states, or module
+clauses that are not present in this registry. If a persona seems to
+need new vocabulary, the registry is updated first (see the add-a-new-entry
+workflow below) and the profile pulls from the updated registry — the
+profile never invents names the registry has not blessed.
 
 ## Add-a-new-entry workflow
 
