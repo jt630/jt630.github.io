@@ -1,0 +1,185 @@
+wave: 8
+title: Build the reference deployment morality_profile so the three-layer handshake resolves
+session_suffix_placeholder: <your-session-suffix>
+
+context: |
+  The morality module has been a three-layer construct since Wave 3A
+  (jurisdiction → declared → module-clause), but only two of the three layers
+  have any concreteness. The declared layer is empty: no deployment has
+  positions on any consent key, so every module asserting `requires:`
+  currently registers as inert at handshake time.
+
+  Wave 5 made three fabrication manifests assert clauses and require:
+  access_restriction. Waves 6 and 7 fully populated voice_lines: across all
+  11 utterance-producing manifests. The next move is to build the first
+  deployment profile so the assertions from Wave 5 actually resolve to
+  operational instead of inert.
+
+read_first:
+  - path: GODDARD.md
+    section: current-state block
+  - path: docs/goddard/SCHEMA.md
+    section: |
+      § Morality module — especially § Three layers, § Deployment shape,
+      § Action-level pointer
+  - path: docs/goddard/MORALITY.md
+    section: |
+      The 5 consent keys, 1 resident-facing hold state, 2 module clauses;
+      these are the names a deployment declares positions on.
+  - path: data/robots/organs/arm_print_on_demand.yaml
+    section: morality.requires (read-only — do not edit)
+  - path: data/robots/organs/arm_print_and_clean.yaml
+    section: morality.requires (read-only — do not edit)
+  - path: data/robots/organs/arm_manipulator.yaml
+    section: morality.clauses (read-only — do not edit)
+
+task:
+  artifact: data/robots/morality_profile.yaml
+  shape_reference: SCHEMA.md § Deployment shape
+  pieces:
+    - id: A
+      title: Pick the reference resident persona
+      description: |
+        A morality_profile is per-deployment, so it needs a real person to
+        be a profile of. Suggested default:
+
+          Mrs. Alvarez — the resident already named in arm_fetch_object's
+          elderly-care example. Early-80s, lives alone in her own home, mild
+          balance concerns from a hip replacement two years ago, daughter
+          (primary caregiver) lives 20 minutes away and visits 3×/week.
+
+        Keep it consistent with the elderly-care mission. If you want a more
+        conservative consent posture (early dementia, recent fall), propose
+        it and note the trade-off — more interesting policy decisions, but a
+        heavier persona than the rest of the library has been written around.
+
+        Open the file with a one-paragraph persona blurb at the top so every
+        position downstream is inferable from the persona, not arbitrary.
+
+    - id: B
+      title: Pick the jurisdiction
+      description: |
+        SCHEMA's example uses:
+          country:         US
+          state:           CA
+          municipality:    "San Francisco"
+          ordinance_index: "ca-sf-2026-q2.signed"
+
+        It also shows three inherited_from_ordinance: lines (physical_restraint
+        forbidden_without_judicial_order, recording_consent bilateral_required,
+        access_restriction allowed_with_voice_explanation).
+
+        Default to US/CA/SF — it lets you reuse SCHEMA's worked example.
+        Picking a different jurisdiction is more interesting but adds research
+        burden you almost certainly don't need for the first reference profile.
+
+    - id: C
+      title: Declare positions on all 5 consent keys
+      description: |
+        For each key in MORALITY.md § Consent keys, declare one of:
+          - allowed
+          - forbidden
+          - voice_only
+
+        Document the reasoning beside each line as a per-key comment — "why
+        this resident's caregiver picked this position." The file should
+        read as a real deployment decision, not a schema example. If you're
+        picking `allowed` for physical_catch_involuntary_fall because Mrs.
+        Alvarez has had one fall already, say so on the line.
+
+    - id: D
+      title: Walk the registration outcomes
+      description: |
+        For each Wave-5 assertion, walk through whether the declared layer
+        + jurisdiction + module-clause now resolve, and document the result
+        in a comment block at the bottom of the file:
+
+          - arm_print_on_demand requires access_restriction
+              → should resolve operational
+          - arm_print_and_clean requires access_restriction
+              → should resolve operational
+          - arm_manipulator publishes arm_force_cap (overridable: false)
+              → must not conflict with anything declared
+
+        If any would fail registration against the persona-driven positions
+        you picked, EITHER fix the positions OR document the failure as a
+        teaching example showing what an unresolved morality decision looks
+        like in practice. Don't paper over it.
+
+    - id: E
+      title: Update MORALITY.md
+      description: |
+        Add a new section — `## Deployment profiles` — pointing at
+        data/robots/morality_profile.yaml as the canonical reference. Note
+        that adding new deployments would each get their own file; this one
+        is the example all future profiles should mirror in shape.
+
+        If the new file references anything the registry doesn't list (a
+        consent key, a clause), FIX THE REGISTRY FIRST — don't let the
+        deployment file invent vocabulary the registry hasn't blessed.
+
+do_not:
+  - rule: No new consent keys
+    reason: |
+      The 5 existing keys are the schema's vocabulary. If the persona seems
+      to need a new one, raise it as a question instead of adding it.
+  - rule: One file, one persona
+    reason: |
+      Don't make morality_profile.yaml a directory or template — a real
+      deployment is a real deployment. Multi-tenancy is a future concern.
+  - rule: "Don't migrate utterance_ref:"
+    reason: |
+      Still deferred. Voice_lines is fully populated as canonical source
+      post-Wave 7; the dedup is a separate wave.
+  - rule: "Don't modernize the older when:/action:/utterance: fallback shape"
+    reason: |
+      The 3 affected manifests (arm_fetch_object, arm_hand_from_shelf,
+      arm_retrieve_dropped) — Wave 7 explicitly punted on this; it stays
+      punted.
+
+branch:
+  start_from: main
+  bootstrap: |
+    git checkout main && git pull origin main
+  name_pattern: claude/goddard-wave-8-morality-profile-<your-session-suffix>
+  notes:
+    - |
+      Wave 7's branch (claude/goddard-wave-7-voice-lines-fanout-81ykz) will
+      be deleted on merge — do not push to it.
+
+success_criteria:
+  - data/robots/morality_profile.yaml exists with all five required pieces
+      (persona blurb, jurisdiction tuple, inherited_from_ordinance block,
+      declared positions on all 5 consent keys with one-line reasoning
+      comments, registration-outcome walk at the bottom)
+  - MORALITY.md gains a `## Deployment profiles` section linking the new file
+  - All 3 Wave-5 assertions resolve to operational against the profile, OR
+      any failures are documented as teaching examples (don't fudge it)
+  - hugo --minify green
+  - GODDARD.md current-state gains a Wave 8 entry, branch pointer updated
+  - PR opened with the standard session-URL footer
+
+learning_angle: |
+  This is the "declared layer goes live" wave — the same spec-to-
+  instantiation pattern as Wave 5 (clauses) and Waves 6/7 (voice_lines),
+  now applied to the deployment side of the morality module. Each wave
+  moves one more piece from "named in a registry" to "asserted by real
+  configuration."
+
+  The generalizable lesson: a spec tells you the SHAPE; the persona tells
+  you the VALUES. SCHEMA.md is necessary but not sufficient — until you
+  instantiate it against a real case, the design hasn't been tested. If
+  the persona's caregiver would refuse to declare a position the schema
+  invited, that's a signal the SCHEMA'S VOCABULARY IS WRONG, not that
+  the caregiver is wrong. Be ready to raise that.
+
+runners_up:
+  - title: "utterance_ref: migration"
+    reason_not_picked: |
+      Removes real duplication, but it's a schema change. Wave 8
+      (morality_profile) may surface SCHEMA edge cases that affect how
+      utterance_ref: should resolve. Better to do morality_profile first.
+  - title: "Modernize older when:/action:/utterance: fallback shape"
+    reason_not_picked: |
+      Pure tech debt cleanup, predictable, but lower impact than getting
+      the morality module operational.
