@@ -1,0 +1,134 @@
+# data/robots/morality_profile.yaml — one per deployment.
+#
+# Reference deployment profile. This is the first concrete instantiation of
+# the three-layer morality module (see docs/goddard/SCHEMA.md § Morality
+# module): jurisdiction inheritance + declared positions + module-clause
+# assertions, resolved against a real resident and the caregiver's real
+# answers. Every future deployment profile should mirror this shape.
+#
+# Persona — Mrs. Alvarez
+# ----------------------
+# Early-80s widow, lives alone in her own single-story home in San Francisco.
+# Mild balance decline following a left-hip replacement two years ago; no
+# documented falls since, but she rises cautiously and uses a cane outdoors.
+# Cognitively sharp, strong opinions, tends a small patio garden where she
+# routinely kneels to weed. Daughter (primary caregiver) lives twenty minutes
+# away, visits three times a week, and holds caregiver-app authority for
+# approvals, schedule tuning, and this profile's declared positions. Goddard
+# was commissioned by the daughter after a near-miss in the kitchen (Mrs.
+# Alvarez caught herself on the counter) — the explicit brief is "another
+# set of eyes and an extra second of reaction time," not supervision. Mrs.
+# Alvarez agreed on the condition that the robot "asks before it reaches."
+#
+# That persona drives every declared position below. A different resident
+# — a hospice patient on a DNR, a mid-stage dementia case, a younger adult
+# with intermittent incapacity — would justify a different profile. The
+# SHAPE of this file is the schema; the VALUES are the persona.
+
+morality_profile:
+
+  jurisdiction:
+    country: US
+    state: CA
+    municipality: "San Francisco"
+    ordinance_index: "ca-sf-2026-q2.signed"
+    last_sync: 2026-04-20T08:31:00Z
+
+  inherited_from_ordinance:
+    # Read-only; auto-populated by core at ordinance sync. The declared
+    # layer below cannot grant permissions forbidden here and cannot
+    # forbid protections mandated here.
+    physical_restraint:  forbidden_without_judicial_order
+    recording_consent:   bilateral_required
+    access_restriction:  allowed_with_voice_explanation
+
+  declared:
+    # Caregiver/resident-set, within the bounds of the jurisdiction layer.
+    # One position per consent key in docs/goddard/MORALITY.md § Consent keys.
+    # The per-line reasoning is the caregiver's answer; it is not schema,
+    # it is the audit trail a caregiver or auditor reads to see WHY this
+    # profile looks the way it does.
+
+    # The warm 3D-printer build plate is the concrete access-restriction
+    # risk Mrs. Alvarez faces when Goddard fabricates a part on the kitchen
+    # counter — exactly the cordon-with-explanation the daughter asked for.
+    # Ordinance already requires the voice explanation; the arm_print_*
+    # manifests reinforce it via their no_silent_restriction clause.
+    access_restriction: allowed
+
+    # Hip replacement, mild balance decline, cane-dependent outdoors — the
+    # daughter would rather the robot interpose than watch a second
+    # fracture. "Asks before it reaches" breaks down the instant the
+    # resident is already falling; consent on involuntary catches is
+    # implied by the commissioning brief. No documented falls yet, but the
+    # margin is slim and the downside asymmetric.
+    physical_catch_involuntary_fall: allowed
+
+    # Mrs. Alvarez kneels to weed her patio garden several times a week.
+    # She lowers herself deliberately, one hand on the raised bed. A robot
+    # reaching in to "help" here would humiliate her and erode the agency
+    # the deployment is meant to preserve. Daughter explicitly asked for
+    # this one to be off.
+    physical_catch_deliberate_fall: forbidden
+
+    # Spoken cues ("the hallway rug is bunched — please take the left
+    # side") are welcome. Physical hand-at-elbow steering reads as
+    # infantilizing to a cognitively sharp resident who still walks
+    # unaided indoors. The same intervention at a later stage of decline
+    # might flip to `allowed`; for now it is voice_only.
+    physical_guidance: voice_only
+
+    # Face-down in the bathtub, prolonged apnea, unresponsive on the
+    # kitchen floor — the daughter wants the robot to act, call help,
+    # and worry about apologizing afterwards. Mrs. Alvarez is not in
+    # hospice and has no advance directive on file; the default
+    # aggressive-rescue posture applies. A hospice persona with a DNR
+    # would almost certainly declare this forbidden.
+    imminent_death_override: allowed
+
+# -----------------------------------------------------------------------------
+# Registration outcomes against this profile
+# -----------------------------------------------------------------------------
+# Walking each Wave-5 assertion through the three-layer handshake with the
+# declared positions above. This is the "declared layer goes live" checkpoint
+# — assertions that registered as inert at Wave 5 now resolve.
+#
+# arm_print_on_demand
+#   requires:        [access_restriction]
+#   clauses:         [no_silent_restriction (overridable: false)]
+#   Jurisdiction:    access_restriction → allowed_with_voice_explanation
+#   Declared:        access_restriction → allowed
+#   Module clause:   no_silent_restriction enforced; every
+#                    build_area_restricted hold in this manifest is
+#                    preceded by a skin_speaker utterance in the recovery
+#                    list (voice_lines.chain_failed_hold).
+#   Result:          OPERATIONAL — all three layers consistent.
+#
+# arm_print_and_clean
+#   requires:        [access_restriction]
+#   clauses:         [no_silent_restriction (overridable: false)]
+#   Jurisdiction:    access_restriction → allowed_with_voice_explanation
+#   Declared:        access_restriction → allowed
+#   Module clause:   same as above; both build_area_restricted holds in
+#                    this manifest carry paired voice-lines
+#                    (cleanup_deferred_filter, cleanup_deferred_offline).
+#   Result:          OPERATIONAL.
+#
+# arm_manipulator
+#   requires:        (none)
+#   clauses:         [arm_force_cap (overridable: false, ≤ 40 N)]
+#   Jurisdiction:    physical_restraint forbidden_without_judicial_order —
+#                    non-interacting (an actuator force ceiling is a vendor
+#                    floor on contact force, not a restraint authorization).
+#   Declared:        no conflict; none of the five declared positions
+#                    contest a force ceiling. The 40 N cap hardens above
+#                    the manifest's operational safety (12 N back-drive on
+#                    unexpected contact, [1, 30] N force-limit input range).
+#   Result:          OPERATIONAL — vendor floor published, no layer
+#                    disagrees.
+#
+# Net: all three Wave-5 assertions resolve operational against the
+# persona-driven declared layer. No teaching-example failures in this
+# reference profile; that would require a conflict (e.g. declaring
+# access_restriction: forbidden while arm_print_* still requires it,
+# which would correctly leave those two manifests inert).

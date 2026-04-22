@@ -276,7 +276,7 @@ policy — leaves the module inert.
 ### Deployment shape
 
 ```yaml
-# config/morality_profile.yaml — one per deployment
+# data/robots/morality_profile.yaml — one per deployment
 morality_profile:
   jurisdiction:
     country: US
