@@ -46,7 +46,7 @@ web searches.
 
 Goddard can call an Agent to produce a prompt for another Agent, or to
 design a sub-agent definition. The output is reviewed then reused —
-either pasted into a new session or saved to `data/robots/prompts/`.
+either pasted into a new session or saved to `docs/robots/prompts/`.
 
 Use for: generating lane prompts programmatically, refining prompts based
 on observed output quality.
@@ -116,7 +116,74 @@ Recommendations are options, not decisions — the curator picks.
 
 ## Prompt library
 
-Shared session prompts live at `data/robots/prompts/<name>.md` —
-version-controlled, evolves with the project. When Goddard writes a new
-scaffolding prompt, it saves the reusable part here so the next session
-(or the next curator) starts from the same place.
+Shared session prompts live at `docs/robots/prompts/`. Two formats
+coexist:
+
+- `.yaml` — current canonical shape. Use for any new prompt that
+  another session or sub-agent should be able to load cold and execute.
+- `.md` — older free-form prompts kept for historical reference
+  (`wave-1.5-and-wave-2.md`). Don't write new ones in this format.
+
+### When to write one
+
+- **End-of-session handoff.** When the conductor session is wrapping
+  up and the next wave is well-defined. Save as
+  `docs/robots/prompts/wave-N-<short-slug>.yaml`. The next conductor
+  session loads it as its brief — no need to re-explain prior state.
+- **Parallel-lane dispatch.** When fanning out work to multiple Type-2
+  (Agent) or Type-3 (separate-session) lanes. Save as
+  `docs/robots/prompts/lane-<batch>-<region-or-task>.yaml`. The
+  conductor pastes the same file into each lane's launching prompt so
+  every lane starts from the same brief and only diverges on its
+  task-specific section.
+
+### Why YAML
+
+- Predictable shape across waves — `read_first`, `task.pieces`,
+  `do_not`, `branch`, `success_criteria`, `learning_angle`,
+  `runners_up`. The loading session can navigate by keys instead of
+  skimming prose.
+- Forces the prompt author to separate context from task, mandatory
+  from optional, asserted-must from deferred-shouldn't. Markdown lets
+  those slip together; YAML doesn't.
+- One schema covers both end-of-session handoffs and parallel-lane
+  dispatches — only the scope of `task.pieces` differs.
+
+### Schema (worked example)
+
+`docs/robots/prompts/wave-8-morality-profile.yaml` is the canonical
+example. Top-level keys:
+
+- `wave:` — number, if numbered. Omit for ad-hoc lane prompts.
+- `title:` — one-line goal.
+- `session_suffix_placeholder:` — the literal string the next session
+  replaces with its own session-id suffix when constructing the
+  branch name.
+- `context:` — multi-line block: prior state, what the last waves
+  did, why this one matters now.
+- `read_first:` — list of `{path:, section:}` pairs, in load order.
+- `task:` — `{artifact:, shape_reference:, pieces: [...]}`. Each
+  piece has `id:`, `title:`, `description:`.
+- `do_not:` — list of `{rule:, reason:}` pairs. Scope guards.
+- `branch:` — `{start_from:, bootstrap:, name_pattern:, notes:}`.
+- `success_criteria:` — list of one-line completion checks.
+- `learning_angle:` — multi-line block: the generalizable AI-workflow
+  lesson this wave teaches.
+- `runners_up:` — list of `{title:, reason_not_picked:}` pairs.
+  Documents the alternatives that were considered, so the next
+  curator can override.
+
+### YAML gotchas
+
+Strings containing `:` followed by a space (like `utterance_ref:` or
+`when:/action:/utterance:`) get parsed as nested mappings even when
+they appear inside what should be a scalar value. Quote them:
+
+```yaml
+- rule:  "Don't migrate utterance_ref:"     # quoted — colon at end is fine
+- title: "utterance_ref: migration"          # quoted — would parse as map otherwise
+```
+
+If `python3 -c "import yaml; yaml.safe_load(open('<file>'))"` errors
+with `mapping values are not allowed here`, that's almost always an
+unquoted colon-in-value somewhere.
