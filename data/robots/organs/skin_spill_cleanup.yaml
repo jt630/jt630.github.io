@@ -44,8 +44,7 @@ composes:
   - skill: skin_speaker
     role: announce_approach
     with:
-      utterance: "I noticed a spill. Let me tidy it up for you — please
-        step back a little so I can reach it."
+      utterance_ref: approach
       priority: normal
   - skill: skin_vacuum
     role: collect_debris
@@ -60,7 +59,7 @@ composes:
   - skill: skin_speaker
     role: announce_complete
     with:
-      utterance: "All tidied up. The floor is clear."
+      utterance_ref: complete
       priority: normal
 
 preconditions:
@@ -117,9 +116,7 @@ fallback:
       - skill: skin_speaker
         role: announce_oversize
         with:
-          utterance: "That piece is a little too big for me to handle
-            safely. Let me get a caregiver to clean this one up. Please
-            be careful where you step until they arrive."
+          utterance_ref: oversize_refused
           priority: alert
       - log: oversize_intake_refused
   - trigger: "spill_temperature_c > 45"
@@ -127,9 +124,7 @@ fallback:
       - skill: skin_speaker
         role: announce_hot_spill
         with:
-          utterance: "This spill is still hot — I am not going to pick
-            it up until it cools. Let me get a caregiver to help. Please
-            take a step back and give it a minute."
+          utterance_ref: hot_spill_refused
           priority: alert
       - log: hot_spill_refused
   - trigger: sharp_object_detected
@@ -137,9 +132,7 @@ fallback:
       - skill: skin_speaker
         role: announce_sharp
         with:
-          utterance: "I can see something sharp in this spill, so I am
-            not going to sweep it. Let me get a caregiver. Please stay
-            where you are — I do not want you stepping on it."
+          utterance_ref: sharp_refused
           priority: alert
       - log: sharp_object_refused
   - trigger: waste_bay_fill_pct >= 90
@@ -147,10 +140,7 @@ fallback:
       - skill: skin_speaker
         role: announce_bay_full
         with:
-          utterance: "My waste bay is full, so I cannot tidy this up
-            right now. I am going to let your caregiver know so they
-            can empty me and we can try again. Please be careful where
-            you step."
+          utterance_ref: bay_full_refused
           priority: alert
       - log: waste_bay_full_refused
   - trigger: filter_clean == false
@@ -158,9 +148,7 @@ fallback:
       - skill: skin_speaker
         role: announce_filter
         with:
-          utterance: "My vacuum filter needs a quick clean before I can
-            sweep this up. I will let your caregiver know. Please take
-            care near the spill in the meantime."
+          utterance_ref: filter_blocked_refused
           priority: alert
       - log: filter_blocked_refused
 

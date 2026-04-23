@@ -52,7 +52,7 @@ composes:
   - skill: skin_speaker
     role: windown_announcement
     with:
-      utterance: "It is about time for bed, Mrs. [name]."
+      utterance_ref: windown
       volume_pct: 40
       priority: normal
   - skill: brain_medication_reminder
@@ -63,7 +63,7 @@ composes:
   - skill: skin_speaker
     role: offer_help
     with:
-      utterance: "Anything you need before you settle in?"
+      utterance_ref: offer_help
       volume_pct: 45
       priority: normal
   - skill: skin_mic
@@ -101,7 +101,7 @@ fallback:
       - skill: skin_speaker
         role: retreat_gently
         with:
-          utterance: "No hurry. I will check in again shortly."
+          utterance_ref: retreat
           volume_pct: 40
           priority: normal
       - skill: brain_memory
@@ -134,8 +134,7 @@ fallback:
       - skill: skin_speaker
         role: soft_handoff
         with:
-          utterance: "I am going to ask your caregiver to double-check
-            your evening medicine tonight. Nothing for you to worry about."
+          utterance_ref: soft_handoff
           volume_pct: 45
           priority: normal
       - enqueue:

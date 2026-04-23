@@ -70,9 +70,7 @@ composes:
   - skill: skin_speaker
     role: announce_reminder
     with:
-      utterance: "Mrs. [name], it is time for your [drug_name]. I will
-        wait right here while you take it — just say 'okay' or 'taken'
-        when you are done."
+      utterance_ref: announce
       volume_pct: 55
       priority: normal
   - skill: skin_mic
@@ -113,9 +111,7 @@ fallback:
       - skill: skin_speaker
         role: reannounce_reminder
         with:
-          utterance: "Mrs. [name], just checking in on your [drug_name].
-            Whenever you are ready — say 'taken' when you have had it,
-            and I will let you be."
+          utterance_ref: reannounce
           volume_pct: 55
           priority: normal
       - skill: skin_mic
@@ -151,8 +147,7 @@ fallback:
       - skill: skin_speaker
         role: acknowledge_decline
         with:
-          utterance: "Okay. I will let your caregiver know you are
-            waiting on this one. No rush."
+          utterance_ref: acknowledge_decline
           volume_pct: 50
           priority: normal
       - skill: brain_memory

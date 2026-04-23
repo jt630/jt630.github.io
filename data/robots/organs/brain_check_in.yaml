@@ -83,8 +83,7 @@ composes:
   - skill: skin_speaker
     role: soft_checkin_from_doorway
     with:
-      utterance: "Hi Mrs. [name] — it is just me. I have not heard from
-        you in a bit. Is everything all right?"
+      utterance_ref: soft_checkin
       volume_pct: 55
       priority: normal
   - skill: skin_mic
@@ -96,7 +95,7 @@ composes:
     role: apologize_and_retreat
     only_if: resident_responded_normally == true
     with:
-      utterance: "Sorry for bothering you — I will let you be."
+      utterance_ref: apologize_and_retreat
       volume_pct: 50
       priority: normal
   - skill: brain_memory
@@ -138,7 +137,7 @@ fallback:
       - skill: skin_speaker
         role: apologize_and_retreat
         with:
-          utterance: "Sorry for bothering you — I will let you be."
+          utterance_ref: apologize_and_retreat
           volume_pct: 50
           priority: normal
       - skill: brain_memory
@@ -157,8 +156,7 @@ fallback:
       - skill: skin_speaker
         role: announce_holding_and_calling
         with:
-          utterance: "I did not hear you answer, so I am going to let
-            your caregiver know. I am right here if you need me."
+          utterance_ref: no_response_alert
           volume_pct: 60
           priority: alert
       - skill: brain_intent_queue

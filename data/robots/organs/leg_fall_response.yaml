@@ -73,8 +73,7 @@ composes:
     role: announce_presence_at_distance
     with:
       # Speak before closing to within 80 cm. Do not startle.
-      utterance: "I am on my way to you. I can see you — stay still,
-        I will be right there. Help is already coming."
+      utterance_ref: approach_en_route
       volume_pct: 60
       priority: alert
   - skill: brain_intent_queue
@@ -90,9 +89,7 @@ composes:
   - skill: skin_speaker
     role: announce_arrival
     with:
-      utterance: "I am here now. I am not going to try to lift you.
-        Help is on the way. If you would like something to hold onto,
-        just ask me and I will offer you my paw."
+      utterance_ref: arrival_reassurance
       volume_pct: 55
       priority: normal
   - skill: hand_paw_grip
@@ -169,10 +166,7 @@ fallback:
       - skill: skin_speaker
         role: announce_blocked_path
         with:
-          utterance: "I can see you but I cannot reach you safely —
-            there is something in the way. Help is on the way. Stay
-            as still as you can and try to breathe slowly. I am right
-            here with you."
+          utterance_ref: blocked_path
           volume_pct: 65
           priority: alert
       - skill: brain_intent_queue
@@ -195,10 +189,7 @@ fallback:
       - skill: skin_speaker
         role: announce_wet_floor
         with:
-          utterance: "The floor between us is wet and I cannot cross
-            it safely. I am staying as close as I can. Help is on the
-            way. Please do not try to stand up on your own — I will
-            stay right here and talk with you."
+          utterance_ref: wet_floor_hold
           volume_pct: 65
           priority: alert
       - skill: brain_intent_queue
@@ -221,9 +212,7 @@ fallback:
       - skill: skin_speaker
         role: announce_cannot_approach
         with:
-          utterance: "I am having trouble staying steady on my feet
-            and I do not want to fall near you. I have called your
-            caregiver already — help is coming. I am right here."
+          utterance_ref: balance_fault_hold
           volume_pct: 65
           priority: alert
       - skill: brain_intent_queue

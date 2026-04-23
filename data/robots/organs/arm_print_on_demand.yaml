@@ -53,9 +53,7 @@ composes:
   - skill: skin_speaker
     role: request_consent
     with:
-      utterance: "I can print a replacement for that now. It will take
-        about six minutes and I will tidy up afterward. Would you like
-        me to go ahead?"
+      utterance_ref: request_consent
       priority: normal
   - skill: skin_mic
     role: await_consent
@@ -108,8 +106,7 @@ fallback:
       - skill: skin_speaker
         role: announce_standdown
         with:
-          utterance: "No trouble — I will leave it for now. Just let me
-            know if you would like that part later."
+          utterance_ref: standdown_no_answer
           priority: normal
       - log: print_on_demand_aborted_no_consent
       - abort: true
@@ -118,7 +115,7 @@ fallback:
       - skill: skin_speaker
         role: announce_standdown
         with:
-          utterance: "Understood. I will not print it."
+          utterance_ref: standdown_declined
           priority: normal
       - log: print_on_demand_declined_by_resident
       - abort: true
@@ -130,8 +127,7 @@ fallback:
       - skill: skin_speaker
         role: announce_caregiver_review
         with:
-          utterance: "I will check with your caregiver before printing
-            that one. Nothing for you to do."
+          utterance_ref: caregiver_review
           priority: normal
       - enqueue:
           intent: caregiver_review_part
@@ -143,9 +139,7 @@ fallback:
       - skill: skin_speaker
         role: announce_chain_failed
         with:
-          utterance: "Something went wrong partway through. I have paused
-            and let your caregiver know — please stay clear of the
-            printer area for now."
+          utterance_ref: chain_failed_hold
           priority: alert
       - hold: build_area_restricted
         until: caregiver_ack

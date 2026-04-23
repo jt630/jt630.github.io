@@ -85,10 +85,7 @@ fallback:
       - skill: skin_speaker
         role: announce_cleanup_deferred
         with:
-          utterance: "The part is printed and cooling. Please leave the area
-            around the build plate for me — the vacuum needs a quick filter
-            change before I can sweep up the bits. I will come back and
-            finish tidying in a few minutes."
+          utterance_ref: cleanup_deferred_filter
           priority: alert
       - hold: build_area_restricted
         until: caregiver_ack OR skin_vacuum_filter_clean == true
@@ -98,9 +95,7 @@ fallback:
       - skill: skin_speaker
         role: announce_cleanup_deferred
         with:
-          utterance: "Your part is ready. I could not tidy the support
-            material this time. Please wait for me or your caregiver to
-            clear the debris before walking near the printer."
+          utterance_ref: cleanup_deferred_offline
           priority: alert
       - hold: build_area_restricted
         until: caregiver_ack
@@ -110,8 +105,7 @@ fallback:
       - skill: skin_speaker
         role: announce_print_failed
         with:
-          utterance: "The print did not come out this time. I will let
-            your caregiver know and we can try again later."
+          utterance_ref: print_failed
           priority: normal
       - log: print_failure
 
