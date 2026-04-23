@@ -42,7 +42,10 @@ composes:
     with: {speed_preset: cautious}
   - skill: skin_speaker
     role: narrate_and_handoff
-    with: {priority: normal, volume_pct: 60}
+    with:
+      utterance_ref: narrate_and_handoff
+      priority: normal
+      volume_pct: 60
 
 preconditions:
   - battery_pct >= 15
@@ -60,7 +63,9 @@ voice_lines:
   # framing — the "resident_reaching" line ASKS, it does not announce.
   # The medication-count line is written to flag uncertainty WITHOUT
   # alarming; "please double-check" is the key phrase caregivers should
-  # preserve when tuning.
+  # preserve when tuning. The handoff line is quieter than fetch's — the
+  # resident is at floor level, potentially leaning down, and anything
+  # louder would be startling.
   resident_reaching:             "I see you're getting it — would you
                                   like me to pick it up, or would you
                                   rather do it yourself?"
@@ -70,27 +75,78 @@ voice_lines:
   medication_count_uncertain:    "I picked up what I could see. Please
                                   double-check the count before you take
                                   them — I'll note this for your caregiver."
+  grasp_failed_floor:            "I couldn't get a good hold on that one.
+                                  I'll leave it where it is and let
+                                  someone know."
+  narrate_and_handoff:           "Here you go — I picked it up for you."
 
 fallback:
-  - when: resident_reaching_for_item
-    action: pause_and_offer
-    utterance: "I see you're getting it — would you like me to pick it up, or would you rather do it yourself?"
-    notes: |
-      If the resident is already bending toward the item, Goddard stops at a
-      respectful distance and asks first. Autonomy matters more than speed.
-  - when: floor_hazard_detected
-    action: decline_and_alert
-    utterance: "There's something on the floor I shouldn't touch safely. I'll let your caregiver know and stay nearby."
-  - when: grasp_failed
-    action: retract_and_narrate
-    notes: |
-      If the pincer or paw returns grasped=false after two attempts, the arm
-      lifts clear of the floor to a safe neutral pose — never abandoned at a
-      reach. Goddard speaks: "I couldn't get a good hold on that one. I'll
-      leave it where it is and let someone know." Caregiver is alerted.
-  - when: item_is_medication_and_count_wrong
-    action: retrieve_what_is_visible_and_flag
-    utterance: "I picked up what I could see. Please double-check the count before you take them — I'll note this for your caregiver."
+  - trigger: resident_reaching_for_item == true
+    # Resident is already bending toward the item. Stop at a respectful
+    # distance and ask first — autonomy matters more than speed.
+    recovery:
+      - skill: skin_speaker
+        role: offer_pickup
+        with:
+          utterance_ref: resident_reaching
+          priority: normal
+      - abort: true
+  - trigger: floor_hazard_flag == true
+    # Broken glass, liquid, or anything flagged by the safety monitor
+    # as a floor hazard. Goddard declines verbally and files a caregiver
+    # alert — the item is out of scope for this chain.
+    recovery:
+      - skill: skin_speaker
+        role: announce_floor_hazard
+        with:
+          utterance_ref: floor_hazard
+          priority: alert
+      - skill: brain_intent_queue
+        role: enqueue_caregiver_alert
+        with:
+          priority_hint: safety
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: floor_hazard_detected_during_retrieval
+      - abort: true
+  - trigger: grasped == false
+    # Pincer or paw returns grasped=false after two attempts. arm_manipulator
+    # lifts clear of the floor to a safe neutral pose as part of its own
+    # safe-return contract — never left abandoned at a reach.
+    recovery:
+      - skill: skin_speaker
+        role: announce_grasp_failed
+        with:
+          utterance_ref: grasp_failed_floor
+          priority: normal
+      - skill: brain_intent_queue
+        role: enqueue_caregiver_alert
+        with:
+          priority_hint: normal
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: dropped_item_retrieval_failed
+      - abort: true
+  - trigger: item_is_medication == true AND medication_count_verified == false
+    # Medication items route to the caregiver log automatically per the
+    # safety contract — flag uncertainty to the resident without alarm.
+    recovery:
+      - skill: skin_speaker
+        role: announce_count_uncertain
+        with:
+          utterance_ref: medication_count_uncertain
+          priority: normal
+      - skill: brain_intent_queue
+        role: enqueue_caregiver_alert
+        with:
+          priority_hint: normal
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: medication_count_uncertain
+      - abort: true
 
 composes_with:
   - arm_fetch_object
