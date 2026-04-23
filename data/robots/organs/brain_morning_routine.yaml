@@ -52,7 +52,7 @@ composes:
   - skill: skin_speaker
     role: gentle_greeting
     with:
-      utterance: "Good morning, Mrs. [name]. I hope you rested well."
+      utterance_ref: greeting
       volume_pct: 40
       priority: normal
   - skill: brain_medication_reminder
@@ -63,7 +63,7 @@ composes:
   - skill: skin_speaker
     role: check_in
     with:
-      utterance: "How did you sleep?"
+      utterance_ref: check_in
       volume_pct: 45
       priority: normal
   - skill: skin_mic
@@ -95,7 +95,7 @@ fallback:
       - skill: skin_speaker
         role: retreat_gently
         with:
-          utterance: "Of course. I will check back in a little while."
+          utterance_ref: retreat
           volume_pct: 40
           priority: normal
       - skill: brain_memory
@@ -133,8 +133,7 @@ fallback:
       - skill: skin_speaker
         role: soft_handoff
         with:
-          utterance: "I am going to ask your caregiver to double-check
-            your morning medicine today. Nothing for you to worry about."
+          utterance_ref: soft_handoff
           volume_pct: 45
           priority: normal
       - enqueue:
