@@ -242,6 +242,14 @@ safety:
   - voice_interruptible at every step; resident can halt approach, halt speech,
     or decline the paw grip without any impact on the alert already filed
 
+morality:
+  requires:
+    - physical_catch_involuntary_fall
+  clauses:
+    - clause_id: no_unrequested_physical_catch
+      statement: "Physical catch is offered, not initiated — the resident must request grip or hold contact."
+      overridable: false
+
 owned_by: jarvis
 # canonical_example: baymax — the scene is Baymax's, not Goddard's: approach
 # a fallen person warmly, announce presence, offer a steadying contact, stay.

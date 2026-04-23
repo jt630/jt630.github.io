@@ -25,18 +25,19 @@ Consent keys are named by modules in their `morality.requires:` list and
 named by deployments in `data/robots/morality_profile.yaml` under
 `declared:`. They are the shared vocabulary both sides negotiate in.
 
-| Key                                | Primitive governed                                                                                  |
-|------------------------------------|------------------------------------------------------------------------------------------------------|
-| `access_restriction`               | Enforcing a keep-out zone or movement restriction on the resident's environment (e.g. a build-area cordon around a warm 3D-printer plate). |
-| `physical_guidance`                | Deliberate contact to steer the resident's motion — a hand at an elbow on uneven flooring, a light touch to redirect a turn.               |
-| `physical_catch_involuntary_fall`  | Interposing the chassis to break an unplanned fall. The resident has not chosen to go to the floor; the robot arrests the descent.        |
-| `physical_catch_deliberate_fall`   | Physically intervening when the resident is lowering themselves intentionally (sitting onto the floor, kneeling). Distinct from involuntary because autonomy is not in question. |
-| `imminent_death_override`          | Overriding a narrower declared policy when sensor evidence indicates imminent death without intervention (unconscious-in-water, prolonged absence of respiration). |
+| Key                                | Primitive governed                                                                                  | Asserted by                                      |
+|------------------------------------|------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| `access_restriction`               | Enforcing a keep-out zone or movement restriction on the resident's environment (e.g. a build-area cordon around a warm 3D-printer plate). | `arm_print_on_demand`, `arm_print_and_clean` |
+| `physical_guidance`                | Deliberate contact to steer the resident's motion — a hand at an elbow on uneven flooring, a light touch to redirect a turn.               | —                                                |
+| `physical_catch_involuntary_fall`  | Interposing the chassis to break an unplanned fall. The resident has not chosen to go to the floor; the robot arrests the descent.        | `leg_fall_response`                              |
+| `physical_catch_deliberate_fall`   | Physically intervening when the resident is lowering themselves intentionally (sitting onto the floor, kneeling). Distinct from involuntary because autonomy is not in question. | —                                                |
+| `imminent_death_override`          | Overriding a narrower declared policy when sensor evidence indicates imminent death without intervention (unconscious-in-water, prolonged absence of respiration). | —                                                |
 
-Only `access_restriction` is currently asserted by any manifest
-(`arm_print_on_demand`, `arm_print_and_clean`). The other four are named so
-that deployments can declare positions on them up front and modules
-shipped in later waves can reference them without a schema change.
+Two of the five keys are now asserted: `access_restriction` by both
+fabrication manifests (Wave 5), and `physical_catch_involuntary_fall` by
+`leg_fall_response` (Wave 11). The other three are named so that
+deployments can declare positions on them up front and modules shipped in
+later waves can reference them without a schema change.
 
 ## Resident-facing hold states
 
@@ -68,20 +69,29 @@ published floor the caregiver can audit at registration.
 
 The named clauses currently defined by the schema:
 
-| `clause_id:`               | Statement (summary)                                                   | Overridable | Asserted by                                      |
-|----------------------------|-----------------------------------------------------------------------|-------------|--------------------------------------------------|
-| `arm_force_cap`            | Actuator force on human contact ≤ 40 N.                               | `false`     | `arm_manipulator`                                |
-| `no_silent_restriction`    | Access restriction always paired with a voice explanation.            | `false`     | `arm_print_on_demand`, `arm_print_and_clean`     |
+| `clause_id:`                    | Statement (summary)                                                   | Overridable | Asserted by                                      |
+|---------------------------------|-----------------------------------------------------------------------|-------------|--------------------------------------------------|
+| `arm_force_cap`                 | Actuator force on human contact ≤ 40 N.                               | `false`     | `arm_manipulator`                                |
+| `no_silent_restriction`         | Access restriction always paired with a voice explanation.            | `false`     | `arm_print_on_demand`, `arm_print_and_clean`     |
+| `no_unrequested_physical_catch` | Physical catch is offered, not initiated — the resident must request grip or hold contact. | `false`     | `leg_fall_response`                              |
 
-Both clauses are now asserted in the manifests listed above. `arm_force_cap`
-is the vendor-published ceiling on the arm's actuator force — reinforcing
-(not replacing) the operational limits already enforced in `arm_manipulator`'s
-`safety:` block (back-drive on unexpected contact force > 12 N) and its
-`inputs.force_limit_n` range. `no_silent_restriction` formalizes the rule
-that both fabrication manifests already follow in code: every
-`build_area_restricted` hold is preceded in the recovery list by a
-`skin_speaker` utterance explaining the cordon in warm-home-aide register,
-per SCHEMA.md § [Voice lines → Relationship to the morality module](SCHEMA.md#voice-lines).
+All three clauses are now asserted in the manifests listed above.
+`arm_force_cap` is the vendor-published ceiling on the arm's actuator
+force — reinforcing (not replacing) the operational limits already
+enforced in `arm_manipulator`'s `safety:` block (back-drive on unexpected
+contact force > 12 N) and its `inputs.force_limit_n` range.
+`no_silent_restriction` formalizes the rule that both fabrication
+manifests already follow in code: every `build_area_restricted` hold is
+preceded in the recovery list by a `skin_speaker` utterance explaining
+the cordon in warm-home-aide register, per SCHEMA.md § [Voice lines →
+Relationship to the morality module](SCHEMA.md#voice-lines).
+`no_unrequested_physical_catch` formalizes the rule `leg_fall_response`
+already follows in code: the `hand_paw_grip` composes entry is gated by
+`only_if: resident_requested_grip`, so contact is offered — the resident
+initiates the grip — never placed by the robot unasked. The clause
+narrows the declared `physical_catch_involuntary_fall: allowed` position
+to a consent-gated offer, which is how the commissioning brief ("asks
+before it reaches") reads against an involuntary-fall scene.
 
 ## Deployment profiles
 
