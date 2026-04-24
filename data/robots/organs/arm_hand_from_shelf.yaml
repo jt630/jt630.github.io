@@ -40,7 +40,10 @@ composes:
     with: {speed_preset: cautious}
   - skill: skin_speaker
     role: handoff_confirmation
-    with: {priority: normal, volume_pct: 65}
+    with:
+      utterance_ref: handoff_confirmation
+      priority: normal
+      volume_pct: 65
 
 preconditions:
   - battery_pct >= 20
@@ -59,6 +62,7 @@ voice_lines:
   # BOTH route the resident to a caregiver — caregivers tuning these SHOULD
   # preserve that handoff; removing it leaves the resident alone with a
   # problem the robot just announced it cannot solve.
+  handoff_confirmation:     "Here you go, Mrs. [name]."
   item_too_heavy:           "That one looks a little too heavy for me to
                              lift down safely. I'd rather not risk dropping
                              it — would you like me to let your caregiver
@@ -68,35 +72,75 @@ voice_lines:
                              that one."
   item_not_found:           "I looked on the top shelf and didn't see it
                              there. Could it be somewhere else?"
+  grasp_failed_shelf:       "I couldn't quite get a grip on it up there.
+                             I'll leave it in place and let your caregiver
+                             know."
   shelf_contents_shifted:   "Something moved up there. I'm going to stop
                              and wait — could you have someone take a
                              look?"
 
 fallback:
-  - when: item_exceeds_payload
-    action: decline_before_attempt
-    utterance: "That one looks a little too heavy for me to lift down safely. I'd rather not risk dropping it — would you like me to let your caregiver know so they can hand it to you?"
-    notes: |
-      Payload check happens BEFORE arm extension. Never attempt-and-fail
-      mid-lift — a dropped item from shelf height is both a damage risk and
-      a startle risk to the resident.
-  - when: shelf_out_of_reach
-    action: verbal_decline
-    utterance: "That shelf is a little higher than I can reach. I'll ask your caregiver to help with that one."
-  - when: item_not_found_on_shelf
-    action: return_empty_handed
-    utterance: "I looked on the top shelf and didn't see it there. Could it be somewhere else?"
-  - when: grasp_failed
-    action: retract_to_neutral_and_narrate
-    notes: |
-      If the paw reports grasped=false after two gentle attempts, the arm
-      retracts clear of the shelf to a safe neutral pose before any travel —
-      never leave the arm extended into a shelf after a failure. Goddard
-      speaks: "I couldn't quite get a grip on it up there. I'll leave it in
-      place and let your caregiver know." No mid-reach freeze, no dropped item.
-  - when: shelf_contents_shifted_mid_reach
-    action: hold_and_alert
-    utterance: "Something moved up there. I'm going to stop and wait — could you have someone take a look?"
+  # Payload check fires BEFORE arm extension per safety.payload_check_before_lift
+  # — the verbal decline is a pre-lift gate, not a mid-lift recovery.
+  - trigger: item_weight_kg > 2.0
+    recovery:
+      - skill: skin_speaker
+        role: announce_too_heavy
+        with:
+          utterance_ref: item_too_heavy
+          priority: normal
+      - abort: true
+  - trigger: shelf_height_cm > 55
+    recovery:
+      - skill: skin_speaker
+        role: announce_out_of_reach
+        with:
+          utterance_ref: shelf_out_of_reach
+          priority: normal
+      - abort: true
+  - trigger: item_found_on_shelf == false
+    recovery:
+      - skill: skin_speaker
+        role: announce_not_found
+        with:
+          utterance_ref: item_not_found
+          priority: normal
+      - abort: true
+  - trigger: grasp_attempt_count >= 2 AND grasp_success == false
+    recovery:
+      # Retract clear of the shelf to a safe neutral pose before any travel
+      # — never leave the arm extended into a shelf after a failed grasp.
+      # The utterance commits to a caregiver alert, so enqueue one.
+      - skill: arm_manipulator
+        role: retract_clear_of_shelf
+        with:
+          motion_profile: gentle
+      - skill: skin_speaker
+        role: announce_grasp_failed
+        with:
+          utterance_ref: grasp_failed_shelf
+          priority: normal
+      - enqueue:
+          intent: caregiver_alert_shelf_grasp_failed
+          source: sensor
+          priority_hint: normal
+      - abort: true
+  - trigger: shelf_surface_stable == false
+    recovery:
+      # Something shifted on the shelf mid-reach: hold the arm in place, do
+      # not attempt to catch, speak, and ask a human to look. Robot-self
+      # hold — no resident-facing restriction, so no requires_consent.
+      - skill: skin_speaker
+        role: announce_shelf_shifted
+        with:
+          utterance_ref: shelf_contents_shifted
+          priority: alert
+      - enqueue:
+          intent: caregiver_alert_shelf_shifted
+          source: sensor
+          priority_hint: elevated
+      - hold: station_at_nearest_safe_pose
+        until: caregiver_arrival OR shelf_surface_stable == true
 
 composes_with:
   - arm_fetch_object

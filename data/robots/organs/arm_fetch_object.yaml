@@ -38,7 +38,10 @@ composes:
     with: {speed_preset: cautious}
   - skill: skin_speaker
     role: handoff_confirmation
-    with: {priority: normal, volume_pct: 65}
+    with:
+      utterance_ref: handoff_confirmation
+      priority: normal
+      volume_pct: 65
 
 preconditions:
   - battery_pct >= 15
@@ -54,34 +57,68 @@ voice_lines:
   # transaction log announcing a failure code. Keep the open-ended
   # question at the end of "not found" / "too heavy" — it gives the
   # resident a next step, not a dead end.
-  object_not_found:  "I couldn't find the remote on the coffee table.
-                      Would you like me to check somewhere else?"
-  object_too_heavy:  "That one looks a little heavy for me to carry
-                      safely. I'll leave it in place — would you like
-                      me to let your caregiver know?"
+  handoff_confirmation:  "Here you go, Mrs. [name]."
+  object_not_found:      "I couldn't find the remote on the coffee table.
+                          Would you like me to check somewhere else?"
+  object_too_heavy:      "That one looks a little heavy for me to carry
+                          safely. I'll leave it in place — would you like
+                          me to let your caregiver know?"
+  grasp_failed_apology:  "I wasn't able to pick that one up cleanly. I'll
+                          leave it where it is so it doesn't get lost.
+                          Could you ask a caregiver, or would you like me
+                          to try a different item?"
+  path_blocked_wait:     "There's something in my way. I'm going to wait
+                          here for a moment — could you help me clear the
+                          path, or should I come back later?"
 
 fallback:
-  - when: object_not_found
-    action: return_empty_handed
-    utterance: "I couldn't find the remote on the coffee table. Would you like me to check somewhere else?"
-  - when: grasp_failed
-    action: release_safely_and_return
-    notes: |
-      If hand_paw_grip reports grasped=false after two gentle attempts, the arm
-      retracts to a neutral pose, Goddard returns without the item, and speaks:
-      "I wasn't able to pick that one up cleanly. I'll leave it where it is so
-      it doesn't get lost. Could you ask a caregiver, or would you like me to
-      try a different item?"
-  - when: object_exceeds_payload
-    action: verbal_decline_before_attempt
-    utterance: "That one looks a little heavy for me to carry safely. I'll leave it in place — would you like me to let your caregiver know?"
-  - when: path_blocked_mid_travel
-    action: hold_safe_pose_and_alert
-    notes: |
-      If a new obstacle appears mid-route, Goddard pauses in a stable stance,
-      does not attempt to squeeze past, and speaks: "There's something in my
-      way. I'm going to wait here for a moment — could you help me clear the
-      path, or should I come back later?" Alerts caregiver if unresolved in 60 s.
+  - trigger: object_found == false
+    recovery:
+      - skill: skin_speaker
+        role: announce_not_found
+        with:
+          utterance_ref: object_not_found
+          priority: normal
+      - abort: true
+  - trigger: grasp_attempt_count >= 2 AND grasp_success == false
+    recovery:
+      # Retract the arm to a safe neutral pose before any travel — never
+      # leave the arm extended over the target after a failed grasp.
+      - skill: arm_manipulator
+        role: retract_to_neutral
+        with:
+          motion_profile: gentle
+      - skill: skin_speaker
+        role: announce_grasp_failed
+        with:
+          utterance_ref: grasp_failed_apology
+          priority: normal
+      - abort: true
+  - trigger: object_payload_kg > 2.0
+    recovery:
+      - skill: skin_speaker
+        role: announce_too_heavy
+        with:
+          utterance_ref: object_too_heavy
+          priority: normal
+      - abort: true
+  - trigger: obstacle_clear == false
+    recovery:
+      # Mid-travel obstacle: pause in a stable stance, speak, enqueue a
+      # caregiver alert for the 60-second-unresolved case, then hold until
+      # the path clears or a caregiver arrives. Robot-self hold — no
+      # resident-facing restriction, so no requires_consent.
+      - skill: skin_speaker
+        role: announce_blocked_path
+        with:
+          utterance_ref: path_blocked_wait
+          priority: alert
+      - enqueue:
+          intent: caregiver_alert_path_blocked
+          source: sensor
+          priority_hint: elevated
+      - hold: station_at_nearest_safe_pose
+        until: obstacle_clear == true OR caregiver_arrival
 
 composes_with:
   - arm_retrieve_dropped
