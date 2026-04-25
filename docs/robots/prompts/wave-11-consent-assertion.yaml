@@ -1,0 +1,328 @@
+wave: 11
+title: Wire the first assertion on a fifth consent key
+session_suffix_placeholder: <your-session-suffix>
+
+context: |
+  After Wave 10 the library speaks one fallback grammar. After Wave 8 the
+  three-layer morality handshake resolves against a real deployment
+  (Mrs. Alvarez, US/CA/San Francisco). Five consent keys are declared in
+  the reference profile; one of them — `access_restriction` — is asserted
+  by three fabrication manifests per Wave 5. The other four keys
+  (`physical_guidance`, `physical_catch_involuntary_fall`,
+  `physical_catch_deliberate_fall`, `imminent_death_override`) are
+  declared-against-by-the-profile but not yet asserted by any module.
+
+  An unasserted consent key is a named promise with no code behind it.
+  The profile takes a position ("physical_catch_involuntary_fall:
+  allowed"), the schema documents the handshake, but no manifest has
+  actually bound its behavior to that key — so the declared layer is
+  settling disputes no one is raising yet. Wave 5 bound the first two
+  clauses (`no_silent_restriction`, `arm_force_cap`) to real manifests
+  and made the module clauses real. Wave 11 picks the most natural of
+  the four remaining keys and does the same thing for it.
+
+  Recommended pairing (pre-verify in Piece A before editing): the
+  `physical_catch_involuntary_fall` key, asserted by `leg_fall_response`
+  on its `hand_paw_grip` composes entry. `leg_fall_response` already
+  implements the clause operationally — the paw grip is gated by
+  `only_if: resident_requested_grip`, so contact is offered, never
+  initiated. The assertion formalizes the contract that already
+  governs the behavior. The three other candidates are softer fits
+  — see `runners_up` on per-key reasoning.
+
+read_first:
+  - path: docs/goddard/SCHEMA.md
+    section: |
+      § Morality module — the three-layer handshake (vendor / declared /
+      operational), the registration rules for asserted clauses, and the
+      OPERATIONAL vs STUB resolution semantics. The clause you coin in
+      Wave 11 MUST resolve OPERATIONAL against the Mrs. Alvarez profile
+      or the assertion is dead on arrival.
+  - path: docs/goddard/MORALITY.md
+    section: |
+      § Module clauses AND § Consent keys. The clauses table is where
+      the new clause row lands; the consent keys table is where
+      `physical_catch_involuntary_fall`'s current asserter list moves
+      from empty to `leg_fall_response`. Both tables are Goddard-owned
+      — Wave 11 writes to them.
+  - path: docs/goddard/MORALITY.md
+    section: |
+      § Deployment profiles — specifically the Mrs. Alvarez reference
+      profile's declared position on `physical_catch_involuntary_fall`
+      (allowed). Walk the handshake for the asserted clause against
+      this profile before committing: vendor ceiling → declared
+      position → operational resolution.
+  - path: data/robots/morality_profile.yaml
+    section: |
+      The whole file — ~80 lines, read top-to-bottom. This is the
+      profile you are verifying against. The `physical_catch_involuntary_fall`
+      entry has a caregiver-rationale comment you do NOT modify — the
+      profile is Goddard/curator-owned, not lane-owned.
+  - path: data/robots/organs/arm_print_on_demand.yaml
+    section: |
+      The `morality:` block. This is the worked example for clause
+      assertion — `requires:` list + `clauses:` with `clause_id:`,
+      `statement:`, `overridable:`. Match this shape exactly. Do not
+      invent a new sub-field.
+  - path: data/robots/organs/leg_fall_response.yaml
+    section: |
+      The whole file, but especially (1) the `hand_paw_grip` composes
+      entry with `only_if: resident_requested_grip`, which is the
+      behavior the new clause formalizes, and (2) the existing `safety:`
+      block — the clause is a morality contract, not a safety rule, so
+      it lives in a NEW `morality:` block, not as an extra safety bullet.
+
+task:
+  artifact: |
+    One new `morality:` block on one manifest. One new row in
+    MORALITY.md's Module clauses table. One moved name in MORALITY.md's
+    Consent keys "Asserted by" column. One GODDARD.md current-state
+    entry. Possibly a new row in the resident-facing intervention
+    primitives section of MORALITY.md if the clause warrants one —
+    resolve that in Piece B rather than guessing.
+
+  shape_reference: |
+    Clause assertion lives in the manifest's `morality:` block:
+
+      morality:
+        requires:
+          - <consent_key>
+        clauses:
+          - clause_id: <snake_case>
+            statement: "<one-sentence contract in warm-home-aide register>"
+            overridable: <bool>
+
+    Registration rules per SCHEMA § Morality module:
+      - Every consent key in `requires:` MUST be declared in the
+        deployment profile. An undeclared key registers as inert.
+      - Every `clause_id:` MUST be unique across the library. Name
+        collisions register as inert.
+      - `statement:` is human-readable contract copy, reviewed by
+        caregivers. Not a code expression.
+      - `overridable: false` is the default stance for intervention
+        primitives — caregivers cannot disable the clause per-resident
+        without explicit profile override.
+
+  pieces:
+    - id: A
+      title: Confirm the pairing and coin the clause
+      description: |
+        Before writing: verify the recommended pairing holds, or
+        propose an alternative per the `runners_up` per-key analysis.
+        Output a short paragraph in the PR description naming:
+          - the consent key chosen (default: `physical_catch_involuntary_fall`)
+          - the asserting manifest (default: `leg_fall_response`)
+          - the clause_id coined (suggested: `no_unrequested_physical_catch`)
+          - the statement (suggested: "Physical catch is offered, not
+            initiated — the resident must request grip or hold contact.")
+          - the overridable bit (suggested: false)
+          - the exact behavior in the manifest that already implements
+            the clause (the `only_if: resident_requested_grip` gate on
+            the `hand_paw_grip` composes entry)
+
+        If the pairing does not hold — e.g. the chosen manifest does
+        not actually implement the clause's behavior today — stop and
+        raise. An assertion without a behavioral anchor is a stub, and
+        stubs defeat the Wave-5 stance of "clauses go live against a
+        real manifest, not aspirationally."
+
+    - id: B
+      title: Walk the handshake and verify OPERATIONAL resolution
+      description: |
+        Before committing the manifest edit, verify the three-layer
+        resolution against the Mrs. Alvarez profile:
+
+          Vendor layer: no vendor ceiling on `physical_catch_involuntary_fall`
+            (this is a morality primitive, not a hardware one; confirm
+            by grepping MORALITY.md's vendor-ceiling section — expect
+            no entry).
+          Declared layer: profile says `physical_catch_involuntary_fall:
+            allowed` (confirm by reading `data/robots/morality_profile.yaml`
+            directly).
+          Operational layer: asserting manifest publishes a clause
+            that RESTRICTS the allowed behavior ("offered, not
+            initiated") — which is strictly narrower than the
+            declared "allowed", so it resolves OPERATIONAL: clause
+            applies.
+
+        Surface this walk in the PR body — do NOT fold it silently
+        into a "verified" bullet. Reviewers need to see the handshake,
+        same stance as Wave 5's assertion-wire PR.
+
+    - id: C
+      title: Update MORALITY.md's registry
+      description: |
+        - § Module clauses table: add a row for the new clause_id with
+          columns (clause_id, asserting_manifest, overridable, one-line
+          summary). Match the existing table's formatting exactly.
+        - § Consent keys table: move `physical_catch_involuntary_fall`'s
+          "Asserted by" column from `—` to `leg_fall_response` (or
+          whichever manifest was picked).
+        - § Resident-facing intervention primitives: decide whether
+          the clause warrants a new row here. A physical-catch is an
+          intervention on the resident's body, so the answer is
+          probably yes — but the existing primitive-registry rows are
+          hold-states, not contact primitives. If adding a row, align
+          its shape with the existing `build_area_restricted` row
+          (primitive name, consent key, asserter manifest list). If
+          the existing registry does not cleanly accommodate contact
+          primitives, raise the schema question rather than coining a
+          new sub-shape — a new registry section is a separate wave.
+
+    - id: D
+      title: Wire the manifest
+      description: |
+        Add a `morality:` block to the chosen manifest using the
+        worked-example shape from arm_print_on_demand. Place it after
+        `safety:` and before `owned_by:`, same as every other
+        morality-bearing manifest in the library.
+
+        Do NOT add new behavior to the manifest. The clause formalizes
+        existing behavior. If the manifest does not already implement
+        the clause, that was a Piece A veto — stop.
+
+        Do NOT modify the `safety:` block to reference the clause. The
+        safety layer is tactical rules; the morality layer is consent
+        contracts. Cross-pollinating the two dilutes both.
+
+    - id: E
+      title: Update GODDARD.md and verify
+      description: |
+        - Current-state: add a Wave 11 entry, update branch pointer.
+          Summary: "third clause goes live; X of 5 consent keys now
+          have an asserter."
+        - `hugo --minify` green.
+        - grep the registry for the new clause_id across MORALITY.md
+          and all organ manifests — expect exactly two hits (the
+          registry row and the manifest assertion), no stray references.
+        - grep the asserter list for `physical_catch_involuntary_fall`
+          in MORALITY.md — expect the asserter column to name the
+          chosen manifest.
+        - Re-read the Mrs. Alvarez profile entry one more time, in
+          situ, and confirm the caregiver-rationale comment is
+          untouched.
+
+do_not:
+  - rule: "Don't coin clauses without a behavioral anchor"
+    reason: |
+      Wave 5's stance: clauses go live against a real manifest, not
+      aspirationally. If the chosen manifest does not already implement
+      the clause's behavior, the clause is a stub and the wave fails
+      its own premise. Raise rather than wire.
+  - rule: "Don't touch the Mrs. Alvarez profile"
+    reason: |
+      The profile is Goddard/curator-owned. Wave 11 asserts a clause
+      that the profile's declared position already allows — it does
+      not change the position. If the assertion surfaces a need to
+      revise the declared position, raise it as a separate question,
+      do not edit the profile in-lane.
+  - rule: "Don't assert more than one clause this wave"
+    reason: |
+      Four consent keys are unasserted. One clause per wave is the
+      Wave 5 precedent — each assertion has design weight, each
+      warrants its own PR review. Batching two would compress the
+      caregiver-review window and blur the handshake walk.
+  - rule: "Don't touch the Wave-10-clean fallback grammar"
+    reason: |
+      Wave 10 collapsed the two-grammar situation. The asserting
+      manifest's fallback block (if it has one) is already in the
+      modern shape — do not reshape it for any reason this wave.
+  - rule: "Don't add a new consent key"
+    reason: |
+      The 5 declared keys are the scope of the reference profile.
+      Wave 11 asserts against one of the 4 unasserted existing keys,
+      it does not propose a sixth. New consent keys are a profile-
+      revision wave, not a module-assertion wave.
+
+branch:
+  start_from: main
+  bootstrap: |
+    git checkout main && git pull origin main
+  name_pattern: claude/goddard-wave-11-consent-assertion-<your-session-suffix>
+  notes:
+    - |
+      Wave 10's branch will be deleted on merge — do not push to it.
+
+success_criteria:
+  - Exactly one new clause_id asserted by exactly one manifest.
+  - The clause resolves OPERATIONAL against the Mrs. Alvarez profile;
+      the handshake walk is surfaced in the PR body.
+  - MORALITY.md's Module clauses table has a new row; its Consent
+      keys table has one "Asserted by" cell updated from `—` to the
+      chosen manifest.
+  - The asserting manifest gains a `morality:` block matching the
+      worked-example shape. No other behavior on the manifest changes.
+  - hugo --minify green.
+  - GODDARD.md gains a Wave 11 entry, branch pointer updated.
+  - PR opened with the standard session-URL footer, the three-layer
+      handshake walk explicit in the body, and the Piece A pairing
+      decision documented in prose — not buried in diff.
+
+learning_angle: |
+  Wave 5 was the first "clause goes live" wave. Wave 11 is the third.
+  The arc is: SCHEMA.md names a primitive (named layer); the library
+  publishes the primitive in a registry (Wave 4); a manifest asserts
+  the primitive and gives it real behavior (Wave 5, Wave 11). That
+  arc repeats per-primitive and is the generalizable pattern for any
+  contract-driven system: define the contract, publish the registry,
+  bind a real caller to it. The binding is what makes the contract
+  load-bearing — unbound contracts are documentation pretending to be
+  architecture.
+
+  Secondary lesson: an "unasserted but declared" key is exactly like a
+  "deprecated but not deleted" grammar — a promise that is live in the
+  spec but dead in the code. Wave 10 made the grammar spec match the
+  code. Wave 11 makes one more morality-key spec match the code. Both
+  waves are the same shape of work ("close the gap between what we
+  said and what we do"), and recognizing that shape is the transferable
+  skill — it shows up in schema migrations, API deprecations, feature
+  flag cleanup, and config-vs-code drift in every codebase.
+
+runners_up:
+  - title: Validation tooling for SCHEMA.md conformance
+    reason_not_picked: |
+      Wave 10 unlocked this — every manifest speaks one grammar, so
+      a validator is now buildable. Strong Wave 12 candidate. Picked
+      the consent-key assertion first because (a) Wave 10's PR body
+      explicitly named consent-key assertion as "the correct Wave-11
+      candidate," and (b) validation tooling is build-the-tool work
+      that deserves its own wave framing, not a tack-on.
+
+  - title: "Assert `physical_guidance` instead"
+    reason_not_picked: |
+      Declared `voice_only` in the Mrs. Alvarez profile. An assertion
+      saying "guidance is speech only, never contact" resolves
+      OPERATIONAL but the natural asserter is unclear — no manifest
+      today has a contact-vs-speech gate on guidance because no
+      manifest does physical guidance at all. The clause would be
+      vacuously true, which is the stub shape this wave's first
+      do_not rule forbids.
+
+  - title: "Assert `physical_catch_deliberate_fall`"
+    reason_not_picked: |
+      Declared `forbidden` in the Mrs. Alvarez profile. An assertion
+      against a forbidden key resolves STUB under the current profile
+      — the wave would not land OPERATIONAL anywhere. Pick this only
+      after a second deployment profile exists that allows it
+      (hospice-persona territory), which is itself a separate wave.
+
+  - title: "Assert `imminent_death_override`"
+    reason_not_picked: |
+      Allowed in the profile, but the clause a manifest would publish
+      governs Asimov-first-law override semantics that only engage in
+      boundary conditions none of the current manifests reach. The
+      assertion would resolve OPERATIONAL but the behavioral anchor
+      would be a rarely-exercised branch, not an always-exercised gate.
+      Weaker signal-to-noise than the `physical_catch_involuntary_fall`
+      pairing which formalizes a gate that fires on every
+      `leg_fall_response` run.
+
+  - title: Second deployment profile (hospice / DNR persona)
+    reason_not_picked: |
+      Would unblock asserting `physical_catch_deliberate_fall` and
+      stress-test the profile shape contract with genuinely different
+      declared positions. Declined because the second profile is better
+      sequenced after one more assertion wave — so it has something
+      new to resolve against beyond Wave 5's two clauses. Wave 11's
+      assertion is that something new; Wave 12+ is where the second
+      profile becomes worth its weight.
