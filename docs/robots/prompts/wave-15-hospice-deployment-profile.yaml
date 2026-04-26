@@ -1,0 +1,321 @@
+wave: 15
+title: Author a second deployment profile (hospice / DNR persona) so the layering has real tension
+session_suffix_placeholder: <your-session-suffix>
+
+context: |
+  Wave 8 shipped the first deployment profile — Mrs. Alvarez,
+  US/CA/San Francisco, the elderly-care reference persona the library
+  has been written around. Every declared position on the 5 consent
+  keys reflects an able, autonomous resident in early-80s decline.
+  That's exactly one point in the consent space, and the layering
+  contract has only been stress-tested against it.
+
+  After Wave 14 the consent vocabulary covers both hold states and
+  contact primitives; the validator (Wave 13) enforces registration
+  uniformly. The next move is to put a SECOND deployment profile
+  beside the first that genuinely DISAGREES with it — not a copy
+  with the names changed, but a persona whose caregiver would make
+  different declared choices for honest reasons. That is what
+  exercises the layering: what happens when two real deployments of
+  the same library disagree on `physical_catch_deliberate_fall`,
+  on `imminent_death_override`, on `physical_guidance`?
+
+  The persona this wave commits to: a hospice resident on a DNR.
+  The same Goddard library, deployed at end-of-life care. Many of
+  the consent positions flip — `imminent_death_override: forbidden`
+  is the load-bearing inversion (a DNR is exactly an instruction
+  NOT to override at the brink), `physical_catch_deliberate_fall`
+  may flip to `allowed` (a hospice resident lowering themselves to
+  the floor for comfort may welcome help), `physical_guidance`
+  may flip to `allowed` (cognitive decline often makes voice-only
+  guidance insufficient). The point is not to be edgy; the point
+  is to surface the cases where the layering's "vendor floor /
+  declared layer / module clause" handshake actually has work to
+  do.
+
+  Critical sequencing: this wave depends on Wave 14 because the
+  hospice profile will declare a position on a contact primitive
+  the registry has only just named. Without Wave 14, the new
+  profile would either invent vocabulary or omit the position; both
+  are wrong.
+
+read_first:
+  - path: GODDARD.md
+    section: current-state — confirm Waves 13 and 14 landed
+  - path: docs/goddard/SCHEMA.md
+    section: |
+      § Morality module → § Three layers, § Deployment shape. The
+      shape contract is identical across profiles; only the values
+      change.
+  - path: docs/goddard/MORALITY.md
+    section: |
+      § Consent keys (5 keys), § Resident-facing hold states,
+      § Resident-facing contact primitives (post-Wave 14),
+      § Module clauses, § Deployment profiles. The new profile MUST
+      pull every declared name from these tables.
+  - path: data/robots/morality_profile.yaml
+    section: |
+      The whole file. The hospice profile mirrors its shape — persona
+      blurb, jurisdiction tuple, inherited_from_ordinance block,
+      declared positions per key, registration outcomes walk. Read
+      every caregiver-rationale comment to see the prose register the
+      new profile must match.
+
+task:
+  artifact: |
+    A new YAML file at data/robots/profiles/hospice_dnr.yaml (note
+    the directory move — Wave 8's file lives at the legacy path
+    data/robots/morality_profile.yaml; per MORALITY.md "per
+    deployment is per file," the canonical multi-profile layout is
+    a profiles/ subdirectory). One persona blurb at the top, one
+    jurisdiction tuple, one inherited_from_ordinance block, declared
+    positions on all 5 consent keys with caregiver-rationale
+    comments, and a registration-outcomes walk for every asserted
+    clause in the library against the new profile. Plus an edit to
+    MORALITY.md § Deployment profiles naming the new file alongside
+    the reference profile and noting the directory convention. Plus
+    a GODDARD.md current-state entry.
+
+  shape_reference: |
+    File shape (mirror data/robots/morality_profile.yaml):
+
+      morality_profile:
+        jurisdiction: { country: US, state: ..., municipality: ...,
+                        ordinance_index: ..., last_sync: ... }
+        inherited_from_ordinance: { ... }
+        declared:
+          access_restriction:                <position>
+          physical_catch_involuntary_fall:   <position>
+          physical_catch_deliberate_fall:    <position>
+          physical_guidance:                 <position>
+          imminent_death_override:           <position>
+
+      # registration outcomes walk in trailing comments — every
+      # asserted clause walked through the three-layer handshake
+      # against THIS profile's positions. Expect at least one STUB
+      # outcome (a clause that resolves operational against Mrs.
+      # Alvarez but stub against hospice — that's the whole point).
+
+  pieces:
+    - id: A
+      title: Commit to the persona
+      description: |
+        One paragraph at the top of the file, same prose register as
+        Mrs. Alvarez's blurb. Suggested:
+          - Mid-70s, end-stage chronic illness, in-home hospice,
+            DNR / DNI / no-CPR on file, primary caregiver is the
+            spouse, daughter has caregiver-app authority, palliative
+            comfort is the explicit deployment goal.
+        The persona drives every declared position. If a position
+        feels arbitrary against the persona you committed to, the
+        persona is too thin — fill it in until the position is
+        inferable.
+
+    - id: B
+      title: Pick the jurisdiction
+      description: |
+        Default to a different jurisdiction than Mrs. Alvarez (e.g.
+        US / OR / Portland — Oregon's hospice-care statutes are well-
+        documented, and "different jurisdiction" exercises the
+        ordinance-inheritance machinery). The inherited_from_ordinance
+        block should NOT be invented. Either:
+          (a) reuse SCHEMA's worked example values (same as Mrs.
+              Alvarez's profile) and note in a comment that the
+              jurisdiction's actual ordinance index would supply
+              real values in production; or
+          (b) cite a real public Oregon municipal index and use its
+              values if you can verify them.
+        (a) is the safe default; (b) only if research is fast.
+
+    - id: C
+      title: Declare positions on all 5 consent keys, with reasoning
+      description: |
+        Required: every key in MORALITY.md § Consent keys gets a
+        declared position. Likely shape (validate against the
+        persona):
+
+          access_restriction:                allowed
+            (cordon around oxygen / med equipment is reasonable)
+          physical_catch_involuntary_fall:   allowed | voice_only
+            (the DNR is about resuscitation, not about catching a
+            stumble — but caregiver may prefer voice-only)
+          physical_catch_deliberate_fall:    allowed
+            (a hospice resident lowering themselves to the floor
+            may welcome physical help; flips Mrs. Alvarez's forbidden)
+          physical_guidance:                 allowed
+            (cognitive decline often makes voice-only insufficient;
+            flips Mrs. Alvarez's voice_only)
+          imminent_death_override:           forbidden
+            (the load-bearing inversion — DNR is exactly the
+            instruction not to override; flips Mrs. Alvarez's allowed)
+
+        Each line gets a multi-line caregiver-rationale comment in
+        the same prose register as Mrs. Alvarez's profile. Treat the
+        spouse's voice as the rationale source — these are answers
+        a caregiver gave, not schema notes.
+
+    - id: D
+      title: Walk every asserted clause and surface STUB outcomes
+      description: |
+        For each of the three asserted clauses in the library
+        (no_silent_restriction, arm_force_cap, no_unrequested_physical_catch),
+        walk the three-layer handshake against the new profile.
+        Format mirrors Mrs. Alvarez's profile's trailing comment block.
+
+        Expected results:
+          - no_silent_restriction (arm_print_*): OPERATIONAL — same
+            as Alvarez (voice-paired access_restriction is universally
+            sane).
+          - arm_force_cap (arm_manipulator): OPERATIONAL — vendor
+            ceiling, no declared position contests it.
+          - no_unrequested_physical_catch (leg_fall_response):
+            depends on the hospice physical_catch_involuntary_fall
+            position you picked. If allowed → OPERATIONAL same as
+            Alvarez. If voice_only → STUB (the clause asserts a
+            contact primitive against a key the profile says is
+            speech-only, and the validator should mark the manifest
+            inert in this deployment). DOCUMENT THE STUB if it
+            applies; that is exactly the kind of teaching example
+            this wave was supposed to surface.
+
+        Also walk imminent_death_override against any future
+        manifest that might assert it (none today). Note in the
+        outcomes block that a hospice deployment of a fall_response
+        variant with an aggressive-rescue branch would resolve
+        OPERATIONAL against Alvarez but STUB here — captures the
+        layering's design intent without forcing a manifest into
+        existence.
+
+    - id: E
+      title: Update MORALITY.md and GODDARD.md
+      description: |
+        - MORALITY.md § Deployment profiles: name both files (the
+          Alvarez reference at data/robots/morality_profile.yaml
+          and the hospice profile at data/robots/profiles/hospice_dnr.yaml).
+          Update the "per deployment is per file" paragraph to note
+          the canonical directory convention going forward
+          (data/robots/profiles/<persona-slug>.yaml). Optional but
+          recommended: a short note that the legacy file path will
+          be moved into profiles/ in a follow-up so both profiles
+          share a directory.
+        - GODDARD.md current-state: add a Wave 15 entry naming the
+          new profile, the load-bearing inversions vs. Alvarez, and
+          the STUB outcomes (if any) the hospice profile produces
+          against the current asserted-clause set.
+        - hugo --minify green.
+        - python3 scripts/validate_organs.py exits 0 (a STUB clause
+          is not a validation error — it is correct registration
+          behavior; the validator confirms manifests resolve given
+          their deployment, not that they resolve operational).
+
+do_not:
+  - rule: "Don't add new consent keys"
+    reason: |
+      The 5 keys are still the schema's vocabulary. If the hospice
+      persona seems to need a 6th, raise it as a separate
+      question — adding keys is a registry-revision wave, not a
+      profile wave.
+  - rule: "Don't edit Mrs. Alvarez's profile"
+    reason: |
+      Two profiles, side by side. The whole point is that they
+      disagree honestly. Touching Alvarez to make them agree
+      collapses the comparison.
+  - rule: "Don't fabricate ordinance-index values you can't cite"
+    reason: |
+      Either reuse SCHEMA's worked example values with a comment
+      noting they are illustrative, or cite a real public index.
+      Inventing realistic-looking values inside the schema's
+      auditable layer is the exact failure mode the
+      inherited_from_ordinance block was designed to prevent.
+  - rule: "Don't author a hospice manifest variant in this wave"
+    reason: |
+      Tempting — a fall_response variant that engages
+      imminent_death_override would land OPERATIONAL on Alvarez and
+      STUB on hospice, which is the perfect demo. But authoring a
+      new manifest is module work, not profile work. Do the
+      profile here; if the hospice profile makes a strong case for
+      the manifest, that's a Wave 16 candidate.
+  - rule: "Don't change the directory convention silently"
+    reason: |
+      If you commit data/robots/profiles/hospice_dnr.yaml without
+      updating MORALITY.md's § Deployment profiles paragraph,
+      future readers see an undocumented split between
+      data/robots/morality_profile.yaml and data/robots/profiles/.
+      The convention move is part of the wave, not a side effect.
+
+branch:
+  start_from: main
+  bootstrap: |
+    git checkout main && git pull origin main
+  name_pattern: claude/goddard-wave-15-hospice-profile-<your-session-suffix>
+  notes:
+    - |
+      Wave 14's branch will be deleted on merge — do not push to it.
+    - |
+      Wave 15 depends on Wave 14 (contact-primitive registry). If
+      Wave 14 has not merged when this wave is picked up, defer
+      the contact-primitive position in the new profile by leaving
+      a TODO comment, and run Wave 14 first.
+
+success_criteria:
+  - data/robots/profiles/hospice_dnr.yaml exists with persona blurb,
+      jurisdiction tuple, inherited_from_ordinance block, declared
+      positions on all 5 consent keys with caregiver-rationale
+      comments, and a registration-outcomes walk for every asserted
+      clause.
+  - "At least one declared position differs honestly from Alvarez
+      (imminent_death_override: forbidden is the expected inversion)."
+  - At least one asserted clause produces a different registration
+      outcome between the two profiles (STUB on one, OPERATIONAL on
+      the other), and the outcome is documented in the trailing
+      comment block.
+  - MORALITY.md § Deployment profiles names both files and the
+      directory convention.
+  - hugo --minify green.
+  - python3 scripts/validate_organs.py exits 0.
+  - GODDARD.md gains a Wave 15 entry, branch pointer updated.
+  - PR opened with the standard session-URL footer; body lists the
+      load-bearing inversions and the STUB-vs-OPERATIONAL split.
+
+learning_angle: |
+  A spec is fully load-bearing only when more than one real instance
+  exercises it. Wave 8 instantiated the morality module against
+  Alvarez and the layering "worked" — but every layer agreed,
+  which is the easy case. Wave 15 introduces honest disagreement:
+  same library, different deployment, different declared values,
+  some clauses register operational and some STUB. The transferable
+  lesson is that schemas are validated by tension, not by
+  consistency. A schema that has only ever served a persona that
+  agrees with itself is not yet trustworthy; one that handles two
+  personas with conflicting answers is.
+
+  Secondary lesson: STUB is a feature, not a bug. The instinct on
+  seeing a clause register inert is to "fix" it — relax the
+  declaration, weaken the clause, soften the constraint. The
+  morality module's design says exactly the opposite: STUB is the
+  correct outcome when a deployment has not authorized a clause's
+  intervention. The robot does less. That's what the layering is
+  for. Wave 15 is the wave that makes that lesson concrete.
+
+runners_up:
+  - title: Author a hospice fall_response manifest variant
+    reason_not_picked: |
+      Would dramatize the layering by giving imminent_death_override
+      a real asserter that flips between deployments. Held because
+      module work belongs in its own wave; doing it here would mix
+      a profile authoring exercise with a module authoring exercise.
+      Wave 16 candidate.
+  - title: Promote utterance_ref to required in SCHEMA.md
+    reason_not_picked: |
+      Two-line edit. Validator (Wave 13) already enforces it. Bundle
+      into a future docs-cleanup pass.
+  - title: Voice interpretation path (Q6)
+    reason_not_picked: |
+      Still no manifest needs it. Designing brain_voice_interpreter
+      is real module work, not profile work.
+  - title: Move data/robots/morality_profile.yaml into profiles/
+    reason_not_picked: |
+      Worth doing for symmetry once the second profile lands, but
+      it's a path move that touches Wave 8's reference profile and
+      blurs this wave's diff. Keep as a follow-up; Wave 15 only
+      establishes the new directory and references both paths.

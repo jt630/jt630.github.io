@@ -1,0 +1,385 @@
+wave: 14
+title: Add a contact-primitive registry to MORALITY.md so non-hold interventions have a home
+session_suffix_placeholder: <your-session-suffix>
+
+context: |
+  Wave 11 surfaced a schema gap. MORALITY.md's resident-facing
+  primitive registry only catalogs HOLD STATES — `build_area_restricted`
+  is its single row, with `access_restriction` as the consent key and
+  the two arm_print_* manifests as asserters. Hold states are one
+  flavor of intervention primitive (the robot pauses the resident's
+  environment in a declared safe state). They are not the only flavor.
+
+  Wave 11's pairing was `physical_catch_involuntary_fall` asserted by
+  `leg_fall_response` via the `no_unrequested_physical_catch` clause.
+  The clause's behavior is not a hold — it is a CONTACT PRIMITIVE.
+  The robot offers a paw; the resident initiates grip. There is no
+  state to enter, no `until:` to release, no environmental cordon.
+  It is a momentary contact event, gated by `only_if:
+  resident_requested_grip`. Wave 11 raised this as the schema question
+  for Wave 12+: MORALITY.md's primitive registry does not
+  accommodate contact primitives cleanly, and a registry wave should
+  add a second table rather than coining the shape in-lane.
+
+  Wave 12 stayed focused on grammar migration; Wave 13 stayed focused
+  on validation tooling. Wave 14 closes the registry gap. Add a new
+  § Resident-facing contact primitives section to MORALITY.md with
+  the same shape discipline as the existing § Resident-facing hold
+  states section — one row per registered contact primitive, named
+  consent key, asserting manifest list. Bring `physical_catch_involuntary_fall`
+  into the new table with `leg_fall_response` as its asserter (the
+  table's first row, same as `build_area_restricted` was the first
+  row of the hold-state table at Wave 4).
+
+  Wave 14 also covers the documentation edits the new table requires:
+  SCHEMA.md § Morality module gains a pointer at the contact primitive
+  registry analogous to its existing pointer at the hold state
+  registry; the add-a-new-entry workflow in MORALITY.md gains a
+  contact-primitive section. If Wave 13's validator landed (and it
+  should have, this wave depends on it), a new rule R019 enforces
+  "contact primitives carry the same registry-backing requirement as
+  hold states" — adding the rule is part of this wave.
+
+read_first:
+  - path: GODDARD.md
+    section: current-state block — confirm Wave 13 landed
+  - path: docs/goddard/MORALITY.md
+    section: |
+      § Resident-facing hold states AND § Add-a-new-entry workflow
+      → § Adding a new resident-facing hold state. The contact-primitive
+      table mirrors this shape; the workflow gains a parallel section.
+  - path: docs/goddard/MORALITY.md
+    section: |
+      § Module clauses — read the no_unrequested_physical_catch row
+      to ground the contact primitive in a real, asserted clause.
+      The clause's statement ("Physical catch is offered, not
+      initiated") is the operational definition of the primitive
+      this wave registers.
+  - path: docs/goddard/SCHEMA.md
+    section: |
+      § Morality module → § Action-level pointer. The requires_consent:
+      pointer grammar is the same for contact primitives as for hold
+      states; the validator rule R012 (every requires_consent: <key>
+      resolves) already covers it. What changes is WHICH actions get
+      the pointer — Wave 14 names contact primitives as a registered
+      class.
+  - path: data/robots/organs/leg_fall_response.yaml
+    section: |
+      The hand_paw_grip composes entry — it currently has only_if:
+      resident_requested_grip but no requires_consent: pointer at the
+      contact action itself. After Wave 14 it MUST carry
+      requires_consent: physical_catch_involuntary_fall on the same
+      composes entry, parallel to how arm_print_on_demand's
+      build_area_restricted hold carries requires_consent:
+      access_restriction on the hold action.
+  - path: scripts/validate_organs.py
+    section: |
+      The rule registry (assuming Wave 13 landed). R019 will need to
+      land here too. Read R011 (resident-facing hold requires
+      requires_consent:) as the model for the contact-primitive
+      analog.
+  - path: scripts/fixtures/
+    section: |
+      The fixture pattern from Wave 13. R019 needs at least one
+      negative fixture: a manifest with a contact action gated only
+      by only_if:, no requires_consent: pointer.
+
+task:
+  artifact: |
+    Edits to MORALITY.md (new § Resident-facing contact primitives
+    section + workflow entry). One row in the new table. Edit to
+    SCHEMA.md § Morality module to point at the new registry section.
+    Edit to leg_fall_response.yaml: add requires_consent:
+    physical_catch_involuntary_fall to the hand_paw_grip composes
+    entry. Edit to scripts/validate_organs.py: add R019. New
+    fixture in scripts/fixtures/ for R019. GODDARD.md current-state
+    entry.
+
+  shape_reference: |
+    New § Resident-facing contact primitives section in MORALITY.md,
+    shape mirrors § Resident-facing hold states:
+
+      ## Resident-facing contact primitives
+
+      Contact primitives are momentary interventions where the
+      robot's effector touches the resident, without entering a held
+      state. Each primitive MUST carry `requires_consent: <key>` on
+      the contact action, same handshake rule as resident-facing
+      holds. Mid-contact behavior may still be governed by the
+      manifest's `safety:` block (force caps, back-drive thresholds);
+      the consent pointer is what makes the contact a registered
+      intervention.
+
+      | Primitive | Consent key | Asserted by |
+      |-----------|-------------|-------------|
+      | `paw_grip_offered` | `physical_catch_involuntary_fall` | `leg_fall_response` |
+
+    A contact primitive id is snake_case, action-noun, describing
+    what the robot does to the resident's body (`paw_grip_offered`,
+    `elbow_steady`, `shoulder_tap`). Consent keys are reused from
+    § Consent keys; the primitive ID is the registry's contribution.
+
+    Workflow section in MORALITY.md § Add-a-new-entry workflow gains:
+
+      ### Adding a new resident-facing contact primitive
+
+      1. Add a row to § Resident-facing contact primitives.
+      2. Every site that performs the contact MUST carry
+         `requires_consent: <key>` on the contact action.
+      3. The contact MUST be gated by `only_if:` (or equivalent
+         consent gate) — contact primitives are offered, not
+         initiated, unless the asserting module's clauses say
+         otherwise.
+      4. If the contact crosses force or duration thresholds the
+         vendor wants to publish, those go on the manifest's
+         `morality.clauses:` list, not on the registry row.
+
+  pieces:
+    - id: A
+      title: Audit the library for contact primitives we may have missed
+      description: |
+        Before registering paw_grip_offered, walk every modern-shape
+        manifest and look for any composes entry whose action involves
+        the robot's effector touching the resident's body. Today the
+        only known site is leg_fall_response's hand_paw_grip — the
+        physical_catch_involuntary_fall pairing Wave 11 formalized.
+        Audit the rest of the library to confirm.
+
+        Likely-clean candidates that are NOT contact primitives:
+          - hand_pincer / hand_fine_tip in fabrication chains (touch
+            objects, not residents)
+          - hand_paw_grip in fetch/retrieve (touches objects)
+          - skin_speaker (sound, not contact)
+
+        If the audit surfaces a second contact site, add it to the
+        registry in this wave. If it surfaces a contact site whose
+        consent key is NOT one of the 5 declared keys (e.g. an
+        elbow-steady that maps to physical_guidance, currently
+        voice_only in the reference profile), raise the conflict —
+        the contact site cannot be registered against an
+        undeclared-or-forbidden key without either a profile change or
+        a clause that narrows the contact away from the forbidden
+        intervention. That is its own wave.
+
+    - id: B
+      title: Add the new section to MORALITY.md
+      description: |
+        Insert § Resident-facing contact primitives between
+        § Resident-facing hold states and § Module clauses. Use the
+        shape_reference above. The introductory paragraph names the
+        consent-pointer requirement and references SCHEMA.md
+        § Action-level pointer.
+
+        Add the parallel workflow section to § Add-a-new-entry workflow
+        (after § Adding a new resident-facing hold state).
+
+        Add the first row: `paw_grip_offered |
+        physical_catch_involuntary_fall | leg_fall_response`.
+
+    - id: C
+      title: Update SCHEMA.md to point at the new registry section
+      description: |
+        SCHEMA.md § Morality module already has a pointer at the
+        hold-state registry: "the authoritative mapping of resident-
+        facing hold states to consent keys lives in MORALITY.md
+        § Resident-facing hold states." Add a parallel pointer for
+        contact primitives. One sentence; do not restate the
+        registry contents.
+
+        SCHEMA.md § Action-level pointer's worked examples currently
+        show requires_consent: on a hold: action. Add a worked
+        example showing requires_consent: on a composes entry (the
+        hand_paw_grip pattern) so the schema's example coverage
+        matches the new registry's reach.
+
+    - id: D
+      title: Wire the consent pointer onto leg_fall_response
+      description: |
+        The hand_paw_grip composes entry on leg_fall_response.yaml
+        currently has only_if: resident_requested_grip. Add
+        requires_consent: physical_catch_involuntary_fall to the
+        same composes entry. Place it as a sibling of only_if:.
+
+        Do NOT change the only_if: gate. The clause still says
+        "offered, not initiated" — the only_if: enforces the
+        offered-ness, the requires_consent: registers the contact
+        primitive itself.
+
+        Do NOT touch the morality: block (the no_unrequested_physical_catch
+        clause is already correct). Do NOT touch the safety: block
+        (force caps live there; consent is a different layer).
+
+    - id: E
+      title: Add R019 to the validator + fixture
+      description: |
+        scripts/validate_organs.py: add R019 — every action invoking
+        a registered contact primitive carries requires_consent:
+        <key> on the action. Mirror R011 (resident-facing holds);
+        the difference is that R011 walks fallback recovery actions
+        for hold:, R019 walks composes entries for actions whose role
+        or skill matches a registered contact primitive.
+
+        The implementation needs to know which composes-entry shape
+        IS a contact primitive. Two options:
+          1. (preferred) Walk MORALITY.md § Resident-facing contact
+             primitives and infer from the asserter manifest's
+             composes graph. Brittle but precise.
+          2. Coin a registry-side mechanism: each row carries a
+             selector hint (skill id + role pattern) the validator
+             reads. Less brittle, slightly more registry surface.
+
+        Pick (1) for the first version unless Piece A surfaces
+        ambiguity; refactor toward (2) later if the registry grows
+        beyond 2-3 entries.
+
+        Negative fixture: scripts/fixtures/R019_contact_without_consent.yaml
+        — a leg_fall_response-shaped manifest whose hand_paw_grip
+        composes entry has only_if: resident_requested_grip but no
+        requires_consent:. The validator MUST reject it.
+
+        Run the validator against the live library after the
+        leg_fall_response edit. Expect zero R019 errors. If R019
+        fires on anything other than the deliberate fixture, fix the
+        site in this wave.
+
+    - id: F
+      title: Verify and update GODDARD.md
+      description: |
+        - hugo --minify green.
+        - python3 scripts/validate_organs.py exits 0 on the live
+          library (R019 included).
+        - python3 scripts/validate_organs.py on the R019 fixture
+          rejects with the expected message.
+        - grep `paw_grip_offered` across the repo — expect exactly
+          one row in MORALITY.md and zero hits anywhere else (the
+          name is a registry handle, not a manifest field today).
+        - GODDARD.md current-state: add a Wave 14 entry naming the
+          new registry section, the row coined, the validator rule
+          added, and any audit findings from Piece A.
+
+do_not:
+  - rule: "Don't add a new consent key"
+    reason: |
+      The 5 keys are still the schema's vocabulary. paw_grip_offered
+      is a primitive id, not a consent key — it points at the
+      EXISTING physical_catch_involuntary_fall key. New consent keys
+      go through their own wave (registry edit + profile edit + at
+      least one assertion).
+  - rule: "Don't add a new clause"
+    reason: |
+      no_unrequested_physical_catch already asserts the contract.
+      Wave 14 registers the primitive shape; the clause does the
+      operational work. Adding a clause-here would duplicate
+      governance.
+  - rule: "Don't change leg_fall_response's behavior"
+    reason: |
+      The only_if: resident_requested_grip gate already implements
+      the contract. The new requires_consent: is a registration
+      pointer, not a behavior change. If hand_paw_grip's composes
+      entry needs more behavior to satisfy the registration, that
+      indicates the clause is incomplete and is its own raise.
+  - rule: "Don't touch the Mrs. Alvarez profile"
+    reason: |
+      The profile already declares physical_catch_involuntary_fall:
+      allowed. The new registry row inherits that declaration; no
+      profile edit is needed. Touching the profile in this wave
+      conflates the registry change with a deployment change.
+  - rule: "Don't generalize the table beyond contact primitives"
+    reason: |
+      A "resident-facing intervention primitives" mega-table that
+      unifies hold states, contact primitives, voice overrides, and
+      recording authorizations is tempting but premature. Two
+      tables with one row each is fine; force-merging them now
+      bakes in shape decisions before there's enough evidence to
+      make them well.
+
+branch:
+  start_from: main
+  bootstrap: |
+    git checkout main && git pull origin main
+  name_pattern: claude/goddard-wave-14-contact-primitives-<your-session-suffix>
+  notes:
+    - |
+      Wave 13's branch will be deleted on merge — do not push to it.
+    - |
+      Wave 14 depends on Wave 13's validator. If Wave 13 has not
+      merged when this wave is picked up, design the wave around
+      manual review for R019's enforcement and note the validator
+      hookup as a follow-up.
+
+success_criteria:
+  - MORALITY.md has a new § Resident-facing contact primitives
+      section with one row (paw_grip_offered).
+  - MORALITY.md § Add-a-new-entry workflow gains a parallel
+      contact-primitive section.
+  - SCHEMA.md § Morality module pointer to the new registry section
+      added; § Action-level pointer worked-example coverage extended
+      to a composes-entry case.
+  - "leg_fall_response.yaml hand_paw_grip composes entry carries
+      requires_consent: physical_catch_involuntary_fall alongside
+      its existing only_if:."
+  - "scripts/validate_organs.py: R019 implemented, fixture present,
+      exits 0 against live library."
+  - hugo --minify green.
+  - GODDARD.md gains a Wave 14 entry, branch pointer updated.
+  - PR opened with the standard session-URL footer; body includes
+      the Piece A audit findings (which contact sites the library
+      has, which were registered, which were ruled out).
+
+learning_angle: |
+  Registries are how schemas absorb new categories without breaking
+  shape. Wave 4 invented MORALITY.md so adding a consent key would
+  be a documentation change, not a schema revision. Wave 14 extends
+  that move: adding a contact primitive is now also a documentation
+  change rather than a clause-in-lane invention. Each new category
+  the library encounters becomes one more table in the registry,
+  one more workflow section, one more validator rule. The schema
+  itself stays stable; the vocabulary it expresses grows.
+
+  The transferable pattern: when you find yourself wanting to
+  invent a new field shape inside a single manifest to express a
+  new category, that's the signal to LIFT the category into the
+  registry. The single-manifest invention is fast but unauditable
+  (no one else knows the shape exists); the registry move is
+  slower but propagates the new vocabulary across every future
+  manifest with one edit.
+
+  Secondary lesson: schema gaps surface in real waves, not in
+  cold review. Wave 11's commitment to "raise rather than invent
+  in-lane" is what made this wave possible — a different ethic
+  would have shipped paw_grip_offered as a one-off field on
+  leg_fall_response and the gap would have stayed invisible until
+  the next contact primitive wave was already mid-coding.
+
+runners_up:
+  - title: Second deployment profile (hospice / DNR persona)
+    reason_not_picked: |
+      Strong Wave 15 candidate — would unblock asserting
+      physical_catch_deliberate_fall and stress-test the layering
+      with genuine tension. Sequenced AFTER the contact primitive
+      registry because the second profile will declare positions
+      on contact primitives the registry has not yet named; building
+      the registry first means the second profile pulls from a
+      blessed vocabulary instead of inventing one.
+  - title: Assert imminent_death_override on a manifest
+    reason_not_picked: |
+      Allowed in the Mrs. Alvarez profile, but the natural asserter
+      would be a manifest that engages first-law-override semantics
+      — none currently exists in the library. The clause would need
+      a behavioral anchor (a fall_response variant that escalates
+      to physical intervention in the unconscious-in-water case),
+      and that anchor is module work, not registry work. Held until
+      such a manifest exists.
+  - title: Promote utterance_ref to required in SCHEMA.md
+    reason_not_picked: |
+      Two-line SCHEMA edit, validator already enforces it via R006.
+      Trivially small to bundle into a future docs-cleanup pass; not
+      its own wave.
+  - title: Voice interpretation path (Q6 in OPEN-QUESTIONS.md)
+    reason_not_picked: |
+      Resolved in framing during Wave 2 Phase A but deferred until
+      a manifest needed it. Still no manifest needs it (every
+      composed skill uses voice_interruptible: any voice → halt,
+      not voice → intent). Designing the brain_voice_interpreter
+      organ is real work and deserves its own wave; bundling it
+      under "registry housekeeping" is a category error.

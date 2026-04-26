@@ -1,0 +1,282 @@
+# PROVENANCE — backfill, not original
+# This prompt was reconstructed in a later session from GODDARD.md's
+# Wave 9 current-state entry and the actual git diff (commit 939a68a).
+# The original session prompt lives in the claude.ai cloud at
+# session_01NXv1vsjogLAt9X9oV1DhrG and was not recovered into this file.
+# Treat the runners_up and do_not rules below as Goddard's best
+# reconstruction of the design choices, not as verbatim caregiver
+# instructions. If a future curator opens the original session and
+# finds material divergence, replace this file rather than patching it.
+---
+wave: 9
+title: Migrate skin_speaker invocations from inline utterance to utterance_ref pointers
+session_suffix_placeholder: <your-session-suffix>
+
+context: |
+  Waves 6 and 7 fully populated `voice_lines:` blocks across the 11
+  utterance-producing manifests in the library. SCHEMA.md § Voice lines
+  named the forward-direction consumption pattern then but explicitly
+  deferred it: every `skin_speaker` site continues to duplicate the
+  utterance string verbatim inside `with: utterance: "..."` even though
+  the canonical source now lives in the `voice_lines:` block above it.
+  That duplication is the known tech debt SCHEMA flagged under the
+  "Consumption pattern — current and forward" subsection.
+
+  Wave 9 removes the duplication. For every modern-shape `skin_speaker`
+  composes / fallback-recovery invocation, replace the inline
+  `utterance: "..."` field with `utterance_ref: <key>` pointing at the
+  matching entry in the manifest's `voice_lines:` block. The
+  `voice_lines:` block itself does not change — it remains the canonical
+  source. Substitution tokens (`[name]`, `[drug_name]`) survive the
+  migration unchanged; the runtime resolves them after dereferencing
+  the ref.
+
+  This is the dedupe wave the schema's forward-direction note has been
+  pointing at since Wave 3 Phase B4. After it lands, every modern-shape
+  manifest reads its utterances from one place, and a copy edit in
+  `voice_lines:` propagates to every site by reference.
+
+  Three older-shape manifests are excluded from this wave: `arm_fetch_object`,
+  `arm_hand_from_shelf`, and `arm_retrieve_dropped` still carry
+  Wave-1-era `when:/action:/utterance:` fallback shape (different
+  grammar than the modern `trigger:/recovery:` envelope). Modernizing
+  that grammar is its own migration — see runners_up. They have been
+  punted through Waves 7 and 8; they get punted again here.
+
+read_first:
+  - path: GODDARD.md
+    section: current-state block
+  - path: docs/goddard/SCHEMA.md
+    section: |
+      § Voice lines — especially § Substitution tokens and
+      § Consumption pattern — current and forward. The forward pattern
+      is `utterance_ref: <key>` resolving against the manifest's own
+      `voice_lines:` block at plan time.
+  - path: docs/goddard/MEMORY.md
+    section: |
+      § Token-backed keys — to confirm `[name]` and `[drug_name]` are
+      still the only registered tokens, so substitution survives the
+      migration without any registry edit.
+  - path: data/robots/organs/arm_print_on_demand.yaml
+    section: |
+      The `voice_lines:` block AND its `composes:` list — this is the
+      cleanest worked example of the migration shape. Five sites,
+      five keys, one substitution token. Match this shape.
+  - path: data/robots/organs/arm_print_and_clean.yaml
+    section: |
+      Same pattern — three sites, three keys.
+  - path: data/robots/organs/leg_fall_response.yaml
+    section: |
+      The library's highest-stakes copy. Five `voice_lines:` keys
+      including the three caregivers MUST preserve verbatim ("help is
+      coming," "I am not going to try to lift you," "I am right here").
+      Sites appear in both `composes:` and `fallback:` recovery lists —
+      both shapes get the migration.
+
+task:
+  artifact: |
+    Edits to 8 manifests. Each modern-shape `skin_speaker` invocation
+    swaps `utterance: "<string>"` for `utterance_ref: <voice_lines_key>`.
+    No edits to `voice_lines:` blocks themselves. No edits to the 3
+    older-shape arm manifests. One GODDARD.md current-state entry
+    summarizing the migration count.
+
+  shape_reference: |
+    Before:
+
+      - skill: skin_speaker
+        role: announce_arrival
+        with:
+          utterance: "I am here now. I am not going to try to lift you.
+            Help is on the way. If you would like something to hold onto,
+            just ask me and I will offer you my paw."
+          volume_pct: 55
+          priority: normal
+
+    After:
+
+      - skill: skin_speaker
+        role: announce_arrival
+        with:
+          utterance_ref: arrival_reassurance
+          volume_pct: 55
+          priority: normal
+
+    The key on the right (`arrival_reassurance`) MUST exist in the same
+    manifest's `voice_lines:` block. A ref pointing at a missing key
+    causes the organ to register as inert (same handshake rule as any
+    other unresolved dependency).
+
+  pieces:
+    - id: A
+      title: Inventory the migration sites
+      description: |
+        Walk every modern-shape manifest with a `voice_lines:` block.
+        For each `skin_speaker` invocation (in `composes:` AND in any
+        `fallback:` recovery list), record the inline utterance and the
+        `voice_lines:` key whose string matches it character-for-
+        character. A 1:1 inline-string ↔ key mapping must exist before
+        the swap — if a site speaks a string that is NOT in the manifest's
+        `voice_lines:` block, raise it rather than coining a key in-lane.
+
+        Expected manifest set (post-Wave 7 inventory):
+          - arm_print_on_demand
+          - arm_print_and_clean
+          - brain_morning_routine
+          - brain_evening_routine
+          - brain_medication_reminder
+          - brain_check_in
+          - leg_fall_response
+          - skin_spill_cleanup
+
+        Excluded (older-shape, separate migration):
+          - arm_fetch_object
+          - arm_hand_from_shelf
+          - arm_retrieve_dropped
+
+        Also flag any modern-shape `skin_speaker` composes entry that
+        carries NEITHER an inline utterance NOR an `utterance_ref:` —
+        a silent speaker invocation is an audit gap, not a migration
+        target. Surface those in the PR body; do not paper over them
+        with a coined key.
+
+    - id: B
+      title: Migrate one manifest end-to-end as the worked example
+      description: |
+        Pick `arm_print_on_demand` (5 sites, all in `composes:`, no
+        substitution tokens). Run the swap, leave the `voice_lines:`
+        block untouched, run `hugo --minify`, confirm green. This is
+        the shape every other manifest follows. Commit it as a
+        standalone commit so reviewers see the smallest possible diff
+        of the pattern before the larger ones land.
+
+    - id: C
+      title: Fan out the remaining 7 manifests
+      description: |
+        Apply the same swap to the other 7 modern-shape manifests.
+        One commit per manifest is fine; one commit covering all 7 is
+        also fine — caller's choice. Each manifest's diff should be
+        purely the inline → ref swap, nothing else. Do not reorder
+        composes entries, do not retitle voice_lines keys, do not
+        adjust volume_pct or priority.
+
+        Tokens in utterance strings (`[name]`, `[drug_name]`) live
+        in the `voice_lines:` block, not at the call site. The
+        migration moves the lookup, not the substitution; tokens
+        resolve normally after the dereference.
+
+    - id: D
+      title: Verify and update GODDARD.md
+      description: |
+        - `hugo --minify` green.
+        - grep `utterance: "` across `data/robots/organs/*.yaml` —
+          expect zero hits in the 8 modernized manifests, and only
+          `with: utterance:` lines on the 3 older-shape manifests
+          (arm_fetch_object, arm_hand_from_shelf, arm_retrieve_dropped)
+          inside their `when:/action:/utterance:` fallback clauses.
+        - grep `utterance_ref:` — count should equal the Piece A
+          inventory.
+        - GODDARD.md current-state: add a Wave 9 entry naming the
+          migration count, the 8 manifests touched, the 3 explicitly
+          excluded, and the audit-gap flag if any silent composes
+          entries surfaced.
+
+do_not:
+  - rule: "Don't edit voice_lines: blocks"
+    reason: |
+      The block is the canonical source. The migration is a
+      consumption-pattern change, not a copy change. If a site's
+      inline string and its supposed voice_lines: entry diverge, the
+      string was edited at one site without propagating — raise that
+      as a copy-drift bug, do not silently reconcile it.
+  - rule: "Don't migrate the 3 older-shape arm manifests"
+    reason: |
+      arm_fetch_object, arm_hand_from_shelf, and arm_retrieve_dropped
+      use Wave-1-era when:/action:/utterance: fallback grammar — a
+      different shape with no trigger:/recovery: envelope and (today)
+      no voice_lines: block at all. Migrating them requires reshaping
+      the fallback grammar first and is a separate wave.
+  - rule: "Don't coin new voice_lines keys to fill silent composes entries"
+    reason: |
+      A skin_speaker site with neither utterance nor utterance_ref is
+      an audit gap, not a migration target. Coining a key in-lane
+      papers over the gap. Surface it in the PR body for caregiver
+      review.
+  - rule: "Don't migrate sub-skill fields other than utterance"
+    reason: |
+      Only the utterance field is duplicating canonical source. Fields
+      like volume_pct, priority, role are call-site parameters and stay
+      at the call site.
+
+branch:
+  start_from: main
+  bootstrap: |
+    git checkout main && git pull origin main
+  name_pattern: claude/goddard-wave-9-utterance-migration-<your-session-suffix>
+  notes:
+    - |
+      Wave 8's branch (claude/goddard-wave-8-morality-profile-zs5mw) was
+      deleted on merge — do not push to it.
+
+success_criteria:
+  - All modern-shape skin_speaker invocations across the 8 in-scope
+      manifests use `utterance_ref:` (35 sites expected).
+  - voice_lines: blocks are byte-identical pre/post — diff confined
+      to composes / fallback recovery sites.
+  - Substitution tokens (`[name]`, `[drug_name]`) survive — utterances
+      with tokens still resolve correctly after the dereference.
+  - "The 3 older-shape arm manifests are NOT touched — their
+      when:/action:/utterance: clauses remain intact."
+  - Any modern-shape skin_speaker composes entry without an utterance
+      OR an utterance_ref is flagged in the PR body as an audit gap,
+      not silently filled.
+  - hugo --minify green.
+  - GODDARD.md gains a Wave 9 entry, branch pointer updated.
+  - PR opened with the standard session-URL footer; body includes
+      the migration tally (sites, manifests, lines removed) and any
+      audit-gap flags.
+
+learning_angle: |
+  This is the canonical "deferred migration finally happens" wave. The
+  schema flagged the duplication when it was introduced (Wave 3 Phase
+  B4); the duplication accumulated across Waves 6 and 7 as the
+  voice_lines: block was filled out across the library; Wave 9
+  collapses it. The pattern repeats in every long-lived codebase: a
+  "we'll migrate later" note becomes a 35-site cleanup once the source
+  data has stabilized. Doing the migration before the data stabilized
+  would have meant migrating each site twice — once when its
+  voice_lines: entry was coined, again when the wave ran. Sequencing
+  matters: stabilize the canonical source, THEN dedupe the consumers.
+
+  Secondary lesson: schema-deferred work is its own to-do list. The
+  forward-direction note in SCHEMA.md was a TODO disguised as
+  documentation. Surfacing those TODOs as "next-wave candidates" is
+  what keeps the spec from accumulating commitments the implementation
+  has not made.
+
+runners_up:
+  - title: Modernize the 3 older-shape arm manifests' fallback grammar
+    reason_not_picked: |
+      The three Wave-1-era arm manifests (arm_fetch_object,
+      arm_hand_from_shelf, arm_retrieve_dropped) carry a different
+      fallback shape — bare when:/action:/utterance:/notes: clauses
+      rather than the trigger:/recovery: envelope SCHEMA codified in
+      Wave 3 Phase B2. Migrating them is a grammar change, not a ref
+      swap, and pulls in voice_lines: block coining for sites that
+      never had one. Bigger and shape-different — separate wave.
+  - title: Coin voice_lines blocks for the 3 older-shape manifests first
+    reason_not_picked: |
+      Could land the voice_lines: blocks now and migrate the fallback
+      grammar in a later wave. Rejected because the older-shape
+      manifests' inline utterances live INSIDE their fallback clauses,
+      not in composes entries — coining voice_lines: blocks without
+      reshaping the fallback grammar gives the manifests two parallel
+      utterance representations and worsens the duplication. Better to
+      do both in one motion when the time comes.
+  - title: Promote utterance_ref from "forward direction" to "required" in SCHEMA.md
+    reason_not_picked: |
+      Schema-tightening that follows the migration logically. Held
+      back because the 3 older-shape manifests still don't speak the
+      ref pattern; promoting the ref to required while three manifests
+      can't satisfy it would either invalidate them or force their
+      migration into this wave's scope.

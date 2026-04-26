@@ -1,0 +1,369 @@
+wave: 13
+title: Build the SCHEMA.md conformance validator now that the library speaks one grammar
+session_suffix_placeholder: <your-session-suffix>
+
+context: |
+  After Wave 12 the library is grammar-uniform. Every manifest's
+  fallback: block uses the canonical trigger:/recovery: envelope per
+  SCHEMA.md § Fallback and recovery; every skin_speaker site
+  dereferences a voice_lines: key via utterance_ref:; every
+  resident-facing hold carries requires_consent:; every consent key
+  asserted by a manifest exists in MORALITY.md; every memory key
+  referenced by a manifest exists in MEMORY.md. The schema's rules
+  are uniformly satisfied today by inspection.
+
+  Inspection does not scale. The next time someone (a Sonnet lane, a
+  separate session, the curator at 11pm) edits a manifest, the only
+  thing standing between a typo'd consent key and a silent inert
+  registration is review eyeballs. Wave 13 turns the schema's
+  enforceable rules into runnable code: a Python validator that walks
+  every manifest in data/robots/organs/ plus the registries
+  (MORALITY.md, MEMORY.md, chassis_budgets.yaml, morality_profile.yaml)
+  and reports every conformance violation as an actionable error.
+
+  This is the wave Wave 11 named as a runner-up and Wave 12 unblocked.
+  The validator's value compounds — every future wave adds rules to
+  enforce, and every future manifest edit gets a free check.
+
+  Scope discipline: the validator ENFORCES rules SCHEMA.md already
+  states. It does not invent new rules. If a check would require a
+  new rule SCHEMA.md does not currently express, raise it as a
+  separate question — schema changes go through a real review, not
+  through the validator's first pass.
+
+read_first:
+  - path: GODDARD.md
+    section: current-state block
+  - path: docs/goddard/SCHEMA.md
+    section: |
+      § Required fields, § Validation, AND § Registration protocol —
+      these are the explicit conformance rules. Also walk § Fallback
+      and recovery (terminal-action requirement, trigger expression
+      grammar), § Voice lines (utterance_ref must resolve to a key in
+      the same manifest's voice_lines: block), § Memory-key
+      conventions (memory keys must exist in MEMORY.md), § Morality
+      module (consent keys + clauses must exist in MORALITY.md;
+      resident-facing holds must carry requires_consent:).
+  - path: docs/goddard/MORALITY.md
+    section: |
+      § Consent keys, § Resident-facing hold states, § Module clauses
+      — the registry the validator dereferences against.
+  - path: docs/goddard/MEMORY.md
+    section: |
+      § Config keys, § Log keys, § Token-backed keys — the registry
+      the validator dereferences against.
+  - path: data/robots/organs/arm_print_on_demand.yaml
+    section: |
+      The cleanest fully-conformant worked example post-Wave-12.
+      Use as the green-light fixture in tests.
+  - path: data/robots/organs/leg_fall_response.yaml
+    section: |
+      The richest fully-conformant fixture: voice_lines: with
+      register-contract preamble, robot-self holds, fallback envelope
+      with multiple clauses, morality: block with assertion, requires:
+      list. If the validator passes this file, it covers most of the
+      schema's surface area.
+
+task:
+  artifact: |
+    A new Python script at scripts/validate_organs.py plus a small
+    fixtures directory at scripts/fixtures/ containing one known-bad
+    manifest per failure class (so the validator's failure messages
+    can be regression-tested). README-style docstring at the top of
+    the script names every rule the validator enforces, with a
+    SCHEMA.md section pointer per rule. Eventually a CI step
+    invoking it on every PR — that hookup is the LAST piece of this
+    wave, after the validator itself is solid against the live
+    library and the fixtures.
+
+  shape_reference: |
+    Validator entrypoint: `python3 scripts/validate_organs.py
+    [--organs-dir data/robots/organs] [--strict]`. Exits 0 on clean
+    library, non-zero with one error per line on failures. Each
+    error line: `<file>:<rule_id>: <message>`. Example:
+
+      data/robots/organs/arm_fetch_object.yaml:R012:
+        utterance_ref `missing_key` not found in voice_lines: block
+
+    Rule ids are stable across versions (R001, R002, ...) so CI logs
+    and PR review comments can refer to specific rules without
+    re-quoting the message text.
+
+    Implementation guardrails:
+      - PyYAML for parsing (already in the build env; no new deps).
+      - One module-level dataclass per rule: rule_id, severity
+        (error / warn), schema_section (the # anchor in SCHEMA.md),
+        check function. The check function returns a list of error
+        strings.
+      - The validator does NOT modify files. Read-only walk.
+      - The registries (MORALITY.md, MEMORY.md) are parsed for
+        TABLE rows; the parser is markdown-table-aware but does NOT
+        try to be a general markdown parser. Defensive: if a table
+        shape changes, fail loudly with a parser-level error
+        rather than silently miss-validating.
+
+  pieces:
+    - id: A
+      title: Inventory the rules SCHEMA.md actually states
+      description: |
+        Walk SCHEMA.md cover-to-cover. For each MUST / MUST NOT /
+        SHOULD / required-field assertion, write a one-line rule
+        statement and the SCHEMA.md section anchor. Surface this as a
+        markdown table in the PR body — the rules list IS the
+        validator's contract, and reviewers need to see it before the
+        code lands.
+
+        Rules likely to land in the first pass (non-exhaustive — the
+        actual list comes from the SCHEMA.md walk):
+
+          R001 — every manifest has the required fields per § Required
+                 fields (id, name, region, group, description, hardware
+                 OR composes:, preconditions, owned_by)
+          R002 — region is one of the 8 region values
+          R003 — group is one of the 9 functional group values
+          R004 — every id in composes_with: resolves to an existing
+                 organ id
+          R005 — every skill: id in composes: resolves to an existing
+                 organ id
+          R006 — every utterance_ref: <key> resolves to a key in the
+                 same manifest's voice_lines: block
+          R007 — every voice_lines: substitution token [foo] resolves
+                 to a token-backed key in MEMORY.md
+          R008 — every brain_memory query/update key resolves to a
+                 config or log key in MEMORY.md
+          R009 — every recovery list ends in a terminal action
+                 (abort: true, hold:/until:, or a skill invocation
+                 that the runtime treats as terminal)
+          R010 — every hold: action carries an until: condition
+                 (no forever-holds)
+          R011 — every resident-facing hold: state per MORALITY.md
+                 carries requires_consent: <key> on the same action
+          R012 — every requires_consent: <key> resolves to a consent
+                 key in MORALITY.md
+          R013 — every morality.requires: consent key resolves to a
+                 consent key in MORALITY.md
+          R014 — every morality.clauses: clause_id is unique across
+                 the library
+          R015 — every morality.clauses: clause_id is registered in
+                 MORALITY.md § Module clauses (a clause asserted under
+                 an unregistered name registers as inert)
+          R016 — fallback: clauses use trigger:/recovery: envelope
+                 (the canonical envelope post-Wave 12 — no when:/
+                 action: clauses anywhere)
+          R017 — every storage_volume_cm3 organ routes to a valid
+                 bucket per chassis_budgets.yaml (chassis-* → skin_bay,
+                 guts-bay-* → guts_bays, else main_garage)
+          R018 — only_if: expressions parse against the boolean grammar
+                 (blackboard key references, AND/OR, comparison
+                 operators, contains for strings)
+
+        Anything you find in SCHEMA.md that the existing library
+        violates is a finding for the PR body, not a rule to soften.
+        SCHEMA-vs-reality conflicts get raised, not silently
+        validator-ignored.
+
+    - id: B
+      title: Build the validator skeleton + the first 5 rules
+      description: |
+        scripts/validate_organs.py with:
+          - argparse front-end accepting --organs-dir, --registries-dir
+            (default docs/goddard/), --strict (warns become errors).
+          - Manifest loader (PyYAML, glob *.yaml in --organs-dir).
+          - Registry loaders (markdown-table parsers for MORALITY.md
+            sections and MEMORY.md sections; YAML loader for
+            chassis_budgets.yaml and morality_profile.yaml).
+          - Rule registry (list of dataclass instances).
+          - Main loop: for each rule, for each manifest, run the check
+            and accumulate errors.
+          - Output: one error per line in the format above; final
+            exit code is 0 / 1 based on accumulated errors.
+
+        Implement R001–R005 first — they are the structural rules
+        every other rule depends on (no point checking utterance_ref
+        resolution on a manifest that is missing required fields).
+
+    - id: C
+      title: Add the cross-registry rules (R006–R015)
+      description: |
+        Implement the rules that dereference into MEMORY.md and
+        MORALITY.md. This is the heaviest piece — the registry
+        parsers need to be defensive against table-shape edits and
+        the dereference walks need to handle nested utterance strings
+        (substitution tokens), composes lists (skill ids), and
+        morality blocks (requires + clauses).
+
+        For each rule, write at least one fixture in scripts/fixtures/
+        that the rule should reject. Fixture filenames map to rule
+        ids: scripts/fixtures/R006_missing_voice_line_key.yaml etc.
+        Each fixture is a minimal-but-valid-against-other-rules
+        manifest that violates exactly one rule, so the failure
+        message can be tested precisely.
+
+    - id: D
+      title: Add the fallback / hold rules (R016, R009, R010, R011)
+      description: |
+        These rules together encode "the library speaks one fallback
+        grammar and every resident-facing hold is consent-gated" —
+        the post-Wave-12 invariants the migration was for. Implement
+        R016 last among them; if any when:/action: clause exists in
+        the live library, the migration was incomplete and the
+        validator should flag it.
+
+        Fixture coverage:
+          - R009: a recovery list ending in an enqueue: only (no
+            terminal)
+          - R010: a hold: with no until:
+          - R011: a resident-facing hold (build_area_restricted) with
+            no requires_consent:
+          - R016: a fallback clause with when:/action:
+
+    - id: E
+      title: Run on the live library, document the green run, wire CI
+      description: |
+        - Run `python3 scripts/validate_organs.py` against the live
+          data/robots/organs/. Expected: zero errors. If any fire, do
+          NOT silence the rule — they are real conformance gaps the
+          validator just surfaced. Either fix the manifest in this
+          wave (if the fix is mechanical) or raise it as a blocker
+          and open a separate PR (if it is design work). Surface the
+          decision in the PR body.
+        - Capture the green-run output in the PR body as evidence.
+        - Add a CI step (.github/workflows/deploy.yml or a new
+          validate.yml) running the validator on every push and PR.
+          Failure should block merge.
+        - Update README / SCHEMA.md § Validation pointer to mention
+          the validator script as the canonical enforcement of the
+          documented rules.
+        - GODDARD.md current-state: add a Wave 13 entry naming the
+          rule count, the fixture count, the green run, and the CI
+          hookup. Note that the schema's rules are now machine-
+          enforced — every future wave that adds a rule should add a
+          rule entry to this validator in the same PR.
+
+do_not:
+  - rule: "Don't invent rules SCHEMA.md does not state"
+    reason: |
+      The validator enforces the schema; it is not a place to insert
+      new design opinions. If you find yourself wanting to add a
+      check that has no SCHEMA.md anchor, that is a SCHEMA.md edit
+      first, then a validator rule. Schema changes go through review,
+      not through clever validator code.
+  - rule: "Don't silence a rule that fires on the live library"
+    reason: |
+      A rule that fires on a real manifest is doing its job. Either
+      fix the manifest or raise the conflict; do not weaken the
+      check. The whole point is to catch conformance gaps.
+  - rule: "Don't make the validator modify files"
+    reason: |
+      Read-only. A validator that auto-fixes blurs the diff history
+      and bypasses review. Fixers are useful but they are a separate
+      tool with separate scope (Wave 14 candidate, possibly).
+  - rule: "Don't add new dependencies"
+    reason: |
+      PyYAML is already available in the build env. A validator that
+      pulls in jsonschema, pydantic, ruamel.yaml, click, rich, etc.
+      becomes a maintenance load. Stdlib + PyYAML keeps the tool
+      auditable and the CI invocation cheap.
+  - rule: "Don't bundle unrelated cleanups"
+    reason: |
+      The validator is the artifact. If running it surfaces a
+      manifest fix, fine — note it and either fix it in scope or
+      defer it to a follow-up. Do not turn the validator wave into a
+      grab-bag of "while I'm in there" edits.
+  - rule: "Don't write rules in markdown only"
+    reason: |
+      Every rule the validator claims to enforce MUST have a check
+      function that runs. A rule documented in the docstring but not
+      implemented is worse than no rule — it implies a guarantee
+      that does not exist.
+
+branch:
+  start_from: main
+  bootstrap: |
+    git checkout main && git pull origin main
+  name_pattern: claude/goddard-wave-13-schema-validator-<your-session-suffix>
+  notes:
+    - |
+      Wave 12's branch will be deleted on merge — do not push to it.
+    - |
+      The validator script is the artifact, not the docs. Most of the
+      diff lives in scripts/validate_organs.py + scripts/fixtures/*.
+      Documentation edits (SCHEMA.md § Validation pointer, GODDARD.md
+      current-state) are small.
+    - |
+      One commit per group of related rules is fine; one commit for
+      the skeleton then one per piece is also fine. Keep CI hookup
+      as the final commit — landing the validator before CI gives
+      reviewers a chance to run it locally without the gate firing
+      on the validator's own PR.
+
+success_criteria:
+  - scripts/validate_organs.py exists and runs against the live
+      data/robots/organs/ with exit 0.
+  - The rules implemented match the rules inventoried in Piece A,
+      one-for-one. Every rule has a SCHEMA.md anchor in its docstring.
+  - scripts/fixtures/ contains at least one negative fixture per
+      rule; the validator REJECTS each with the expected error message.
+  - A CI step invokes the validator on every push and PR; failure
+      blocks merge.
+  - hugo --minify green (the site's own build is unaffected — the
+      validator is a developer tool, not a Hugo input).
+  - GODDARD.md gains a Wave 13 entry, branch pointer updated.
+  - PR opened with the standard session-URL footer; body includes
+      the rules table from Piece A, the green-run output, and a
+      one-paragraph note on what the next wave should build on this
+      foundation (Wave 14 candidates).
+
+learning_angle: |
+  The pattern is "spec → instances → enforcement." Wave 1 wrote the
+  spec. Waves 2-12 instantiated the spec across a real library.
+  Wave 13 makes the spec machine-checkable. The transferable lesson:
+  documentation drift is inevitable until you give the spec teeth.
+  A SCHEMA.md rule that no script enforces is a suggestion;
+  a SCHEMA.md rule a CI gate enforces is a contract.
+
+  Sequencing matters too — you cannot meaningfully validate
+  conformance until the library is conformant. Building the validator
+  in Wave 5 would have meant the validator's "expected" output was
+  itself a moving target; building it in Wave 13 means the green run
+  is real, the fixtures encode real failure modes, and every future
+  PR is gated by a known-good baseline.
+
+  Secondary lesson: the validator is leverage. Every future wave that
+  adds a schema rule adds a validator rule in the same PR. The cost
+  of adding the rule is the cost of writing one check function;
+  the value is permanent enforcement across every manifest forever.
+  This is the lifecycle inversion that makes long-lived systems
+  durable — small per-feature investments that compound.
+
+runners_up:
+  - title: Auto-fix mode for the validator
+    reason_not_picked: |
+      Tempting and useful — a --fix flag that rewrites manifests to
+      satisfy the rules. Held because (a) a read-only validator is
+      simpler to trust on its first run, (b) auto-fixers blur diffs
+      and bypass review, and (c) most rules' fixes are non-trivial
+      (a missing utterance_ref doesn't have an obvious right value).
+      Better as a separate wave once the read-only validator has
+      proven itself across a few PRs.
+  - title: Promote `utterance_ref` to required in SCHEMA.md
+    reason_not_picked: |
+      A two-line SCHEMA.md edit. After Wave 12 + Wave 13, every
+      manifest satisfies the requirement and the validator enforces
+      it automatically. The promotion itself is small enough to
+      bundle into a future wave's documentation update. Held until
+      the validator is proving the requirement holds in CI.
+  - title: Validator for SCHEMA.md itself (meta-validator)
+    reason_not_picked: |
+      A tool that walks SCHEMA.md and confirms every documented rule
+      has a corresponding validator check. Cute, but premature — the
+      validator's rule list is the right place to keep the manifest-
+      side enforcement; mapping that back to SCHEMA.md sections is a
+      docstring discipline, not a separate tool.
+  - title: Visual inspector / dashboard for the manifest library
+    reason_not_picked: |
+      A web view of every manifest's morality block, voice_lines,
+      composes graph etc. would help caregivers audit the library
+      without reading YAML. Different value (audit, not enforcement)
+      and different audience (caregiver, not Goddard); deserves its
+      own wave framing. Hold for after Wave 15.

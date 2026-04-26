@@ -1,0 +1,394 @@
+# PROVENANCE — backfill, not original
+# This prompt was reconstructed in a later session from GODDARD.md's
+# Wave 12 current-state entry and the actual git diff (commits
+# 1f63501, d9e3f5a, 846981b, 965f2ac). The original session prompt
+# lives in the claude.ai cloud at session_01Vr6eRWWJY8QoCLZT4UsJ6p
+# and was not recovered into this file.
+# Treat the runners_up and do_not rules below as Goddard's best
+# reconstruction of the design choices, not as verbatim caregiver
+# instructions. If a future curator opens the original session and
+# finds material divergence, replace this file rather than patching it.
+---
+wave: 12
+title: Migrate the 3 older-shape arm manifests to the canonical fallback grammar
+session_suffix_placeholder: <your-session-suffix>
+
+context: |
+  Wave 9 modernized 35 `skin_speaker` sites across 8 manifests onto
+  `utterance_ref:` and explicitly excluded the 3 Wave-1-era arm
+  manifests (arm_fetch_object, arm_hand_from_shelf, arm_retrieve_dropped)
+  because they speak a different fallback grammar — bare
+  `when:/action:/utterance:/notes:` clauses rather than the canonical
+  `trigger:/recovery:` envelope SCHEMA.md § Fallback and recovery
+  codified in Wave 3 Phase B2. Wave 9 also surfaced an audit gap on
+  the same three manifests: each carries a modern-shape `skin_speaker`
+  composes entry with NO utterance at all (neither inline nor a
+  `voice_lines:` ref).
+
+  Wave 11 then jumped the queue and asserted `no_unrequested_physical_catch`
+  on `leg_fall_response` instead of doing this fallback migration.
+  That was the right call — it kept the morality module's flywheel
+  spinning and got a third clause asserted. But it leaves the library
+  with two fallback grammars side by side: 8 manifests on the canonical
+  envelope, 3 on the older shape. A SCHEMA.md conformance validator
+  cannot land cleanly until the library speaks one grammar.
+
+  Wave 12 collapses the two-grammar situation. Take each of the 3
+  older-shape manifests' `when:/action:/utterance:/notes:` clauses and
+  rewrite them as `trigger:/recovery:` envelopes per SCHEMA. Translate
+  bare `action:` labels into explicit recovery action lists drawn from
+  SCHEMA's closed set (skill invocation, `enqueue:`, `hold:` / `until:`,
+  `abort:`). Translate `notes:` prose that described behavior
+  ("retract the arm before travel," "alert caregiver if unresolved,"
+  "stay nearby") into explicit actions, not stranded comments.
+  Translate inline `utterance:` strings into `voice_lines:` keys
+  retrieved via `utterance_ref:` — closing the Wave 9 audit gap on
+  the same three manifests in the same pass.
+
+read_first:
+  - path: GODDARD.md
+    section: current-state block
+  - path: docs/goddard/SCHEMA.md
+    section: |
+      § Fallback and recovery — the canonical envelope. Especially
+      § Recovery actions (the closed set: skill invocation, reschedule,
+      hold/until, abort, log, enqueue), § hold:/until: (robot-self vs.
+      resident-facing flavor — the migration introduces robot-self
+      holds where the older notes: prose said "stay nearby" or "wait
+      here"), and the trigger-expression grammar (boolean over
+      blackboard keys, AND/OR, comparison operators, `contains` for
+      strings).
+  - path: docs/goddard/SCHEMA.md
+    section: |
+      § Voice lines — especially § Substitution tokens and § Consumption
+      pattern. Every utterance you create as a voice_lines: key is
+      caregiver-tunable copy; preserve the original strings character-
+      for-character so caregivers' Wave-1-era tuning survives.
+  - path: data/robots/organs/arm_print_on_demand.yaml
+    section: |
+      The post-Wave-9 worked example: voice_lines: block as canonical
+      source, fallback: clauses using trigger:/recovery: envelope,
+      every skin_speaker site dereferences a key via utterance_ref:.
+      Match this shape exactly.
+  - path: data/robots/organs/leg_fall_response.yaml
+    section: |
+      The library's most complex post-Wave-9 fallback example. Robot-
+      self holds (`station_at_nearest_safe_pose`, `station_at_nearest_dry_pose`)
+      with `until:` conditions, enqueue: actions for caregiver alerts,
+      multi-action recovery lists. Use this as the reference for
+      translating "stay nearby" / "wait here" notes: prose into
+      explicit hold:/until: + enqueue: combinations.
+  - path: data/robots/organs/arm_fetch_object.yaml
+    section: |
+      All 4 fallback clauses + the silent skin_speaker composes entry
+      flagged in Wave 9 (the handoff_confirmation role with no utterance).
+  - path: data/robots/organs/arm_hand_from_shelf.yaml
+    section: |
+      All 4 fallback clauses + the silent skin_speaker composes entry
+      (the handoff_confirmation role with no utterance).
+  - path: data/robots/organs/arm_retrieve_dropped.yaml
+    section: |
+      All 4 fallback clauses + the silent skin_speaker composes entry
+      (the narrate_and_handoff role with no utterance).
+
+task:
+  artifact: |
+    Edits to 3 manifests. Each manifest's fallback: list rewritten from
+    older-shape clauses to canonical envelope; each manifest gains a
+    voice_lines: block (or expands its existing minimal one) carrying
+    every utterance string that previously lived inline; each manifest's
+    silent skin_speaker composes entry gains an utterance_ref: pointing
+    at a newly-coined voice_lines: key. Possibly minor additions to
+    arm_manipulator (new role names like retract_to_neutral,
+    retract_clear_of_shelf, lift_clear_of_floor) so the recovery lists
+    can invoke explicit retraction skills rather than describing them
+    in prose. One GODDARD.md current-state entry naming the migration
+    count and confirming the library now speaks one fallback grammar.
+
+  shape_reference: |
+    Translation pattern for each older-shape clause:
+
+      # BEFORE — Wave-1-era shape
+      - when: object_not_found
+        action: return_empty_handed
+        utterance: "I couldn't find the remote on the coffee table.
+                    Would you like me to check somewhere else?"
+
+      # AFTER — canonical envelope
+      - trigger: object_found == false
+        recovery:
+          - skill: skin_speaker
+            role: announce_not_found
+            with:
+              utterance_ref: object_not_found
+              priority: normal
+          - abort: true
+
+    The trigger expression is a boolean over blackboard keys (object_found,
+    grasp_attempt_count, grasp_success, item_weight_kg, shelf_height_cm,
+    obstacle_clear, etc.) per the `preconditions:` / `only_if:` grammar.
+    Bare action labels ("return_empty_handed", "decline_before_attempt",
+    "retract_to_neutral_and_narrate") become explicit recovery lists.
+    Every list ends in a terminal — `abort: true` for "give up cleanly,"
+    `hold: <state> until: <expr>` for "wait here," sometimes both with
+    enqueue: in between.
+
+    Notes: prose describing behavior translates to actions:
+      - "retract the arm before travel" → invoke arm_manipulator with
+        a retract role (which means arm_manipulator MUST have that role
+        named — coin it on arm_manipulator if missing)
+      - "stay nearby" → robot-self hold with until: caregiver_arrival
+      - "alert caregiver if unresolved in 60s" → enqueue: a caregiver
+        alert intent with priority_hint: elevated
+      - autonomy/timing rationale → inline yaml comment on the clause,
+        NOT a stranded notes: field
+
+  pieces:
+    - id: A
+      title: Audit and plan, then coin arm_manipulator roles up front
+      description: |
+        Walk all 3 manifests. For each older-shape clause record:
+          - the trigger expression (translate the bare `when:` label
+            into a boolean expression — name the blackboard key the
+            condition implies)
+          - the recovery list (translate the bare `action:` label and
+            any notes: prose into explicit actions)
+          - the utterance, if present, and the voice_lines: key it
+            should land under (most clauses already have a matching
+            entry in the manifest's existing voice_lines: block —
+            confirm the strings match character-for-character)
+          - the silent composes entry (handoff_confirmation /
+            narrate_and_handoff) — coin a voice_lines: key for it
+            ("Here you go, Mrs. [name]." or similar)
+
+        Roles likely needed on arm_manipulator (not present today):
+          - retract_to_neutral (fetch — generic neutral pose)
+          - retract_clear_of_shelf (shelf — clear of vertical surface)
+          - lift_clear_of_floor (dropped — clear of floor reach)
+
+        Coin those roles on arm_manipulator BEFORE editing the three
+        manifests' fallback lists. A recovery list invoking a missing
+        role registers as inert.
+
+        Surface the audit + the new role names in the PR body before
+        making the migration commits, so reviewers can sanity-check the
+        translation choices before the diff lands.
+
+    - id: B
+      title: Migrate arm_fetch_object
+      description: |
+        4 older-shape clauses → 4 canonical envelopes. Expected
+        triggers (verify against the existing notes: text):
+          - object_found == false                                  → speak-and-abort
+          - grasp_attempt_count >= 2 AND grasp_success == false    → retract-speak-abort
+          - object_payload_kg > 2.0                                → speak-and-abort (pre-lift gate)
+          - obstacle_clear == false                                → speak-and-hold-with-enqueue
+
+        Coin voice_lines: keys: handoff_confirmation,
+        grasp_failed_apology, path_blocked_wait. Confirm
+        object_not_found and object_too_heavy already exist in the
+        manifest's voice_lines: block from the original tuning.
+
+        Close the silent skin_speaker composes entry (role:
+        handoff_confirmation) with utterance_ref: handoff_confirmation
+        in the same commit.
+
+    - id: C
+      title: Migrate arm_hand_from_shelf
+      description: |
+        Five clauses including a pre-lift gate and a mid-reach hold.
+        Expected triggers:
+          - item_weight_kg > 2.0                                   → speak-and-abort (pre-lift)
+          - shelf_height_cm > 55                                   → speak-and-abort
+          - item_found_on_shelf == false                           → speak-and-abort
+          - grasp_attempt_count >= 2 AND grasp_success == false    → retract-clear-of-shelf,
+                                                                     speak, enqueue caregiver
+                                                                     alert, abort
+          - shelf_surface_stable == false                          → speak, enqueue elevated
+                                                                     alert, hold until
+                                                                     stable OR caregiver_arrival
+
+        Coin voice_lines: keys: handoff_confirmation, grasp_failed_shelf.
+        Confirm item_too_heavy, shelf_out_of_reach, item_not_found,
+        shelf_contents_shifted already exist.
+
+        Close the silent handoff_confirmation composes entry with
+        utterance_ref: handoff_confirmation.
+
+    - id: D
+      title: Migrate arm_retrieve_dropped
+      description: |
+        Four clauses including the autonomy-first resident-reaching
+        check, a floor-hazard hold, and a medication-count escalation.
+        Expected triggers:
+          - resident_reaching_for_item == true                     → speak-and-abort
+                                                                     (autonomy first)
+          - floor_hazard_flag == true                              → speak, enqueue elevated
+                                                                     alert, hold nearby
+                                                                     until caregiver_arrival
+          - grasp_attempt_count >= 2 AND grasp_success == false    → lift-clear-of-floor,
+                                                                     speak, enqueue alert,
+                                                                     abort
+          - item_is_medication == true AND visible_count
+              < expected_count                                     → speak, enqueue elevated
+                                                                     medication-count alert,
+                                                                     abort
+
+        Coin voice_lines: keys: narrate_and_handoff, grasp_failed_floor.
+        Confirm resident_reaching, floor_hazard, medication_count_uncertain
+        already exist — preserve "please double-check" verbatim on the
+        medication line; it is caregiver-tuned load-bearing copy.
+
+        Close the silent narrate_and_handoff composes entry with
+        utterance_ref: narrate_and_handoff.
+
+    - id: E
+      title: Verify the library is grammar-uniform and update GODDARD.md
+      description: |
+        - grep `^\s*-\s*when:` across data/robots/organs/*.yaml — expect
+          zero hits. (The canonical envelope uses `trigger:`, not `when:`.)
+        - grep `action:` followed by a snake_case label across the same
+          tree — expect zero hits in fallback contexts.
+        - grep `utterance: "` across the same tree — expect zero hits;
+          every utterance is a voice_lines: entry consumed via
+          utterance_ref:.
+        - hugo --minify green.
+        - GODDARD.md current-state: add a Wave 12 entry naming the
+          migration count (3 manifests, 13 clauses, 7 new voice_lines
+          keys), confirming the audit gap from Wave 9 is closed in the
+          same pass, and noting that the SCHEMA.md conformance validator
+          (Wave 11's runner-up) is now unblocked.
+
+do_not:
+  - rule: "Don't change utterance copy"
+    reason: |
+      Every inline utterance: string in the older-shape clauses is
+      caregiver-tuned copy from Wave 1 era. Move the strings into
+      voice_lines: byte-for-byte. The migration is a grammar change,
+      not a copy edit. The "please double-check" phrase on the
+      medication-count line is explicitly caregiver-load-bearing —
+      preserve it verbatim.
+  - rule: "Don't translate notes: prose into stranded comments"
+    reason: |
+      "Retract the arm before travel" describes BEHAVIOR — translate
+      it to an explicit arm_manipulator skill invocation in the
+      recovery list. "Alert caregiver if unresolved" → enqueue:.
+      "Stay nearby" → robot-self hold with until:. Stranded yaml
+      comments preserve no behavior; explicit recovery actions do.
+      Comments are fine for tonal rationale ("autonomy first," timing
+      reasoning) but not for behavior the runtime needs to execute.
+  - rule: "Don't add a morality: block to these manifests"
+    reason: |
+      Wave 12 is grammar migration. None of these three manifests
+      currently asserts a clause; coining one in-lane is a separate
+      morality-assertion wave (Wave 5/Wave 11 precedent). If the
+      migration surfaces a clause that should exist, raise it as a
+      runner-up for the next wave.
+  - rule: "Don't touch other manifests' fallback blocks"
+    reason: |
+      The 8 modern-shape manifests (post-Wave 9) already speak the
+      canonical envelope. Touching them risks reformatting that has
+      nothing to do with the migration scope. Hands off.
+  - rule: "Don't coin voice_lines: keys for sites that don't speak"
+    reason: |
+      The audit gap is silent skin_speaker COMPOSES entries —
+      handoff_confirmation and narrate_and_handoff. Coin keys ONLY
+      for those, and only because the chain reaches them. Do not coin
+      keys speculatively.
+
+branch:
+  start_from: main
+  bootstrap: |
+    git checkout main && git pull origin main
+  name_pattern: claude/migrate-arm-fallback-grammar-<your-session-suffix>
+  notes:
+    - |
+      Wave 11's branch (claude/goddard-wave-11-consent-assertion-q4Nmy)
+      will be deleted on merge — do not push to it.
+    - |
+      One commit per manifest is recommended (3 commits total + 1 for
+      the GODDARD.md current-state update). Per-manifest commits make
+      the translation choices reviewable in isolation; a single
+      mega-commit blurs them.
+
+success_criteria:
+  - "All 3 older-shape arm manifests now use trigger:/recovery:
+      envelopes exclusively. No when:/action:/utterance:/notes:
+      clauses remain anywhere in data/robots/organs/."
+  - "13 clauses migrated total (4 + 5 + 4); every recovery list
+      ends in a terminal (abort: true OR hold:/until:)."
+  - "7 new voice_lines: keys coined (counted by site —
+      handoff_confirmation appears in fetch + shelf, the other 5
+      are single-site)."
+  - "Wave 9 audit gap closed: every skin_speaker site on the 3
+      manifests carries an utterance_ref: (no silent composes
+      entries remain)."
+  - "All caregiver-tuned utterance copy preserved verbatim — only
+      the retrieval location (inline → voice_lines: block) changed."
+  - arm_manipulator gains role names sufficient to satisfy every
+      recovery list's skill invocations (retract_to_neutral,
+      retract_clear_of_shelf, lift_clear_of_floor — exact set
+      determined by Piece A audit).
+  - hugo --minify green.
+  - GODDARD.md gains a Wave 12 entry, branch pointer updated.
+  - PR opened with the standard session-URL footer; body lists the
+      Piece A audit, the role coinage on arm_manipulator, and confirms
+      the library now speaks one fallback grammar.
+
+learning_angle: |
+  This is the "two-grammar consolidation" wave. SCHEMA codified the
+  canonical envelope in Wave 3; the modern-shape manifests adopted it
+  immediately; three older manifests kept the Wave-1-era shape because
+  modernizing them was always lower priority than the next-feature
+  work. After enough waves, the gap stopped being tolerable — Wave 11's
+  runner-up named a SCHEMA conformance validator, and a validator
+  cannot land cleanly against two grammars. Wave 12 collapses the gap
+  so the validator (and every future tooling investment) walks ONE
+  shape.
+
+  The transferable pattern: legacy-shape carve-outs accumulate a tax
+  every time you reach for a tool that has to handle both shapes.
+  Eventually you pay the migration cost or the tooling cost forever.
+  The trigger to migrate is rarely the technical debt itself — it is
+  the next thing you want to build that the debt blocks. Wave 11's
+  validator runner-up was the trigger for Wave 12's migration.
+
+  Secondary lesson: a grammar migration is also an audit opportunity.
+  The Wave 9 audit gap (silent skin_speaker composes entries on these
+  same 3 manifests) gets closed in the same pass — fixing it
+  separately would mean editing each manifest twice. When you're
+  already inside a file changing structure, fold in the structural
+  fixes that touch the same file. Don't fold in unrelated content
+  changes (utterance copy edits, new fallback clauses, morality:
+  blocks) — those are different reviews.
+
+runners_up:
+  - title: Build the SCHEMA.md conformance validator now
+    reason_not_picked: |
+      Buildable, but the validator is materially simpler against ONE
+      grammar than against two. Doing the migration first means the
+      validator's AST walker handles a single shape and the failure
+      messages are uniform. Pick this as Wave 13.
+  - title: Coin a morality clause on one of the migrated manifests
+    reason_not_picked: |
+      Tempting because the migration surfaces every line of behavior
+      these manifests own — exactly the surface area where unasserted
+      consent might live. Held because morality assertions deserve their
+      own wave framing (Wave 5 / Wave 11 precedent), not a tack-on to a
+      grammar migration. The migration is mechanical; clauses are
+      design decisions. Different review weight.
+  - title: Promote `utterance_ref` from "forward direction" to "required" in SCHEMA.md
+    reason_not_picked: |
+      After Wave 12 every manifest in the library can satisfy the
+      requirement. A two-line SCHEMA.md edit. Held because it is
+      better sequenced after the validator (Wave 13) — the validator
+      enforces the requirement automatically, and promoting the
+      requirement to "required" without a checker is documentation
+      with no teeth.
+  - title: Migrate one manifest only, defer the other two
+    reason_not_picked: |
+      Would land the canonical-envelope pattern on one arm manifest
+      and let the other two sit. Rejected because the goal IS grammar
+      uniformity — leaving two of three migrated still leaves the
+      validator blocked. The migration cost is the same per manifest;
+      the value of the migration is at the library level, not per file.
