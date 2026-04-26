@@ -1,3 +1,13 @@
+# PROVENANCE — backfill, not original
+# This prompt was reconstructed in a later session from GODDARD.md's
+# Wave 9 current-state entry and the actual git diff (commit 939a68a).
+# The original session prompt lives in the claude.ai cloud at
+# session_01NXv1vsjogLAt9X9oV1DhrG and was not recovered into this file.
+# Treat the runners_up and do_not rules below as Goddard's best
+# reconstruction of the design choices, not as verbatim caregiver
+# instructions. If a future curator opens the original session and
+# finds material divergence, replace this file rather than patching it.
+---
 wave: 9
 title: Migrate skin_speaker invocations from inline utterance to utterance_ref pointers
 session_suffix_placeholder: <your-session-suffix>

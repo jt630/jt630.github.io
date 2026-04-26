@@ -1,3 +1,12 @@
+# PROVENANCE — backfill, not original
+# Wave 10 was the originally-planned fallback grammar migration;
+# Wave 11 (consent assertion) jumped the queue and the work itself
+# executed as Wave 12. This prompt was reconstructed in a later session
+# from GODDARD.md's current-state, the wave-11 prompt's references to
+# "Wave 10," and the eventual Wave 12 diff. There is no canonical
+# session URL — Wave 10 as written here never ran.
+# Kept as a statute documenting the scope as it was first sketched.
+---
 wave: 10
 title: Collapse the two-grammar fallback situation across the library
 session_suffix_placeholder: <your-session-suffix>

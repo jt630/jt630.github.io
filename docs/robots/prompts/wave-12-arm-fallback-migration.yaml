@@ -1,3 +1,14 @@
+# PROVENANCE — backfill, not original
+# This prompt was reconstructed in a later session from GODDARD.md's
+# Wave 12 current-state entry and the actual git diff (commits
+# 1f63501, d9e3f5a, 846981b, 965f2ac). The original session prompt
+# lives in the claude.ai cloud at session_01Vr6eRWWJY8QoCLZT4UsJ6p
+# and was not recovered into this file.
+# Treat the runners_up and do_not rules below as Goddard's best
+# reconstruction of the design choices, not as verbatim caregiver
+# instructions. If a future curator opens the original session and
+# finds material divergence, replace this file rather than patching it.
+---
 wave: 12
 title: Migrate the 3 older-shape arm manifests to the canonical fallback grammar
 session_suffix_placeholder: <your-session-suffix>
