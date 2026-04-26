@@ -140,6 +140,7 @@ fallback:
           intent: caregiver_medication_review
           source: sensor
           priority_hint: safety
+      - abort: true
 
 voice_lines:
   # Reviewable copy — every utterance in this routine should sound like

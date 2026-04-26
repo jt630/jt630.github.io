@@ -1,0 +1,33 @@
+name: Validate Organ Manifests
+
+on:
+  push:
+    paths:
+      - "data/robots/organs/**"
+      - "docs/goddard/MORALITY.md"
+      - "docs/goddard/MEMORY.md"
+      - "scripts/validate_organs.py"
+  pull_request:
+    paths:
+      - "data/robots/organs/**"
+      - "docs/goddard/MORALITY.md"
+      - "docs/goddard/MEMORY.md"
+      - "scripts/validate_organs.py"
+
+jobs:
+  validate:
+    name: Organ manifest conformance (R001–R018)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Run validate_organs.py
+        run: python3 scripts/validate_organs.py --strict

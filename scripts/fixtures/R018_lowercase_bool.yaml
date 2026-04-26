@@ -1,0 +1,21 @@
+# Fixture R018: violates R018 (warn) — only_if: expression uses lowercase 'and'/'or'.
+id: R018_lowercase_bool
+name: Fixture — Lowercase Boolean in only_if
+kind: composed
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R018.
+  SKIP never.
+composes:
+  - skill: skin_speaker
+    role: announce
+    only_if: condition_a and condition_b    # R018: 'and' should be 'AND'
+    with:
+      utterance_ref: greeting
+      priority: normal
+voice_lines:
+  greeting: "Hello."
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis

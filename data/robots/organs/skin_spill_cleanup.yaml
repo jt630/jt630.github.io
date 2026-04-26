@@ -119,6 +119,7 @@ fallback:
           utterance_ref: oversize_refused
           priority: alert
       - log: oversize_intake_refused
+      - abort: true
   - trigger: "spill_temperature_c > 45"
     recovery:
       - skill: skin_speaker
@@ -127,6 +128,7 @@ fallback:
           utterance_ref: hot_spill_refused
           priority: alert
       - log: hot_spill_refused
+      - abort: true
   - trigger: sharp_object_detected
     recovery:
       - skill: skin_speaker
@@ -135,6 +137,7 @@ fallback:
           utterance_ref: sharp_refused
           priority: alert
       - log: sharp_object_refused
+      - abort: true
   - trigger: waste_bay_fill_pct >= 90
     recovery:
       - skill: skin_speaker
@@ -143,6 +146,7 @@ fallback:
           utterance_ref: bay_full_refused
           priority: alert
       - log: waste_bay_full_refused
+      - abort: true
   - trigger: filter_clean == false
     recovery:
       - skill: skin_speaker
@@ -151,6 +155,7 @@ fallback:
           utterance_ref: filter_blocked_refused
           priority: alert
       - log: filter_blocked_refused
+      - abort: true
 
 safety:
   # Restated elderly-care rules (non-negotiable, per goddard-core-functions.md):

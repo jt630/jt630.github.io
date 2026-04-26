@@ -1,0 +1,15 @@
+# Fixture R004: violates R004 — composes_with references a non-existent organ id.
+id: R004_bad_composes_with
+name: Fixture — Bad composes_with
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R004.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+composes_with:
+  - organ_that_does_not_exist    # R004: no organ with this id

@@ -1,0 +1,14 @@
+# Fixture R001: violates R001 by omitting the required 'owned_by' field.
+# All other required fields are present so only R001 fires.
+id: R001_missing_owned_by
+name: Fixture — Missing owned_by
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R001.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+# owned_by intentionally omitted — R001 requires it

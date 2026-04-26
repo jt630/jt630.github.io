@@ -1,0 +1,20 @@
+# Fixture R006: violates R006 — utterance_ref points to a key not in voice_lines:.
+id: R006_missing_voice_line_key
+name: Fixture — Missing Voice Line Key
+kind: composed
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R006.
+  SKIP never.
+composes:
+  - skill: skin_speaker
+    role: announce
+    with:
+      utterance_ref: nonexistent_key    # R006: not present in voice_lines: below
+      priority: normal
+voice_lines:
+  existing_key: "This key exists, but utterance_ref points elsewhere."
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis

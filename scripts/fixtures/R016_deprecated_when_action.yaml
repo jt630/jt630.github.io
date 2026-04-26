@@ -1,0 +1,16 @@
+# Fixture R016: violates R016 — fallback clause uses deprecated when:/action: grammar.
+id: R016_deprecated_when_action
+name: "Fixture — Deprecated when/action Fallback Grammar"
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R016.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+fallback:
+  - when: something_failed          # R016: deprecated pre-Wave-12 key
+    action: abort                   # R016: deprecated pre-Wave-12 key

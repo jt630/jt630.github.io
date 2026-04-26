@@ -1,0 +1,18 @@
+# Fixture R015: violates R015 — clause_id not registered in MORALITY.md § Module clauses.
+id: R015_unregistered_clause
+name: Fixture — Unregistered Clause ID
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R015.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+morality:
+  clauses:
+    - clause_id: unregistered_clause_id    # R015: not in MORALITY.md Module clauses table
+      statement: "This clause is not in the registry."
+      overridable: false

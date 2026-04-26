@@ -1,0 +1,14 @@
+# Fixture R017: violates R017 (warn) — storage_volume_cm3 > 0 with no hardware.slot.
+id: R017_storage_no_slot
+name: Fixture — Storage Volume Without Slot
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R017.
+  SKIP never.
+hardware:
+  power_w: 10
+  storage_volume_cm3: 500    # R017: > 0 but hardware.slot is missing
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis

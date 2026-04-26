@@ -108,6 +108,7 @@ fallback:
           utterance_ref: print_failed
           priority: normal
       - log: print_failure
+      - abort: true
 
 safety:
   # Inherited + coordination safety. The hot-nozzle rule from arm_3d_printer

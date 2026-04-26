@@ -106,7 +106,12 @@ fallback:
   # through skin_speaker. Never scold. Never imply the resident failed.
   # Escalation to caregiver is the safety net, not a reprimand.
   - trigger: acknowledgment_timeout_reached AND no_utterance_captured
-    # No acknowledgment within 5 minutes. Re-announce once, then escalate.
+    # No acknowledgment within 5 minutes. Re-announce once, then escalate
+    # to the caregiver. SCHEMA.md does not support nested conditional triggers
+    # in a recovery list, so the escalation is unconditional after the retry
+    # wait — the caregiver can see from the log whether the retry succeeded.
+    # This is the conservative-safe choice: a spurious caregiver notification
+    # is less harmful than a missed dose that was never reported.
     recovery:
       - skill: skin_speaker
         role: reannounce_reminder
@@ -119,26 +124,25 @@ fallback:
         with:
           wake_word_enabled: false
           timeout_s: 300
-      - trigger_if_still_no_response:
-          - skill: brain_intent_queue
-            role: escalate_to_caregiver
-            with:
-              priority_hint: safety
-              source: sensor
-              raw_intent:
-                type: caregiver_alert
-                reason: medication_acknowledgment_missing
-                drug_name: captured
-                scheduled_time: captured
-                urgency: standard
-          - skill: brain_memory
-            role: log_missed_acknowledgment
-            with:
-              update:
-                key: medication_log
-                field: missed_acknowledgments
-                value: {drug_name: captured, timestamp: captured, reason: no_response_after_retry}
-              caregiver_auth: false
+      - skill: brain_intent_queue
+        role: escalate_to_caregiver
+        with:
+          priority_hint: safety
+          source: sensor
+          raw_intent:
+            type: caregiver_alert
+            reason: medication_acknowledgment_missing
+            drug_name: captured
+            scheduled_time: captured
+            urgency: standard
+      - skill: brain_memory
+        role: log_missed_acknowledgment
+        with:
+          update:
+            key: medication_log
+            field: missed_acknowledgments
+            value: {drug_name: captured, timestamp: captured, reason: no_response_after_retry}
+          caregiver_auth: false
   - trigger: resident_response contains "skip" OR resident_response contains "not now" OR resident_response contains "later"
     # Resident actively declines this dose. Log the decline and alert the
     # caregiver — we do not argue with the resident, and we do not

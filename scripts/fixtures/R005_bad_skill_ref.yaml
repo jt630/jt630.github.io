@@ -1,0 +1,15 @@
+# Fixture R005: violates R005 — composes: references a non-existent skill id.
+id: R005_bad_skill_ref
+name: Fixture — Bad Skill Ref
+kind: composed
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R005.
+  SKIP never.
+composes:
+  - skill: organ_that_does_not_exist    # R005: no organ with this id
+    role: do_thing
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
