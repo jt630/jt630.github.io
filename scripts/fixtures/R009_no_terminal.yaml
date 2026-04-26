@@ -1,0 +1,22 @@
+# Fixture R009: violates R009 — recovery list ends with a non-terminal enqueue:.
+id: R009_no_terminal
+name: Fixture — No Terminal in Recovery
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R009.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+fallback:
+  - trigger: something_failed
+    recovery:
+      - enqueue:
+          intent: some_intent
+          source: sensor
+          priority_hint: normal
+      # R009: enqueue: is non-terminal — must end with abort:, hold:+until:,
+      # or a skill invocation.

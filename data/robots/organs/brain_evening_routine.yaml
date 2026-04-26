@@ -141,6 +141,7 @@ fallback:
           intent: caregiver_medication_review
           source: sensor
           priority_hint: safety
+      - abort: true
 
 voice_lines:
   windown: "It is about time for bed, Mrs. [name]."

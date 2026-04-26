@@ -1,0 +1,18 @@
+# Fixture R010: violates R010 — hold: has no paired until: condition.
+id: R010_hold_no_until
+name: Fixture — Hold Without Until
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R010.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+fallback:
+  - trigger: something_failed
+    recovery:
+      - hold: some_safe_pose
+        # R010: until: is missing — a forever-hold is invalid per SCHEMA.md

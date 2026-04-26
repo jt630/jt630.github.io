@@ -1,0 +1,20 @@
+# Fixture R014 (part A): declares test_fixture_clause with one definition.
+# Run together with R014b_clause_conflict.yaml; R014 fires when the same
+# clause_id appears with differing statement or overridable across manifests.
+id: R014a_clause_conflict
+name: Fixture R014-A — Clause Conflict (first definition)
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R014.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+morality:
+  clauses:
+    - clause_id: r014_test_clause
+      statement: "First definition of this clause."
+      overridable: false

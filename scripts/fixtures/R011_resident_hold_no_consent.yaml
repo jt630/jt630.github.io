@@ -1,0 +1,26 @@
+# Fixture R011: violates R011 — resident-facing hold carries no requires_consent:.
+id: R011_resident_hold_no_consent
+name: Fixture — Resident-Facing Hold Without requires_consent
+region: arm
+group: fabrication
+description: |
+  TRIGGER when testing R011.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+fallback:
+  - trigger: something_failed
+    recovery:
+      - skill: skin_speaker
+        role: announce
+        with:
+          utterance_ref: warning
+          priority: alert
+      - hold: build_area_restricted    # resident-facing per MORALITY.md registry
+        until: caregiver_ack
+        # R011: requires_consent: intentionally omitted — registration must fail
+voice_lines:
+  warning: "Please stay clear."

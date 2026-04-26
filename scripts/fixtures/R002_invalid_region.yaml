@@ -1,0 +1,13 @@
+# Fixture R002: violates R002 with an invalid region value.
+id: R002_invalid_region
+name: Fixture — Invalid Region
+region: torso    # not one of brain|core|guts|arm|hands|legs|thighs|skin
+group: manipulation
+description: |
+  TRIGGER when testing R002.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis

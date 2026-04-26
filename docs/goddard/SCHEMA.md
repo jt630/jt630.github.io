@@ -779,12 +779,30 @@ Optional but expected:
 
 ## Validation
 
-Before merging a PR, Goddard runs these checks:
-- All required fields present
-- `region` is one of the 8 regions
-- `group` is one of the 9 functional groups
-- Every id in `composes_with` resolves to an existing organ
-- `hugo --minify` passes (build health)
+The canonical enforcement of this schema's rules is
+**`scripts/validate_organs.py`** (Wave 13). Run it before merging any PR that
+touches `data/robots/organs/` or the registries:
+
+```bash
+python3 scripts/validate_organs.py           # errors only
+python3 scripts/validate_organs.py --strict  # warnings become errors (CI mode)
+```
+
+A CI step (`.github/workflows/validate.yml`) runs the validator on every push
+and PR that touches organs or registries; failure blocks merge. The rules it
+enforces are listed in the script's module docstring (R001–R018) with a
+SCHEMA.md section anchor per rule.
+
+**Adding a new rule:** every wave that adds a MUST/MUST NOT assertion to
+SCHEMA.md MUST add a corresponding rule to `validate_organs.py` in the same PR.
+A documented rule with no check function implies a guarantee that does not exist.
+
+Goddard also runs these checks on every PR:
+- All required fields present (R001)
+- `region` is one of the 8 regions (R002)
+- `group` is one of the 9 functional groups (R003)
+- Every id in `composes_with` resolves to an existing organ (R004)
+- `hugo --minify` passes (build health — separate from the validator)
 
 Schema drift (new fields introduced by a lane) must be proposed — Goddard
 promotes, renames, or rejects during PR review.

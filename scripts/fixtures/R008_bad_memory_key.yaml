@@ -1,0 +1,19 @@
+# Fixture R008: violates R008 — brain_memory query references a key not in MEMORY.md.
+id: R008_bad_memory_key
+name: Fixture — Bad Memory Key
+kind: composed
+region: brain
+group: sequence_reading
+description: |
+  TRIGGER when testing R008.
+  SKIP never.
+composes:
+  - skill: brain_memory
+    role: read_something
+    with:
+      query:
+        key: unregistered_preference_key    # R008: not in MEMORY.md config or log keys
+        fields: [foo, bar]
+preconditions:
+  - brain_compute_online: true
+owned_by: jarvis

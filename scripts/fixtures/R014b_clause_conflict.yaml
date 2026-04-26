@@ -1,0 +1,20 @@
+# Fixture R014 (part B): declares the same clause_id as R014a with a conflicting
+# definition. The validator compares clause definitions across all loaded manifests
+# and flags the inconsistency as R014.
+id: R014b_clause_conflict
+name: Fixture R014-B — Clause Conflict (conflicting definition)
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R014.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+morality:
+  clauses:
+    - clause_id: r014_test_clause        # same id as R014a — different statement/overridable
+      statement: "Second conflicting definition of the same clause."
+      overridable: true

@@ -1,0 +1,15 @@
+# Fixture R007: violates R007 — voice_lines uses a [token] not in MEMORY.md.
+id: R007_unregistered_token
+name: Fixture — Unregistered Substitution Token
+region: arm
+group: manipulation
+description: |
+  TRIGGER when testing R007.
+  SKIP never.
+hardware:
+  slot: active-tool
+voice_lines:
+  greeting: "Hello, [unknown_person]."    # R007: [unknown_person] not in MEMORY.md
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis

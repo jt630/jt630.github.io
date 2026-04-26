@@ -1,0 +1,16 @@
+# Fixture R013: violates R013 — morality.requires lists an unregistered consent key.
+id: R013_bad_morality_requires
+name: Fixture — Unregistered morality.requires Key
+region: arm
+group: fabrication
+description: |
+  TRIGGER when testing R013.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+morality:
+  requires:
+    - not_a_real_consent_key    # R013: not registered in MORALITY.md § Consent keys

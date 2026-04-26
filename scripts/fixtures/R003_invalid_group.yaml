@@ -1,0 +1,13 @@
+# Fixture R003: violates R003 with an invalid group value.
+id: R003_invalid_group
+name: Fixture — Invalid Group
+region: arm
+group: lifting    # not one of the 9 valid functional groups
+description: |
+  TRIGGER when testing R003.
+  SKIP never.
+hardware:
+  slot: active-tool
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
