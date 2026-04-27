@@ -97,6 +97,7 @@ composes:
     # Only fires if the resident asks for a grip. The paw is offered,
     # not placed — the resident initiates contact.
     only_if: resident_requested_grip
+    requires_consent: physical_catch_involuntary_fall
     with:
       motion_profile: gentle
       grip_force_n: 5

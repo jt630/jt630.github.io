@@ -320,6 +320,7 @@ Any action that invokes an intervention primitive MUST declare which
 consent key authorizes it. The runtime gates the action on the
 resolved policy.
 
+**Hold action (recovery list):**
 ```yaml
 - action: hold
   state: build_area_restricted
@@ -327,17 +328,34 @@ resolved policy.
   until: build_chain_complete
 ```
 
+**Contact primitive (composes entry):**
+```yaml
+- skill: hand_paw_grip
+  role: offer_stabilizing_grip
+  only_if: resident_requested_grip
+  requires_consent: physical_catch_involuntary_fall
+  with:
+    motion_profile: gentle
+    grip_force_n: 5
+```
+
+The `requires_consent:` pointer grammar is the same for both flavors.
+What differs is the action shape: hold states appear in recovery lists
+with `hold:`/`until:` fields; contact primitives appear as `composes:`
+entries whose skill invokes a body-contact effector. Both are registered
+intervention primitives; both MUST carry `requires_consent:`.
+
 ### Scope of declared consent keys
 
 This SCHEMA.md defines the morality module's *shape* — fields,
 layering rules, handshake semantics. The authoritative list of
-consent keys, resident-facing hold states, and published module
-clauses is maintained separately in
+consent keys, resident-facing hold states, resident-facing contact
+primitives, and published module clauses is maintained separately in
 [`docs/goddard/MORALITY.md`](MORALITY.md) (Goddard-owned), so that
-adding a new primitive consent key is a documentation change, not a
-schema revision. Modules that declare a `requires:` key not present
-in the current MORALITY.md register as inert, same as any other
-unresolved morality decision.
+adding a new primitive consent key or a new registered contact
+primitive is a documentation change, not a schema revision. Modules
+that declare a `requires:` key not present in the current MORALITY.md
+register as inert, same as any other unresolved morality decision.
 
 ### Relationship to Anthropic-model judgment
 

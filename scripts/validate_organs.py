@@ -62,6 +62,11 @@ Rules enforced (SCHEMA.md section anchor in brackets):
   R018  warn   only_if: expressions in composes: use valid boolean grammar
                (AND/OR not and/or/not)
                [§ Composed skills — only_if:]
+  R019  error  Every composes: entry using a hand_* skill on a manifest that
+               is a registered contact-primitive asserter (MORALITY.md
+               § Resident-facing contact primitives) carries
+               requires_consent: <key> matching the registry entry
+               [§ Morality module — Action-level pointer]
 """
 
 import argparse
@@ -93,6 +98,7 @@ VALID_GROUPS = frozenset({
 
 _TOKEN_RE = re.compile(r'\[[a-z][a-z0-9_]*\]')
 _INVALID_BOOL_RE = re.compile(r'\b(and|or|not)\b')
+_ASSERTER_SUFFIX_RE = re.compile(r'\s*\(\d+\)\s*$')
 
 # ── registry parsing ──────────────────────────────────────────────────────────
 
@@ -149,6 +155,22 @@ class Registries:
     config_keys: frozenset        # str
     log_keys: frozenset           # str
     token_strings: frozenset      # str — e.g. "[name]", "[drug_name]"
+    contact_asserter_map: dict    # manifest_id -> required_consent_key
+
+
+def _parse_asserters(cell: str) -> list[str]:
+    """
+    Split an asserter cell into individual manifest ids.
+    Handles both single ids ('leg_fall_response') and multi-asserter cells
+    like '`arm_print_on_demand` (1), `arm_print_and_clean` (2)'.
+    """
+    parts = cell.split(',')
+    result = []
+    for part in parts:
+        p = _ASSERTER_SUFFIX_RE.sub('', part.strip().strip('`')).strip()
+        if p:
+            result.append(p)
+    return result
 
 
 def load_registries(registries_dir: str) -> Registries:
@@ -181,6 +203,15 @@ def load_registries(registries_dir: str) -> Registries:
     # Column 1 holds the token string, e.g. "[name]"
     token_strings = frozenset(r[1] for r in token_rows if len(r) > 1)
 
+    primitive_rows = _parse_table(morality, "## Resident-facing contact primitives")
+    # Columns: Primitive | Consent key | Asserted by
+    contact_asserter_map: dict[str, str] = {}
+    for row in primitive_rows:
+        if len(row) >= 3:
+            consent_key = row[1]
+            for asserter_id in _parse_asserters(row[2]):
+                contact_asserter_map[asserter_id] = consent_key
+
     return Registries(
         consent_keys=consent_keys,
         hold_states=hold_states,
@@ -188,6 +219,7 @@ def load_registries(registries_dir: str) -> Registries:
         config_keys=config_keys,
         log_keys=log_keys,
         token_strings=token_strings,
+        contact_asserter_map=contact_asserter_map,
     )
 
 # ── manifest loading ──────────────────────────────────────────────────────────
@@ -537,6 +569,40 @@ def check_r018(manifest, filepath, reg, organ_ids, _all_clauses):
             )
     return errors
 
+def check_r019(manifest, filepath, reg, organ_ids, _all_clauses):
+    """Every hand_* composes entry on a contact-primitive asserter carries requires_consent:."""
+    manifest_id = manifest.get('id')
+    if not isinstance(manifest_id, str) or manifest_id not in reg.contact_asserter_map:
+        return []
+    expected_key = reg.contact_asserter_map[manifest_id]
+    errors = []
+    composes = manifest.get('composes', [])
+    if not isinstance(composes, list):
+        return []
+    for entry in composes:
+        if not isinstance(entry, dict):
+            continue
+        skill = entry.get('skill', '')
+        if not isinstance(skill, str) or not skill.startswith('hand_'):
+            continue
+        role = entry.get('role', '<no role>')
+        rc = entry.get('requires_consent')
+        if rc is None:
+            errors.append(
+                f"composes[role={role!r}, skill={skill!r}] is a registered "
+                f"contact primitive (asserter: {manifest_id!r}) but carries no "
+                f"requires_consent: — expected '{expected_key}' per "
+                f"MORALITY.md § Resident-facing contact primitives"
+            )
+        elif rc != expected_key:
+            errors.append(
+                f"composes[role={role!r}, skill={skill!r}] requires_consent: "
+                f"'{rc}' does not match the registered consent key "
+                f"'{expected_key}' (MORALITY.md § Resident-facing contact primitives)"
+            )
+    return errors
+
+
 # ── R014: cross-manifest clause consistency ───────────────────────────────────
 
 def check_r014_cross_manifest(
@@ -600,6 +666,7 @@ _RULES: list[Rule] = [
     Rule("R016", "error",  "#fallback-and-recovery",   check_r016),
     Rule("R017", "warn",   "#registration-protocol",   check_r017),
     Rule("R018", "warn",   "#composed-skills",         check_r018),
+    Rule("R019", "error",  "#morality-module",         check_r019),
 ]
 
 # ── main ──────────────────────────────────────────────────────────────────────
@@ -626,7 +693,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument(
         "--strict",
         action="store_true",
-        help="Treat warnings (R017, R018) as errors.",
+        help="Treat warnings (R017, R018) as errors (R019 is always an error).",
     )
     return p.parse_args()
 
