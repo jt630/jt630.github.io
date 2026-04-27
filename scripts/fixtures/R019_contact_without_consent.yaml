@@ -1,0 +1,28 @@
+# Fixture R019: violates R019 — hand_paw_grip composes entry on a registered
+# contact-primitive asserter (leg_fall_response) lacks requires_consent:.
+id: leg_fall_response
+name: "Fixture — Contact Primitive Without requires_consent"
+kind: composed
+region: legs
+group: movement
+description: |
+  TRIGGER when testing R019.
+  SKIP never.
+composes:
+  - skill: hand_paw_grip
+    role: offer_stabilizing_grip
+    only_if: resident_requested_grip
+    # R019: requires_consent: is intentionally absent here
+    with:
+      motion_profile: gentle
+      grip_force_n: 5
+preconditions:
+  - battery_pct >= 10
+owned_by: jarvis
+morality:
+  requires:
+    - physical_catch_involuntary_fall
+  clauses:
+    - clause_id: no_unrequested_physical_catch
+      statement: "Physical catch is offered, not initiated — the resident must request grip or hold contact."
+      overridable: false

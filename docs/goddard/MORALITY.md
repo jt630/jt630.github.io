@@ -58,6 +58,34 @@ Robot-self hold states currently in use — `station_at_nearest_safe_pose`,
 here for orientation only. They are not part of this registry because
 they do not constrain the resident.
 
+## Resident-facing contact primitives
+
+Contact primitives are momentary interventions where the robot's effector
+touches the resident's body, without entering a held state. Each registered
+contact primitive MUST carry `requires_consent: <key>` on the contact action
+in the asserting manifest — the same handshake rule that applies to
+resident-facing holds per
+[`docs/goddard/SCHEMA.md` § Action-level pointer](SCHEMA.md#action-level-pointer).
+Mid-contact behavior (force caps, back-drive thresholds) may still be governed
+by the manifest's `safety:` block and by `morality.clauses:`; the consent
+pointer is what registers the contact as an intervention.
+
+Contact primitives are *offered, not initiated* unless the asserting module's
+clauses explicitly narrow that contract. The `only_if:` gate on the contact
+composes entry enforces the offered-ness; the `requires_consent:` pointer
+registers the category of intervention it falls into.
+
+| Primitive            | Consent key                         | Asserted by        |
+|----------------------|-------------------------------------|--------------------|
+| `paw_grip_offered`   | `physical_catch_involuntary_fall`   | `leg_fall_response` |
+
+A primitive id is snake_case, action-noun, describing what the robot does to
+the resident's body (`paw_grip_offered`, `elbow_steady`, `shoulder_tap`).
+Consent keys are reused from § Consent keys; the primitive id is this
+registry's contribution. Primitives that touch objects rather than the
+resident's body (e.g. `hand_paw_grip` used to grasp a remote control) are
+not registered here — the distinction is body contact, not effector type.
+
 ## Module clauses
 
 Modules MAY publish vendor-hardcoded floors in their `morality.clauses:`
@@ -161,6 +189,26 @@ profile never invents names the registry has not blessed.
 
 Robot-self hold states do not go in this registry. They stay local to
 the manifest that declares them and are free-form snake_case state ids.
+
+### Adding a new resident-facing contact primitive
+
+1. Add a row to § Resident-facing contact primitives with the primitive id,
+   the consent key that authorizes it, and the asserting manifest(s).
+   Primitive ids are snake_case action-nouns describing the body contact
+   (`paw_grip_offered`, `elbow_steady`, `shoulder_tap`).
+2. Every site that performs the contact MUST carry
+   `requires_consent: <key>` on the contact action (a `composes:` entry or
+   a recovery action); registration rejects a contact primitive without it.
+3. The contact MUST be gated by `only_if:` (or an equivalent consent gate in
+   the manifest's logic) — contact primitives are offered, not initiated,
+   unless the asserting module's `morality.clauses:` explicitly narrows that
+   contract otherwise.
+4. If the contact crosses force or duration thresholds the vendor wants to
+   publish, those belong in the manifest's `morality.clauses:` list, not in
+   the registry row. The registry names the category; the clause governs
+   the operational ceiling.
+5. `hugo --minify` green. `python3 scripts/validate_organs.py` exits 0
+   (R019 enforces the requires_consent: requirement). Standard PR review.
 
 ### Adding a new module clause
 
