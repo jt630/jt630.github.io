@@ -12,7 +12,7 @@ from datetime import date
 
 import aiohttp
 
-from config import MLB_API_BASE, PLAYERS, HIGH_OPPORTUNITY_GAMES, PARK_FACTORS, park_factor_score
+from config import MLB_API_BASE, PLAYERS, HIGH_OPPORTUNITY_GAMES, PARK_FACTORS, TEAM_ABBR, park_factor_score
 
 logger = logging.getLogger(__name__)
 
@@ -155,6 +155,15 @@ async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
                 current_team_id = current_team.get("id")
                 current_team_name = current_team.get("name", player["team"])
                 current_team_abbr = current_team.get("abbreviation", player["team_abbr"])
+
+                # Only accept team_id if it's a known MLB franchise — the API sometimes
+                # returns minor-league affiliate IDs for recently called-up players.
+                if current_team_id and current_team_id not in TEAM_ABBR:
+                    logger.warning(
+                        f"{player['name']}: live team_id {current_team_id} ({current_team_name}) "
+                        f"is not an MLB franchise — keeping config team_id {player['team_id']}"
+                    )
+                    current_team_id = None
 
                 result = {"mlb_id": mlb_id}
                 if current_team_id and current_team_id != player["team_id"]:
