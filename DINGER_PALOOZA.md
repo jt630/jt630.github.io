@@ -229,6 +229,31 @@ Track weight changes here so we can see what we tried and why.
 
 ---
 
+### 2026-05-04 (Session — draft day debug)
+
+**Problem 1: Live site showing wrong week (Apr 27–May 3 instead of May 4–10)**
+- Root cause: GitHub Actions bot uses `GITHUB_TOKEN` to push to main. GitHub intentionally does not fire downstream workflow triggers from `GITHUB_TOKEN` pushes (loop prevention). So the Hugo deploy never ran after the Sunday board update.
+- Fix: Added a "Trigger Hugo deploy" step to `dinger-palooza.yml` that calls `workflow_dispatch` on `deploy.yml` via `actions/github-script`. `workflow_dispatch` IS allowed from `GITHUB_TOKEN` (it's the one exception to the loop rule).
+- Also added `actions: write` permission to the job.
+
+**Problem 2: 5 players showing 0 games (#92–96 on board)**
+- Affected: Julio Rodriguez (SEA), Andrew Vaughn (MIL), Jackson Chourio (MIL), Jeimer Candelario (LAA), Anthony Volpe (NYY)
+- Root cause: `schedule_agent.py` auto-detects current team via MLB people API. For these players, the API returned a minor-league affiliate team_id (not a valid MLB franchise ID). The schedule lookup found no games for those fake team IDs.
+- Fix: Added validation in `_lookup_player()` — if `current_team_id` is not in `TEAM_ABBR` (the 30 known MLB franchise IDs), reject it and keep the config team_id. See `schedule_agent.py` around the `_fetch_current_team` call.
+- Emergency patch: For the week of May 4–10, manually patched `draft_board.json` by copying schedule data from teammates on the same team and recalculating scores. All 5 players had 6–7 actual games that week.
+
+**Problem 3: Workflow YAML broken, runs failing in 0s, not triggerable from Actions menu**
+- Root cause: Inline Python code inside a `run: |` YAML block scalar was left at column 0. YAML block scalars strip the leading indentation from all lines — but only for lines that ARE indented to at least the block's base level. Lines with LESS indentation than the block TERMINATE it. The 0-indented Python lines ended the block early, making the YAML unparseable.
+- Symptom: All workflow runs showed "Duration: 0s, Failure" and the workflow disappeared from the manual dispatch menu in GitHub Actions.
+- Fix: Re-indent Python lines to 10 spaces (matching the block scalar base level). After YAML strips those 10 spaces, Python receives clean zero-indented code. **Always do this when embedding Python in a `run: |` block.**
+
+**Workflow auto-deploy now works end-to-end:**
+Sunday 9am ET → pipeline runs → bot commits to main → `workflow_dispatch` fires → Hugo rebuilds → site live within minutes.
+
+**`check_teams.py` always fails in sandbox** — the MLB people/search API returns 403 from the sandbox proxy. This is expected and not a real problem. Run it locally or check the `team_stale` badge on draft cards instead.
+
+---
+
 ## Known Issues
 
 - The sandbox environment (Claude Code on the web) cannot reach `statsapi.mlb.com` or `api.openweathermap.org` due to proxy restrictions. The pipeline only runs in GitHub Actions or locally.
