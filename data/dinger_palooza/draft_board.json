@@ -10395,6 +10395,506 @@
     },
     {
       "rank": 62,
+      "name": "Julio Rodriguez",
+      "team": "Corpus Christi Hooks",
+      "team_abbr": "SEA",
+      "overall_score": 61.4,
+      "schedule_score": 78.6,
+      "pitcher_score": 50.0,
+      "park_score": 50.0,
+      "weather_score": 50.0,
+      "games_this_week": 6,
+      "high_opportunity": true,
+      "favorable_matchups": 0,
+      "platoon_advantages": 0,
+      "rain_risk_games": 1,
+      "best_park_game": "Rate Field",
+      "best_park_factor": 99,
+      "reasoning": "6 games (premium schedule); board corrected \u2014 team ID detection bug fixed.",
+      "games": [
+        {
+          "date": "2026-05-04",
+          "home_away": "home",
+          "opponent": "Atlanta Braves",
+          "venue": "T-Mobile Park",
+          "park_factor": 97,
+          "park_notes": "Marine layer; pitcher-friendly",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 0,
+            "temp_f": 58.1,
+            "wind_mph": 5.4,
+            "wind_deg": 195,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-05",
+          "home_away": "home",
+          "opponent": "Atlanta Braves",
+          "venue": "T-Mobile Park",
+          "park_factor": 97,
+          "park_notes": "Marine layer; pitcher-friendly",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 0,
+            "temp_f": 54.5,
+            "wind_mph": 6.6,
+            "wind_deg": 191,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-06",
+          "home_away": "home",
+          "opponent": "Atlanta Braves",
+          "venue": "T-Mobile Park",
+          "park_factor": 97,
+          "park_notes": "Marine layer; pitcher-friendly",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 0,
+            "temp_f": 53.2,
+            "wind_mph": 7.2,
+            "wind_deg": 197,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Clear"
+          }
+        },
+        {
+          "date": "2026-05-08",
+          "home_away": "away",
+          "opponent": "Chicago White Sox",
+          "venue": "Rate Field",
+          "park_factor": 99,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 46.1,
+            "wind_mph": 2.1,
+            "wind_deg": 320,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-09",
+          "home_away": "away",
+          "opponent": "Chicago White Sox",
+          "venue": "Rate Field",
+          "park_factor": 99,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        },
+        {
+          "date": "2026-05-10",
+          "home_away": "away",
+          "opponent": "Chicago White Sox",
+          "venue": "Rate Field",
+          "park_factor": 99,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        }
+      ]
+    },
+    {
+      "rank": 63,
+      "name": "Jeimer Candelario",
+      "team": "Salt Lake Bees",
+      "team_abbr": "LAA",
+      "overall_score": 61.4,
+      "schedule_score": 78.6,
+      "pitcher_score": 50.0,
+      "park_score": 50.0,
+      "weather_score": 50.0,
+      "games_this_week": 6,
+      "high_opportunity": true,
+      "favorable_matchups": 0,
+      "platoon_advantages": 0,
+      "rain_risk_games": 1,
+      "best_park_game": "Rogers Centre",
+      "best_park_factor": 100,
+      "reasoning": "6 games (premium schedule); board corrected \u2014 team ID detection bug fixed.",
+      "games": [
+        {
+          "date": "2026-05-04",
+          "home_away": "home",
+          "opponent": "Chicago White Sox",
+          "venue": "Angel Stadium",
+          "park_factor": 98,
+          "park_notes": "Neutral, marine layer",
+          "probable_pitcher_name": "Davis Martin",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "Tough",
+          "pitcher_matchup_score": 0,
+          "weather": {
+            "rain_pct": 20,
+            "temp_f": 60.4,
+            "wind_mph": 6.8,
+            "wind_deg": 243,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-05",
+          "home_away": "home",
+          "opponent": "Chicago White Sox",
+          "venue": "Angel Stadium",
+          "park_factor": 98,
+          "park_notes": "Neutral, marine layer",
+          "probable_pitcher_name": "Erick Fedde",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "Neutral",
+          "pitcher_matchup_score": 46.7,
+          "weather": {
+            "rain_pct": 97,
+            "temp_f": 59.3,
+            "wind_mph": 7.9,
+            "wind_deg": 259,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-06",
+          "home_away": "home",
+          "opponent": "Chicago White Sox",
+          "venue": "Angel Stadium",
+          "park_factor": 98,
+          "park_notes": "Neutral, marine layer",
+          "probable_pitcher_name": "Noah Schultz",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "Tough",
+          "pitcher_matchup_score": 10.1,
+          "weather": {
+            "rain_pct": 0,
+            "temp_f": 59.2,
+            "wind_mph": 4.4,
+            "wind_deg": 170,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-08",
+          "home_away": "away",
+          "opponent": "Toronto Blue Jays",
+          "venue": "Rogers Centre",
+          "park_factor": 100,
+          "park_notes": "Dome; neutral HR factor",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 0,
+            "temp_f": 41.3,
+            "wind_mph": 8.2,
+            "wind_deg": 294,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-09",
+          "home_away": "away",
+          "opponent": "Toronto Blue Jays",
+          "venue": "Rogers Centre",
+          "park_factor": 100,
+          "park_notes": "Dome; neutral HR factor",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        },
+        {
+          "date": "2026-05-10",
+          "home_away": "away",
+          "opponent": "Toronto Blue Jays",
+          "venue": "Rogers Centre",
+          "park_factor": 100,
+          "park_notes": "Dome; neutral HR factor",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        }
+      ]
+    },
+    {
+      "rank": 64,
+      "name": "Anthony Volpe",
+      "team": "Somerset Patriots",
+      "team_abbr": "NYY",
+      "overall_score": 61.4,
+      "schedule_score": 78.6,
+      "pitcher_score": 50.0,
+      "park_score": 50.0,
+      "weather_score": 50.0,
+      "games_this_week": 7,
+      "high_opportunity": true,
+      "favorable_matchups": 0,
+      "platoon_advantages": 0,
+      "rain_risk_games": 3,
+      "best_park_game": "Yankee Stadium",
+      "best_park_factor": 111,
+      "reasoning": "7 games (premium schedule); board corrected \u2014 team ID detection bug fixed.",
+      "games": [
+        {
+          "date": "2026-05-04",
+          "home_away": "home",
+          "opponent": "Baltimore Orioles",
+          "venue": "Yankee Stadium",
+          "park_factor": 111,
+          "park_notes": "Short RF porch; elite for LHH sluggers",
+          "probable_pitcher_name": "Shane Baz",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "Tough",
+          "pitcher_matchup_score": 34.5,
+          "weather": {
+            "rain_pct": 0,
+            "temp_f": 58.1,
+            "wind_mph": 15.9,
+            "wind_deg": 234,
+            "wind_out": true,
+            "rain_risk": false,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-05",
+          "home_away": "home",
+          "opponent": "Texas Rangers",
+          "venue": "Yankee Stadium",
+          "park_factor": 111,
+          "park_notes": "Short RF porch; elite for LHH sluggers",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 0,
+            "temp_f": 67.9,
+            "wind_mph": 14.2,
+            "wind_deg": 222,
+            "wind_out": true,
+            "rain_risk": false,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-06",
+          "home_away": "home",
+          "opponent": "Texas Rangers",
+          "venue": "Yankee Stadium",
+          "park_factor": 111,
+          "park_notes": "Short RF porch; elite for LHH sluggers",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 62.0,
+            "wind_mph": 15.9,
+            "wind_deg": 216,
+            "wind_out": true,
+            "rain_risk": true,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-07",
+          "home_away": "home",
+          "opponent": "Texas Rangers",
+          "venue": "Yankee Stadium",
+          "park_factor": 111,
+          "park_notes": "Short RF porch; elite for LHH sluggers",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 52.7,
+            "wind_mph": 9.7,
+            "wind_deg": 52,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Rain"
+          }
+        },
+        {
+          "date": "2026-05-08",
+          "home_away": "away",
+          "opponent": "Milwaukee Brewers",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 44.2,
+            "wind_mph": 4.4,
+            "wind_deg": 343,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-09",
+          "home_away": "away",
+          "opponent": "Milwaukee Brewers",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        },
+        {
+          "date": "2026-05-10",
+          "home_away": "away",
+          "opponent": "Milwaukee Brewers",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        }
+      ]
+    },
+    {
+      "rank": 65,
       "name": "Brent Rooker",
       "team": "Athletics",
       "team_abbr": "ATH",
@@ -10553,7 +11053,7 @@
       ]
     },
     {
-      "rank": 63,
+      "rank": 66,
       "name": "Lawrence Butler",
       "team": "Athletics",
       "team_abbr": "ATH",
@@ -10712,7 +11212,7 @@
       ]
     },
     {
-      "rank": 64,
+      "rank": 67,
       "name": "Vladimir Guerrero Jr",
       "team": "Toronto Blue Jays",
       "team_abbr": "TOR",
@@ -10871,7 +11371,7 @@
       ]
     },
     {
-      "rank": 65,
+      "rank": 68,
       "name": "Anthony Santander",
       "team": "Toronto Blue Jays",
       "team_abbr": "TOR",
@@ -11030,7 +11530,7 @@
       ]
     },
     {
-      "rank": 66,
+      "rank": 69,
       "name": "Kyle Schwarber",
       "team": "Philadelphia Phillies",
       "team_abbr": "PHI",
@@ -11212,7 +11712,7 @@
       ]
     },
     {
-      "rank": 67,
+      "rank": 70,
       "name": "Bryce Harper",
       "team": "Philadelphia Phillies",
       "team_abbr": "PHI",
@@ -11394,7 +11894,7 @@
       ]
     },
     {
-      "rank": 68,
+      "rank": 71,
       "name": "Nolan Gorman",
       "team": "St. Louis Cardinals",
       "team_abbr": "STL",
@@ -11576,7 +12076,7 @@
       ]
     },
     {
-      "rank": 69,
+      "rank": 72,
       "name": "Cal Raleigh",
       "team": "Seattle Mariners",
       "team_abbr": "SEA",
@@ -11735,7 +12235,7 @@
       ]
     },
     {
-      "rank": 70,
+      "rank": 73,
       "name": "Randy Arozarena",
       "team": "Seattle Mariners",
       "team_abbr": "SEA",
@@ -11894,7 +12394,7 @@
       ]
     },
     {
-      "rank": 71,
+      "rank": 74,
       "name": "Josh Naylor",
       "team": "Seattle Mariners",
       "team_abbr": "SEA",
@@ -12053,7 +12553,7 @@
       ]
     },
     {
-      "rank": 72,
+      "rank": 75,
       "name": "Junior Caminero",
       "team": "Tampa Bay Rays",
       "team_abbr": "TB",
@@ -12235,7 +12735,7 @@
       ]
     },
     {
-      "rank": 73,
+      "rank": 76,
       "name": "Yandy Diaz",
       "team": "Tampa Bay Rays",
       "team_abbr": "TB",
@@ -12417,7 +12917,7 @@
       ]
     },
     {
-      "rank": 74,
+      "rank": 77,
       "name": "Trea Turner",
       "team": "Philadelphia Phillies",
       "team_abbr": "PHI",
@@ -12599,7 +13099,7 @@
       ]
     },
     {
-      "rank": 75,
+      "rank": 78,
       "name": "Alec Bohm",
       "team": "Philadelphia Phillies",
       "team_abbr": "PHI",
@@ -12781,7 +13281,7 @@
       ]
     },
     {
-      "rank": 76,
+      "rank": 79,
       "name": "J.T. Realmuto",
       "team": "Philadelphia Phillies",
       "team_abbr": "PHI",
@@ -12963,7 +13463,7 @@
       ]
     },
     {
-      "rank": 77,
+      "rank": 80,
       "name": "Adolis Garcia",
       "team": "Philadelphia Phillies",
       "team_abbr": "PHI",
@@ -13145,7 +13645,7 @@
       ]
     },
     {
-      "rank": 78,
+      "rank": 81,
       "name": "Spencer Torkelson",
       "team": "Detroit Tigers",
       "team_abbr": "DET",
@@ -13304,7 +13804,7 @@
       ]
     },
     {
-      "rank": 79,
+      "rank": 82,
       "name": "Riley Greene",
       "team": "Detroit Tigers",
       "team_abbr": "DET",
@@ -13463,7 +13963,7 @@
       ]
     },
     {
-      "rank": 80,
+      "rank": 83,
       "name": "Mike Trout",
       "team": "Los Angeles Angels",
       "team_abbr": "LAA",
@@ -13622,7 +14122,7 @@
       ]
     },
     {
-      "rank": 81,
+      "rank": 84,
       "name": "Zach Neto",
       "team": "Los Angeles Angels",
       "team_abbr": "LAA",
@@ -13781,7 +14281,7 @@
       ]
     },
     {
-      "rank": 82,
+      "rank": 85,
       "name": "Jorge Soler",
       "team": "Los Angeles Angels",
       "team_abbr": "LAA",
@@ -13940,7 +14440,7 @@
       ]
     },
     {
-      "rank": 83,
+      "rank": 86,
       "name": "Jo Adell",
       "team": "Los Angeles Angels",
       "team_abbr": "LAA",
@@ -14099,7 +14599,7 @@
       ]
     },
     {
-      "rank": 84,
+      "rank": 87,
       "name": "Christian Yelich",
       "team": "Milwaukee Brewers",
       "team_abbr": "MIL",
@@ -14258,7 +14758,7 @@
       ]
     },
     {
-      "rank": 85,
+      "rank": 88,
       "name": "Triston Casas",
       "team": "Boston Red Sox",
       "team_abbr": "BOS",
@@ -14440,7 +14940,7 @@
       ]
     },
     {
-      "rank": 86,
+      "rank": 89,
       "name": "Jarren Duran",
       "team": "Boston Red Sox",
       "team_abbr": "BOS",
@@ -14622,7 +15122,7 @@
       ]
     },
     {
-      "rank": 87,
+      "rank": 90,
       "name": "William Contreras",
       "team": "Milwaukee Brewers",
       "team_abbr": "MIL",
@@ -14781,7 +15281,325 @@
       ]
     },
     {
-      "rank": 88,
+      "rank": 91,
+      "name": "Andrew Vaughn",
+      "team": "Nashville Sounds",
+      "team_abbr": "MIL",
+      "overall_score": 52.8,
+      "schedule_score": 57.1,
+      "pitcher_score": 50.0,
+      "park_score": 50.0,
+      "weather_score": 50.0,
+      "games_this_week": 6,
+      "high_opportunity": true,
+      "favorable_matchups": 0,
+      "platoon_advantages": 0,
+      "rain_risk_games": 4,
+      "best_park_game": "American Family Field",
+      "best_park_factor": 102,
+      "reasoning": "6 games (premium schedule); board corrected \u2014 team ID detection bug fixed.",
+      "games": [
+        {
+          "date": "2026-05-04",
+          "home_away": "away",
+          "opponent": "St. Louis Cardinals",
+          "venue": "Busch Stadium",
+          "park_factor": 100,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "Kyle Leahy",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "Favorable",
+          "pitcher_matchup_score": 90.1,
+          "weather": {
+            "rain_pct": 95,
+            "temp_f": 63.6,
+            "wind_mph": 13.0,
+            "wind_deg": 227,
+            "wind_out": true,
+            "rain_risk": true,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-05",
+          "home_away": "away",
+          "opponent": "St. Louis Cardinals",
+          "venue": "Busch Stadium",
+          "park_factor": 100,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "Andre Pallante",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "Neutral",
+          "pitcher_matchup_score": 50.2,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 60.9,
+            "wind_mph": 6.0,
+            "wind_deg": 216,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Rain"
+          }
+        },
+        {
+          "date": "2026-05-06",
+          "home_away": "away",
+          "opponent": "St. Louis Cardinals",
+          "venue": "Busch Stadium",
+          "park_factor": 100,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 48.3,
+            "wind_mph": 6.1,
+            "wind_deg": 23,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Rain"
+          }
+        },
+        {
+          "date": "2026-05-08",
+          "home_away": "home",
+          "opponent": "New York Yankees",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 44.2,
+            "wind_mph": 4.4,
+            "wind_deg": 343,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-09",
+          "home_away": "home",
+          "opponent": "New York Yankees",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        },
+        {
+          "date": "2026-05-10",
+          "home_away": "home",
+          "opponent": "New York Yankees",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        }
+      ]
+    },
+    {
+      "rank": 92,
+      "name": "Jackson Chourio",
+      "team": "Nashville Sounds",
+      "team_abbr": "MIL",
+      "overall_score": 52.8,
+      "schedule_score": 57.1,
+      "pitcher_score": 50.0,
+      "park_score": 50.0,
+      "weather_score": 50.0,
+      "games_this_week": 6,
+      "high_opportunity": true,
+      "favorable_matchups": 0,
+      "platoon_advantages": 0,
+      "rain_risk_games": 4,
+      "best_park_game": "American Family Field",
+      "best_park_factor": 102,
+      "reasoning": "6 games (premium schedule); board corrected \u2014 team ID detection bug fixed.",
+      "games": [
+        {
+          "date": "2026-05-04",
+          "home_away": "away",
+          "opponent": "St. Louis Cardinals",
+          "venue": "Busch Stadium",
+          "park_factor": 100,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "Kyle Leahy",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "Favorable",
+          "pitcher_matchup_score": 90.1,
+          "weather": {
+            "rain_pct": 95,
+            "temp_f": 63.6,
+            "wind_mph": 13.0,
+            "wind_deg": 227,
+            "wind_out": true,
+            "rain_risk": true,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-05",
+          "home_away": "away",
+          "opponent": "St. Louis Cardinals",
+          "venue": "Busch Stadium",
+          "park_factor": 100,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "Andre Pallante",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "Neutral",
+          "pitcher_matchup_score": 50.2,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 60.9,
+            "wind_mph": 6.0,
+            "wind_deg": 216,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Rain"
+          }
+        },
+        {
+          "date": "2026-05-06",
+          "home_away": "away",
+          "opponent": "St. Louis Cardinals",
+          "venue": "Busch Stadium",
+          "park_factor": 100,
+          "park_notes": "Neutral",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 48.3,
+            "wind_mph": 6.1,
+            "wind_deg": 23,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Rain"
+          }
+        },
+        {
+          "date": "2026-05-08",
+          "home_away": "home",
+          "opponent": "New York Yankees",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": 100,
+            "temp_f": 44.2,
+            "wind_mph": 4.4,
+            "wind_deg": 343,
+            "wind_out": false,
+            "rain_risk": true,
+            "conditions": "Clouds"
+          }
+        },
+        {
+          "date": "2026-05-09",
+          "home_away": "home",
+          "opponent": "New York Yankees",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        },
+        {
+          "date": "2026-05-10",
+          "home_away": "home",
+          "opponent": "New York Yankees",
+          "venue": "American Family Field",
+          "park_factor": 102,
+          "park_notes": "Retractable roof; slight hitter lean",
+          "probable_pitcher_name": "TBD",
+          "pitcher_hand": null,
+          "platoon_label": "neutral",
+          "platoon_delta": 0.0,
+          "pitcher_matchup_label": "TBD",
+          "pitcher_matchup_score": 50.0,
+          "weather": {
+            "rain_pct": null,
+            "temp_f": null,
+            "wind_mph": null,
+            "wind_deg": null,
+            "wind_out": false,
+            "rain_risk": false,
+            "conditions": "Unknown"
+          }
+        }
+      ]
+    },
+    {
+      "rank": 93,
       "name": "Rafael Devers",
       "team": "San Francisco Giants",
       "team_abbr": "SF",
@@ -14940,7 +15758,7 @@
       ]
     },
     {
-      "rank": 89,
+      "rank": 94,
       "name": "Willy Adames",
       "team": "San Francisco Giants",
       "team_abbr": "SF",
@@ -15099,7 +15917,7 @@
       ]
     },
     {
-      "rank": 90,
+      "rank": 95,
       "name": "Matt Chapman",
       "team": "San Francisco Giants",
       "team_abbr": "SF",
@@ -15258,7 +16076,7 @@
       ]
     },
     {
-      "rank": 91,
+      "rank": 96,
       "name": "Heliot Ramos",
       "team": "San Francisco Giants",
       "team_abbr": "SF",
@@ -15415,106 +16233,6 @@
           }
         }
       ]
-    },
-    {
-      "rank": 92,
-      "name": "Julio Rodriguez",
-      "team": "Corpus Christi Hooks",
-      "team_abbr": "SEA",
-      "overall_score": 30.0,
-      "schedule_score": 0.0,
-      "pitcher_score": 50.0,
-      "park_score": 50.0,
-      "weather_score": 50.0,
-      "games_this_week": 0,
-      "high_opportunity": false,
-      "favorable_matchups": 0,
-      "platoon_advantages": 0,
-      "rain_risk_games": 0,
-      "best_park_game": "",
-      "best_park_factor": 100,
-      "reasoning": "0 games; neutral parks; neutral pitching schedule.",
-      "games": []
-    },
-    {
-      "rank": 93,
-      "name": "Andrew Vaughn",
-      "team": "Nashville Sounds",
-      "team_abbr": "MIL",
-      "overall_score": 30.0,
-      "schedule_score": 0.0,
-      "pitcher_score": 50.0,
-      "park_score": 50.0,
-      "weather_score": 50.0,
-      "games_this_week": 0,
-      "high_opportunity": false,
-      "favorable_matchups": 0,
-      "platoon_advantages": 0,
-      "rain_risk_games": 0,
-      "best_park_game": "",
-      "best_park_factor": 100,
-      "reasoning": "0 games; neutral parks; neutral pitching schedule.",
-      "games": []
-    },
-    {
-      "rank": 94,
-      "name": "Jackson Chourio",
-      "team": "Nashville Sounds",
-      "team_abbr": "MIL",
-      "overall_score": 30.0,
-      "schedule_score": 0.0,
-      "pitcher_score": 50.0,
-      "park_score": 50.0,
-      "weather_score": 50.0,
-      "games_this_week": 0,
-      "high_opportunity": false,
-      "favorable_matchups": 0,
-      "platoon_advantages": 0,
-      "rain_risk_games": 0,
-      "best_park_game": "",
-      "best_park_factor": 100,
-      "reasoning": "0 games; neutral parks; neutral pitching schedule.",
-      "games": []
-    },
-    {
-      "rank": 95,
-      "name": "Jeimer Candelario",
-      "team": "Salt Lake Bees",
-      "team_abbr": "LAA",
-      "overall_score": 30.0,
-      "schedule_score": 0.0,
-      "pitcher_score": 50.0,
-      "park_score": 50.0,
-      "weather_score": 50.0,
-      "games_this_week": 0,
-      "high_opportunity": false,
-      "favorable_matchups": 0,
-      "platoon_advantages": 0,
-      "rain_risk_games": 0,
-      "best_park_game": "",
-      "best_park_factor": 100,
-      "reasoning": "0 games; neutral parks; neutral pitching schedule.",
-      "games": []
-    },
-    {
-      "rank": 96,
-      "name": "Anthony Volpe",
-      "team": "Somerset Patriots",
-      "team_abbr": "NYY",
-      "overall_score": 30.0,
-      "schedule_score": 0.0,
-      "pitcher_score": 50.0,
-      "park_score": 50.0,
-      "weather_score": 50.0,
-      "games_this_week": 0,
-      "high_opportunity": false,
-      "favorable_matchups": 0,
-      "platoon_advantages": 0,
-      "rain_risk_games": 0,
-      "best_park_game": "",
-      "best_park_factor": 100,
-      "reasoning": "0 games; neutral parks; neutral pitching schedule.",
-      "games": []
     }
   ]
 }
