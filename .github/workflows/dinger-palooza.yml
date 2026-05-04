@@ -59,11 +59,11 @@ jobs:
             echo "committed=false" >> $GITHUB_OUTPUT
           else
             WEEK=$(python3 -c "
-import json
-with open('data/dinger_palooza/draft_board.json') as f:
-    d = json.load(f)
-print(d['week_start'])
-")
+          import json
+          with open('data/dinger_palooza/draft_board.json') as f:
+              d = json.load(f)
+          print(d['week_start'])
+          ")
             git commit -m "feat: update Dinger Palooza draft board for week of ${WEEK}"
             git push origin main
             echo "Draft board pushed to main."
