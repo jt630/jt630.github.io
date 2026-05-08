@@ -2,7 +2,7 @@
   "week_number": 3,
   "week_start": "2026-04-13",
   "week_end": "2026-04-19",
-  "checked_at": "2026-05-07T10:24:04.576009+00:00",
+  "checked_at": "2026-05-08T09:20:51.929859+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -1267,7 +1267,7 @@
           "team": "ATH",
           "team_id": 133,
           "mlb_id": 669127,
-          "is_injured": true,
+          "is_injured": false,
           "draft_pick": 27,
           "proj_hr": null,
           "hrs": 1,
