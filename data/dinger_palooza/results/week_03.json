@@ -2,7 +2,7 @@
   "week_number": 3,
   "week_start": "2026-04-13",
   "week_end": "2026-04-19",
-  "checked_at": "2026-05-19T11:17:24.228038+00:00",
+  "checked_at": "2026-05-20T10:49:33.982466+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -733,7 +733,7 @@
           "team": "ATL",
           "team_id": 144,
           "mlb_id": 686948,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": null,
           "proj_hr": null,
           "hrs": 0,
