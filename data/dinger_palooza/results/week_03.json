@@ -2,7 +2,7 @@
   "week_number": 3,
   "week_start": "2026-04-13",
   "week_end": "2026-04-19",
-  "checked_at": "2026-05-22T10:50:37.520575+00:00",
+  "checked_at": "2026-05-23T09:52:10.728083+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -608,7 +608,7 @@
           "team": "COL",
           "team_id": 115,
           "mlb_id": 666160,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": 91,
           "proj_hr": null,
           "hrs": 1,
