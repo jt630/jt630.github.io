@@ -40,8 +40,8 @@
         <tr>
           <th class="dp-lb-rank">#</th>
           <th class="dp-lb-name">Manager</th>
-          <th class="dp-lb-total">Ours</th>
-          {{ if $official }}<th class="dp-lb-total dp-lb-official-hdr">Jeff</th>{{ end }}
+          {{ if $official }}<th class="dp-lb-total dp-lb-official-hdr">Official</th>{{ end }}
+          <th class="dp-lb-total">Tracked</th>
           {{ range $i, $_ := (index $standings.members 0).weekly_points }}
           <th class="dp-lb-wk">Wk {{ add $i 1 }}</th>
           {{ end }}
@@ -61,12 +61,12 @@
             {{ end }}
           </td>
           <td class="dp-lb-name">{{ $member_name }}</td>
-          <td class="dp-lb-total"><strong>{{ .total_points }}</strong></td>
           {{ if $official }}
           <td class="dp-lb-total dp-lb-official-val">
             {{ with $off_entry }}<strong>{{ .total_points }}</strong>{{ else }}&mdash;{{ end }}
           </td>
           {{ end }}
+          <td class="dp-lb-total"><strong>{{ .total_points }}</strong></td>
           {{ range $i, $pts := .weekly_points }}
           {{ $sc := newScratch }}
           {{ $sc.Set "off" "" }}
