@@ -25,10 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write   # needed to dispatch Hugo deploy workflow
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -50,12 +53,14 @@ jobs:
           python scripts/dinger_palooza/check_results.py $ARGS
 
       - name: Commit results if changed
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/dinger_palooza/results/ data/dinger_palooza/standings.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
+            echo "committed=false" >> "$GITHUB_OUTPUT"
           else
             WEEK=$(python -c "
           import json, glob, os
@@ -67,5 +72,18 @@ jobs:
               print('unknown week')
             ")
             git commit -m "results: update $WEEK"
-            git push
+            git push origin main
+            echo "committed=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Trigger Hugo deploy
+        if: steps.commit.outputs.committed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy.yml',
+              ref: 'main'
+            })
