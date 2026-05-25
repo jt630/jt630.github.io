@@ -44,7 +44,8 @@ scripts/dinger_palooza/
 
 data/dinger_palooza/
 ├── draft_board.json           # forward-looking — updated Sundays by GH Actions
-├── standings.json             # cumulative season leaderboard
+├── standings.json             # cumulative season leaderboard (auto-tracked HR totals)
+├── official_scores.json       # authoritative totals from official score sheet (manual)
 ├── picks/
 │   └── week_01.yaml           # per-week draft picks (week dates + 9 members × 5 picks)
 ├── results/
@@ -100,7 +101,7 @@ Each week follows this cycle:
 
 To set up week N:
 
-1. Create `data/dinger_palooza/picks/week_NN.yaml` with the new picks (copy week_01 as template)
+1. Create `data/dinger_palooza/picks/week_NN.yaml` with the new picks (copy week_09 as template)
 2. Create `content/dinger-palooza/weeks/week-NN.md` with front matter:
    ```yaml
    ---
@@ -113,6 +114,21 @@ To set up week N:
    ```
 3. The results workflow auto-detects the latest picks file and generates results
 4. Navigation links in week.html and single.html auto-populate from `Site.Data.dinger_palooza.results`
+
+### Updating official scores each week
+
+After each week's draft, share the score sheet and update `data/dinger_palooza/official_scores.json`:
+```json
+{
+  "season": 2026,
+  "last_updated": "YYYY-MM-DD",
+  "members": [
+    { "name": "Mason", "total_points": 62, "weekly_points": [] },
+    { "name": "Jeremy", "total_points": 60, "weekly_points": [] }
+  ]
+}
+```
+This file is NOT touched by `check_results.py`. It drives the "Official" column on the leaderboard.
 
 ---
 
@@ -168,6 +184,7 @@ To update: edit `PLAYERS` list in `scripts/dinger_palooza/config.py`.
 - [x] **Weekly results data** — `check_results.py` fetches HRs via MLB API, outputs `results/week_NN.json` with per-player HR details, RBI, inning, 3R/GS bonuses
 - [x] **Season leaderboard page** — `/dinger-palooza/leaderboard/` reads `standings.json`, shows cumulative points and weekly breakdown
 - [x] **Results run daily** — GitHub Actions cron fires daily at 4am ET, keeps results fresh throughout the week
+- [x] **Official scores column** — `official_scores.json` feeds a permanent "Official" column on the leaderboard that auto-tracking can't overwrite
 - [ ] **Projection vs. actual comparison** — after each week, compare the agent's predicted rank to actual HR output. Useful for tuning weights.
 
 #### Advanced stats
@@ -254,9 +271,30 @@ Sunday 9am ET → pipeline runs → bot commits to main → `workflow_dispatch` 
 
 ---
 
+### 2026-05-25 (Session — week 9 sync)
+
+**Context**: Results workflow had been stale since week 3 — no picks files existed for weeks 4–9, so `check_results.py` kept re-running on week 3 (already final). Standings were frozen. User provided official scores manually.
+
+**What was done:**
+- Created `data/dinger_palooza/picks/week_09.yaml` with all 9 teams' rosters for May 25–31. This is the template for future weeks — copy and update each Sunday.
+- Synced `standings.json` to official score sheet totals. Weeks 1–3 retain individual weekly data; weeks 4–9 are aggregated into one entry (no per-week data available for those weeks).
+- Created `data/dinger_palooza/official_scores.json` — new permanent data file that holds the authoritative totals from the official score sheet. This is NOT overwritten by `check_results.py`. Update it manually each week by sharing the score sheet.
+- Updated `leaderboard.html` to show "Official" column (from `official_scores.json`) first, "Tracked" (auto-computed HR totals) second. Official is the primary display.
+- Fixed `dinger-palooza-results.yml` with the same Hugo deploy trigger added to the draft board workflow in May 4 session: `actions: write` permission, `ref: main` checkout, explicit `git push origin main`, and `workflow_dispatch` to `deploy.yml` after commits.
+- Created `content/dinger-palooza/weeks/week-09.md` content stub.
+
+**To maintain going forward:**
+1. Each Sunday after draft: create `picks/week_NN.yaml` (copy week_09 as template)
+2. Each Sunday: share official score sheet → update `official_scores.json` (just total_points per member)
+3. `check_results.py` auto-tracks HRs daily for the current week (uses latest picks file)
+4. The "Official" column on the leaderboard is the trusted source; "Tracked" is the auto-computed approximation
+
+---
+
 ## Known Issues
 
 - The sandbox environment (Claude Code on the web) cannot reach `statsapi.mlb.com` or `api.openweathermap.org` due to proxy restrictions. The pipeline only runs in GitHub Actions or locally.
 - `get_target_week()` returns the upcoming Mon–Sun week when called on Sunday (draft day). For non-standard windows like week 1's opening two-week period, use `--week YYYY-MM-DD` override.
 - Park factors are multi-year averages (circa 2023–2025). Chase Field moved to a new ballpark in 2024 — verify that data is current.
 - **Config.py team assignments may drift** — free agent moves between seasons can cause `config.py` PLAYERS list to have outdated team_ids. The picks files are the source of truth for scoring; config.py is only used by the draft board pipeline. If a player shows 0 pitcher matchup data in the draft board, check their team_id in config.py.
+- **standings.json drifts from official scores** — `check_results.py` only tracks HR+bonus points (no keep costs). `official_scores.json` is the authoritative source. The leaderboard shows both columns; trust "Official" over "Tracked".
