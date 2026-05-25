@@ -1,0 +1,16 @@
+{
+  "season": 2026,
+  "last_updated": "2026-05-25",
+  "source": "official score sheet",
+  "members": [
+    { "name": "Mason",  "total_points": 62, "weekly_points": [] },
+    { "name": "Jeremy", "total_points": 60, "weekly_points": [] },
+    { "name": "Jeff",   "total_points": 54, "weekly_points": [] },
+    { "name": "Ellie",  "total_points": 54, "weekly_points": [] },
+    { "name": "Makeda", "total_points": 52, "weekly_points": [] },
+    { "name": "Cam",    "total_points": 52, "weekly_points": [] },
+    { "name": "Wendy",  "total_points": 52, "weekly_points": [] },
+    { "name": "Kayla",  "total_points": 46, "weekly_points": [] },
+    { "name": "Tyler",  "total_points": 40, "weekly_points": [] }
+  ]
+}
