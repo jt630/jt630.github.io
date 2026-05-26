@@ -1,0 +1,43 @@
+{
+  "skill": "manufacturer",
+  "profile": "kay",
+  "generated_at": "2026-05-26T00:00:00Z",
+  "total_credits": 109,
+  "rated_credits": 0,
+  "data": {
+    "by_make": [
+      { "make": "B&M",         "count": 17, "pct": 15.6, "credits": ["Nitro","Raptor","GateKeeper","Rougarou","Valravn","Medusa","Batman The Ride","Superman - Ultimate Flight","Green Lantern","Alpengeist","Griffon","Apollo's Chariot","Great Bear","Candymonium","Wild Eagle","Rapterra","Incredible Hulk"] },
+      { "make": "Arrow",       "count": 12, "pct": 11.0, "credits": ["Magnum XL-200","Corkscrew","Iron Dragon","Cedar Creek Mine Ride","Gemini (Red)","Gemini (Blue)","Loch Ness Monster","Tennessee Tornado","Matterhorn Bobsleds","Runaway Mine Train","Trailblazer","Big Thunder Mountain Railroad"] },
+      { "make": "Intamin",     "count": 9,  "pct": 8.3,  "credits": ["Millennium Force","Maverick","Skyrush","Storm Runner","Kingda Ka","Pantheon","El Toro","Fahrenheit","Hagrid's Magical Creatures Motorbike Adventure"] },
+      { "make": "RMC",         "count": 6,  "pct": 5.5,  "credits": ["Steel Vengeance","Wicked Cyclone","Twisted Timbers","Jersey Devil Coaster","Wildcat's Revenge","Lightning Rod"] },
+      { "make": "Premier Rides","count": 5, "pct": 4.6,  "credits": ["Flight of Fear","Hollywood Rip, Ride, Rockit","Flash: Vertical Velocity","Tempesto","Backlot Stunt Coaster"] },
+      { "make": "GCI",         "count": 3,  "pct": 2.8,  "credits": ["Thunderhead","Lightning Racer","InvadR"] },
+      { "make": "Schwarzkopf", "count": 3,  "pct": 2.8,  "credits": ["Sooperdooperlooper","Jet Star 2","Colossus the Fire Dragon"] },
+      { "make": "Vekoma",      "count": 4,  "pct": 3.7,  "credits": ["Flashback","Batman - The Dark Knight","Soarin' Eagle","Dragonflier"] },
+      { "make": "Gerstlauer",  "count": 4,  "pct": 3.7,  "credits": ["Pandemonium","Gotham City Gauntlet Escape from Arkham Asylum","Mystery Mine","FireChaser Express"] },
+      { "make": "S&S",         "count": 4,  "pct": 3.7,  "credits": ["Cannibal","Joker (SFGAdv)","Joker (SFNE)","Tumbili"] },
+      { "make": "PTC/Classic", "count": 7,  "pct": 6.4,  "credits": ["Phoenix (Knoebels)","Comet","Blue Streak","Racer 75","Grizzly","Thunderbolt (SFNE)","Cyclone"] },
+      { "make": "Mack Rides",  "count": 2,  "pct": 1.8,  "credits": ["Laff Trakk","Goofy's Sky School"] },
+      { "make": "GravKraft",   "count": 1,  "pct": 0.9,  "credits": ["Flying Turns"] },
+      { "make": "Disney/Custom","count": 4, "pct": 3.7,  "credits": ["Incredicoaster","Space Mountain","Revenge of the Mummy (USF)","Revenge of the Mummy - The Ride (USH)"] },
+      { "make": "Other/Unknown","count": 28,"pct": 25.7, "credits": ["Bat","Wild Mouse","Spider","Bombora","Puff the Little Fire Dragon","Wicked","Steeplechase","Thunderbolt (Luna Park)","Tickler","Skull Mountain","Harley Quinn Crazy Train","Dark Knight","Green Lantern (stand-up)","Reptilian","Woodstock Express","Apple Zapple","Phoenix (Deno's)","Verbolten","Big Bad Wolf: The Wolf's Revenge","Impulse","Twister","Timber Terror","Tremors","Ex Scream Machine","Smoky Mountain Alpine Coaster","Big Bear Mountain","Roller Coaster","Bombora"] }
+    ],
+    "ratings_by_make": null,
+    "highlights": {
+      "most_credited_make": "B&M",
+      "highest_rated_make": null,
+      "rare_makes": [
+        { "make": "Schwarzkopf", "note": "Vintage German manufacturer — most of their coasters have been removed. Three credits is notable." },
+        { "make": "GravKraft",   "note": "Flying Turns at Knoebels is one of the only wooden bobsled coasters left on Earth." }
+      ],
+      "single_credit_makes": ["GravKraft","Mack Rides"]
+    },
+    "rmc_focus": {
+      "count": 6,
+      "wood_conversions": ["Steel Vengeance","Wicked Cyclone","Twisted Timbers","Wildcat's Revenge"],
+      "ground_up": ["Jersey Devil Coaster","Lightning Rod"],
+      "note": "Strong RMC portfolio — four I-Box wood conversions and two ground-up builds. Lightning Rod is RMC's first ground-up wood coaster and one of the most acclaimed in the world."
+    },
+    "observations": "Kay's credit list reads like a greatest-hits tour of the East Coast enthusiast circuit. B&M dominates at 17 credits — almost unavoidable given how many iconic parks run B&M as their flagship hardware. The RMC count (6) is impressive for a casual credit list and suggests she's hit the right parks at the right time. The three Schwarzkopf credits are a genuine rarity — those machines are disappearing fast. The 28 unknown/unclassified credits (mostly family rides and park-specific designs) are typical for someone who rides everything at a park rather than cherry-picking."
+  }
+}

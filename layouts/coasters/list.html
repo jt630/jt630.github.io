@@ -249,7 +249,7 @@
 <div class="page-wrap">
   <div class="page-header">
     <h1>&#127906; Coasters</h1>
-    <p class="subtitle">Credit log — Jay &amp; Kay</p>
+    <p class="subtitle">Credit log — Jay &amp; Kay &nbsp;·&nbsp; <a href="/coasters/analysis/" style="color:var(--pink)">Analysis &#128202;</a></p>
   </div>
 
   {{/* ── Hero stats ── */}}
@@ -411,14 +411,12 @@
           <thead>
             <tr>
               <th>Coaster</th>
-              <th>Rides</th>
             </tr>
           </thead>
           <tbody>
             {{ range $parkCredits }}
             <tr>
               <td class="credit-name">{{ .coasterName }}</td>
-              <td class="date-text">{{ .totalRides }}</td>
             </tr>
             {{ end }}
           </tbody>
