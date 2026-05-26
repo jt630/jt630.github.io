@@ -43,6 +43,11 @@ title = "Almond Farm"
     url = "/public-health/"
     parent = "build"
     weight = 6
+  [[menu.main]]
+    name = "Coasters"
+    url = "/coasters/"
+    parent = "build"
+    weight = 7
 
   # Taste
   [[menu.main]]

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "user": {
+    "handle": "jay"
+  },
+  "ratingConfig": {
+    "aspects": [
+      { "key": "fun",  "label": "Fun",  "weight": 0.34 },
+      { "key": "fear", "label": "Fear", "weight": 0.33 },
+      { "key": "feel", "label": "Feel", "weight": 0.33 }
+    ]
+  },
+  "visits": [
+    {
+      "id": "641cd119-d91d-4139-a304-a8041dd13905",
+      "parkRcdbId": 4545,
+      "parkName": "Hersheypark",
+      "date": "2026-05-23",
+      "rides": [
+        {
+          "seq": 1,
+          "coasterRcdbId": 10089,
+          "coasterName": "Skyrush",
+          "ratings": { "fun": 6, "fear": 1, "feel": 2 },
+          "notes": "Overhyped"
+        }
+      ]
+    }
+  ],
+  "credits": [
+    {
+      "coasterRcdbId": 10089,
+      "coasterName": "Skyrush",
+      "firstRidden": "2026-05-23",
+      "totalRides": 1,
+      "ratings": { "fun": 6, "fear": 1, "feel": 2 }
+    }
+  ]
+}

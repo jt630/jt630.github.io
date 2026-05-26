@@ -1,0 +1,431 @@
+{{ define "main" }}
+
+{{ $jay := .Site.Data.coasters.jay }}
+{{ $kay := .Site.Data.coasters.kay }}
+
+{{ $jayCredits := $jay.credits }}
+{{ $kayCredits := $kay.credits }}
+
+{{/* Unique parks for Jay — sourced from visits */}}
+{{ $jayParks := slice }}
+{{ range $jay.visits }}
+  {{ if not (in $jayParks .parkName) }}
+    {{ $jayParks = $jayParks | append .parkName }}
+  {{ end }}
+{{ end }}
+
+{{/* Unique parks for Kay — sourced from credits (parkName present) */}}
+{{ $kayParks := slice }}
+{{ range $kayCredits }}
+  {{ if .parkName }}
+    {{ if not (in $kayParks .parkName) }}
+      {{ $kayParks = $kayParks | append .parkName }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Jay top rated credit */}}
+{{ $jayTop := dict }}
+{{ $jayTopFun := -1 }}
+{{ range $jayCredits }}
+  {{ if .ratings }}
+    {{ if gt .ratings.fun $jayTopFun }}
+      {{ $jayTopFun = .ratings.fun }}
+      {{ $jayTop = . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Jay last visit */}}
+{{ $jayLastVisit := dict }}
+{{ if $jay.visits }}
+  {{ $sortedVisits := sort $jay.visits "date" "desc" }}
+  {{ $jayLastVisit = index $sortedVisits 0 }}
+{{ end }}
+
+<style>
+  .coasters-hero {
+    background: var(--black-card);
+    border: 2px outset #444;
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .coasters-stat {
+    text-align: center;
+  }
+  .coasters-stat .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--pink);
+    line-height: 1;
+    display: block;
+  }
+  .coasters-stat .stat-label {
+    font-size: 0.8rem;
+    color: var(--white-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+  }
+  .stat-divider {
+    width: 1px;
+    background: #333;
+    align-self: stretch;
+  }
+
+  .profile-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (max-width: 600px) {
+    .profile-cards { grid-template-columns: 1fr; }
+  }
+  .profile-card {
+    background: var(--black-card);
+    border: 2px outset #444;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+  .profile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #333;
+  }
+  .profile-handle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--pink);
+    text-transform: capitalize;
+  }
+  .profile-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .profile-meta-item {
+    background: var(--black-elevated);
+    border-radius: var(--radius);
+    padding: 0.6rem 0.8rem;
+  }
+  .profile-meta-item .meta-label {
+    font-size: 0.7rem;
+    color: var(--white-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .profile-meta-item .meta-value {
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .profile-meta-item .meta-value.gold {
+    color: var(--gold);
+  }
+
+  .credits-section {
+    margin-bottom: 3rem;
+  }
+  .credits-section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--pink);
+  }
+  .credits-section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    text-transform: capitalize;
+  }
+  .credits-count {
+    font-size: 0.8rem;
+    color: var(--white-dim);
+  }
+
+  .visit-block {
+    background: var(--black-card);
+    border: 1px solid #2a2a2a;
+    border-left: 3px solid #00CFFF;
+    border-radius: var(--radius);
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+  .visit-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--black-elevated);
+  }
+  .visit-park {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--white);
+    font-weight: 700;
+  }
+  .visit-date {
+    font-size: 0.78rem;
+    color: var(--white-faint);
+  }
+
+  .park-group {
+    margin-bottom: 1.5rem;
+  }
+  .park-label {
+    font-size: 0.75rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--gold);
+  }
+
+  .credit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .credit-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    color: var(--white-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .credit-table td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid #1e1e1e;
+    vertical-align: middle;
+    color: var(--white-dim);
+  }
+  .credit-table tr:hover td {
+    background: var(--black-elevated);
+    color: var(--white);
+  }
+  .credit-name {
+    color: var(--white);
+    font-weight: 500;
+  }
+  .rating-badge {
+    display: inline-flex;
+    gap: 0.4rem;
+  }
+  .rating-pip {
+    display: inline-block;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .pip-fun  { background: rgba(255,45,138,0.2);  color: var(--pink-light); }
+  .pip-fear { background: rgba(212,175,55,0.15); color: var(--gold); }
+  .pip-feel { background: rgba(255,255,255,0.08); color: var(--white-dim); }
+  .unrated  { color: var(--white-faint); font-style: italic; font-size: 0.78rem; }
+  .note-text { font-size: 0.78rem; color: var(--white-faint); font-style: italic; }
+  .date-text { font-size: 0.78rem; color: var(--white-faint); white-space: nowrap; }
+</style>
+
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>&#127906; Coasters</h1>
+    <p class="subtitle">Credit log — Jay &amp; Kay</p>
+  </div>
+
+  {{/* ── Hero stats ── */}}
+  <div class="coasters-hero">
+    <div class="coasters-stat">
+      <span class="stat-num">{{ add (len $jayCredits) (len $kayCredits) }}</span>
+      <span class="stat-label">Combined Credits</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="coasters-stat">
+      <span class="stat-num">{{ len $jayCredits }}</span>
+      <span class="stat-label">Jay's Credits</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="coasters-stat">
+      <span class="stat-num">{{ len $kayCredits }}</span>
+      <span class="stat-label">Kay's Credits</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="coasters-stat">
+      <span class="stat-num">{{ len $jay.visits }}</span>
+      <span class="stat-label">Logged Visits</span>
+    </div>
+  </div>
+
+  {{/* ── Profile cards ── */}}
+  <div class="profile-cards">
+
+    {{/* Jay */}}
+    <div class="profile-card">
+      <div class="profile-card-header">
+        <span style="font-size:1.8rem">&#127938;</span>
+        <span class="profile-handle">{{ $jay.user.handle }}</span>
+      </div>
+      <div class="profile-meta">
+        <div class="profile-meta-item">
+          <span class="meta-label">Credits</span>
+          <span class="meta-value gold">{{ len $jayCredits }}</span>
+        </div>
+        <div class="profile-meta-item">
+          <span class="meta-label">Visits</span>
+          <span class="meta-value">{{ len $jay.visits }}</span>
+        </div>
+        <div class="profile-meta-item" style="grid-column: 1 / -1">
+          <span class="meta-label">Top Rated</span>
+          {{ if $jayTop.coasterName }}
+            <span class="meta-value">{{ $jayTop.coasterName }}
+              <span style="color:var(--white-faint);font-size:0.8rem;">(Fun {{ $jayTop.ratings.fun }})</span>
+            </span>
+          {{ else }}
+            <span class="meta-value" style="color:var(--white-faint)">No ratings yet</span>
+          {{ end }}
+        </div>
+        <div class="profile-meta-item" style="grid-column: 1 / -1">
+          <span class="meta-label">Last Visit</span>
+          {{ if $jayLastVisit.parkName }}
+            <span class="meta-value">{{ $jayLastVisit.parkName }}
+              <span style="color:var(--white-faint);font-size:0.8rem;">{{ $jayLastVisit.date }}</span>
+            </span>
+          {{ else }}
+            <span class="meta-value" style="color:var(--white-faint)">—</span>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    {{/* Kay */}}
+    <div class="profile-card">
+      <div class="profile-card-header">
+        <span style="font-size:1.8rem">&#127938;</span>
+        <span class="profile-handle">{{ $kay.user.handle }}</span>
+      </div>
+      <div class="profile-meta">
+        <div class="profile-meta-item">
+          <span class="meta-label">Credits</span>
+          <span class="meta-value gold">{{ len $kayCredits }}</span>
+        </div>
+        <div class="profile-meta-item">
+          <span class="meta-label">Parks</span>
+          <span class="meta-value">{{ len $kayParks }}</span>
+        </div>
+        <div class="profile-meta-item" style="grid-column: 1 / -1">
+          <span class="meta-label">Ratings</span>
+          <span class="meta-value" style="color:var(--white-faint)">Bulk import — unrated</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  {{/* ── Jay: Visit Log ── */}}
+  <div class="credits-section">
+    <div class="credits-section-header">
+      <h2>Jay — Visit Log</h2>
+      <span class="credits-count">{{ len $jay.visits }} visits · {{ len $jayCredits }} credits</span>
+    </div>
+
+    {{ if $jay.visits }}
+      {{ $sortedVisits := sort $jay.visits "date" "desc" }}
+      {{ range $sortedVisits }}
+      <div class="visit-block">
+        <div class="visit-header">
+          <span class="visit-park">{{ .parkName }}</span>
+          <span class="visit-date">{{ .date }}</span>
+        </div>
+        {{ if .rides }}
+        <table class="credit-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Coaster</th>
+              <th>Ratings</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range .rides }}
+            <tr>
+              <td class="date-text">{{ .seq }}</td>
+              <td class="credit-name">{{ .coasterName }}</td>
+              <td>
+                {{ if .ratings }}
+                  <span class="rating-badge">
+                    <span class="rating-pip pip-fun">F&nbsp;{{ .ratings.fun }}</span>
+                    <span class="rating-pip pip-fear">&#128561;&nbsp;{{ .ratings.fear }}</span>
+                    <span class="rating-pip pip-feel">&#128170;&nbsp;{{ .ratings.feel }}</span>
+                  </span>
+                {{ else }}
+                  <span class="unrated">unrated</span>
+                {{ end }}
+              </td>
+              <td class="note-text">{{ with .notes }}{{ . }}{{ end }}</td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
+        {{ end }}
+      </div>
+      {{ end }}
+    {{ else }}
+      <p style="color:var(--white-faint);font-style:italic;padding:1rem 0;">
+        No visits logged yet. Hit a park and run <code>/visit</code> in the coaster tracker.
+      </p>
+    {{ end }}
+  </div>
+
+  {{/* ── Kay: Credits by Park ── */}}
+  <div class="credits-section">
+    <div class="credits-section-header">
+      <h2>Kay — Credits</h2>
+      <span class="credits-count">{{ len $kayCredits }} total · {{ len $kayParks }} parks · bulk import · unrated</span>
+    </div>
+
+    {{ range $park := $kayParks }}
+      {{ $parkCredits := where $kayCredits "parkName" $park }}
+      <div class="park-group">
+        <div class="park-label">{{ $park }}</div>
+        <table class="credit-table">
+          <thead>
+            <tr>
+              <th>Coaster</th>
+              <th>Rides</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range $parkCredits }}
+            <tr>
+              <td class="credit-name">{{ .coasterName }}</td>
+              <td class="date-text">{{ .totalRides }}</td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+    {{ end }}
+  </div>
+
+</div>
+{{ end }}

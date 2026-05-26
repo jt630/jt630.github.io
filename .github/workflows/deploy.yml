@@ -31,6 +31,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Setup Pages
         id: pages
@@ -39,6 +41,12 @@ jobs:
       - name: Write API keys
         run: |
           echo "fred: \"${{ secrets.FRED_API_KEY }}\"" > data/keys.yaml
+
+      - name: Sync coaster profile data
+        run: |
+          mkdir -p data/coasters
+          cp coaster-data/profiles/jay.json data/coasters/jay.json
+          cp coaster-data/profiles/kay.json data/coasters/kay.json
 
       - name: Build with Hugo
         env:
