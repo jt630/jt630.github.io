@@ -1,0 +1,80 @@
+{
+  "skill": "rare-credits",
+  "profile": "kay",
+  "generated_at": "2026-05-26T00:00:00Z",
+  "data": {
+    "ghost_credits": [],
+    "null_rcdb_credits": [
+      {
+        "coasterName": "Ex Scream Machine",
+        "parkName": "Western Idaho Fair",
+        "likely_type": "Portable/traveling steel coaster — fair rides are not catalogued by RCDB.",
+        "controversy": "Traveling fair coasters are often debated as credits. Counting them is a valid choice but puts you in the minority among enthusiasts."
+      },
+      {
+        "coasterName": "Smoky Mountain Alpine Coaster",
+        "parkName": "Gatlinburg",
+        "likely_type": "Alpine/gravity coaster on a mountain slope.",
+        "controversy": "Alpine coasters are the most contested credit type in the hobby. They are gravity-powered and have no chain lift, which leads many enthusiasts to not count them. Kay counts it — that's a valid but bold stance."
+      }
+    ],
+    "rare_manufacturer_credits": [
+      {
+        "coasterName": "Sooperdooperlooper",
+        "parkName": "Hersheypark",
+        "make": "Schwarzkopf",
+        "note": "One of the few surviving Schwarzkopf loopers in the US. Anton Schwarzkopf's machines from the 1970s–80s are legendary for their smooth, powerful ride. Most have been removed."
+      },
+      {
+        "coasterName": "Jet Star 2",
+        "parkName": "Lagoon",
+        "make": "Schwarzkopf",
+        "note": "Classic Schwarzkopf shuttle/jet-star design. A relic from the golden age of European coaster engineering."
+      },
+      {
+        "coasterName": "Colossus the Fire Dragon",
+        "parkName": "Lagoon",
+        "make": "Schwarzkopf",
+        "note": "Custom Schwarzkopf looper — Lagoon has an unusually rich collection of surviving Schwarzkopf hardware."
+      },
+      {
+        "coasterName": "Flying Turns",
+        "parkName": "Knoebels Amusement Resort",
+        "make": "GravKraft",
+        "note": "One of the only wooden bobsled coasters in existence — a type that was common in the early 20th century but nearly extinct. Knoebels built this in-house over several years. A genuinely irreplaceable credit."
+      },
+      {
+        "coasterName": "Cannibal",
+        "parkName": "Lagoon",
+        "make": "S&S",
+        "note": "Designed and partially built by Lagoon's in-house team with S&S. At the time of opening it had the steepest drop of any steel coaster in the world (116°). One-of-a-kind."
+      }
+    ],
+    "one_of_a_kind_credits": [
+      {
+        "coasterName": "Flying Turns",
+        "parkName": "Knoebels",
+        "note": "Wooden bobsled — fewer than a handful exist worldwide. Knoebels' version took over a decade to design and build in-house. You cannot ride this type of coaster at any major chain park."
+      },
+      {
+        "coasterName": "El Toro",
+        "parkName": "Six Flags Great Adventure",
+        "note": "Intamin prefabricated wooden coaster — a design type Intamin has since abandoned. Consistently ranked among the top wooden coasters in the world."
+      }
+    ],
+    "counting_quirks": [
+      {
+        "note": "Gemini at Cedar Point is counted as two credits — Gemini (Red) and Gemini (Blue). This is the enthusiast-standard approach for dual-track racing coasters where both sides have meaningfully different layouts or ride characteristics."
+      },
+      {
+        "note": "The alpine coaster in Gatlinburg is counted. This places Kay in the credit-maximalist camp — she counts everything that moves on a track."
+      }
+    ],
+    "rarity_summary": {
+      "extremely_rare": ["Flying Turns","Cannibal"],
+      "rare": ["Sooperdooperlooper","Jet Star 2","Colossus the Fire Dragon","El Toro"],
+      "notable": ["Steel Vengeance","Lightning Rod","Kingda Ka","Millennium Force"]
+    },
+    "observations": "Kay's rarity profile is anchored by the Lagoon credits — that park has preserved an unusual number of Schwarzkopf machines that have been scrapped elsewhere. Flying Turns at Knoebels is the crown jewel: it's a type of ride that barely exists anymore. The alpine coaster count reveals a maximalist counting philosophy, which is a totally coherent position even if it's divisive."
+  }
+}

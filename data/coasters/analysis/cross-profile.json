@@ -1,0 +1,45 @@
+{
+  "skill": "cross-profile",
+  "generated_at": "2026-05-26T00:00:00Z",
+  "data": {
+    "summary": {
+      "jay":  { "credits": 1,   "rated": 1,  "parks": 1 },
+      "kay":  { "credits": 109, "rated": 0,  "parks": 19 }
+    },
+    "shared_credits": [
+      {
+        "coasterName": "Skyrush",
+        "parkName": "Hersheypark",
+        "jay_ratings": { "fun": 6, "fear": 1, "feel": 2 },
+        "kay_ratings": null,
+        "note": "Jay has rated it; Kay has not. Jay found it low-fear and rough — \"Overhyped\"."
+      }
+    ],
+    "disagreements": [],
+    "jay_only": [
+    ],
+    "kay_only": [
+      { "park": "Cedar Point",              "credits": ["Steel Vengeance","Maverick","Millennium Force","Gemini (Red)","Gemini (Blue)","Magnum XL-200","Iron Dragon","Blue Streak","Cedar Creek Mine Ride","Corkscrew","GateKeeper","Raptor","Rougarou","Valravn"] },
+      { "park": "Six Flags Great Adventure","credits": ["Medusa","Nitro","Jersey Devil Coaster","Batman The Ride","Superman - Ultimate Flight","Green Lantern","Dark Knight","Runaway Mine Train","El Toro","Skull Mountain","Kingda Ka","Harley Quinn Crazy Train","Flash: Vertical Velocity","Joker"] },
+      { "park": "Busch Gardens Williamsburg","credits": ["Tempesto","Alpengeist","InvadR","Griffon","Big Bad Wolf: The Wolf's Revenge","Loch Ness Monster","Verbolten","Pantheon","Apollo's Chariot"] },
+      { "park": "Kings Dominion",           "credits": ["Rapterra","Woodstock Express","Tumbili","Reptilian","Racer 75","Backlot Stunt Coaster","Flight of Fear","Apple Zapple","Twisted Timbers","Grizzly"] },
+      { "park": "Six Flags New England",    "credits": ["Wicked Cyclone","Flashback","Superman the Ride","Catwoman's Whip","Gotham City Gauntlet Escape from Arkham Asylum","Thunderbolt","Batman - The Dark Knight","Joker","Pandemonium"] },
+      { "park": "Dollywood",                "credits": ["Lightning Rod","Big Bear Mountain","Wild Eagle","Tennessee Tornado","FireChaser Express","Thunderhead","Dragonflier","Mystery Mine"] },
+      { "park": "Hersheypark",              "credits": ["Candymonium","Wildcat's Revenge","Fahrenheit","Storm Runner","Laff Trakk","Lightning Racer","Great Bear","Sooperdooperlooper","Trailblazer","Comet"] },
+      { "park": "Lagoon",                   "credits": ["Bat","Wild Mouse","Spider","Jet Star 2","Bombora","Cannibal","Wicked","Colossus the Fire Dragon","Roller Coaster","Puff the Little Fire Dragon"] },
+      { "park": "Knoebels Amusement Resort","credits": ["Flying Turns","Phoenix","Twister","Impulse"] },
+      { "park": "Luna Park",                "credits": ["Cyclone","Steeplechase","Soarin' Eagle","Thunderbolt","Tickler"] },
+      { "park": "Disneyland",               "credits": ["Big Thunder Mountain Railroad","Space Mountain","Matterhorn Bobsleds"] },
+      { "park": "Disney California Adventure","credits": ["Incredicoaster","Goofy's Sky School"] },
+      { "park": "Universal Islands of Adventure","credits": ["Hagrid's Magical Creatures Motorbike Adventure","Incredible Hulk"] },
+      { "park": "Universal Studios Florida","credits": ["Hollywood Rip, Ride, Rockit","Revenge of the Mummy"] },
+      { "park": "Universal Studios Hollywood","credits": ["Revenge of the Mummy - The Ride"] },
+      { "park": "Silverwood Theme Park",    "credits": ["Timber Terror","Tremors"] }
+    ],
+    "parks_jay_only": [],
+    "parks_kay_only": ["Cedar Point","Six Flags Great Adventure","Busch Gardens Williamsburg","Kings Dominion","Six Flags New England","Dollywood","Lagoon","Knoebels Amusement Resort","Luna Park","Disneyland","Disney California Adventure","Universal Islands of Adventure","Universal Studios Florida","Universal Studios Hollywood","Silverwood Theme Park","Western Idaho Fair","Gatlinburg","Deno's Wonder Wheel Amusement Park"],
+    "parks_shared": ["Hersheypark"],
+    "taste_comparison": null,
+    "trip_recommendation": "Kay has hit nearly every major East Coast park — Cedar Point, Great Adventure, Busch Gardens, SFNE, Kings Dominion, Hersheypark, Knoebels, Dollywood. The obvious joint-trip target is a park Kay has already covered but Jay hasn't: Cedar Point (14 credits for Kay, 0 for Jay) or Kings Dominion. For a new-park experience for both, look west — Kay hasn't touched Carowinds, Kings Island, or Kennywood."
+  }
+}
