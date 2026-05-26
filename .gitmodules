@@ -1,0 +1,3 @@
+[submodule "coaster-data"]
+	path = coaster-data
+	url = https://github.com/jt630/coaster-profile.git

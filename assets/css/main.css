@@ -434,6 +434,7 @@ img {
 .section-card.monkeys  { border-top: 3px solid var(--gold); }
 .section-card.dingers  { border-top: 3px solid var(--pink); }
 .section-card.news     { border-top: 3px solid var(--pink-light); }
+.section-card.coasters { border-top: 3px solid #00CFFF; }
 
 /* ---- RECENT POSTS (homepage) ---- */
 .recent-section {
