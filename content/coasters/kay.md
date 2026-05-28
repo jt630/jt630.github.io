@@ -1,5 +1,5 @@
 ---
 title: "Kay"
-layout: "coaster-profile"
+layout: "coaster-profile-kay"
 profile: "kay"
 ---
