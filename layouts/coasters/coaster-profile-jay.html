@@ -1,0 +1,271 @@
+{{ define "main" }}
+{{ $profile := index .Site.Data.coasters "jay" }}
+{{ $credits := $profile.credits }}
+
+{{/* Unique parks from visits */}}
+{{ $parks := slice }}
+{{ range $profile.visits }}
+  {{ if not (in $parks .parkName) }}
+    {{ $parks = $parks | append .parkName }}
+  {{ end }}
+{{ end }}
+
+{{/* Top rated credit by fun score */}}
+{{ $topCredit := dict }}
+{{ $topFun := -1 }}
+{{ range $credits }}
+  {{ if .ratings }}
+    {{ if gt .ratings.fun $topFun }}
+      {{ $topFun    = .ratings.fun }}
+      {{ $topCredit = . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<style>
+  .profile-hero { display:flex; align-items:center; gap:1.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .profile-icon { font-size:3rem; line-height:1; }
+  .profile-name { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; color:var(--pink); text-transform:capitalize; line-height:1; }
+  .profile-back { font-size:0.82rem; color:var(--white-faint); text-decoration:none; margin-bottom:1.5rem; display:block; }
+  .profile-back:hover { color:var(--pink); }
+  .profile-stat-row { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2rem; }
+  .pstat { background:var(--black-card); border:2px outset #444; border-radius:var(--radius); padding:0.75rem 1.25rem; text-align:center; min-width:100px; }
+  .pstat .psn { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:var(--pink); line-height:1; display:block; }
+  .pstat .psl { font-size:0.7rem; color:var(--white-dim); text-transform:uppercase; letter-spacing:0.08em; }
+  .section-label { font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--white); border-bottom:2px solid var(--pink); padding-bottom:0.4rem; margin-bottom:1.25rem; margin-top:2rem; }
+  .visit-block { background:var(--black-card); border:1px solid #2a2a2a; border-left:3px solid #00CFFF; border-radius:var(--radius); margin-bottom:1.25rem; overflow:hidden; }
+  .visit-header { display:flex; align-items:baseline; gap:1rem; padding:0.75rem 1rem; background:var(--black-elevated); }
+  .visit-park { font-family:'Playfair Display',serif; font-size:1rem; color:var(--white); font-weight:700; }
+  .visit-date { font-size:0.78rem; color:var(--white-faint); }
+  .credit-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+  .credit-table th { text-align:left; font-size:0.7rem; color:var(--white-faint); text-transform:uppercase; letter-spacing:0.08em; padding:0.4rem 0.6rem; border-bottom:1px solid #2a2a2a; }
+  .credit-table td { padding:0.45rem 0.6rem; border-bottom:1px solid #1e1e1e; vertical-align:middle; color:var(--white-dim); }
+  .credit-table tr:hover td { background:var(--black-elevated); color:var(--white); }
+  .credit-name { color:var(--white); font-weight:500; }
+  .rating-badge { display:inline-flex; gap:0.4rem; }
+  .rating-pip { display:inline-block; padding:0.15rem 0.4rem; border-radius:2px; font-size:0.78rem; font-weight:700; line-height:1; }
+  .pip-fun  { background:rgba(255,45,138,0.2);  color:var(--pink-light); }
+  .pip-fear { background:rgba(212,175,55,0.15); color:var(--gold); }
+  .pip-feel { background:rgba(255,255,255,0.08);color:var(--white-dim); }
+  .unrated  { color:var(--white-faint); font-style:italic; font-size:0.78rem; }
+  .note-text { font-size:0.78rem; color:var(--white-faint); font-style:italic; }
+  .dim-text  { font-size:0.78rem; color:var(--white-faint); white-space:nowrap; }
+
+  /* ── Radar section ── */
+  .jay-rating-wrap { display:flex; gap:2.5rem; align-items:center; flex-wrap:wrap; margin-bottom:2rem; }
+  .jay-chart-col { flex:0 0 auto; }
+  .jay-detail-col { flex:1 1 180px; }
+  .jay-credit-name { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:900; color:var(--white); line-height:1.1; margin-bottom:0.3rem; }
+  .jay-credit-park { font-size:0.82rem; color:var(--white-faint); margin-bottom:0.75rem; }
+  .jay-credit-quote { font-size:1rem; color:var(--gold); font-style:italic; margin-bottom:1rem; }
+
+  .jay-rbar-row { display:flex; align-items:center; gap:0.65rem; margin-bottom:0.5rem; }
+  .jay-rbar-label { font-size:0.78rem; color:var(--white-faint); text-transform:uppercase; letter-spacing:0.08em; width:34px; }
+  .jay-rbar-track { flex:1; height:8px; background:#1e1e1e; border-radius:4px; overflow:hidden; }
+  .jay-rbar { height:100%; border-radius:4px; transition:width 0.4s ease; }
+  .jay-rbar--fun  { background:var(--pink); }
+  .jay-rbar--fear { background:var(--gold); }
+  .jay-rbar--feel { background:#00CFFF; }
+  .jay-rbar-val { font-size:0.82rem; font-weight:700; color:var(--white); width:16px; text-align:right; }
+
+  /* ── Nav cards ── */
+  .jay-nav-cards { display:flex; gap:1rem; flex-wrap:wrap; margin:2rem 0; }
+  .jay-nav-card { display:flex; align-items:center; gap:1rem; background:var(--black-card); border:2px outset #444; border-radius:var(--radius); padding:1.1rem 1.4rem; text-decoration:none; flex:1 1 200px; transition:border-color 0.15s,background 0.15s; }
+  .jay-nav-card:hover { border-color:var(--pink); background:var(--black-elevated); }
+  .jnc-icon { font-size:1.7rem; line-height:1; }
+  .jnc-title { font-family:'Playfair Display',serif; font-size:0.98rem; font-weight:700; color:var(--white); }
+  .jnc-desc { font-size:0.76rem; color:var(--white-faint); margin-top:0.15rem; }
+  .jnc-arrow { margin-left:auto; color:var(--white-faint); font-size:1.15rem; }
+</style>
+
+<div class="page-wrap">
+  <a href="/coasters/" class="profile-back">&#8592; Coasters</a>
+
+  <div class="profile-hero">
+    <span class="profile-icon">&#127938;</span>
+    <span class="profile-name">jay</span>
+  </div>
+
+  <div class="profile-stat-row">
+    <div class="pstat">
+      <span class="psn">{{ len $credits }}</span>
+      <span class="psl">Credits</span>
+    </div>
+    <div class="pstat">
+      <span class="psn">{{ len $parks }}</span>
+      <span class="psl">Parks</span>
+    </div>
+    {{ if $profile.visits }}
+    <div class="pstat">
+      <span class="psn">{{ len $profile.visits }}</span>
+      <span class="psl">Visits</span>
+    </div>
+    {{ end }}
+    {{ if $topCredit.coasterName }}
+    <div class="pstat" style="min-width:160px;">
+      <span class="psn" style="font-size:1rem;padding:0.2rem 0;">{{ $topCredit.coasterName }}</span>
+      <span class="psl">Top Rated &middot; Fun {{ $topFun }}/10</span>
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- ── Rating breakdown ── -->
+  {{ if $topCredit.ratings }}
+  <h2 class="section-label">Rating Breakdown</h2>
+  <div class="jay-rating-wrap">
+    <div class="jay-chart-col">
+      <canvas id="jay-radar" width="230" height="230" style="max-width:100%;display:block;"></canvas>
+    </div>
+    <div class="jay-detail-col">
+      <div class="jay-credit-name">{{ $topCredit.coasterName }}</div>
+      {{ range $profile.visits }}
+        {{ $v := . }}
+        {{ range .rides }}
+          {{ if eq .coasterName $topCredit.coasterName }}
+            <div class="jay-credit-park">{{ $v.parkName }} &middot; {{ $v.date }}</div>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ range $profile.visits }}
+        {{ range .rides }}
+          {{ if and (eq .coasterName $topCredit.coasterName) .notes }}
+          <div class="jay-credit-quote">&ldquo;{{ .notes }}&rdquo;</div>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      <div class="jay-rbar-row">
+        <span class="jay-rbar-label">Fun</span>
+        <div class="jay-rbar-track"><div class="jay-rbar jay-rbar--fun" style="width:{{ mul $topCredit.ratings.fun 10 }}%"></div></div>
+        <span class="jay-rbar-val">{{ $topCredit.ratings.fun }}</span>
+      </div>
+      <div class="jay-rbar-row">
+        <span class="jay-rbar-label">Fear</span>
+        <div class="jay-rbar-track"><div class="jay-rbar jay-rbar--fear" style="width:{{ mul $topCredit.ratings.fear 10 }}%"></div></div>
+        <span class="jay-rbar-val">{{ $topCredit.ratings.fear }}</span>
+      </div>
+      <div class="jay-rbar-row">
+        <span class="jay-rbar-label">Feel</span>
+        <div class="jay-rbar-track"><div class="jay-rbar jay-rbar--feel" style="width:{{ mul $topCredit.ratings.feel 10 }}%"></div></div>
+        <span class="jay-rbar-val">{{ $topCredit.ratings.feel }}</span>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- ── Nav cards ── -->
+  <div class="jay-nav-cards">
+    <a href="/coasters/analysis/" class="jay-nav-card">
+      <span class="jnc-icon">&#128202;</span>
+      <div>
+        <div class="jnc-title">Analysis</div>
+        <div class="jnc-desc">AI deep dives &amp; cross-profile comparison</div>
+      </div>
+      <span class="jnc-arrow">&#8594;</span>
+    </a>
+    <a href="#visits" class="jay-nav-card">
+      <span class="jnc-icon">&#128203;</span>
+      <div>
+        <div class="jnc-title">Visit Log</div>
+        <div class="jnc-desc">{{ len $profile.visits }} visit{{ if gt (len $profile.visits) 1 }}s{{ end }}, {{ len $credits }} credit{{ if gt (len $credits) 1 }}s{{ end }}</div>
+      </div>
+      <span class="jnc-arrow">&#8594;</span>
+    </a>
+  </div>
+
+  <!-- ── Visit log ── -->
+  {{ if $profile.visits }}
+  <h2 class="section-label" id="visits">Visit Log</h2>
+  {{ $sortedVisits := sort $profile.visits "date" "desc" }}
+  {{ range $sortedVisits }}
+  <div class="visit-block">
+    <div class="visit-header">
+      <span class="visit-park">{{ .parkName }}</span>
+      <span class="visit-date">{{ .date }}</span>
+      {{ if .rides }}<span class="visit-date">&middot; {{ len .rides }} ride{{ if gt (len .rides) 1 }}s{{ end }}</span>{{ end }}
+    </div>
+    {{ if .rides }}
+    <table class="credit-table">
+      <thead><tr><th>#</th><th>Coaster</th><th>Ratings</th><th>Notes</th></tr></thead>
+      <tbody>
+        {{ range .rides }}
+        <tr>
+          <td class="dim-text">{{ .seq }}</td>
+          <td class="credit-name">{{ .coasterName }}</td>
+          <td>
+            {{ if .ratings }}
+              <span class="rating-badge">
+                <span class="rating-pip pip-fun">F&nbsp;{{ .ratings.fun }}</span>
+                <span class="rating-pip pip-fear">&#128561;&nbsp;{{ .ratings.fear }}</span>
+                <span class="rating-pip pip-feel">&#128170;&nbsp;{{ .ratings.feel }}</span>
+              </span>
+            {{ else }}<span class="unrated">unrated</span>{{ end }}
+          </td>
+          <td class="note-text">{{ with .notes }}{{ . }}{{ end }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+    {{ end }}
+  </div>
+  {{ end }}
+  {{ end }}
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function () {
+  {{ if $topCredit.ratings }}
+  var canvas = document.getElementById('jay-radar');
+  if (!canvas || typeof Chart === 'undefined') return;
+  new Chart(canvas, {
+    type: 'radar',
+    data: {
+      labels: ['Fun', 'Fear', 'Feel'],
+      datasets: [{
+        data: [{{ $topCredit.ratings.fun }}, {{ $topCredit.ratings.fear }}, {{ $topCredit.ratings.feel }}],
+        backgroundColor: 'rgba(255,45,138,0.15)',
+        borderColor: '#FF2D8A',
+        pointBackgroundColor: '#FF2D8A',
+        pointBorderColor: '#0A0A0A',
+        pointRadius: 5,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: false,
+      scales: {
+        r: {
+          min: 0,
+          max: 10,
+          ticks: {
+            stepSize: 2,
+            color: 'rgba(255,255,255,0.25)',
+            backdropColor: 'transparent',
+            font: { size: 9 }
+          },
+          grid: { color: 'rgba(255,255,255,0.08)' },
+          angleLines: { color: 'rgba(255,255,255,0.1)' },
+          pointLabels: {
+            color: '#cccccc',
+            font: { size: 13, weight: '600' }
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function (ctx) {
+              var labels = ['Fun', 'Fear', 'Feel'];
+              return ' ' + labels[ctx.dataIndex] + ': ' + ctx.raw + '/10';
+            }
+          }
+        }
+      }
+    }
+  });
+  {{ end }}
+}());
+</script>
+{{ end }}
