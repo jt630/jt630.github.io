@@ -1,0 +1,182 @@
+{{ define "main" }}
+{{ $profile := index .Site.Data.coasters "kay" }}
+{{ $credits := $profile.credits }}
+{{ $mfr     := index .Site.Data.coasters.analysis "manufacturer-kay" }}
+
+{{/* Unique parks */}}
+{{ $parks := slice }}
+{{ range $credits }}
+  {{ if and .parkName (not (in $parks .parkName)) }}
+    {{ $parks = $parks | append .parkName }}
+  {{ end }}
+{{ end }}
+
+{{/* Color palette for pie chart — matches site dark theme */}}
+{{ $colors := slice "#FF2D8A" "#FF6B35" "#00CFFF" "#E63946" "#D4AF37" "#9B5DE5" "#4ECDC4" "#F7B731" "#2ED573" "#A8E6CF" "#FFD700" "#74B9FF" "#FD79A8" "#A29BFE" "#636E72" }}
+
+<style>
+  .profile-hero { display:flex; align-items:center; gap:1.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .profile-icon { font-size:3rem; line-height:1; }
+  .profile-name { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; color:var(--pink); text-transform:capitalize; line-height:1; }
+  .profile-back { font-size:0.82rem; color:var(--white-faint); text-decoration:none; margin-bottom:1.5rem; display:block; }
+  .profile-back:hover { color:var(--pink); }
+  .profile-stat-row { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2rem; }
+  .pstat { background:var(--black-card); border:2px outset #444; border-radius:var(--radius); padding:0.75rem 1.25rem; text-align:center; min-width:100px; }
+  .pstat .psn { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:var(--pink); line-height:1; display:block; }
+  .pstat .psl { font-size:0.7rem; color:var(--white-dim); text-transform:uppercase; letter-spacing:0.08em; }
+  .section-label { font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--white); border-bottom:2px solid var(--pink); padding-bottom:0.4rem; margin-bottom:1.25rem; margin-top:2rem; }
+  .park-group { margin-bottom:1.5rem; }
+  .park-label { font-size:0.75rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.12em; font-weight:700; margin-bottom:0.5rem; padding-left:0.5rem; border-left:3px solid var(--gold); }
+  .credit-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+  .credit-table th { text-align:left; font-size:0.7rem; color:var(--white-faint); text-transform:uppercase; letter-spacing:0.08em; padding:0.4rem 0.6rem; border-bottom:1px solid #2a2a2a; }
+  .credit-table td { padding:0.45rem 0.6rem; border-bottom:1px solid #1e1e1e; vertical-align:middle; color:var(--white-dim); }
+  .credit-table tr:hover td { background:var(--black-elevated); color:var(--white); }
+  .credit-name { color:var(--white); font-weight:500; }
+
+  /* ── Manufacturer breakdown ── */
+  .mfr-layout { display:flex; gap:2rem; align-items:flex-start; flex-wrap:wrap; margin-bottom:2rem; }
+  .mfr-chart-col { flex:0 0 auto; }
+  .mfr-legend-col { flex:1 1 180px; }
+  .mfr-legend-row { display:flex; align-items:center; gap:0.55rem; padding:0.22rem 0; font-size:0.83rem; }
+  .mfr-dot { width:11px; height:11px; border-radius:2px; flex-shrink:0; }
+  .mfr-make { flex:1; color:var(--white-dim); }
+  .mfr-cnt { color:var(--white); font-weight:700; width:24px; text-align:right; }
+  .mfr-pct { color:var(--white-faint); width:42px; text-align:right; font-size:0.76rem; }
+
+  /* ── Nav cards ── */
+  .kay-nav-cards { display:flex; gap:1rem; flex-wrap:wrap; margin:2rem 0; }
+  .kay-nav-card { display:flex; align-items:center; gap:1rem; background:var(--black-card); border:2px outset #444; border-radius:var(--radius); padding:1.1rem 1.4rem; text-decoration:none; flex:1 1 200px; transition:border-color 0.15s,background 0.15s; }
+  .kay-nav-card:hover { border-color:#00CFFF; background:var(--black-elevated); }
+  .knc-icon { font-size:1.7rem; line-height:1; }
+  .knc-title { font-family:'Playfair Display',serif; font-size:0.98rem; font-weight:700; color:var(--white); }
+  .knc-desc { font-size:0.76rem; color:var(--white-faint); margin-top:0.15rem; }
+  .knc-arrow { margin-left:auto; color:var(--white-faint); font-size:1.15rem; }
+</style>
+
+<div class="page-wrap">
+  <a href="/coasters/" class="profile-back">&#8592; Coasters</a>
+
+  <div class="profile-hero">
+    <span class="profile-icon">&#127938;</span>
+    <span class="profile-name">kay</span>
+  </div>
+
+  <div class="profile-stat-row">
+    <div class="pstat">
+      <span class="psn">{{ len $credits }}</span>
+      <span class="psl">Credits</span>
+    </div>
+    <div class="pstat">
+      <span class="psn">{{ len $parks }}</span>
+      <span class="psl">Parks</span>
+    </div>
+    <div class="pstat">
+      <span class="psn">{{ $mfr.data.highlights.most_credited_make }}</span>
+      <span class="psl">Top Make</span>
+    </div>
+    <div class="pstat">
+      <span class="psn">{{ $mfr.data.rmc_focus.count }}</span>
+      <span class="psl">RMC Credits</span>
+    </div>
+  </div>
+
+  <!-- ── Manufacturer Mix ── -->
+  <h2 class="section-label">Manufacturer Mix</h2>
+  <div class="mfr-layout">
+    <div class="mfr-chart-col">
+      <canvas id="mfr-pie" width="240" height="240" style="max-width:100%;display:block;"></canvas>
+    </div>
+    <div class="mfr-legend-col">
+      {{ range $i, $m := $mfr.data.by_make }}
+      {{ $c := index $colors $i }}
+      <div class="mfr-legend-row">
+        <span class="mfr-dot" style="background:{{ $c }}"></span>
+        <span class="mfr-make">{{ $m.make }}</span>
+        <span class="mfr-cnt">{{ $m.count }}</span>
+        <span class="mfr-pct">{{ $m.pct }}%</span>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- ── Jump-to nav ── -->
+  <div class="kay-nav-cards">
+    <a href="/coasters/analysis/" class="kay-nav-card">
+      <span class="knc-icon">&#128202;</span>
+      <div>
+        <div class="knc-title">Analysis</div>
+        <div class="knc-desc">AI-powered deep dives &amp; rare credits</div>
+      </div>
+      <span class="knc-arrow">&#8594;</span>
+    </a>
+    <a href="#credits" class="kay-nav-card">
+      <span class="knc-icon">&#128203;</span>
+      <div>
+        <div class="knc-title">Full Credit List</div>
+        <div class="knc-desc">All {{ len $credits }} coasters, grouped by park</div>
+      </div>
+      <span class="knc-arrow">&#8594;</span>
+    </a>
+  </div>
+
+  <!-- ── Full credit list ── -->
+  <h2 class="section-label" id="credits">
+    Credits
+    <span style="font-size:0.75rem;color:var(--white-faint);font-family:'Space Grotesk',sans-serif;font-weight:400;"> — bulk import · unrated</span>
+  </h2>
+  {{ range $park := $parks }}
+  {{ $parkCredits := where $credits "parkName" $park }}
+  {{ if $parkCredits }}
+  <div class="park-group">
+    <div class="park-label">{{ $park }}</div>
+    <table class="credit-table">
+      <thead><tr><th>Coaster</th></tr></thead>
+      <tbody>
+        {{ range $parkCredits }}
+        <tr><td class="credit-name">{{ .coasterName }}</td></tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+  {{ end }}
+  {{ end }}
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function () {
+  var data   = {{ $mfr.data.by_make | jsonify }};
+  var colors = {{ $colors | jsonify }};
+  var canvas = document.getElementById('mfr-pie');
+  if (!canvas || typeof Chart === 'undefined') return;
+  new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels: data.map(function (d) { return d.make; }),
+      datasets: [{
+        data: data.map(function (d) { return d.count; }),
+        backgroundColor: colors.slice(0, data.length),
+        borderColor: '#0A0A0A',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function (ctx) {
+              var d = data[ctx.dataIndex];
+              return ' ' + d.make + ': ' + d.count + ' (' + d.pct + '%)';
+            }
+          }
+        }
+      },
+      cutout: '55%'
+    }
+  });
+}());
+</script>
+{{ end }}
