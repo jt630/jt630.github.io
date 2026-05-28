@@ -25,7 +25,7 @@
       <span class="dp-nav-link dp-nav-active">Leaderboard</span>
       {{ range $key, $_ := .Site.Data.dinger_palooza.results }}
         {{ $url := replace $key "_" "-" }}
-        {{ $num := substr $key 5 | int }}
+        {{ $num := substr $key 5 | strings.TrimLeft "0" }}
         <span class="dp-nav-sep">&middot;</span>
         <a href="/dinger-palooza/weeks/{{ $url }}/" class="dp-nav-link">Week {{ $num }}</a>
       {{ end }}
