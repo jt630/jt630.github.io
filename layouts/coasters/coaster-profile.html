@@ -1,0 +1,275 @@
+{{ define "main" }}
+{{ $profileName := .Params.profile }}
+{{ $profile := index .Site.Data.coasters $profileName }}
+{{ $credits := $profile.credits }}
+
+{{/* Unique parks */}}
+{{ $parks := slice }}
+{{ range $credits }}
+  {{ $pn := .parkName }}
+  {{ if and $pn (not (in $parks $pn)) }}
+    {{ $parks = $parks | append $pn }}
+  {{ end }}
+{{ end }}
+{{ if not $parks }}
+  {{ range $profile.visits }}
+    {{ if not (in $parks .parkName) }}
+      {{ $parks = $parks | append .parkName }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Top rated */}}
+{{ $topCredit := dict }}
+{{ $topFun := -1 }}
+{{ range $credits }}
+  {{ if .ratings }}
+    {{ if gt .ratings.fun $topFun }}
+      {{ $topFun = .ratings.fun }}
+      {{ $topCredit = . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<style>
+  .profile-hero {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .profile-icon { font-size: 3rem; line-height: 1; }
+  .profile-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--pink);
+    text-transform: capitalize;
+    line-height: 1;
+  }
+  .profile-back {
+    font-size: 0.82rem;
+    color: var(--white-faint);
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .profile-back:hover { color: var(--pink); }
+
+  .profile-stat-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .pstat {
+    background: var(--black-card);
+    border: 2px outset #444;
+    border-radius: var(--radius);
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+    min-width: 100px;
+  }
+  .pstat .psn {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--pink);
+    line-height: 1;
+    display: block;
+  }
+  .pstat .psl {
+    font-size: 0.7rem;
+    color: var(--white-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--white);
+    border-bottom: 2px solid var(--pink);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .visit-block {
+    background: var(--black-card);
+    border: 1px solid #2a2a2a;
+    border-left: 3px solid #00CFFF;
+    border-radius: var(--radius);
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+  .visit-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--black-elevated);
+  }
+  .visit-park { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 700; }
+  .visit-date { font-size: 0.78rem; color: var(--white-faint); }
+
+  .park-group { margin-bottom: 1.5rem; }
+  .park-label {
+    font-size: 0.75rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--gold);
+  }
+
+  .credit-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .credit-table th {
+    text-align: left;
+    font-size: 0.7rem;
+    color: var(--white-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .credit-table td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid #1e1e1e;
+    vertical-align: middle;
+    color: var(--white-dim);
+  }
+  .credit-table tr:hover td { background: var(--black-elevated); color: var(--white); }
+  .credit-name { color: var(--white); font-weight: 500; }
+
+  .rating-badge { display: inline-flex; gap: 0.4rem; }
+  .rating-pip { display: inline-block; padding: 0.15rem 0.4rem; border-radius: 2px; font-size: 0.78rem; font-weight: 700; line-height: 1; }
+  .pip-fun  { background: rgba(255,45,138,0.2);  color: var(--pink-light); }
+  .pip-fear { background: rgba(212,175,55,0.15); color: var(--gold); }
+  .pip-feel { background: rgba(255,255,255,0.08);color: var(--white-dim); }
+  .unrated  { color: var(--white-faint); font-style: italic; font-size: 0.78rem; }
+  .note-text { font-size: 0.78rem; color: var(--white-faint); font-style: italic; }
+  .dim-text  { font-size: 0.78rem; color: var(--white-faint); white-space: nowrap; }
+</style>
+
+<div class="page-wrap">
+  <a href="/coasters/" class="profile-back">← Coasters</a>
+
+  <div class="profile-hero">
+    <span class="profile-icon">&#127938;</span>
+    <span class="profile-name">{{ $profileName }}</span>
+  </div>
+
+  <div class="profile-stat-row">
+    <div class="pstat">
+      <span class="psn">{{ len $credits }}</span>
+      <span class="psl">Credits</span>
+    </div>
+    <div class="pstat">
+      <span class="psn">{{ len $parks }}</span>
+      <span class="psl">Parks</span>
+    </div>
+    {{ if $profile.visits }}
+    <div class="pstat">
+      <span class="psn">{{ len $profile.visits }}</span>
+      <span class="psl">Visits</span>
+    </div>
+    {{ end }}
+    {{ if $topCredit.coasterName }}
+    <div class="pstat" style="min-width:180px;">
+      <span class="psn" style="font-size:1rem;padding:0.2rem 0;">{{ $topCredit.coasterName }}</span>
+      <span class="psl">Top Rated (Fun {{ $topFun }})</span>
+    </div>
+    {{ end }}
+  </div>
+
+  {{/* ── Visit Log (Jay-style: has visit data with ride detail) ── */}}
+  {{ if $profile.visits }}
+  <h2 class="section-label">Visit Log</h2>
+  {{ $sortedVisits := sort $profile.visits "date" "desc" }}
+  {{ range $sortedVisits }}
+  <div class="visit-block">
+    <div class="visit-header">
+      <span class="visit-park">{{ .parkName }}</span>
+      <span class="visit-date">{{ .date }}</span>
+      {{ if .rides }}<span class="visit-date">· {{ len .rides }} ride{{ if gt (len .rides) 1 }}s{{ end }}</span>{{ end }}
+    </div>
+    {{ if .rides }}
+    <table class="credit-table">
+      <thead><tr><th>#</th><th>Coaster</th><th>Ratings</th><th>Notes</th></tr></thead>
+      <tbody>
+        {{ range .rides }}
+        <tr>
+          <td class="dim-text">{{ .seq }}</td>
+          <td class="credit-name">{{ .coasterName }}</td>
+          <td>
+            {{ if .ratings }}
+              <span class="rating-badge">
+                <span class="rating-pip pip-fun">F&nbsp;{{ .ratings.fun }}</span>
+                <span class="rating-pip pip-fear">&#128561;&nbsp;{{ .ratings.fear }}</span>
+                <span class="rating-pip pip-feel">&#128170;&nbsp;{{ .ratings.feel }}</span>
+              </span>
+            {{ else }}<span class="unrated">unrated</span>{{ end }}
+          </td>
+          <td class="note-text">{{ with .notes }}{{ . }}{{ end }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+    {{ end }}
+  </div>
+  {{ end }}
+  {{ end }}
+
+  {{/* ── Credits by Park ── */}}
+  <h2 class="section-label">
+    Credits
+    {{ if not $profile.visits }}<span style="font-size:0.75rem;color:var(--white-faint);font-family:'Space Grotesk',sans-serif;font-weight:400;"> — bulk import · unrated</span>{{ end }}
+  </h2>
+
+  {{ if $parks }}
+    {{ range $park := $parks }}
+      {{ $parkCredits := where $credits "parkName" $park }}
+      {{ if $parkCredits }}
+      <div class="park-group">
+        <div class="park-label">{{ $park }}</div>
+        <table class="credit-table">
+          <thead>
+            <tr>
+              <th>Coaster</th>
+              {{ if $profile.visits }}<th>Ratings</th><th>Rides</th><th>First Ridden</th>{{ end }}
+            </tr>
+          </thead>
+          <tbody>
+            {{ range $parkCredits }}
+            <tr>
+              <td class="credit-name">{{ .coasterName }}</td>
+              {{ if $profile.visits }}
+              <td>
+                {{ if .ratings }}
+                  <span class="rating-badge">
+                    <span class="rating-pip pip-fun">F&nbsp;{{ .ratings.fun }}</span>
+                    <span class="rating-pip pip-fear">&#128561;&nbsp;{{ .ratings.fear }}</span>
+                    <span class="rating-pip pip-feel">&#128170;&nbsp;{{ .ratings.feel }}</span>
+                  </span>
+                {{ else }}<span class="unrated">unrated</span>{{ end }}
+              </td>
+              <td class="dim-text">{{ .totalRides }}</td>
+              <td class="dim-text">{{ with .firstRidden }}{{ . }}{{ else }}—{{ end }}</td>
+              {{ end }}
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      </div>
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    <p style="color:var(--white-faint);font-style:italic;">No credits yet. Log a visit in the coaster tracker.</p>
+  {{ end }}
+
+</div>
+{{ end }}
