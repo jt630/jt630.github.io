@@ -2,14 +2,14 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-05-28T11:37:52.137531+00:00",
+  "checked_at": "2026-05-29T11:29:24.124586+00:00",
   "source": "mlb_api",
   "status": "in_progress",
   "members": [
     {
       "name": "Tyler",
-      "week_points": 12,
-      "total_hrs": 9,
+      "week_points": 13,
+      "total_hrs": 10,
       "picks": [
         {
           "player": "Yordan Alvarez",
@@ -82,7 +82,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -146,7 +146,7 @@
               ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -157,10 +157,10 @@
           "is_injured": false,
           "draft_pick": 98,
           "proj_hr": null,
-          "hrs": 1,
+          "hrs": 2,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 1,
+          "points": 2,
           "hr_games": [
             {
               "date": "2026-05-26",
@@ -176,9 +176,24 @@
                   "description": "Michael Harris II homers (12) on a fly ball to center field. Mike Yastrzemski scores."
                 }
               ]
+            },
+            {
+              "date": "2026-05-28",
+              "opponent": "Boston Red Sox",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 7,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Michael Harris II homers (13) on a fly ball to right field."
+                }
+              ]
             }
           ],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -217,8 +232,8 @@
     },
     {
       "name": "Ellie",
-      "week_points": 6,
-      "total_hrs": 5,
+      "week_points": 7,
+      "total_hrs": 6,
       "picks": [
         {
           "player": "Juan Soto",
@@ -275,10 +290,10 @@
           "is_injured": false,
           "draft_pick": 72,
           "proj_hr": null,
-          "hrs": 1,
+          "hrs": 2,
           "multi_hr_game": false,
           "has_3run_or_gs": true,
-          "points": 2,
+          "points": 3,
           "hr_games": [
             {
               "date": "2026-05-27",
@@ -294,9 +309,24 @@
                   "description": "Ian Happ homers (11) on a fly ball to right field. Michael Busch scores. Alex Bregman scores."
                 }
               ]
+            },
+            {
+              "date": "2026-05-28",
+              "opponent": "Pittsburgh Pirates",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Ian Happ homers (12) on a fly ball to right center field. Alex Bregman scores."
+                }
+              ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -328,7 +358,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -376,7 +406,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         }
       ]
@@ -415,7 +445,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -453,7 +483,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -604,7 +634,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -711,7 +741,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -727,7 +757,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         },
         {
@@ -830,7 +860,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -941,7 +971,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 2,
+          "games_checked": 3,
           "games_live": 0
         }
       ]
@@ -1059,7 +1089,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1114,7 +1144,7 @@
               ]
             }
           ],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1162,7 +1192,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
@@ -1194,7 +1224,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         }
       ]
@@ -1280,7 +1310,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 3,
+          "games_checked": 4,
           "games_live": 0
         },
         {
