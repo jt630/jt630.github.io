@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-05-29T11:29:24.126955+00:00",
+  "last_updated": "2026-05-30T10:00:31.978744+00:00",
   "total_weeks": 9,
   "note": "Weeks 1-3 auto-tracked. Week 4+ aggregated from official score sheet (2026-05-25).",
   "members": [
@@ -22,7 +22,7 @@
     },
     {
       "name": "Jeremy",
-      "total_points": 63,
+      "total_points": 66,
       "rank": 2,
       "weekly_points": [
         13,
@@ -33,12 +33,12 @@
         0,
         0,
         0,
-        3
+        6
       ]
     },
     {
       "name": "Ellie",
-      "total_points": 61,
+      "total_points": 64,
       "rank": 3,
       "weekly_points": [
         7,
@@ -49,44 +49,12 @@
         0,
         0,
         0,
-        7
-      ]
-    },
-    {
-      "name": "Cam",
-      "total_points": 57,
-      "rank": 4,
-      "weekly_points": [
-        10,
-        3,
-        11,
-        28,
-        0,
-        0,
-        0,
-        0,
-        5
-      ]
-    },
-    {
-      "name": "Wendy",
-      "total_points": 57,
-      "rank": 4,
-      "weekly_points": [
-        12,
-        5,
-        5,
-        30,
-        0,
-        0,
-        0,
-        0,
-        5
+        10
       ]
     },
     {
       "name": "Jeff",
-      "total_points": 57,
+      "total_points": 59,
       "rank": 4,
       "weekly_points": [
         8,
@@ -97,12 +65,44 @@
         0,
         0,
         0,
-        3
+        5
+      ]
+    },
+    {
+      "name": "Cam",
+      "total_points": 58,
+      "rank": 5,
+      "weekly_points": [
+        10,
+        3,
+        11,
+        28,
+        0,
+        0,
+        0,
+        0,
+        6
+      ]
+    },
+    {
+      "name": "Wendy",
+      "total_points": 58,
+      "rank": 5,
+      "weekly_points": [
+        12,
+        5,
+        5,
+        30,
+        0,
+        0,
+        0,
+        0,
+        6
       ]
     },
     {
       "name": "Makeda",
-      "total_points": 54,
+      "total_points": 55,
       "rank": 7,
       "weekly_points": [
         3,
@@ -113,12 +113,12 @@
         0,
         0,
         0,
-        2
+        3
       ]
     },
     {
       "name": "Tyler",
-      "total_points": 53,
+      "total_points": 54,
       "rank": 8,
       "weekly_points": [
         7,
@@ -129,12 +129,12 @@
         0,
         0,
         0,
-        13
+        14
       ]
     },
     {
       "name": "Kayla",
-      "total_points": 49,
+      "total_points": 51,
       "rank": 9,
       "weekly_points": [
         7,
@@ -145,7 +145,7 @@
         0,
         0,
         0,
-        3
+        5
       ]
     }
   ]
