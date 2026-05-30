@@ -1,0 +1,361 @@
+{{ define "main" }}
+{{ $skill := .Params.skill }}
+{{ $raw := index .Site.Data.coasters.analysis $skill }}
+
+<style>
+  .analysis-back { font-size: 0.85rem; color: var(--pink); margin-bottom: 1.5rem; display: block; }
+  .analysis-meta { font-size: 0.75rem; color: var(--white-faint); margin-bottom: 2rem; }
+
+  .stat-row {
+    display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem;
+  }
+  .stat-box {
+    background: var(--black-card);
+    border: 2px outset #444;
+    border-radius: var(--radius);
+    padding: 1rem 1.5rem;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat-box .sn {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--pink);
+    display: block;
+    line-height: 1;
+  }
+  .stat-box .sl {
+    font-size: 0.72rem;
+    color: var(--white-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .make-bar-wrap { margin-bottom: 2rem; }
+  .make-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 50px;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .make-label { font-size: 0.85rem; color: var(--white); font-weight: 600; }
+  .make-bar-bg { background: #222; border-radius: 2px; height: 12px; overflow: hidden; }
+  .make-bar-fill { height: 100%; background: #00CFFF; border-radius: 2px; transition: width 0.4s; }
+  .make-count { font-size: 0.8rem; color: var(--white-dim); text-align: right; }
+
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .highlight-card {
+    background: var(--black-card);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 1rem;
+  }
+  .highlight-card h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+  .highlight-card p { font-size: 0.88rem; color: var(--white-dim); }
+  .highlight-card .name { color: var(--pink); font-weight: 700; font-size: 1rem; }
+
+  .rare-item {
+    background: var(--black-card);
+    border: 1px solid #2a2a2a;
+    border-left: 3px solid var(--pink);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .rare-item h4 { font-size: 1rem; color: var(--white); font-weight: 700; margin-bottom: 0.2rem; }
+  .rare-item .park { font-size: 0.78rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .rare-item p { font-size: 0.85rem; color: var(--white-dim); }
+
+  .obs-box {
+    background: var(--black-card);
+    border: 1px solid #333;
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    color: var(--white-dim);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--white);
+    border-bottom: 2px solid var(--pink);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .credit-pill-list { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.35rem; }
+  .credit-pill {
+    background: var(--black-elevated);
+    border: 1px solid #333;
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    color: var(--white-dim);
+  }
+
+  .cross-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 500px) { .cross-summary-grid { grid-template-columns: 1fr; } }
+  .cross-profile-card {
+    background: var(--black-card);
+    border: 2px outset #444;
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+  }
+  .cross-profile-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--pink);
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+  }
+  .cross-stat { display: flex; justify-content: space-between; padding: 0.3rem 0; border-bottom: 1px solid #222; font-size: 0.85rem; }
+  .cross-stat:last-child { border-bottom: none; }
+  .cross-stat .cs-label { color: var(--white-faint); }
+  .cross-stat .cs-value { color: var(--white); font-weight: 600; }
+
+  .park-gap-row {
+    background: var(--black-card);
+    border-left: 3px solid #00CFFF;
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .park-gap-row h4 { font-size: 0.9rem; color: var(--white); font-weight: 700; margin-bottom: 0.4rem; }
+
+  .rarity-tier { margin-bottom: 1.5rem; }
+  .rarity-tier h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; font-weight: 700; }
+</style>
+
+<div class="page-wrap">
+  <a href="/coasters/analysis/" class="analysis-back">← Analysis</a>
+
+  <div class="page-header">
+    <h1>{{ .Title }}</h1>
+  </div>
+
+  {{ if not $raw }}
+    <p style="color:var(--white-faint);font-style:italic;">No analysis output found for <code>{{ $skill }}</code>. Run the analysis to generate it.</p>
+  {{ else }}
+
+  <p class="analysis-meta">Generated {{ $raw.generated_at | time.Format "January 2, 2006" }} &nbsp;·&nbsp; {{ $raw.skill }}</p>
+
+  {{/* ══ MANUFACTURER ══ */}}
+  {{ if eq $raw.skill "manufacturer" }}
+    {{ $d := $raw.data }}
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <span class="sn">{{ $raw.total_credits }}</span>
+        <span class="sl">Total Credits</span>
+      </div>
+      <div class="stat-box">
+        <span class="sn">{{ len $d.by_make }}</span>
+        <span class="sl">Makes</span>
+      </div>
+      <div class="stat-box">
+        <span class="sn">{{ $d.highlights.most_credited_make }}</span>
+        <span class="sl">Top Make</span>
+      </div>
+    </div>
+
+    <h2 class="section-label">Credits by Manufacturer</h2>
+    <div class="make-bar-wrap">
+      {{ range $d.by_make }}
+      <div class="make-row">
+        <span class="make-label">{{ .make }}</span>
+        <div class="make-bar-bg">
+          <div class="make-bar-fill" style="width:{{ .pct }}%"></div>
+        </div>
+        <span class="make-count">{{ .count }}</span>
+      </div>
+      <div style="margin-bottom:0.5rem;padding-left:140px;">
+        <div class="credit-pill-list">
+          {{ range .credits }}
+          <span class="credit-pill">{{ . }}</span>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    {{ if $d.highlights.rare_makes }}
+    <h2 class="section-label">Rare Manufacturer Credits</h2>
+    <div class="highlight-grid">
+      {{ range $d.highlights.rare_makes }}
+      <div class="highlight-card">
+        <h4>{{ .make }}</h4>
+        <p>{{ .note }}</p>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with $d.rmc_focus }}
+    <h2 class="section-label">RMC Focus</h2>
+    <div class="obs-box" style="border-left:3px solid var(--pink);">
+      <strong style="color:var(--pink);">{{ .count }} RMC credits</strong> &nbsp;·&nbsp; {{ .note }}
+      <div style="margin-top:0.75rem;display:flex;gap:1rem;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:0.72rem;color:var(--white-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">I-Box Conversions</div>
+          <div class="credit-pill-list">{{ range .wood_conversions }}<span class="credit-pill">{{ . }}</span>{{ end }}</div>
+        </div>
+        <div>
+          <div style="font-size:0.72rem;color:var(--white-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">Ground-Up</div>
+          <div class="credit-pill-list">{{ range .ground_up }}<span class="credit-pill">{{ . }}</span>{{ end }}</div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+    <h2 class="section-label">Observations</h2>
+    <div class="obs-box">{{ $d.observations }}</div>
+  {{ end }}
+
+  {{/* ══ RARE CREDITS ══ */}}
+  {{ if eq $raw.skill "rare-credits" }}
+    {{ $d := $raw.data }}
+
+    {{ if $d.rare_manufacturer_credits }}
+    <h2 class="section-label">Rare Manufacturer Credits</h2>
+    {{ range $d.rare_manufacturer_credits }}
+    <div class="rare-item">
+      <h4>{{ .coasterName }}</h4>
+      <div class="park">{{ .parkName }} &nbsp;·&nbsp; {{ .make }}</div>
+      <p>{{ .note }}</p>
+    </div>
+    {{ end }}
+    {{ end }}
+
+    {{ if $d.one_of_a_kind_credits }}
+    <h2 class="section-label">One-of-a-Kind</h2>
+    {{ range $d.one_of_a_kind_credits }}
+    <div class="rare-item" style="border-left-color:var(--gold);">
+      <h4>{{ .coasterName }}</h4>
+      <div class="park">{{ .parkName }}</div>
+      <p>{{ .note }}</p>
+    </div>
+    {{ end }}
+    {{ end }}
+
+    {{ if $d.null_rcdb_credits }}
+    <h2 class="section-label">Off-RCDB Credits</h2>
+    {{ range $d.null_rcdb_credits }}
+    <div class="rare-item" style="border-left-color:#888;">
+      <h4>{{ .coasterName }}</h4>
+      <div class="park">{{ .parkName }}</div>
+      <p>{{ .likely_type }}</p>
+      {{ with .controversy }}<p style="color:var(--gold);margin-top:0.4rem;font-size:0.82rem;">&#9888; {{ . }}</p>{{ end }}
+    </div>
+    {{ end }}
+    {{ end }}
+
+    {{ if $d.counting_quirks }}
+    <h2 class="section-label">Counting Philosophy</h2>
+    {{ range $d.counting_quirks }}
+    <div class="obs-box" style="margin-bottom:0.75rem;">{{ .note }}</div>
+    {{ end }}
+    {{ end }}
+
+    {{ with $d.rarity_summary }}
+    <h2 class="section-label">Rarity Tiers</h2>
+    <div class="rarity-tier">
+      <h4>&#128142; Extremely Rare</h4>
+      <div class="credit-pill-list">{{ range .extremely_rare }}<span class="credit-pill" style="border-color:var(--pink);color:var(--pink);">{{ . }}</span>{{ end }}</div>
+    </div>
+    <div class="rarity-tier">
+      <h4>&#11088; Rare</h4>
+      <div class="credit-pill-list">{{ range .rare }}<span class="credit-pill" style="border-color:var(--gold);color:var(--gold);">{{ . }}</span>{{ end }}</div>
+    </div>
+    <div class="rarity-tier">
+      <h4>Notable</h4>
+      <div class="credit-pill-list">{{ range .notable }}<span class="credit-pill">{{ . }}</span>{{ end }}</div>
+    </div>
+    {{ end }}
+
+    <h2 class="section-label">Observations</h2>
+    <div class="obs-box">{{ $d.observations }}</div>
+  {{ end }}
+
+  {{/* ══ CROSS-PROFILE ══ */}}
+  {{ if eq $raw.skill "cross-profile" }}
+    {{ $d := $raw.data }}
+
+    <div class="cross-summary-grid">
+      {{ range $name, $vals := $d.summary }}
+      <div class="cross-profile-card">
+        <h3>{{ $name }}</h3>
+        <div class="cross-stat"><span class="cs-label">Credits</span><span class="cs-value">{{ $vals.credits }}</span></div>
+        <div class="cross-stat"><span class="cs-label">Rated</span><span class="cs-value">{{ $vals.rated }}</span></div>
+        <div class="cross-stat"><span class="cs-label">Parks</span><span class="cs-value">{{ $vals.parks }}</span></div>
+      </div>
+      {{ end }}
+    </div>
+
+    <h2 class="section-label">Shared Credits ({{ len $d.shared_credits }})</h2>
+    {{ range $d.shared_credits }}
+    <div class="rare-item" style="border-left-color:#00CFFF;">
+      <h4>{{ .coasterName }}</h4>
+      <div class="park">{{ .parkName }}</div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:0.5rem;">
+        {{ if .jay_ratings }}
+        <div>
+          <div style="font-size:0.7rem;color:var(--white-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">Jay</div>
+          <span style="color:var(--pink-light);font-size:0.85rem;font-weight:700;">F {{ .jay_ratings.fun }} &nbsp; &#128561; {{ .jay_ratings.fear }} &nbsp; &#128170; {{ .jay_ratings.feel }}</span>
+        </div>
+        {{ end }}
+        {{ if .kay_ratings }}
+        <div>
+          <div style="font-size:0.7rem;color:var(--white-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;">Kay</div>
+          <span style="color:var(--pink-light);font-size:0.85rem;font-weight:700;">F {{ .kay_ratings.fun }} &nbsp; &#128561; {{ .kay_ratings.fear }} &nbsp; &#128170; {{ .kay_ratings.feel }}</span>
+        </div>
+        {{ else }}
+        <div style="font-size:0.82rem;color:var(--white-faint);font-style:italic;align-self:center;">Kay unrated</div>
+        {{ end }}
+      </div>
+      {{ with .note }}<p style="margin-top:0.5rem;font-size:0.83rem;">{{ . }}</p>{{ end }}
+    </div>
+    {{ end }}
+
+    <h2 class="section-label">Kay's Parks Jay Hasn't Hit</h2>
+    {{ range $d.kay_only }}
+    <div class="park-gap-row">
+      <h4>{{ .park }}</h4>
+      <div class="credit-pill-list">
+        {{ range .credits }}<span class="credit-pill">{{ . }}</span>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ with $d.trip_recommendation }}
+    <h2 class="section-label">Joint Trip Recommendation</h2>
+    <div class="obs-box">{{ . }}</div>
+    {{ end }}
+  {{ end }}
+
+  {{ end }}{{/* end if $raw */}}
+</div>
+{{ end }}

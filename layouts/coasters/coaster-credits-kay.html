@@ -1,0 +1,54 @@
+{{ define "main" }}
+{{ $profile := index .Site.Data.coasters "kay" }}
+{{ $credits := $profile.credits }}
+
+{{/* Unique parks */}}
+{{ $parks := slice }}
+{{ range $credits }}
+  {{ if and .parkName (not (in $parks .parkName)) }}
+    {{ $parks = $parks | append .parkName }}
+  {{ end }}
+{{ end }}
+
+<style>
+  .profile-back { font-size:0.82rem; color:var(--white-faint); text-decoration:none; margin-bottom:1.5rem; display:block; }
+  .profile-back:hover { color:var(--pink); }
+  .section-label { font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--white); border-bottom:2px solid var(--pink); padding-bottom:0.4rem; margin-bottom:1.25rem; margin-top:2rem; }
+  .park-group { margin-bottom:1.5rem; }
+  .park-label { font-size:0.75rem; color:var(--gold); text-transform:uppercase; letter-spacing:0.12em; font-weight:700; margin-bottom:0.5rem; padding-left:0.5rem; border-left:3px solid var(--gold); }
+  .credit-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+  .credit-table th { text-align:left; font-size:0.7rem; color:var(--white-faint); text-transform:uppercase; letter-spacing:0.08em; padding:0.4rem 0.6rem; border-bottom:1px solid #2a2a2a; }
+  .credit-table td { padding:0.45rem 0.6rem; border-bottom:1px solid #1e1e1e; vertical-align:middle; }
+  .credit-table tr:hover td { background:var(--black-elevated); }
+  .credit-name { color:var(--white); font-weight:500; }
+  .credits-meta { font-size:0.82rem; color:var(--white-faint); margin-bottom:2rem; }
+</style>
+
+<div class="page-wrap">
+  <a href="/coasters/kay/" class="profile-back">&#8592; Kay</a>
+
+  <div class="page-header">
+    <h1>Kay &mdash; Credits</h1>
+  </div>
+
+  <p class="credits-meta">{{ len $credits }} credits across {{ len $parks }} parks &nbsp;&middot;&nbsp; bulk import &middot; unrated</p>
+
+  {{ range $park := $parks }}
+  {{ $parkCredits := where $credits "parkName" $park }}
+  {{ if $parkCredits }}
+  <div class="park-group">
+    <div class="park-label">{{ $park }} <span style="font-weight:400;color:var(--white-faint);">{{ len $parkCredits }}</span></div>
+    <table class="credit-table">
+      <thead><tr><th>Coaster</th></tr></thead>
+      <tbody>
+        {{ range $parkCredits }}
+        <tr><td class="credit-name">{{ .coasterName }}</td></tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+  {{ end }}
+  {{ end }}
+
+</div>
+{{ end }}
