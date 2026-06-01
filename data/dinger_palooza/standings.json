@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "last_updated": "2026-05-31T10:15:52.902883+00:00",
+  "last_updated": "2026-06-01T13:36:01.120566+00:00",
   "total_weeks": 9,
   "note": "Weeks 1-3 auto-tracked. Week 4+ aggregated from official score sheet (2026-05-25).",
   "members": [
@@ -38,7 +38,7 @@
     },
     {
       "name": "Ellie",
-      "total_points": 64,
+      "total_points": 66,
       "rank": 3,
       "weekly_points": [
         7,
@@ -49,12 +49,12 @@
         0,
         0,
         0,
-        10
+        12
       ]
     },
     {
       "name": "Jeff",
-      "total_points": 60,
+      "total_points": 61,
       "rank": 4,
       "weekly_points": [
         8,
@@ -65,13 +65,13 @@
         0,
         0,
         0,
-        6
+        7
       ]
     },
     {
       "name": "Wendy",
       "total_points": 60,
-      "rank": 4,
+      "rank": 5,
       "weekly_points": [
         12,
         5,
@@ -118,8 +118,8 @@
     },
     {
       "name": "Makeda",
-      "total_points": 55,
-      "rank": 8,
+      "total_points": 56,
+      "rank": 7,
       "weekly_points": [
         3,
         3,
@@ -129,13 +129,13 @@
         0,
         0,
         0,
-        3
+        4
       ]
     },
     {
       "name": "Kayla",
       "total_points": 55,
-      "rank": 8,
+      "rank": 9,
       "weekly_points": [
         7,
         4,

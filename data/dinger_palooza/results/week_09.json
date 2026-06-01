@@ -2,9 +2,9 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-05-31T10:15:52.899659+00:00",
+  "checked_at": "2026-06-01T13:36:01.117191+00:00",
   "source": "mlb_api",
-  "status": "in_progress",
+  "status": "final",
   "members": [
     {
       "name": "Tyler",
@@ -82,7 +82,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -129,7 +129,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -176,7 +176,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -223,7 +223,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -277,8 +277,8 @@
     },
     {
       "name": "Ellie",
-      "week_points": 10,
-      "total_hrs": 8,
+      "week_points": 12,
+      "total_hrs": 9,
       "picks": [
         {
           "player": "Juan Soto",
@@ -288,10 +288,10 @@
           "is_injured": false,
           "draft_pick": 5,
           "proj_hr": null,
-          "hrs": 2,
+          "hrs": 3,
           "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 2,
+          "has_3run_or_gs": true,
+          "points": 4,
           "hr_games": [
             {
               "date": "2026-05-26",
@@ -322,9 +322,24 @@
                   "description": "Juan Soto homers (12) on a fly ball to right field."
                 }
               ]
+            },
+            {
+              "date": "2026-05-31",
+              "opponent": "Miami Marlins",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 2,
+              "hr_details": [
+                {
+                  "inning": 6,
+                  "rbi": 4,
+                  "is_3run_or_more": true,
+                  "description": "Juan Soto hits a grand slam (13) to right center field. Luis Torrens scores. Carson Benge scores. Bo Bichette scores."
+                }
+              ]
             }
           ],
-          "games_checked": 4,
+          "games_checked": 5,
           "games_live": 0
         },
         {
@@ -386,7 +401,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -433,7 +448,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -465,7 +480,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -481,7 +496,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         }
       ]
@@ -567,7 +582,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -614,7 +629,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -630,7 +645,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -662,7 +677,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         }
       ]
@@ -763,7 +778,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -795,7 +810,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -857,7 +872,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -873,6 +888,202 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
+          "games_checked": 6,
+          "games_live": 0
+        }
+      ]
+    },
+    {
+      "name": "Jeff",
+      "week_points": 7,
+      "total_hrs": 7,
+      "picks": [
+        {
+          "player": "Colson Montgomery",
+          "team": "CWS",
+          "team_id": 145,
+          "mlb_id": 695657,
+          "is_injured": false,
+          "draft_pick": 53,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-05-30",
+              "opponent": "Detroit Tigers",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Colson Montgomery homers (14) on a fly ball to right center field."
+                }
+              ]
+            },
+            {
+              "date": "2026-05-31",
+              "opponent": "Detroit Tigers",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 7,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Colson Montgomery homers (15) on a fly ball to right center field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 7,
+          "games_live": 0
+        },
+        {
+          "player": "Sal Stewart",
+          "team": "CIN",
+          "team_id": 113,
+          "mlb_id": 701398,
+          "is_injured": false,
+          "draft_pick": null,
+          "proj_hr": null,
+          "hrs": 0,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 0,
+          "hr_games": [],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Shohei Ohtani",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 660271,
+          "is_injured": false,
+          "draft_pick": 1,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-05-27",
+              "opponent": "Colorado Rockies",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 1,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Shohei Ohtani homers (9) on a fly ball to center field."
+                }
+              ]
+            },
+            {
+              "date": "2026-05-29",
+              "opponent": "Philadelphia Phillies",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Shohei Ohtani homers (10) on a fly ball to right field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Andy Pages",
+          "team": "LAD",
+          "team_id": 119,
+          "mlb_id": 681624,
+          "is_injured": false,
+          "draft_pick": 61,
+          "proj_hr": null,
+          "hrs": 2,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 2,
+          "hr_games": [
+            {
+              "date": "2026-05-26",
+              "opponent": "Colorado Rockies",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Andy Pages homers (12) on a fly ball to left center field."
+                }
+              ]
+            },
+            {
+              "date": "2026-05-27",
+              "opponent": "Colorado Rockies",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 8,
+                  "rbi": 1,
+                  "is_3run_or_more": false,
+                  "description": "Andy Pages homers (13) on a line drive to left field."
+                }
+              ]
+            }
+          ],
+          "games_checked": 6,
+          "games_live": 0
+        },
+        {
+          "player": "Dillon Dingler",
+          "team": "DET",
+          "team_id": 116,
+          "mlb_id": 693307,
+          "is_injured": false,
+          "draft_pick": null,
+          "proj_hr": null,
+          "hrs": 1,
+          "multi_hr_game": false,
+          "has_3run_or_gs": false,
+          "points": 1,
+          "hr_games": [
+            {
+              "date": "2026-05-29",
+              "opponent": "Chicago White Sox",
+              "home_away": "away",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 3,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "Dillon Dingler homers (11) on a fly ball to left center field. Zack Short scores."
+                }
+              ]
+            }
+          ],
           "games_checked": 5,
           "games_live": 0
         }
@@ -943,7 +1154,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -990,7 +1201,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1006,7 +1217,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -1053,7 +1264,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         }
       ]
@@ -1076,7 +1287,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1108,7 +1319,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1140,7 +1351,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1156,7 +1367,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1194,188 +1405,7 @@
               ]
             }
           ],
-          "games_checked": 5,
-          "games_live": 0
-        }
-      ]
-    },
-    {
-      "name": "Jeff",
-      "week_points": 6,
-      "total_hrs": 6,
-      "picks": [
-        {
-          "player": "Colson Montgomery",
-          "team": "CWS",
-          "team_id": 145,
-          "mlb_id": 695657,
-          "is_injured": false,
-          "draft_pick": 53,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-05-30",
-              "opponent": "Detroit Tigers",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 8,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Colson Montgomery homers (14) on a fly ball to right center field."
-                }
-              ]
-            }
-          ],
           "games_checked": 6,
-          "games_live": 0
-        },
-        {
-          "player": "Sal Stewart",
-          "team": "CIN",
-          "team_id": 113,
-          "mlb_id": 701398,
-          "is_injured": false,
-          "draft_pick": null,
-          "proj_hr": null,
-          "hrs": 0,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 0,
-          "hr_games": [],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Shohei Ohtani",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 660271,
-          "is_injured": false,
-          "draft_pick": 1,
-          "proj_hr": null,
-          "hrs": 2,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-05-27",
-              "opponent": "Colorado Rockies",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 1,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Shohei Ohtani homers (9) on a fly ball to center field."
-                }
-              ]
-            },
-            {
-              "date": "2026-05-29",
-              "opponent": "Philadelphia Phillies",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Shohei Ohtani homers (10) on a fly ball to right field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Andy Pages",
-          "team": "LAD",
-          "team_id": 119,
-          "mlb_id": 681624,
-          "is_injured": false,
-          "draft_pick": 61,
-          "proj_hr": null,
-          "hrs": 2,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 2,
-          "hr_games": [
-            {
-              "date": "2026-05-26",
-              "opponent": "Colorado Rockies",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Andy Pages homers (12) on a fly ball to left center field."
-                }
-              ]
-            },
-            {
-              "date": "2026-05-27",
-              "opponent": "Colorado Rockies",
-              "home_away": "home",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 8,
-                  "rbi": 1,
-                  "is_3run_or_more": false,
-                  "description": "Andy Pages homers (13) on a line drive to left field."
-                }
-              ]
-            }
-          ],
-          "games_checked": 5,
-          "games_live": 0
-        },
-        {
-          "player": "Dillon Dingler",
-          "team": "DET",
-          "team_id": 116,
-          "mlb_id": 693307,
-          "is_injured": false,
-          "draft_pick": null,
-          "proj_hr": null,
-          "hrs": 1,
-          "multi_hr_game": false,
-          "has_3run_or_gs": false,
-          "points": 1,
-          "hr_games": [
-            {
-              "date": "2026-05-29",
-              "opponent": "Chicago White Sox",
-              "home_away": "away",
-              "hrs_in_game": 1,
-              "game_points": 1,
-              "hr_details": [
-                {
-                  "inning": 3,
-                  "rbi": 2,
-                  "is_3run_or_more": false,
-                  "description": "Dillon Dingler homers (11) on a fly ball to left center field. Zack Short scores."
-                }
-              ]
-            }
-          ],
-          "games_checked": 5,
           "games_live": 0
         }
       ]
@@ -1414,7 +1444,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -1452,7 +1482,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -1484,7 +1514,7 @@
               ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1516,15 +1546,15 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         }
       ]
     },
     {
       "name": "Makeda",
-      "week_points": 3,
-      "total_hrs": 3,
+      "week_points": 4,
+      "total_hrs": 4,
       "picks": [
         {
           "player": "Jordan Walker",
@@ -1539,7 +1569,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1550,10 +1580,10 @@
           "is_injured": false,
           "draft_pick": 38,
           "proj_hr": null,
-          "hrs": 2,
+          "hrs": 3,
           "multi_hr_game": false,
           "has_3run_or_gs": false,
-          "points": 2,
+          "points": 3,
           "hr_games": [
             {
               "date": "2026-05-25",
@@ -1584,9 +1614,24 @@
                   "description": "James Wood homers (15) on a fly ball to right field. Keibert Ruiz scores."
                 }
               ]
+            },
+            {
+              "date": "2026-05-31",
+              "opponent": "San Diego Padres",
+              "home_away": "home",
+              "hrs_in_game": 1,
+              "game_points": 1,
+              "hr_details": [
+                {
+                  "inning": 5,
+                  "rbi": 2,
+                  "is_3run_or_more": false,
+                  "description": "James Wood homers (16) on a line drive to center field. Keibert Ruiz scores."
+                }
+              ]
             }
           ],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         },
         {
@@ -1618,7 +1663,7 @@
               ]
             }
           ],
-          "games_checked": 6,
+          "games_checked": 7,
           "games_live": 0
         },
         {
@@ -1650,7 +1695,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 5,
+          "games_checked": 6,
           "games_live": 0
         }
       ]
