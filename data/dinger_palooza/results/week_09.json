@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-06-01T13:36:01.117191+00:00",
+  "checked_at": "2026-06-02T12:03:43.580871+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -637,7 +637,7 @@
           "team": "CIN",
           "team_id": 113,
           "mlb_id": 682829,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": 62,
           "proj_hr": null,
           "hrs": 0,
