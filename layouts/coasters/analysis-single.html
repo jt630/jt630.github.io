@@ -361,6 +361,166 @@
     {{ end }}
   {{ end }}
 
+  {{/* ══ ERA ══ */}}
+  {{ if eq $raw.skill "era" }}
+    {{ $d := $raw.data }}
+
+    <div class="stat-row">
+      <div class="stat-box"><span class="sn">{{ $raw.total_credits }}</span><span class="sl">Credits</span></div>
+      <div class="stat-box"><span class="sn">{{ $d.span_years }}</span><span class="sl">Year Span</span></div>
+      <div class="stat-box"><span class="sn">{{ $d.oldest.year }}</span><span class="sl">Oldest</span></div>
+      <div class="stat-box"><span class="sn">{{ $d.newest.year }}</span><span class="sl">Newest</span></div>
+    </div>
+
+    <h2 class="section-label">Credits by Decade</h2>
+    <div class="make-bar-wrap">
+      {{ range $d.by_decade }}
+      {{ if .count }}
+      <div class="make-row">
+        <span class="make-label">{{ .decade }}</span>
+        <div class="make-bar-bg"><div class="make-bar-fill" style="width:{{ .pct }}%"></div></div>
+        <span class="make-count">{{ .count }}</span>
+      </div>
+      <div style="margin-bottom:0.5rem;padding-left:140px;">
+        <div class="credit-pill-list">
+          {{ range .credits }}<span class="credit-pill">{{ . }}</span>{{ end }}
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+
+    <h2 class="section-label">Oldest &amp; Newest</h2>
+    <div class="highlight-grid">
+      <div class="highlight-card">
+        <h4>Oldest Credit</h4>
+        <p class="name">{{ $d.oldest.coasterName }}</p>
+        <p>{{ $d.oldest.year }} &middot; {{ $d.oldest.parkName }}</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Newest Credit</h4>
+        <p class="name">{{ $d.newest.coasterName }}</p>
+        <p>{{ $d.newest.year }} &middot; {{ $d.newest.parkName }}</p>
+      </div>
+    </div>
+
+    {{ if $d.no_year_data }}
+    <h2 class="section-label">No Year Data ({{ len $d.no_year_data }})</h2>
+    <div class="credit-pill-list" style="margin-bottom:2rem;">
+      {{ range $d.no_year_data }}<span class="credit-pill">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+
+    <h2 class="section-label">Observations</h2>
+    <div class="obs-box">{{ $d.observations }}</div>
+  {{ end }}
+
+  {{/* ══ HEIGHTS ══ */}}
+  {{ if eq $raw.skill "heights" }}
+    {{ $d := $raw.data }}
+
+    <div class="stat-row">
+      <div class="stat-box"><span class="sn">{{ $raw.total_credits }}</span><span class="sl">Credits</span></div>
+      <div class="stat-box"><span class="sn">{{ $d.tallest.height_ft }}ft</span><span class="sl">Tallest</span></div>
+      <div class="stat-box"><span class="sn">{{ $d.shortest.height_ft }}ft</span><span class="sl">Shortest</span></div>
+    </div>
+
+    <h2 class="section-label">Credits by Height Tier</h2>
+    <div class="make-bar-wrap">
+      {{ range $d.by_tier }}
+      {{ if .count }}
+      <div class="make-row">
+        <span class="make-label">{{ .tier }}</span>
+        <div class="make-bar-bg"><div class="make-bar-fill" style="width:{{ .pct }}%"></div></div>
+        <span class="make-count">{{ .count }}</span>
+      </div>
+      <div style="margin-bottom:0.5rem;padding-left:140px;">
+        <div class="credit-pill-list">
+          {{ range .credits }}<span class="credit-pill">{{ .name }} <span style="color:var(--white-faint);">{{ .height_ft }}ft</span></span>{{ end }}
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+
+    <h2 class="section-label">Tallest &amp; Shortest</h2>
+    <div class="highlight-grid">
+      <div class="highlight-card">
+        <h4>Tallest</h4>
+        <p class="name">{{ $d.tallest.coasterName }}</p>
+        <p>{{ $d.tallest.height_ft }}ft &middot; {{ $d.tallest.parkName }}</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Shortest</h4>
+        <p class="name">{{ $d.shortest.coasterName }}</p>
+        <p>{{ $d.shortest.height_ft }}ft &middot; {{ $d.shortest.parkName }}</p>
+      </div>
+    </div>
+
+    {{ if $d.no_height_data }}
+    <h2 class="section-label">No Height Data ({{ len $d.no_height_data }})</h2>
+    <div class="credit-pill-list" style="margin-bottom:2rem;">
+      {{ range $d.no_height_data }}<span class="credit-pill">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+
+    <h2 class="section-label">Observations</h2>
+    <div class="obs-box">{{ $d.observations }}</div>
+  {{ end }}
+
+  {{/* ══ TYPE ══ */}}
+  {{ if eq $raw.skill "type" }}
+    {{ $d := $raw.data }}
+
+    <h2 class="section-label">Wood vs Steel</h2>
+    <div class="make-bar-wrap">
+      {{ range $d.wood_vs_steel }}
+      <div class="make-row">
+        <span class="make-label">{{ .type }}</span>
+        <div class="make-bar-bg"><div class="make-bar-fill" style="width:{{ .pct }}%"></div></div>
+        <span class="make-count">{{ .count }}</span>
+      </div>
+      {{ end }}
+    </div>
+
+    <h2 class="section-label">Design Subtypes</h2>
+    <div class="make-bar-wrap">
+      {{ range $d.by_design }}
+      <div class="make-row">
+        <span class="make-label">{{ .design }}</span>
+        <div class="make-bar-bg"><div class="make-bar-fill" style="width:{{ .pct }}%"></div></div>
+        <span class="make-count">{{ .count }}</span>
+      </div>
+      <div style="margin-bottom:0.5rem;padding-left:140px;">
+        <div class="credit-pill-list">
+          {{ range .credits }}<span class="credit-pill">{{ . }}</span>{{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    <h2 class="section-label">Launch vs Lift Hill</h2>
+    <div class="make-bar-wrap">
+      {{ range $d.launch_vs_lift }}
+      <div class="make-row">
+        <span class="make-label">{{ .propulsion }}</span>
+        <div class="make-bar-bg"><div class="make-bar-fill" style="width:{{ .pct }}%"></div></div>
+        <span class="make-count">{{ .count }}</span>
+      </div>
+      {{ if and (eq .propulsion "Launch") .credits }}
+      <div style="margin-bottom:0.5rem;padding-left:140px;">
+        <div class="credit-pill-list">
+          {{ range .credits }}<span class="credit-pill">{{ . }}</span>{{ end }}
+        </div>
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+
+    <h2 class="section-label">Observations</h2>
+    <div class="obs-box">{{ $d.observations }}</div>
+  {{ end }}
+
   {{ end }}{{/* end if $raw */}}
 </div>
 {{ end }}

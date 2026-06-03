@@ -1,0 +1,444 @@
+{
+  "skill": "heights",
+  "profile": "kay",
+  "generated_at": "2026-06-03T03:40:24Z",
+  "total_credits": 109,
+  "data": {
+    "by_tier": [
+      {
+        "tier": "Under 50ft",
+        "count": 18,
+        "pct": 16.5,
+        "credits": [
+          {
+            "name": "Soarin' Eagle",
+            "height_ft": 50
+          },
+          {
+            "name": "Flying Turns",
+            "height_ft": 50
+          },
+          {
+            "name": "Wild Mouse",
+            "height_ft": 49
+          },
+          {
+            "name": "Gotham City Gauntlet Escape from Arkham Asylum",
+            "height_ft": 49
+          },
+          {
+            "name": "Bat",
+            "height_ft": 49
+          },
+          {
+            "name": "Cedar Creek Mine Ride",
+            "height_ft": 48
+          },
+          {
+            "name": "Backlot Stunt Coaster",
+            "height_ft": 45
+          },
+          {
+            "name": "Bombora",
+            "height_ft": 45
+          },
+          {
+            "name": "Jet Star 2",
+            "height_ft": 44
+          },
+          {
+            "name": "Revenge of the Mummy",
+            "height_ft": 44
+          },
+          {
+            "name": "Revenge of the Mummy - The Ride",
+            "height_ft": 44
+          },
+          {
+            "name": "Steeplechase",
+            "height_ft": 43
+          },
+          {
+            "name": "Pandemonium",
+            "height_ft": 42
+          },
+          {
+            "name": "Skull Mountain",
+            "height_ft": 40
+          },
+          {
+            "name": "Woodstock Express",
+            "height_ft": 35
+          },
+          {
+            "name": "Harley Quinn Crazy Train",
+            "height_ft": 26
+          },
+          {
+            "name": "Catwoman's Whip",
+            "height_ft": 26
+          },
+          {
+            "name": "Puff the Little Fire Dragon",
+            "height_ft": 11
+          }
+        ]
+      },
+      {
+        "tier": "50–100ft",
+        "count": 26,
+        "pct": 23.9,
+        "credits": [
+          {
+            "name": "Impulse",
+            "height_ft": 98
+          },
+          {
+            "name": "Lightning Racer",
+            "height_ft": 92
+          },
+          {
+            "name": "Great Bear",
+            "height_ft": 90
+          },
+          {
+            "name": "Colossus the Fire Dragon",
+            "height_ft": 87
+          },
+          {
+            "name": "Grizzly",
+            "height_ft": 87
+          },
+          {
+            "name": "Mystery Mine",
+            "height_ft": 85
+          },
+          {
+            "name": "Timber Terror",
+            "height_ft": 85
+          },
+          {
+            "name": "Tremors",
+            "height_ft": 85
+          },
+          {
+            "name": "Corkscrew",
+            "height_ft": 85
+          },
+          {
+            "name": "Racer 75",
+            "height_ft": 85
+          },
+          {
+            "name": "Comet",
+            "height_ft": 84
+          },
+          {
+            "name": "Matterhorn Bobsleds",
+            "height_ft": 80
+          },
+          {
+            "name": "Blue Streak",
+            "height_ft": 78
+          },
+          {
+            "name": "Phoenix",
+            "height_ft": 78
+          },
+          {
+            "name": "FireChaser Express",
+            "height_ft": 78
+          },
+          {
+            "name": "Iron Dragon",
+            "height_ft": 76
+          },
+          {
+            "name": "Cyclone",
+            "height_ft": 75
+          },
+          {
+            "name": "Flight of Fear",
+            "height_ft": 74
+          },
+          {
+            "name": "Thunderbolt",
+            "height_ft": 70
+          },
+          {
+            "name": "Phoenix",
+            "height_ft": 68
+          },
+          {
+            "name": "Big Bear Mountain",
+            "height_ft": 66
+          },
+          {
+            "name": "Hagrid's Magical Creatures Motorbike Adventure",
+            "height_ft": 65
+          },
+          {
+            "name": "Roller Coaster",
+            "height_ft": 62
+          },
+          {
+            "name": "Runaway Mine Train",
+            "height_ft": 60
+          },
+          {
+            "name": "Apple Zapple",
+            "height_ft": 52
+          },
+          {
+            "name": "Spider",
+            "height_ft": 51
+          }
+        ]
+      },
+      {
+        "tier": "100–150ft",
+        "count": 27,
+        "pct": 24.8,
+        "credits": [
+          {
+            "name": "Tempesto",
+            "height_ft": 150
+          },
+          {
+            "name": "Storm Runner",
+            "height_ft": 150
+          },
+          {
+            "name": "Rougarou",
+            "height_ft": 145
+          },
+          {
+            "name": "Rapterra",
+            "height_ft": 145
+          },
+          {
+            "name": "Medusa",
+            "height_ft": 142
+          },
+          {
+            "name": "Wildcat's Revenge",
+            "height_ft": 140
+          },
+          {
+            "name": "Raptor",
+            "height_ft": 137
+          },
+          {
+            "name": "Jersey Devil Coaster",
+            "height_ft": 130
+          },
+          {
+            "name": "Loch Ness Monster",
+            "height_ft": 130
+          },
+          {
+            "name": "Gemini (Red)",
+            "height_ft": 125
+          },
+          {
+            "name": "Gemini (Blue)",
+            "height_ft": 125
+          },
+          {
+            "name": "Fahrenheit",
+            "height_ft": 121
+          },
+          {
+            "name": "Joker",
+            "height_ft": 120
+          },
+          {
+            "name": "Joker",
+            "height_ft": 120
+          },
+          {
+            "name": "Batman - The Dark Knight",
+            "height_ft": 118
+          },
+          {
+            "name": "Flashback",
+            "height_ft": 116
+          },
+          {
+            "name": "Thunderbolt",
+            "height_ft": 115
+          },
+          {
+            "name": "Tumbili",
+            "height_ft": 112
+          },
+          {
+            "name": "Twisted Timbers",
+            "height_ft": 111
+          },
+          {
+            "name": "Wicked",
+            "height_ft": 110
+          },
+          {
+            "name": "Incredible Hulk",
+            "height_ft": 110
+          },
+          {
+            "name": "Wicked Cyclone",
+            "height_ft": 109
+          },
+          {
+            "name": "Superman - Ultimate Flight",
+            "height_ft": 106
+          },
+          {
+            "name": "Batman The Ride",
+            "height_ft": 105
+          },
+          {
+            "name": "Maverick",
+            "height_ft": 105
+          },
+          {
+            "name": "Twister",
+            "height_ft": 102
+          },
+          {
+            "name": "Thunderhead",
+            "height_ft": 100
+          }
+        ]
+      },
+      {
+        "tier": "150–200ft",
+        "count": 9,
+        "pct": 8.3,
+        "credits": [
+          {
+            "name": "Cannibal",
+            "height_ft": 197
+          },
+          {
+            "name": "Alpengeist",
+            "height_ft": 195
+          },
+          {
+            "name": "El Toro",
+            "height_ft": 181
+          },
+          {
+            "name": "Pantheon",
+            "height_ft": 178
+          },
+          {
+            "name": "GateKeeper",
+            "height_ft": 170
+          },
+          {
+            "name": "Apollo's Chariot",
+            "height_ft": 170
+          },
+          {
+            "name": "Hollywood Rip, Ride, Rockit",
+            "height_ft": 167
+          },
+          {
+            "name": "Tennessee Tornado",
+            "height_ft": 163
+          },
+          {
+            "name": "Green Lantern",
+            "height_ft": 154
+          }
+        ]
+      },
+      {
+        "tier": "200–300ft",
+        "count": 8,
+        "pct": 7.3,
+        "credits": [
+          {
+            "name": "Nitro",
+            "height_ft": 230
+          },
+          {
+            "name": "Valravn",
+            "height_ft": 223
+          },
+          {
+            "name": "Candymonium",
+            "height_ft": 210
+          },
+          {
+            "name": "Superman the Ride",
+            "height_ft": 208
+          },
+          {
+            "name": "Steel Vengeance",
+            "height_ft": 205
+          },
+          {
+            "name": "Magnum XL-200",
+            "height_ft": 205
+          },
+          {
+            "name": "Griffon",
+            "height_ft": 205
+          },
+          {
+            "name": "Skyrush",
+            "height_ft": 200
+          }
+        ]
+      },
+      {
+        "tier": "300ft+",
+        "count": 2,
+        "pct": 1.8,
+        "credits": [
+          {
+            "name": "Kingda Ka",
+            "height_ft": 456
+          },
+          {
+            "name": "Millennium Force",
+            "height_ft": 310
+          }
+        ]
+      }
+    ],
+    "tallest": {
+      "coasterName": "Kingda Ka",
+      "height_ft": 456,
+      "parkName": "Six Flags Great Adventure"
+    },
+    "shortest": {
+      "coasterName": "Puff the Little Fire Dragon",
+      "height_ft": 11,
+      "parkName": "Lagoon"
+    },
+    "no_height_data": [
+      "Incredicoaster",
+      "Goofy's Sky School",
+      "Big Thunder Mountain Railroad",
+      "Space Mountain",
+      "Tickler",
+      "Dark Knight",
+      "Flash: Vertical Velocity",
+      "Ex Scream Machine",
+      "InvadR",
+      "Big Bad Wolf: The Wolf's Revenge",
+      "Verbolten",
+      "Reptilian",
+      "Laff Trakk",
+      "Sooperdooperlooper",
+      "Trailblazer",
+      "Lightning Rod",
+      "Wild Eagle",
+      "Dragonflier",
+      "Smoky Mountain Alpine Coaster"
+    ],
+    "observations": "Most of Kay's credits cluster in the 50–150ft range — the bread-and-butter steel coaster. The tallest credit is Kingda Ka at 456ft, and the shortest is Puff the Little Fire Dragon at 11ft. 19 credits have no height data on record."
+  }
+}

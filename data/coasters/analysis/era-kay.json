@@ -1,0 +1,189 @@
+{
+  "skill": "era",
+  "profile": "kay",
+  "generated_at": "2026-06-03T03:40:24Z",
+  "total_credits": 109,
+  "data": {
+    "by_decade": [
+      {
+        "decade": "Pre-1960",
+        "count": 5,
+        "pct": 4.6,
+        "credits": [
+          "Roller Coaster",
+          "Cyclone",
+          "Thunderbolt",
+          "Comet",
+          "Matterhorn Bobsleds"
+        ]
+      },
+      {
+        "decade": "1960s",
+        "count": 2,
+        "pct": 1.8,
+        "credits": [
+          "Blue Streak",
+          "Cedar Creek Mine Ride"
+        ]
+      },
+      {
+        "decade": "1970s",
+        "count": 12,
+        "pct": 11.0,
+        "credits": [
+          "Runaway Mine Train",
+          "Woodstock Express",
+          "Trailblazer",
+          "Racer 75",
+          "Jet Star 2",
+          "Corkscrew",
+          "Space Mountain",
+          "Sooperdooperlooper",
+          "Gemini (Red)",
+          "Gemini (Blue)",
+          "Loch Ness Monster",
+          "Big Thunder Mountain Railroad"
+        ]
+      },
+      {
+        "decade": "1980s",
+        "count": 7,
+        "pct": 6.4,
+        "credits": [
+          "Grizzly",
+          "Colossus the Fire Dragon",
+          "Puff the Little Fire Dragon",
+          "Phoenix",
+          "Iron Dragon",
+          "Reptilian",
+          "Magnum XL-200"
+        ]
+      },
+      {
+        "decade": "1990s",
+        "count": 16,
+        "pct": 14.7,
+        "credits": [
+          "Batman The Ride",
+          "Raptor",
+          "Timber Terror",
+          "Skull Mountain",
+          "Rougarou",
+          "Flight of Fear",
+          "Alpengeist",
+          "Wild Mouse",
+          "Great Bear",
+          "Tremors",
+          "Incredible Hulk",
+          "Medusa",
+          "Harley Quinn Crazy Train",
+          "Apollo's Chariot",
+          "Twister",
+          "Tennessee Tornado"
+        ]
+      },
+      {
+        "decade": "2000s",
+        "count": 28,
+        "pct": 25.7,
+        "credits": [
+          "Millennium Force",
+          "Flashback",
+          "Superman the Ride",
+          "Catwoman's Whip",
+          "Lightning Racer",
+          "Incredicoaster",
+          "Goofy's Sky School",
+          "Nitro",
+          "Batman - The Dark Knight",
+          "Apple Zapple",
+          "Spider",
+          "Superman - Ultimate Flight",
+          "Revenge of the Mummy",
+          "Revenge of the Mummy - The Ride",
+          "Storm Runner",
+          "Thunderhead",
+          "Bat",
+          "Kingda Ka",
+          "Pandemonium",
+          "El Toro",
+          "Backlot Stunt Coaster",
+          "Wicked",
+          "Maverick",
+          "Griffon",
+          "Mystery Mine",
+          "Dark Knight",
+          "Fahrenheit",
+          "Hollywood Rip, Ride, Rockit"
+        ]
+      },
+      {
+        "decade": "2010s",
+        "count": 27,
+        "pct": 24.8,
+        "credits": [
+          "Tickler",
+          "Bombora",
+          "Steeplechase",
+          "Soarin' Eagle",
+          "Green Lantern",
+          "Gotham City Gauntlet Escape from Arkham Asylum",
+          "Verbolten",
+          "Skyrush",
+          "Wild Eagle",
+          "GateKeeper",
+          "Flying Turns",
+          "Thunderbolt",
+          "FireChaser Express",
+          "Cannibal",
+          "Wicked Cyclone",
+          "Tempesto",
+          "Laff Trakk",
+          "Impulse",
+          "Joker",
+          "Valravn",
+          "Lightning Rod",
+          "Joker",
+          "InvadR",
+          "Steel Vengeance",
+          "Twisted Timbers",
+          "Hagrid's Magical Creatures Motorbike Adventure",
+          "Dragonflier"
+        ]
+      },
+      {
+        "decade": "2020s",
+        "count": 9,
+        "pct": 8.3,
+        "credits": [
+          "Candymonium",
+          "Jersey Devil Coaster",
+          "Phoenix",
+          "Pantheon",
+          "Tumbili",
+          "Wildcat's Revenge",
+          "Big Bear Mountain",
+          "Flash: Vertical Velocity",
+          "Rapterra"
+        ]
+      }
+    ],
+    "oldest": {
+      "coasterName": "Roller Coaster",
+      "year": 1921,
+      "parkName": "Lagoon"
+    },
+    "newest": {
+      "coasterName": "Flash: Vertical Velocity",
+      "year": 2025,
+      "parkName": "Six Flags Great Adventure"
+    },
+    "span_years": 104,
+    "no_year_data": [
+      "Ex Scream Machine",
+      "Big Bad Wolf: The Wolf's Revenge",
+      "Smoky Mountain Alpine Coaster"
+    ],
+    "observations": "Kay's credit list spans from 1921 (Roller Coaster) to 2025 (Flash: Vertical Velocity) — a 104-year range. The 1990s and 2000s are the densest decades, reflecting the East Coast park boom when Six Flags, Cedar Fair, and Busch were all building aggressively. The 2020s already show 9 credits despite being only a few years in. 3 credits have no opening year on record."
+  }
+}
