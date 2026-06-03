@@ -1,111 +1,50 @@
 {{ define "main" }}
+{{ $jay := index .Site.Data.coasters "jay" }}
+{{ $kay := index .Site.Data.coasters "kay" }}
+
 <style>
-  .analysis-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.25rem;
-    margin-top: 1.5rem;
-  }
-  .analysis-card {
-    background: var(--black-card);
-    border: 2px outset #444;
-    border-radius: var(--radius-lg);
-    padding: 1.25rem 1.5rem;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: border-color 0.15s;
-  }
-  .analysis-card:hover { border-color: #00CFFF; }
-  .analysis-card-icon { font-size: 1.6rem; line-height: 1; }
-  .analysis-card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-  .analysis-card-desc { font-size: 0.82rem; color: var(--white-dim); }
-  .analysis-card-meta { font-size: 0.72rem; color: var(--white-faint); margin-top: auto; padding-top: 0.5rem; }
-  .analysis-card.ready .analysis-card-title::after {
-    content: " ✓";
-    color: #00CFFF;
-    font-size: 0.8rem;
-  }
-  .analysis-card.pending { opacity: 0.5; pointer-events: none; }
+  .analysis-hub-intro { font-size: 0.88rem; color: var(--white-dim); margin-bottom: 2rem; }
+  .analysis-profile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+
+  .apc { display: flex; flex-direction: column; gap: 0.5rem; background: var(--black-card); border: 2px outset #444; border-radius: var(--radius-lg); padding: 1.4rem 1.6rem; text-decoration: none; color: inherit; transition: border-color 0.15s, background 0.15s; }
+  .apc:hover { border-color: var(--pink); background: var(--black-elevated); }
+  .apc-icon { font-size: 1.8rem; line-height: 1; }
+  .apc-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900; color: var(--white); margin-top: 0.25rem; }
+  .apc-desc { font-size: 0.82rem; color: var(--white-dim); }
+  .apc-stat { font-size: 0.75rem; color: var(--white-faint); margin-top: auto; padding-top: 0.6rem; }
+  .apc.cross .apc-name { color: #00CFFF; }
+  .apc.jay .apc-name { color: var(--gold); }
+  .apc.kay .apc-name { color: var(--pink); }
 </style>
 
 <div class="page-wrap">
   <div class="page-header">
     <h1>&#128202; Analysis</h1>
-    <p class="subtitle"><a href="/coasters/" style="color:var(--pink)">← Coasters</a> &nbsp;·&nbsp; Credit analysis for Jay &amp; Kay</p>
+    <p class="subtitle"><a href="/coasters/" style="color:var(--pink)">&#8592; Coasters</a> &nbsp;&middot;&nbsp; Credit analysis for Jay &amp; Kay</p>
   </div>
 
-  <div class="analysis-grid">
+  <div class="analysis-profile-grid">
 
-    <a href="/coasters/analysis/cross-profile/" class="analysis-card ready">
-      <span class="analysis-card-icon">&#9878;&#65039;</span>
-      <span class="analysis-card-title">Cross-Profile</span>
-      <span class="analysis-card-desc">Jay vs Kay — shared credits, gaps, joint trip targets.</span>
-      <span class="analysis-card-meta">Both profiles · profile-only</span>
+    <a href="/coasters/analysis/cross-profile/" class="apc cross">
+      <span class="apc-icon">&#9876;&#65039;</span>
+      <span class="apc-name">Cross-Profile</span>
+      <span class="apc-desc">Jay vs Kay &mdash; shared credits, gaps, and joint trip targets.</span>
+      <span class="apc-stat">Both profiles</span>
     </a>
 
-    <a href="/coasters/analysis/manufacturer-kay/" class="analysis-card ready">
-      <span class="analysis-card-icon">&#128295;</span>
-      <span class="analysis-card-title">Manufacturer — Kay</span>
-      <span class="analysis-card-desc">B&amp;M, RMC, Intamin, Arrow… credit breakdown by make.</span>
-      <span class="analysis-card-meta">Kay · 109 credits · profile-only</span>
+    <a href="/coasters/analysis/jay/" class="apc jay">
+      <span class="apc-icon">&#128100;</span>
+      <span class="apc-name">Jay</span>
+      <span class="apc-desc">Manufacturer mix, rare credits, ratings, and more.</span>
+      <span class="apc-stat">{{ len $jay.credits }} credit</span>
     </a>
 
-    <a href="/coasters/analysis/rare-credits-kay/" class="analysis-card ready">
-      <span class="analysis-card-icon">&#128142;</span>
-      <span class="analysis-card-title">Rare Credits — Kay</span>
-      <span class="analysis-card-desc">Ghost credits, rare manufacturers, one-of-a-kinds.</span>
-      <span class="analysis-card-meta">Kay · profile-only</span>
+    <a href="/coasters/analysis/kay/" class="apc kay">
+      <span class="apc-icon">&#128100;</span>
+      <span class="apc-name">Kay</span>
+      <span class="apc-desc">Manufacturer mix, rare credits, ratings, and more.</span>
+      <span class="apc-stat">{{ len $kay.credits }} credits</span>
     </a>
-
-    <div class="analysis-card pending">
-      <span class="analysis-card-icon">&#128200;</span>
-      <span class="analysis-card-title">Era</span>
-      <span class="analysis-card-desc">Credits by decade — 70s Arrow, 90s boom, 2020s steel.</span>
-      <span class="analysis-card-meta">Needs RCDB data</span>
-    </div>
-
-    <div class="analysis-card pending">
-      <span class="analysis-card-icon">&#128176;</span>
-      <span class="analysis-card-title">Height Tiers</span>
-      <span class="analysis-card-desc">Strata / Giga / Hyper — how tall does it go?</span>
-      <span class="analysis-card-meta">Needs RCDB data</span>
-    </div>
-
-    <div class="analysis-card pending">
-      <span class="analysis-card-icon">&#128205;</span>
-      <span class="analysis-card-title">Park Gaps</span>
-      <span class="analysis-card-desc">What's still unridden at each visited park?</span>
-      <span class="analysis-card-meta">Needs RCDB data</span>
-    </div>
-
-    <div class="analysis-card pending">
-      <span class="analysis-card-icon">&#127912;</span>
-      <span class="analysis-card-title">Coaster Type</span>
-      <span class="analysis-card-desc">Wood vs steel, launch vs lift, subtypes.</span>
-      <span class="analysis-card-meta">Coming soon</span>
-    </div>
-
-    <div class="analysis-card pending">
-      <span class="analysis-card-icon">&#128506;</span>
-      <span class="analysis-card-title">Trip Planner</span>
-      <span class="analysis-card-desc">Score unridden coasters at a target park against your taste.</span>
-      <span class="analysis-card-meta">Needs RCDB data + ratings</span>
-    </div>
-
-    <div class="analysis-card pending">
-      <span class="analysis-card-icon">&#128202;</span>
-      <span class="analysis-card-title">Ratings Deep Dive — Jay</span>
-      <span class="analysis-card-desc">Outliers, correlations, top &amp; bottom rides.</span>
-      <span class="analysis-card-meta">Needs more rated credits</span>
-    </div>
 
   </div>
 </div>

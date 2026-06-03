@@ -151,7 +151,12 @@
 </style>
 
 <div class="page-wrap">
-  <a href="/coasters/analysis/" class="analysis-back">← Analysis</a>
+  {{ $backProfile := .Params.profile }}
+  {{ if $backProfile }}
+  <a href="/coasters/analysis/{{ $backProfile }}/" class="analysis-back">&#8592; {{ $backProfile | title }} Analysis</a>
+  {{ else }}
+  <a href="/coasters/analysis/" class="analysis-back">&#8592; Analysis</a>
+  {{ end }}
 
   <div class="page-header">
     <h1>{{ .Title }}</h1>
