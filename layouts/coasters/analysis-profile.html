@@ -1,0 +1,159 @@
+{{ define "main" }}
+{{ $profile := .Params.profile }}
+{{ $profileData := index .Site.Data.coasters $profile }}
+{{ $credits := $profileData.credits }}
+
+{{/* Derive unique parks from credits (where parkName exists) */}}
+{{ $parks := slice }}
+{{ range $credits }}
+  {{ if and .parkName (not (in $parks .parkName)) }}
+    {{ $parks = $parks | append .parkName }}
+  {{ end }}
+{{ end }}
+
+{{/* Check which analysis data files exist — present = ready */}}
+{{ $mfr   := index .Site.Data.coasters.analysis (print "manufacturer-"  $profile) }}
+{{ $rare  := index .Site.Data.coasters.analysis (print "rare-credits-"   $profile) }}
+{{ $rtgs  := index .Site.Data.coasters.analysis (print "ratings-"        $profile) }}
+{{ $era   := index .Site.Data.coasters.analysis (print "era-"            $profile) }}
+{{ $hts   := index .Site.Data.coasters.analysis (print "heights-"        $profile) }}
+{{ $gaps  := index .Site.Data.coasters.analysis (print "park-gaps-"      $profile) }}
+{{ $type  := index .Site.Data.coasters.analysis (print "type-"           $profile) }}
+
+<style>
+  .ap-back-row { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .ap-back { font-size: 0.82rem; color: var(--white-faint); text-decoration: none; }
+  .ap-back:hover { color: var(--pink); }
+
+  .ap-stat-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .ap-stat { background: var(--black-card); border: 2px outset #444; border-radius: var(--radius); padding: 0.65rem 1.1rem; text-align: center; min-width: 90px; }
+  .ap-stat .asn { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 900; color: var(--pink); display: block; line-height: 1; }
+  .ap-stat .asl { font-size: 0.68rem; color: var(--white-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .track-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+
+  .track-card { display: flex; flex-direction: column; gap: 0.4rem; background: var(--black-card); border: 2px outset #444; border-radius: var(--radius-lg); padding: 1.1rem 1.3rem; text-decoration: none; color: inherit; }
+  .track-card.ready { transition: border-color 0.15s, background 0.15s; }
+  .track-card.ready:hover { border-color: #00CFFF; background: var(--black-elevated); }
+  .track-card.pending { opacity: 0.45; pointer-events: none; cursor: default; }
+
+  .track-icon { font-size: 1.5rem; line-height: 1; }
+  .track-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--white); }
+  .track-title .check { color: #00CFFF; font-size: 0.8rem; }
+  .track-desc { font-size: 0.8rem; color: var(--white-dim); }
+  .track-meta { font-size: 0.72rem; color: var(--white-faint); margin-top: auto; padding-top: 0.4rem; }
+</style>
+
+<div class="page-wrap">
+
+  <div class="ap-back-row">
+    <a href="/coasters/analysis/" class="ap-back">&#8592; Analysis</a>
+    <a href="/coasters/{{ $profile }}/" class="ap-back">&#8592; {{ $profile | title }} Profile</a>
+  </div>
+
+  <div class="page-header">
+    <h1>{{ $profile | title }} &mdash; Analysis</h1>
+  </div>
+
+  <div class="ap-stat-row">
+    <div class="ap-stat">
+      <span class="asn">{{ len $credits }}</span>
+      <span class="asl">Credits</span>
+    </div>
+    {{ if $parks }}
+    <div class="ap-stat">
+      <span class="asn">{{ len $parks }}</span>
+      <span class="asl">Parks</span>
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="track-grid">
+
+    {{/* Manufacturer */}}
+    {{ if $mfr }}
+    <a href="/coasters/analysis/manufacturer-{{ $profile }}/" class="track-card ready">
+    {{ else }}
+    <div class="track-card pending">
+    {{ end }}
+      <span class="track-icon">&#128295;</span>
+      <span class="track-title">Manufacturer{{ if $mfr }} <span class="check">&#10003;</span>{{ end }}</span>
+      <span class="track-desc">Credit breakdown by make &mdash; B&amp;M, Intamin, RMC, and more.</span>
+      {{ if not $mfr }}<span class="track-meta">Needs more data</span>{{ end }}
+    {{ if $mfr }}</a>{{ else }}</div>{{ end }}
+
+    {{/* Rare Credits */}}
+    {{ if $rare }}
+    <a href="/coasters/analysis/rare-credits-{{ $profile }}/" class="track-card ready">
+    {{ else }}
+    <div class="track-card pending">
+    {{ end }}
+      <span class="track-icon">&#128142;</span>
+      <span class="track-title">Rare Credits{{ if $rare }} <span class="check">&#10003;</span>{{ end }}</span>
+      <span class="track-desc">Ghost credits, rare manufacturers, one-of-a-kinds.</span>
+      {{ if not $rare }}<span class="track-meta">Needs more data</span>{{ end }}
+    {{ if $rare }}</a>{{ else }}</div>{{ end }}
+
+    {{/* Ratings Deep Dive */}}
+    {{ if $rtgs }}
+    <a href="/coasters/analysis/ratings-{{ $profile }}/" class="track-card ready">
+    {{ else }}
+    <div class="track-card pending">
+    {{ end }}
+      <span class="track-icon">&#128200;</span>
+      <span class="track-title">Ratings Deep Dive{{ if $rtgs }} <span class="check">&#10003;</span>{{ end }}</span>
+      <span class="track-desc">Outliers, correlations, top &amp; bottom rides.</span>
+      {{ if not $rtgs }}<span class="track-meta">Needs rated credits</span>{{ end }}
+    {{ if $rtgs }}</a>{{ else }}</div>{{ end }}
+
+    {{/* Era */}}
+    {{ if $era }}
+    <a href="/coasters/analysis/era-{{ $profile }}/" class="track-card ready">
+    {{ else }}
+    <div class="track-card pending">
+    {{ end }}
+      <span class="track-icon">&#128197;</span>
+      <span class="track-title">Era{{ if $era }} <span class="check">&#10003;</span>{{ end }}</span>
+      <span class="track-desc">Credits by decade &mdash; 70s classics to modern steel.</span>
+      {{ if not $era }}<span class="track-meta">Coming soon</span>{{ end }}
+    {{ if $era }}</a>{{ else }}</div>{{ end }}
+
+    {{/* Height Tiers */}}
+    {{ if $hts }}
+    <a href="/coasters/analysis/heights-{{ $profile }}/" class="track-card ready">
+    {{ else }}
+    <div class="track-card pending">
+    {{ end }}
+      <span class="track-icon">&#128176;</span>
+      <span class="track-title">Height Tiers{{ if $hts }} <span class="check">&#10003;</span>{{ end }}</span>
+      <span class="track-desc">Strata / Giga / Hyper &mdash; how tall does it go?</span>
+      {{ if not $hts }}<span class="track-meta">Coming soon</span>{{ end }}
+    {{ if $hts }}</a>{{ else }}</div>{{ end }}
+
+    {{/* Park Gaps */}}
+    {{ if $gaps }}
+    <a href="/coasters/analysis/park-gaps-{{ $profile }}/" class="track-card ready">
+    {{ else }}
+    <div class="track-card pending">
+    {{ end }}
+      <span class="track-icon">&#128205;</span>
+      <span class="track-title">Park Gaps{{ if $gaps }} <span class="check">&#10003;</span>{{ end }}</span>
+      <span class="track-desc">What&rsquo;s still unridden at each visited park?</span>
+      {{ if not $gaps }}<span class="track-meta">Coming soon</span>{{ end }}
+    {{ if $gaps }}</a>{{ else }}</div>{{ end }}
+
+    {{/* Coaster Type */}}
+    {{ if $type }}
+    <a href="/coasters/analysis/type-{{ $profile }}/" class="track-card ready">
+    {{ else }}
+    <div class="track-card pending">
+    {{ end }}
+      <span class="track-icon">&#127912;</span>
+      <span class="track-title">Coaster Type{{ if $type }} <span class="check">&#10003;</span>{{ end }}</span>
+      <span class="track-desc">Wood vs steel, launch vs lift, subtypes.</span>
+      {{ if not $type }}<span class="track-meta">Coming soon</span>{{ end }}
+    {{ if $type }}</a>{{ else }}</div>{{ end }}
+
+  </div>
+</div>
+{{ end }}
