@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-06-05T11:28:07.147609+00:00",
+  "checked_at": "2026-06-06T10:03:06.634904+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -1279,7 +1279,7 @@
           "team": "NYY",
           "team_id": 147,
           "mlb_id": 592450,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": 2,
           "proj_hr": null,
           "hrs": 0,
