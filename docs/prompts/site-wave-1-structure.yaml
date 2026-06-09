@@ -1,0 +1,196 @@
+wave: site-1
+title: Site structure cleanup — prune dead sections, tame root-doc sprawl, write SITE-WAVES.md
+target_model: sonnet
+session_suffix_placeholder: <your-session-suffix>
+
+context: |
+  Almond Farm has grown by accretion: every project added a homepage
+  card, a content section, and a root-level planning doc. The result
+  as of 2026-06:
+
+  - The homepage links to ~21 sections. At least six of them
+    (art, body, drinks, gaming, movies — plus other near-empties)
+    contain only an _index.md stub with no posts. A visitor clicking
+    a card and landing on an empty list page is the single worst
+    experience on the site.
+  - The repo root holds 10+ planning docs (SPEC.md, MARKETS.md,
+    BUILD_PLAN_CORRELATIONS.md, API-DATA-MAP.md,
+    TODO-API-MAP-PROMPTS.md, DINGER_PALOOZA.md, MONKEYS.md,
+    GODDARD.md, CUNTY-THEME-GUIDE.md, README.md, CLAUDE.md) plus
+    project directories (coaster-data/, stego/, steganography/).
+    Only CLAUDE.md and README.md belong at root by convention.
+  - stego/ and steganography/ look like duplicate implementations of
+    the same project (136K vs 148K) — one is probably an orphaned
+    earlier draft.
+
+  This wave is structural only. It does NOT touch the visual design
+  (CSS, theme, typography) — that is Wave site-2, which this wave
+  will define on paper in SITE-WAVES.md but not execute.
+
+read_first:
+  - path: CLAUDE.md
+    section: whole file — note which root docs it references by name
+      (CUNTY-THEME-GUIDE.md, MONKEYS.md); any file you move must have
+      its references updated in the same commit.
+  - path: layouts/index.html
+    section: the section-card grid — this is the list of homepage
+      links you will audit against actual content.
+  - path: layouts/partials/nav.html
+    section: nav links, same audit.
+  - path: hugo.toml
+    section: check for menu definitions or section configs that also
+      need updating when a section is hidden.
+
+task:
+  artifact: |
+    Four things, one PR:
+    1. Homepage and nav no longer link to empty sections (hidden, not
+       deleted — see piece A).
+    2. Root planning docs moved into docs/ subdirectories with all
+       references updated (see piece B).
+    3. A written report (in the PR body, not committed) on the
+       stego/ vs steganography/ duplication (see piece C).
+    4. A new SITE-WAVES.md at docs/SITE-WAVES.md defining waves
+       site-2 and site-3 (see piece D).
+
+  pieces:
+    - id: A
+      title: Hide empty sections from homepage and nav
+      description: |
+        Audit: for each section card in layouts/index.html and each
+        nav link, check whether content/<section>/ contains any page
+        beyond _index.md. If it does not, remove the card and nav
+        link. Do NOT delete the content/<section>/ directory or its
+        _index.md — the section stays buildable and comes back by
+        re-adding the card when content exists.
+
+        Add an HTML comment block at the top of the card grid in
+        layouts/index.html listing the hidden sections and the rule
+        ("re-add the card when the section has its first post"), so
+        future sessions know the cards weren't lost.
+
+        Judgment calls: a section whose only page is data-driven
+        (music, books, gallery, about render from data/ or static/)
+        counts as NON-empty. dinger-palooza, coasters, monkeys,
+        brain, apis, markets, calendar, videos — check each; hide
+        only true empties. When unsure, leave the card and note it
+        in the PR body instead of guessing.
+
+    - id: B
+      title: Move root planning docs into docs/
+      description: |
+        Target layout:
+          docs/projects/MONKEYS.md
+          docs/projects/GODDARD.md          (plus note: its companion
+                                             docs already live in
+                                             docs/goddard/ — good)
+          docs/projects/DINGER_PALOOZA.md
+          docs/projects/MARKETS.md
+          docs/projects/SPEC.md
+          docs/projects/BUILD_PLAN_CORRELATIONS.md
+          docs/projects/API-DATA-MAP.md
+          docs/projects/TODO-API-MAP-PROMPTS.md
+          docs/CUNTY-THEME-GUIDE.md
+        Keep at root: CLAUDE.md, README.md, CNAME, hugo.toml,
+        keys.yaml.example.
+
+        Use `git mv` so history follows. Then grep the ENTIRE repo
+        for each moved filename and update every reference —
+        CLAUDE.md references MONKEYS.md and CUNTY-THEME-GUIDE.md by
+        path; GODDARD.md's companion docs and docs/robots/prompts/*
+        reference GODDARD.md; scripts and skills may reference
+        DINGER_PALOOZA.md. A moved doc with a dangling reference is
+        worse than an unmoved doc: verify with
+        `grep -rn "MONKEYS.md\|GODDARD.md\|DINGER_PALOOZA.md\|CUNTY-THEME"`
+        after the move and confirm every hit points at the new path.
+
+    - id: C
+      title: Investigate the stego/ vs steganography/ duplication
+      description: |
+        Compare the two directories (diff -rq, read READMEs, check
+        git log for each). Determine which is current and which is
+        an orphaned draft. DO NOT DELETE EITHER. Write your findings
+        and a recommendation into the PR body so the owner can make
+        the deletion call. Same treatment for coaster-data/ if it
+        appears unused by the coasters section.
+
+    - id: D
+      title: Write docs/SITE-WAVES.md
+      description: |
+        A short planning doc in the style of GODDARD.md's
+        current-state section. Contents:
+        - Wave site-1: this wave, marked done, one-line summary.
+        - Wave site-2 (design system): audit assets/css/main.css
+          (~900 lines) against the theme guide; consolidate
+          duplicated rules; verify mobile breakpoints; keep the
+          deliberate 2000s aesthetic (crosshair cursor, marquee,
+          Impact hero) — the goal is cohesion, not modernization.
+        - Wave site-3 (content debt): one honest post for each
+          hidden section the owner wants to revive, or formal
+          retirement of sections nobody misses; gallery and
+          data-driven pages refresh.
+        Each wave gets: goal, key files, success criteria, and an
+        explicit "do not" line. Keep the whole file under 120 lines.
+
+do_not:
+  - rule: "Don't delete any content/ directory, data file, or either stego directory"
+    reason: |
+      This wave hides and reorganizes; it destroys nothing. Deletion
+      decisions belong to the owner, informed by your PR-body report.
+  - rule: "Don't touch assets/css/main.css or any visual styling"
+    reason: |
+      Design is Wave site-2. Mixing structure and design changes in
+      one PR makes both impossible to review.
+  - rule: "Don't move CLAUDE.md, README.md, or anything Hugo/Pages needs at root"
+    reason: |
+      CLAUDE.md at root is how Claude Code finds project
+      instructions; CNAME at root is how GitHub Pages binds the
+      domain; hugo.toml at root is how Hugo finds the site.
+  - rule: "Don't rewrite the moved docs' contents"
+    reason: |
+      git mv plus reference updates only. Editing prose while moving
+      files buries real changes inside a rename diff.
+
+branch:
+  start_from: main
+  bootstrap: |
+    git checkout main && git pull origin main
+  name_pattern: claude/site-wave-1-structure-<your-session-suffix>
+
+success_criteria:
+  - hugo --minify exits clean.
+  - No homepage card or nav link leads to a section with zero posts.
+  - Hidden sections are documented in an HTML comment in
+      layouts/index.html.
+  - Root directory contains no planning docs except CLAUDE.md and
+      README.md; every reference to a moved file resolves (grep
+      verified, paths quoted in the PR body).
+  - docs/SITE-WAVES.md exists with waves site-1/2/3 defined.
+  - PR body contains the stego/steganography findings and
+      recommendation, the list of hidden sections, and the standard
+      session-URL footer.
+  - python3 scripts/validate_organs.py still exits 0 (it must not
+      be affected, but GODDARD.md's move could break a hardcoded
+      path — check scripts/ and .github/workflows/validate.yml).
+
+runners_up:
+  - title: Build the /plan slash command (CLAUDE.md TODO)
+    reason_not_picked: |
+      Real and wanted, but it's harness tooling, not site structure.
+      Doing it here would double the session's scope. Good candidate
+      for its own short session right after this one.
+  - title: Execute Wave site-2 (CSS audit) in the same session
+    reason_not_picked: |
+      Defined on paper in SITE-WAVES.md by this wave, deliberately
+      not executed. Structure and design land as separate PRs.
+
+learning_angle: |
+  This is the planner/executor split in practice: a frontier-model
+  session did the recon and judgment calls (which sections are truly
+  empty, what's safe to move, what must not be deleted) and froze
+  them into this prompt; the executing session spends its effort on
+  careful mechanics — grep-verified reference updates, hide-don't-
+  delete discipline — instead of re-deriving intent. If a piece of
+  this prompt turns out to be wrong about the repo, say so in the PR
+  body rather than silently improvising: prompt-error reports are
+  how the planning side gets better.
