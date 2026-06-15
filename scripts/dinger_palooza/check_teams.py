@@ -92,6 +92,11 @@ async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
                     f"→  actual={live_team} ({live_abbr}, id={live_team_id})"
                 )
 
+            # Soft-flag inactive players (free agents, etc.) instead of hard-failing
+            if status == "STALE" and player.get("inactive"):
+                status = "INACTIVE"
+                detail = f"free agent / inactive — last config team: {player['team']} ({player['team_abbr']}); currently: {live_team}"
+
             return {
                 **player,
                 "status": status,
@@ -101,6 +106,15 @@ async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
                 "live_abbr": live_abbr,
                 "mlb_id": mlb_id,
             }
+
+    if player.get("inactive"):
+        return {
+            **player,
+            "status": "INACTIVE",
+            "detail": f"free agent / inactive — not found in MLB search (expected)",
+            "live_team": None,
+            "live_team_id": None,
+        }
 
     return {
         **player,
@@ -121,6 +135,7 @@ async def run_checks() -> list[dict]:
 def print_report(results: list[dict], fmt: str = "text") -> int:
     stale = [r for r in results if r["status"] == "STALE"]
     notfound = [r for r in results if r["status"] == "NOTFOUND"]
+    inactive = [r for r in results if r["status"] == "INACTIVE"]
     errors = [r for r in results if r["status"] == "ERROR"]
     passing = [r for r in results if r["status"] == "PASS"]
 
@@ -130,9 +145,9 @@ def print_report(results: list[dict], fmt: str = "text") -> int:
         lines.append(f"Checked {len(results)} players against live MLB API.\n")
 
         if not stale and not notfound:
-            lines.append("## ✅ All players match their configured teams\n")
+            lines.append("## ✅ All active players match their configured teams\n")
         else:
-            lines.append(f"## Summary: {len(stale)} stale · {len(notfound)} not found · {len(errors)} errors · {len(passing)} OK\n")
+            lines.append(f"## Summary: {len(stale)} stale · {len(notfound)} not found · {len(inactive)} inactive · {len(errors)} errors · {len(passing)} OK\n")
 
         if stale:
             lines.append("## 🔄 Stale team assignments — update config.py\n")
@@ -152,6 +167,12 @@ def print_report(results: list[dict], fmt: str = "text") -> int:
             lines.append("|--------|-------------|")
             for r in notfound:
                 lines.append(f"| {r['name']} | {r['team']} ({r['team_abbr']}) |")
+            lines.append("")
+
+        if inactive:
+            lines.append("## 💤 Inactive / free agents (soft flag — not counted as failures)\n")
+            for r in inactive:
+                lines.append(f"- **{r['name']}** — {r['detail']}")
             lines.append("")
 
         if errors:
@@ -179,10 +200,11 @@ def print_report(results: list[dict], fmt: str = "text") -> int:
         print(f"\n{'='*60}")
         print(f"  Dinger Palooza Team Config Audit — {len(results)} players")
         print(f"{'='*60}")
-        for r in sorted(results, key=lambda x: (x["status"] != "STALE", x["status"] != "NOTFOUND", x["name"])):
-            icon = {"PASS": "✓", "STALE": "✗", "NOTFOUND": "?", "ERROR": "!"}.get(r["status"], " ")
+        sort_key = lambda x: (x["status"] != "STALE", x["status"] != "NOTFOUND", x["status"] != "INACTIVE", x["name"])
+        for r in sorted(results, key=sort_key):
+            icon = {"PASS": "✓", "STALE": "✗", "NOTFOUND": "?", "INACTIVE": "~", "ERROR": "!"}.get(r["status"], " ")
             print(f"  {icon} {r['name']:<25}  {r['status']:<10}  {r['detail']}")
-        print(f"\n  Results: {len(passing)} OK · {len(stale)} stale · {len(notfound)} not found · {len(errors)} errors")
+        print(f"\n  Results: {len(passing)} OK · {len(stale)} stale · {len(notfound)} not found · {len(inactive)} inactive · {len(errors)} errors")
         if stale or notfound:
             print("\n  → Paste this output to Claude to update config.py automatically.\n")
 
