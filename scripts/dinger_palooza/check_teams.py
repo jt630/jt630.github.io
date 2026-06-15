@@ -76,7 +76,13 @@ async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
             live_team = current_team.get("name", "Unknown")
             live_abbr = current_team.get("abbreviation") or TEAM_ABBR.get(live_team_id, "???")
 
-            if live_team_id == player["team_id"]:
+            # If the API returns a non-MLB team ID (minor league rehab assignment),
+            # treat as PASS — the player is still on their MLB parent club.
+            # Same logic as schedule_agent.py's _fetch_current_team fix.
+            if live_team_id not in TEAM_ABBR and live_team_id is not None:
+                status = "PASS"
+                detail = f"✓ {player['team']} ({player['team_abbr']}) — API returned minor-league team {live_team} (id={live_team_id}), likely rehab assignment"
+            elif live_team_id == player["team_id"]:
                 status = "PASS"
                 detail = f"✓ {live_team} ({live_abbr})"
             else:
