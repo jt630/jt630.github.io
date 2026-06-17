@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-06-16T12:52:27.757883+00:00",
+  "checked_at": "2026-06-17T12:15:40.132832+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -1671,7 +1671,7 @@
           "team": "CLE",
           "team_id": 114,
           "mlb_id": 682657,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": null,
           "proj_hr": null,
           "hrs": 0,
