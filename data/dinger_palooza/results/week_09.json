@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-06-18T11:52:52.198106+00:00",
+  "checked_at": "2026-06-19T12:05:18.561197+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -754,7 +754,7 @@
           "team": "LAA",
           "team_id": 108,
           "mlb_id": 545361,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": 58,
           "proj_hr": null,
           "hrs": 1,
