@@ -6347,16 +6347,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 7,
+          "hr9": 0.77,
+          "bb9": 3.39,
+          "k9": 7.11,
+          "era": 4.92,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 34.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823367,
@@ -6365,16 +6378,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 677952,
+          "name": "Braxton Ashcraft",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 90.66666666666667,
+          "hr": 8,
+          "hr9": 0.79,
+          "bb9": 2.18,
+          "k9": 9.63,
+          "era": 3.18,
+          "innings_pitched": "90.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 30.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823366,
@@ -6383,16 +6409,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696149,
+          "name": "Bubba Chandler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 74.0,
+          "hr": 9,
+          "hr9": 1.09,
+          "bb9": 5.23,
+          "k9": 8.39,
+          "era": 4.62,
+          "innings_pitched": "74.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 49.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824423,
@@ -6453,9 +6492,9 @@
     "park_score": 43.8,
     "best_park_game": "PNC Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -8205,16 +8244,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 7,
+          "hr9": 0.77,
+          "bb9": 3.39,
+          "k9": 7.11,
+          "era": 4.92,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823367,
@@ -8223,16 +8275,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 677952,
+          "name": "Braxton Ashcraft",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 90.66666666666667,
+          "hr": 8,
+          "hr9": 0.79,
+          "bb9": 2.18,
+          "k9": 9.63,
+          "era": 3.18,
+          "innings_pitched": "90.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 18.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823366,
@@ -8241,16 +8306,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696149,
+          "name": "Bubba Chandler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 74.0,
+          "hr": 9,
+          "hr9": 1.09,
+          "bb9": 5.23,
+          "k9": 8.39,
+          "era": 4.62,
+          "innings_pitched": "74.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 37.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824423,
@@ -8311,7 +8389,7 @@
     "park_score": 43.8,
     "best_park_game": "PNC Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 38.2,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -8334,16 +8412,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 7,
+          "hr9": 0.77,
+          "bb9": 3.39,
+          "k9": 7.11,
+          "era": 4.92,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823367,
@@ -8352,16 +8443,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 677952,
+          "name": "Braxton Ashcraft",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 90.66666666666667,
+          "hr": 8,
+          "hr9": 0.79,
+          "bb9": 2.18,
+          "k9": 9.63,
+          "era": 3.18,
+          "innings_pitched": "90.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 18.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823366,
@@ -8370,16 +8474,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696149,
+          "name": "Bubba Chandler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 74.0,
+          "hr": 9,
+          "hr9": 1.09,
+          "bb9": 5.23,
+          "k9": 8.39,
+          "era": 4.62,
+          "innings_pitched": "74.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 37.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824423,
@@ -8440,7 +8557,7 @@
     "park_score": 43.8,
     "best_park_game": "PNC Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 38.2,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -11483,16 +11600,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 7,
+          "hr9": 0.77,
+          "bb9": 3.39,
+          "k9": 7.11,
+          "era": 4.92,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 34.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823367,
@@ -11501,16 +11631,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 677952,
+          "name": "Braxton Ashcraft",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 90.66666666666667,
+          "hr": 8,
+          "hr9": 0.79,
+          "bb9": 2.18,
+          "k9": 9.63,
+          "era": 3.18,
+          "innings_pitched": "90.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 30.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823366,
@@ -11519,16 +11662,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696149,
+          "name": "Bubba Chandler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 74.0,
+          "hr": 9,
+          "hr9": 1.09,
+          "bb9": 5.23,
+          "k9": 8.39,
+          "era": 4.62,
+          "innings_pitched": "74.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 49.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824423,
@@ -11589,9 +11745,9 @@
     "park_score": 43.8,
     "best_park_game": "PNC Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
