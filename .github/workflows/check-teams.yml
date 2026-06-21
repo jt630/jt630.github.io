@@ -4,9 +4,12 @@ on:
   # Run manually from GitHub Actions UI whenever you want to check
   workflow_dispatch:
 
-  # Also run automatically every Monday morning so stale entries don't sneak through
+  # Run twice a week:
+  # Sunday at 13:30 UTC — 30 min after the draft board updates (9 AM ET draft day)
+  # Monday at 12:00 UTC — morning sanity check
   schedule:
-    - cron: "0 12 * * 1"  # Mondays at 12:00 UTC (8 AM ET)
+    - cron: "30 13 * * 0"  # Sundays at 13:30 UTC (9:30 AM ET)
+    - cron: "0 12 * * 1"   # Mondays at 12:00 UTC (8 AM ET)
 
 jobs:
   audit-teams:

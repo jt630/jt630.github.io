@@ -59,7 +59,7 @@ PLAYERS = [
     {"name": "Trea Turner",          "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
     {"name": "Alec Bohm",            "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
     {"name": "J.T. Realmuto",        "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": None, "bats": "R"},
-    {"name": "Nick Castellanos",     "team": "San Diego Padres",        "team_id": 135, "team_abbr": "SD",  "mlb_id": None, "bats": "R"},
+    {"name": "Nick Castellanos",     "team": "San Diego Padres",        "team_id": 135, "team_abbr": "SD",  "mlb_id": None, "bats": "R", "inactive": True},  # DFA'd June 3 2026, free agent
     {"name": "Tyler O'Neill",        "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": None, "bats": "R"},
     {"name": "Triston Casas",        "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "L"},
     {"name": "Jarren Duran",         "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": None, "bats": "L"},
