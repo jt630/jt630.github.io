@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-06-21T11:15:00.142018+00:00",
+  "checked_at": "2026-06-22T13:34:15.474484+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -880,7 +880,7 @@
           "team": "MIA",
           "team_id": 146,
           "mlb_id": 689414,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": null,
           "proj_hr": null,
           "hrs": 0,
