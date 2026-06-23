@@ -1,16 +1,16 @@
 """
 check_teams.py — Validate that every player in config.py is on their listed team.
 
-Uses MLB /people/search to find the player ID, then /people/{id}?hydrate=currentTeam
-for the actual current team (search alone doesn't return currentTeam reliably).
+When mlb_id is set in config (all players should have it), goes directly to
+/people/{id}?hydrate=currentTeam — no name search, no fuzzy matching.
 
-Usage:
-  python scripts/dinger_palooza/check_teams.py
+Falls back to /people/search + fuzzy match only for players with mlb_id: None.
 
 Outputs:
   - PASS: player is on their listed team
   - STALE: player is on a different team (config needs updating)
   - NOTFOUND: player not found in MLB search (retired, minors, name mismatch)
+  - INACTIVE: soft flag for free agents / players marked inactive: True in config
 
 Exit code 1 if any STALE or NOTFOUND entries exist, so CI can catch it.
 """
@@ -18,6 +18,7 @@ Exit code 1 if any STALE or NOTFOUND entries exist, so CI can catch it.
 import asyncio
 import json
 import os
+import re
 import sys
 import unicodedata
 
@@ -46,8 +47,54 @@ async def get_current_team(session: aiohttp.ClientSession, mlb_id: int) -> dict:
     return people[0].get("currentTeam", {})
 
 
+def _team_status(player: dict, mlb_id: int, current_team: dict) -> dict:
+    """Compute result dict from a live currentTeam API response."""
+    live_team_id = current_team.get("id")
+    live_team = current_team.get("name", "Unknown")
+    live_abbr = current_team.get("abbreviation") or TEAM_ABBR.get(live_team_id, "???")
+
+    # Non-MLB team ID → minor-league rehab assignment; player still on MLB parent club
+    if live_team_id not in TEAM_ABBR and live_team_id is not None:
+        status = "PASS"
+        detail = f"✓ {player['team']} ({player['team_abbr']}) — API returned minor-league team {live_team} (id={live_team_id}), likely rehab assignment"
+    elif live_team_id == player["team_id"]:
+        status = "PASS"
+        detail = f"✓ {live_team} ({live_abbr})"
+    else:
+        status = "STALE"
+        detail = (
+            f"config={player['team']} ({player['team_abbr']}, id={player['team_id']})  "
+            f"→  actual={live_team} ({live_abbr}, id={live_team_id})"
+        )
+
+    if status == "STALE" and player.get("inactive"):
+        status = "INACTIVE"
+        detail = f"free agent / inactive — last config team: {player['team']} ({player['team_abbr']}); currently: {live_team}"
+
+    return {
+        **player,
+        "status": status,
+        "detail": detail,
+        "live_team": live_team,
+        "live_team_id": live_team_id,
+        "live_abbr": live_abbr,
+        "mlb_id": mlb_id,
+    }
+
+
 async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
     name = player["name"]
+    mlb_id = player.get("mlb_id")
+
+    if mlb_id:
+        # Direct lookup by ID — no fuzzy name search
+        try:
+            current_team = await get_current_team(session, mlb_id)
+        except Exception as exc:
+            return {**player, "status": "ERROR", "detail": str(exc), "live_team": None, "live_team_id": None}
+        return _team_status(player, mlb_id, current_team)
+
+    # Fallback: name search (only reached if mlb_id is missing from config)
     name_encoded = name.replace(" ", "+")
     url = f"{MLB_API_BASE}/people/search?names={name_encoded}&sportId=1"
 
@@ -64,54 +111,18 @@ async def check_player(session: aiohttp.ClientSession, player: dict) -> dict:
     for person in people:
         full_name = normalize(person.get("fullName", ""))
         if target in full_name or full_name in target or target == full_name:
-            mlb_id = person.get("id")
-
-            # Search doesn't reliably include currentTeam — fetch it directly
+            found_id = person.get("id")
             try:
-                current_team = await get_current_team(session, mlb_id)
+                current_team = await get_current_team(session, found_id)
             except Exception:
                 current_team = {}
-
-            live_team_id = current_team.get("id")
-            live_team = current_team.get("name", "Unknown")
-            live_abbr = current_team.get("abbreviation") or TEAM_ABBR.get(live_team_id, "???")
-
-            # If the API returns a non-MLB team ID (minor league rehab assignment),
-            # treat as PASS — the player is still on their MLB parent club.
-            # Same logic as schedule_agent.py's _fetch_current_team fix.
-            if live_team_id not in TEAM_ABBR and live_team_id is not None:
-                status = "PASS"
-                detail = f"✓ {player['team']} ({player['team_abbr']}) — API returned minor-league team {live_team} (id={live_team_id}), likely rehab assignment"
-            elif live_team_id == player["team_id"]:
-                status = "PASS"
-                detail = f"✓ {live_team} ({live_abbr})"
-            else:
-                status = "STALE"
-                detail = (
-                    f"config={player['team']} ({player['team_abbr']}, id={player['team_id']})  "
-                    f"→  actual={live_team} ({live_abbr}, id={live_team_id})"
-                )
-
-            # Soft-flag inactive players (free agents, etc.) instead of hard-failing
-            if status == "STALE" and player.get("inactive"):
-                status = "INACTIVE"
-                detail = f"free agent / inactive — last config team: {player['team']} ({player['team_abbr']}); currently: {live_team}"
-
-            return {
-                **player,
-                "status": status,
-                "detail": detail,
-                "live_team": live_team,
-                "live_team_id": live_team_id,
-                "live_abbr": live_abbr,
-                "mlb_id": mlb_id,
-            }
+            return _team_status(player, found_id, current_team)
 
     if player.get("inactive"):
         return {
             **player,
             "status": "INACTIVE",
-            "detail": f"free agent / inactive — not found in MLB search (expected)",
+            "detail": "free agent / inactive — not found in MLB search (expected)",
             "live_team": None,
             "live_team_id": None,
         }
@@ -206,7 +217,7 @@ def print_report(results: list[dict], fmt: str = "text") -> int:
             print(f"  {icon} {r['name']:<25}  {r['status']:<10}  {r['detail']}")
         print(f"\n  Results: {len(passing)} OK · {len(stale)} stale · {len(notfound)} not found · {len(inactive)} inactive · {len(errors)} errors")
         if stale or notfound:
-            print("\n  → Paste this output to Claude to update config.py automatically.\n")
+            print("\n  → Run with --fix to auto-patch config.py for stale team assignments.\n")
 
     return 1 if (stale or notfound) else 0
 
@@ -223,12 +234,49 @@ def build_patch(results: list[dict]) -> dict:
     }
 
 
+def apply_patch(results: list[dict]) -> int:
+    """
+    Write STALE team updates directly into config.py and return the count of changes.
+    Each player's team/team_id/team_abbr fields are updated in-place; all other
+    fields (mlb_id, bats, inactive, etc.) are left untouched.
+    """
+    patch = build_patch(results)
+    if not patch:
+        return 0
+
+    config_path = os.path.join(os.path.dirname(__file__), "config.py")
+    with open(config_path) as f:
+        lines = f.readlines()
+
+    count = 0
+    for i, line in enumerate(lines):
+        for name, updates in patch.items():
+            if f'"name": "{name}"' not in line:
+                continue
+            orig = line
+            line = re.sub(r'"team":\s*"[^"]*"', f'"team": "{updates["team"]}"', line, count=1)
+            line = re.sub(r'"team_id":\s*\d+', f'"team_id": {updates["team_id"]}', line, count=1)
+            line = re.sub(r'"team_abbr":\s*"[^"]*"', f'"team_abbr": "{updates["team_abbr"]}"', line, count=1)
+            if line != orig:
+                lines[i] = line
+                count += 1
+                print(f"  config.py fixed: {name} → {updates['team']} ({updates['team_abbr']}, id={updates['team_id']})")
+            else:
+                print(f"  WARNING: could not patch config.py for {name!r}")
+
+    with open(config_path, "w") as f:
+        f.writelines(lines)
+
+    return count
+
+
 if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Audit Dinger Palooza player-team config")
     parser.add_argument("--json", action="store_true", help="Output raw JSON")
     parser.add_argument("--gha", action="store_true", help="Write GitHub Actions job summary")
+    parser.add_argument("--fix", action="store_true", help="Auto-update config.py for STALE players")
     args = parser.parse_args()
 
     results = asyncio.run(run_checks())
@@ -240,11 +288,9 @@ if __name__ == "__main__":
     fmt = "gha" if args.gha else "text"
     exit_code = print_report(results, fmt=fmt)
 
-    if exit_code != 0:
-        patch = build_patch(results)
-        if patch and not args.gha:
-            print("  Suggested config.py patches:")
-            for name, data in patch.items():
-                print(f'    "{name}": team="{data["team"]}" team_id={data["team_id"]} team_abbr="{data["team_abbr"]}"')
+    if args.fix:
+        fixed = apply_patch(results)
+        if fixed:
+            print(f"\nApplied {fixed} fix(es) to config.py.")
 
     sys.exit(exit_code)

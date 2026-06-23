@@ -119,12 +119,44 @@ async def _fetch_current_team(session: aiohttp.ClientSession, mlb_id: int) -> di
 
 async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
     """
-    Look up a player via MLB people search (team-agnostic).
-    Returns a dict of fields to merge into the player: mlb_id, and optionally
-    team_id / team / team_abbr if the player's current team differs from config.
+    Resolve a player's current team and MLB ID.
 
-    Falls back to the original roster-based lookup if name search yields nothing.
+    When mlb_id is already set in config, skips name search entirely and goes
+    directly to /people/{id}?hydrate=currentTeam. Falls back to name search
+    (then roster search) only for players with mlb_id: None.
     """
+    mlb_id = player.get("mlb_id")
+
+    if mlb_id:
+        # Fast path: ID is known, skip fuzzy name search
+        try:
+            current_team = await _fetch_current_team(session, mlb_id)
+        except Exception as exc:
+            logger.warning(f"currentTeam lookup failed for {player['name']} (id={mlb_id}): {exc}")
+            return {"mlb_id": mlb_id}
+
+        current_team_id = current_team.get("id")
+        current_team_name = current_team.get("name", player["team"])
+        current_team_abbr = current_team.get("abbreviation", player["team_abbr"])
+
+        # Ignore minor-league affiliate IDs (rehab assignments)
+        if current_team_id and current_team_id not in TEAM_ABBR:
+            logger.warning(
+                f"{player['name']}: live team_id {current_team_id} ({current_team_name}) "
+                f"is not an MLB franchise — keeping config team_id {player['team_id']}"
+            )
+            current_team_id = None
+
+        result = {"mlb_id": mlb_id}
+        if current_team_id and current_team_id != player["team_id"]:
+            result["team_id"] = current_team_id
+            result["team"] = current_team_name
+            result["team_abbr"] = current_team_abbr
+
+        logger.info(f"Resolved {player['name']} → MLB ID {mlb_id} ({current_team_name})")
+        return result
+
+    # Slow path: no ID in config — fall back to name search
     name_encoded = player["name"].replace(" ", "+")
     url = f"{MLB_API_BASE}/people/search?names={name_encoded}&sportId=1"
 
@@ -142,12 +174,10 @@ async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
         for person in people:
             full_name = person.get("fullName", "").lower()
             if target in full_name or full_name in target or _name_match(target, full_name):
-                mlb_id = person.get("id")
+                found_id = person.get("id")
 
-                # /people/search doesn't reliably include currentTeam — fetch it directly.
-                # This is the same approach check_teams.py uses and is the authoritative source.
                 try:
-                    current_team = await _fetch_current_team(session, mlb_id)
+                    current_team = await _fetch_current_team(session, found_id)
                 except Exception as exc:
                     logger.debug(f"currentTeam lookup failed for {player['name']}: {exc} — using search result")
                     current_team = person.get("currentTeam", {})
@@ -156,8 +186,6 @@ async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
                 current_team_name = current_team.get("name", player["team"])
                 current_team_abbr = current_team.get("abbreviation", player["team_abbr"])
 
-                # Only accept team_id if it's a known MLB franchise — the API sometimes
-                # returns minor-league affiliate IDs for recently called-up players.
                 if current_team_id and current_team_id not in TEAM_ABBR:
                     logger.warning(
                         f"{player['name']}: live team_id {current_team_id} ({current_team_name}) "
@@ -165,16 +193,16 @@ async def _lookup_player(session: aiohttp.ClientSession, player: dict) -> dict:
                     )
                     current_team_id = None
 
-                result = {"mlb_id": mlb_id}
+                result = {"mlb_id": found_id}
                 if current_team_id and current_team_id != player["team_id"]:
                     result["team_id"] = current_team_id
                     result["team"] = current_team_name
                     result["team_abbr"] = current_team_abbr
 
-                logger.info(f"Resolved {player['name']} → MLB ID {mlb_id} ({current_team_name})")
+                logger.info(f"Resolved {player['name']} → MLB ID {found_id} ({current_team_name})")
                 return result
 
-    # Fallback: search the configured team's roster (original behavior)
+    # Last resort: search the configured team's roster
     logger.debug(f"Name search found no match for {player['name']} — trying {player['team']} roster")
     return await _lookup_player_via_roster(session, player)
 
