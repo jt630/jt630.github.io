@@ -2,8 +2,10 @@ name: Dinger Palooza — Weekly Draft Board
 
 on:
   # Every Sunday at 9 AM ET (13:00 UTC during EDT) — before the draft
+  # Fallback at 11 AM ET (15:00 UTC) in case GitHub drops the first run
   schedule:
     - cron: "0 13 * * 0"
+    - cron: "0 15 * * 0"
 
   # Allow manual trigger from GitHub Actions UI
   workflow_dispatch:
@@ -51,20 +53,39 @@ jobs:
           git config user.name  "Dinger Palooza Bot"
           git config user.email "bot@almondfarm.us"
 
-          git add data/dinger_palooza/
+          # Compute the week the pipeline should have generated
+          EXPECTED_WEEK=$(python3 -c "
+          from datetime import date, timedelta
+          today = date.today()
+          days_since_monday = today.weekday()
+          this_monday = today - timedelta(days=days_since_monday)
+          monday = this_monday + timedelta(days=7) if today.weekday() == 6 else this_monday
+          print(monday.isoformat())
+          ")
 
-          # Only commit if something actually changed
-          if git diff --cached --quiet; then
-            echo "No changes to draft board — skipping commit"
-            echo "committed=false" >> $GITHUB_OUTPUT
-          else
-            WEEK=$(python3 -c "
+          # Validate the pipeline actually generated that week
+          ACTUAL_WEEK=$(python3 -c "
           import json
           with open('data/dinger_palooza/draft_board.json') as f:
               d = json.load(f)
           print(d['week_start'])
           ")
-            git commit -m "feat: update Dinger Palooza draft board for week of ${WEEK}"
+
+          if [ "$ACTUAL_WEEK" != "$EXPECTED_WEEK" ]; then
+            echo "::error::Draft board week mismatch — expected $EXPECTED_WEEK, got $ACTUAL_WEEK"
+            exit 1
+          fi
+          echo "Week validated: $ACTUAL_WEEK"
+
+          git add data/dinger_palooza/
+
+          # Only commit if something actually changed
+          if git diff --cached --quiet; then
+            # Board already shows the correct week — a second run is fine
+            echo "Draft board already current for week of $ACTUAL_WEEK — skipping commit"
+            echo "committed=false" >> $GITHUB_OUTPUT
+          else
+            git commit -m "feat: update Dinger Palooza draft board for week of ${ACTUAL_WEEK}"
             git push origin main
             echo "Draft board pushed to main."
             echo "committed=true" >> $GITHUB_OUTPUT

@@ -11,6 +11,9 @@ on:
     - cron: "30 13 * * 0"  # Sundays at 13:30 UTC (9:30 AM ET)
     - cron: "0 12 * * 1"   # Mondays at 12:00 UTC (8 AM ET)
 
+permissions:
+  contents: write   # needed to push auto-fix commits
+
 jobs:
   audit-teams:
     runs-on: ubuntu-latest
@@ -32,9 +35,23 @@ jobs:
         # so you see a red X on the Actions tab without digging into logs
         run: |
           cd scripts/dinger_palooza
-          python check_teams.py --gha
+          python check_teams.py --gha --fix
         continue-on-error: true
         id: audit
+
+      - name: Commit auto-fixed team assignments
+        if: steps.audit.outcome == 'failure'
+        run: |
+          if git diff --quiet scripts/dinger_palooza/config.py; then
+            echo "No config.py changes to commit."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add scripts/dinger_palooza/config.py
+            git commit -m "fix(dinger-palooza): auto-update stale team assignments in config.py"
+            git push
+            echo "Pushed config.py update."
+          fi
 
       - name: Fail job if issues found
         if: steps.audit.outcome == 'failure'
