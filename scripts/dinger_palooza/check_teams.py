@@ -187,7 +187,12 @@ def print_report(results: list[dict], fmt: str = "text") -> int:
             lines.append("")
 
         if errors:
-            lines.append("## ⚠ API errors (transient — rerun to confirm)\n")
+            error_pct = round(100 * len(errors) / max(len(results), 1))
+            if error_pct >= 50:
+                lines.append(f"## 🚨 MLB API unreachable — {len(errors)}/{len(results)} players failed ({error_pct}%)\n")
+                lines.append("Audit result is invalid. Check network/proxy access to statsapi.mlb.com.\n")
+            else:
+                lines.append(f"## ⚠ API errors (transient — rerun to confirm)\n")
             for r in errors:
                 lines.append(f"- {r['name']}: {r['detail']}")
             lines.append("")
@@ -219,6 +224,10 @@ def print_report(results: list[dict], fmt: str = "text") -> int:
         if stale or notfound:
             print("\n  → Run with --fix to auto-patch config.py for stale team assignments.\n")
 
+    # Fail if MLB API was unreachable (>= 50% errors means the audit is invalid)
+    total_active = len(results) - len(inactive)
+    if total_active > 0 and len(errors) / total_active >= 0.5:
+        return 1
     return 1 if (stale or notfound) else 0
 
 
