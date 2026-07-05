@@ -759,7 +759,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -1046,7 +1050,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 694973,
+          "name": "Paul Skenes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -1058,7 +1066,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -1070,7 +1082,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -1179,7 +1195,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -1260,7 +1280,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 694973,
+          "name": "Paul Skenes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -1272,7 +1296,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -1284,7 +1312,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -1397,7 +1429,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -1882,7 +1918,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 694973,
+          "name": "Paul Skenes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -1894,7 +1934,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -1906,7 +1950,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -2536,7 +2584,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -2649,7 +2701,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -2762,7 +2818,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -2976,7 +3036,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -3594,7 +3658,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -3703,7 +3771,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -4289,7 +4361,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 694973,
+          "name": "Paul Skenes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -4301,7 +4377,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -4313,7 +4393,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral"
@@ -6550,7 +6634,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean"
@@ -6562,7 +6650,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean"
@@ -6574,7 +6666,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean"
@@ -8775,7 +8871,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean"
@@ -8787,7 +8887,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean"
@@ -8799,7 +8903,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean"

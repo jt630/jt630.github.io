@@ -1173,16 +1173,29 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 20,
+          "hr9": 2.19,
+          "bb9": 3.28,
+          "k9": 7.76,
+          "era": 5.03,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 100,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824252,
@@ -1243,9 +1256,9 @@
     "park_score": 50.9,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 47.8,
-    "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "pitcher_score": 55.0,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -1604,16 +1617,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 694973,
+          "name": "Paul Skenes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 97.0,
+          "hr": 11,
+          "hr9": 1.02,
+          "bb9": 2.04,
+          "k9": 11.04,
+          "era": 3.62,
+          "innings_pitched": "97.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 31.4,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823360,
@@ -1622,16 +1648,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 29.0,
+          "hr": 5,
+          "hr9": 1.55,
+          "bb9": 3.41,
+          "k9": 9.62,
+          "era": 5.28,
+          "innings_pitched": "29.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 62.8,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823359,
@@ -1640,16 +1679,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.33333333333333,
+          "hr": 12,
+          "hr9": 1.08,
+          "bb9": 2.96,
+          "k9": 6.64,
+          "era": 5.02,
+          "innings_pitched": "100.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823033,
@@ -1710,7 +1762,7 @@
     "park_score": 46.6,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "pitcher_score": 49.3,
+    "pitcher_score": 46.9,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -1813,16 +1865,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 68.0,
+          "hr": 8,
+          "hr9": 1.06,
+          "bb9": 3.04,
+          "k9": 9.0,
+          "era": 5.16,
+          "innings_pitched": "68.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
         "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824817,
@@ -1885,7 +1950,7 @@
     "best_park_factor": 103,
     "pitcher_score": 44.7,
     "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -1937,16 +2002,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 694973,
+          "name": "Paul Skenes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 97.0,
+          "hr": 11,
+          "hr9": 1.02,
+          "bb9": 2.04,
+          "k9": 11.04,
+          "era": 3.62,
+          "innings_pitched": "97.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 43.4,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823360,
@@ -1955,16 +2033,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 29.0,
+          "hr": 5,
+          "hr9": 1.55,
+          "bb9": 3.41,
+          "k9": 9.62,
+          "era": 5.28,
+          "innings_pitched": "29.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 74.8,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823359,
@@ -1973,16 +2064,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.33333333333333,
+          "hr": 12,
+          "hr9": 1.08,
+          "bb9": 2.96,
+          "k9": 6.64,
+          "era": 5.02,
+          "innings_pitched": "100.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 50.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823033,
@@ -2043,9 +2147,9 @@
     "park_score": 46.6,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "pitcher_score": 51.1,
-    "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "pitcher_score": 53.7,
+    "favorable_matchups": 1,
+    "platoon_advantages": 4,
     "batter_splits": {}
   },
   {
@@ -2159,16 +2263,29 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 20,
+          "hr9": 2.19,
+          "bb9": 3.28,
+          "k9": 7.76,
+          "era": 5.03,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 100,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824252,
@@ -2229,9 +2346,9 @@
     "park_score": 50.9,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 47.8,
-    "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "pitcher_score": 55.0,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -2871,16 +2988,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 694973,
+          "name": "Paul Skenes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 97.0,
+          "hr": 11,
+          "hr9": 1.02,
+          "bb9": 2.04,
+          "k9": 11.04,
+          "era": 3.62,
+          "innings_pitched": "97.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 31.4,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823360,
@@ -2889,16 +3019,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 29.0,
+          "hr": 5,
+          "hr9": 1.55,
+          "bb9": 3.41,
+          "k9": 9.62,
+          "era": 5.28,
+          "innings_pitched": "29.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 62.8,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823359,
@@ -2907,16 +3050,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.33333333333333,
+          "hr": 12,
+          "hr9": 1.08,
+          "bb9": 2.96,
+          "k9": 6.64,
+          "era": 5.02,
+          "innings_pitched": "100.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823033,
@@ -2977,7 +3133,7 @@
     "park_score": 46.6,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "pitcher_score": 49.3,
+    "pitcher_score": 46.9,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -3867,16 +4023,29 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 20,
+          "hr9": 2.19,
+          "bb9": 3.28,
+          "k9": 7.76,
+          "era": 5.03,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 94.1,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824252,
@@ -3937,8 +4106,8 @@
     "park_score": 50.9,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 49.5,
-    "favorable_matchups": 0,
+    "pitcher_score": 55.8,
+    "favorable_matchups": 1,
     "platoon_advantages": 2,
     "batter_splits": {}
   },
@@ -4053,16 +4222,29 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 20,
+          "hr9": 2.19,
+          "bb9": 3.28,
+          "k9": 7.76,
+          "era": 5.03,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 94.1,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824252,
@@ -4123,8 +4305,8 @@
     "park_score": 50.9,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 49.5,
-    "favorable_matchups": 0,
+    "pitcher_score": 55.8,
+    "favorable_matchups": 1,
     "platoon_advantages": 2,
     "batter_splits": {}
   },
@@ -4239,16 +4421,29 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 20,
+          "hr9": 2.19,
+          "bb9": 3.28,
+          "k9": 7.76,
+          "era": 5.03,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 94.1,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824252,
@@ -4309,8 +4504,8 @@
     "park_score": 50.9,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 49.5,
-    "favorable_matchups": 0,
+    "pitcher_score": 55.8,
+    "favorable_matchups": 1,
     "platoon_advantages": 2,
     "batter_splits": {}
   },
@@ -4572,16 +4767,29 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 82.33333333333333,
+          "hr": 20,
+          "hr9": 2.19,
+          "bb9": 3.28,
+          "k9": 7.76,
+          "era": 5.03,
+          "innings_pitched": "82.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 94.1,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824252,
@@ -4642,8 +4850,8 @@
     "park_score": 50.9,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 49.5,
-    "favorable_matchups": 0,
+    "pitcher_score": 55.8,
+    "favorable_matchups": 1,
     "platoon_advantages": 2,
     "batter_splits": {}
   },
@@ -5493,16 +5701,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 68.0,
+          "hr": 8,
+          "hr9": 1.06,
+          "bb9": 3.04,
+          "k9": 9.0,
+          "era": 5.16,
+          "innings_pitched": "68.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
         "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824817,
@@ -5565,7 +5786,7 @@
     "best_park_factor": 103,
     "pitcher_score": 44.7,
     "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -5666,16 +5887,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 68.0,
+          "hr": 8,
+          "hr9": 1.06,
+          "bb9": 3.04,
+          "k9": 9.0,
+          "era": 5.16,
+          "innings_pitched": "68.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824817,
@@ -5736,7 +5970,7 @@
     "park_score": 48.1,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 44.7,
+    "pitcher_score": 43.0,
     "favorable_matchups": 0,
     "platoon_advantages": 1,
     "batter_splits": {}
@@ -6525,16 +6759,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 694973,
+          "name": "Paul Skenes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 97.0,
+          "hr": 11,
+          "hr9": 1.02,
+          "bb9": 2.04,
+          "k9": 11.04,
+          "era": 3.62,
+          "innings_pitched": "97.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 43.4,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823360,
@@ -6543,16 +6790,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 29.0,
+          "hr": 5,
+          "hr9": 1.55,
+          "bb9": 3.41,
+          "k9": 9.62,
+          "era": 5.28,
+          "innings_pitched": "29.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 74.8,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823359,
@@ -6561,16 +6821,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656605,
+          "name": "Mitch Keller",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.33333333333333,
+          "hr": 12,
+          "hr9": 1.08,
+          "bb9": 2.96,
+          "k9": 6.64,
+          "era": 5.02,
+          "innings_pitched": "100.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 50.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823033,
@@ -6631,9 +6904,9 @@
     "park_score": 46.6,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "pitcher_score": 51.1,
-    "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "pitcher_score": 53.7,
+    "favorable_matchups": 1,
+    "platoon_advantages": 4,
     "batter_splits": {}
   },
   {
@@ -9804,16 +10077,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 101.0,
+          "hr": 9,
+          "hr9": 0.8,
+          "bb9": 3.48,
+          "k9": 7.75,
+          "era": 4.19,
+          "innings_pitched": "101.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824815,
@@ -9822,16 +10108,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 17.0,
+          "hr": 5,
+          "hr9": 2.65,
+          "bb9": 1.59,
+          "k9": 10.59,
+          "era": 3.18,
+          "innings_pitched": "17.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 100,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824816,
@@ -9840,16 +10139,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 84.33333333333333,
+          "hr": 9,
+          "hr9": 0.96,
+          "bb9": 3.09,
+          "k9": 6.94,
+          "era": 4.7,
+          "innings_pitched": "84.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 43.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824493,
@@ -9910,9 +10222,9 @@
     "park_score": 53.5,
     "best_park_game": "Great American Ball Park",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 52.6,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -13029,16 +13341,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 101.0,
+          "hr": 9,
+          "hr9": 0.8,
+          "bb9": 3.48,
+          "k9": 7.75,
+          "era": 4.19,
+          "innings_pitched": "101.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 28.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824815,
@@ -13047,16 +13372,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 17.0,
+          "hr": 5,
+          "hr9": 2.65,
+          "bb9": 1.59,
+          "k9": 10.59,
+          "era": 3.18,
+          "innings_pitched": "17.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 100,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824816,
@@ -13065,16 +13403,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Oriole Park at Camden Yards",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 102,
         "park_factor_score": 52.4,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 84.33333333333333,
+          "hr": 9,
+          "hr9": 0.96,
+          "bb9": 3.09,
+          "k9": 6.94,
+          "era": 4.7,
+          "innings_pitched": "84.1"
+        },
+        "pitcher_hand": "L",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 37.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824493,
@@ -13135,8 +13486,8 @@
     "park_score": 53.5,
     "best_park_game": "Great American Ball Park",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
+    "pitcher_score": 52.6,
+    "favorable_matchups": 1,
     "platoon_advantages": 0,
     "batter_splits": {}
   },
