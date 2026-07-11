@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-07-10T10:52:01.329579+00:00",
+  "checked_at": "2026-07-11T09:28:08.866467+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -692,7 +692,7 @@
           "team": "CWS",
           "team_id": 145,
           "mlb_id": 808959,
-          "is_injured": true,
+          "is_injured": false,
           "draft_pick": 10,
           "proj_hr": null,
           "hrs": 3,
