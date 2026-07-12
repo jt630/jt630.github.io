@@ -539,16 +539,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 54.0,
+          "hr": 7,
+          "hr9": 1.17,
+          "bb9": 4.33,
+          "k9": 10.83,
+          "era": 3.17,
+          "innings_pitched": "54.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 49.5,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823441,
@@ -557,16 +570,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 75.0,
+          "hr": 10,
+          "hr9": 1.2,
+          "bb9": 2.88,
+          "k9": 8.88,
+          "era": 4.56,
+          "innings_pitched": "75.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 43.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823439,
@@ -575,25 +601,38 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 107.33333333333333,
+          "hr": 10,
+          "hr9": 0.84,
+          "bb9": 3.27,
+          "k9": 10.48,
+          "era": 3.52,
+          "innings_pitched": "107.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 34.1,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 63.2,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -1214,16 +1253,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 54.0,
+          "hr": 7,
+          "hr9": 1.17,
+          "bb9": 4.33,
+          "k9": 10.83,
+          "era": 3.17,
+          "innings_pitched": "54.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 49.5,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823441,
@@ -1232,16 +1284,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 75.0,
+          "hr": 10,
+          "hr9": 1.2,
+          "bb9": 2.88,
+          "k9": 8.88,
+          "era": 4.56,
+          "innings_pitched": "75.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 43.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823439,
@@ -1250,25 +1315,38 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 107.33333333333333,
+          "hr": 10,
+          "hr9": 0.84,
+          "bb9": 3.27,
+          "k9": 10.48,
+          "era": 3.52,
+          "innings_pitched": "107.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 34.1,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 63.2,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -3014,16 +3092,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 54.0,
+          "hr": 7,
+          "hr9": 1.17,
+          "bb9": 4.33,
+          "k9": 10.83,
+          "era": 3.17,
+          "innings_pitched": "54.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 37.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823441,
@@ -3032,16 +3123,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 75.0,
+          "hr": 10,
+          "hr9": 1.2,
+          "bb9": 2.88,
+          "k9": 8.88,
+          "era": 4.56,
+          "innings_pitched": "75.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823439,
@@ -3050,25 +3154,38 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 107.33333333333333,
+          "hr": 10,
+          "hr9": 0.84,
+          "bb9": 3.27,
+          "k9": 10.48,
+          "era": 3.52,
+          "innings_pitched": "107.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.1,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 63.2,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.0,
+    "pitcher_score": 38.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -3089,16 +3206,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 54.0,
+          "hr": 7,
+          "hr9": 1.17,
+          "bb9": 4.33,
+          "k9": 10.83,
+          "era": 3.17,
+          "innings_pitched": "54.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 37.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823441,
@@ -3107,16 +3237,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 75.0,
+          "hr": 10,
+          "hr9": 1.2,
+          "bb9": 2.88,
+          "k9": 8.88,
+          "era": 4.56,
+          "innings_pitched": "75.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823439,
@@ -3125,25 +3268,38 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 107.33333333333333,
+          "hr": 10,
+          "hr9": 0.84,
+          "bb9": 3.27,
+          "k9": 10.48,
+          "era": 3.52,
+          "innings_pitched": "107.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.1,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 63.2,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.0,
+    "pitcher_score": 38.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -3164,16 +3320,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 54.0,
+          "hr": 7,
+          "hr9": 1.17,
+          "bb9": 4.33,
+          "k9": 10.83,
+          "era": 3.17,
+          "innings_pitched": "54.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 37.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823441,
@@ -3182,16 +3351,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 75.0,
+          "hr": 10,
+          "hr9": 1.2,
+          "bb9": 2.88,
+          "k9": 8.88,
+          "era": 4.56,
+          "innings_pitched": "75.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823439,
@@ -3200,25 +3382,38 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 107.33333333333333,
+          "hr": 10,
+          "hr9": 0.84,
+          "bb9": 3.27,
+          "k9": 10.48,
+          "era": 3.52,
+          "innings_pitched": "107.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.1,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 63.2,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.0,
+    "pitcher_score": 38.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -3764,16 +3959,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 54.0,
+          "hr": 7,
+          "hr9": 1.17,
+          "bb9": 4.33,
+          "k9": 10.83,
+          "era": 3.17,
+          "innings_pitched": "54.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 37.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823441,
@@ -3782,16 +3990,29 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 75.0,
+          "hr": 10,
+          "hr9": 1.2,
+          "bb9": 2.88,
+          "k9": 8.88,
+          "era": 4.56,
+          "innings_pitched": "75.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823439,
@@ -3800,25 +4021,38 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 107.33333333333333,
+          "hr": 10,
+          "hr9": 0.84,
+          "bb9": 3.27,
+          "k9": 10.48,
+          "era": 3.52,
+          "innings_pitched": "107.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.1,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 63.2,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.0,
+    "pitcher_score": 38.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -4771,28 +5005,28 @@
         "opponent_team_id": 113,
         "venue": "Coors Field",
         "probable_pitcher": {
-          "id": 666157,
-          "name": "Nick Lodolo",
+          "id": 695076,
+          "name": "Rhett Lowder",
           "note": ""
         },
         "park_factor": 124,
         "park_factor_score": 100,
         "park_notes": "ELITE: altitude adds ~20% HR rate",
         "pitcher_stats": {
-          "pitch_hand": "L",
-          "ip": 62.666666666666664,
+          "pitch_hand": "R",
+          "ip": 67.66666666666667,
           "hr": 9,
-          "hr9": 1.29,
-          "bb9": 3.88,
-          "k9": 7.18,
-          "era": 4.6,
-          "innings_pitched": "62.2"
+          "hr9": 1.2,
+          "bb9": 4.39,
+          "k9": 7.71,
+          "era": 5.05,
+          "innings_pitched": "67.2"
         },
-        "pitcher_hand": "L",
-        "platoon_label": "platoon \u2713",
-        "platoon_delta": 6.0,
-        "pitcher_matchup_score": 59.8,
-        "pitcher_matchup_label": "Neutral"
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824330,
@@ -4830,9 +5064,9 @@
     "park_score": 100.0,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 59.3,
+    "pitcher_score": 54.2,
     "favorable_matchups": 1,
-    "platoon_advantages": 1,
+    "platoon_advantages": 0,
     "batter_splits": {}
   },
   {
@@ -4885,28 +5119,28 @@
         "opponent_team_id": 113,
         "venue": "Coors Field",
         "probable_pitcher": {
-          "id": 666157,
-          "name": "Nick Lodolo",
+          "id": 695076,
+          "name": "Rhett Lowder",
           "note": ""
         },
         "park_factor": 124,
         "park_factor_score": 100,
         "park_notes": "ELITE: altitude adds ~20% HR rate",
         "pitcher_stats": {
-          "pitch_hand": "L",
-          "ip": 62.666666666666664,
+          "pitch_hand": "R",
+          "ip": 67.66666666666667,
           "hr": 9,
-          "hr9": 1.29,
-          "bb9": 3.88,
-          "k9": 7.18,
-          "era": 4.6,
-          "innings_pitched": "62.2"
+          "hr9": 1.2,
+          "bb9": 4.39,
+          "k9": 7.71,
+          "era": 5.05,
+          "innings_pitched": "67.2"
         },
-        "pitcher_hand": "L",
-        "platoon_label": "platoon \u2713",
-        "platoon_delta": 6.0,
-        "pitcher_matchup_score": 59.8,
-        "pitcher_matchup_label": "Neutral"
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824330,
@@ -4944,9 +5178,9 @@
     "park_score": 100.0,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 59.3,
+    "pitcher_score": 54.2,
     "favorable_matchups": 1,
-    "platoon_advantages": 1,
+    "platoon_advantages": 0,
     "batter_splits": {}
   },
   {
@@ -4967,16 +5201,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 49.333333333333336,
+          "hr": 7,
+          "hr9": 1.28,
+          "bb9": 2.01,
+          "k9": 7.48,
+          "era": 1.82,
+          "innings_pitched": "49.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 39.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824008,
@@ -4985,16 +5232,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 70.66666666666667,
+          "hr": 10,
+          "hr9": 1.27,
+          "bb9": 1.27,
+          "k9": 10.7,
+          "era": 3.06,
+          "innings_pitched": "70.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824007,
@@ -5003,25 +5263,38 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 77.33333333333333,
+          "hr": 5,
+          "hr9": 0.58,
+          "bb9": 2.09,
+          "k9": 8.96,
+          "era": 2.79,
+          "innings_pitched": "77.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 6.9,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 33.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -5117,16 +5390,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 49.333333333333336,
+          "hr": 7,
+          "hr9": 1.28,
+          "bb9": 2.01,
+          "k9": 7.48,
+          "era": 1.82,
+          "innings_pitched": "49.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 39.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824008,
@@ -5135,16 +5421,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 70.66666666666667,
+          "hr": 10,
+          "hr9": 1.27,
+          "bb9": 1.27,
+          "k9": 10.7,
+          "era": 3.06,
+          "innings_pitched": "70.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824007,
@@ -5153,25 +5452,38 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 77.33333333333333,
+          "hr": 5,
+          "hr9": 0.58,
+          "bb9": 2.09,
+          "k9": 8.96,
+          "era": 2.79,
+          "innings_pitched": "77.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 6.9,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 33.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -5792,16 +6104,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 49.333333333333336,
+          "hr": 7,
+          "hr9": 1.28,
+          "bb9": 2.01,
+          "k9": 7.48,
+          "era": 1.82,
+          "innings_pitched": "49.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 39.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824008,
@@ -5810,16 +6135,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 70.66666666666667,
+          "hr": 10,
+          "hr9": 1.27,
+          "bb9": 1.27,
+          "k9": 10.7,
+          "era": 3.06,
+          "innings_pitched": "70.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824007,
@@ -5828,25 +6166,38 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 77.33333333333333,
+          "hr": 5,
+          "hr9": 0.58,
+          "bb9": 2.09,
+          "k9": 8.96,
+          "era": 2.79,
+          "innings_pitched": "77.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 6.9,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 33.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -6242,16 +6593,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 49.333333333333336,
+          "hr": 7,
+          "hr9": 1.28,
+          "bb9": 2.01,
+          "k9": 7.48,
+          "era": 1.82,
+          "innings_pitched": "49.1"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 45.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824008,
@@ -6260,16 +6624,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 70.66666666666667,
+          "hr": 10,
+          "hr9": 1.27,
+          "bb9": 1.27,
+          "k9": 10.7,
+          "era": 3.06,
+          "innings_pitched": "70.2"
+        },
+        "pitcher_hand": "L",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 48.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824007,
@@ -6278,23 +6655,36 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 77.33333333333333,
+          "hr": 5,
+          "hr9": 0.58,
+          "bb9": 2.09,
+          "k9": 8.96,
+          "era": 2.79,
+          "innings_pitched": "77.1"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 12.9,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 35.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -7292,16 +7682,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 49.333333333333336,
+          "hr": 7,
+          "hr9": 1.28,
+          "bb9": 2.01,
+          "k9": 7.48,
+          "era": 1.82,
+          "innings_pitched": "49.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 39.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824008,
@@ -7310,16 +7713,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 70.66666666666667,
+          "hr": 10,
+          "hr9": 1.27,
+          "bb9": 1.27,
+          "k9": 10.7,
+          "era": 3.06,
+          "innings_pitched": "70.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824007,
@@ -7328,25 +7744,38 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 77.33333333333333,
+          "hr": 5,
+          "hr9": 0.58,
+          "bb9": 2.09,
+          "k9": 8.96,
+          "era": 2.79,
+          "innings_pitched": "77.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 6.9,
+        "pitcher_matchup_label": "Tough"
       }
     ],
     "schedule_score": 43,
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 33.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   }
 ]

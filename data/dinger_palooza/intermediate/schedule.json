@@ -383,7 +383,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -395,7 +399,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -407,7 +415,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -860,7 +872,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -872,7 +888,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -884,7 +904,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2132,7 +2156,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2144,7 +2172,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2156,7 +2188,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2185,7 +2221,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2197,7 +2237,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2209,7 +2253,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2238,7 +2286,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2250,7 +2302,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2262,7 +2318,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2662,7 +2722,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681035,
+          "name": "Christian Scott",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2674,7 +2738,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 640455,
+          "name": "Sean Manaea",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2686,7 +2754,11 @@
         "opponent": "New York Mets",
         "opponent_team_id": 121,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 690997,
+          "name": "Nolan McLean",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -3368,8 +3440,8 @@
         "opponent_team_id": 113,
         "venue": "Coors Field",
         "probable_pitcher": {
-          "id": 666157,
-          "name": "Nick Lodolo",
+          "id": 695076,
+          "name": "Rhett Lowder",
           "note": ""
         },
         "park_factor": 124,
@@ -3433,8 +3505,8 @@
         "opponent_team_id": 113,
         "venue": "Coors Field",
         "probable_pitcher": {
-          "id": 666157,
-          "name": "Nick Lodolo",
+          "id": 695076,
+          "name": "Rhett Lowder",
           "note": ""
         },
         "park_factor": 124,
@@ -3481,7 +3553,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -3493,7 +3569,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -3505,7 +3585,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -3587,7 +3671,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -3599,7 +3687,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -3611,7 +3703,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -4064,7 +4160,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -4076,7 +4176,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -4088,7 +4192,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -4382,7 +4490,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -4394,7 +4506,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -4406,7 +4522,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -5124,7 +5244,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 675512,
+          "name": "Troy Melton",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -5136,7 +5260,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669373,
+          "name": "Tarik Skubal",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -5148,7 +5276,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
