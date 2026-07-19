@@ -643,7 +643,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -655,7 +659,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -667,7 +675,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -679,7 +691,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693855,
+          "name": "Ian Seymour",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -1047,7 +1063,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -1059,7 +1079,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -1071,7 +1095,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -1083,7 +1111,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693855,
+          "name": "Ian Seymour",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor"
@@ -2820,7 +2852,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686218,
+          "name": "Emmet Sheehan",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -2999,8 +3035,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 687075,
-          "name": "Brandon Sproat",
+          "id": 694819,
+          "name": "Jacob Misiorowski",
           "note": ""
         },
         "park_factor": 102,
@@ -3015,8 +3051,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 694819,
-          "name": "Jacob Misiorowski",
+          "id": 687075,
+          "name": "Brandon Sproat",
           "note": ""
         },
         "park_factor": 102,
@@ -3099,7 +3135,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -3123,7 +3163,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687562,
+          "name": "Jake Bennett",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -3277,7 +3321,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686218,
+          "name": "Emmet Sheehan",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -3548,7 +3596,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -3572,7 +3624,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687562,
+          "name": "Jake Bennett",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -3735,8 +3791,8 @@
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
         "probable_pitcher": {
-          "id": 701542,
-          "name": "Will Warren",
+          "id": 677960,
+          "name": "Ryan Weathers",
           "note": ""
         },
         "park_factor": 111,
@@ -3750,7 +3806,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 701542,
+          "name": "Will Warren",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -3762,7 +3822,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -4839,8 +4903,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 687075,
-          "name": "Brandon Sproat",
+          "id": 694819,
+          "name": "Jacob Misiorowski",
           "note": ""
         },
         "park_factor": 102,
@@ -4855,8 +4919,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 694819,
-          "name": "Jacob Misiorowski",
+          "id": 687075,
+          "name": "Brandon Sproat",
           "note": ""
         },
         "park_factor": 102,
@@ -4940,8 +5004,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 687075,
-          "name": "Brandon Sproat",
+          "id": 694819,
+          "name": "Jacob Misiorowski",
           "note": ""
         },
         "park_factor": 102,
@@ -4956,8 +5020,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 694819,
-          "name": "Jacob Misiorowski",
+          "id": 687075,
+          "name": "Brandon Sproat",
           "note": ""
         },
         "park_factor": 102,
@@ -5041,8 +5105,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 687075,
-          "name": "Brandon Sproat",
+          "id": 694819,
+          "name": "Jacob Misiorowski",
           "note": ""
         },
         "park_factor": 102,
@@ -5057,8 +5121,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 694819,
-          "name": "Jacob Misiorowski",
+          "id": 687075,
+          "name": "Brandon Sproat",
           "note": ""
         },
         "park_factor": 102,
@@ -5141,7 +5205,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686218,
+          "name": "Emmet Sheehan",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -5230,7 +5298,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686218,
+          "name": "Emmet Sheehan",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -5319,7 +5391,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686218,
+          "name": "Emmet Sheehan",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -5408,7 +5484,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5432,7 +5512,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687562,
+          "name": "Jake Bennett",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5764,7 +5848,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5788,7 +5876,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687562,
+          "name": "Jake Bennett",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5853,7 +5945,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5877,7 +5973,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687562,
+          "name": "Jake Bennett",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5942,7 +6042,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5966,7 +6070,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687562,
+          "name": "Jake Bennett",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -6031,7 +6139,11 @@
         "opponent": "Los Angeles Dodgers",
         "opponent_team_id": 119,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686218,
+          "name": "Emmet Sheehan",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd"
@@ -6416,8 +6528,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 687075,
-          "name": "Brandon Sproat",
+          "id": 694819,
+          "name": "Jacob Misiorowski",
           "note": ""
         },
         "park_factor": 102,
@@ -6432,8 +6544,8 @@
         "opponent_team_id": 158,
         "venue": "American Family Field",
         "probable_pitcher": {
-          "id": 694819,
-          "name": "Jacob Misiorowski",
+          "id": 687075,
+          "name": "Brandon Sproat",
           "note": ""
         },
         "park_factor": 102,
@@ -7381,7 +7493,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -7405,7 +7521,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687562,
+          "name": "Jake Bennett",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -7572,8 +7692,8 @@
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
         "probable_pitcher": {
-          "id": 701542,
-          "name": "Will Warren",
+          "id": 677960,
+          "name": "Ryan Weathers",
           "note": ""
         },
         "park_factor": 111,
@@ -7587,7 +7707,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 701542,
+          "name": "Will Warren",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -7599,7 +7723,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
