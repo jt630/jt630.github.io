@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-07-20T10:51:04.465290+00:00",
+  "checked_at": "2026-07-21T10:24:23.146002+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -511,7 +511,7 @@
           "team": "MIN",
           "team_id": 142,
           "mlb_id": 621439,
-          "is_injured": true,
+          "is_injured": false,
           "draft_pick": 23,
           "proj_hr": null,
           "hrs": 1,
