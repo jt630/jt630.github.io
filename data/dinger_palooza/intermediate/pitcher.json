@@ -1719,16 +1719,29 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 668881,
+          "name": "Hunter Greene",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 21.666666666666668,
+          "hr": 3,
+          "hr9": 1.25,
+          "bb9": 2.91,
+          "k9": 12.05,
+          "era": 7.06,
+          "innings_pitched": "21.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 53.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824486,
@@ -1789,7 +1802,7 @@
     "park_score": 50.0,
     "best_park_game": "Great American Ball Park",
     "best_park_factor": 103,
-    "pitcher_score": 50.8,
+    "pitcher_score": 51.3,
     "favorable_matchups": 1,
     "platoon_advantages": 1,
     "batter_splits": {}
@@ -3170,16 +3183,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 678022,
+          "name": "Jack Perkins",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 62.666666666666664,
+          "hr": 11,
+          "hr9": 1.58,
+          "bb9": 3.45,
+          "k9": 10.91,
+          "era": 6.75,
+          "innings_pitched": "62.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 80.8,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824976,
@@ -3188,16 +3214,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 57.0,
+          "hr": 7,
+          "hr9": 1.11,
+          "bb9": 3.32,
+          "k9": 9.63,
+          "era": 4.42,
+          "innings_pitched": "57.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824973,
@@ -3206,16 +3245,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 64.66666666666667,
+          "hr": 11,
+          "hr9": 1.53,
+          "bb9": 5.57,
+          "k9": 7.38,
+          "era": 6.12,
+          "innings_pitched": "64.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 64.4,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824974,
@@ -3294,9 +3346,9 @@
     "park_score": 61.7,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 54.8,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -3317,16 +3369,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 678022,
+          "name": "Jack Perkins",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 62.666666666666664,
+          "hr": 11,
+          "hr9": 1.58,
+          "bb9": 3.45,
+          "k9": 10.91,
+          "era": 6.75,
+          "innings_pitched": "62.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 80.8,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824976,
@@ -3335,16 +3400,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 57.0,
+          "hr": 7,
+          "hr9": 1.11,
+          "bb9": 3.32,
+          "k9": 9.63,
+          "era": 4.42,
+          "innings_pitched": "57.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824973,
@@ -3353,16 +3431,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 64.66666666666667,
+          "hr": 11,
+          "hr9": 1.53,
+          "bb9": 5.57,
+          "k9": 7.38,
+          "era": 6.12,
+          "innings_pitched": "64.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 64.4,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824974,
@@ -3441,9 +3532,9 @@
     "park_score": 61.7,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 54.8,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -4742,16 +4833,29 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 668881,
+          "name": "Hunter Greene",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 21.666666666666668,
+          "hr": 3,
+          "hr9": 1.25,
+          "bb9": 2.91,
+          "k9": 12.05,
+          "era": 7.06,
+          "innings_pitched": "21.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 65.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824486,
@@ -4812,9 +4916,9 @@
     "park_score": 50.0,
     "best_park_game": "Great American Ball Park",
     "best_park_factor": 103,
-    "pitcher_score": 52.5,
-    "favorable_matchups": 1,
-    "platoon_advantages": 2,
+    "pitcher_score": 54.7,
+    "favorable_matchups": 2,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -6154,16 +6258,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 89.0,
+          "hr": 9,
+          "hr9": 0.91,
+          "bb9": 3.84,
+          "k9": 7.48,
+          "era": 5.97,
+          "innings_pitched": "89.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 32.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823026,
@@ -6172,16 +6289,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607067,
+          "name": "Colin Rea",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 105.66666666666667,
+          "hr": 17,
+          "hr9": 1.45,
+          "bb9": 3.24,
+          "k9": 6.9,
+          "era": 4.85,
+          "innings_pitched": "105.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 68.5,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823022,
@@ -6190,16 +6320,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 571510,
+          "name": "Matthew Boyd",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 59.0,
+          "hr": 6,
+          "hr9": 0.92,
+          "bb9": 2.59,
+          "k9": 8.39,
+          "era": 3.81,
+          "innings_pitched": "59.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 26.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823023,
@@ -6208,16 +6351,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 121.0,
+          "hr": 22,
+          "hr9": 1.64,
+          "bb9": 2.16,
+          "k9": 8.4,
+          "era": 3.72,
+          "innings_pitched": "121.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 62.7,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822782,
@@ -6278,9 +6434,9 @@
     "park_score": 48.1,
     "best_park_game": "Busch Stadium",
     "best_park_factor": 100,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 48.7,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -7257,16 +7413,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 79.33333333333333,
+          "hr": 9,
+          "hr9": 1.02,
+          "bb9": 4.08,
+          "k9": 6.58,
+          "era": 3.52,
+          "innings_pitched": "79.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 43.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823838,
@@ -7275,16 +7444,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.66666666666666,
+          "hr": 17,
+          "hr9": 1.06,
+          "bb9": 2.38,
+          "k9": 6.89,
+          "era": 4.01,
+          "innings_pitched": "143.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 46.5,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823837,
@@ -7363,9 +7545,9 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 48.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -7644,16 +7826,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 671737,
+          "name": "Taj Bradley",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 114.66666666666667,
+          "hr": 17,
+          "hr9": 1.33,
+          "bb9": 3.61,
+          "k9": 10.12,
+          "era": 3.69,
+          "innings_pitched": "114.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 47.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823677,
@@ -7662,16 +7857,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 657746,
+          "name": "Joe Ryan",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 114.33333333333333,
+          "hr": 16,
+          "hr9": 1.26,
+          "bb9": 1.97,
+          "k9": 10.31,
+          "era": 3.38,
+          "innings_pitched": "114.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 42.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823674,
@@ -7680,16 +7888,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 81.0,
+          "hr": 13,
+          "hr9": 1.44,
+          "bb9": 2.44,
+          "k9": 6.67,
+          "era": 4.56,
+          "innings_pitched": "81.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824325,
@@ -7750,7 +7971,7 @@
     "park_score": 74.0,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 50.0,
+    "pitcher_score": 49.1,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -8238,16 +8459,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 79.33333333333333,
+          "hr": 9,
+          "hr9": 1.02,
+          "bb9": 4.08,
+          "k9": 6.58,
+          "era": 3.52,
+          "innings_pitched": "79.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 43.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823838,
@@ -8256,16 +8490,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.66666666666666,
+          "hr": 17,
+          "hr9": 1.06,
+          "bb9": 2.38,
+          "k9": 6.89,
+          "era": 4.01,
+          "innings_pitched": "143.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 46.5,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823837,
@@ -8344,9 +8591,9 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 48.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -8367,16 +8614,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.66666666666667,
+          "hr": 16,
+          "hr9": 1.43,
+          "bb9": 3.49,
+          "k9": 6.97,
+          "era": 6.53,
+          "innings_pitched": "100.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 60.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823273,
@@ -8385,16 +8645,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 19.333333333333332,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 2.79,
+          "k9": 8.84,
+          "era": 2.79,
+          "innings_pitched": "19.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823271,
@@ -8473,7 +8746,7 @@
     "park_score": 43.8,
     "best_park_game": "Petco Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 43.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -8664,16 +8937,29 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 674841,
+          "name": "Andrew Alvarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 53.333333333333336,
+          "hr": 2,
+          "hr9": 0.34,
+          "bb9": 4.22,
+          "k9": 9.28,
+          "era": 4.22,
+          "innings_pitched": "53.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 11.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822703,
@@ -8682,16 +8968,29 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 676917,
+          "name": "Cade Cavalli",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 110.66666666666667,
+          "hr": 9,
+          "hr9": 0.73,
+          "bb9": 2.77,
+          "k9": 10.33,
+          "era": 3.58,
+          "innings_pitched": "110.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 16.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822702,
@@ -8700,16 +8999,29 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641793,
+          "name": "Zack Littell",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 101.0,
+          "hr": 25,
+          "hr9": 2.23,
+          "bb9": 2.76,
+          "k9": 5.88,
+          "era": 5.17,
+          "innings_pitched": "101.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 96.5,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 822782,
@@ -8770,9 +9082,9 @@
     "park_score": 44.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 45.7,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -8793,16 +9105,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.66666666666667,
+          "hr": 16,
+          "hr9": 1.43,
+          "bb9": 3.49,
+          "k9": 6.97,
+          "era": 6.53,
+          "innings_pitched": "100.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 60.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823273,
@@ -8811,16 +9136,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 19.333333333333332,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 2.79,
+          "k9": 8.84,
+          "era": 2.79,
+          "innings_pitched": "19.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823271,
@@ -8899,7 +9237,7 @@
     "park_score": 43.8,
     "best_park_game": "Petco Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 43.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -9696,16 +10034,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 79.33333333333333,
+          "hr": 9,
+          "hr9": 1.02,
+          "bb9": 4.08,
+          "k9": 6.58,
+          "era": 3.52,
+          "innings_pitched": "79.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 31.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823838,
@@ -9714,16 +10065,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.66666666666666,
+          "hr": 17,
+          "hr9": 1.06,
+          "bb9": 2.38,
+          "k9": 6.89,
+          "era": 4.01,
+          "innings_pitched": "143.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 34.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823837,
@@ -9802,7 +10166,7 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.3,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -9825,16 +10189,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 79.33333333333333,
+          "hr": 9,
+          "hr9": 1.02,
+          "bb9": 4.08,
+          "k9": 6.58,
+          "era": 3.52,
+          "innings_pitched": "79.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 31.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823838,
@@ -9843,16 +10220,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.66666666666666,
+          "hr": 17,
+          "hr9": 1.06,
+          "bb9": 2.38,
+          "k9": 6.89,
+          "era": 4.01,
+          "innings_pitched": "143.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 34.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823837,
@@ -9931,7 +10321,7 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.3,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -9954,16 +10344,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 79.33333333333333,
+          "hr": 9,
+          "hr9": 1.02,
+          "bb9": 4.08,
+          "k9": 6.58,
+          "era": 3.52,
+          "innings_pitched": "79.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 31.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823838,
@@ -9972,16 +10375,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.66666666666666,
+          "hr": 17,
+          "hr9": 1.06,
+          "bb9": 2.38,
+          "k9": 6.89,
+          "era": 4.01,
+          "innings_pitched": "143.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 34.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823837,
@@ -10060,7 +10476,7 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.3,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -10083,16 +10499,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.66666666666667,
+          "hr": 16,
+          "hr9": 1.43,
+          "bb9": 3.49,
+          "k9": 6.97,
+          "era": 6.53,
+          "innings_pitched": "100.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 60.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823273,
@@ -10101,16 +10530,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 19.333333333333332,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 2.79,
+          "k9": 8.84,
+          "era": 2.79,
+          "innings_pitched": "19.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823271,
@@ -10189,7 +10631,7 @@
     "park_score": 43.8,
     "best_park_game": "Petco Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 43.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -10548,16 +10990,29 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 674841,
+          "name": "Andrew Alvarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 53.333333333333336,
+          "hr": 2,
+          "hr9": 0.34,
+          "bb9": 4.22,
+          "k9": 9.28,
+          "era": 4.22,
+          "innings_pitched": "53.1"
+        },
+        "pitcher_hand": "L",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 5.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822703,
@@ -10566,16 +11021,29 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 676917,
+          "name": "Cade Cavalli",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 110.66666666666667,
+          "hr": 9,
+          "hr9": 0.73,
+          "bb9": 2.77,
+          "k9": 10.33,
+          "era": 3.58,
+          "innings_pitched": "110.2"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 22.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822702,
@@ -10584,16 +11052,29 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641793,
+          "name": "Zack Littell",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 101.0,
+          "hr": 25,
+          "hr9": 2.23,
+          "bb9": 2.76,
+          "k9": 5.88,
+          "era": 5.17,
+          "innings_pitched": "101.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 100,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 822782,
@@ -10654,8 +11135,8 @@
     "park_score": 44.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
+    "pitcher_score": 46.3,
+    "favorable_matchups": 1,
     "platoon_advantages": 0,
     "batter_splits": {}
   },
@@ -11013,16 +11494,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 79.33333333333333,
+          "hr": 9,
+          "hr9": 1.02,
+          "bb9": 4.08,
+          "k9": 6.58,
+          "era": 3.52,
+          "innings_pitched": "79.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 31.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823838,
@@ -11031,16 +11525,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.66666666666666,
+          "hr": 17,
+          "hr9": 1.06,
+          "bb9": 2.38,
+          "k9": 6.89,
+          "era": 4.01,
+          "innings_pitched": "143.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 34.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823837,
@@ -11119,7 +11626,7 @@
     "park_score": 49.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.3,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -11271,16 +11778,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680694,
+          "name": "Kyle Bradish",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 113.33333333333333,
+          "hr": 12,
+          "hr9": 0.95,
+          "bb9": 4.05,
+          "k9": 8.74,
+          "era": 3.49,
+          "innings_pitched": "113.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 27.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824243,
@@ -11289,16 +11809,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 32.0,
+          "hr": 10,
+          "hr9": 2.81,
+          "bb9": 2.25,
+          "k9": 9.56,
+          "era": 5.06,
+          "innings_pitched": "32.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 100,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824242,
@@ -11307,16 +11840,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 103.66666666666667,
+          "hr": 10,
+          "hr9": 0.87,
+          "bb9": 2.78,
+          "k9": 7.21,
+          "era": 4.17,
+          "innings_pitched": "103.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 37.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824975,
@@ -11377,9 +11923,9 @@
     "park_score": 55.7,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 52.5,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -11400,16 +11946,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680694,
+          "name": "Kyle Bradish",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 113.33333333333333,
+          "hr": 12,
+          "hr9": 0.95,
+          "bb9": 4.05,
+          "k9": 8.74,
+          "era": 3.49,
+          "innings_pitched": "113.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 39.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824243,
@@ -11418,16 +11977,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 32.0,
+          "hr": 10,
+          "hr9": 2.81,
+          "bb9": 2.25,
+          "k9": 9.56,
+          "era": 5.06,
+          "innings_pitched": "32.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 100,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824242,
@@ -11436,16 +12008,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 103.66666666666667,
+          "hr": 10,
+          "hr9": 0.87,
+          "bb9": 2.78,
+          "k9": 7.21,
+          "era": 4.17,
+          "innings_pitched": "103.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 25.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824975,
@@ -11506,9 +12091,9 @@
     "park_score": 55.7,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 52.5,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -11916,16 +12501,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 58.0,
+          "hr": 9,
+          "hr9": 1.4,
+          "bb9": 5.59,
+          "k9": 11.02,
+          "era": 5.59,
+          "innings_pitched": "58.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 56.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824003,
@@ -11934,16 +12532,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.0,
+          "hr": 11,
+          "hr9": 1.01,
+          "bb9": 3.49,
+          "k9": 8.63,
+          "era": 3.03,
+          "innings_pitched": "98.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 29.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824002,
@@ -12022,7 +12633,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -12213,16 +12824,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 58.0,
+          "hr": 9,
+          "hr9": 1.4,
+          "bb9": 5.59,
+          "k9": 11.02,
+          "era": 5.59,
+          "innings_pitched": "58.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 56.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824003,
@@ -12231,16 +12855,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.0,
+          "hr": 11,
+          "hr9": 1.01,
+          "bb9": 3.49,
+          "k9": 8.63,
+          "era": 3.03,
+          "innings_pitched": "98.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 29.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824002,
@@ -12319,7 +12956,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -12342,16 +12979,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 671737,
+          "name": "Taj Bradley",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 114.66666666666667,
+          "hr": 17,
+          "hr9": 1.33,
+          "bb9": 3.61,
+          "k9": 10.12,
+          "era": 3.69,
+          "innings_pitched": "114.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 47.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823677,
@@ -12360,16 +13010,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 657746,
+          "name": "Joe Ryan",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 114.33333333333333,
+          "hr": 16,
+          "hr9": 1.26,
+          "bb9": 1.97,
+          "k9": 10.31,
+          "era": 3.38,
+          "innings_pitched": "114.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 42.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823674,
@@ -12378,16 +13041,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 81.0,
+          "hr": 13,
+          "hr9": 1.44,
+          "bb9": 2.44,
+          "k9": 6.67,
+          "era": 4.56,
+          "innings_pitched": "81.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824325,
@@ -12448,7 +13124,7 @@
     "park_score": 74.0,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 50.0,
+    "pitcher_score": 49.1,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -12471,16 +13147,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 671737,
+          "name": "Taj Bradley",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 114.66666666666667,
+          "hr": 17,
+          "hr9": 1.33,
+          "bb9": 3.61,
+          "k9": 10.12,
+          "era": 3.69,
+          "innings_pitched": "114.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 59.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823677,
@@ -12489,16 +13178,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 657746,
+          "name": "Joe Ryan",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 114.33333333333333,
+          "hr": 16,
+          "hr9": 1.26,
+          "bb9": 1.97,
+          "k9": 10.31,
+          "era": 3.38,
+          "innings_pitched": "114.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823674,
@@ -12507,16 +13209,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 81.0,
+          "hr": 13,
+          "hr9": 1.44,
+          "bb9": 2.44,
+          "k9": 6.67,
+          "era": 4.56,
+          "innings_pitched": "81.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 67.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824325,
@@ -12577,9 +13292,9 @@
     "park_score": 74.0,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 55.1,
+    "favorable_matchups": 1,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -13065,16 +13780,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.66666666666667,
+          "hr": 16,
+          "hr9": 1.43,
+          "bb9": 3.49,
+          "k9": 6.97,
+          "era": 6.53,
+          "innings_pitched": "100.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 72.6,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823273,
@@ -13083,16 +13811,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 19.333333333333332,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 2.79,
+          "k9": 8.84,
+          "era": 2.79,
+          "innings_pitched": "19.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823271,
@@ -13171,9 +13912,9 @@
     "park_score": 43.8,
     "best_park_game": "Petco Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 45.4,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -13194,16 +13935,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 100.66666666666667,
+          "hr": 16,
+          "hr9": 1.43,
+          "bb9": 3.49,
+          "k9": 6.97,
+          "era": 6.53,
+          "innings_pitched": "100.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 60.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823273,
@@ -13212,16 +13966,29 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 19.333333333333332,
+          "hr": 0,
+          "hr9": 0.0,
+          "bb9": 2.79,
+          "k9": 8.84,
+          "era": 2.79,
+          "innings_pitched": "19.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823271,
@@ -13300,7 +14067,7 @@
     "park_score": 43.8,
     "best_park_game": "Petco Park",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 43.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -13323,16 +14090,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 58.0,
+          "hr": 9,
+          "hr9": 1.4,
+          "bb9": 5.59,
+          "k9": 11.02,
+          "era": 5.59,
+          "innings_pitched": "58.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 56.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824003,
@@ -13341,16 +14121,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.0,
+          "hr": 11,
+          "hr9": 1.01,
+          "bb9": 3.49,
+          "k9": 8.63,
+          "era": 3.03,
+          "innings_pitched": "98.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 29.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824002,
@@ -13429,7 +14222,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -13452,16 +14245,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 58.0,
+          "hr": 9,
+          "hr9": 1.4,
+          "bb9": 5.59,
+          "k9": 11.02,
+          "era": 5.59,
+          "innings_pitched": "58.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 62.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824003,
@@ -13470,16 +14276,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.0,
+          "hr": 11,
+          "hr9": 1.01,
+          "bb9": 3.49,
+          "k9": 8.63,
+          "era": 3.03,
+          "innings_pitched": "98.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 35.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824002,
@@ -13558,7 +14377,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 49.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -14265,16 +15084,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 58.0,
+          "hr": 9,
+          "hr9": 1.4,
+          "bb9": 5.59,
+          "k9": 11.02,
+          "era": 5.59,
+          "innings_pitched": "58.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 56.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824003,
@@ -14283,16 +15115,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.0,
+          "hr": 11,
+          "hr9": 1.01,
+          "bb9": 3.49,
+          "k9": 8.63,
+          "era": 3.03,
+          "innings_pitched": "98.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 29.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824002,
@@ -14371,7 +15216,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}

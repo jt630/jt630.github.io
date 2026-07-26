@@ -1062,7 +1062,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 668881,
+          "name": "Hunter Greene",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -1991,7 +1995,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 678022,
+          "name": "Jack Perkins",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR"
@@ -2003,7 +2011,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR"
@@ -2015,7 +2027,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR"
@@ -2092,7 +2108,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 678022,
+          "name": "Jack Perkins",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR"
@@ -2104,7 +2124,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR"
@@ -2116,7 +2140,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR"
@@ -2996,7 +3024,11 @@
         "opponent": "Cincinnati Reds",
         "opponent_team_id": 113,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 668881,
+          "name": "Hunter Greene",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -3913,7 +3945,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -3925,7 +3961,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607067,
+          "name": "Colin Rea",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -3937,7 +3977,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 571510,
+          "name": "Matthew Boyd",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -3949,7 +3993,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -4587,7 +4635,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -4599,7 +4651,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -4854,7 +4910,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 671737,
+          "name": "Taj Bradley",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -4866,7 +4926,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 657746,
+          "name": "Joe Ryan",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -4878,7 +4942,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -5234,7 +5302,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -5246,7 +5318,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -5323,7 +5399,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -5335,7 +5415,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -5513,7 +5597,11 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 674841,
+          "name": "Andrew Alvarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -5525,7 +5613,11 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 676917,
+          "name": "Cade Cavalli",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -5537,7 +5629,11 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641793,
+          "name": "Zack Littell",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -5602,7 +5698,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -5614,7 +5714,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -6225,7 +6329,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -6237,7 +6345,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -6314,7 +6426,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -6326,7 +6442,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -6403,7 +6523,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -6415,7 +6539,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -6492,7 +6620,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -6504,7 +6636,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -6783,7 +6919,11 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 674841,
+          "name": "Andrew Alvarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -6795,7 +6935,11 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 676917,
+          "name": "Cade Cavalli",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -6807,7 +6951,11 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641793,
+          "name": "Zack Littell",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean"
@@ -7074,7 +7222,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663969,
+          "name": "Tyler Phillips",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -7086,7 +7238,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "loanDepot park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Dome; neutral HR factor"
@@ -7252,7 +7408,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680694,
+          "name": "Kyle Bradish",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7264,7 +7424,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7276,7 +7440,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7341,7 +7509,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680694,
+          "name": "Kyle Bradish",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7353,7 +7525,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7365,7 +7541,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7697,7 +7877,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -7709,7 +7893,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -7887,7 +8075,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -7899,7 +8091,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -7976,7 +8172,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 671737,
+          "name": "Taj Bradley",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -7988,7 +8188,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 657746,
+          "name": "Joe Ryan",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -8000,7 +8204,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -8065,7 +8273,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 671737,
+          "name": "Taj Bradley",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -8077,7 +8289,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 657746,
+          "name": "Joe Ryan",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -8089,7 +8305,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral"
@@ -8445,7 +8665,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -8457,7 +8681,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -8534,7 +8762,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 547179,
+          "name": "Michael Lorenzen",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -8546,7 +8778,11 @@
         "opponent": "Colorado Rockies",
         "opponent_team_id": 115,
         "venue": "Petco Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687312,
+          "name": "Gabriel Hughes",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Marine layer; pitcher-friendly"
@@ -8623,7 +8859,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -8635,7 +8875,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -8712,7 +8956,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -8724,7 +8972,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -9258,7 +9510,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 837227,
+          "name": "Tatsuya Imai",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -9270,7 +9526,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663567,
+          "name": "Peter Lambert",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
