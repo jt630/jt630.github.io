@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-08-01T09:57:39.183428+00:00",
+  "checked_at": "2026-08-02T09:55:53.590161+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -818,7 +818,7 @@
           "team": "SEA",
           "team_id": 136,
           "mlb_id": 670042,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": null,
           "proj_hr": null,
           "hrs": 3,
