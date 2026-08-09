@@ -2550,7 +2550,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR"
@@ -5642,10 +5646,10 @@
     "name": "Nathaniel Lowe",
     "team": "Cleveland Guardians",
     "team_id": 114,
-    "team_abbr": "CIN",
+    "team_abbr": "CLE",
     "mlb_id": 663993,
     "bats": "L",
-    "team_stale": true,
+    "team_stale": false,
     "games_this_week": 6,
     "high_opportunity": true,
     "games": [
@@ -6370,10 +6374,10 @@
     "name": "Taylor Ward",
     "team": "Seattle Mariners",
     "team_id": 136,
-    "team_abbr": "BAL",
+    "team_abbr": "SEA",
     "mlb_id": 621493,
     "bats": "R",
-    "team_stale": true,
+    "team_stale": false,
     "games_this_week": 6,
     "high_opportunity": true,
     "games": [
@@ -6667,7 +6671,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Sutter Health Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Foul territory hurts; decent HR"
@@ -8348,10 +8356,10 @@
     "name": "Heliot Ramos",
     "team": "New York Yankees",
     "team_id": 147,
-    "team_abbr": "SF",
+    "team_abbr": "NYY",
     "mlb_id": 671218,
     "bats": "R",
-    "team_stale": true,
+    "team_stale": false,
     "games_this_week": 6,
     "high_opportunity": true,
     "games": [
@@ -8882,10 +8890,10 @@
     "name": "Jo Adell",
     "team": "Cleveland Guardians",
     "team_id": 114,
-    "team_abbr": "LAA",
+    "team_abbr": "CLE",
     "mlb_id": 666176,
     "bats": "R",
-    "team_stale": true,
+    "team_stale": false,
     "games_this_week": 6,
     "high_opportunity": true,
     "games": [
