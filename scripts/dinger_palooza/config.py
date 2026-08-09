@@ -69,7 +69,7 @@ PLAYERS = [
     {"name": "Ryan Mountcastle",     "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": 663624, "bats": "R"},
     {"name": "Colton Cowser",        "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": 681297, "bats": "L"},
     {"name": "Adolis Garcia",        "team": "Philadelphia Phillies",   "team_id": 143, "team_abbr": "PHI", "mlb_id": 666969, "bats": "R"},
-    {"name": "Nathaniel Lowe",       "team": "Cincinnati Reds",         "team_id": 113, "team_abbr": "CIN", "mlb_id": 663993, "bats": "L"},
+    {"name": "Nathaniel Lowe",       "team": "Cleveland Guardians",         "team_id": 114, "team_abbr": "CLE", "mlb_id": 663993, "bats": "L"},
     {"name": "Evan Carter",          "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": 694497, "bats": "L"},
     {"name": "Josh Jung",            "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": 673962, "bats": "R"},
     {"name": "Luis Robert Jr",       "team": "New York Mets",           "team_id": 121, "team_abbr": "NYM", "mlb_id": 673357, "bats": "R"},
@@ -85,7 +85,7 @@ PLAYERS = [
     {"name": "Ezequiel Tovar",       "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": 678662, "bats": "R"},
     {"name": "Hunter Goodman",       "team": "Colorado Rockies",        "team_id": 115, "team_abbr": "COL", "mlb_id": 696100, "bats": "R"},
     {"name": "Mike Trout",           "team": "Los Angeles Angels",      "team_id": 108, "team_abbr": "LAA", "mlb_id": 545361, "bats": "R"},
-    {"name": "Taylor Ward",          "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": 621493, "bats": "R"},
+    {"name": "Taylor Ward",          "team": "Seattle Mariners",       "team_id": 136, "team_abbr": "SEA", "mlb_id": 621493, "bats": "R"},
     {"name": "Zach Neto",            "team": "Los Angeles Angels",      "team_id": 108, "team_abbr": "LAA", "mlb_id": 687263, "bats": "R"},
     {"name": "Salvador Perez",       "team": "Kansas City Royals",      "team_id": 118, "team_abbr": "KC",  "mlb_id": 521692, "bats": "R"},
     {"name": "Vinnie Pasquantino",   "team": "Kansas City Royals",      "team_id": 118, "team_abbr": "KC",  "mlb_id": 686469, "bats": "L"},
@@ -113,13 +113,13 @@ PLAYERS = [
     {"name": "Paul Goldschmidt",     "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": 502671, "bats": "R"},
     {"name": "Michael Harris II",    "team": "Atlanta Braves",          "team_id": 144, "team_abbr": "ATL", "mlb_id": 671739, "bats": "L"},
     {"name": "Matt Chapman",         "team": "San Francisco Giants",    "team_id": 137, "team_abbr": "SF",  "mlb_id": 656305, "bats": "R"},
-    {"name": "Heliot Ramos",         "team": "San Francisco Giants",    "team_id": 137, "team_abbr": "SF",  "mlb_id": 671218, "bats": "R"},
+    {"name": "Heliot Ramos",         "team": "New York Yankees",    "team_id": 147, "team_abbr": "NYY",  "mlb_id": 671218, "bats": "R"},
     {"name": "Christian Walker",     "team": "Houston Astros",          "team_id": 117, "team_abbr": "HOU", "mlb_id": 572233, "bats": "R"},
     {"name": "Anthony Volpe",        "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": 683011, "bats": "R"},
     {"name": "Royce Lewis",          "team": "Minnesota Twins",         "team_id": 142, "team_abbr": "MIN", "mlb_id": 668904, "bats": "R"},
     {"name": "Carlos Correa",        "team": "Houston Astros",          "team_id": 117, "team_abbr": "HOU", "mlb_id": 621043, "bats": "R"},
     {"name": "Byron Buxton",         "team": "Minnesota Twins",         "team_id": 142, "team_abbr": "MIN", "mlb_id": 621439, "bats": "R"},
-    {"name": "Jo Adell",             "team": "Los Angeles Angels",      "team_id": 108, "team_abbr": "LAA", "mlb_id": 666176, "bats": "R"},
+    {"name": "Jo Adell",             "team": "Cleveland Guardians",      "team_id": 114, "team_abbr": "CLE", "mlb_id": 666176, "bats": "R"},
 ]
 
 # ── Team abbreviations (team_id → abbr) ──────────────────────────────────────
