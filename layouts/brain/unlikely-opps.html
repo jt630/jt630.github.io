@@ -1,0 +1,676 @@
+{{ define "main" }}
+<style>
+/* ══════════════════════════════════════
+   UNLIKELY OPPS — vector linguistics
+   ══════════════════════════════════════ */
+
+.opps-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── HEADER ─────────────────────────── */
+.opps-back {
+  font-size: .63rem;
+  letter-spacing: .14em;
+  color: #444;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.opps-back:hover { color: #00CCFF; }
+
+.opps-eyebrow {
+  font-size: .58rem;
+  letter-spacing: .2em;
+  color: #00994C;
+  text-transform: uppercase;
+  margin: 1rem 0 .35rem;
+}
+
+.opps-wrap h1 {
+  font-family: 'Courier New', monospace;
+  font-size: 2.4rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+  color: #00CCFF;
+  margin: 0 0 .4rem;
+  text-shadow: 0 0 30px rgba(0,204,255,.3);
+}
+
+.opps-tagline {
+  font-size: .68rem;
+  color: #555;
+  letter-spacing: .08em;
+}
+
+/* ── THEORY ─────────────────────────── */
+.opps-theory {
+  background: rgba(0,204,255,.04);
+  border: 1px solid rgba(0,204,255,.12);
+  border-left: 3px solid rgba(0,204,255,.5);
+  padding: .9rem 1.2rem;
+  margin: 2rem 0;
+  font-size: .7rem;
+  color: #666;
+  line-height: 1.75;
+}
+.opps-theory em  { color: #00CCFF; font-style: normal; }
+.opps-theory strong { color: #aaa; }
+
+/* ── EXAMPLE DIAGRAM ─────────────────── */
+.opps-diagram {
+  font-size: .65rem;
+  color: #2A2A2A;
+  margin-bottom: 2rem;
+  padding: .75rem 1rem;
+  border: 1px solid #111;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.d-src  { color: #FFD700; }
+.d-op   { color: #00CCFF; }
+.d-ant  { color: #FF6600; }
+.d-res  { color: #FF2D8A; }
+.d-dim  { color: #2A2A2A; }
+
+/* ── INPUT ROW ──────────────────────── */
+.opps-input-row {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: 2rem;
+}
+
+#wordInput {
+  flex: 1;
+  background: #000;
+  border: 1px solid #222;
+  border-bottom: 2px solid #00CCFF;
+  color: #00CCFF;
+  font-family: 'Courier New', monospace;
+  font-size: 1.05rem;
+  padding: .7rem 1rem;
+  outline: none;
+  transition: border-color .2s;
+  letter-spacing: .1em;
+  min-width: 0;
+}
+#wordInput::placeholder { color: #2A2A2A; }
+#wordInput:focus { border-color: rgba(0,204,255,.5); border-bottom-color: #FF2D8A; }
+
+#negateBtn {
+  background: #00CCFF;
+  color: #000;
+  border: none;
+  font-family: 'Courier New', monospace;
+  font-size: .7rem;
+  font-weight: 900;
+  letter-spacing: .16em;
+  padding: .7rem 1.1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+#negateBtn:hover   { background: #FF2D8A; color: #fff; }
+#negateBtn:disabled { background: #111; color: #333; cursor: not-allowed; }
+
+/* ── LOADING ────────────────────────── */
+.opps-loading {
+  padding: .75rem 0 1rem;
+  font-size: .7rem;
+  line-height: 2.2;
+}
+.load-step { color: #2A2A2A; }
+.load-step.active { color: #00994C; }
+.load-step.done   { color: #1A4422; }
+.load-cursor { animation: opp-blink .7s step-end infinite; }
+@keyframes opp-blink { 50% { opacity: 0; } }
+
+/* ── CHAIN HISTORY ───────────────────── */
+.opps-chain {
+  padding: .6rem .9rem;
+  background: #040404;
+  border: 1px solid #111;
+  margin-bottom: 1.5rem;
+  font-size: .6rem;
+}
+.chain-label {
+  color: #2A2A2A;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: .52rem;
+  margin-bottom: .35rem;
+}
+.chain-nodes { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+.chain-node { color: #555; }
+.chain-node.chain-current { color: #FFD700; }
+.chain-sep { color: #222; }
+
+/* ── ERROR ──────────────────────────── */
+.opps-error {
+  background: rgba(255,45,138,.04);
+  border: 1px solid rgba(255,45,138,.18);
+  border-left: 3px solid #FF2D8A;
+  padding: .8rem 1.1rem;
+  font-size: .7rem;
+  color: #774455;
+  margin-bottom: 1rem;
+}
+
+/* ── RESULTS META ───────────────────── */
+.results-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: .9rem;
+  padding-bottom: .55rem;
+  border-bottom: 1px solid #111;
+  font-size: .62rem;
+}
+.rm-label { color: #555; }
+.rm-label strong { color: #FFD700; }
+.rm-hint { color: #2A2A2A; text-transform: uppercase; letter-spacing: .1em; font-size: .56rem; }
+
+/* ── RESULTS GRID ───────────────────── */
+.opps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: .65rem;
+  margin-bottom: 1.5rem;
+}
+
+.opp-card {
+  background: #060606;
+  border: 1px solid #181818;
+  padding: .95rem 1.05rem .9rem;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  position: relative;
+  overflow: hidden;
+}
+.opp-card:hover { border-color: rgba(255,45,138,.4); background: #0B0008; }
+.opp-card.selected {
+  border-color: #FF2D8A;
+  background: #0D0008;
+  box-shadow: inset 0 0 0 1px rgba(255,45,138,.15);
+}
+
+.opp-num {
+  position: absolute;
+  top: .5rem;
+  right: .6rem;
+  font-size: .52rem;
+  color: #1C1C1C;
+  font-weight: 700;
+}
+
+.opp-path {
+  font-size: .52rem;
+  color: #333;
+  letter-spacing: .04em;
+  margin-bottom: .45rem;
+  display: flex;
+  align-items: center;
+  gap: .22rem;
+  flex-wrap: wrap;
+}
+.opp-path .pp-src { color: #555; }
+.opp-path .pp-op  { color: #006688; }
+.opp-path .pp-ant { color: #884400; }
+.opp-path .pp-arr { color: #222; }
+
+.opp-word {
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  color: #FF2D8A;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+  line-height: 1;
+}
+.opp-card.selected .opp-word { color: #FF88BB; }
+
+.opp-bar {
+  height: 2px;
+  background: #111;
+  margin-bottom: .35rem;
+  position: relative;
+  overflow: hidden;
+}
+.opp-bar-fill {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  background: #0D3322;
+  transition: width .3s ease;
+}
+.opp-card.selected .opp-bar-fill { background: #331122; }
+
+.opp-assoc {
+  font-size: .52rem;
+  color: #2A2A2A;
+  letter-spacing: .04em;
+}
+
+/* ── SELECTED PANEL ─────────────────── */
+.opps-sel-panel {
+  background: #080008;
+  border: 1px solid rgba(255,45,138,.35);
+  border-left: 4px solid #FF2D8A;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: .25rem;
+}
+
+.sel-info { flex: 1; min-width: 0; }
+.sel-eyebrow {
+  font-size: .55rem;
+  letter-spacing: .18em;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: .3rem;
+}
+.sel-word-big {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  color: #FF2D8A;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.sel-path-line {
+  font-size: .6rem;
+  color: #444;
+}
+.sel-path-line .spl-src { color: #777; }
+.sel-path-line .spl-op  { color: #00CCFF; }
+.sel-path-line .spl-ant { color: #FF6600; }
+.sel-path-line .spl-res { color: #FF2D8A; }
+
+.sel-actions { display: flex; flex-direction: column; gap: .5rem; flex-shrink: 0; }
+
+.btn-drill {
+  background: #FF2D8A;
+  color: #000;
+  border: none;
+  font-family: 'Courier New', monospace;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  padding: .6rem 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.btn-drill:hover { background: #FF88BB; }
+
+.btn-reset {
+  background: transparent;
+  color: #333;
+  border: 1px solid #222;
+  font-family: 'Courier New', monospace;
+  font-size: .62rem;
+  letter-spacing: .1em;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: color .15s, border-color .15s;
+}
+.btn-reset:hover { color: #666; border-color: #444; }
+
+/* ── EMPTY / NO RESULTS ─────────────── */
+.opps-empty {
+  font-size: .7rem;
+  color: #444;
+  padding: 1.5rem 0;
+  line-height: 1.8;
+}
+
+/* ── RESPONSIVE ─────────────────────── */
+@media (max-width: 600px) {
+  .opps-wrap h1 { font-size: 1.7rem; }
+  .opps-grid { grid-template-columns: 1fr 1fr; }
+  .opps-sel-panel { flex-direction: column; }
+}
+@media (max-width: 380px) {
+  .opps-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="opps-wrap">
+
+  <!-- HEADER -->
+  <a href="/brain/" class="opps-back">&larr; Brain Lab</a>
+  <div class="opps-eyebrow">brain lab · vector linguistics</div>
+  <h1>UNLIKELY OPPS</h1>
+  <p class="opps-tagline">type a word. negate the vector. find the unexpected neighborhood.</p>
+
+  <!-- THEORY -->
+  <div class="opps-theory">
+    Word embeddings map language into high-dimensional space — every word is a point, every
+    meaning is a direction. The <em>vector opposite</em> of a word isn't just its antonym —
+    it's a whole neighborhood. Walk far enough in that direction and you find words that
+    <em>live in the antonym's world</em> without being the antonym itself.
+    <strong>Some feel like double entendres. Some feel like poetry.</strong>
+    Pick the one that surprises you most, then drill deeper.
+  </div>
+
+  <!-- EXAMPLE DIAGRAM -->
+  <div class="opps-diagram">
+    <span class="d-src">hot</span>
+    <span class="d-dim"> ──[</span><span class="d-op">⊖</span><span class="d-dim">]──› </span>
+    <span class="d-ant">cold</span>
+    <span class="d-dim"> territory ──› </span>
+    <span class="d-res">shoulder</span>
+    <span class="d-dim">, </span>
+    <span class="d-res">war</span>
+    <span class="d-dim">, </span>
+    <span class="d-res">sweat</span>
+    <span class="d-dim">, </span>
+    <span class="d-res">turkey</span>
+    <span class="d-dim">, </span>
+    <span class="d-res">front</span>
+    <span class="d-dim"> ···</span>
+  </div>
+
+  <!-- CHAIN HISTORY -->
+  <div class="opps-chain" id="chainArea" style="display:none">
+    <div class="chain-label">exploration chain</div>
+    <div class="chain-nodes" id="chainNodes"></div>
+  </div>
+
+  <!-- INPUT -->
+  <div class="opps-input-row">
+    <input type="text" id="wordInput" placeholder="enter a word..." maxlength="40"
+           autocomplete="off" autocorrect="off" spellcheck="false" />
+    <button id="negateBtn">NEGATE ⊖</button>
+  </div>
+
+  <!-- LOADING -->
+  <div class="opps-loading" id="loadingArea" style="display:none">
+    <div class="load-step" id="ls0">[ ] looking up antonyms...</div>
+    <div class="load-step" id="ls1">[ ] scanning opposite space...</div>
+    <div class="load-step" id="ls2">[ ] ranking by unexpectedness...</div>
+    <div style="color:#1A3322;margin-top:.4rem;">compiling results <span class="load-cursor">█</span></div>
+  </div>
+
+  <!-- ERROR -->
+  <div class="opps-error" id="errorArea" style="display:none"></div>
+
+  <!-- RESULTS -->
+  <div id="resultsArea" style="display:none">
+    <div class="results-meta">
+      <div class="rm-label">10 candidates in opposite space of <strong id="queryDisplay"></strong></div>
+      <div class="rm-hint">↓ pick the least intuitive</div>
+    </div>
+    <div class="opps-grid" id="oppsGrid"></div>
+    <div class="opps-sel-panel" id="selPanel" style="display:none">
+      <div class="sel-info">
+        <div class="sel-eyebrow">your unlikely opposite</div>
+        <div class="sel-word-big" id="selWordBig"></div>
+        <div class="sel-path-line" id="selPathLine"></div>
+      </div>
+      <div class="sel-actions">
+        <button class="btn-drill" id="drillBtn">DRILL DEEPER →</button>
+        <button class="btn-reset" id="resetBtn">new word</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /.opps-wrap -->
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+
+  const wordInput   = $('wordInput');
+  const negateBtn   = $('negateBtn');
+  const loadingArea = $('loadingArea');
+  const errorArea   = $('errorArea');
+  const resultsArea = $('resultsArea');
+  const oppsGrid    = $('oppsGrid');
+  const queryDisplay = $('queryDisplay');
+  const selPanel    = $('selPanel');
+  const selWordBig  = $('selWordBig');
+  const selPathLine = $('selPathLine');
+  const drillBtn    = $('drillBtn');
+  const resetBtn    = $('resetBtn');
+  const chainArea   = $('chainArea');
+  const chainNodes  = $('chainNodes');
+
+  const STEP_ELS = [$('ls0'), $('ls1'), $('ls2')];
+  const STEP_TEXT = [
+    'looking up antonyms...',
+    'scanning opposite space...',
+    'ranking by unexpectedness...',
+  ];
+
+  let chain = [];
+  let selectedResult = null;
+
+  // ── Trigger ──────────────────────────
+  wordInput.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+  negateBtn.addEventListener('click', go);
+  drillBtn.addEventListener('click', () => {
+    if (!selectedResult) return;
+    const w = selectedResult.word.toLowerCase();
+    chain.push(w);
+    wordInput.value = w;
+    go(true);
+  });
+  resetBtn.addEventListener('click', reset);
+
+  function go(keepChain) {
+    const w = wordInput.value.trim().toLowerCase().replace(/[^a-z'-]/g, '');
+    if (!w) return;
+    if (!keepChain) chain = [w];
+    run(w);
+  }
+
+  function reset() {
+    chain = [];
+    wordInput.value = '';
+    hide(resultsArea);
+    hide(errorArea);
+    hide(chainArea);
+    wordInput.focus();
+  }
+
+  // ── Main flow ─────────────────────────
+  async function run(word) {
+    selectedResult = null;
+
+    hide(errorArea);
+    hide(resultsArea);
+    hide(selPanel);
+    resetSteps();
+    show(loadingArea);
+    negateBtn.disabled = true;
+
+    renderChain();
+
+    try {
+      setStep(0, 'active');
+      const antonyms = await getAntonyms(word);
+      setStep(0, 'done');
+
+      if (!antonyms.length) {
+        throw new Error(
+          `no antonyms found for "${word}" — try an adjective (hot, dark, loud) or common noun`
+        );
+      }
+
+      setStep(1, 'active');
+      const candidates = await getNeighborhood(word, antonyms);
+      setStep(1, 'done');
+
+      setStep(2, 'active');
+      const results = rank(candidates);
+      setStep(2, 'done');
+
+      await pause(150);
+      hide(loadingArea);
+      render(word, antonyms, results);
+
+    } catch (err) {
+      hide(loadingArea);
+      resetSteps();
+      showErr(err.message || 'something went wrong — try another word');
+    } finally {
+      negateBtn.disabled = false;
+    }
+  }
+
+  // ── API calls ─────────────────────────
+  async function getAntonyms(word) {
+    const r = await fetch(
+      `https://api.datamuse.com/words?rel_ant=${enc(word)}&max=5`
+    );
+    const d = await r.json();
+    return d.map(x => x.word);
+  }
+
+  async function getNeighborhood(word, antonyms) {
+    const skip = new Set([word, ...antonyms]);
+    const candidates = {};
+
+    const fetches = antonyms.map(ant =>
+      fetch(`https://api.datamuse.com/words?rel_trg=${enc(ant)}&max=40`)
+        .then(r => r.json())
+        .then(items => ({ ant, items }))
+    );
+
+    for (const { ant, items } of await Promise.all(fetches)) {
+      for (const item of items) {
+        if (skip.has(item.word) || item.word.length < 2) continue;
+        if (
+          !candidates[item.word] ||
+          item.score > candidates[item.word].score
+        ) {
+          candidates[item.word] = { score: item.score, via: ant };
+        }
+      }
+    }
+
+    return candidates;
+  }
+
+  function rank(candidates) {
+    const entries = Object.entries(candidates)
+      .map(([word, d]) => ({ word, score: d.score, via: d.via }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10);
+
+    if (!entries.length) return [];
+    const max = entries[0].score;
+    return entries.map(e => ({ ...e, pct: Math.round((e.score / max) * 100) }));
+  }
+
+  // ── Render ────────────────────────────
+  function render(word, antonyms, results) {
+    queryDisplay.textContent = word;
+    oppsGrid.innerHTML = '';
+    selPanel.style.display = 'none';
+
+    if (!results.length) {
+      oppsGrid.innerHTML =
+        '<div class="opps-empty">no candidates found — the neighborhood is empty. try a different word.</div>';
+    } else {
+      results.forEach((r, i) => renderCard(r, i, word));
+    }
+
+    show(resultsArea);
+  }
+
+  function renderCard(r, i, srcWord) {
+    const card = document.createElement('div');
+    card.className = 'opp-card';
+    card.innerHTML = `
+      <div class="opp-num">${String(i + 1).padStart(2, '0')}</div>
+      <div class="opp-path">
+        <span class="pp-src">${esc(srcWord)}</span>
+        <span class="pp-arr">›</span>
+        <span class="pp-op">⊖</span>
+        <span class="pp-arr">›</span>
+        <span class="pp-ant">${esc(r.via)}</span>
+        <span class="pp-arr">›</span>
+      </div>
+      <div class="opp-word">${esc(r.word).toUpperCase()}</div>
+      <div class="opp-bar"><div class="opp-bar-fill" style="width:${r.pct}%"></div></div>
+      <div class="opp-assoc">association ${r.pct}%</div>
+    `;
+    card.addEventListener('click', () => select(card, r, srcWord));
+    oppsGrid.appendChild(card);
+  }
+
+  function select(card, result, srcWord) {
+    document.querySelectorAll('.opp-card.selected')
+      .forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedResult = result;
+
+    selWordBig.textContent = result.word.toUpperCase();
+    selPathLine.innerHTML =
+      `<span class="spl-src">${esc(srcWord)}</span>` +
+      ` <span style="color:#222">→</span> ` +
+      `<span class="spl-op">⊖ negate</span>` +
+      ` <span style="color:#222">→</span> ` +
+      `<span class="spl-ant">${esc(result.via)}</span>` +
+      ` <span style="color:#222">→</span> ` +
+      `<span class="spl-res">${esc(result.word)}</span>`;
+
+    show(selPanel);
+    selPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ── Chain display ─────────────────────
+  function renderChain() {
+    if (chain.length <= 1) { hide(chainArea); return; }
+    chainNodes.innerHTML = chain.map((w, i) => {
+      const cls = i === chain.length - 1 ? 'chain-node chain-current' : 'chain-node';
+      const sep = i < chain.length - 1
+        ? ' <span class="chain-sep">⊖›</span> ' : '';
+      return `<span class="${cls}">${esc(w)}</span>${sep}`;
+    }).join('');
+    show(chainArea);
+  }
+
+  // ── Steps ─────────────────────────────
+  function setStep(i, state) {
+    const el = STEP_ELS[i];
+    el.className = 'load-step ' + state;
+    const prefix =
+      state === 'active' ? '[·]' :
+      state === 'done'   ? '[✓]' : '[ ]';
+    el.textContent = `${prefix} ${STEP_TEXT[i]}`;
+  }
+
+  function resetSteps() {
+    STEP_ELS.forEach((el, i) => setStep(i, 'idle'));
+  }
+
+  // ── Utilities ─────────────────────────
+  function show(el) { el.style.display = ''; }
+  function hide(el) { el.style.display = 'none'; }
+  function pause(ms) { return new Promise(r => setTimeout(r, ms)); }
+  function enc(s) { return encodeURIComponent(s); }
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function showErr(msg) {
+    errorArea.textContent = '! ' + msg;
+    show(errorArea);
+  }
+})();
+</script>
+{{ end }}

@@ -1,0 +1,90 @@
+name: Unlikely Opps — Word Lookup
+
+on:
+  workflow_dispatch:
+    inputs:
+      word:
+        description: 'Word to find unlikely opposites for'
+        required: true
+        type: string
+
+jobs:
+  lookup:
+    name: Find unlikely opps for "${{ github.event.inputs.word }}"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install spaCy + model
+        run: |
+          pip install -q spacy
+          python -m spacy download en_core_web_md -q
+
+      - name: Vector negate + nearest neighbor search
+        env:
+          WORD: ${{ github.event.inputs.word }}
+        shell: python3 {0}
+        run: |
+          import os
+          import numpy as np
+          import spacy
+
+          word = os.environ['WORD'].lower().strip()
+          nlp = spacy.load("en_core_web_md")
+
+          token = nlp(word)[0]
+          if not token.has_vector:
+              print(f"NO VECTOR: '{word}' not in vocabulary")
+              print("Try a common English word.")
+              raise SystemExit(0)
+
+          vec = token.vector.copy()
+          neg_vec = -vec  # actual vector negation
+
+          # Find nearest neighbors in the full vocab to the negated vector
+          queries = np.array([neg_vec], dtype="f")
+          keys, best_rows, scores = nlp.vocab.vectors.most_similar(queries, n=30)
+
+          # Resolve string keys, filter junk
+          skip = {word, word + 's', word + 'ed', word + 'ing', word + 'er'}
+          results = []
+          for key, score in zip(keys[0], scores[0]):
+              w = nlp.vocab.strings[key]
+              if (
+                  w.lower() in skip
+                  or not w.isalpha()
+                  or len(w) < 2
+                  or w[0].isupper()   # skip proper nouns
+              ):
+                  continue
+              results.append((w.lower(), float(score)))
+              if len(results) == 10:
+                  break
+
+          if not results:
+              print("NO RESULTS: no clean candidates found.")
+              raise SystemExit(0)
+
+          # Also show what the "intuitive" antonyms would be for comparison
+          intuitive = nlp(word)[0].vocab.lookups  # not useful here
+          # Instead: show cosine similarity of word to its own negation
+          # (should be -1.0 by definition, confirming the math)
+          from numpy.linalg import norm
+          cos = lambda a, b: np.dot(a, b) / (norm(a) * norm(b) + 1e-9)
+          self_check = cos(vec, neg_vec)
+
+          print(f"WORD:         {word}")
+          print(f"VECTOR DIM:   {len(vec)}")
+          print(f"vec · (-vec): {self_check:.4f}  (should be -1.0 — confirms negation)")
+          print()
+          print(f"TOP 10 NEAREST NEIGHBORS TO  -v('{word}')")
+          print("  (words closest to the negated embedding vector)")
+          print("=" * 52)
+          print(f"  {'#':<4} {'WORD':<24} {'cosine sim to -v'}")
+          print(f"  {'-'*4} {'-'*24} {'-'*16}")
+          for i, (w, score) in enumerate(results):
+              bar = '█' * int(abs(score) * 20)
+              print(f"  {i+1:02d}.  {w.upper():<24} {score:+.4f}  {bar}")
+          print("=" * 52)
+          print()
+          print("NOTE: high cosine sim to -v(word) = maximally UNLIKE the input")
+          print("      antonyms in embedding space are often CLOSER than you'd expect")
+          print("      because they appear in the same contexts (hot vs cold, etc.)")
