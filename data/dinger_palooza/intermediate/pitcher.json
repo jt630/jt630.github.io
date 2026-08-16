@@ -7482,10 +7482,10 @@
     "name": "Adley Rutschman",
     "team": "Boston Red Sox",
     "team_id": 111,
-    "team_abbr": "BAL",
+    "team_abbr": "BOS",
     "mlb_id": 668939,
     "bats": "S",
-    "team_stale": true,
+    "team_stale": false,
     "games_this_week": 6,
     "high_opportunity": true,
     "games": [
