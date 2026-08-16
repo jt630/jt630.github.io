@@ -10,7 +10,7 @@ To hand a ticket to Sonnet: start a new session and say
 
 ## Ticket 1 — Build the YAML data catalog
 
-**Status:** ready
+**Status:** done — `data/api_map.yaml` exists, validates, 11 clusters
 **Depends on:** nothing
 **Branch:** new branch off `main`
 
@@ -62,7 +62,7 @@ schema, field definitions, valid enum values, and a complete example cluster.
 
 ## Ticket 2 — Build the Hugo layout template
 
-**Status:** ready after Ticket 1 merged
+**Status:** done — `/apis/` renders from `layouts/page/apis.html`
 **Depends on:** Ticket 1
 **Branch:** new branch off `main`
 
@@ -115,7 +115,7 @@ Section 3 has the exact Hugo template — copy it, do not rewrite it.
 
 ## Ticket 3 — Style the API map page
 
-**Status:** ready after Ticket 2 merged
+**Status:** done — `API DATA MAP PAGE` section present in `assets/css/main.css`
 **Depends on:** Ticket 2
 **Branch:** new branch off `main`
 
@@ -172,7 +172,7 @@ Also read `CUNTY-THEME-GUIDE.md` to understand the design system variables
 
 ## Ticket 4 — Add the homepage card
 
-**Status:** ready after Ticket 3 merged
+**Status:** done — API Map card present on `/`
 **Depends on:** Ticket 3
 **Branch:** new branch off `main`
 
@@ -216,7 +216,7 @@ Read `API-DATA-MAP.md` section "5. Homepage card" — it has the exact HTML.
 
 ## Ticket 5 — Add project ideas to every API
 
-**Status:** ready after Ticket 4 merged
+**Status:** done — all 74 APIs have `project_ideas`
 **Depends on:** Ticket 4
 **Branch:** new branch off `main`
 
@@ -254,7 +254,7 @@ to Almond Farm. These show up as a `→ idea` list under each API card.
 
 ## Ticket 6 — Add vanilla JS filter bar
 
-**Status:** ready after Ticket 5 merged
+**Status:** done — `assets/js/api-map.js` exists, filter bar wired into the page
 **Depends on:** Ticket 5
 **Branch:** new branch off `main`
 
@@ -327,7 +327,14 @@ narrow by auth level or search by name. The page already works without JS
 
 ## Ticket 7 — Build 3 live data integrations
 
-**Status:** ready after Ticket 6 merged
+**Status:** partial (2026-08-16 audit) — CocktailDB is done: `scripts/fetch_cocktails.py`
+exists, `data/cocktails.yaml` is populated, `/drinks/` renders it. TMDB and Open
+Library were never run: no `data/movies.yaml`, no `data/books.yaml`, both still
+`status: idea` in `api_map.yaml`, and there is no `TMDB_KEY` repo secret configured
+(`gh secret list` only shows `FRED_API_KEY` and `OWM_API_KEY`). `/movies/` currently
+renders empty since its template ranges over `.Site.Data.movies`, which doesn't exist.
+Remaining work: get a TMDB key, add it as a repo secret, run
+`fetch_movies.py` and `fetch_book_covers.py`, flip both statuses to `built`.
 **Depends on:** Ticket 6
 **Branch:** new branch off `main`
 
@@ -399,7 +406,12 @@ the same pattern already used by `data/calendar_events.yaml`:
 
 ## Ticket 8 — GitHub Actions cron: auto-refresh data
 
-**Status:** ready after Ticket 7 merged
+**Status:** partial (2026-08-16 audit) — `.github/workflows/refresh-data.yml` exists
+but is missing the required `schedule: - cron: '0 6 * * *'` trigger (currently
+`workflow_dispatch` only, so it never runs automatically). It also has a latent bug:
+the commit step runs `git add data/cocktails.yaml data/movies.yaml data/books.yaml`,
+and since the latter two files don't exist yet (see Ticket 7), that `git add` will
+fail the first time this workflow actually runs. Fix depends on Ticket 7 landing first.
 **Depends on:** Ticket 7
 **Branch:** new branch off `main`
 
@@ -474,13 +486,15 @@ jobs:
 
 ## Summary
 
-| Ticket | What gets built | Done when |
+| Ticket | What gets built | Status |
 |--------|----------------|-----------|
-| 1 | `data/api_map.yaml` | YAML validates, 11 clusters |
-| 2 | `layouts/page/apis.html` + `content/apis.md` | `/apis/` renders |
-| 3 | CSS for the page | Page looks styled |
-| 4 | Homepage card | Card visible on `/` |
-| 5 | Project ideas in YAML | Every API has `project_ideas` |
-| 6 | JS filter bar | Filters work, hash state works |
-| 7 | 3 live integrations | `/drinks/`, `/movies/`, `/books/` populated |
-| 8 | Cron workflow | Data refreshes daily automatically |
+| 1 | `data/api_map.yaml` | ✅ done |
+| 2 | `layouts/page/apis.html` + `content/apis.md` | ✅ done |
+| 3 | CSS for the page | ✅ done |
+| 4 | Homepage card | ✅ done |
+| 5 | Project ideas in YAML | ✅ done |
+| 6 | JS filter bar | ✅ done |
+| 7 | 3 live integrations | ⚠ partial — CocktailDB/`/drinks/` done; TMDB/`/movies/` and Open Library/`/books/` not started |
+| 8 | Cron workflow | ⚠ partial — file exists, missing daily schedule, has a bug that will fail on first real run (depends on Ticket 7) |
+
+Audited 2026-08-16 against the live repo state, not just this doc's prior claims.
