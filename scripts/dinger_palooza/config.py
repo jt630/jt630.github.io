@@ -64,7 +64,7 @@ PLAYERS = [
     {"name": "Triston Casas",        "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": 671213, "bats": "L"},
     {"name": "Jarren Duran",         "team": "Boston Red Sox",          "team_id": 111, "team_abbr": "BOS", "mlb_id": 680776, "bats": "L"},
     {"name": "Alex Bregman",         "team": "Chicago Cubs",            "team_id": 112, "team_abbr": "CHC", "mlb_id": 608324, "bats": "R"},
-    {"name": "Adley Rutschman",      "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": 668939, "bats": "S"},
+    {"name": "Adley Rutschman",      "team": "Boston Red Sox",       "team_id": 111, "team_abbr": "BOS", "mlb_id": 668939, "bats": "S"},
     {"name": "Anthony Santander",    "team": "Toronto Blue Jays",       "team_id": 141, "team_abbr": "TOR", "mlb_id": 623993, "bats": "S"},
     {"name": "Ryan Mountcastle",     "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": 663624, "bats": "R"},
     {"name": "Colton Cowser",        "team": "Baltimore Orioles",       "team_id": 110, "team_abbr": "BAL", "mlb_id": 681297, "bats": "L"},
