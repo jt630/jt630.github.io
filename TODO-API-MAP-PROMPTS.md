@@ -6,6 +6,9 @@ each one depends on the previous being merged to `main`.
 To hand a ticket to Sonnet: start a new session and say
 **"Read `TODO-API-MAP-PROMPTS.md` and execute Ticket N."**
 
+**NEXT UP:** Tickets 7 and 8 — finish the TMDB and Open Library integrations,
+then fix the cron workflow (see status notes on each for specifics).
+
 ---
 
 ## Ticket 1 — Build the YAML data catalog
