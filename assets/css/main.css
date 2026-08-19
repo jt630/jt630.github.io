@@ -606,6 +606,37 @@ img {
   color: var(--white-dim);
 }
 
+/* Markdown tables in post content */
+.single-post .content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.single-post .content table th {
+  text-align: left;
+  padding: 0.5rem 0.9rem 0.5rem 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid #333;
+}
+.single-post .content table td {
+  padding: 0.55rem 0.9rem 0.55rem 0;
+  border-bottom: 1px solid #1a1a1a;
+  color: var(--white-dim);
+  vertical-align: top;
+}
+.single-post .content table td:first-child {
+  color: var(--white);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.single-post .content table tr:last-child td {
+  border-bottom: none;
+}
+
 /* ---- CURATED PAGE (music, books) ---- */
 .curated-page {
   background: var(--black-card);
