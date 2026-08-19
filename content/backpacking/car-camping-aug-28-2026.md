@@ -115,7 +115,25 @@ The road complaint has a fix — **take the official approach: Hwy 55 → Banks 
 | Dark | Whiskey, cards, music. |
 
 **Saturday:** berries in the cool of the morning, **2:00 PM Burgdorf soak (reserve ahead)**, paddleboards and fishing on the lake after.
-**Sunday:** huckleberry pancakes, pack out slow.
+**Sunday:** huckleberry pancakes, pack out slow, town stop in McCall on the way home.
+
+---
+
+## The town half
+
+Warren Wagon Road runs you through McCall in both directions, so the sightseeing is free — no separate trip, just a stop on the way in or out. This is the part that makes it read as a getaway rather than a fishing trip with a girlfriend attached.
+
+**Burgdorf Hot Springs** is the anchor and it's worth treating as the main event, not a detour. It's an 1860s gold-rush stage stop, still standing — weathered log buildings, a big sand-bottomed pool fed straight out of the ground, no chlorine and no chrome. Open for summer soaks **June through October** (winter is snowmobile-only), 10am–6pm, **closed Wednesdays**, $20/adult, and **reservation-only in 2-hour blocks** at 10, 12, 2, and 4. It's about 30 minutes past Upper Payette Lake on gravel. Book the Saturday 2:00 block now — they do sell out, and turning up unbooked means turning around.
+
+**In McCall itself:**
+
+- **Legacy Park** — downtown lakefront, the postcard view of Payette Lake, easy place to sit with a coffee.
+- **Ponderosa State Park** — the peninsula out into the lake. Osprey Point overlook is a short walk to a genuinely good view, and there are huckleberries in the park itself if the high patches disappoint. Day-use fee.
+- **Downtown** — a walkable few blocks of shops, a bookstore, ice cream. Easy hour.
+- **Brundage Mountain** — summer chairlift rides and views out over the Seven Devils, if it's running that weekend.
+- **Practical stop:** last real groceries, ice, firewood, and cell service before you go dark. Fuel up here.
+
+A good shape for the weekend: rough camping and berry picking as the substance, Burgdorf on Saturday afternoon as the thing you planned *for her*, and a slow McCall morning on the way home Sunday.
 
 ---
 

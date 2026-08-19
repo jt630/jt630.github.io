@@ -158,6 +158,7 @@ The owner **deletes branches immediately after merging**. This means:
 | Command | What it does |
 |---------|-------------|
 | `/new-post` | Scaffolds a new Hugo post — asks for section, title, description |
+| `/campsites` | Find campsites via the recreation.gov API, including walk-up sites the website hides (`scripts/campsite_finder.py`, notes in `docs/RECREATION-API.md`) |
 | `/mint` | Mint a monkey coin — picks language, runs generation, commits *(planned)* |
 | `/plan` | **TODO (general Claude files)** — Pre-flight parallelization planner. Reads a task spec, maps file dependencies, estimates output size per subtask, and produces a chunked execution graph with parallel lanes before any code is written. Prevents oversized single-agent tasks that timeout. |
 
