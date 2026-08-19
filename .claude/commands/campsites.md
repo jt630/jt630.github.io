@@ -25,8 +25,18 @@ Full API notes: `docs/RECREATION-API.md`
 
    ```bash
    python scripts/campsite_finder.py near --lat LAT --lon LON --radius 50 \
-       --start YYYY-MM-DD --nights N --limit 25
+       --start YYYY-MM-DD --nights N --limit 25 \
+       --origin "LAT,LON" --max-drive 3.5 --depart "11:00"
    ```
+
+   **Always pass `--origin`.** `--radius` is straight-line miles and is badly
+   misleading in mountain country — a campground 35 crow-flies miles away can be
+   a 5-hour drive around a wilderness. `--origin` adds routed drive times and
+   sorts by them; `--max-drive` hides the ones that are secretly half a day out.
+
+   If drive times come back empty, the public OSRM routing server's certificate
+   has expired again. Re-run with `--insecure-routing` (it relaxes TLS for that
+   one routing host, never for recreation.gov), or fall back to the ROAD column.
 
    Prefer explicit `--lat/--lon`; the geocoder behind `--from` is unreliable and
    has resolved town names tens of miles off. Look coordinates up first if the
@@ -46,8 +56,15 @@ Full API notes: `docs/RECREATION-API.md`
      **Never report these as unavailable.** A campground with 0 OPEN and 12
      WALK-UP is a good target for an early Friday arrival, not a dead end.
    - `?` — seasonal or closed. Say so rather than guessing.
-   - `*` — campground has Scan-and-Pay sites; the user pays on arrival through
-     the recreation.gov app and needs it downloaded **before** losing service.
+   - `DRIVE` — routed driving time. Conservative on mountain highway, so use it
+     to rank destinations, not to promise an arrival time.
+   - `ROAD` — surface warnings scraped from the agency's own directions text
+     (GRAVEL, DIRT, NARROW, STEEP, ROUGH, HIGH-CLEARANCE, 4WD, NO TRAILERS).
+     Surface this to the user. It matters a lot for a loaded car, a low-clearance
+     vehicle, or a trailer, and it is the difference between a scenic drive and
+     two hours of washboard.
+   - `SCAN&PAY` — the user pays on arrival through the recreation.gov app and
+     needs it downloaded **before** losing service.
 
 4. Check the things the API does not know, and do not skip these:
    - **Fire restrictions.** Search current stage for the counties involved.
@@ -78,6 +95,9 @@ Full API notes: `docs/RECREATION-API.md`
 
 - **Never say "sold out" from `OPEN: 0` alone.** Check the walk-up column first.
   Getting this wrong is the single most likely failure of this command.
+- **Never recommend a campground on radius alone.** Get the routed drive time and
+  the road warnings before putting it in front of the user. "Close on the map" and
+  "reachable" are different things once mountains are involved.
 - Always print the date the availability was checked. Numbers move fast.
 - If the user names a campground, check it even if you think it's full — they
   usually know something about the place worth confirming.

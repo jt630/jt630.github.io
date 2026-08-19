@@ -166,6 +166,60 @@ anyone browsing the booking calendar.
 
 ---
 
+---
+
+## Radius is not distance
+
+`radius` in the search API is **straight-line miles**. In mountain country that is
+actively misleading: Yellow Pine sits ~35 crow-flies miles from McCall and is a
+**5-hour drive** from Boise, because the road goes the long way around a
+wilderness. A 50-mile radius search happily returns campgrounds half a day away.
+
+Two corrections, both free:
+
+### Road quality — from the API itself
+
+`facility_directions` and `facility_description_map` are free text written by the
+managing agency, and they say things like *"the road is narrow and winding,"*
+*"high clearance recommended,"* *"the Forest Service discourages trailers."*
+Scanning that text for a keyword list (gravel, dirt, unpaved, narrow, steep,
+rough, primitive, high clearance, 4-wheel drive, not recommended) gives a
+surprisingly good surface warning with no extra service.
+
+`facility_directions` is also worth reading verbatim — it names the *official*
+approach, which can differ sharply from what a navigation app picks. For Deadwood
+Reservoir it specifies FR 579 via Lowman rather than the beat-up FS 555 track.
+
+### Real drive time — OSRM
+
+The public OSRM demo server routes for free with no API key:
+
+```
+GET https://router.project-osrm.org/route/v1/driving/{lon1},{lat1};{lon2},{lat2}?overview=false
+```
+
+Returns `routes[0].distance` (metres) and `.duration` (seconds). Facility
+coordinates come from `facility_latitude` / `facility_longitude`.
+
+**Two caveats:**
+
+1. **As of 2026-08-18 that server's TLS certificate is expired.** `curl` may
+   tolerate it; Python's `urllib` will not, and fails with
+   `CERTIFICATE_VERIFY_FAILED`. `campsite_finder.py` keeps verification on by
+   default and simply omits drive times, printing a note. `--insecure-routing`
+   relaxes it for that host only. Do not disable verification globally.
+2. **OSRM runs conservative on mountain highway** — it puts Boise–McCall at
+   ~2h20 against a real-world ~2h05. Use it for *ranking* destinations, not for
+   promising an arrival time.
+
+### Other explicit flags worth reading
+
+`facility_rules.scanAndPay` is a boolean on the facility detail response. When
+present it confirms pay-on-arrival walk-up support directly, which beats
+inferring it from `MANAGEMENT` campsite entries.
+
+---
+
 ## Gotchas
 
 - **`start_date` must be the 1st of a month.** Arbitrary dates return junk.

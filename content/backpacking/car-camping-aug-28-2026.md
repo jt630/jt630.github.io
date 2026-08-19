@@ -62,6 +62,27 @@ Warm Lake is the genuine casualty — Shoreline and Warm Lake CG really are full
 
 ---
 
+## Straight-line distance lies out here
+
+Radius searches measure crow-flies distance, which in the Salmon River mountains is close to meaningless — there's a wilderness in the middle and the roads go around it. Routed driving times from Boise:
+
+<div style="overflow-x:auto">
+
+| Campground | Road miles | Driving time | Surface warnings (from the Forest Service's own directions) |
+|---|---:|---:|---|
+| Pine Flats | 74 | **2.5 h** | rough |
+| Grouse | 119 | **3.0 h** | winding, gravel, dirt |
+| Cozy Cove (Deadwood) | 92 | **3.1 h** | dirt |
+| Upper Payette Lake | 125 | **3.3 h** | gravel |
+| Buckhorn Bar | 127 | **3.9 h** | — |
+| Yellow Pine | 139 | **5.0 h** | rough, narrow |
+
+</div>
+
+**This rules out the walk-up bonanza east of McCall.** Yellow Pine has 14 first-come sites and Buckhorn Bar has 10, and on a map they look close. They're a 4–5 hour drive on rough road. Leaving Boise at 11:00 you'd reach Yellow Pine around 16:00 having spent the entire first day driving. Not this trip.
+
+*Treat these as a ranking, not a stopwatch — routed estimates run conservative on mountain highway, and locals will tell you Boise to McCall is closer to 2 hours than the 2h20 the router assumes. The ordering is what matters.*
+
 ## The play: leave at 11, win the walk-up race
 
 An 11:00 departure is the whole advantage here. Checkout is 11:00 AM, so Friday-morning sites are opening up exactly as you're driving. Arrive early afternoon and you're picking from a fresh board, ahead of the after-work Friday wave.
