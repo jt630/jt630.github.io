@@ -15,6 +15,8 @@ Rugged range above Hells Canyon, west of Riggins. Big payoff views straight down
 
 The classic. Alice-Toxaway Loop and the Sawtooth Lake trail are the big ones. Closer to Stanley (~2.5-3 hrs from Boise). Permits/quotas may apply for some trailheads in peak season — need to check.
 
+Also worth noting: the west side out of Atlanta is a lot quieter than the Stanley trailheads, and permits there are free and self-issued with no quota. Full plan written up in [Queens River Loop]({{< ref "queens-river-loop" >}}).
+
 ## White Clouds
 
 Adjacent to the Sawtooths, less trafficked. Castle Peak / Chamberlain Basin area is the highlight. Access via Stanley or the East Fork Salmon River side. Worth it if Sawtooth trailheads are too crowded/permitted out.
