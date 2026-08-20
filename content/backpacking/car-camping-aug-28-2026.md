@@ -9,7 +9,19 @@ draft: false
 **Trip dates:** Friday Aug 28 – Sunday Aug 30, 2026
 **Departure:** Boise, ~11:00 Friday
 **Style:** car camping, glamping-leaning. Heavy chairs, real cooler, no ultralight nonsense.
-**Availability checked:** 2026-08-18 against the recreation.gov API. Numbers below were true that day and *will* move.
+**Availability checked:** 2026-08-20 against the recreation.gov API. Numbers below were true that day and *will* move.
+
+## BOOKED — this is the plan
+
+> **Camp: Grouse Campground**, Goose Lake Rd (FR 257), ~6,000 ft. Reserved.
+> **Soak: Burgdorf Hot Springs**, Saturday afternoon block. Reserved, $20/adult.
+>
+> Saturday's run to Burgdorf is **45 miles, about 1h13 each way** — down Goose Lake
+> Rd to Hwy 55, north through McCall, then up Warren Wagon. Paved except the last
+> stretch past Upper Payette Lake. ~2.5 hours of driving round trip for the soak,
+> which is a normal outing, not a lost day.
+>
+> Everything below is the reasoning that got here, kept for the next trip.
 
 ---
 
@@ -81,7 +93,22 @@ Radius searches measure crow-flies distance, which in the Salmon River mountains
 
 **This rules out the walk-up bonanza east of McCall.** Yellow Pine has 14 first-come sites and Buckhorn Bar has 10, and on a map they look close. They're a 4–5 hour drive on rough road. Leaving Boise at 11:00 you'd reach Yellow Pine around 16:00 having spent the entire first day driving. Not this trip.
 
-*Treat these as a ranking, not a stopwatch — routed estimates run conservative on mountain highway, and locals will tell you Boise to McCall is closer to 2 hours than the 2h20 the router assumes. The ordering is what matters.*
+*Treat these as a ranking, not a stopwatch.* Routed estimates run conservative on mountain highway and badly so on gravel — the router put Grouse→Burgdorf at 1h57 where Google says **1h13** for the same 45 miles. Use the routing to sort destinations; use Google for the number you actually plan around.
+
+### Hot springs near camp — the honest geography
+
+There is no close free spring to Grouse, and that's geology rather than bad luck. Idaho's free primitive springs cluster in two corridors — Warm Lake / South Fork Salmon (Trail Creek, Vulcan, Molly's) and Banks–Lowman (Kirkham, Bonneville, Pine Flats). Goose Lake Road is in neither, and **every free option is further away than Burgdorf**:
+
+| From Grouse | Each way | Cost |
+|---|---|---|
+| Zim's, New Meadows | ~1 h | ~$12, developed pool in town |
+| **Burgdorf** | **1h13** | $20, reservation-only |
+| Gold Fork, Donnelly | ~1.3 h | paid, developed |
+| Trail Creek (free, primitive) | ~2.6 h | free |
+
+Zim's is the only thing meaningfully closer, and it's a town pool rather than a mountain soak. Burgdorf earns its fee here.
+
+**Berries don't justify the drive** — worth being clear about, since it's a tempting rationalization. Goose Lake Road *is* the premier huckleberry corridor; you can pick as well from camp as anywhere up Warren Wagon. The drive buys Burgdorf, not better berries. Making a day of it with picking stops along the way is a fine way to spend Saturday, as long as you know what you're paying for.
 
 ## The play: leave at 11, win the walk-up race
 
@@ -129,14 +156,17 @@ The road complaint has a fix — **take the official approach: Hwy 55 → Banks 
 | Time | |
 |---|---|
 | 11:00 | Leave Boise. Ice and last cooler items on the way out. |
-| 13:05 | McCall. Fuel, firewood, last real groceries. |
-| 13:45 | **Upper Payette Lake — grab a walk-up site.** Scan-and-pay via the recreation.gov app; download it before you lose service. |
-| 14:30 | Camp set. Chairs, canopy, seltzers in the lake. |
+| 13:10 | McCall. Fuel, firewood, last real groceries. **Download the recreation.gov app here** — no service past this point. |
+| 13:30 | North on Hwy 55 five miles, right on Goose Lake Rd (FR 257). Four miles paved, then 6.5 gravel. |
+| ~14:30 | **Grouse — your reserved site.** Chairs, canopy, seltzers in the creek. |
 | 18:30 | Steak kabobs over the fire ring. |
 | Dark | Whiskey, cards, music. |
 
-**Saturday:** berries in the cool of the morning, **2:00 PM Burgdorf soak (reserve ahead)**, paddleboards and fishing on the lake after.
-**Sunday:** huckleberry pancakes, pack out slow, town stop in McCall on the way home.
+**Saturday** — berries in the cool of the morning, right around camp. Leave about **90 minutes before your Burgdorf block** (1h13 plus slack for gravel and gas). Soak, back to camp by evening, huckleberry crisp in the dutch oven.
+
+**Sunday** — huckleberry pancakes from Saturday's haul, pack out slow, McCall town stop on the way home.
+
+> **Optional upgrade, not required:** Upper Payette Lake has ~10 walk-up sites and sits 45 minutes from Burgdorf instead of 1h13, on a swimmable lake. Only worth trading a guaranteed site for if you arrive early and feel lucky. At 1h13 the Grouse booking is perfectly good — stay put.
 
 ---
 
