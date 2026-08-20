@@ -14,7 +14,7 @@ draft: false
 ## BOOKED — this is the plan
 
 > **Camp: Grouse Campground**, Goose Lake Rd (FR 257), ~6,000 ft. Reserved.
-> **Soak: Burgdorf Hot Springs**, Saturday afternoon block. Reserved, $20/adult.
+> **Soak: Burgdorf Hot Springs**, **Saturday 2:00 PM**. Reserved, $20/adult. Leave camp by 12:15.
 >
 > Saturday's run to Burgdorf is **45 miles, about 1h13 each way** — down Goose Lake
 > Rd to Hwy 55, north through McCall, then up Warren Wagon. Paved except the last
@@ -159,10 +159,15 @@ The road complaint has a fix — **take the official approach: Hwy 55 → Banks 
 | 13:10 | McCall. Fuel, firewood, last real groceries. **Download the recreation.gov app here** — no service past this point. |
 | 13:30 | North on Hwy 55 five miles, right on Goose Lake Rd (FR 257). Four miles paved, then 6.5 gravel. |
 | ~14:30 | **Grouse — your reserved site.** Chairs, canopy, seltzers in the creek. |
+| 15:30 | Heavy stuff set up. |
+| 16:00 | **Twin Lakes hike** — trailhead is 2 miles further up Goose Lake Rd. One mile each way, ~400 ft of gain, steady rather than steep. Rod and a berry bucket both. |
+| 17:30 | Back at camp. Sunset is around 20:15, so there's no clock on this. |
 | 18:30 | Steak kabobs over the fire ring. |
 | Dark | Whiskey, cards, music. |
 
-**Saturday** — berries in the cool of the morning, right around camp. Leave about **90 minutes before your Burgdorf block** (1h13 plus slack for gravel and gas). Soak, back to camp by evening, huckleberry crisp in the dutch oven.
+The Twin Lakes trailhead sits at mile 12.5 on Goose Lake Rd, marked by a kiosk on the west side about a mile past the north end of Goose Lake — you drive right by it coming in. At the half-mile mark a junction climbs to **Granite Mountain Lookout**, which is the ambitious version and not a Friday-after-three-hours-of-driving version.
+
+**Saturday** — berries in the cool of the morning, right around camp, then fish or paddle Goose Lake. **Burgdorf is booked for 2:00 PM, so leave camp by 12:15** — 1h13 of driving plus slack for gravel and a gas stop. Soak, back to camp by evening, huckleberry crisp in the dutch oven.
 
 **Sunday** — huckleberry pancakes from Saturday's haul, pack out slow, McCall town stop on the way home.
 
@@ -185,6 +190,39 @@ Warren Wagon Road runs you through McCall in both directions, so the sightseeing
 - **Practical stop:** last real groceries, ice, firewood, and cell service before you go dark. Fuel up here.
 
 A good shape for the weekend: rough camping and berry picking as the substance, Burgdorf on Saturday afternoon as the thing you planned *for her*, and a slow McCall morning on the way home Sunday.
+
+---
+
+## Fishing — two lakes, two different trips
+
+Idaho Fish and Game stocking records, pulled 2026-08-20. These lakes are not equivalent and it's worth knowing which is which before you pick.
+
+### Goose Lake — 366 acres, on your road
+
+| Stocked | Fish | Size |
+|---|---|---|
+| **2026-06-24** | 4,001 rainbow (triploid) | **Catchable, 12–14 in** |
+| 2025-06-24 | 4,012 rainbow | 12–14 in |
+| 2024-06-26 | 2,010 rainbow | 12–14 in |
+| 2023-07-05 | 4,977 rainbow | 6+ in |
+
+Four thousand catchable 12–14 inch rainbows went in eight weeks before this trip, and that's the pattern every June. Surveys in 2021 also turned up **brook trout and cutthroat**, so there's a wild component beneath the stockers. Boat ramp, toilet, ADA access.
+
+**This is where the paddleboards go** — 366 acres with a ramp is a real launch, and it's where you catch fish to eat. Saturday morning before the Burgdorf run, or Sunday on the way out. You pass it either direction.
+
+Triploid means sterile: stocked to be caught, not to reproduce. No guilt in keeping a couple for the fire ring, within the limit.
+
+### Twin Lake — 40 acres, a mile off the road
+
+| Stocked | Fish | Size |
+|---|---|---|
+| 2024-09-23 | 1,001 rainbow (triploid) | **Fry, 0–3 in** |
+| 2022-08-26 | 1,000 rainbow | fry |
+| 2020-09-11 | 1,000 rainbow | fry |
+
+Fry only, every other year. The 2024 class has had two summers on it, so figure **8–10 inches of wild-grown trout**. Rainbow confirmed in a 2023 survey, brook trout in 2016.
+
+Small fish in a quiet alpine lake — dry-fly water, and the same fishing that worked in the White Clouds. **Elk hair caddis and an Adams, size 18.** This is the Friday hike, not the dinner run.
 
 ---
 
