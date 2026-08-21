@@ -35,8 +35,9 @@ Warm the water with honey and vinegar just enough to dissolve, then cool and pou
 - Pinch of chile-lime seasoning (Tajín) or chili powder
 - Optional: a small drizzle of chamoy
 - Mango, watermelon, jicama, and/or cucumber, cubed
+- Splash of cold sparkling water, once it's ready
 
-Squeeze lime straight over the fruit in the cup, hit it with salt and chile powder, drizzle chamoy if using, toss to coat. Little to no added water needed — the fruit juices pool at the bottom and that's the drink. Sweet, spicy, tangy, the loudest of the three.
+Squeeze lime straight over the fruit in the cup, hit it with salt and chile powder, drizzle chamoy if using, toss to coat. Let it sit a few minutes so the juices pool at the bottom, then top with sparkling water right before eating — it lifts the chile-lime syrup off the bottom and turns the whole cup into a spicy-sweet micheladita-adjacent soda. Sweet, spicy, tangy, the loudest of the three.
 
 ## The Korean Cup — dongchimi-style
 
