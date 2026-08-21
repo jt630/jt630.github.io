@@ -2,3 +2,7 @@ public/
 resources/_gen/
 .hugo_build.lock
 data/keys.yaml
+
+# Python
+__pycache__/
+*.pyc
