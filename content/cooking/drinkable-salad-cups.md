@@ -1,37 +1,56 @@
 ---
 title: "Drinkable Salad Cups"
 date: 2026-08-21
-description: "Garden veg and fruit on a skewer in a cup of ice water — a snack and a sip in one"
+description: "Garden veg and fruit steeping in a flavored cup — eat your way down, drink what's left"
 draft: false
 ---
 
-A cup, a skewer, whatever's ripe in the garden. Skewer it, drop it in ice water with a squeeze of citrus, snack your way down the stick, then drink the cup when you hit the bottom. Hydrating, snacky, stupid easy.
+A cup of flavored liquid with garden veg and fruit sitting in it. Eat the pieces, drink the cup, done — a snack and a sip in the same vessel. Keep a skewer on hand for fishing pieces out, but nothing has to be threaded on it; loose chunks work fine.
 
-## Ingredients
+This isn't a new idea, it turns out. Persians have been steeping cucumber and mint in sweet-sour syrup (sekanjabin) for over 2,000 years, sometimes dipping whole romaine leaves straight into the glass. Mexican street carts douse fruit cups in lime and chile and call it a vaso de fruta. Koreans ferment radish in a mild brine (dongchimi) and drink what's left after the radish is gone — it's been called Korea's original sparkling water. Every hot-climate culture with water-heavy produce eventually lands on the same trick: steep it, eat it, drink it, waste nothing. This is a fresh, unfermented, backyard version of that same move — three riffs below, one on each tradition.
 
-- Ice water (or sparkling water, or coconut water)
-- Juice of ½ lemon or lime, or a splash of apple cider vinegar
+## Base Method
+
+1. **Fill the cup** two-thirds with liquid (recipe below depends on the riff).
+2. **Add the produce**, cut into bite-size or dip-size pieces. Loose is fine — a skewer nearby just makes fishing the last pieces out easier.
+3. **Let it sit** 5–10 minutes if you have the patience. Flavors trade both ways: the liquid picks up produce, the produce picks up liquid.
+4. **Eat your way down**, sip between bites.
+5. **Drink the cup** when the solids are gone.
+
+## The Persian Cup — sekanjabin-style
+
+- 1 cup water
+- 2 tbsp honey or sugar
+- 2 tbsp white wine vinegar or apple cider vinegar
+- A few mint leaves, torn
+- ½ cucumber, sliced into rounds or spears
+- A couple crisp romaine leaves, torn, for dipping
+
+Warm the water with honey and vinegar just enough to dissolve, then cool and pour over ice. Drop in the mint and cucumber. Use the romaine leaves like chips — dip and eat, then drink the syrupy water at the end. Sweet-sour, herbal, genuinely ancient.
+
+## The Mexican Cup — vaso de fruta-style
+
+- Juice of 1 lime
 - Pinch of salt
-- Whatever's in season, cut into skewer-friendly chunks:
-  - Cucumber
-  - Cherry tomatoes
-  - Watermelon or cantaloupe
-  - Bell pepper
-  - Strawberries
-  - Mint or basil leaves
-- Skewers (bamboo or reusable metal, sized to the cup)
+- Pinch of chile-lime seasoning (Tajín) or chili powder
+- Optional: a small drizzle of chamoy
+- Mango, watermelon, jicama, and/or cucumber, cubed
 
-## Instructions
+Squeeze lime straight over the fruit in the cup, hit it with salt and chile powder, drizzle chamoy if using, toss to coat. Little to no added water needed — the fruit juices pool at the bottom and that's the drink. Sweet, spicy, tangy, the loudest of the three.
 
-1. **Fill the cup.** Ice water two-thirds up, squeeze in the citrus, pinch of salt. Taste it — should taste like a light cucumber-lemon water, not plain.
-2. **Load the skewer.** Alternate hard and soft: cucumber, tomato, melon, pepper, strawberry, tuck a mint leaf in every couple pieces. Leave the bottom inch bare so it can sit in the cup without soaking everything at once.
-3. **Drop it in.** Skewer goes straight down into the cup, resting against the rim.
-4. **Snack and sip.** Work your way down the skewer between sips. By the time you hit the last piece, the water's doing double duty as a light infused drink.
-5. **Finish the cup.** Drink what's left — it's basically a salad-adjacent electrolyte water at that point.
+## The Korean Cup — dongchimi-style
+
+- 1 cup water
+- 1 tsp salt
+- 1 tsp sugar
+- A thin slice of garlic and ginger (optional, keep it subtle)
+- Sliced radish (daikon or watermelon radish) and/or cucumber
+
+Dissolve salt and sugar in the water, add garlic and ginger if using, chill. Add the radish and cucumber and let it sit longer than the other two — 30 minutes minimum, longer in the fridge is better. Clean, savory-sweet, the brine is genuinely good to drink on its own once you've eaten the radish.
 
 ## Notes
 
-- Cucumber and watermelon are the MVPs — they hold water themselves and flavor the cup the most.
-- Skip anything that turns the water cloudy or bitter fast (raw onion, most leafy greens loose in the water — fine on the skewer, bad loose).
-- Good base for a bigger batch: prep a tray of skewers ahead, keep the cups in the fridge, grab one on the way out the door.
-- Salt is doing more work than you'd think — it's what keeps this from tasting like plain fruit water.
+- Cucumber and watermelon show up in all three because they're doing double duty — they hold their own water and take on flavor fast.
+- Skip anything that clouds the liquid fast (raw onion, loose leafy greens) unless the recipe calls for it whole, like the romaine.
+- All three scale up fine — make a pitcher of whichever liquid, portion the produce into cups, keep in the fridge, grab one on the way out.
+- Salt is doing more work than it looks like in every version here — it's the difference between "flavored water" and "diluted juice."
