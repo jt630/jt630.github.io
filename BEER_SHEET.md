@@ -299,6 +299,37 @@ Caps how many players (1.25 x teams x total roster slots) are eligible for a rea
 
 ---
 
+## Known limitation: ESPN weekly projections are nearly flat
+
+Measured 2026-08-23 across 222 draftable players: median week-to-week
+coefficient of variation is **0.044**. Real fantasy scoring swings 50-70%
+week to week. ESPN's per-week projections are essentially the season
+average divided by 17, with only token opponent adjustment.
+
+Two consequences, both real:
+
+1. **Playoff-week strength of schedule is not available from this data.**
+   Weeks 15-17 projections sit within a few percent of a player's season
+   average, so a "playoff schedule" column built on them would look
+   precise and carry almost no signal. Deliberately not built.
+
+2. **The risk agent's weekly-volatility term is close to inert.** Where it
+   does vary, it flags backup QBs (Shedeur Sanders CV 1.09 on a 5.8 avg) —
+   that is ESPN hedging on whether they start, not a boom/bust profile.
+   In practice `risk_label` is driven by expert disagreement and injury
+   status; the volatility input contributes little for players who matter.
+
+**Fix (post-draft):** source real week-to-week variance from historical
+game logs. nflverse publishes free per-season player stats
+(`https://github.com/nflverse/nflverse-data/releases/download/player_stats/player_stats_YYYY.csv`,
+no auth, back to 1999). Computing actual per-week CV from last season's
+game logs gives a volatility measure with genuine range, and the same
+source supports measuring year-over-year stickiness of opportunity
+(targets/carries) versus TD rate — the input needed to regress opportunity
+instead of fantasy points.
+
+---
+
 ## Known Issues & Caveats
 
 - ESPN's kona_player_info API is read-only but may rate-limit or return partial data during peak draft week. Cache aggressively.
