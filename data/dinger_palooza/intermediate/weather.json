@@ -89,14 +89,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -169,7 +169,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 60.6,
+    "weather_score": 60.7,
     "rain_risk_games": 2
   },
   {
@@ -262,14 +262,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -342,7 +342,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 60.6,
+    "weather_score": 60.7,
     "rain_risk_games": 2
   },
   {
@@ -461,7 +461,7 @@
         "park_notes": "TOUGH: best pitcher's park in MLB",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 57.8,
+          "temp_f": 58.1,
           "wind_mph": 7.2,
           "wind_deg": 219,
           "wind_out": false,
@@ -612,14 +612,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -692,7 +692,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 60.6,
+    "weather_score": 60.7,
     "rain_risk_games": 2
   },
   {
@@ -785,14 +785,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -865,7 +865,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 60.6,
+    "weather_score": 60.7,
     "rain_risk_games": 2
   },
   {
@@ -958,14 +958,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -1038,7 +1038,7 @@
     "park_score": 60.8,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 49.1,
+    "weather_score": 49.2,
     "rain_risk_games": 3
   },
   {
@@ -1131,14 +1131,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -1211,7 +1211,7 @@
     "park_score": 60.8,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 49.1,
+    "weather_score": 49.2,
     "rain_risk_games": 3
   },
   {
@@ -1304,14 +1304,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -1384,7 +1384,7 @@
     "park_score": 60.8,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 49.1,
+    "weather_score": 49.2,
     "rain_risk_games": 3
   },
   {
@@ -1503,7 +1503,7 @@
         "park_notes": "TOUGH: best pitcher's park in MLB",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 57.8,
+          "temp_f": 58.1,
           "wind_mph": 7.2,
           "wind_deg": 219,
           "wind_out": false,
@@ -1654,14 +1654,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -1734,7 +1734,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 60.6,
+    "weather_score": 60.7,
     "rain_risk_games": 2
   },
   {
@@ -1849,14 +1849,14 @@
         "park_notes": "Slight hitter lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 75.0,
+          "temp_f": 78.2,
           "wind_mph": 6.6,
           "wind_deg": 269,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 31.2
+        "weather_score": 32.0
       },
       {
         "game_pk": 824874,
@@ -1907,7 +1907,7 @@
     "park_score": 45.3,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 75.2,
+    "weather_score": 75.3,
     "rain_risk_games": 1
   },
   {
@@ -2022,14 +2022,14 @@
         "park_notes": "Slight hitter lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 75.0,
+          "temp_f": 78.2,
           "wind_mph": 6.6,
           "wind_deg": 269,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 31.2
+        "weather_score": 32.0
       },
       {
         "game_pk": 824874,
@@ -2080,7 +2080,7 @@
     "park_score": 45.3,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 75.2,
+    "weather_score": 75.3,
     "rain_risk_games": 1
   },
   {
@@ -2195,14 +2195,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 51.9,
+          "temp_f": 55.8,
           "wind_mph": 4.7,
           "wind_deg": 291,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 95.5
+        "weather_score": 96.5
       },
       {
         "game_pk": 822690,
@@ -2253,7 +2253,7 @@
     "park_score": 41.6,
     "best_park_game": "Nationals Park",
     "best_park_factor": 97,
-    "weather_score": 84.4,
+    "weather_score": 84.6,
     "rain_risk_games": 0
   },
   {
@@ -2368,14 +2368,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 51.9,
+          "temp_f": 55.8,
           "wind_mph": 4.7,
           "wind_deg": 291,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 95.5
+        "weather_score": 96.5
       },
       {
         "game_pk": 822690,
@@ -2426,7 +2426,7 @@
     "park_score": 41.6,
     "best_park_game": "Nationals Park",
     "best_park_factor": 97,
-    "weather_score": 84.4,
+    "weather_score": 84.6,
     "rain_risk_games": 0
   },
   {
@@ -2541,14 +2541,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 51.9,
+          "temp_f": 55.8,
           "wind_mph": 4.7,
           "wind_deg": 291,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 95.5
+        "weather_score": 96.5
       },
       {
         "game_pk": 822690,
@@ -2599,7 +2599,7 @@
     "park_score": 41.6,
     "best_park_game": "Nationals Park",
     "best_park_factor": 97,
-    "weather_score": 84.4,
+    "weather_score": 84.6,
     "rain_risk_games": 0
   },
   {
@@ -2714,7 +2714,7 @@
         "park_notes": "TOUGH: best pitcher's park in MLB",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 57.8,
+          "temp_f": 58.1,
           "wind_mph": 7.2,
           "wind_deg": 219,
           "wind_out": false,
@@ -2865,14 +2865,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -2945,7 +2945,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 60.6,
+    "weather_score": 60.7,
     "rain_risk_games": 2
   },
   {
@@ -3064,7 +3064,7 @@
         "park_notes": "TOUGH: best pitcher's park in MLB",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 57.8,
+          "temp_f": 58.1,
           "wind_mph": 7.2,
           "wind_deg": 219,
           "wind_out": false,
@@ -3215,14 +3215,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -3295,7 +3295,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 60.6,
+    "weather_score": 60.7,
     "rain_risk_games": 2
   },
   {
@@ -3388,14 +3388,14 @@
         "park_notes": "Short RF porch; elite for LHH sluggers",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823539,
@@ -3468,7 +3468,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 60.6,
+    "weather_score": 60.7,
     "rain_risk_games": 2
   },
   {
@@ -3561,14 +3561,14 @@
         "park_notes": "Dome; neutral HR factor",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 63.2,
+          "temp_f": 65.9,
           "wind_mph": 5.0,
           "wind_deg": 307,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 41.0
+        "weather_score": 41.7
       },
       {
         "game_pk": 822770,
@@ -3619,7 +3619,7 @@
     "park_score": 44.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 72.2,
+    "weather_score": 72.4,
     "rain_risk_games": 1
   },
   {
@@ -3712,7 +3712,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -3863,14 +3863,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -3921,7 +3921,7 @@
     "park_score": 48.1,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 71.4,
+    "weather_score": 71.5,
     "rain_risk_games": 1
   },
   {
@@ -4014,14 +4014,14 @@
         "park_notes": "Dome; no weather factor",
         "weather": {
           "rain_pct": 20,
-          "temp_f": 82.7,
+          "temp_f": 83.7,
           "wind_mph": 5.4,
           "wind_deg": 100,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.2
+        "weather_score": 97.4
       },
       {
         "game_pk": 822936,
@@ -4165,14 +4165,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823582,
@@ -4223,7 +4223,7 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "weather_score": 62.3,
+    "weather_score": 62.5,
     "rain_risk_games": 2
   },
   {
@@ -4320,14 +4320,14 @@
         "park_notes": "Slight hitter lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 75.0,
+          "temp_f": 78.2,
           "wind_mph": 6.6,
           "wind_deg": 269,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 31.2
+        "weather_score": 32.0
       },
       {
         "game_pk": 824874,
@@ -4378,7 +4378,7 @@
     "park_score": 50.3,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 60.1,
+    "weather_score": 60.2,
     "rain_risk_games": 2
   },
   {
@@ -4471,14 +4471,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 65.6,
-          "wind_mph": 6.1,
-          "wind_deg": 219,
+          "temp_f": 69.2,
+          "wind_mph": 7.7,
+          "wind_deg": 237,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 41.6
+        "weather_score": 42.5
       },
       {
         "game_pk": 824392,
@@ -4529,7 +4529,7 @@
     "park_score": 45.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 51.6,
+    "weather_score": 51.8,
     "rain_risk_games": 3
   },
   {
@@ -4622,14 +4622,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 65.6,
-          "wind_mph": 6.1,
-          "wind_deg": 219,
+          "temp_f": 69.2,
+          "wind_mph": 7.7,
+          "wind_deg": 237,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 41.6
+        "weather_score": 42.5
       },
       {
         "game_pk": 824392,
@@ -4680,7 +4680,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "weather_score": 73.6,
+    "weather_score": 73.8,
     "rain_risk_games": 1
   },
   {
@@ -4773,14 +4773,14 @@
         "park_notes": "Foul territory hurts; decent HR",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 59.1,
-          "wind_mph": 4.2,
-          "wind_deg": 208,
+          "temp_f": 61.2,
+          "wind_mph": 4.5,
+          "wind_deg": 218,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 97.3
+        "weather_score": 97.8
       },
       {
         "game_pk": 824961,
@@ -4831,7 +4831,7 @@
     "park_score": 56.8,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 60.0,
+    "weather_score": 60.1,
     "rain_risk_games": 2
   },
   {
@@ -4924,14 +4924,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823582,
@@ -4982,7 +4982,7 @@
     "park_score": 56.8,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 62.3,
+    "weather_score": 62.5,
     "rain_risk_games": 2
   },
   {
@@ -5079,14 +5079,14 @@
         "park_notes": "Slight hitter lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 75.0,
+          "temp_f": 78.2,
           "wind_mph": 6.6,
           "wind_deg": 269,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 31.2
+        "weather_score": 32.0
       },
       {
         "game_pk": 824874,
@@ -5137,7 +5137,7 @@
     "park_score": 50.3,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 60.1,
+    "weather_score": 60.2,
     "rain_risk_games": 2
   },
   {
@@ -5230,7 +5230,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -5381,14 +5381,14 @@
         "park_notes": "Dome; no weather factor",
         "weather": {
           "rain_pct": 20,
-          "temp_f": 82.7,
+          "temp_f": 83.7,
           "wind_mph": 5.4,
           "wind_deg": 100,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.2
+        "weather_score": 97.4
       },
       {
         "game_pk": 822936,
@@ -5532,14 +5532,14 @@
         "park_notes": "Foul territory hurts; decent HR",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 59.1,
-          "wind_mph": 4.2,
-          "wind_deg": 208,
+          "temp_f": 61.2,
+          "wind_mph": 4.5,
+          "wind_deg": 218,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 97.3
+        "weather_score": 97.8
       },
       {
         "game_pk": 824961,
@@ -5590,7 +5590,7 @@
     "park_score": 56.8,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 60.0,
+    "weather_score": 60.1,
     "rain_risk_games": 2
   },
   {
@@ -5691,14 +5691,14 @@
         "park_notes": "Retractable roof; slight hitter lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 64.4,
-          "wind_mph": 9.6,
-          "wind_deg": 44,
+          "temp_f": 66.1,
+          "wind_mph": 11.2,
+          "wind_deg": 34,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 98.6
+        "weather_score": 99.0
       },
       {
         "game_pk": 823741,
@@ -5749,7 +5749,7 @@
     "park_score": 49.1,
     "best_park_game": "American Family Field",
     "best_park_factor": 102,
-    "weather_score": 73.2,
+    "weather_score": 73.3,
     "rain_risk_games": 1
   },
   {
@@ -5842,14 +5842,14 @@
         "park_notes": "Dome; neutral HR factor",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 63.2,
+          "temp_f": 65.9,
           "wind_mph": 5.0,
           "wind_deg": 307,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 41.0
+        "weather_score": 41.7
       },
       {
         "game_pk": 822770,
@@ -5900,7 +5900,7 @@
     "park_score": 48.1,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 51.5,
+    "weather_score": 51.6,
     "rain_risk_games": 3
   },
   {
@@ -5993,14 +5993,14 @@
         "park_notes": "Dome; no weather factor",
         "weather": {
           "rain_pct": 20,
-          "temp_f": 82.7,
+          "temp_f": 83.7,
           "wind_mph": 5.4,
           "wind_deg": 100,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.2
+        "weather_score": 97.4
       },
       {
         "game_pk": 822936,
@@ -6148,14 +6148,14 @@
         "park_notes": "Slight hitter lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 75.0,
+          "temp_f": 78.2,
           "wind_mph": 6.6,
           "wind_deg": 269,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 31.2
+        "weather_score": 32.0
       },
       {
         "game_pk": 824874,
@@ -6206,7 +6206,7 @@
     "park_score": 50.3,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 60.1,
+    "weather_score": 60.2,
     "rain_risk_games": 2
   },
   {
@@ -6307,14 +6307,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 69.0,
+          "temp_f": 75.2,
           "wind_mph": 3.3,
           "wind_deg": 32,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.8
+        "weather_score": 100
       },
       {
         "game_pk": 823011,
@@ -6458,14 +6458,14 @@
         "park_notes": "Foul territory hurts; decent HR",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 59.1,
-          "wind_mph": 4.2,
-          "wind_deg": 208,
+          "temp_f": 61.2,
+          "wind_mph": 4.5,
+          "wind_deg": 218,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 97.3
+        "weather_score": 97.8
       },
       {
         "game_pk": 824961,
@@ -6516,7 +6516,7 @@
     "park_score": 65.4,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 82.5,
+    "weather_score": 82.6,
     "rain_risk_games": 0
   },
   {
@@ -6609,14 +6609,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -6667,7 +6667,7 @@
     "park_score": 48.1,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 71.4,
+    "weather_score": 71.5,
     "rain_risk_games": 1
   },
   {
@@ -6760,14 +6760,14 @@
         "park_notes": "Dome; neutral HR factor",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 63.2,
+          "temp_f": 65.9,
           "wind_mph": 5.0,
           "wind_deg": 307,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 41.0
+        "weather_score": 41.7
       },
       {
         "game_pk": 822770,
@@ -6818,7 +6818,7 @@
     "park_score": 44.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 72.2,
+    "weather_score": 72.4,
     "rain_risk_games": 1
   },
   {
@@ -6911,14 +6911,14 @@
         "park_notes": "Dome; neutral HR factor",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 63.2,
+          "temp_f": 65.9,
           "wind_mph": 5.0,
           "wind_deg": 307,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 41.0
+        "weather_score": 41.7
       },
       {
         "game_pk": 822770,
@@ -6969,7 +6969,7 @@
     "park_score": 44.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 72.2,
+    "weather_score": 72.4,
     "rain_risk_games": 1
   },
   {
@@ -7062,14 +7062,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -7120,7 +7120,7 @@
     "park_score": 48.1,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 71.4,
+    "weather_score": 71.5,
     "rain_risk_games": 1
   },
   {
@@ -7213,14 +7213,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -7271,7 +7271,7 @@
     "park_score": 48.1,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 71.4,
+    "weather_score": 71.5,
     "rain_risk_games": 1
   },
   {
@@ -7364,14 +7364,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -7422,7 +7422,7 @@
     "park_score": 48.1,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 71.4,
+    "weather_score": 71.5,
     "rain_risk_games": 1
   },
   {
@@ -7515,14 +7515,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -7573,7 +7573,7 @@
     "park_score": 48.1,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 71.4,
+    "weather_score": 71.5,
     "rain_risk_games": 1
   },
   {
@@ -7666,14 +7666,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -7724,7 +7724,7 @@
     "park_score": 48.1,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 71.4,
+    "weather_score": 71.5,
     "rain_risk_games": 1
   },
   {
@@ -7817,14 +7817,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823582,
@@ -7875,7 +7875,7 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "weather_score": 62.3,
+    "weather_score": 62.5,
     "rain_risk_games": 2
   },
   {
@@ -7968,14 +7968,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823582,
@@ -8026,7 +8026,7 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "weather_score": 62.3,
+    "weather_score": 62.5,
     "rain_risk_games": 2
   },
   {
@@ -8119,14 +8119,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823582,
@@ -8177,7 +8177,7 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "weather_score": 62.3,
+    "weather_score": 62.5,
     "rain_risk_games": 2
   },
   {
@@ -8270,7 +8270,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -8421,7 +8421,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -8572,7 +8572,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -8723,14 +8723,14 @@
         "park_notes": "Dome; no weather factor",
         "weather": {
           "rain_pct": 20,
-          "temp_f": 82.7,
+          "temp_f": 83.7,
           "wind_mph": 5.4,
           "wind_deg": 100,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.2
+        "weather_score": 97.4
       },
       {
         "game_pk": 822936,
@@ -8874,14 +8874,14 @@
         "park_notes": "Foul territory hurts; decent HR",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 59.1,
-          "wind_mph": 4.2,
-          "wind_deg": 208,
+          "temp_f": 61.2,
+          "wind_mph": 4.5,
+          "wind_deg": 218,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 97.3
+        "weather_score": 97.8
       },
       {
         "game_pk": 824961,
@@ -8932,7 +8932,7 @@
     "park_score": 56.8,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 60.0,
+    "weather_score": 60.1,
     "rain_risk_games": 2
   },
   {
@@ -9025,14 +9025,14 @@
         "park_notes": "Wind-dependent; can be great or awful",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.8,
-          "wind_mph": 5.3,
-          "wind_deg": 340,
+          "temp_f": 69.7,
+          "wind_mph": 10.8,
+          "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 99.9
       },
       {
         "game_pk": 824637,
@@ -9083,7 +9083,7 @@
     "park_score": 49.2,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "weather_score": 83.0,
+    "weather_score": 83.1,
     "rain_risk_games": 0
   },
   {
@@ -9176,14 +9176,14 @@
         "park_notes": "Dome; neutral HR factor",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 63.2,
+          "temp_f": 65.9,
           "wind_mph": 5.0,
           "wind_deg": 307,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 41.0
+        "weather_score": 41.7
       },
       {
         "game_pk": 822770,
@@ -9234,7 +9234,7 @@
     "park_score": 48.1,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 51.5,
+    "weather_score": 51.6,
     "rain_risk_games": 3
   },
   {
@@ -9327,14 +9327,14 @@
         "park_notes": "Foul territory hurts; decent HR",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 59.1,
-          "wind_mph": 4.2,
-          "wind_deg": 208,
+          "temp_f": 61.2,
+          "wind_mph": 4.5,
+          "wind_deg": 218,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 97.3
+        "weather_score": 97.8
       },
       {
         "game_pk": 824961,
@@ -9385,7 +9385,7 @@
     "park_score": 56.8,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 60.0,
+    "weather_score": 60.1,
     "rain_risk_games": 2
   },
   {
@@ -9478,14 +9478,14 @@
         "park_notes": "Foul territory hurts; decent HR",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 59.1,
-          "wind_mph": 4.2,
-          "wind_deg": 208,
+          "temp_f": 61.2,
+          "wind_mph": 4.5,
+          "wind_deg": 218,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 97.3
+        "weather_score": 97.8
       },
       {
         "game_pk": 824961,
@@ -9536,7 +9536,7 @@
     "park_score": 56.8,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 60.0,
+    "weather_score": 60.1,
     "rain_risk_games": 2
   },
   {
@@ -9629,7 +9629,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -9780,14 +9780,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 65.6,
-          "wind_mph": 6.1,
-          "wind_deg": 219,
+          "temp_f": 69.2,
+          "wind_mph": 7.7,
+          "wind_deg": 237,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 41.6
+        "weather_score": 42.5
       },
       {
         "game_pk": 824392,
@@ -9838,7 +9838,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "weather_score": 73.6,
+    "weather_score": 73.8,
     "rain_risk_games": 1
   },
   {
@@ -9939,14 +9939,14 @@
         "park_notes": "Retractable roof; slight hitter lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 64.4,
-          "wind_mph": 9.6,
-          "wind_deg": 44,
+          "temp_f": 66.1,
+          "wind_mph": 11.2,
+          "wind_deg": 34,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 98.6
+        "weather_score": 99.0
       },
       {
         "game_pk": 823741,
@@ -9997,7 +9997,7 @@
     "park_score": 49.1,
     "best_park_game": "American Family Field",
     "best_park_factor": 102,
-    "weather_score": 73.2,
+    "weather_score": 73.3,
     "rain_risk_games": 1
   },
   {
@@ -10098,14 +10098,14 @@
         "park_notes": "Retractable roof; slight hitter lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 64.4,
-          "wind_mph": 9.6,
-          "wind_deg": 44,
+          "temp_f": 66.1,
+          "wind_mph": 11.2,
+          "wind_deg": 34,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 98.6
+        "weather_score": 99.0
       },
       {
         "game_pk": 823741,
@@ -10156,7 +10156,7 @@
     "park_score": 49.1,
     "best_park_game": "American Family Field",
     "best_park_factor": 102,
-    "weather_score": 73.2,
+    "weather_score": 73.3,
     "rain_risk_games": 1
   },
   {
@@ -10249,14 +10249,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823582,
@@ -10307,7 +10307,7 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "weather_score": 62.3,
+    "weather_score": 62.5,
     "rain_risk_games": 2
   },
   {
@@ -10412,14 +10412,14 @@
         "park_notes": "Retractable roof; slight hitter lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 64.4,
-          "wind_mph": 9.6,
-          "wind_deg": 44,
+          "temp_f": 66.1,
+          "wind_mph": 11.2,
+          "wind_deg": 34,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 98.6
+        "weather_score": 99.0
       },
       {
         "game_pk": 823741,
@@ -10563,14 +10563,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -10621,7 +10621,7 @@
     "park_score": 45.9,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "weather_score": 81.7,
+    "weather_score": 81.8,
     "rain_risk_games": 0
   },
   {
@@ -10714,14 +10714,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.7,
+          "temp_f": 71.0,
           "wind_mph": 4.2,
           "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 100
       },
       {
         "game_pk": 824230,
@@ -10772,7 +10772,7 @@
     "park_score": 45.9,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "weather_score": 81.7,
+    "weather_score": 81.8,
     "rain_risk_games": 0
   },
   {
@@ -10877,14 +10877,14 @@
         "park_notes": "Retractable roof; slight hitter lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 64.4,
-          "wind_mph": 9.6,
-          "wind_deg": 44,
+          "temp_f": 66.1,
+          "wind_mph": 11.2,
+          "wind_deg": 34,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 98.6
+        "weather_score": 99.0
       },
       {
         "game_pk": 823741,
@@ -11040,14 +11040,14 @@
         "park_notes": "Retractable roof; slight hitter lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 64.4,
-          "wind_mph": 9.6,
-          "wind_deg": 44,
+          "temp_f": 66.1,
+          "wind_mph": 11.2,
+          "wind_deg": 34,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 98.6
+        "weather_score": 99.0
       },
       {
         "game_pk": 823741,
@@ -11203,14 +11203,14 @@
         "park_notes": "Retractable roof; slight hitter lean",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 64.4,
-          "wind_mph": 9.6,
-          "wind_deg": 44,
+          "temp_f": 66.1,
+          "wind_mph": 11.2,
+          "wind_deg": 34,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 98.6
+        "weather_score": 99.0
       },
       {
         "game_pk": 823741,
@@ -11358,7 +11358,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -11509,14 +11509,14 @@
         "park_notes": "Dome; neutral HR factor",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 63.2,
+          "temp_f": 65.9,
           "wind_mph": 5.0,
           "wind_deg": 307,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 41.0
+        "weather_score": 41.7
       },
       {
         "game_pk": 822770,
@@ -11567,7 +11567,7 @@
     "park_score": 44.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 72.2,
+    "weather_score": 72.4,
     "rain_risk_games": 1
   },
   {
@@ -11664,7 +11664,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -11815,14 +11815,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 65.6,
-          "wind_mph": 6.1,
-          "wind_deg": 219,
+          "temp_f": 69.2,
+          "wind_mph": 7.7,
+          "wind_deg": 237,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 41.6
+        "weather_score": 42.5
       },
       {
         "game_pk": 824392,
@@ -11873,7 +11873,7 @@
     "park_score": 45.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 51.6,
+    "weather_score": 51.8,
     "rain_risk_games": 3
   },
   {
@@ -11966,14 +11966,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 65.6,
-          "wind_mph": 6.1,
-          "wind_deg": 219,
+          "temp_f": 69.2,
+          "wind_mph": 7.7,
+          "wind_deg": 237,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 41.6
+        "weather_score": 42.5
       },
       {
         "game_pk": 824392,
@@ -12024,7 +12024,7 @@
     "park_score": 45.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 51.6,
+    "weather_score": 51.8,
     "rain_risk_games": 3
   },
   {
@@ -12117,14 +12117,14 @@
         "park_notes": "Dome; no weather factor",
         "weather": {
           "rain_pct": 20,
-          "temp_f": 82.7,
+          "temp_f": 83.7,
           "wind_mph": 5.4,
           "wind_deg": 100,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.2
+        "weather_score": 97.4
       },
       {
         "game_pk": 822936,
@@ -12276,14 +12276,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 69.0,
+          "temp_f": 75.2,
           "wind_mph": 3.3,
           "wind_deg": 32,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.8
+        "weather_score": 100
       },
       {
         "game_pk": 823011,
@@ -12427,14 +12427,14 @@
         "park_notes": "Dome; neutral HR factor",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 63.2,
+          "temp_f": 65.9,
           "wind_mph": 5.0,
           "wind_deg": 307,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 41.0
+        "weather_score": 41.7
       },
       {
         "game_pk": 822770,
@@ -12485,7 +12485,7 @@
     "park_score": 44.9,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "weather_score": 72.2,
+    "weather_score": 72.4,
     "rain_risk_games": 1
   },
   {
@@ -12578,14 +12578,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 65.6,
-          "wind_mph": 6.1,
-          "wind_deg": 219,
+          "temp_f": 69.2,
+          "wind_mph": 7.7,
+          "wind_deg": 237,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 41.6
+        "weather_score": 42.5
       },
       {
         "game_pk": 824392,
@@ -12636,7 +12636,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "weather_score": 73.6,
+    "weather_score": 73.8,
     "rain_risk_games": 1
   },
   {
@@ -12729,14 +12729,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 65.6,
-          "wind_mph": 6.1,
-          "wind_deg": 219,
+          "temp_f": 69.2,
+          "wind_mph": 7.7,
+          "wind_deg": 237,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 41.6
+        "weather_score": 42.5
       },
       {
         "game_pk": 824392,
@@ -12787,7 +12787,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "weather_score": 73.6,
+    "weather_score": 73.8,
     "rain_risk_games": 1
   },
   {
@@ -12880,14 +12880,14 @@
         "park_notes": "Dome; no weather factor",
         "weather": {
           "rain_pct": 20,
-          "temp_f": 82.7,
+          "temp_f": 83.7,
           "wind_mph": 5.4,
           "wind_deg": 100,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.2
+        "weather_score": 97.4
       },
       {
         "game_pk": 822936,
@@ -13031,14 +13031,14 @@
         "park_notes": "Dome; no weather factor",
         "weather": {
           "rain_pct": 20,
-          "temp_f": 82.7,
+          "temp_f": 83.7,
           "wind_mph": 5.4,
           "wind_deg": 100,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.2
+        "weather_score": 97.4
       },
       {
         "game_pk": 822936,
@@ -13186,7 +13186,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -13337,14 +13337,14 @@
         "park_notes": "Wind-dependent; can be great or awful",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.8,
-          "wind_mph": 5.3,
-          "wind_deg": 340,
+          "temp_f": 69.7,
+          "wind_mph": 10.8,
+          "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 99.9
       },
       {
         "game_pk": 824637,
@@ -13395,7 +13395,7 @@
     "park_score": 28.6,
     "best_park_game": "Wrigley Field",
     "best_park_factor": 95,
-    "weather_score": 81.9,
+    "weather_score": 82.0,
     "rain_risk_games": 0
   },
   {
@@ -13488,14 +13488,14 @@
         "park_notes": "Wind-dependent; can be great or awful",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.8,
-          "wind_mph": 5.3,
-          "wind_deg": 340,
+          "temp_f": 69.7,
+          "wind_mph": 10.8,
+          "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 99.9
       },
       {
         "game_pk": 824637,
@@ -13546,7 +13546,7 @@
     "park_score": 28.6,
     "best_park_game": "Wrigley Field",
     "best_park_factor": 95,
-    "weather_score": 81.9,
+    "weather_score": 82.0,
     "rain_risk_games": 0
   },
   {
@@ -13643,7 +13643,7 @@
         "park_notes": "Neutral, marine layer",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 78.0,
+          "temp_f": 79.1,
           "wind_mph": 3.3,
           "wind_deg": 213,
           "wind_out": false,
@@ -13794,14 +13794,14 @@
         "park_notes": "Foul territory hurts; decent HR",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 59.1,
-          "wind_mph": 4.2,
-          "wind_deg": 208,
+          "temp_f": 61.2,
+          "wind_mph": 4.5,
+          "wind_deg": 218,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clear"
         },
-        "weather_score": 97.3
+        "weather_score": 97.8
       },
       {
         "game_pk": 824961,
@@ -13852,7 +13852,7 @@
     "park_score": 65.4,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 82.5,
+    "weather_score": 82.6,
     "rain_risk_games": 0
   },
   {
@@ -13945,14 +13945,14 @@
         "park_notes": "Wind-dependent; can be great or awful",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 66.8,
-          "wind_mph": 5.3,
-          "wind_deg": 340,
+          "temp_f": 69.7,
+          "wind_mph": 10.8,
+          "wind_deg": 21,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.2
+        "weather_score": 99.9
       },
       {
         "game_pk": 824637,
@@ -14003,7 +14003,7 @@
     "park_score": 49.2,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "weather_score": 83.0,
+    "weather_score": 83.1,
     "rain_risk_games": 0
   },
   {
@@ -14024,7 +14024,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14046,7 +14050,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 680694,
+          "name": "Kyle Bradish",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14068,7 +14076,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Busch Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669432,
+          "name": "Trevor Rogers",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14096,14 +14108,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 69.0,
+          "temp_f": 75.2,
           "wind_mph": 3.3,
           "wind_deg": 32,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 99.8
+        "weather_score": 100
       },
       {
         "game_pk": 823011,
@@ -14154,7 +14166,7 @@
     "park_score": 48.1,
     "best_park_game": "Busch Stadium",
     "best_park_factor": 100,
-    "weather_score": 60.4,
+    "weather_score": 60.5,
     "rain_risk_games": 2
   },
   {
@@ -14251,14 +14263,14 @@
         "park_notes": "Slight hitter lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 75.0,
+          "temp_f": 78.2,
           "wind_mph": 6.6,
           "wind_deg": 269,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Clouds"
         },
-        "weather_score": 31.2
+        "weather_score": 32.0
       },
       {
         "game_pk": 824874,
@@ -14309,7 +14321,7 @@
     "park_score": 50.3,
     "best_park_game": "Truist Park",
     "best_park_factor": 101,
-    "weather_score": 60.1,
+    "weather_score": 60.2,
     "rain_risk_games": 2
   },
   {
@@ -14402,14 +14414,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823582,
@@ -14460,7 +14472,7 @@
     "park_score": 56.8,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 62.3,
+    "weather_score": 62.5,
     "rain_risk_games": 2
   },
   {
@@ -14553,14 +14565,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 57.9,
-          "wind_mph": 4.6,
-          "wind_deg": 75,
+          "temp_f": 62.4,
+          "wind_mph": 4.8,
+          "wind_deg": 92,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.0
+        "weather_score": 98.1
       },
       {
         "game_pk": 823665,
@@ -14611,7 +14623,7 @@
     "park_score": 56.8,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 82.5,
+    "weather_score": 82.6,
     "rain_risk_games": 0
   },
   {
@@ -14704,14 +14716,14 @@
         "park_notes": "Slight pitcher lean",
         "weather": {
           "rain_pct": 100,
-          "temp_f": 72.6,
+          "temp_f": 75.4,
           "wind_mph": 6.2,
           "wind_deg": 239,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 30.6
+        "weather_score": 31.4
       },
       {
         "game_pk": 823582,
@@ -14762,7 +14774,7 @@
     "park_score": 56.8,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "weather_score": 62.3,
+    "weather_score": 62.5,
     "rain_risk_games": 2
   },
   {
@@ -14855,14 +14867,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 0,
-          "temp_f": 57.9,
-          "wind_mph": 4.6,
-          "wind_deg": 75,
+          "temp_f": 62.4,
+          "wind_mph": 4.8,
+          "wind_deg": 92,
           "wind_out": false,
           "rain_risk": false,
           "conditions": "Clouds"
         },
-        "weather_score": 97.0
+        "weather_score": 98.1
       },
       {
         "game_pk": 823665,
@@ -14913,7 +14925,7 @@
     "park_score": 56.8,
     "best_park_game": "Sutter Health Park",
     "best_park_factor": 108,
-    "weather_score": 82.5,
+    "weather_score": 82.6,
     "rain_risk_games": 0
   },
   {
@@ -15006,14 +15018,14 @@
         "park_notes": "Neutral",
         "weather": {
           "rain_pct": 83,
-          "temp_f": 65.6,
-          "wind_mph": 6.1,
-          "wind_deg": 219,
+          "temp_f": 69.2,
+          "wind_mph": 7.7,
+          "wind_deg": 237,
           "wind_out": false,
           "rain_risk": true,
           "conditions": "Rain"
         },
-        "weather_score": 41.6
+        "weather_score": 42.5
       },
       {
         "game_pk": 824392,
@@ -15064,7 +15076,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "weather_score": 73.6,
+    "weather_score": 73.8,
     "rain_risk_games": 1
   }
 ]
