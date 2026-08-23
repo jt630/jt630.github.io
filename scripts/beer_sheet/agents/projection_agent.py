@@ -18,9 +18,48 @@ The projection itself is a HYBRID of three signals:
                           collectively price in beat-writer noise and camp
                           reports faster than any single projection source.
 
-Rookies have no prior season to regress toward, so their prior_actual weight is
-redistributed onto the ESPN projection rather than counted as zero — otherwise
-every rookie would be systematically crushed.
+PRIOR-SEASON PRODUCTION IS RATE-BASED, NOT A SEASON TOTAL. A raw season point
+total conflates two different things: how well a player produced per game,
+and how many games he was healthy enough to play. Those are not the same
+signal, and only the first one belongs in a forward-looking projection — a
+player's per-game rate says something about his talent and role next season;
+the games he missed to injury already happened and, barring a lingering
+issue reflected in his current injury_status, tell us nothing about next
+season. Blending the raw total in punishes an elite player a second time for
+an injury that is already in the past: a back who was RB1-good for 10 games
+and then tore an ACL ends up looking, by season total, like a mediocre
+committee back, which is a strictly worse estimate of his 2026 per-game
+value than just measuring the 10 healthy games. So `prior_points` (the raw
+season total, kept for auditability) is converted to a per-game rate and
+scaled back up to a full expected season (config.GAMES_PER_SEASON) before
+it enters the blend, stored separately as `prior_points_scaled`. Games
+played comes from ESPN raw stat component id "210" on the prior-season
+actual entry — verified empirically against known players (iron men show
+17, players with well-documented season-ending injuries show a low count
+matching reported games missed; see the investigation in `run()`/git
+history for the evidence).
+
+A tiny sample is mostly noise, not signal — a player with 1-2 games played
+has a per-game rate that swings wildly on small-sample variance, so
+`config.PRIOR_SEASON_MIN_GAMES` gates whether the rate is trusted at all.
+`has_usable_prior` records whether a player cleared that bar, and it is
+what actually drives the blend redistribution below (NOT `is_rookie` —
+those are different questions: `is_rookie` means "no NFL history", which
+this module now infers from the presence of any prior-season stat entry at
+all rather than from a zero point total. The old `prior_points <= 0.0`
+definition wrongly called a healthy veteran a rookie whenever he missed a
+full season to injury — Jonathon Brooks and Tank Dell, both several years
+into their careers and both out all of last season on the same ACL, are
+real examples in this data. `has_usable_prior` is the correct trigger for
+redistribution because it also catches an established veteran who simply
+didn't play enough last season to trust a rate from, which `is_rookie`
+never could.
+
+Players with no usable prior sample (rookies AND injury-shortened
+veterans alike) have nothing reliable to regress toward, so their
+prior_actual weight is redistributed onto the ESPN projection rather than
+counted as zero — otherwise they would be systematically crushed by a
+signal that isn't there.
 
 Kickers and defenses are a different animal: their scoring is field-goal
 distance and points-allowed tiers, which are not present in the offensive
@@ -40,7 +79,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from config import (
     SEASON, DATA_DIR, INTERMEDIATE_DIR, STAT_MAP, POSITION_MAP,
-    SCORING, DEFAULT_SCORING, BLEND,
+    SCORING, DEFAULT_SCORING, BLEND, GAMES_PER_SEASON, PRIOR_SEASON_MIN_GAMES,
 )
 
 logger = logging.getLogger("projection_agent")
@@ -54,6 +93,18 @@ TEAMS_URL = (
 COMPONENT_BLIND = ("K", "DST")
 
 UNDRAFTED_ADP = 999.0
+
+# ESPN raw stat component id that carries games played on a season-actual
+# entry. Verified empirically (not documented by ESPN): iron-man players
+# (Christian McCaffrey, Ja'Marr Chase, Travis Kelce, Chase Brown — all
+# played every game in 2025) show exactly 17 here, while players with
+# well-documented season-altering injuries show a proportionally lower
+# count (Tyreek Hill, ACL Week 4 2025: 4; Justice Hill, missed roughly
+# half the season: 10; Chase Edmonds, active for almost none of it: 3).
+# That gradient — full-season players clustering at 17, injured players
+# landing at values matching their real games-missed counts — is what
+# confirms id 210 is games played rather than some other counting stat.
+GAMES_PLAYED_STAT_ID = "210"
 
 
 # -- Team / bye lookup --------------------------------------------------------
@@ -122,6 +173,29 @@ def _weekly(stats: list[dict], season: int, scoring: dict,
     return weeks
 
 
+def _games_played(prior_entry: dict | None) -> int:
+    """Games played on the prior-season actual entry (see GAMES_PLAYED_STAT_ID)."""
+    if not prior_entry:
+        return 0
+    raw = (prior_entry.get("stats") or {}).get(GAMES_PLAYED_STAT_ID)
+    return int(float(raw)) if raw else 0
+
+
+def _has_prior_history(stats: list[dict], prior_season: int) -> bool:
+    """
+    Best available "has NFL history" signal. ESPN's raw player payload has no
+    years_exp/draft-year field, so we fall back to: did this player have ANY
+    prior-season stat entry at all (regardless of source/split)? True 2026
+    rookies have zero entries for seasonId 2025 in this dataset. Crucially,
+    this is NOT the same test as "prior_points > 0" — an established veteran
+    who missed the entire prior season to injury (Jonathon Brooks, Tank
+    Dell) still has a prior-season entry recorded (with empty component
+    stats), so this correctly does NOT call them rookies, unlike the old
+    `prior_points <= 0.0` definition.
+    """
+    return any(e.get("seasonId") == prior_season for e in (stats or []))
+
+
 def _expert_ranks(player: dict, rank_type: str = "PPR") -> list[int]:
     """Individual expert source ranks — the raw material for disagreement."""
     ranks = []
@@ -178,6 +252,17 @@ def run(season: int = SEASON, league: dict | None = None) -> dict:
             prior_points = score_stats((prior_entry or {}).get("stats"), scoring, position, overrides)
             proj_stats = named_stats((proj_entry or {}).get("stats"))
 
+        # Rate-ize the prior season: total / games played * a full expected
+        # season, so injury-shortened production is compared on the same
+        # per-game basis as an iron-man's. See module docstring.
+        prior_games_played = _games_played(prior_entry)
+        has_usable_prior = prior_games_played >= PRIOR_SEASON_MIN_GAMES
+        prior_points_scaled = (
+            round(prior_points / prior_games_played * GAMES_PER_SEASON, 2)
+            if prior_games_played > 0 else 0.0
+        )
+        is_rookie = not _has_prior_history(stats, prior_season)
+
         ownership = p.get("ownership") or {}
         adp = ownership.get("averageDraftPosition")
         adp = float(adp) if adp and float(adp) > 0 else UNDRAFTED_ADP
@@ -191,10 +276,13 @@ def run(season: int = SEASON, league: dict | None = None) -> dict:
             "injury_status": p.get("injuryStatus", "ACTIVE"),
             "age": None,
             "espn_points": espn_points,
-            "prior_points": prior_points,
+            "prior_points": prior_points,               # raw prior-season TOTAL, kept for audit
+            "prior_points_scaled": prior_points_scaled,  # per-game rate scaled to a full season — blend input
+            "prior_games_played": prior_games_played,
+            "has_usable_prior": has_usable_prior,
             "market_points": 0.0,     # filled in second pass
             "proj_points": 0.0,       # filled in second pass
-            "is_rookie": prior_points <= 0.0,
+            "is_rookie": is_rookie,
             "component_blind": blind,
             "stats": proj_stats,
             "weekly_points": _weekly(stats, season, scoring, position, overrides),
@@ -284,8 +372,11 @@ def _apply_market_implied(players: list[dict]) -> None:
 def _blend(players: list[dict]) -> None:
     for p in players:
         w = dict(BLEND)
-        if p["is_rookie"]:
-            # Nothing to regress toward — hand that weight to the projection.
+        if not p["has_usable_prior"]:
+            # Not enough prior-season sample to trust a rate — hand that
+            # weight to the projection. Triggers on has_usable_prior, NOT
+            # is_rookie: an injury-shortened veteran season needs the same
+            # redistribution a rookie's blank slate does. See module docstring.
             w["espn_projection"] += w["prior_actual"]
             w["prior_actual"] = 0.0
         if p["component_blind"]:
@@ -295,7 +386,7 @@ def _blend(players: list[dict]) -> None:
 
         p["proj_points"] = round(
             p["espn_points"] * w["espn_projection"]
-            + p["prior_points"] * w["prior_actual"]
+            + p["prior_points_scaled"] * w["prior_actual"]
             + p["market_points"] * w["market_implied"],
             2,
         )
@@ -306,9 +397,10 @@ def _log_summary(players: list[dict]) -> None:
     logger.info("Positions: %s", dict(sorted(counts.items())))
     logger.info("Top 12 by our blended projection:")
     for p in players[:12]:
-        logger.info("  %-24s %-4s %-3s  proj %6.1f  (espn %6.1f  prior %6.1f  mkt %6.1f)  ADP %5.1f",
+        logger.info("  %-24s %-4s %-3s  proj %6.1f  (espn %6.1f  prior_scaled %6.1f [gp=%2d]  mkt %6.1f)  ADP %5.1f",
                     p["name"], p["team"], p["position"], p["proj_points"],
-                    p["espn_points"], p["prior_points"], p["market_points"], p["adp"])
+                    p["espn_points"], p["prior_points_scaled"], p["prior_games_played"],
+                    p["market_points"], p["adp"])
 
 
 if __name__ == "__main__":

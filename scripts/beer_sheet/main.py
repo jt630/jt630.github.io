@@ -31,6 +31,7 @@ from config import SEASON, DATA_DIR, INTERMEDIATE_DIR, ROSTER, DEFAULT_ROSTER
 import agents.fetch_agent as fetch_agent
 import agents.sleeper_agent as sleeper_agent
 import agents.projection_agent as projection_agent
+import agents.depth_chart_agent as depth_chart_agent
 import agents.value_agent as value_agent
 import agents.risk_agent as risk_agent
 import agents.tier_agent as tier_agent
@@ -89,6 +90,14 @@ def run_pipeline(args) -> dict:
     _banner("PROJECTION AGENT — re-score to league rules, blend signals")
     projections = projection_agent.run(args.season, league)
 
+    _banner("DEPTH CHART AGENT — roles, Sleeper injury detail, team tendency")
+    try:
+        depth = depth_chart_agent.run(projections, force_refresh=not args.skip_fetch)
+    except Exception as exc:
+        # A depth-chart failure must never cost us the board on draft day.
+        logger.error("Depth chart stage failed (%s) — continuing without roles", exc)
+        depth = {"players": {}, "team_tendency": {}}
+
     _banner("VALUE AGENT — replacement levels, VOR, auction values")
     values = value_agent.run(projections, roster)
 
@@ -99,7 +108,7 @@ def run_pipeline(args) -> dict:
     tiers = tier_agent.run(projections, values)
 
     _banner("SHEET AGENT — final board")
-    board = sheet_agent.run(projections, values, risk, tiers, league, args.board_size)
+    board = sheet_agent.run(projections, values, risk, tiers, league, args.board_size, depth)
 
     return board
 

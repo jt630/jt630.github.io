@@ -1,0 +1,52 @@
+# ─────────────────────────────────────────────────────────────────────────
+# BEER SHEET BLACKLIST — the "do not draft" / "hurt list" file.
+#
+# HOW TO ADD A PLAYER (10 seconds, draft-morning speed):
+#   1. Copy one of the commented example lines below (or the blank template).
+#   2. Remove the leading "# ".
+#   3. Type the player's name — spelling doesn't have to be perfect. Matching
+#      is case-insensitive and ignores punctuation, accents, and suffixes
+#      (Jr/Sr/II/III/IV), so "ja'marr chase" and "Jamarr Chase" both match
+#      "Ja'Marr Chase" on the board.
+#   4. Save. Next pipeline run picks it up automatically — no code changes,
+#      no restart needed.
+#
+# If a name you typed doesn't match anyone on the board, the pipeline logs a
+# loud warning ("blacklist entry matched NO player") instead of failing
+# silently. Check the run log if a player you blacklisted still shows up.
+#
+# SEVERITY — pick one:
+#   EXCLUDE  Removed from the board entirely. Use for players you never want
+#            to see again (retired, suspended indefinitely, roster cut).
+#            A real player gets promoted into their spot so the sheet always
+#            has a full board.
+#   FADE     Stays on the board, but visibly flagged/negated and dropped from
+#            the "bargains" list. Use for injured-but-still-worth-a-late-
+#            stash guys — you want the info, just not the recommendation.
+#
+# TEMPLATE:
+#   - name: "Player Name"
+#     severity: EXCLUDE
+#     reason: "why"
+#
+# EXAMPLES (uncomment to use):
+#   - name: "Christian McCaffrey"
+#     severity: EXCLUDE
+#     reason: "holding out, not playing this season"
+#   - name: "Tyreek Hill"
+#     severity: FADE
+#     reason: "personal fade, keep on board as a late dart throw"
+# ─────────────────────────────────────────────────────────────────────────
+
+players:
+  # - name: "Player Name"
+  #   severity: EXCLUDE
+  #   reason: "why"
+
+# Auto-flagging: players whose injury_status matches one of these get
+# severity applied automatically, so you don't have to remember to type
+# them in yourself. Set enabled: false to turn this off entirely.
+auto_flag:
+  enabled: true
+  statuses: [OUT, INJURY_RESERVE, SUSPENSION]
+  severity: FADE

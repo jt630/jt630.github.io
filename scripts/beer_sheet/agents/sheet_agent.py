@@ -23,6 +23,7 @@ import logging
 from datetime import datetime, timezone
 
 from config import DATA_DIR, OUTPUT_FILE
+import agents.blacklist_agent as blacklist_agent
 
 logger = logging.getLogger("sheet_agent")
 
@@ -71,11 +72,14 @@ def starters_summary(roster: dict) -> str:
 
 
 def run(projections: dict, values: dict, risk: dict, tiers: dict,
-        league: dict, board_size: int = BOARD_SIZE) -> dict:
+        league: dict, board_size: int = BOARD_SIZE,
+        depth: dict | None = None) -> dict:
     by_id = {p["player_id"]: p for p in projections["players"]}
     value_by_id = {v["player_id"]: v for v in values["players"]}
     risk_by_id = {r["player_id"]: r for r in risk["players"]}
     tier_by_id = {t["player_id"]: t for t in tiers["players"]}
+    depth_players = (depth or {}).get("players") or {}
+    depth_by_id = {int(k): v for k, v in depth_players.items()} if depth_players else {}
 
     # ADP rank is what value_delta is measured against, so the sheet should be
     # able to show it directly rather than making the reader infer it.
@@ -109,6 +113,9 @@ def run(projections: dict, values: dict, risk: dict, tiers: dict,
             "outlook": proj["outlook"][:280],
 
             "vor": value["vor"],
+            # Undiscounted VOR, preserved so the K/DST confidence discount
+            # stays auditable rather than silently rewriting the number.
+            "vor_raw": value.get("vor_raw", value["vor"]),
             "vor_rank": value["vor_rank"],
             "pos_rank": value["pos_rank"],
             "auction_value": value["auction_value"],
@@ -116,6 +123,9 @@ def run(projections: dict, values: dict, risk: dict, tiers: dict,
 
             "adp": proj["adp"],
             "adp_rank": adp_rank_by_id.get(pid, 0),
+            # False when ADP is untrustworthy (outside the pool window, or
+            # inside ESPN's compressed band). value_delta is meaningless then.
+            "has_real_adp": value.get("has_real_adp", False),
             "auction_value_market": proj["auction_value_market"],
 
             "risk_score": r.get("risk_score", 0.0),
@@ -125,12 +135,29 @@ def run(projections: dict, values: dict, risk: dict, tiers: dict,
             "rank_disagreement": r.get("rank_disagreement", 0.0),
             "risk_notes": r.get("risk_notes", []),
 
+            # Depth chart: does he actually have a job? A backup with a good
+            # projection and a starter with the same projection are not the
+            # same asset.
+            "role": depth_by_id.get(pid, {}).get("role", "UNKNOWN"),
+            "depth_chart_order": depth_by_id.get(pid, {}).get("depth_chart_order"),
+            "sleeper_injury_status": depth_by_id.get(pid, {}).get("sleeper_injury_status"),
+            "injury_body_part": depth_by_id.get(pid, {}).get("injury_body_part"),
+            "practice_participation": depth_by_id.get(pid, {}).get("practice_participation"),
+            "age": depth_by_id.get(pid, {}).get("age"),
+
             "tier": t.get("tier", 0),
             "tier_label": t.get("tier_label", ""),
             "tier_break_after": t.get("tier_break_after", False),
         })
 
     merged.sort(key=lambda p: p["vor_rank"])
+
+    # Blacklist runs BEFORE truncation: an EXCLUDE drops a player from the
+    # pool entirely so a real player is promoted into the board rather than
+    # leaving a hole at the bottom. FADE players stay in `merged` (flagged)
+    # and ride along through truncation normally.
+    merged, blacklist_summary = blacklist_agent.apply(merged)
+
     board_players = merged[:board_size]
 
     # A tier break on the last surviving player of a truncated list is a lie —
@@ -154,8 +181,10 @@ def run(projections: dict, values: dict, risk: dict, tiers: dict,
         "replacement_levels": values["replacement_levels"],
         "replacement_ranks": values.get("replacement_ranks", {}),
         "tier_summary": tiers.get("tier_summary", {}),
+        "team_tendency": (depth or {}).get("team_tendency", {}),
         "board_size": len(board_players),
         "total_pool": len(merged),
+        "blacklist_summary": blacklist_summary,
         "players": board_players,
     }
 
@@ -183,16 +212,28 @@ def _log_summary(board: dict) -> None:
                     p["vor"], p["auction_value"], p["adp"], p["value_delta"],
                     p["tier_label"])
 
-    bargains = sorted((p for p in players[:150] if p["adp"] < UNDRAFTED_ADP),
-                      key=lambda p: -p["value_delta"])[:10]
-    logger.info("Biggest values vs. market (positive = market underrates):")
+    # Both lists are restricted to above-replacement players (vor > 0). A
+    # value_delta can only be a "bargain" or a "reach" for someone worth
+    # rostering in the first place — being under/overrated relative to other
+    # players nobody should draft either is not a signal, it's noise dressed
+    # up as one. See value_agent.compute_value_delta for the matching guard
+    # applied to the data itself (positive deltas are clamped to 0 for
+    # sub-replacement players so the rendered board can't highlight them
+    # green as buy signals).
+    # A blacklisted (faded) player is never a "value" — they're on the board
+    # but deliberately negated, so they're excluded from both lists here even
+    # though they remain in `players` (see blacklist_agent).
+    startable = [p for p in players[:150]
+                if p["adp"] < UNDRAFTED_ADP and p["vor"] > 0 and not p.get("blacklisted")]
+
+    bargains = sorted(startable, key=lambda p: -p["value_delta"])[:10]
+    logger.info("Biggest values vs. market (positive = market underrates, above-replacement only):")
     for p in bargains:
         logger.info("  %-24s %-3s  our #%-3d  ADP #%-3d  delta %+d",
                     p["name"], p["position"], p["vor_rank"], p["adp_rank"], p["value_delta"])
 
-    reaches = sorted((p for p in players[:150] if p["adp"] < UNDRAFTED_ADP),
-                     key=lambda p: p["value_delta"])[:10]
-    logger.info("Biggest reaches vs. market (negative = market overrates):")
+    reaches = sorted(startable, key=lambda p: p["value_delta"])[:10]
+    logger.info("Biggest reaches vs. market (negative = market overrates, above-replacement only):")
     for p in reaches:
         logger.info("  %-24s %-3s  our #%-3d  ADP #%-3d  delta %+d",
                     p["name"], p["position"], p["vor_rank"], p["adp_rank"], p["value_delta"])
