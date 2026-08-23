@@ -106,35 +106,40 @@ title = "Almond Farm"
     parent = "ops"
     weight = 1
   [[menu.main]]
+    name = "Beer Sheet"
+    url = "/beer-sheet/"
+    parent = "ops"
+    weight = 2
+  [[menu.main]]
     name = "Markets"
     url = "/markets/"
     parent = "ops"
-    weight = 2
+    weight = 3
   [[menu.main]]
     name = "Calendar"
     url = "/calendar/"
     parent = "ops"
-    weight = 3
+    weight = 4
   [[menu.main]]
     name = "APIs"
     url = "/apis/"
     parent = "ops"
-    weight = 4
+    weight = 5
   [[menu.main]]
     name = "Gadgets"
     url = "/gadgets/"
     parent = "ops"
-    weight = 5
+    weight = 6
   [[menu.main]]
     name = "Body"
     url = "/body/"
     parent = "ops"
-    weight = 6
+    weight = 7
   [[menu.main]]
     name = "Backpacking"
     url = "/backpacking/"
     parent = "ops"
-    weight = 7
+    weight = 8
 
 [taxonomies]
   tag = "tags"
