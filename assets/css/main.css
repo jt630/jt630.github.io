@@ -3054,12 +3054,16 @@ img {
   letter-spacing: 0.02em;
 }
 
-.bs-pos-QB  { background: rgba(255, 45, 138, 0.18); color: var(--pink-light); }
-.bs-pos-RB  { background: rgba(78, 203, 113, 0.18); color: #4ecb71; }
-.bs-pos-WR  { background: rgba(100, 200, 255, 0.18); color: #64c8ff; }
-.bs-pos-TE  { background: rgba(212, 175, 55, 0.18); color: var(--gold-light); }
-.bs-pos-K   { background: rgba(255, 165, 0, 0.18); color: #ffa500; }
-.bs-pos-DST { background: rgba(160, 160, 160, 0.18); color: #ccc; }
+/* Position badges MUST use the same palette as the player-name colours
+   (.bs-pos-name-*), because the legend swatches teach that palette. They
+   also must avoid pink and gold, which already mean injury severity and
+   risk level on this page -- a pink QB badge reads as an injury flag. */
+.bs-pos-QB  { background: rgba(176, 140, 255, 0.18); color: #B08CFF; }
+.bs-pos-RB  { background: rgba(78, 203, 113, 0.18); color: #4ECB71; }
+.bs-pos-WR  { background: rgba(86, 194, 255, 0.18); color: #56C2FF; }
+.bs-pos-TE  { background: rgba(45, 212, 191, 0.18); color: #2DD4BF; }
+.bs-pos-K   { background: rgba(176, 163, 149, 0.18); color: #B0A395; }
+.bs-pos-DST { background: rgba(154, 165, 184, 0.18); color: #9AA5B8; }
 
 /* ── Injury badge: graded by severity ──
    caution  = QUESTIONABLE / DOUBTFUL — visible but calm, gold (matches bs-risk-moderate)

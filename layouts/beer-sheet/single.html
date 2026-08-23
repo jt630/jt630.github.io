@@ -31,7 +31,7 @@
     <div class="bs-panel bs-panel--blacklist-summary">
       <h3>Blacklist &amp; fade summary</h3>
       <div class="bs-blacklist-stats">
-        <span class="bs-blacklist-stat">{{ .faded_count }} faded</span>
+        <span class="bs-blacklist-stat">{{ .faded_count }} faded <span class="bs-blacklist-note">(league-wide; only those inside the top {{ $board.board_size }} appear below)</span></span>
         <span class="bs-blacklist-stat">{{ .excluded_count }} excluded</span>
         <span class="bs-blacklist-stat">{{ .auto_flagged_count }} auto-flagged</span>
       </div>
@@ -137,7 +137,7 @@
             data-pos="{{ .position }}"
             data-injury="{{ if $sev }}{{ $sev }}{{ else }}none{{ end }}"
             data-blacklisted="{{ if .blacklisted }}true{{ else }}false{{ end }}"
-            data-player-id="{{ .player_id }}">
+            data-player-id="{{ printf "%.0f" .player_id }}">
           <td class="bs-col-tier"><span class="bs-tier-chip">{{ .tier_label }}</span></td>
           <td class="bs-col-rank">{{ .vor_rank }}</td>
           <td class="bs-col-name">
@@ -183,7 +183,7 @@
          data-pos="{{ .position }}"
          data-injury="{{ if $sev }}{{ $sev }}{{ else }}none{{ end }}"
          data-blacklisted="{{ if .blacklisted }}true{{ else }}false{{ end }}"
-         data-player-id="{{ .player_id }}">
+         data-player-id="{{ printf "%.0f" .player_id }}">
       <div class="bs-card-top">
         <span class="bs-check" aria-hidden="true">&check;</span>
         <span class="bs-tier-chip">{{ .tier_label }}</span>
