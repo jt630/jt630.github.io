@@ -1,0 +1,249 @@
+{{ define "main" }}
+{{ $board := .Site.Data.beer_sheet.board }}
+{{ $league := $board.league }}
+
+<div class="bs-page">
+
+  <!-- ── Header ── -->
+  <div class="bs-header">
+    <div class="bs-title-row">
+      <h1 class="bs-title">BEER SHEET</h1>
+      <span class="bs-badge-new blink">DRAFT DAY</span>
+    </div>
+    <p class="bs-subtitle">{{ with $league.name }}{{ . }}{{ else }}Fantasy Draft Board{{ end }}</p>
+    <div class="bs-meta-row">
+      <span class="bs-league-chip">{{ $league.teams }} teams</span>
+      <span class="bs-league-chip">{{ $league.scoring_summary }}</span>
+      <span class="bs-league-chip">{{ $league.starters }}</span>
+      <span class="bs-updated">Updated: {{ $board.generated_at | dateFormat "Jan 2, 2006 3:04 PM UTC" }}</span>
+    </div>
+  </div>
+
+  <!-- ── Controls: position filter + drafted reset ── -->
+  <div class="bs-controls">
+    <div class="bs-filters" role="group" aria-label="Filter by position">
+      <button class="bs-filter-btn bs-filter-active" data-pos="ALL">ALL</button>
+      <button class="bs-filter-btn" data-pos="QB">QB</button>
+      <button class="bs-filter-btn" data-pos="RB">RB</button>
+      <button class="bs-filter-btn" data-pos="WR">WR</button>
+      <button class="bs-filter-btn" data-pos="TE">TE</button>
+      <button class="bs-filter-btn" data-pos="K">K</button>
+      <button class="bs-filter-btn" data-pos="DST">DST</button>
+    </div>
+    <div class="bs-injury-filters" role="group" aria-label="Filter by injury status">
+      <button class="bs-filter-btn bs-filter-active" data-injury-filter="all">ALL HEALTH</button>
+      <button class="bs-filter-btn" data-injury-filter="hide">HIDE INJURED</button>
+      <button class="bs-filter-btn" data-injury-filter="only">INJURED ONLY</button>
+    </div>
+    <div class="bs-drafted-controls">
+      <label class="bs-hide-drafted-toggle">
+        <input type="checkbox" id="bs-hide-drafted">
+        Hide drafted
+      </label>
+      <button class="bs-reset-btn" id="bs-reset-drafted">Reset drafted</button>
+    </div>
+  </div>
+
+  <!-- ── Legend ── -->
+  <div class="bs-legend">
+    <span class="bs-legend-label">Value &Delta; = ADP rank &minus; our rank</span>
+    <span class="bs-legend-chip bs-legend-pos">&uarr; positive = bargain</span>
+    <span class="bs-legend-chip bs-legend-neg">&darr; negative = reach</span>
+    <span class="bs-legend-chip bs-risk-chip bs-risk-safe">SAFE</span>
+    <span class="bs-legend-chip bs-risk-chip bs-risk-moderate">MODERATE</span>
+    <span class="bs-legend-chip bs-risk-chip bs-risk-volatile">VOLATILE</span>
+    <span class="bs-legend-label bs-legend-injury-label">Injury:</span>
+    <span class="bs-legend-chip bs-injury-badge bs-injury-badge--severe">OUT / IR / SUSPENDED &mdash; row flagged</span>
+    <span class="bs-legend-chip bs-injury-badge bs-injury-badge--caution">QUESTIONABLE / DOUBTFUL</span>
+  </div>
+
+  <!-- ── Desktop table ── -->
+  <div class="bs-table-wrap">
+    <table class="bs-table">
+      <thead>
+        <tr>
+          <th class="bs-col-tier">Tier</th>
+          <th class="bs-col-rank">Rk</th>
+          <th class="bs-col-name">Player</th>
+          <th class="bs-col-team">Tm</th>
+          <th class="bs-col-bye">Bye</th>
+          <th class="bs-col-pos">Pos</th>
+          <th class="bs-col-num">Proj</th>
+          <th class="bs-col-num">VOR</th>
+          <th class="bs-col-num">Our $</th>
+          <th class="bs-col-num">ADP</th>
+          <th class="bs-col-num">Value &Delta;</th>
+          <th class="bs-col-risk">Risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $board.players }}
+        {{ $sev := "" }}
+        {{ if ne .injury_status "ACTIVE" }}
+          {{ if in (slice "OUT" "INJURY_RESERVE" "SUSPENSION") .injury_status }}{{ $sev = "severe" }}{{ else }}{{ $sev = "caution" }}{{ end }}
+        {{ end }}
+        <tr class="bs-row bs-row--pos-{{ .position }}{{ if eq $sev "severe" }} bs-row--injury-severe{{ else if eq $sev "caution" }} bs-row--injury-caution{{ end }}{{ if .tier_break_after }} bs-tier-break{{ end }}"
+            data-pos="{{ .position }}"
+            data-injury="{{ if $sev }}{{ $sev }}{{ else }}none{{ end }}"
+            data-player-id="{{ .player_id }}">
+          <td class="bs-col-tier"><span class="bs-tier-chip">{{ .tier_label }}</span></td>
+          <td class="bs-col-rank">{{ .vor_rank }}</td>
+          <td class="bs-col-name">
+            <span class="bs-check" aria-hidden="true">&check;</span>
+            <span class="bs-player-name">{{ .name }}</span>
+            {{ if $sev }}<span class="bs-injury-badge bs-injury-badge--{{ $sev }} bs-injury-{{ lower .injury_status }}">{{ .injury_status }}</span>{{ end }}
+          </td>
+          <td class="bs-col-team">{{ .team }}</td>
+          <td class="bs-col-bye">{{ .bye_week }}</td>
+          <td class="bs-col-pos"><span class="bs-pos-badge bs-pos-{{ .position }}">{{ .position }}{{ .pos_rank }}</span></td>
+          <td class="bs-col-num">{{ .proj_points }}</td>
+          <td class="bs-col-num">{{ .vor }}</td>
+          <td class="bs-col-num">${{ .auction_value }}</td>
+          <td class="bs-col-num">{{ .adp }}</td>
+          <td class="bs-col-num">
+            <span class="bs-delta {{ if gt .value_delta 0 }}bs-delta-pos{{ else if lt .value_delta 0 }}bs-delta-neg{{ else }}bs-delta-zero{{ end }}">
+              {{ if gt .value_delta 0 }}+{{ end }}{{ .value_delta }}
+            </span>
+          </td>
+          <td class="bs-col-risk"><span class="bs-risk-chip bs-risk-{{ lower .risk_label }}">{{ .risk_label }}</span></td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Mobile card list (same data, phone-friendly) ── -->
+  <div class="bs-cards">
+    {{ range $board.players }}
+    {{ $sev := "" }}
+    {{ if ne .injury_status "ACTIVE" }}
+      {{ if in (slice "OUT" "INJURY_RESERVE" "SUSPENSION") .injury_status }}{{ $sev = "severe" }}{{ else }}{{ $sev = "caution" }}{{ end }}
+    {{ end }}
+    <div class="bs-card bs-row--pos-{{ .position }}{{ if eq $sev "severe" }} bs-card--injury-severe{{ else if eq $sev "caution" }} bs-card--injury-caution{{ end }}{{ if .tier_break_after }} bs-tier-break{{ end }}"
+         data-pos="{{ .position }}"
+         data-injury="{{ if $sev }}{{ $sev }}{{ else }}none{{ end }}"
+         data-player-id="{{ .player_id }}">
+      <div class="bs-card-top">
+        <span class="bs-check" aria-hidden="true">&check;</span>
+        <span class="bs-tier-chip">{{ .tier_label }}</span>
+        <span class="bs-card-rank">#{{ .vor_rank }}</span>
+        <span class="bs-pos-badge bs-pos-{{ .position }}">{{ .position }}{{ .pos_rank }}</span>
+        <span class="bs-delta bs-card-delta {{ if gt .value_delta 0 }}bs-delta-pos{{ else if lt .value_delta 0 }}bs-delta-neg{{ else }}bs-delta-zero{{ end }}">
+          {{ if gt .value_delta 0 }}+{{ end }}{{ .value_delta }}
+        </span>
+      </div>
+      <div class="bs-card-name-row">
+        <span class="bs-player-name">{{ .name }}</span>
+        <span class="bs-card-team">{{ .team }} &middot; Bye {{ .bye_week }}</span>
+        {{ if $sev }}<span class="bs-injury-badge bs-injury-badge--{{ $sev }} bs-injury-{{ lower .injury_status }}">{{ .injury_status }}</span>{{ end }}
+      </div>
+      <div class="bs-card-stats">
+        <span><b>Proj</b> {{ .proj_points }}</span>
+        <span><b>VOR</b> {{ .vor }}</span>
+        <span><b>$</b> {{ .auction_value }}</span>
+        <span><b>ADP</b> {{ .adp }}</span>
+        <span class="bs-risk-chip bs-risk-{{ lower .risk_label }}">{{ .risk_label }}</span>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- ── Footer note ── -->
+  <div class="bs-footer-note">
+    <p>Draft on the clock &mdash; tap or click a row to mark a player drafted. State saves to this device only.</p>
+    <p>Replacement levels: {{ range $pos, $val := $board.replacement_levels }}<span class="bs-repl-chip">{{ $pos }} {{ $val }}</span>{{ end }}</p>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var STORAGE_KEY = 'bs-drafted-players';
+
+  function getDrafted() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function setDrafted(list) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    } catch (e) {}
+  }
+
+  function applyDraftedState() {
+    var drafted = getDrafted();
+    var hideDrafted = document.getElementById('bs-hide-drafted').checked;
+    document.querySelectorAll('[data-player-id]').forEach(function(el) {
+      var id = el.getAttribute('data-player-id');
+      var isDrafted = drafted.indexOf(id) !== -1;
+      el.classList.toggle('bs-drafted', isDrafted);
+      el.classList.toggle('bs-hidden-drafted', isDrafted && hideDrafted);
+    });
+  }
+
+  function toggleDrafted(id) {
+    var drafted = getDrafted();
+    var idx = drafted.indexOf(id);
+    if (idx === -1) {
+      drafted.push(id);
+    } else {
+      drafted.splice(idx, 1);
+    }
+    setDrafted(drafted);
+    applyDraftedState();
+  }
+
+  document.querySelectorAll('[data-player-id]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      if (e.target.closest('a')) return;
+      toggleDrafted(el.getAttribute('data-player-id'));
+    });
+  });
+
+  var hideCheckbox = document.getElementById('bs-hide-drafted');
+  hideCheckbox.addEventListener('change', applyDraftedState);
+
+  document.getElementById('bs-reset-drafted').addEventListener('click', function() {
+    setDrafted([]);
+    applyDraftedState();
+  });
+
+  applyDraftedState();
+
+  // Position filter
+  var filterButtons = document.querySelectorAll('.bs-filters .bs-filter-btn');
+  filterButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterButtons.forEach(function(b) { b.classList.remove('bs-filter-active'); });
+      btn.classList.add('bs-filter-active');
+      var pos = btn.getAttribute('data-pos');
+      document.querySelectorAll('[data-player-id]').forEach(function(el) {
+        var match = pos === 'ALL' || el.getAttribute('data-pos') === pos;
+        el.classList.toggle('bs-filtered-out', !match);
+      });
+    });
+  });
+
+  // Injury severity filter — hide or isolate OUT/IR/SUSPENSION/QUESTIONABLE/DOUBTFUL rows
+  var injuryFilterButtons = document.querySelectorAll('.bs-injury-filters .bs-filter-btn');
+  injuryFilterButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      injuryFilterButtons.forEach(function(b) { b.classList.remove('bs-filter-active'); });
+      btn.classList.add('bs-filter-active');
+      var mode = btn.getAttribute('data-injury-filter');
+      document.querySelectorAll('[data-player-id]').forEach(function(el) {
+        var status = el.getAttribute('data-injury');
+        var hide = false;
+        if (mode === 'hide') hide = status !== 'none';
+        if (mode === 'only') hide = status === 'none';
+        el.classList.toggle('bs-injury-hidden', hide);
+      });
+    });
+  });
+})();
+</script>
+{{ end }}
