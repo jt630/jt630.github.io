@@ -170,8 +170,15 @@ def score_player(player: dict) -> dict:
     # more on the floor than they gain on the ceiling.
     floor_frac = band_frac * (1.0 + 0.25 * risk_score)
     ceiling_frac = band_frac * (1.0 - 0.15 * risk_score)
-    floor_points = round(max(proj_points * (1.0 - floor_frac), 0.0), 1)
-    ceiling_points = round(proj_points * (1.0 + ceiling_frac), 1)
+    # The floor was clamped at zero but the ceiling was not, so a player with
+    # a negative projection ended up with a ceiling BELOW his floor (Jamal
+    # Agnew: floor 0.0, ceiling -0.7). Anchor the band on a non-negative base
+    # and enforce floor <= proj <= ceiling explicitly rather than relying on
+    # the arithmetic to preserve it.
+    base = max(proj_points, 0.0)
+    base_r = round(base, 1)
+    floor_points = min(round(base * (1.0 - floor_frac), 1), base_r)
+    ceiling_points = max(round(base * (1.0 + ceiling_frac), 1), floor_points)
 
     notes = _build_notes(
         expert_ranks, rank_stdev, disagreement_norm,

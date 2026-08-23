@@ -16,6 +16,10 @@ DATA_DIR         = REPO_ROOT / "data" / "beer_sheet"
 INTERMEDIATE_DIR = DATA_DIR / "intermediate"
 OUTPUT_FILE      = DATA_DIR / "board.json"
 
+# Hand-edited "do not draft" list. See blacklist_agent.py for the tiny YAML
+# subset it supports, and the file itself for how to add a player.
+BLACKLIST_FILE   = DATA_DIR / "blacklist.yaml"
+
 SEASON = int(os.environ.get("BEER_SHEET_SEASON", "2026"))
 
 # ── ESPN stat ID map ──────────────────────────────────────────────────────────
@@ -117,8 +121,27 @@ BLEND = {
     "market_implied":  0.15,   # ADP-implied points — the wisdom of the crowd
 }
 
-# Players with no prior-season data (rookies) redistribute prior_actual weight
-# onto espn_projection, since there is nothing to regress toward.
+# Players with no usable prior-season sample redistribute prior_actual weight
+# onto espn_projection, since there is nothing reliable to regress toward.
+# (This is keyed on has_usable_prior, NOT is_rookie — a veteran who missed
+# last season to injury has no usable prior sample either, and needs the
+# same redistribution a rookie gets. See projection_agent.py.)
+
+# ── Prior-season regression ──────────────────────────────────────────────────
+# prior_points (the season TOTAL) conflates two different things: how well a
+# player performed per game, and how many games he was healthy enough to
+# play. A player who missed half the season to injury has a depressed total
+# for a reason that has nothing to do with his talent or role, and blending
+# that total straight into next season's projection punishes him twice for
+# the same injury. We instead rate-ize: prior total / games played * a full
+# expected season, so an elite player who got hurt is compared on a
+# per-game basis like everyone else. Stat id "210" in ESPN's raw stat
+# component map has been verified (see projection_agent.py investigation)
+# to carry games played for the prior season.
+GAMES_PER_SEASON = 17          # NFL regular-season length; the scale target for the rate.
+PRIOR_SEASON_MIN_GAMES = 4     # Below this many games, the per-game rate is mostly noise —
+                                # has_usable_prior goes False and the blend falls back to
+                                # redistributing that weight onto the ESPN projection instead.
 
 # ── Risk model ────────────────────────────────────────────────────────────────
 RISK = {
@@ -180,6 +203,14 @@ CONFIDENCE_DISCOUNT = {
     "DST": 0.15,
 }
 
+# ── Blacklist defaults ────────────────────────────────────────────────────────
+# Used by blacklist_agent when data/beer_sheet/blacklist.yaml omits an
+# `auto_flag:` block (or leaves a field out of it). These are injury
+# designations severe enough to auto-suppress a player without the owner
+# having to remember to type the name in by hand on draft morning.
+BLACKLIST_AUTO_FLAG_STATUSES = ["OUT", "INJURY_RESERVE", "SUSPENSION"]
+BLACKLIST_AUTO_FLAG_SEVERITY = "FADE"
+
 # ── ADP reliability ───────────────────────────────────────────────────────────
 # ESPN reports SOME averageDraftPosition-derived number for nearly every
 # player in the pool, even ones no one will ever draft — for real, actively
@@ -197,11 +228,107 @@ CONFIDENCE_DISCOUNT = {
 # into the noise.
 REAL_ADP_POOL_MULTIPLIER = 1.25
 
+# The pool-size window above catches "too deep to matter" — it does NOT catch
+# the case where hundreds of barely-drafted players fall INSIDE that window
+# but their raw ADP values are indistinguishable from each other (a real pull
+# had ~30 players spanning ADP 167.9-169.7, a ~0.1-0.3 point spread per
+# player). Within a band that thin, ESPN's ordering is arbitrary noise, not a
+# market signal, and diffing vor_rank against it manufactures huge fake
+# "value" deltas for unrosterable players. value_agent detects where that
+# compression starts empirically each run (see
+# value_agent._detect_adp_compression_cutoff) rather than hardcoding a
+# season-specific ADP value or rank — this constant only defines how thin
+# consecutive ADP spacing has to get, and stay, before it's "too thin to
+# trust." 0.5 ADP points leaves real (if tight) market disagreement between
+# neighboring picks intact while catching the multi-hundred-player compressed
+# tail, which spaces players well under 0.3 points apart.
+ADP_COMPRESSION_GAP = 0.5
+
+# ── Depth chart ───────────────────────────────────────────────────────────────
+# Sleeper's depth_chart_order is a raw ordinal (1 = first team) that means a
+# different thing per position — a #1 RB and a #1 WR both "start," but a #3 WR
+# often still plays a full snap share in 3-WR sets while a #3 RB is a healthy
+# scratch most weeks. This maps (position, depth_chart_order) -> role bucket.
+# depth_chart_order values not covered by a position's ranges fall through to
+# the highest-listed bucket (e.g. RB order 5 still hits "BENCH" via the 3+ rule
+# below, handled in code as >= the last key rather than an exact match).
+DEPTH_CHART_ROLE = {
+    "QB":  {1: "STARTER", 2: "COMMITTEE"},           # 3+ -> BENCH
+    "RB":  {1: "STARTER", 2: "COMMITTEE"},           # 3+ -> BENCH
+    "WR":  {1: "STARTER", 2: "STARTER", 3: "STARTER", 4: "COMMITTEE"},  # 5+ -> BENCH
+    "TE":  {1: "STARTER", 2: "COMMITTEE"},           # 3+ -> BENCH
+    "K":   {1: "STARTER"},                            # else -> UNKNOWN
+    "DST": {1: "STARTER"},                            # else -> UNKNOWN
+}
+# Position-specific "everything past the mapped keys" fallback. QB/RB/TE/WR
+# fall through to BENCH (there IS a depth chart, the player is just deep on
+# it); K/DST fall through to UNKNOWN (Sleeper rarely orders placekickers /
+# team defenses meaningfully past 1, so absence of data beats a fake bucket).
+DEPTH_CHART_OVERFLOW_ROLE = {
+    "QB": "BENCH", "RB": "BENCH", "WR": "BENCH", "TE": "BENCH",
+    "K": "UNKNOWN", "DST": "UNKNOWN",
+}
+
+# Team abbreviation mismatches between ESPN (used everywhere else in this
+# pipeline) and Sleeper. Only entries that actually differ need to be listed;
+# everything else matches byte-for-byte.
+SLEEPER_TEAM_ALIASES = {
+    "WAS": "WSH",   # Washington: Sleeper says WAS, ESPN says WSH
+    "OAK": "LV",    # stale Raiders code that still shows up on old records
+    "JAC": "JAX",
+}
+
 # ── Tiering ───────────────────────────────────────────────────────────────────
+# See tier_agent.py's module docstring for the full rationale (this used to
+# be a single global "median gap x multiplier" threshold, which a long
+# sub-replacement tail deflated to near-zero, making min_tier_size --
+# meant as a floor -- the real decider and producing uniform 2-player
+# tiers). The current approach is a RELATIVE gap test scoped to the
+# "relevant" (roughly positive-VOR) part of each position, computed
+# pairwise so it adapts to gaps compressing toward the bottom of the
+# position instead of comparing everything to one number.
 TIERS = {
-    # A tier break is declared when the VOR gap to the next player exceeds
-    # gap_multiplier x the median gap within the current position group.
-    "gap_multiplier": 1.75,
+    # A tier break is declared when a gap exceeds this fraction of the
+    # buffer-shifted VOR of the trailing player in the pair (see
+    # tier_agent._relevant_count / shift). 0.10 = a 10%+ relative drop.
+    "gap_relative_threshold": 0.10,
+    # A gap at or above (gap_relative_threshold * hard_cliff_multiplier)
+    # is a "hard" cliff: it always breaks the tier, even if that would
+    # violate min_tier_size or leave a short leftover group. Prevents a
+    # genuine cliff (e.g. a 30-point VOR gap) from ever being hidden
+    # inside a tier just to satisfy the size floor below.
+    "hard_cliff_multiplier": 1.5,
+    # Floor on tier size: a borderline (non-hard-cliff) break is skipped
+    # if it would leave the tier being closed, or the tier being opened,
+    # smaller than this. Hard cliffs always override the floor.
     "min_tier_size": 2,
-    "max_tiers_per_position": 12,
+    # Once a position has this many tiers, adjacent tiers are merged
+    # (starting at the smallest boundary gap) until the count fits. Raised
+    # from 12 -> 20 alongside max_tier_spread_fraction below: capping the
+    # spread of a tier legitimately produces MORE tiers in the draftable
+    # range (that's the point -- a 45-point-wide 14-player tier was the
+    # bug), so the old cap of 12 was already binding on RB/WR before the
+    # spread constraint existed and would fight it afterward.
+    "max_tiers_per_position": 20,
+    # Maximum VOR spread allowed within a single tier, as a fraction of
+    # the position's top VOR. The gap test alone only checks the space
+    # BETWEEN neighbors -- a long run of small (sub-threshold) gaps can
+    # still add up to a tier so wide that its members aren't actually
+    # interchangeable (e.g. Achane at 127.8 sharing a tier with Jacobs at
+    # 83.1 -- nobody drafting is indifferent between them). After the gap
+    # test forms initial tiers, any tier whose spread exceeds this
+    # fraction of the position's top VOR is recursively split at its own
+    # largest internal gap until every resulting tier fits. Scaled by
+    # top VOR for the same reason tail_buffer_fraction is: a fixed point
+    # value would be huge for RB/WR and meaningless for K/DST.
+    "max_tier_spread_fraction": 0.12,
+    # Sub-replacement cutoff: players more than this fraction of the
+    # position's TOP VOR below replacement (vor = 0) are "irrelevant" --
+    # bucketed into one final tier instead of participating in the gap
+    # math above, so their compressed near-zero gaps (there are hundreds
+    # of them at every position) can't distort thresholds for the
+    # draftable range. Scaled by the position's own top VOR rather than a
+    # fixed point value so it means the same thing for RB/WR (huge VOR
+    # spread) as it does for K/DST (tiny VOR spread).
+    "tail_buffer_fraction": 0.15,
 }

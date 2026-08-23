@@ -2991,6 +2991,26 @@ img {
 .bs-legend-pos { color: #4ecb71; }
 .bs-legend-neg { color: #888; }
 
+.bs-legend-pos-label {
+  margin-left: 0.5rem;
+}
+
+/* ── Position name colors (scan aid) ──
+   Colors the player NAME text so the board scans positionally at a
+   glance. Deliberately avoids pink/gold — those already carry meaning
+   elsewhere (injury severity, risk level) and reusing them on a name
+   would read as a false injury/risk signal. Every position is also
+   labeled as plain text in the Pos-column badge (QB1, RB2, ...), so
+   color is always a bonus cue, never the only carrier of the
+   information — safe for red/green color-vision deficiency and for
+   print, where these colors are stripped to black anyway. */
+.bs-pos-name-QB  { color: #B08CFF; }
+.bs-pos-name-RB  { color: #4ECB71; }
+.bs-pos-name-WR  { color: #56C2FF; }
+.bs-pos-name-TE  { color: #2DD4BF; }
+.bs-pos-name-K   { color: #B0A395; }
+.bs-pos-name-DST { color: #9AA5B8; }
+
 /* ── Risk chips (shared) ── */
 .bs-risk-chip {
   display: inline-block;
@@ -3016,6 +3036,14 @@ img {
 .bs-delta-neg  { color: #777; }
 .bs-delta-zero { color: var(--white-faint); }
 
+/* No real ADP → value delta is meaningless, not "0". Rendered as a dash
+   so it never reads as "fairly priced". */
+.bs-delta-noadp {
+  color: var(--white-faint);
+  font-style: italic;
+  font-weight: 400;
+}
+
 /* ── Position badges ── */
 .bs-pos-badge {
   display: inline-block;
@@ -3026,12 +3054,16 @@ img {
   letter-spacing: 0.02em;
 }
 
-.bs-pos-QB  { background: rgba(255, 45, 138, 0.18); color: var(--pink-light); }
-.bs-pos-RB  { background: rgba(78, 203, 113, 0.18); color: #4ecb71; }
-.bs-pos-WR  { background: rgba(100, 200, 255, 0.18); color: #64c8ff; }
-.bs-pos-TE  { background: rgba(212, 175, 55, 0.18); color: var(--gold-light); }
-.bs-pos-K   { background: rgba(255, 165, 0, 0.18); color: #ffa500; }
-.bs-pos-DST { background: rgba(160, 160, 160, 0.18); color: #ccc; }
+/* Position badges MUST use the same palette as the player-name colours
+   (.bs-pos-name-*), because the legend swatches teach that palette. They
+   also must avoid pink and gold, which already mean injury severity and
+   risk level on this page -- a pink QB badge reads as an injury flag. */
+.bs-pos-QB  { background: rgba(176, 140, 255, 0.18); color: #B08CFF; }
+.bs-pos-RB  { background: rgba(78, 203, 113, 0.18); color: #4ECB71; }
+.bs-pos-WR  { background: rgba(86, 194, 255, 0.18); color: #56C2FF; }
+.bs-pos-TE  { background: rgba(45, 212, 191, 0.18); color: #2DD4BF; }
+.bs-pos-K   { background: rgba(176, 163, 149, 0.18); color: #B0A395; }
+.bs-pos-DST { background: rgba(154, 165, 184, 0.18); color: #9AA5B8; }
 
 /* ── Injury badge: graded by severity ──
    caution  = QUESTIONABLE / DOUBTFUL — visible but calm, gold (matches bs-risk-moderate)
@@ -3087,6 +3119,158 @@ img {
   border-color: var(--pink);
 }
 
+/* ── Depth chart role badge ──
+   STARTER (the common case, 206/300) is intentionally silent — no
+   badge at all. COMMITTEE and BENCH are the exceptions worth a look,
+   so only they render. Deliberately plain (no glow, no shadow, no
+   left-border accent) so this never competes with the injury
+   treatment above, which stays the most urgent visual on the row. */
+.bs-role-badge {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+.bs-role-badge--committee {
+  background: rgba(160, 160, 255, 0.14);
+  color: #C3C3FF;
+  border: 1px solid rgba(160, 160, 255, 0.5);
+}
+
+.bs-role-badge--bench {
+  background: rgba(255, 255, 255, 0.10);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-weight: 900;
+}
+
+.bs-role-badge--unknown {
+  background: transparent;
+  color: var(--white-faint);
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  font-weight: 600;
+}
+
+/* ── Blacklist / fade treatment ──
+   Owner has decided he doesn't want these players, but a faded player
+   can still be a late stash — so this dims rather than hides. Only the
+   name text dims (not row opacity), so it never fights the injury
+   background tint/left-bar above: a player can be both severely
+   injured AND faded and both signals stay legible at once. */
+.bs-row--faded .bs-player-name,
+.bs-card--faded .bs-player-name {
+  color: var(--white-dim);
+}
+
+.bs-fade-badge {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--white-faint);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  cursor: help;
+}
+
+.bs-row.bs-blacklist-hidden,
+.bs-card.bs-blacklist-hidden {
+  display: none;
+}
+
+/* ── Roster / blacklist reference panels ── */
+.bs-panels {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.bs-panel {
+  flex: 1 1 280px;
+  background: var(--black-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.78rem;
+  color: var(--white-dim);
+}
+
+.bs-panel h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  font-style: normal;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gold-light);
+}
+
+.bs-panel p {
+  margin: 0.2rem 0;
+}
+
+.bs-roster-note {
+  color: var(--white-faint);
+  font-size: 0.72rem;
+  margin-top: 0.45rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 0.4rem;
+}
+
+.bs-blacklist-stats {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.2rem;
+}
+
+.bs-blacklist-stat {
+  background: var(--black-elevated);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.72rem;
+  color: var(--white-dim);
+}
+
+.bs-blacklist-warn {
+  display: block;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  padding: 0.35rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+.bs-blacklist-details summary {
+  cursor: pointer;
+  color: var(--white-faint);
+  font-size: 0.72rem;
+  margin-top: 0.4rem;
+}
+
+.bs-blacklist-list {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.72rem;
+  color: var(--white-faint);
+  max-height: 140px;
+  overflow-y: auto;
+}
 
 /* ── Tier chip ── */
 .bs-tier-chip {
@@ -3307,8 +3491,36 @@ img {
   .bs-cards { display: none !important; }
   .bs-table-wrap { display: block !important; overflow: visible; border: none; }
 
+  /* Roster panel is worth keeping on paper as a live reference; the
+     blacklist digital-filter summary is not. */
+  .bs-panel--blacklist-summary { display: none; }
+  .bs-panel {
+    background: none;
+    border: 1px solid #000;
+    color: #000;
+  }
+  .bs-panel h3 { color: #000; }
+  .bs-roster-note { color: #333; border-top-color: #999; }
+
   .bs-title { color: #000; text-shadow: none; font-size: 1.6rem; }
   .bs-subtitle, .bs-league-chip { color: #333; }
+
+  /* Position name colors and role/fade badges are decorative aids on
+     screen — flatten to black ink, since the Pos-column badge (QB1,
+     RB2, ...) and the badge text (COMMITTEE/BENCH/FADED) already carry
+     the same information without color. */
+  .bs-pos-name-QB, .bs-pos-name-RB, .bs-pos-name-WR,
+  .bs-pos-name-TE, .bs-pos-name-K, .bs-pos-name-DST {
+    color: #000 !important;
+  }
+
+  .bs-role-badge, .bs-fade-badge {
+    background: none !important;
+    color: #000 !important;
+    border: 1px dashed #000 !important;
+  }
+
+  .bs-delta-noadp { color: #666 !important; }
 
   .bs-table { font-size: 9pt; color: #000; }
   .bs-table thead th {

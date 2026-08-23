@@ -33,9 +33,12 @@ Pipeline order:
 
       "proj_points": 312.4,          // OUR blended projection, league scoring
       "espn_points": 318.9,          // ESPN projection re-scored to our rules
-      "prior_points": 301.2,         // last season's actuals, our rules (0.0 if rookie)
+      "prior_points": 301.2,         // last season's actuals, RAW SEASON TOTAL, our rules (audit only — NOT a blend input)
+      "prior_points_scaled": 312.9,  // prior_points / prior_games_played * config.GAMES_PER_SEASON — the actual blend input
+      "prior_games_played": 17,      // from ESPN raw stat component id "210" on the prior-season actual entry
+      "has_usable_prior": true,      // prior_games_played >= config.PRIOR_SEASON_MIN_GAMES — drives blend redistribution
       "market_points": 305.0,        // ADP-implied points
-      "is_rookie": false,
+      "is_rookie": false,            // no prior-season stat entry at all (no NFL history) — NOT the same test as has_usable_prior
 
       "stats": {"rush_yards": 1372.6, "receptions": 67.8},  // projected components
       "weekly_points": [18.2, 19.1],  // 17 entries, index 0 = week 1; 0.0 = bye/unknown
@@ -77,6 +80,16 @@ Rules:
 - Replacement level with flex > 0 MUST be solved by draft simulation, not a
   fixed cutoff. See value_agent docstring.
 - `value_delta` is the sheet's headline column. Positive = a bargain.
+- `value_delta` is 0 whenever `has_real_adp` is false (see below), AND is
+  clamped to 0 (never positive) for any player at or below replacement
+  level (`vor <= 0`) — a positive delta only means something for a player
+  worth drafting. See value_agent.compute_value_delta.
+- `has_real_adp` (bool) — false when a player's ADP carries no usable
+  signal, either because they fall outside the realistic draft-pool window
+  (config.REAL_ADP_POOL_MULTIPLIER) or because their ADP sits inside the
+  empirically-detected compression band where ESPN packs hundreds of
+  barely-drafted players into a razor-thin, effectively-arbitrary ADP
+  range (config.ADP_COMPRESSION_GAP, value_agent._detect_adp_compression_cutoff).
 
 ## PlayerRisk — `intermediate/risk.json`
 

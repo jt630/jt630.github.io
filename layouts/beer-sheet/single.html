@@ -19,6 +19,38 @@
     </div>
   </div>
 
+  <!-- ── Roster construction + blacklist summary panels ── -->
+  <div class="bs-panels">
+    <div class="bs-panel bs-panel--roster">
+      <h3>Roster check &mdash; {{ $league.teams }}-team snake</h3>
+      <p><b>Starters:</b> {{ $league.starters }}</p>
+      <p><b>Bench:</b> {{ $league.bench }}</p>
+      <p class="bs-roster-note">Two FLEX spots means the real target is ~5&ndash;6 RB and ~5&ndash;6 WR total, not just 2 each. K and DST are last-two-round picks &mdash; don&rsquo;t reach early.</p>
+    </div>
+    {{ with $board.blacklist_summary }}
+    <div class="bs-panel bs-panel--blacklist-summary">
+      <h3>Blacklist &amp; fade summary</h3>
+      <div class="bs-blacklist-stats">
+        <span class="bs-blacklist-stat">{{ .faded_count }} faded <span class="bs-blacklist-note">(league-wide; only those inside the top {{ $board.board_size }} appear below)</span></span>
+        <span class="bs-blacklist-stat">{{ .excluded_count }} excluded</span>
+        <span class="bs-blacklist-stat">{{ .auto_flagged_count }} auto-flagged</span>
+      </div>
+      {{ if .unmatched_entries }}
+      <div class="bs-blacklist-warn">UNMATCHED &mdash; {{ len .unmatched_entries }} name(s) you typed matched nobody, so they are still live on the board: {{ delimit .unmatched_entries ", " }}. Check spelling.</div>
+      {{ end }}
+      {{ if or .faded_names .excluded_names }}
+      <details class="bs-blacklist-details">
+        <summary>View faded / excluded names ({{ add (len .faded_names) (len .excluded_names) }})</summary>
+        <ul class="bs-blacklist-list">
+          {{ range .excluded_names }}<li>{{ . }} &mdash; excluded</li>{{ end }}
+          {{ range .faded_names }}<li>{{ . }} &mdash; faded</li>{{ end }}
+        </ul>
+      </details>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+
   <!-- ── Controls: position filter + drafted reset ── -->
   <div class="bs-controls">
     <div class="bs-filters" role="group" aria-label="Filter by position">
@@ -34,6 +66,11 @@
       <button class="bs-filter-btn bs-filter-active" data-injury-filter="all">ALL HEALTH</button>
       <button class="bs-filter-btn" data-injury-filter="hide">HIDE INJURED</button>
       <button class="bs-filter-btn" data-injury-filter="only">INJURED ONLY</button>
+    </div>
+    <div class="bs-blacklist-filters" role="group" aria-label="Filter by faded/blacklist status">
+      <button class="bs-filter-btn bs-filter-active" data-blacklist-filter="all">ALL PLAYERS</button>
+      <button class="bs-filter-btn" data-blacklist-filter="hide">HIDE FADED</button>
+      <button class="bs-filter-btn" data-blacklist-filter="only">FADED ONLY</button>
     </div>
     <div class="bs-drafted-controls">
       <label class="bs-hide-drafted-toggle">
@@ -55,6 +92,18 @@
     <span class="bs-legend-label bs-legend-injury-label">Injury:</span>
     <span class="bs-legend-chip bs-injury-badge bs-injury-badge--severe">OUT / IR / SUSPENDED &mdash; row flagged</span>
     <span class="bs-legend-chip bs-injury-badge bs-injury-badge--caution">QUESTIONABLE / DOUBTFUL</span>
+    <span class="bs-legend-label bs-legend-pos-label">Position:</span>
+    <span class="bs-legend-chip bs-pos-name-QB">QB</span>
+    <span class="bs-legend-chip bs-pos-name-RB">RB</span>
+    <span class="bs-legend-chip bs-pos-name-WR">WR</span>
+    <span class="bs-legend-chip bs-pos-name-TE">TE</span>
+    <span class="bs-legend-chip bs-pos-name-K">K</span>
+    <span class="bs-legend-chip bs-pos-name-DST">DST</span>
+    <span class="bs-legend-label bs-legend-pos-label">Role:</span>
+    <span class="bs-legend-chip bs-role-badge bs-role-badge--committee">COMMITTEE</span>
+    <span class="bs-legend-chip bs-role-badge bs-role-badge--bench">BENCH</span>
+    <span class="bs-legend-chip bs-role-badge bs-role-badge--unknown">ROLE UNKNOWN</span>
+    <span class="bs-legend-chip bs-fade-badge">FADED</span>
   </div>
 
   <!-- ── Desktop table ── -->
@@ -82,16 +131,21 @@
         {{ if ne .injury_status "ACTIVE" }}
           {{ if in (slice "OUT" "INJURY_RESERVE" "SUSPENSION") .injury_status }}{{ $sev = "severe" }}{{ else }}{{ $sev = "caution" }}{{ end }}
         {{ end }}
-        <tr class="bs-row bs-row--pos-{{ .position }}{{ if eq $sev "severe" }} bs-row--injury-severe{{ else if eq $sev "caution" }} bs-row--injury-caution{{ end }}{{ if .tier_break_after }} bs-tier-break{{ end }}"
+        {{ $showRole := in (slice "COMMITTEE" "BENCH" "UNKNOWN") .role }}
+        {{ if and (eq .role "UNKNOWN") (eq .position "DST") }}{{ $showRole = false }}{{ end }}
+        <tr class="bs-row bs-row--pos-{{ .position }}{{ if eq $sev "severe" }} bs-row--injury-severe{{ else if eq $sev "caution" }} bs-row--injury-caution{{ end }}{{ if .tier_break_after }} bs-tier-break{{ end }}{{ if .blacklisted }} bs-row--faded{{ end }}"
             data-pos="{{ .position }}"
             data-injury="{{ if $sev }}{{ $sev }}{{ else }}none{{ end }}"
-            data-player-id="{{ .player_id }}">
+            data-blacklisted="{{ if .blacklisted }}true{{ else }}false{{ end }}"
+            data-player-id="{{ printf "%.0f" .player_id }}">
           <td class="bs-col-tier"><span class="bs-tier-chip">{{ .tier_label }}</span></td>
           <td class="bs-col-rank">{{ .vor_rank }}</td>
           <td class="bs-col-name">
             <span class="bs-check" aria-hidden="true">&check;</span>
-            <span class="bs-player-name">{{ .name }}</span>
+            <span class="bs-player-name bs-pos-name-{{ .position }}">{{ .name }}</span>
             {{ if $sev }}<span class="bs-injury-badge bs-injury-badge--{{ $sev }} bs-injury-{{ lower .injury_status }}">{{ .injury_status }}</span>{{ end }}
+            {{ if $showRole }}<span class="bs-role-badge bs-role-badge--{{ lower .role }}">{{ .role }}{{ if .depth_chart_order }} &middot; {{ .position }}{{ .depth_chart_order }}{{ end }}</span>{{ end }}
+            {{ if .blacklisted }}<span class="bs-fade-badge" title="{{ .blacklist_reason }}">FADED</span>{{ end }}
           </td>
           <td class="bs-col-team">{{ .team }}</td>
           <td class="bs-col-bye">{{ .bye_week }}</td>
@@ -101,9 +155,13 @@
           <td class="bs-col-num">${{ .auction_value }}</td>
           <td class="bs-col-num">{{ .adp }}</td>
           <td class="bs-col-num">
+            {{ if not .has_real_adp }}
+            <span class="bs-delta bs-delta-noadp" title="No market ADP for this player — value delta is not meaningful">&mdash;</span>
+            {{ else }}
             <span class="bs-delta {{ if gt .value_delta 0 }}bs-delta-pos{{ else if lt .value_delta 0 }}bs-delta-neg{{ else }}bs-delta-zero{{ end }}">
               {{ if gt .value_delta 0 }}+{{ end }}{{ .value_delta }}
             </span>
+            {{ end }}
           </td>
           <td class="bs-col-risk"><span class="bs-risk-chip bs-risk-{{ lower .risk_label }}">{{ .risk_label }}</span></td>
         </tr>
@@ -119,23 +177,32 @@
     {{ if ne .injury_status "ACTIVE" }}
       {{ if in (slice "OUT" "INJURY_RESERVE" "SUSPENSION") .injury_status }}{{ $sev = "severe" }}{{ else }}{{ $sev = "caution" }}{{ end }}
     {{ end }}
-    <div class="bs-card bs-row--pos-{{ .position }}{{ if eq $sev "severe" }} bs-card--injury-severe{{ else if eq $sev "caution" }} bs-card--injury-caution{{ end }}{{ if .tier_break_after }} bs-tier-break{{ end }}"
+    {{ $showRole := in (slice "COMMITTEE" "BENCH" "UNKNOWN") .role }}
+    {{ if and (eq .role "UNKNOWN") (eq .position "DST") }}{{ $showRole = false }}{{ end }}
+    <div class="bs-card bs-row--pos-{{ .position }}{{ if eq $sev "severe" }} bs-card--injury-severe{{ else if eq $sev "caution" }} bs-card--injury-caution{{ end }}{{ if .tier_break_after }} bs-tier-break{{ end }}{{ if .blacklisted }} bs-card--faded{{ end }}"
          data-pos="{{ .position }}"
          data-injury="{{ if $sev }}{{ $sev }}{{ else }}none{{ end }}"
-         data-player-id="{{ .player_id }}">
+         data-blacklisted="{{ if .blacklisted }}true{{ else }}false{{ end }}"
+         data-player-id="{{ printf "%.0f" .player_id }}">
       <div class="bs-card-top">
         <span class="bs-check" aria-hidden="true">&check;</span>
         <span class="bs-tier-chip">{{ .tier_label }}</span>
         <span class="bs-card-rank">#{{ .vor_rank }}</span>
         <span class="bs-pos-badge bs-pos-{{ .position }}">{{ .position }}{{ .pos_rank }}</span>
+        {{ if not .has_real_adp }}
+        <span class="bs-delta bs-card-delta bs-delta-noadp" title="No market ADP for this player — value delta is not meaningful">&mdash;</span>
+        {{ else }}
         <span class="bs-delta bs-card-delta {{ if gt .value_delta 0 }}bs-delta-pos{{ else if lt .value_delta 0 }}bs-delta-neg{{ else }}bs-delta-zero{{ end }}">
           {{ if gt .value_delta 0 }}+{{ end }}{{ .value_delta }}
         </span>
+        {{ end }}
       </div>
       <div class="bs-card-name-row">
-        <span class="bs-player-name">{{ .name }}</span>
+        <span class="bs-player-name bs-pos-name-{{ .position }}">{{ .name }}</span>
         <span class="bs-card-team">{{ .team }} &middot; Bye {{ .bye_week }}</span>
         {{ if $sev }}<span class="bs-injury-badge bs-injury-badge--{{ $sev }} bs-injury-{{ lower .injury_status }}">{{ .injury_status }}</span>{{ end }}
+        {{ if $showRole }}<span class="bs-role-badge bs-role-badge--{{ lower .role }}">{{ .role }}{{ if .depth_chart_order }} &middot; {{ .position }}{{ .depth_chart_order }}{{ end }}</span>{{ end }}
+        {{ if .blacklisted }}<span class="bs-fade-badge" title="{{ .blacklist_reason }}">FADED</span>{{ end }}
       </div>
       <div class="bs-card-stats">
         <span><b>Proj</b> {{ .proj_points }}</span>
@@ -241,6 +308,23 @@
         if (mode === 'hide') hide = status !== 'none';
         if (mode === 'only') hide = status === 'none';
         el.classList.toggle('bs-injury-hidden', hide);
+      });
+    });
+  });
+
+  // Blacklist/fade filter — hide or isolate faded (blacklisted) players
+  var blacklistFilterButtons = document.querySelectorAll('.bs-blacklist-filters .bs-filter-btn');
+  blacklistFilterButtons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      blacklistFilterButtons.forEach(function(b) { b.classList.remove('bs-filter-active'); });
+      btn.classList.add('bs-filter-active');
+      var mode = btn.getAttribute('data-blacklist-filter');
+      document.querySelectorAll('[data-player-id]').forEach(function(el) {
+        var isFaded = el.getAttribute('data-blacklisted') === 'true';
+        var hide = false;
+        if (mode === 'hide') hide = isFaded;
+        if (mode === 'only') hide = !isFaded;
+        el.classList.toggle('bs-blacklist-hidden', hide);
       });
     });
   });

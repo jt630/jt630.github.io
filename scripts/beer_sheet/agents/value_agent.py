@@ -55,10 +55,21 @@ nothing is silently lost. The shrink is multiplicative, so it doesn't
 disturb the ordering (and therefore tiering) within K or within DST.
 
 ADP reliability: `compute_value_delta` only diffs vor_rank against ADP rank
-for players within a realistic draft pool (see config.REAL_ADP_POOL_MULTIPLIER).
-Players outside it get value_delta = 0 instead of a manufactured signal —
-see that function's docstring for why ranking against the full player pool
-is dishonest.
+for players within a realistic draft pool (see config.REAL_ADP_POOL_MULTIPLIER)
+AND before the point where consecutive ADP values collapse into a
+razor-thin, noise-not-signal band (see config.ADP_COMPRESSION_GAP and
+`_detect_adp_compression_cutoff`). Players outside either boundary get
+value_delta = 0 instead of a manufactured signal — see that function's
+docstring for why ranking against the full player pool, or against a
+compressed ADP tail, is dishonest.
+
+Bargain guard: a positive value_delta only means something for a player
+worth drafting at all. `compute_value_delta` also clamps value_delta to 0
+(never positive) for any player at or below replacement level (vor <= 0) —
+being "underrated" relative to other undraftable players is not a bargain,
+and the Hugo template highlights positive value_delta in green, so this
+guard lives in the data itself rather than trusting every downstream
+consumer to re-derive it.
 """
 
 import argparse
@@ -68,7 +79,10 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from config import INTERMEDIATE_DIR, ROSTER, DEFAULT_ROSTER, CONFIDENCE_DISCOUNT, REAL_ADP_POOL_MULTIPLIER
+from config import (
+    INTERMEDIATE_DIR, ROSTER, DEFAULT_ROSTER, CONFIDENCE_DISCOUNT,
+    REAL_ADP_POOL_MULTIPLIER, ADP_COMPRESSION_GAP,
+)
 
 logger = logging.getLogger("value_agent")
 
@@ -226,6 +240,46 @@ def compute_auction_values(players: list[dict], roster: dict) -> None:
             p["auction_value"] = 1.0
 
 
+def _detect_adp_compression_cutoff(players: list[dict], gap_threshold: float) -> int:
+    """
+    Empirically find the ADP rank past which ESPN's ADP stops carrying any
+    individual signal, instead of hardcoding a season-specific rank or ADP
+    value (see config.ADP_COMPRESSION_GAP for why the fixed pool-size window
+    alone isn't enough — it restricts to a rank window, but says nothing
+    about whether ADP *within* that window is actually distinguishable
+    player-to-player).
+
+    Method: take every player with a real (non-999) ADP, sort by that value
+    ascending, and look at the gap between each consecutive pair. A market
+    with real signal has SOME meaningfully-sized gaps in it (picks spread
+    across real draft positions). The unrosterable tail, once nobody is
+    meaningfully differentiating those players anymore, compresses to
+    near-zero gaps and — critically — STAYS compressed for the rest of the
+    list, because nothing re-introduces spacing among players nobody drafts.
+    So the cutoff is the rank of the last player BEFORE the final gap that's
+    still >= gap_threshold; every gap after that point, all the way to the
+    bottom of the pool, is smaller than gap_threshold. That "last real gap"
+    framing (rather than "first small gap") matters: a lone tight gap can
+    show up anywhere even among well-differentiated players (two players in
+    genuine market agreement), so only a collapse that persists to the end
+    of the list counts as the compression band.
+
+    Returns the size of the real-ADP pool (i.e. no cutoff at all) if no gap
+    ever reaches gap_threshold, or if fewer than 2 players have a real ADP.
+    """
+    real_adp = sorted(_adp_sort_key(p) for p in players if _adp_sort_key(p) < UNDRAFTED_ADP)
+    n = len(real_adp)
+    if n < 2:
+        return n
+
+    last_real_gap_rank = 0  # 1-indexed rank of the earlier player in the last real gap
+    for i in range(n - 1):
+        if real_adp[i + 1] - real_adp[i] >= gap_threshold:
+            last_real_gap_rank = i + 1
+
+    return last_real_gap_rank if last_real_gap_rank else n
+
+
 def compute_value_delta(players: list[dict], roster: dict) -> None:
     """
     Mutate `players` in place, adding value_delta = adp_rank - vor_rank.
@@ -240,26 +294,66 @@ def compute_value_delta(players: list[dict], roster: dict) -> None:
     nobody will draft "our #128 vs ADP #836" reads as a massive buy signal
     and isn't one).
 
-    Fix: adp_rank is still computed across the whole pool (cheap, and other
-    code may want it), but value_delta is only populated for players who
-    fall within a realistic draft pool — config.REAL_ADP_POOL_MULTIPLIER x
-    the league's own roster capacity (teams x total roster slots). That
-    caps how deep a "real" market signal is trusted to go, with headroom
-    past the exact roster count for legitimate late-round/waiver signal
-    (handcuffs, rookie sleepers). Players outside that window get
-    value_delta = 0 (no signal, not a fabricated one) and
-    has_real_adp = False, so the sheet can tell the difference.
+    Fix has two independent boundaries, and a player must be inside BOTH to
+    get a real value_delta:
+
+    1. Pool-size window: config.REAL_ADP_POOL_MULTIPLIER x the league's own
+       roster capacity (teams x total roster slots). Caps how deep a "real"
+       market signal is trusted to go, with headroom past the exact roster
+       count for legitimate late-round/waiver signal (handcuffs, rookie
+       sleepers).
+    2. Compression window: `_detect_adp_compression_cutoff` finds, from the
+       data itself, the rank past which consecutive ADP values are packed
+       too tightly to mean anything (see config.ADP_COMPRESSION_GAP). This
+       catches the case the pool-size window misses on its own — hundreds
+       of barely-drafted players whose compressed ADP band still falls
+       INSIDE the pool-size window (e.g. a real pull had ~30 players with
+       ADP 167.9-169.7 sitting well within a 12-team league's rank window,
+       their relative order among each other pure noise).
+
+    Players outside either boundary get value_delta = 0 (no signal, not a
+    fabricated one) and has_real_adp = False, so the sheet can tell the
+    difference.
+
+    Bargain guard: even inside both trust windows, a positive value_delta
+    is clamped to 0 for any player at or below replacement level
+    (vor <= 0). Being ranked ahead of where a compressed/noisy ADP placed
+    another player nobody should draft either is not a "bargain" — it's
+    two unrosterable players compared to each other. This clamp only
+    touches POSITIVE deltas (the ones the template highlights green as buy
+    signals); negative deltas ("market also correctly ignores this guy")
+    are left alone since they're not misleading.
     """
     total_slots_per_team = sum(roster["starters"].values()) + roster["flex"] + roster["bench"]
     real_adp_pool_size = round(roster["teams"] * total_slots_per_team * REAL_ADP_POOL_MULTIPLIER)
 
+    compression_cutoff_rank = _detect_adp_compression_cutoff(players, ADP_COMPRESSION_GAP)
+    trust_boundary = min(real_adp_pool_size, compression_cutoff_rank)
+
     by_adp = sorted(players, key=_adp_sort_key)
     for i, p in enumerate(by_adp, start=1):
         p["adp_rank"] = i
-        p["has_real_adp"] = i <= real_adp_pool_size and _adp_sort_key(p) < UNDRAFTED_ADP
+        p["has_real_adp"] = i <= trust_boundary and _adp_sort_key(p) < UNDRAFTED_ADP
 
     for p in players:
-        p["value_delta"] = (p["adp_rank"] - p["vor_rank"]) if p["has_real_adp"] else 0
+        delta = (p["adp_rank"] - p["vor_rank"]) if p["has_real_adp"] else 0
+        if p["vor"] <= 0 and delta > 0:
+            delta = 0
+        p["value_delta"] = delta
+
+    real_adp_count = sum(1 for p in players if _adp_sort_key(p) < UNDRAFTED_ADP)
+    compressed_count = sum(
+        1 for p in players
+        if _adp_sort_key(p) < UNDRAFTED_ADP and p["adp_rank"] > compression_cutoff_rank
+    )
+    logger.info(
+        "ADP compression cutoff: rank %d of %d real-ADP players (gap threshold "
+        "%.2f) — %d players past that rank lose value_delta as noise, not "
+        "signal. Pool-size window separately caps trust at rank %d; the "
+        "tighter of the two (%d) is what's actually enforced.",
+        compression_cutoff_rank, real_adp_count, ADP_COMPRESSION_GAP,
+        compressed_count, real_adp_pool_size, trust_boundary,
+    )
 
 
 # ── Entry point ──────────────────────────────────────────────────────────────
