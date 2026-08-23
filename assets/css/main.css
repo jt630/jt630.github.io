@@ -2809,4 +2809,556 @@ img {
 .api-tooltip-name  { color: var(--pink); font-weight: bold; display: block; margin-bottom: 0.2rem; }
 .api-tooltip-meta  { color: var(--white-faint); display: block; margin-bottom: 0.15rem; }
 .api-tooltip-notes { color: var(--white-dim); display: block; font-size: 0.68rem; }
+
+/* ═══════════════════════════════════════════════════════════
+   BEER SHEET — Fantasy Football Draft Board
+   ═══════════════════════════════════════════════════════════ */
+
+.bs-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+/* ── Header ── */
+.bs-header {
+  margin-bottom: 1.25rem;
+}
+
+.bs-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.bs-title {
+  font-size: 2.4rem;
+  margin: 0;
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+}
+
+.bs-badge-new {
+  display: inline-block;
+  background: var(--pink);
+  color: var(--black);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.bs-subtitle {
+  color: var(--white-dim);
+  margin: 0.35rem 0 0.6rem;
+  font-size: 1rem;
+}
+
+.bs-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.bs-league-chip {
+  background: var(--black-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.75rem;
+  color: var(--white-dim);
+}
+
+.bs-updated {
+  font-size: 0.72rem;
+  color: var(--white-faint);
+  margin-left: auto;
+}
+
+/* ── Controls ── */
+.bs-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  background: var(--black);
+  z-index: 20;
+}
+
+.bs-filters,
+.bs-injury-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.bs-filter-btn {
+  background: var(--black-card);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--white-dim);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bs-filter-btn:hover {
+  border-color: var(--pink);
+  color: var(--white);
+}
+
+.bs-filter-btn.bs-filter-active {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--black);
+}
+
+.bs-drafted-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+}
+
+.bs-hide-drafted-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--white-dim);
+  cursor: pointer;
+  user-select: none;
+}
+
+.bs-reset-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bs-reset-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* ── Legend ── */
+.bs-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.75rem 0 1rem;
+  font-size: 0.72rem;
+  color: var(--white-faint);
+}
+
+.bs-legend-label {
+  margin-right: 0.25rem;
+}
+
+.bs-legend-injury-label {
+  margin-left: 0.5rem;
+}
+
+.bs-legend-chip {
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  font-weight: 600;
+}
+
+.bs-legend-pos { color: #4ecb71; }
+.bs-legend-neg { color: #888; }
+
+/* ── Risk chips (shared) ── */
+.bs-risk-chip {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.bs-risk-safe      { background: rgba(78, 203, 113, 0.15); color: #4ecb71; border: 1px solid #4ecb71; }
+.bs-risk-moderate   { background: rgba(212, 175, 55, 0.15); color: var(--gold); border: 1px solid var(--gold); }
+.bs-risk-volatile  { background: rgba(255, 45, 138, 0.15); color: var(--pink); border: 1px solid var(--pink); }
+
+/* ── Value delta ── */
+.bs-delta {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.bs-delta-pos  { color: #4ecb71; text-shadow: 0 0 10px rgba(78, 203, 113, 0.3); }
+.bs-delta-neg  { color: #777; }
+.bs-delta-zero { color: var(--white-faint); }
+
+/* ── Position badges ── */
+.bs-pos-badge {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.bs-pos-QB  { background: rgba(255, 45, 138, 0.18); color: var(--pink-light); }
+.bs-pos-RB  { background: rgba(78, 203, 113, 0.18); color: #4ecb71; }
+.bs-pos-WR  { background: rgba(100, 200, 255, 0.18); color: #64c8ff; }
+.bs-pos-TE  { background: rgba(212, 175, 55, 0.18); color: var(--gold-light); }
+.bs-pos-K   { background: rgba(255, 165, 0, 0.18); color: #ffa500; }
+.bs-pos-DST { background: rgba(160, 160, 160, 0.18); color: #ccc; }
+
+/* ── Injury badge: graded by severity ──
+   caution  = QUESTIONABLE / DOUBTFUL — visible but calm, gold (matches bs-risk-moderate)
+   severe   = OUT / INJURY_RESERVE / SUSPENSION — unmissable, pink/red (matches bs-risk-volatile) */
+.bs-injury-badge {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 0.08rem 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-left: 0.4rem;
+  text-transform: uppercase;
+}
+
+.bs-injury-badge--caution {
+  background: rgba(212, 175, 55, 0.16);
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+}
+
+.bs-injury-badge--severe {
+  background: rgba(255, 45, 138, 0.35);
+  color: #fff;
+  border: 1px solid var(--pink);
+  font-weight: 900;
+}
+
+/* ── Injury severity: row/card structural treatment ──
+   Left accent bar via inset box-shadow (doesn't shift column widths on collapse). */
+.bs-row--injury-caution td {
+  background: rgba(212, 175, 55, 0.05);
+}
+.bs-row--injury-caution td:first-child {
+  box-shadow: inset 3px 0 0 0 var(--gold);
+}
+
+.bs-row--injury-severe td {
+  background: rgba(255, 45, 138, 0.10);
+}
+.bs-row--injury-severe td:first-child {
+  box-shadow: inset 4px 0 0 0 var(--pink);
+}
+
+.bs-card--injury-caution {
+  box-shadow: inset 3px 0 0 0 var(--gold);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.bs-card--injury-severe {
+  box-shadow: inset 4px 0 0 0 var(--pink);
+  background: rgba(255, 45, 138, 0.10);
+  border-color: var(--pink);
+}
+
+
+/* ── Tier chip ── */
+.bs-tier-chip {
+  display: inline-block;
+  background: var(--black-elevated);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: var(--gold-light);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+/* ── Desktop table ── */
+.bs-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+}
+
+.bs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.bs-table thead th {
+  position: sticky;
+  top: 48px; /* below sticky controls bar */
+  background: var(--black-soft);
+  color: var(--white-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-align: left;
+  padding: 0.55rem 0.6rem;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.35);
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.bs-table td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
+}
+
+.bs-col-num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.bs-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.bs-row:hover {
+  background: rgba(255, 45, 138, 0.06);
+}
+
+.bs-row.bs-tier-break td {
+  border-bottom: 3px solid var(--gold);
+}
+
+.bs-check {
+  display: inline-block;
+  width: 1em;
+  color: #4ecb71;
+  opacity: 0;
+  margin-right: 0.15rem;
+}
+
+.bs-player-name {
+  font-weight: 600;
+  color: var(--white);
+}
+
+/* Drafted state — greyed out, struck through */
+.bs-row.bs-drafted,
+.bs-card.bs-drafted {
+  opacity: 0.35;
+}
+
+.bs-row.bs-drafted .bs-player-name,
+.bs-card.bs-drafted .bs-player-name {
+  text-decoration: line-through;
+}
+
+.bs-row.bs-drafted .bs-check,
+.bs-card.bs-drafted .bs-check {
+  opacity: 1;
+}
+
+.bs-row.bs-hidden-drafted,
+.bs-card.bs-hidden-drafted {
+  display: none;
+}
+
+.bs-row.bs-filtered-out,
+.bs-card.bs-filtered-out {
+  display: none;
+}
+
+.bs-row.bs-injury-hidden,
+.bs-card.bs-injury-hidden {
+  display: none;
+}
+
+/* ── Mobile cards (hidden on desktop) ── */
+.bs-cards {
+  display: none;
+}
+
+.bs-card {
+  background: var(--black-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bs-card:active {
+  border-color: var(--pink);
+}
+
+.bs-card.bs-tier-break {
+  border-bottom: 3px solid var(--gold);
+  margin-bottom: 1rem;
+  padding-bottom: 0.9rem;
+}
+
+.bs-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.bs-card-rank {
+  color: var(--white-faint);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.bs-card-delta {
+  margin-left: auto;
+  font-size: 0.9rem;
+}
+
+.bs-card-name-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.bs-card-name-row .bs-player-name {
+  font-size: 1rem;
+}
+
+.bs-card-team {
+  color: var(--white-faint);
+  font-size: 0.78rem;
+}
+
+.bs-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--white-dim);
+}
+
+.bs-card-stats b {
+  color: var(--white-faint);
+  font-weight: 600;
+  margin-right: 0.15rem;
+}
+
+/* ── Footer note ── */
+.bs-footer-note {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--white-faint);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.9rem;
+}
+
+.bs-repl-chip {
+  display: inline-block;
+  background: var(--black-elevated);
+  border-radius: 4px;
+  padding: 0.08rem 0.4rem;
+  margin-right: 0.3rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* ── Responsive: switch to cards below tablet width ── */
+@media (max-width: 720px) {
+  .bs-table-wrap { display: none; }
+  .bs-cards { display: block; }
+
+  .bs-title { font-size: 1.9rem; }
+  .bs-updated { margin-left: 0; }
+  .bs-controls { position: static; }
+}
+
+/* ── Print: draft off paper ── */
+@media print {
+  body * { visibility: hidden; }
+  .bs-page, .bs-page * { visibility: visible; }
+  .bs-page { position: absolute; top: 0; left: 0; width: 100%; padding: 0; }
+
+  .bs-controls, .bs-legend, .bs-footer-note, .bs-badge-new { display: none; }
+
+  .bs-cards { display: none !important; }
+  .bs-table-wrap { display: block !important; overflow: visible; border: none; }
+
+  .bs-title { color: #000; text-shadow: none; font-size: 1.6rem; }
+  .bs-subtitle, .bs-league-chip { color: #333; }
+
+  .bs-table { font-size: 9pt; color: #000; }
+  .bs-table thead th {
+    position: static;
+    background: #eee;
+    color: #000;
+    border-bottom: 1px solid #000;
+  }
+  .bs-table td { color: #000; border-bottom: 1px solid #ccc; }
+
+  .bs-row.bs-tier-break td { border-bottom: 2px solid #000; }
+  .bs-row.bs-drafted { opacity: 1; }
+  .bs-row.bs-drafted .bs-player-name { text-decoration: line-through; }
+
+  .bs-pos-badge, .bs-tier-chip, .bs-risk-chip, .bs-injury-badge {
+    background: none !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+  }
+
+  .bs-delta-pos { color: #000 !important; font-weight: 900; }
+  .bs-delta-neg { color: #666 !important; }
+
+  /* Injury severity must survive monochrome printing — color alone won't,
+     so severity is carried by border weight/style plus an explicit text marker. */
+  .bs-row--injury-severe td, .bs-row--injury-caution td { background: none !important; }
+
+  .bs-row--injury-severe td:first-child,
+  .bs-card--injury-severe {
+    border-left: 4px solid #000 !important;
+    box-shadow: none !important;
+  }
+
+  .bs-row--injury-caution td:first-child,
+  .bs-card--injury-caution {
+    border-left: 2px dashed #000 !important;
+    box-shadow: none !important;
+  }
+
+  .bs-injury-badge--severe {
+    border: 2px solid #000 !important;
+    font-weight: 900 !important;
+  }
+
+  .bs-injury-badge--severe::after {
+    content: " \2014 NOT CLEARED";
+  }
+
+  .bs-injury-badge--caution {
+    border: 1px dashed #000 !important;
+  }
+}
 .api-tooltip-hint  { color: var(--gold); font-size: 0.65rem; display: block; margin-top: 0.25rem; opacity: 0.7; }
