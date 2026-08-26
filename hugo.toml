@@ -140,6 +140,11 @@ title = "Almond Farm"
     url = "/backpacking/"
     parent = "ops"
     weight = 8
+  [[menu.main]]
+    name = "Garage"
+    url = "/garage/"
+    parent = "ops"
+    weight = 9
 
 [taxonomies]
   tag = "tags"

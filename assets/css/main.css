@@ -435,6 +435,7 @@ img {
 .section-card.dingers  { border-top: 3px solid var(--pink); }
 .section-card.news     { border-top: 3px solid var(--pink-light); }
 .section-card.coasters { border-top: 3px solid #00CFFF; }
+.section-card.garage   { border-top: 3px solid var(--gold); }
 
 /* ---- RECENT POSTS (homepage) ---- */
 .recent-section {
