@@ -242,6 +242,44 @@ Small fish in a quiet alpine lake — dry-fly water, and the same fishing that w
 
 ---
 
+## Shopping List
+
+Pulled from the menu and packing notes above — what to actually buy before Friday.
+
+**Groceries — food**
+
+- [ ] Steak for kabobs (~2 lb, cut for skewering)
+- [ ] Kabob vegetables — bell peppers, onions, mushrooms
+- [ ] Potatoes, for foil packs in the coals
+- [ ] Butter (potatoes, pancakes, and the crisp)
+- [ ] Bacon
+- [ ] Pancake mix
+- [ ] Maple syrup
+- [ ] Huckleberry crisp topping — rolled oats, flour, brown sugar, cinnamon
+- [ ] Salt crunch — chips, crackers
+- [ ] Eggs, if breakfast wants more than pancakes
+
+**Drinks**
+
+- [ ] Seltzers
+- [ ] Whiskey
+- [ ] Water — jugs, 5+ gallons, or bottled backup
+- [ ] Coffee (French press or percolator grind), filters if needed
+- [ ] Creamer / sugar for coffee
+
+**Ice & fuel — grab in McCall, last stop with services**
+
+- [ ] Ice for both coolers
+- [ ] Propane — spare canister for the two-burner stove
+- [ ] Firewood, bought locally (don't transport it in)
+- [ ] Lighter or matches, separate from the truck's
+
+**Don't forget**
+
+- [ ] Cash — walk-up fees and Burgdorf ($20/adult)
+- [ ] Idaho fishing licenses, if not already current
+- [ ] Recreation.gov app downloaded before leaving McCall — no service past there
+
 ## Packing — the glamping delta
 
 Everything the ultralight list deliberately leaves at home:
