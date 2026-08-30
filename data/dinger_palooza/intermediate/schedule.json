@@ -45,7 +45,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -800,7 +804,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -812,7 +820,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669372,
+          "name": "J.T. Ginn",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -824,7 +836,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -901,7 +917,11 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 594798,
+          "name": "Jacob deGrom",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -913,7 +933,11 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669022,
+          "name": "MacKenzie Gore",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -925,7 +949,11 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 674003,
+          "name": "Cody Bradford",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -1030,7 +1058,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -1135,7 +1167,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -2108,7 +2144,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -2120,7 +2160,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669372,
+          "name": "J.T. Ginn",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -2132,7 +2176,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -2209,7 +2257,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -2221,7 +2273,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669372,
+          "name": "J.T. Ginn",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -2233,7 +2289,11 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -3081,7 +3141,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -3299,7 +3363,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -3602,7 +3670,11 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 594798,
+          "name": "Jacob deGrom",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -3614,7 +3686,11 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669022,
+          "name": "MacKenzie Gore",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -3626,7 +3702,11 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 674003,
+          "name": "Cody Bradford",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof"
@@ -7503,7 +7583,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -7515,7 +7599,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -7596,7 +7684,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -7608,7 +7700,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -8166,7 +8262,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -8178,7 +8278,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -8546,7 +8650,11 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650633,
+          "name": "Michael King",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -8558,7 +8666,11 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681190,
+          "name": "Randy V\u00e1squez",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -8570,7 +8682,11 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -8635,7 +8751,11 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650633,
+          "name": "Michael King",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -8647,7 +8767,11 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681190,
+          "name": "Randy V\u00e1squez",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -8659,7 +8783,11 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF"
@@ -8740,7 +8868,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"
@@ -8752,7 +8884,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer"

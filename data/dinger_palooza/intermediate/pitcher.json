@@ -66,16 +66,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 45.0,
+          "hr": 6,
+          "hr9": 1.2,
+          "bb9": 4.4,
+          "k9": 9.6,
+          "era": 4.2,
+          "innings_pitched": "45.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 42.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823095,
@@ -154,7 +167,7 @@
     "park_score": 41.6,
     "best_park_game": "Fenway Park",
     "best_park_factor": 97,
-    "pitcher_score": 47.0,
+    "pitcher_score": 45.9,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -1293,16 +1306,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 88.33333333333333,
+          "hr": 9,
+          "hr9": 0.92,
+          "bb9": 4.28,
+          "k9": 9.88,
+          "era": 4.69,
+          "innings_pitched": "88.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 29.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822854,
@@ -1311,16 +1337,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669372,
+          "name": "J.T. Ginn",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 138.33333333333334,
+          "hr": 17,
+          "hr9": 1.11,
+          "bb9": 3.71,
+          "k9": 7.87,
+          "era": 3.71,
+          "innings_pitched": "138.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 48.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822851,
@@ -1329,16 +1368,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 99.0,
+          "hr": 15,
+          "hr9": 1.36,
+          "bb9": 4.55,
+          "k9": 8.73,
+          "era": 4.82,
+          "innings_pitched": "99.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 52.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822853,
@@ -1417,9 +1469,9 @@
     "park_score": 65.4,
     "best_park_game": "Globe Life Field",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -1440,16 +1492,29 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 594798,
+          "name": "Jacob deGrom",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 130.33333333333334,
+          "hr": 17,
+          "hr9": 1.17,
+          "bb9": 2.55,
+          "k9": 10.98,
+          "era": 4.21,
+          "innings_pitched": "130.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 40.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822854,
@@ -1458,16 +1523,29 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669022,
+          "name": "MacKenzie Gore",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 149.33333333333334,
+          "hr": 18,
+          "hr9": 1.08,
+          "bb9": 3.38,
+          "k9": 9.94,
+          "era": 4.4,
+          "innings_pitched": "149.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 48.7,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822851,
@@ -1476,16 +1554,29 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 674003,
+          "name": "Cody Bradford",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 26.333333333333332,
+          "hr": 1,
+          "hr9": 0.34,
+          "bb9": 2.05,
+          "k9": 4.44,
+          "era": 3.42,
+          "innings_pitched": "26.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 8.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823095,
@@ -1564,9 +1655,9 @@
     "park_score": 51.8,
     "best_park_game": "Globe Life Field",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.6,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -1636,16 +1727,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 45.0,
+          "hr": 6,
+          "hr9": 1.2,
+          "bb9": 4.4,
+          "k9": 9.6,
+          "era": 4.2,
+          "innings_pitched": "45.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823095,
@@ -1724,9 +1828,9 @@
     "park_score": 41.6,
     "best_park_game": "Fenway Park",
     "best_park_factor": 97,
-    "pitcher_score": 48.8,
+    "pitcher_score": 49.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -1796,16 +1900,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 45.0,
+          "hr": 6,
+          "hr9": 1.2,
+          "bb9": 4.4,
+          "k9": 9.6,
+          "era": 4.2,
+          "innings_pitched": "45.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823095,
@@ -1884,9 +2001,9 @@
     "park_score": 41.6,
     "best_park_game": "Fenway Park",
     "best_park_factor": 97,
-    "pitcher_score": 48.8,
+    "pitcher_score": 49.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -3369,16 +3486,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 88.33333333333333,
+          "hr": 9,
+          "hr9": 0.92,
+          "bb9": 4.28,
+          "k9": 9.88,
+          "era": 4.69,
+          "innings_pitched": "88.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 29.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822854,
@@ -3387,16 +3517,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669372,
+          "name": "J.T. Ginn",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 138.33333333333334,
+          "hr": 17,
+          "hr9": 1.11,
+          "bb9": 3.71,
+          "k9": 7.87,
+          "era": 3.71,
+          "innings_pitched": "138.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 48.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822851,
@@ -3405,16 +3548,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 99.0,
+          "hr": 15,
+          "hr9": 1.36,
+          "bb9": 4.55,
+          "k9": 8.73,
+          "era": 4.82,
+          "innings_pitched": "99.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 52.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822853,
@@ -3493,9 +3649,9 @@
     "park_score": 65.4,
     "best_park_game": "Globe Life Field",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -3516,16 +3672,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695611,
+          "name": "Gage Jump",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 88.33333333333333,
+          "hr": 9,
+          "hr9": 0.92,
+          "bb9": 4.28,
+          "k9": 9.88,
+          "era": 4.69,
+          "innings_pitched": "88.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 41.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822854,
@@ -3534,16 +3703,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669372,
+          "name": "J.T. Ginn",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 138.33333333333334,
+          "hr": 17,
+          "hr9": 1.11,
+          "bb9": 3.71,
+          "k9": 7.87,
+          "era": 3.71,
+          "innings_pitched": "138.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 36.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822851,
@@ -3552,16 +3734,29 @@
         "opponent": "Athletics",
         "opponent_team_id": 133,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 682052,
+          "name": "Jacob Lopez",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 99.0,
+          "hr": 15,
+          "hr9": 1.36,
+          "bb9": 4.55,
+          "k9": 8.73,
+          "era": 4.82,
+          "innings_pitched": "99.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 64.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822853,
@@ -3640,9 +3835,9 @@
     "park_score": 65.4,
     "best_park_game": "Globe Life Field",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
+    "pitcher_score": 48.8,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -4858,16 +5053,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 45.0,
+          "hr": 6,
+          "hr9": 1.2,
+          "bb9": 4.4,
+          "k9": 9.6,
+          "era": 4.2,
+          "innings_pitched": "45.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823095,
@@ -4946,9 +5154,9 @@
     "park_score": 41.6,
     "best_park_game": "Fenway Park",
     "best_park_factor": 97,
-    "pitcher_score": 48.8,
+    "pitcher_score": 49.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -5204,16 +5412,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663776,
+          "name": "Patrick Sandoval",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 45.0,
+          "hr": 6,
+          "hr9": 1.2,
+          "bb9": 4.4,
+          "k9": 9.6,
+          "era": 4.2,
+          "innings_pitched": "45.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 42.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823095,
@@ -5292,7 +5513,7 @@
     "park_score": 41.6,
     "best_park_game": "Fenway Park",
     "best_park_factor": 97,
-    "pitcher_score": 47.0,
+    "pitcher_score": 45.9,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -5687,16 +5908,29 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 594798,
+          "name": "Jacob deGrom",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 130.33333333333334,
+          "hr": 17,
+          "hr9": 1.17,
+          "bb9": 2.55,
+          "k9": 10.98,
+          "era": 4.21,
+          "innings_pitched": "130.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 52.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 822854,
@@ -5705,16 +5939,29 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669022,
+          "name": "MacKenzie Gore",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 149.33333333333334,
+          "hr": 18,
+          "hr9": 1.08,
+          "bb9": 3.38,
+          "k9": 9.94,
+          "era": 4.4,
+          "innings_pitched": "149.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 36.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822851,
@@ -5723,16 +5970,29 @@
         "opponent": "Texas Rangers",
         "opponent_team_id": 140,
         "venue": "Globe Life Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 674003,
+          "name": "Cody Bradford",
+          "note": ""
+        },
         "park_factor": 108,
         "park_factor_score": 65.4,
         "park_notes": "Hitter-friendly; retractable roof",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 26.333333333333332,
+          "hr": 1,
+          "hr9": 0.34,
+          "bb9": 2.05,
+          "k9": 4.44,
+          "era": 3.42,
+          "innings_pitched": "26.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823095,
@@ -5811,9 +6071,9 @@
     "park_score": 51.8,
     "best_park_game": "Globe Life Field",
     "best_park_factor": 108,
-    "pitcher_score": 50.0,
+    "pitcher_score": 41.3,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -11648,16 +11908,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.66666666666667,
+          "hr": 13,
+          "hr9": 1.19,
+          "bb9": 1.92,
+          "k9": 9.58,
+          "era": 3.19,
+          "innings_pitched": "98.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823983,
@@ -11666,16 +11939,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.66666666666666,
+          "hr": 14,
+          "hr9": 0.77,
+          "bb9": 2.31,
+          "k9": 11.05,
+          "era": 2.09,
+          "innings_pitched": "163.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 14.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823338,
@@ -11736,7 +12022,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 45.4,
+    "pitcher_score": 37.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -11790,16 +12076,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.66666666666667,
+          "hr": 13,
+          "hr9": 1.19,
+          "bb9": 1.92,
+          "k9": 9.58,
+          "era": 3.19,
+          "innings_pitched": "98.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823983,
@@ -11808,16 +12107,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.66666666666666,
+          "hr": 14,
+          "hr9": 0.77,
+          "bb9": 2.31,
+          "k9": 11.05,
+          "era": 2.09,
+          "innings_pitched": "163.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 14.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823338,
@@ -11878,7 +12190,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 45.4,
+    "pitcher_score": 37.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -12681,16 +12993,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.66666666666667,
+          "hr": 13,
+          "hr9": 1.19,
+          "bb9": 1.92,
+          "k9": 9.58,
+          "era": 3.19,
+          "innings_pitched": "98.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823983,
@@ -12699,16 +13024,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.66666666666666,
+          "hr": 14,
+          "hr9": 0.77,
+          "bb9": 2.31,
+          "k9": 11.05,
+          "era": 2.09,
+          "innings_pitched": "163.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 14.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823338,
@@ -12769,7 +13107,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 45.4,
+    "pitcher_score": 37.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -13296,16 +13634,29 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650633,
+          "name": "Michael King",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 156.0,
+          "hr": 18,
+          "hr9": 1.04,
+          "bb9": 3.46,
+          "k9": 7.79,
+          "era": 3.23,
+          "innings_pitched": "156.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 37.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824472,
@@ -13314,16 +13665,29 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681190,
+          "name": "Randy V\u00e1squez",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 123.0,
+          "hr": 15,
+          "hr9": 1.1,
+          "bb9": 2.49,
+          "k9": 5.56,
+          "era": 4.02,
+          "innings_pitched": "123.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 42.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824470,
@@ -13332,16 +13696,29 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 109.66666666666667,
+          "hr": 11,
+          "hr9": 0.9,
+          "bb9": 2.22,
+          "k9": 7.88,
+          "era": 3.45,
+          "innings_pitched": "109.2"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 30.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824471,
@@ -13402,7 +13779,7 @@
     "park_score": 54.6,
     "best_park_game": "Great American Ball Park",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
+    "pitcher_score": 43.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -13425,16 +13802,29 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650633,
+          "name": "Michael King",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 156.0,
+          "hr": 18,
+          "hr9": 1.04,
+          "bb9": 3.46,
+          "k9": 7.79,
+          "era": 3.23,
+          "innings_pitched": "156.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 31.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824472,
@@ -13443,16 +13833,29 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 681190,
+          "name": "Randy V\u00e1squez",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 123.0,
+          "hr": 15,
+          "hr9": 1.1,
+          "bb9": 2.49,
+          "k9": 5.56,
+          "era": 4.02,
+          "innings_pitched": "123.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 36.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824470,
@@ -13461,16 +13864,29 @@
         "opponent": "San Diego Padres",
         "opponent_team_id": 135,
         "venue": "Great American Ball Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663554,
+          "name": "Casey Mize",
+          "note": ""
+        },
         "park_factor": 103,
         "park_factor_score": 54.6,
         "park_notes": "Hitter-friendly; short porch RF",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 109.66666666666667,
+          "hr": 11,
+          "hr9": 0.9,
+          "bb9": 2.22,
+          "k9": 7.88,
+          "era": 3.45,
+          "innings_pitched": "109.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 24.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824471,
@@ -13531,7 +13947,7 @@
     "park_score": 54.6,
     "best_park_game": "Great American Ball Park",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
+    "pitcher_score": 40.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -13585,16 +14001,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543037,
+          "name": "Gerrit Cole",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 98.66666666666667,
+          "hr": 13,
+          "hr9": 1.19,
+          "bb9": 1.92,
+          "k9": 9.58,
+          "era": 3.19,
+          "innings_pitched": "98.2"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 44.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823983,
@@ -13603,16 +14032,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.66666666666666,
+          "hr": 14,
+          "hr9": 0.77,
+          "bb9": 2.31,
+          "k9": 11.05,
+          "era": 2.09,
+          "innings_pitched": "163.2"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 20.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823338,
@@ -13673,7 +14115,7 @@
     "park_score": 43.8,
     "best_park_game": "Angel Stadium",
     "best_park_factor": 98,
-    "pitcher_score": 46.4,
+    "pitcher_score": 40.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
