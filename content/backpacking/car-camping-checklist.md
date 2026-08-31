@@ -26,6 +26,9 @@ boxes against this list when you get home so they're whole for the next trip.
 - [ ] Rug
 - [ ] Hammock ×2
 - [ ] Beanie ×2
+- [ ] Tarp
+- [ ] Toilet paper
+- [ ] Paracord
 
 ## Kitchen Box
 
@@ -55,6 +58,11 @@ boxes against this list when you get home so they're whole for the next trip.
 - [ ] Water filter
 - [ ] Water purification tabs
 - [ ] Carabiners
+- [ ] Hand sanitizer
+- [ ] Cast iron skillet
+- [ ] Scissors
+- [ ] Paper towels
+- [ ] Camp tablecloth
 
 ## To Pack Each Trip
 
@@ -69,3 +77,7 @@ boxes against this list when you get home so they're whole for the next trip.
 - [ ] Sunscreen
 - [ ] Fishing supplies
 - [ ] Portable chargers
+- [ ] Ice
+- [ ] Cash
+- [ ] Towels
+- [ ] Swimsuits
