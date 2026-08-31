@@ -12,23 +12,23 @@ boxes against this list when you get home so they're whole for the next trip.
 ## Bedroom Box
 
 - [ ] Tent
+- [ ] Tarp
+- [ ] Cot
+- [ ] Rug
+- [ ] Hammock ×2
+- [ ] Rope
+- [ ] Paracord
+- [ ] Duct tape
 - [ ] Headlamp ×2
 - [ ] Lantern
 - [ ] Spare batteries
 - [ ] Puffer ×2
+- [ ] Beanie ×2
 - [ ] Wool socks
 - [ ] First-aid kit
 - [ ] Medicine case
-- [ ] Deck of cards
-- [ ] Duct tape
-- [ ] Rope
-- [ ] Cot
-- [ ] Rug
-- [ ] Hammock ×2
-- [ ] Beanie ×2
-- [ ] Tarp
 - [ ] Toilet paper
-- [ ] Paracord
+- [ ] Deck of cards
 
 ## Kitchen Box
 
@@ -37,20 +37,25 @@ boxes against this list when you get home so they're whole for the next trip.
 - [ ] Fuel canisters
 - [ ] Waterproof lighter
 - [ ] Backup matches
+- [ ] Cast iron skillet
 - [ ] Spatula
 - [ ] Spoon
 - [ ] Tongs
 - [ ] Small knife
+- [ ] Scissors
 - [ ] Cutting board
 - [ ] Multitool
 - [ ] Plates
 - [ ] Bowls
 - [ ] Cups
 - [ ] Picnic silverware ×2
+- [ ] Camp tablecloth
 - [ ] Soap
+- [ ] Hand sanitizer
 - [ ] Sponge
 - [ ] Dish towel
 - [ ] Collapsible basin
+- [ ] Paper towels
 - [ ] Trash bags
 - [ ] Ziploc bags
 - [ ] Spice kit
@@ -58,26 +63,21 @@ boxes against this list when you get home so they're whole for the next trip.
 - [ ] Water filter
 - [ ] Water purification tabs
 - [ ] Carabiners
-- [ ] Hand sanitizer
-- [ ] Cast iron skillet
-- [ ] Scissors
-- [ ] Paper towels
-- [ ] Camp tablecloth
 
 ## To Pack Each Trip
 
 - [ ] Sleeping bags
 - [ ] Camp chair
 - [ ] Water bottle
-- [ ] Board games
 - [ ] Food cooler
 - [ ] Water cooler
-- [ ] Book / crossword
-- [ ] Bug spray
+- [ ] Ice
 - [ ] Sunscreen
+- [ ] Bug spray
+- [ ] Swimsuits
+- [ ] Towels
+- [ ] Board games
+- [ ] Book / crossword
 - [ ] Fishing supplies
 - [ ] Portable chargers
-- [ ] Ice
 - [ ] Cash
-- [ ] Towels
-- [ ] Swimsuits
