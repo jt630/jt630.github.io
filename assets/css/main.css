@@ -594,6 +594,34 @@ img {
   margin-bottom: 0.5rem;
 }
 
+/* Interactive packing checklists (markdown task lists) */
+.single-post .content ul.checklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.single-post .content ul.checklist li {
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.single-post .content ul.checklist input[type="checkbox"] {
+  width: 1.05em;
+  height: 1.05em;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: var(--pink);
+  transform: translateY(0.12em);
+}
+
+.single-post .content ul.checklist li.checked {
+  color: var(--gold);
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
 .single-post .content blockquote {
   border-left: 3px solid var(--pink);
   padding: 1rem 1.5rem;

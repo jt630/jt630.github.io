@@ -72,6 +72,34 @@
       });
     })();
 
+    // Interactive packing checklists — enable markdown task-list checkboxes,
+    // drop the list bullet, and remember what's ticked (per page, localStorage)
+    (function() {
+      var boxes = document.querySelectorAll('.single-post .content li > input[type="checkbox"]');
+      if (!boxes.length) return;
+      var key = 'checklist:' + location.pathname;
+      var saved = {};
+      try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+      function persist() {
+        var state = {};
+        boxes.forEach(function(b) { if (b.checked) state[b.dataset.ckKey] = 1; });
+        try { localStorage.setItem(key, JSON.stringify(state)); } catch (e) {}
+      }
+      boxes.forEach(function(box, i) {
+        box.disabled = false;
+        box.removeAttribute('disabled');
+        var li = box.parentElement;
+        li.parentElement.classList.add('checklist');
+        var ckKey = (li.textContent || '').trim().slice(0, 60) + '#' + i;
+        box.dataset.ckKey = ckKey;
+        if (saved[ckKey]) { box.checked = true; li.classList.add('checked'); }
+        box.addEventListener('change', function() {
+          li.classList.toggle('checked', box.checked);
+          persist();
+        });
+      });
+    })();
+
     // Page load beep — fires on first click (autoplay blocked in modern browsers)
     (function() {
       var played = false;
