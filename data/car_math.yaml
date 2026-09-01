@@ -53,17 +53,6 @@ scenarios:
     depreciation: 14000
     tco_7yr: 45628
     per_mo_allin: 543
-  - name: "USED 2021 Mazda CX-5 AWD (6-sp auto, NO CVT, ~45k mi)"
-    otd: 25410
-    financed: 21410
-    pmt_mo: 443
-    interest: 5194
-    insurance: 7895
-    maintenance: 7250
-    fuel: 12096
-    depreciation: 12500
-    tco_7yr: 44935
-    per_mo_allin: 535
   - name: "USED 2019 Toyota 4Runner SR5 4WD (8-sp auto, NO CVT, ~70k mi)"
     otd: 35480
     financed: 31480

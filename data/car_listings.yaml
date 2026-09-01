@@ -108,16 +108,6 @@ rav4:
     post_date: null
     location: null
 
-cx5:
-  - source: craigslist
-    title: "2024 Mazda CX-5 AWD All Wheel Drive 2.5 S Select Package SUV"
-    price: 24495
-    year: 2024
-    odometer: null
-    url: "https://www.craigslist.org/view/d/boise-2024-mazda-cx-awd-all-wheel-drive/Fi8BjTGj8RGqG7fZI5BnaQ"
-    post_date: null
-    location: Maverick Car Company
-
 fourrunner:
   - source: cars.com
     title: "2010 Toyota 4Runner SR5"

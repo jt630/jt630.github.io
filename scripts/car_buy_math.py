@@ -75,14 +75,6 @@ SCENARIOS = {
         "mpg": 28,
         "resale": 15000,           # RAV4 resale is class-leading
     },
-    "USED 2021 Mazda CX-5 AWD (6-sp auto, NO CVT, ~45k mi)": {
-        "price": 23500,            # 22k-25k
-        "apr": APR_USED,
-        "term": 60,
-        "start_age": 5,
-        "mpg": 25,
-        "resale": 11000,
-    },
     "USED 2019 Toyota 4Runner SR5 4WD (8-sp auto, NO CVT, ~70k mi)": {
         "price": 33000,            # 31k-36k; 4Runners barely depreciate
         "apr": APR_USED,
@@ -127,7 +119,7 @@ print("Notes:")
 print("- TCO now includes fuel at ${:.2f}/gal, {} mi/yr. Excludes registration (~$140/yr flat, same for all).".format(GAS_PER_GAL, MILES_PER_YEAR))
 print("- RAV4 Hybrid (~39 mpg) would cut the RAV4 fuel line ~$4,600 over 7 yrs -> best-in-table TCO.")
 print("- 'depr' is price - resale; the NEW car's first-year drop (~20%) is the single biggest line.")
-print("- Forester has NO non-CVT option in any year 2014+. RAV4 / CX-5 are the non-CVT compact SUVs.")
+print("- Forester has NO non-CVT option in any year 2014+. RAV4 / 4Runner / Passport are the non-CVT alternatives.")
 print("- 2019+ Subaru CVT (TR580/690) is materially better than 2014-18; extended warranty history on the older ones.")
 
 # ---- emit data/car_math.yaml so the site table re-derives from this script ----

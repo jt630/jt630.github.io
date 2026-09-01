@@ -62,13 +62,12 @@ SEARCHES = [
     #      carscom_make, carscom_model
     ("forester",   ["forester"],       2019, 30000, ["forester"],           False, "subaru", "subaru-forester"),
     ("rav4",       ["rav4"],            2019, 33000, ["rav4", "rav 4"],      False, "toyota", "toyota-rav_4"),
-    ("cx5",        ["cx-5", "cx5"],     2019, 30000, ["cx-5", "cx5", "cx 5"], False, "mazda",  "mazda-mazda_cx_5"),
     ("fourrunner", ["4runner"],         2010, 38000, ["4runner", "4 runner"], False, "toyota", "toyota-4runner"),
     # Honda Passport: require a parsed year >= 2019 to exclude the 90s
     # Isuzu-based Passport.
     ("passport",   ["passport"],        2019, 34000, ["passport"],           True,  "honda",  "honda-passport"),
 ]
-YAML_KEYS = ("forester", "rav4", "cx5", "fourrunner", "passport")
+YAML_KEYS = ("forester", "rav4", "fourrunner", "passport")
 
 # --------------------------------------------------------------------------- #
 # geo filter - Treasure Valley + reasonable driving distance

@@ -13,8 +13,7 @@ Meridian border — daily driving plus a fair amount of camping and light offroa
 The catch, up front: **there is no Forester without a CVT.** Every Forester from
 2014 on is CVT-only — no manual, no conventional automatic, ever. So the real
 choice is *accept the (good, post-2019) Subaru CVT*, or *pick a different Japanese
-SUV that kept a real gearbox* — the Toyota RAV4, Mazda CX-5, Toyota 4Runner, or
-Honda Passport.
+SUV that kept a real gearbox* — the Toyota RAV4, Toyota 4Runner, or Honda Passport.
 
 Everything below re-derives from `scripts/car_buy_math.py` and
 `scripts/car_finder.py`. Numbers are point estimates; the bands are in the script
