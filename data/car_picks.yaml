@@ -1,0 +1,99 @@
+# Hand-picked shortlist, curated 2026-09-01 from data/car_listings.yaml.
+# Edit freely — this drives the "Top picks" section on /cars/.
+# "flag: branded" puts a rebuilt-title warning on the card.
+
+updated: "2026-09-01"
+
+forester:
+  headline: "Her pick. All 2019+ = the reliable CVT era."
+  picks:
+    - title: "2019 Forester Sport"
+      price: 24870
+      miles: 50566
+      dealer: "Larry H. Miller Subaru, Boise"
+      url: "https://www.cars.com/vehicledetail/c527cb19-33cd-48b6-83e3-e8096d3b2f5c/"
+      verdict: "Best overall. Franchise Subaru dealer = clean history and CPO options. Sport trim adds dual-mode X-Mode and better wheels. Sits right in the TCO sweet spot — past the depreciation cliff, ~50k miles, ~$25k."
+      watch: "Confirm it's the good-era CVT service history; ask about remaining powertrain warranty (5yr/60k from 2019 = likely just expired)."
+    - title: "2020 Forester Touring"
+      price: 24998
+      miles: 51669
+      dealer: "CarMax, Meridian"
+      url: "https://www.cars.com/vehicledetail/1b763353-50fa-4910-90d2-7e161f4a4293/"
+      verdict: "Safest buy. CarMax guarantees a clean title, no-haggle price, and a return window. Touring is the fully-loaded trim (leather, pano roof, nav). Same money as the Sport."
+      watch: "CarMax prices are firm — no negotiating. Add their extended warranty cost if you want it."
+    - title: "2019 Forester Limited"
+      price: 19598
+      miles: 85892
+      dealer: "Dillon GMC & Fiat, Boise"
+      url: "https://www.cars.com/vehicledetail/7bb3e878-ceeb-4234-a623-606cc8a410e1/"
+      verdict: "Value pick — $5k cheaper. Higher miles but still well under 100k, leather interior."
+      watch: "Non-Subaru dealer, out of warranty. $150 pre-purchase inspection is non-negotiable here — check CVT fluid and oil consumption."
+    - title: "2022 Forester Limited"
+      price: 23100
+      miles: 15361
+      dealer: "AutoSavvy, Boise"
+      url: "https://www.cars.com/vehicledetail/9edb1ad1-6aa8-424b-b752-c7750e429bb7/"
+      flag: branded
+      verdict: "Newest + lowest miles for the money — but see the warning."
+      watch: "AutoSavvy sells rebuilt / branded-title vehicles as its business model. Expect a ~30% resale hit, higher insurance or a refusal to write full coverage, and prior collision damage. Only if you're deliberately buying a rebuilt title to save cash."
+
+rav4:
+  headline: "The no-CVT compromise that still fits the off-road brief."
+  picks:
+    - title: "2020 RAV4 TRD Off-Road"
+      price: 29699
+      miles: null
+      dealer: "drivenboise.com (Craigslist)"
+      url: "https://www.craigslist.org/view/d/boise-2020-toyota-rav4-trd-off-road/WGX32VeU8RGAvrmYj_3Rvg"
+      verdict: "The single best fit for the whole brief: Japanese, 8-speed automatic (no CVT), the TRD Off-Road trim with the rear-biased AWD lock and all-terrain tires you actually want for the foothills."
+      watch: "Craigslist listing carries no mileage or title info — call the dealer first. Confirm it's a clean title and get the miles."
+
+fourrunner:
+  headline: "His pick. Body-on-frame, no CVT, holds value like nothing else. Runs ~17 mpg — the fuel line is the cost."
+  picks:
+    - title: "2022 4Runner SR5"
+      price: 34994
+      miles: 57790
+      dealer: "Dillon CJDR, Caldwell"
+      url: "https://www.cars.com/vehicledetail/b1b2fd73-dd8d-4287-b581-b02fb47f17d6/"
+      verdict: "Newest + lowest-mile 4Runner in the valley. Latest running gear, 3+ good years left on the 5th-gen platform, best long-term hold. If you're buying one to keep, this is it."
+      watch: "SR5 is the base trim — part-time 4WD, no locking rear diff. Fine for gravel and forest roads; not a rock crawler."
+    - title: "2017 4Runner Limited"
+      price: 29287
+      miles: 98003
+      dealer: "Ozzy's Car Company, Boise"
+      url: "https://www.cars.com/vehicledetail/6de47688-c10e-4f23-9a21-14f3e038f2cd/"
+      verdict: "Under $30k, under 100k miles, loaded Limited trim (full-time 4WD with locking center diff, leather, X-REAS suspension). The value sweet spot."
+      watch: "Small independent lot — PPI at a Toyota specialist is essential. Check for rust underneath and CarFax for the accident/title history."
+    - title: "2021 4Runner TRD Off-Road Premium"
+      price: 36504
+      miles: 94997
+      dealer: "Dillon Nissan, Boise"
+      url: "https://www.cars.com/vehicledetail/7afaae8e-094b-4233-83bc-543d75a70ca4/"
+      verdict: "The trim to want if offroading is the point: KDSS sway-bar disconnect, locking rear diff, Crawl Control, Multi-Terrain Select. Newer, so still some factory powertrain coverage."
+      watch: "95k miles and top-of-table price — you're paying for the trim, not the condition. Negotiate hard."
+    - title: "2018 4Runner TRD Off-Road (lifted)"
+      price: 29995
+      miles: null
+      dealer: "Bargain Auto Sales, Garden City (Craigslist)"
+      url: "https://www.craigslist.org/view/d/boise-2018-toyota-4runner-trd-off/88qckn5CW6J3UWFBhHu48o"
+      verdict: "Cheapest way into a TRD Off-Road."
+      watch: "Buy-here-pay-here lot, aftermarket lift of unknown quality, no mileage listed. High risk — PPI plus a suspension/alignment inspection before you even test drive seriously."
+
+passport:
+  headline: "Underrated value. No CVT (9-speed auto), big cargo box, Honda V6."
+  picks:
+    - title: "2020 Passport Touring"
+      price: 27492
+      miles: 61307
+      dealer: "Kendall Ford, Meridian"
+      url: "https://www.cars.com/vehicledetail/15a05b1d-8928-4e6c-9217-c831a18bd95d/"
+      verdict: "Franchise dealer, top Touring trim (leather, vented seats, 115V outlet for camping). Reasonable miles."
+      watch: "Check the timing — Honda J35 is chain-driven (good), but verify the transmission fluid was serviced."
+    - title: "2022 Passport TrailSport"
+      price: 32594
+      miles: 37368
+      dealer: "Lithia Ford, Boise"
+      url: "https://www.cars.com/vehicledetail/31ba27ae-8b24-4c23-9034-aaea7faad010/"
+      verdict: "Low miles, newest, and the TrailSport trim adds skid plates, all-terrain tires, and a wider track — the mild-offroad Passport. Franchise dealer."
+      watch: "Priciest Passport here; TrailSport is more about looks than hardware vs. the regular AWD trim."

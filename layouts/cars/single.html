@@ -44,6 +44,21 @@ table.cars-tbl .worst { color: #ff6b6b; }
 .model-card .tag.nocvt { border-color: #6dd36d; color: #6dd36d; }
 .model-card p { color: var(--white-dim); line-height: 1.55; font-size: 14px; margin: 8px 0 0; }
 
+/* top picks */
+.pick-headline { color: var(--white-faint); font-style: italic; margin: 4px 0 14px; }
+.pick-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 12px 0 32px; }
+.pick-card { border: 2px outset rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); padding: 16px 18px; display: flex; flex-direction: column; }
+.pick-card--warn { border-color: #ff6b6b; background: rgba(255,107,107,0.06); }
+.pick-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.pick-title { font-weight: 700; color: var(--white); }
+.pick-price { font-family: 'Impact', sans-serif; font-size: 20px; color: var(--gold); white-space: nowrap; }
+.pick-meta { font-size: 12px; color: var(--white-faint); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 3px; }
+.pick-brand { color: #ff6b6b; font-weight: 700; font-size: 12px; margin-top: 8px; letter-spacing: 0.03em; }
+.pick-verdict { color: var(--white-dim); line-height: 1.55; font-size: 14px; margin: 10px 0 0; }
+.pick-watch { color: var(--white-faint); line-height: 1.5; font-size: 13px; margin: 8px 0 0; }
+.pick-link { margin-top: auto; padding-top: 12px; color: var(--pink); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; }
+.pick-link:hover { text-decoration: underline; }
+
 /* listings */
 .listing-cat { margin: 28px 0 8px; color: var(--pink); font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
 .listing-row td:first-child { min-width: 260px; }
@@ -204,8 +219,47 @@ table.cars-tbl .worst { color: #ff6b6b; }
     road-tuned suspension and all-season tires give up quickly on a rutted forest road.
   </p>
 
+  <!-- ─────────── TOP PICKS ─────────── -->
+  {{ with .Site.Data.car_picks }}
+  <h2>Top picks — Boise metro, {{ .updated }}</h2>
+  <p class="prose">
+    Hand-picked from the full listings below. Every one still needs a
+    $150 pre-purchase inspection at an independent shop before money changes hands.
+  </p>
+  {{ $groups := slice
+      (dict "key" "forester" "label" "Subaru Forester")
+      (dict "key" "rav4" "label" "Toyota RAV4")
+      (dict "key" "fourrunner" "label" "Toyota 4Runner")
+      (dict "key" "passport" "label" "Honda Passport") }}
+  {{ range $groups }}
+    {{ $label := .label }}
+    {{ $g := index $.Site.Data.car_picks .key }}
+    {{ with $g }}
+    <h3>{{ $label }}</h3>
+    <p class="pick-headline">{{ .headline }}</p>
+    <div class="pick-list">
+      {{ range .picks }}
+      <div class="pick-card{{ if eq .flag "branded" }} pick-card--warn{{ end }}">
+        <div class="pick-top">
+          <span class="pick-title">{{ .title }}</span>
+          <span class="pick-price">${{ lang.FormatNumberCustom 0 .price }}</span>
+        </div>
+        <div class="pick-meta">
+          {{ with .miles }}{{ lang.FormatNumberCustom 0 . }} mi &middot; {{ end }}{{ .dealer }}
+        </div>
+        {{ if eq .flag "branded" }}<div class="pick-brand">⚠ REBUILT / BRANDED TITLE — read the note</div>{{ end }}
+        <p class="pick-verdict">{{ .verdict }}</p>
+        <p class="pick-watch"><strong>Watch:</strong> {{ .watch }}</p>
+        <a class="pick-link" href="{{ .url }}" target="_blank" rel="noopener">See the listing →</a>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  {{ end }}
+  {{ end }}
+
   <!-- ─────────── LIVE LISTINGS ─────────── -->
-  <h2>Live listings — Boise metro</h2>
+  <h2>All listings — Boise metro</h2>
   <p class="cars-assump">
     {{ with $L }}Scraped {{ .generated }} by <code>scripts/car_finder.py</code>. Craigslist has no odometer/date on results pages; Cars.com does.{{ else }}Run <code>python scripts/car_finder.py</code> to populate <code>data/car_listings.yaml</code>.{{ end }}
   </p>
