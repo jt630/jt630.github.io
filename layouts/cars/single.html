@@ -44,6 +44,16 @@ table.cars-tbl .worst { color: #ff6b6b; }
 .model-card .tag.nocvt { border-color: #6dd36d; color: #6dd36d; }
 .model-card p { color: var(--white-dim); line-height: 1.55; font-size: 14px; margin: 8px 0 0; }
 
+/* deal badges */
+.deal-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+.deal-great-deal { background: #1c7a3c; color: #eafff0; }
+.deal-good-deal  { background: #2f6f6a; color: #e8fffd; }
+.deal-fair-price { background: #7a6b1c; color: #fff8e0; }
+.deal-overpriced { background: #8a2d2d; color: #ffe8e8; }
+.deal-mkt { display: block; font-size: 11px; color: var(--white-faint); margin-top: 3px; }
+.pick-deal { margin-top: 8px; }
+.pick-deal .deal-mkt { display: inline; margin-left: 6px; }
+
 /* top picks */
 .pick-headline { color: var(--white-faint); font-style: italic; margin: 4px 0 14px; }
 .pick-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 12px 0 32px; }
@@ -247,6 +257,12 @@ table.cars-tbl .worst { color: #ff6b6b; }
         <div class="pick-meta">
           {{ with .miles }}{{ lang.FormatNumberCustom 0 . }} mi &middot; {{ end }}{{ .dealer }}
         </div>
+        {{ if or .deal .market }}
+        <div class="pick-deal">
+          {{ with .deal }}<span class="deal-badge deal-{{ . | urlize }}">{{ . }}</span>{{ end }}
+          {{ with .market }}<span class="deal-mkt">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
         {{ if eq .flag "branded" }}<div class="pick-brand">⚠ REBUILT / BRANDED TITLE — read the note</div>{{ end }}
         <p class="pick-verdict">{{ .verdict }}</p>
         <p class="pick-watch"><strong>Watch:</strong> {{ .watch }}</p>
@@ -261,7 +277,7 @@ table.cars-tbl .worst { color: #ff6b6b; }
   <!-- ─────────── LIVE LISTINGS ─────────── -->
   <h2>All listings — Boise metro</h2>
   <p class="cars-assump">
-    {{ with $L }}Scraped {{ .generated }} by <code>scripts/car_finder.py</code>. Craigslist has no odometer/date on results pages; Cars.com does.{{ else }}Run <code>python scripts/car_finder.py</code> to populate <code>data/car_listings.yaml</code>.{{ end }}
+    {{ with $L }}Scraped {{ .generated }} by <code>scripts/car_finder.py</code>. Sorted best-value first within each model. Deal rating and &ldquo;$ vs. market&rdquo; come from Cars.com&rsquo;s price analysis; Craigslist listings carry no mileage or deal data.{{ else }}Run <code>python scripts/car_finder.py</code> to populate <code>data/car_listings.yaml</code>.{{ end }}
   </p>
 
   {{ with $L }}
@@ -272,18 +288,26 @@ table.cars-tbl .worst { color: #ff6b6b; }
       (dict "key" "passport" "label" "Honda Passport (2019+)") }}
   {{ range $cats }}
     {{ $rows := index $L .key }}
-    <div class="listing-cat">{{ .label }} &mdash; {{ len $rows }} listed</div>
+    {{ $rated := sort (where $rows "value_score" "!=" nil) "value_score" }}
+    {{ $unrated := where $rows "value_score" nil }}
+    {{ $ordered := $rated | append $unrated }}
+    <div class="listing-cat">{{ .label }} &mdash; {{ len $rows }} listed{{ with $rated }}, best value first{{ end }}</div>
     {{ if $rows }}
     <div class="cars-table-wrap">
       <table class="cars-tbl">
-        <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Where</th><th>Source</th><th></th></tr></thead>
+        <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Deal</th><th>Where</th><th>Src</th><th></th></tr></thead>
         <tbody>
-        {{ range $rows }}
+        {{ range $ordered }}
           <tr class="listing-row">
             <td>{{ .title }}</td>
             <td>{{ with .year }}{{ . }}{{ else }}&mdash;{{ end }}</td>
             <td>{{ with .price }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
             <td>{{ with .odometer }}{{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+            <td>
+              {{ with .deal_rating }}<span class="deal-badge deal-{{ . | urlize }}">{{ . }}</span>{{ end }}
+              {{ with .market_delta }}<span class="deal-mkt">{{ if lt . 0 }}${{ lang.FormatNumberCustom 0 (math.Abs .) }} below{{ else }}${{ lang.FormatNumberCustom 0 . }} above{{ end }}</span>{{ end }}
+              {{ if and (not .deal_rating) (not .market_delta) }}&mdash;{{ end }}
+            </td>
             <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}</td>
             <td><span class="listing-src">{{ with .source }}{{ . }}{{ else }}craigslist{{ end }}</span></td>
             <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
