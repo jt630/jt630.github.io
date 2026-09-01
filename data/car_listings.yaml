@@ -352,3 +352,22 @@ passport:
     post_date: null
     location: Lithia Ford of Boise, Boise, ID
 
+# Toyota Certified Pre-Owned (TCUV) — pulled 2026-09-01 via cars.com CPO search
+# (zip 83714, 100-250 mi). Dealer sites (Peterson Toyota, Hometown/Steve's,
+# LHM) were JS SPAs or blocked to WebFetch. cars.com RAV4 CPO page would not
+# render inventory after 7 attempts; 4Runner CPO page rendered fine.
+# Filter: 2019+, under $45k, page must show genuine "Toyota Certified".
+cpo:
+  fourrunner:
+    - source: cars.com
+      title: "2025 Toyota 4Runner SR5"
+      price: 42250
+      year: 2025
+      odometer: 22654
+      url: "https://www.cars.com/vehicledetail/81a5cef9-e002-4699-9a8d-2e3eeef15c4b/"
+      location: "Steve's Hometown Toyota, Ontario, OR"
+      color: Ice
+      vin: JTEVA5BR7S5001742
+      certified: true
+  rav4: []
+

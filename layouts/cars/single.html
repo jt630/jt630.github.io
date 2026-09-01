@@ -298,6 +298,49 @@ table.cars-tbl .worst { color: #ff6b6b; }
   {{ end }}
   {{ end }}
 
+  <!-- ─────────── CERTIFIED PRE-OWNED ─────────── -->
+  <h2>Toyota Certified Pre-Owned</h2>
+  <p class="prose">
+    Toyota&rsquo;s CPO (TCUV) adds a <strong>7yr/100k powertrain warranty from the original
+    in-service date</strong>, a 12mo/12k comprehensive warranty, a 160-point inspection,
+    and a guaranteed clean title &mdash; no rebuilt/branded cars can be certified. Worth a
+    modest premium on a RAV4 (newer 8-speed auto); worth less on a 4Runner, whose
+    drivetrain rarely fails &mdash; there you&rsquo;re really buying the clean-history guarantee.
+    <strong>Compare the out-the-door price delta vs. a comparable non-certified unit, not the badge.</strong>
+  </p>
+  <p class="cars-assump">
+    Local Toyota dealer sites (Peterson, Steve&rsquo;s Hometown) are JavaScript apps the
+    scraper can&rsquo;t read, and Larry H. Miller Toyota Boise has closed &mdash; so check dealer
+    CPO inventory directly. Watch for fake badges: a &ldquo;Certified&rdquo; tag on a listing
+    aggregator sometimes means a third-party warranty (e.g. &ldquo;Ford Blue Advantage&rdquo;),
+    not genuine Toyota Certified. Confirm the listing says <em>&ldquo;Toyota Certified Used
+    Vehicle, backed by Toyota.&rdquo;</em>
+  </p>
+  {{ with .Site.Data.car_listings.cpo }}
+    {{ range $key, $rows := . }}
+      {{ if $rows }}
+      <div class="listing-cat">{{ if eq $key "fourrunner" }}4Runner{{ else if eq $key "rav4" }}RAV4{{ else }}{{ $key }}{{ end }} &mdash; Toyota Certified</div>
+      <div class="cars-table-wrap">
+        <table class="cars-tbl">
+          <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Where</th><th></th></tr></thead>
+          <tbody>
+          {{ range $rows }}
+            <tr class="listing-row">
+              <td>{{ .title }}</td>
+              <td>{{ with .year }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+              <td>{{ with .price }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+              <td>{{ with .odometer }}{{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+              <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+              <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
+            </tr>
+          {{ end }}
+          </tbody>
+        </table>
+      </div>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
   <h3>Facebook Marketplace</h3>
   <p class="prose">
     FB Marketplace has no API and can&rsquo;t be scraped reliably &mdash; but it&rsquo;s where the
