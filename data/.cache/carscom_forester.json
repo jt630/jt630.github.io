@@ -1,0 +1,15 @@
+{
+  "fetched": "2026-09-01",
+  "source_note": "Retrieved via browser fetch on 2026-09-01; cars.com returns 403 to scripted/datacenter requests, so this cache seeds the category until the script is run from an unblocked network.",
+  "rows": [
+    {"source": "cars.com", "title": "2019 Subaru Forester Base", "price": 15140, "year": 2019, "odometer": 132196, "url": "https://www.cars.com/vehicledetail/94f87236-496d-4528-b0be-402d88e9a384/", "post_date": null, "location": "Corwin Ford, Nampa, ID"},
+    {"source": "cars.com", "title": "2020 Subaru Forester Limited", "price": 15995, "year": 2020, "odometer": 124504, "url": "https://www.cars.com/vehicledetail/cb9948ab-617e-450d-aa7c-79f15ceb93ac/", "post_date": null, "location": "Good Life Motors, Nampa, ID"},
+    {"source": "cars.com", "title": "2019 Subaru Forester Limited", "price": 19598, "year": 2019, "odometer": 85892, "url": "https://www.cars.com/vehicledetail/7bb3e878-ceeb-4234-a623-606cc8a410e1/", "post_date": null, "location": "Dillon GMC & Fiat, Boise, ID"},
+    {"source": "cars.com", "title": "2025 Subaru Forester Base", "price": 22600, "year": 2025, "odometer": 13762, "url": "https://www.cars.com/vehicledetail/f62c1888-5536-4dbf-a6c4-0d4f1a8f63dc/", "post_date": null, "location": "AutoSavvy Boise, Boise, ID"},
+    {"source": "cars.com", "title": "2022 Subaru Forester Limited", "price": 23100, "year": 2022, "odometer": 15361, "url": "https://www.cars.com/vehicledetail/9edb1ad1-6aa8-424b-b752-c7750e429bb7/", "post_date": null, "location": "AutoSavvy Boise, Boise, ID"},
+    {"source": "cars.com", "title": "2019 Subaru Forester Sport", "price": 24870, "year": 2019, "odometer": 50566, "url": "https://www.cars.com/vehicledetail/c527cb19-33cd-48b6-83e3-e8096d3b2f5c/", "post_date": null, "location": "Larry H. Miller Subaru Boise, Boise, ID"},
+    {"source": "cars.com", "title": "2020 Subaru Forester Touring", "price": 24998, "year": 2020, "odometer": 51669, "url": "https://www.cars.com/vehicledetail/1b763353-50fa-4910-90d2-7e161f4a4293/", "post_date": null, "location": "CarMax Boise (Meridian), Meridian, ID"},
+    {"source": "cars.com", "title": "2025 Subaru Forester Premium", "price": 25000, "year": 2025, "odometer": 8290, "url": "https://www.cars.com/vehicledetail/e6562781-57b6-4a65-a3a1-3514e56d97b2/", "post_date": null, "location": "AutoSavvy Boise, Boise, ID"},
+    {"source": "cars.com", "title": "2022 Subaru Forester Limited", "price": 25000, "year": 2022, "odometer": 16410, "url": "https://www.cars.com/vehicledetail/dadaf652-5d61-4572-8320-6d66ba31a3df/", "post_date": null, "location": "AutoSavvy Boise, Boise, ID"}
+  ]
+}

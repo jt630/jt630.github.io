@@ -1,0 +1,11 @@
+{
+  "fetched": "2026-09-01",
+  "source_note": "Retrieved via browser fetch on 2026-09-01; cars.com returns 403 to scripted/datacenter requests, so this cache seeds the category until the script is run from an unblocked network.",
+  "rows": [
+    {"source": "cars.com", "title": "2021 Honda Passport AWD EX-L", "price": 24700, "year": 2021, "odometer": 26729, "url": "https://www.cars.com/vehicledetail/0a5a0aac-28f6-4b28-8b0c-da5a75fc700c/", "post_date": null, "location": "AutoSavvy Boise, Boise, ID"},
+    {"source": "cars.com", "title": "2022 Honda Passport AWD TrailSport", "price": 26000, "year": 2022, "odometer": 58569, "url": "https://www.cars.com/vehicledetail/21aafb6d-c1c3-4c42-8b47-05bcc477a8af/", "post_date": null, "location": "AutoSavvy Boise, Boise, ID"},
+    {"source": "cars.com", "title": "2020 Honda Passport Touring", "price": 27492, "year": 2020, "odometer": 61307, "url": "https://www.cars.com/vehicledetail/15a05b1d-8928-4e6c-9217-c831a18bd95d/", "post_date": null, "location": "Kendall Ford of Meridian, Meridian, ID"},
+    {"source": "cars.com", "title": "2019 Honda Passport EX-L", "price": 28760, "year": 2019, "odometer": 60922, "url": "https://www.cars.com/vehicledetail/5b0355d4-4ccb-4531-9a4b-a4a210069338/", "post_date": null, "location": "Peterson Auto Group, Boise, ID"},
+    {"source": "cars.com", "title": "2022 Honda Passport TrailSport", "price": 32594, "year": 2022, "odometer": 37368, "url": "https://www.cars.com/vehicledetail/31ba27ae-8b24-4c23-9034-aaea7faad010/", "post_date": null, "location": "Lithia Ford of Boise, Boise, ID"}
+  ]
+}

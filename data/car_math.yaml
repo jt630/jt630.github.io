@@ -1,0 +1,88 @@
+generated: "2026-09-01"
+assumptions:
+  hold_years: 7
+  miles_per_year: 12000
+  down: 4000
+  apr_new: 0.072
+  apr_used: 0.089
+  idaho_sales_tax: 0.06
+  doc_fee: 500
+  gas_per_gal: 3.6
+scenarios:
+  - name: "NEW 2026 Forester Premium"
+    otd: 35692
+    financed: 31692
+    pmt_mo: 543
+    interest: 7430
+    insurance: 8995
+    maintenance: 3650
+    fuel: 10800
+    depreciation: 17700
+    tco_7yr: 48575
+    per_mo_allin: 578
+  - name: "USED 2023 Forester (~30k mi)"
+    otd: 28590
+    financed: 24590
+    pmt_mo: 509
+    interest: 5965
+    insurance: 8170
+    maintenance: 6050
+    fuel: 10800
+    depreciation: 14000
+    tco_7yr: 44985
+    per_mo_allin: 536
+  - name: "USED 2020 Forester (~65k mi)"
+    otd: 22230
+    financed: 18230
+    pmt_mo: 453
+    interest: 3504
+    insurance: 7840
+    maintenance: 7650
+    fuel: 11200
+    depreciation: 12000
+    tco_7yr: 42194
+    per_mo_allin: 502
+  - name: "USED 2023 Toyota RAV4 (8-sp auto, NO CVT, ~35k mi)"
+    otd: 31240
+    financed: 27240
+    pmt_mo: 564
+    interest: 6608
+    insurance: 8170
+    maintenance: 6050
+    fuel: 10800
+    depreciation: 14000
+    tco_7yr: 45628
+    per_mo_allin: 543
+  - name: "USED 2021 Mazda CX-5 AWD (6-sp auto, NO CVT, ~45k mi)"
+    otd: 25410
+    financed: 21410
+    pmt_mo: 443
+    interest: 5194
+    insurance: 7895
+    maintenance: 7250
+    fuel: 12096
+    depreciation: 12500
+    tco_7yr: 44935
+    per_mo_allin: 535
+  - name: "USED 2019 Toyota 4Runner SR5 4WD (8-sp auto, NO CVT, ~70k mi)"
+    otd: 35480
+    financed: 31480
+    pmt_mo: 652
+    interest: 7637
+    insurance: 7840
+    maintenance: 8050
+    fuel: 17788
+    depreciation: 11000
+    tco_7yr: 52315
+    per_mo_allin: 623
+  - name: "USED 2021 Honda Passport EX-L AWD (9-sp auto, NO CVT, ~50k mi)"
+    otd: 30180
+    financed: 26180
+    pmt_mo: 542
+    interest: 6351
+    insurance: 7895
+    maintenance: 7250
+    fuel: 14400
+    depreciation: 13500
+    tco_7yr: 49396
+    per_mo_allin: 588

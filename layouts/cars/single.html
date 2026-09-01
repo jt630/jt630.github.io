@@ -1,0 +1,286 @@
+{{ define "head-extra" }}
+<style>
+/* ===========================
+   CAR HUNT PAGE
+   =========================== */
+.cars-page { max-width: 1080px; margin: 0 auto; padding: 0 24px 100px; }
+
+.cars-hero { text-align: center; padding: 48px 16px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 40px; }
+.cars-hero h1 {
+  font-family: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  font-size: clamp(56px, 12vw, 120px); line-height: 0.9; margin: 0 0 12px;
+  color: var(--pink); text-transform: uppercase; letter-spacing: 0.02em;
+  text-shadow: 4px 4px 0 var(--black), 8px 8px 0 var(--gold);
+}
+.cars-hero p { max-width: 560px; margin: 0 auto; color: var(--white-dim); line-height: 1.6; }
+
+.cars-page h2 {
+  font-family: 'Impact', 'Arial Narrow Bold', sans-serif; text-transform: uppercase;
+  font-size: 28px; letter-spacing: 0.03em; color: var(--gold);
+  border-bottom: 2px solid var(--pink); padding-bottom: 6px; margin: 56px 0 20px;
+}
+.cars-page h3 { color: var(--pink); margin: 28px 0 8px; font-size: 19px; }
+.cars-page .prose { color: var(--white-dim); line-height: 1.65; }
+.cars-page .prose a { color: var(--pink); }
+
+/* tables */
+.cars-table-wrap { overflow-x: auto; margin: 20px 0; border: 2px outset rgba(255,255,255,0.15); }
+table.cars-tbl { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
+table.cars-tbl th, table.cars-tbl td { padding: 8px 12px; text-align: right; border-bottom: 1px solid rgba(255,255,255,0.08); white-space: nowrap; }
+table.cars-tbl th { background: var(--black); color: var(--gold); text-transform: uppercase; font-size: 11px; letter-spacing: 0.08em; position: sticky; top: 0; }
+table.cars-tbl td:first-child, table.cars-tbl th:first-child { text-align: left; white-space: normal; min-width: 200px; }
+table.cars-tbl tr:hover td { background: rgba(255,45,138,0.08); }
+table.cars-tbl .best { color: #6dd36d; font-weight: 700; }
+table.cars-tbl .worst { color: #ff6b6b; }
+
+.cars-assump { font-size: 12px; color: var(--white-faint); font-style: italic; margin: 8px 0 0; }
+
+/* model cards */
+.model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
+.model-card { border: 2px outset rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); padding: 16px 18px; }
+.model-card h3 { margin-top: 0; }
+.model-card .rank { font-family: 'Impact', sans-serif; font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+.model-card .tag { display: inline-block; font-size: 11px; padding: 2px 8px; margin: 4px 4px 4px 0; border: 1px solid var(--pink); color: var(--pink); text-transform: uppercase; letter-spacing: 0.05em; }
+.model-card .tag.nocvt { border-color: #6dd36d; color: #6dd36d; }
+.model-card p { color: var(--white-dim); line-height: 1.55; font-size: 14px; margin: 8px 0 0; }
+
+/* listings */
+.listing-cat { margin: 28px 0 8px; color: var(--pink); font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+.listing-row td:first-child { min-width: 260px; }
+.listing-src { font-size: 10px; padding: 1px 6px; border: 1px solid var(--white-faint); color: var(--white-faint); text-transform: uppercase; }
+.no-listings { color: var(--white-faint); font-style: italic; padding: 8px 0; }
+
+.checklist { columns: 2; column-gap: 32px; color: var(--white-dim); line-height: 1.7; }
+.checklist li { break-inside: avoid; margin-bottom: 4px; }
+@media (max-width: 640px) { .checklist { columns: 1; } }
+
+.fb-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.fb-links a { border: 2px outset rgba(255,255,255,0.2); padding: 8px 14px; color: var(--gold); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+.fb-links a:hover { background: var(--pink); color: var(--black); }
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $m := .Site.Data.car_math }}
+{{ $L := .Site.Data.car_listings }}
+
+<div class="cars-page">
+
+  <div class="cars-hero">
+    <h1>Car Hunt</h1>
+  </div>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  <!-- ─────────── NEW vs USED MATH ─────────── -->
+  <h2>New vs used — 7-year cost of ownership</h2>
+  <p class="prose">
+    Total cost = depreciation + loan interest + insurance + maintenance + fuel, over a
+    7-year hold. Rates reflect a &ldquo;higher for longer&rdquo; view
+    ({{ mul $m.assumptions.apr_new 100 }}% new / {{ mul $m.assumptions.apr_used 100 }}% used APR),
+    gas at ${{ $m.assumptions.gas_per_gal }}/gal on a high-oil view.
+    The new car&rsquo;s first-year depreciation cliff (~20%) is the single biggest line
+    against it; high rates widen the gap because you finance a bigger balance.
+  </p>
+
+  <div class="cars-table-wrap">
+    <table class="cars-tbl">
+      <thead>
+        <tr>
+          <th>Scenario</th><th>Out-the-door</th><th>Pmt/mo</th><th>Interest</th>
+          <th>Insurance</th><th>Maint.</th><th>Fuel</th><th>Deprec.</th>
+          <th>7-yr TCO</th><th>$/mo all-in</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ $min := 999999 }}{{ $max := 0 }}
+        {{ range $m.scenarios }}
+          {{ if lt .tco_7yr $min }}{{ $min = .tco_7yr }}{{ end }}
+          {{ if gt .tco_7yr $max }}{{ $max = .tco_7yr }}{{ end }}
+        {{ end }}
+        {{ range $m.scenarios }}
+        <tr>
+          <td>{{ .name }}</td>
+          <td>${{ lang.FormatNumberCustom 0 .otd }}</td>
+          <td>${{ .pmt_mo }}</td>
+          <td>${{ lang.FormatNumberCustom 0 .interest }}</td>
+          <td>${{ lang.FormatNumberCustom 0 .insurance }}</td>
+          <td>${{ lang.FormatNumberCustom 0 .maintenance }}</td>
+          <td>${{ lang.FormatNumberCustom 0 .fuel }}</td>
+          <td>${{ lang.FormatNumberCustom 0 .depreciation }}</td>
+          <td class="{{ if eq .tco_7yr $min }}best{{ else if eq .tco_7yr $max }}worst{{ end }}">${{ lang.FormatNumberCustom 0 .tco_7yr }}</td>
+          <td class="{{ if eq .tco_7yr $min }}best{{ else if eq .tco_7yr $max }}worst{{ end }}">${{ .per_mo_allin }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+  <p class="cars-assump">
+    Generated {{ $m.generated }} from <code>scripts/car_buy_math.py</code>.
+    Assumes ${{ lang.FormatNumberCustom 0 $m.assumptions.down }} down,
+    {{ lang.FormatNumberCustom 0 $m.assumptions.miles_per_year }} mi/yr,
+    Idaho {{ mul $m.assumptions.idaho_sales_tax 100 }}% sales tax + ${{ $m.assumptions.doc_fee }} doc fee.
+    Excludes registration (~$140/yr, same for all). A RAV4 Hybrid (~39 mpg) cuts its fuel line ~$4,600 → cheapest in the table.
+  </p>
+
+  <h3>The verdict</h3>
+  <p class="prose">
+    The 2&ndash;3-year-old used car is the sweet spot: past the depreciation cliff,
+    usually still inside the 5yr/60k powertrain warranty, and for Subaru it&rsquo;s the
+    good-era CVT. Buying <em>new</em> costs roughly $3.5&ndash;7k more over 7 years for
+    little benefit. The strict-dollars pick is an older high-mile Forester, but you
+    then own an out-of-warranty boxer engine with the maintenance line climbing.
+  </p>
+
+  <!-- ─────────── THE CVT QUESTION ─────────── -->
+  <h2>Are CVTs bad?</h2>
+  <p class="prose">
+    They earned the reputation, then mostly fixed it &mdash; and Subaru&rsquo;s history is
+    worse than average.
+  </p>
+  <ul class="prose">
+    <li><strong>Early CVTs (2010&ndash;2017) genuinely failed.</strong> Nissan&rsquo;s Jatco units
+      overheated and died by 60&ndash;90k miles; warranties were extended under lawsuit pressure.</li>
+    <li><strong>Subaru&rsquo;s TR580 (2014&ndash;2018 Forester/Outback/Impreza)</strong> shuddered and
+      hesitated. The <em>Yaeger v. Subaru</em> class-action settlement extended the CVT
+      warranty to <strong>10 yr / 100,000 mi</strong> on those years &mdash; a tell that the base
+      coverage wasn&rsquo;t holding. Replacement cost when they go: <strong>$4,000&ndash;8,000</strong>.</li>
+    <li><strong>The second-gen unit (2019+, TR580 revised + TR690) has a much better field
+      record.</strong> Shudder complaints drop off sharply after 2019; no class action.</li>
+    <li><strong>Honda&rsquo;s CVT</strong> has been quietly reliable since ~2016.
+      <strong>Toyota</strong> hedged with a physical launch gear, then dropped the CVT entirely on
+      the <strong>2019+ RAV4</strong> (8-speed automatic).</li>
+  </ul>
+  <p class="prose">
+    <strong>Bottom line:</strong> a 2020&ndash;2023 Forester is a reasonable buy and the
+    transmission shouldn&rsquo;t keep you up at night &mdash; change the CVT fluid at 60k even
+    though Subaru calls it &ldquo;lifetime.&rdquo; Want the worry gone entirely? That&rsquo;s
+    exactly what a 2019+ RAV4 or any Mazda CX-5 buys you.
+  </p>
+
+  <!-- ─────────── MODEL SHORTLIST ─────────── -->
+  <h2>The shortlist — camping + light offroading</h2>
+  <p class="prose">
+    The foothills use case (washboard gravel, forest two-track, ruts, snow &mdash; not rock
+    crawling) rewards ground clearance and a lockable AWD/4WD mode. A road-biased
+    crossover will scrape and spin.
+  </p>
+
+  <div class="model-grid">
+    <div class="model-card">
+      <span class="rank">PICK 1 — NO COMPROMISE</span>
+      <h3>Toyota RAV4 TRD Off-Road (2019+)</h3>
+      <span class="tag nocvt">No CVT · 8-sp auto</span><span class="tag">8.6&quot; clearance</span><span class="tag">Rear-biased AWD + lock</span>
+      <p>Satisfies every constraint: Japanese, real gearbox, factory all-terrain tires,
+        tuned dampers, torque-vectoring rear axle. ~$30&ndash;36k used. Class-leading resale.</p>
+    </div>
+    <div class="model-card">
+      <span class="rank">PICK 2 — IF IT MUST BE A SUBARU</span>
+      <h3>Subaru Forester Wilderness (2022+)</h3>
+      <span class="tag">CVT (good era)</span><span class="tag">9.2&quot; clearance</span><span class="tag">Dual-mode X-Mode + skid plate</span>
+      <p>The most dirt-capable Forester ever built &mdash; higher clearance than the RAV4,
+        700 lb roof load for a tent. It <em>is</em> a CVT, but the reliable one. ~$28&ndash;34k used.</p>
+    </div>
+    <div class="model-card">
+      <span class="rank">PICK 3 — VALUE</span>
+      <h3>Honda Passport (2019+)</h3>
+      <span class="tag nocvt">No CVT · 9-sp auto</span><span class="tag">8.1&quot; clearance</span><span class="tag">i-VTM4 AWD, dirt/snow modes</span>
+      <p>Underrated. Huge cargo box for camping, bulletproof Honda V6, cheaper than a
+        4Runner. Thirstier than the crossovers; modest approach angle.</p>
+    </div>
+    <div class="model-card">
+      <span class="rank">PICK 4 — THE REAL OFFROADER</span>
+      <h3>Toyota 4Runner (2010&ndash;2024, 5th gen)</h3>
+      <span class="tag nocvt">No CVT</span><span class="tag">Body-on-frame</span><span class="tag">Locking rear diff (TRD)</span>
+      <p>Will outlast everything else and tow 5,000 lb. The objection is running cost:
+        ~17 mpg, $623/mo all-in over 7 years, trucky on-road.</p>
+    </div>
+  </div>
+  <p class="prose">
+    <strong>Drop for real dirt:</strong> the base Forester and the Mazda CX-5
+    (7.6&ndash;8.5&quot; clearance, road-tuned AWD) &mdash; fine for a snowy driveway, not a
+    rutted forest road.
+  </p>
+
+  <!-- ─────────── LIVE LISTINGS ─────────── -->
+  <h2>Live listings — Boise metro</h2>
+  <p class="cars-assump">
+    {{ with $L }}Scraped {{ .generated }} by <code>scripts/car_finder.py</code>. Craigslist has no odometer/date on results pages; Cars.com does.{{ else }}Run <code>python scripts/car_finder.py</code> to populate <code>data/car_listings.yaml</code>.{{ end }}
+  </p>
+
+  {{ with $L }}
+  {{ $cats := slice
+      (dict "key" "forester" "label" "Subaru Forester (2019+)")
+      (dict "key" "rav4" "label" "Toyota RAV4 (2019+)")
+      (dict "key" "cx5" "label" "Mazda CX-5 (2019+)")
+      (dict "key" "fourrunner" "label" "Toyota 4Runner (2010+)")
+      (dict "key" "passport" "label" "Honda Passport (2019+)") }}
+  {{ range $cats }}
+    {{ $rows := index $L .key }}
+    <div class="listing-cat">{{ .label }} &mdash; {{ len $rows }} listed</div>
+    {{ if $rows }}
+    <div class="cars-table-wrap">
+      <table class="cars-tbl">
+        <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Where</th><th>Source</th><th></th></tr></thead>
+        <tbody>
+        {{ range $rows }}
+          <tr class="listing-row">
+            <td>{{ .title }}</td>
+            <td>{{ with .year }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .price }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .odometer }}{{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+            <td><span class="listing-src">{{ with .source }}{{ . }}{{ else }}craigslist{{ end }}</span></td>
+            <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
+          </tr>
+        {{ end }}
+        </tbody>
+      </table>
+    </div>
+    {{ else }}
+    <p class="no-listings">Nothing in the Boise area right now.</p>
+    {{ end }}
+  {{ end }}
+  {{ end }}
+
+  <h3>Facebook Marketplace</h3>
+  <p class="prose">
+    FB Marketplace has no API and can&rsquo;t be scraped reliably &mdash; but it&rsquo;s where the
+    private-party Subarus actually are. Saved searches (100 mi around Boise, logged in):
+  </p>
+  <div class="fb-links">
+    <a href="https://www.facebook.com/marketplace/boise/search?query=subaru%20forester&exact=false&radius_km=160" target="_blank" rel="noopener">Forester</a>
+    <a href="https://www.facebook.com/marketplace/boise/search?query=toyota%20rav4&exact=false&radius_km=160" target="_blank" rel="noopener">RAV4</a>
+    <a href="https://www.facebook.com/marketplace/boise/search?query=mazda%20cx-5&exact=false&radius_km=160" target="_blank" rel="noopener">CX-5</a>
+    <a href="https://www.facebook.com/marketplace/boise/search?query=toyota%204runner&exact=false&radius_km=160" target="_blank" rel="noopener">4Runner</a>
+    <a href="https://www.facebook.com/marketplace/boise/search?query=honda%20passport&exact=false&radius_km=160" target="_blank" rel="noopener">Passport</a>
+  </div>
+
+  <!-- ─────────── INSPECTION CHECKLIST ─────────── -->
+  <h2>Used-SUV inspection checklist</h2>
+  <h3>Any Subaru</h3>
+  <ul class="checklist">
+    <li>Oil consumption — check the dipstick, ask for records; some FB25 burn a quart/1,000 mi</li>
+    <li>Head gasket history (mostly a pre-2013 problem, but ask)</li>
+    <li>CVT fluid: has it ever been changed? Any shudder at 20&ndash;40 mph light throttle?</li>
+    <li>Confirm CVT warranty status on 2014&ndash;2018 (10yr/100k extension — VIN-specific)</li>
+    <li>Wheel bearings — listen for a droning hum that changes when you sway the wheel</li>
+    <li>Rust on rear subframe / lateral links (Idaho winters + road salt)</li>
+    <li>Windshield — Subaru glass is expensive and EyeSight recalibration adds cost</li>
+  </ul>
+  <h3>Any used SUV</h3>
+  <ul class="checklist">
+    <li>Cold start — first key of the day, listen for rattle, watch for smoke</li>
+    <li>Tires: matched brand + even wear (mismatched = AWD neglect / alignment)</li>
+    <li>All-wheel-drive engages — dirt lot, tight circle, feel for binding or clunk</li>
+    <li>Underbody — skid-plate scrapes, bent tie rods, fresh undercoating hiding rust</li>
+    <li>Every warning light cycles on at key-on and then goes out</li>
+    <li>Carfax / title: no branded title, service at real intervals, one or two owners</li>
+    <li>Pre-purchase inspection at an independent shop — $150, non-negotiable</li>
+    <li>Timing: chain (Subaru, Toyota V6, Honda V6) vs belt — none of the shortlist uses a belt</li>
+  </ul>
+
+</div>
+{{ end }}
