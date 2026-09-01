@@ -26,6 +26,8 @@ MILES_PER_YEAR = 12000
 # Rates: "higher for longer" view. Sept 2026.
 APR_NEW = 0.072                 # 0.069-0.079 band, captive/credit-union new
 APR_USED = 0.089               # 0.084-0.099 band, used 3-6 yr old
+APR_BUYER = 0.0499             # Jeremy's pre-approval: $100k @ 4.99% APR
+                               # (confirm fixed w/ set term vs. variable line)
 
 # Annual costs that DIFFER by age
 def insurance(age_of_car_start):
@@ -92,6 +94,22 @@ SCENARIOS = {
         "start_age": 3,
         "mpg": 28,
         "resale": 13000,           # slightly better resale w/ CPO history
+    },
+    "USED 2023 Forester (~30k mi) -- your 4.99% line": {
+        "price": 26500,
+        "apr": APR_BUYER,
+        "term": 60,
+        "start_age": 3,
+        "mpg": 28,
+        "resale": 12500,
+    },
+    "USED 2020 Forester (~65k mi) -- your 4.99% line": {
+        "price": 20500,
+        "apr": APR_BUYER,
+        "term": 48,
+        "start_age": 6,
+        "mpg": 27,
+        "resale": 8500,
     },
     "USED 2020 Forester (~65k mi)": {
         "price": 20500,            # 19k-22.5k

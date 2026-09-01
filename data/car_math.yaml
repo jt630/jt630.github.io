@@ -64,6 +64,28 @@ scenarios:
     depreciation: 15000
     tco_7yr: 42975
     per_mo_allin: 512
+  - name: "USED 2023 Forester (~30k mi) -- your 4.99% line"
+    otd: 28590
+    financed: 24590
+    pmt_mo: 464
+    interest: 3246
+    insurance: 8170
+    maintenance: 6050
+    fuel: 10800
+    depreciation: 14000
+    tco_7yr: 42266
+    per_mo_allin: 503
+  - name: "USED 2020 Forester (~65k mi) -- your 4.99% line"
+    otd: 22230
+    financed: 18230
+    pmt_mo: 420
+    interest: 1918
+    insurance: 7840
+    maintenance: 7650
+    fuel: 11200
+    depreciation: 12000
+    tco_7yr: 40608
+    per_mo_allin: 483
   - name: "USED 2020 Forester (~65k mi)"
     otd: 22230
     financed: 18230
