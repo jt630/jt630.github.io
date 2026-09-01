@@ -34,6 +34,8 @@ table.cars-tbl .best { color: #6dd36d; font-weight: 700; }
 table.cars-tbl .worst { color: #ff6b6b; }
 
 .cars-assump { font-size: 12px; color: var(--white-faint); font-style: italic; margin: 8px 0 0; }
+table.cars-tbl tr.row-promo td { background: rgba(212,175,55,0.10); }
+.pmt-note { display: block; font-size: 10px; color: var(--white-faint); text-transform: uppercase; letter-spacing: 0.03em; }
 
 /* model cards */
 .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
@@ -126,10 +128,11 @@ table.cars-tbl .worst { color: #ff6b6b; }
           {{ if gt .tco_7yr $max }}{{ $max = .tco_7yr }}{{ end }}
         {{ end }}
         {{ range $m.scenarios }}
-        <tr>
-          <td>{{ .name }}</td>
+        {{ $promo := or (strings.Contains .name "promo") (strings.Contains .name "%") }}
+        <tr class="{{ if $promo }}row-promo{{ end }}">
+          <td>{{ .name | replaceRE " -- " " — " }}</td>
           <td>${{ lang.FormatNumberCustom 0 .otd }}</td>
-          <td>${{ .pmt_mo }}</td>
+          <td>${{ .pmt_mo }}{{ if $promo }}<span class="pmt-note">short term</span>{{ end }}</td>
           <td>${{ lang.FormatNumberCustom 0 .interest }}</td>
           <td>${{ lang.FormatNumberCustom 0 .insurance }}</td>
           <td>${{ lang.FormatNumberCustom 0 .maintenance }}</td>
@@ -152,11 +155,77 @@ table.cars-tbl .worst { color: #ff6b6b; }
 
   <h3>The verdict</h3>
   <p class="prose">
-    The 2&ndash;3-year-old used car is the sweet spot: past the depreciation cliff,
-    usually still inside the 5yr/60k powertrain warranty, and for Subaru it&rsquo;s the
-    good-era CVT. Buying <em>new</em> costs roughly $3.5&ndash;7k more over 7 years for
-    little benefit. The strict-dollars pick is an older high-mile Forester, but you
-    then own an out-of-warranty boxer engine with the maintenance line climbing.
+    At <strong>ordinary financing</strong> (7%+ new, ~9% used), the 2&ndash;3-year-old used
+    car wins: past the depreciation cliff, still near the powertrain warranty, good-era
+    CVT. Buying new that way costs ~$3.5&ndash;7k more over 7 years.
+  </p>
+  <p class="prose">
+    <strong>But the manufacturer APR changes the answer.</strong> With Subaru&rsquo;s
+    <strong>1.9% / 36-month</strong> promo, a new Forester&rsquo;s 7-year cost drops to
+    ~$42k &mdash; the <em>cheapest</em> Forester line in the table, because saving ~7 points
+    of interest more than offsets the extra depreciation. The catch is the payment:
+    ~$906/mo for three years instead of ~$509 for the used one. A
+    <strong>CPO Forester at ~4.29%</strong> splits the difference &mdash; ~$43k all-in,
+    ~$486/mo, with warranty and clean history. See the incentives note below &mdash; those
+    rates are real but move monthly and need confirming with a Boise ZIP.
+  </p>
+
+  <!-- ─────────── MANUFACTURER INCENTIVES ─────────── -->
+  <h2>Manufacturer incentives — Sept 2026</h2>
+  <p class="cars-assump">
+    Gathered 2026-09-01, mostly from search-indexed copies of manufacturer / dealer
+    pages (subaru.com and buyatoyota.com blocked direct access). Treat as a starting
+    point: enter ZIP 83704 at <strong>subaru.com</strong> and
+    <strong>buyatoyota.com/pacificnorthwest</strong> and read the offer fine print for
+    exact trims and end dates. Idaho is in the Pacific-NW Toyota region; Subaru captive
+    financing is national.
+  </p>
+  <div class="cars-table-wrap">
+    <table class="cars-tbl">
+      <thead><tr><th>Vehicle</th><th>Captive APR offer</th><th>Cash</th><th>Notes</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>New Forester (gas)</td>
+          <td>1.9% / 36 mo, $0 down</td>
+          <td>none</td>
+          <td>All 2026 gas trims. Hybrid: 3.9% / 48. This is a <em>pullback</em> from 0.9%/36 in spring 2026 — Subaru isn&rsquo;t leaning in.</td>
+          <td>secondary</td>
+        </tr>
+        <tr>
+          <td>Subaru CPO Forester</td>
+          <td>~4.29% APR</td>
+          <td>none</td>
+          <td>2021&ndash;2026 certified. Adds 7yr/100k powertrain from in-service date.</td>
+          <td>primary-ish</td>
+        </tr>
+        <tr>
+          <td>New RAV4</td>
+          <td>~4.99% / 48 mo</td>
+          <td>none</td>
+          <td>Supply-tight; no bonus cash. 5.99%/60, 6.99%/72.</td>
+          <td>secondary</td>
+        </tr>
+        <tr>
+          <td>New 4Runner</td>
+          <td>~4.99% / 48 mo</td>
+          <td>none</td>
+          <td>i-FORCE MAX hybrid has its own APR (~6.49%/72), confirmed to 9/30/2026.</td>
+          <td>secondary</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose">
+    <strong>No customer or bonus cash</strong> on any of the three volume models right
+    now — all are supply-constrained — so there&rsquo;s no APR-vs-rebate tradeoff to weigh.
+    You take the subvented rate or bring your own financing. The only stackable cash is
+    $500 military / $500 recent-grad (Toyota) and $500 educator (Subaru).
+  </p>
+  <p class="prose">
+    &ldquo;0% down&rdquo; is just the standard structure on these APR deals — not a discount.
+    The lever that matters is the <strong>rate</strong>: 1.9% on a new Forester vs. ~9%
+    on a used one is worth ~$5,000 of interest over the loan, which is why the promo row
+    beats the used rows in the table above — <em>if</em> you can carry the 36-month payment.
   </p>
 
   <!-- ─────────── THE CVT QUESTION ─────────── -->
