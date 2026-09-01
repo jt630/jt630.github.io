@@ -26,8 +26,11 @@ MILES_PER_YEAR = 12000
 # Rates: "higher for longer" view. Sept 2026.
 APR_NEW = 0.072                 # 0.069-0.079 band, captive/credit-union new
 APR_USED = 0.089               # 0.084-0.099 band, used 3-6 yr old
-APR_BUYER = 0.0499             # Jeremy's pre-approval: $100k @ 4.99% APR
-                               # (confirm fixed w/ set term vs. variable line)
+APR_BUYER = 0.0499             # Jeremy's pre-approval: used-car loan, up to
+                               # $100k, 65 mo, 4.99% fixed APR (secured, no
+                               # variable-rate risk). Terms below kept < 65 mo
+                               # deliberately -- pay it faster, no prepay
+                               # penalty, build equity sooner.
 
 # Annual costs that DIFFER by age
 def insurance(age_of_car_start):
