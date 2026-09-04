@@ -60,9 +60,9 @@ ZIP = "83714"  # Garden City / Boise
 SEARCHES = [
     # key, cl_terms, min_year, max_price, title_must, require_year,
     #      carscom_make, carscom_model
-    ("forester",   ["forester"],       2019, 30000, ["forester"],           False, "subaru", "subaru-forester"),
+    ("forester",   ["forester"],       2019, 32000, ["forester"],           False, "subaru", "subaru-forester"),
     ("rav4",       ["rav4"],            2019, 33000, ["rav4", "rav 4"],      False, "toyota", "toyota-rav_4"),
-    ("fourrunner", ["4runner"],         2010, 38000, ["4runner", "4 runner"], False, "toyota", "toyota-4runner"),
+    ("fourrunner", ["4runner"],         2010, 41000, ["4runner", "4 runner"], False, "toyota", "toyota-4runner"),
     # Honda Passport: require a parsed year >= 2019 to exclude the 90s
     # Isuzu-based Passport.
     ("passport",   ["passport"],        2019, 34000, ["passport"],           True,  "honda",  "honda-passport"),
@@ -544,7 +544,7 @@ def main():
         dropped = len(merged) - len(kept)
         total_dropped += dropped
         kept.sort(key=lambda r: (r.get("price") is None, r.get("price") or 0))
-        kept = kept[:25]
+        kept = kept[:35]
         result[key] = kept
 
         all_notes += [f"[{key}] {n}" for n in notes]

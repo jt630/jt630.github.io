@@ -1,50 +1,59 @@
-# Hand-picked shortlist, curated 2026-09-01 from data/car_listings.yaml.
-# Ordering now cross-checked against Cars.com deal ratings + $ vs. market.
-# Edit freely — this drives the "Top picks" section on /cars/.
-# flag: branded  -> puts a rebuilt-title warning on the card.
+# Hand-picked shortlist, refreshed 2026-09-04 (day-of, before test drives)
+# from data/car_listings.yaml. Ordering cross-checked against Cars.com deal
+# ratings + $ vs. market. Edit freely — this drives the "Top picks" section
+# on /cars/. flag: branded -> puts a rebuilt-title warning on the card.
 
-updated: "2026-09-01"
+updated: "2026-09-04"
 
 forester:
-  headline: "Her pick. All 2019+ = the reliable CVT era. Ordered by verified value."
+  headline: "Her pick. All 2019+ = the reliable CVT era. Refreshed day-of, ordered by verified value."
   picks:
     - title: "2020 Forester Touring"
       price: 24998
       miles: 51669
       dealer: "CarMax, Meridian"
       deal: "Great Deal"
-      market: "$1,907 below market"
+      market: null
       url: "https://www.cars.com/vehicledetail/1b763353-50fa-4910-90d2-7e161f4a4293/"
-      verdict: "Best overall, and the numbers now back it: Cars.com rates it a Great Deal at ~$1,900 under market. CarMax guarantees a clean title and a return window; Touring is the loaded trim (leather, pano roof, nav). Good-era CVT."
+      verdict: "Still the pick to drive first. Cars.com rates it a Great Deal. CarMax guarantees a clean title and a return window; Touring is the loaded trim (leather, pano roof, nav). Good-era CVT."
       watch: "CarMax prices are firm — no negotiating. Factor their extended-warranty cost separately if you want it."
-    - title: "2019 Forester Sport"
-      price: 24870
-      miles: 50566
-      dealer: "Larry H. Miller Subaru, Boise"
+    - title: "2019 Forester 2.5i Limited"
+      price: 25998
+      miles: 34728
+      dealer: "CarMax, Meridian"
+      deal: "Good Deal"
+      market: "$1,000 below market"
+      url: "https://www.cars.com/vehicledetail/aa3592f4-377a-48b7-a795-49153e5f6ce7/"
+      verdict: "New today: same CarMax clean-title safety, $1k more than the Touring but 17k fewer miles. Drive both back-to-back — this is the lower-mileage option."
+      watch: "One model-year older than the Touring pick; confirm remaining factory warranty either way."
+    - title: "2023 Forester Limited (Subaru CPO)"
+      price: 31261
+      miles: 25374
+      dealer: "Treasure Valley Subaru, Nampa"
+      deal: "Good Deal"
+      market: "$1,100 below market"
+      url: "https://www.cars.com/vehicledetail/8c15b158-14a8-40aa-9685-ec4082aee20e/"
+      verdict: "New today, and a real Subaru-franchise CPO car (not AutoSavvy). Newest, lowest miles, and carries the 7yr/100k CPO powertrain warranty. The safest, priciest pick."
+      watch: "Ask what portion of the 7yr/100k clock is left from the original in-service date."
+    - title: "2023 Forester Wilderness"
+      price: 31150
+      miles: 31965
+      dealer: "Steve's Hometown Toyota, Ontario OR"
       deal: "Good Deal"
       market: null
-      url: "https://www.cars.com/vehicledetail/c527cb19-33cd-48b6-83e3-e8096d3b2f5c/"
-      verdict: "Franchise Subaru dealer = clean history and CPO options. Sport trim adds dual-mode X-Mode and better wheels. Same money and miles as the Touring — pick on which dealer / trim she prefers."
-      watch: "Ask about remaining powertrain warranty (5yr/60k from 2019 = likely just expired) and whether they'll certify it."
-    - title: "2019 Forester Limited"
-      price: 19598
-      miles: 85892
-      dealer: "Dillon GMC & Fiat, Boise"
-      deal: "Good Deal"
-      market: "$401 below market"
-      url: "https://www.cars.com/vehicledetail/7bb3e878-ceeb-4234-a623-606cc8a410e1/"
-      verdict: "Value pick — $5k cheaper, leather interior, still well under 100k miles. Priced right per Cars.com."
-      watch: "Non-Subaru dealer, out of warranty. $150 pre-purchase inspection is non-negotiable — check CVT fluid and oil consumption."
+      url: "https://www.cars.com/vehicledetail/5ccdf424-a93a-46a7-832c-4326279e2b32/"
+      verdict: "New today — the actual off-road Forester trim (9.2\" clearance, dual X-Mode, skid plate, 700lb roof rating) at a normal franchise dealer, not a branded-title lot. Worth the ~1hr drive to Ontario if the foothills/camping use case is real."
+      watch: "Confirm it's a straight sale, not tied to Toyota financing incentives (it's a Subaru on a Toyota lot)."
     - title: "2022 Forester Limited"
-      price: 23100
-      miles: 15361
+      price: 25000
+      miles: 16410
       dealer: "AutoSavvy, Boise"
       deal: "Great Deal"
       market: null
       flag: branded
-      url: "https://www.cars.com/vehicledetail/9edb1ad1-6aa8-424b-b752-c7750e429bb7/"
-      verdict: "Newest + lowest miles for the money — but the 'Great Deal' badge is misleading here."
-      watch: "AutoSavvy sells rebuilt / branded-title cars as its business model. Cars.com rates it against clean-title prices, so a branded car always looks like a 'deal'. Expect a ~30% resale hit, higher/refused insurance, and prior collision damage. Only if you're deliberately buying a rebuilt title to save cash."
+      url: "https://www.cars.com/vehicledetail/dadaf652-5d61-4572-8320-6d66ba31a3df/"
+      verdict: "Lowest miles for the money — but the 'Great Deal' badge is misleading here."
+      watch: "AutoSavvy sells rebuilt / branded-title cars as its business model. Cars.com rates it against clean-title prices, so a branded car always looks like a 'deal'. Expect a resale hit and higher/refused insurance. Only if you're deliberately buying a rebuilt title to save cash."
 
 rav4:
   headline: "The no-CVT compromise that still fits the off-road brief. (No Cars.com listings surfaced — market data unavailable.)"
@@ -57,29 +66,47 @@ rav4:
       market: null
       url: "https://www.craigslist.org/view/d/boise-2020-toyota-rav4-trd-off-road/WGX32VeU8RGAvrmYj_3Rvg"
       verdict: "The single best fit for the whole brief: Japanese, 8-speed automatic (no CVT), the TRD Off-Road trim with the rear-biased AWD lock and all-terrain tires you want for the foothills."
-      watch: "Craigslist listing — no mileage, title, or market data. Call the dealer, confirm a clean title, get the miles, and run it through Cars.com's VIN lookup yourself for a price check."
+      watch: "Craigslist listing — no mileage, title, or market data. Call the dealer, confirm a clean title, get the miles."
 
 fourrunner:
-  headline: "His pick. Body-on-frame, no CVT, holds value like nothing else. ~17 mpg is the running cost. Ordered by verified value."
+  headline: "His pick. Body-on-frame, no CVT, holds value like nothing else. ~17 mpg is the running cost. Refreshed day-of, ordered by verified value."
   picks:
     - title: "2022 4Runner SR5"
-      price: 34994
+      price: 34499
       miles: 57790
       dealer: "Dillon CJDR, Caldwell"
       deal: "Great Deal"
-      market: "$912 below market"
+      market: "$495 below market"
       url: "https://www.cars.com/vehicledetail/b1b2fd73-dd8d-4287-b581-b02fb47f17d6/"
-      verdict: "Newest + lowest-mile 4Runner in the valley, and Cars.com rates it a Great Deal under market. Latest running gear, 3+ good years left on the 5th-gen platform. If you're buying one to keep, this is it."
+      verdict: "Newest + lowest-mile 4Runner in the valley, and Cars.com rates it a Great Deal under market. If you're buying one to keep, this is it."
       watch: "SR5 is the base trim — part-time 4WD, no locking rear diff. Fine for gravel and forest roads; not a rock crawler."
     - title: "2018 4Runner Limited"
       price: 35490
       miles: 60423
-      dealer: "Kendall GMC Buick, Nampa"
+      dealer: "Kendall Chevrolet, Nampa"
       deal: "Good Deal"
       market: "$1,900 below market"
-      url: "https://www.cars.com/vehicledetail/f9645d6c-f04e-45e2-9281-4eac4e5b5d15/"
-      verdict: "Biggest dollar discount on the board for a low-mile 4Runner. Limited trim = full-time 4WD with a locking center diff, X-REAS suspension, leather. The civilized one that still goes off-road."
-      watch: "Priced like the 2022 SR5 but four years older — the discount is what makes it competitive. GMC dealer, so PPI at a Toyota specialist."
+      url: "https://www.cars.com/vehicledetail/25da1170-0b48-4d31-9b4c-aebc3ea31013/"
+      verdict: "Biggest dollar discount on the board for a low-mile 4Runner. Limited trim = full-time 4WD with a locking center diff, X-REAS suspension, leather."
+      watch: "Priced near the 2022 SR5 but four years older — the discount is what makes it competitive. Non-Toyota dealer, so PPI at a Toyota specialist."
+    - title: "2022 4Runner TRD Off-Road"
+      price: 39093
+      miles: 69537
+      dealer: "Corwin Ford, Nampa"
+      deal: null
+      market: null
+      url: "https://www.cars.com/vehicledetail/c3ad5551-ac00-4a80-9df4-cc41a14b223d/"
+      verdict: "New today — the exact trim built for this brief: locking rear diff, Crawl Control, Multi-Terrain Select. No Cars.com price analysis shown, so you're on your own to judge the price."
+      watch: "No deal badge means no market-price cross-check — get a CarFax and a PPI before treating the price as fair."
+    - title: "2020 4Runner TRD Pro"
+      price: 39998
+      miles: 94212
+      dealer: "CarMax, Meridian"
+      deal: "Great Deal"
+      market: "$1,000 below market"
+      url: "https://www.cars.com/vehicledetail/df9449a6-6d00-445e-bf37-d6a7825d7835/"
+      verdict: "New today — the top trim (Fox internal-bypass shocks, unique tune, blacked-out styling) at a CarMax guaranteed-clean title, rated a Great Deal."
+      watch: "94k miles and the highest price on this list — you're paying for the trim and the clean title, not low mileage."
     - title: "2017 4Runner Limited"
       price: 29287
       miles: 98003
@@ -89,24 +116,6 @@ fourrunner:
       url: "https://www.cars.com/vehicledetail/6de47688-c10e-4f23-9a21-14f3e038f2cd/"
       verdict: "Under $30k, under 100k miles, loaded Limited trim, rated a Great Deal. The value sweet spot if you don't need the newest one."
       watch: "Small independent lot — PPI at a Toyota specialist is essential. Check underbody for rust and CarFax for accident/title history."
-    - title: "2021 4Runner TRD Off-Road Premium"
-      price: 36504
-      miles: 94997
-      dealer: "Dillon Nissan, Boise"
-      deal: "Great Deal"
-      market: null
-      url: "https://www.cars.com/vehicledetail/7afaae8e-094b-4233-83bc-543d75a70ca4/"
-      verdict: "The trim to want if offroading is the point: KDSS sway-bar disconnect, locking rear diff, Crawl Control, Multi-Terrain Select. Cars.com still rates it a Great Deal despite the miles."
-      watch: "95k miles for the price — you're paying for the trim, not the condition. Negotiate hard; check the KDSS valve body for leaks."
-    - title: "2018 4Runner TRD Off-Road (lifted)"
-      price: 29995
-      miles: null
-      dealer: "Bargain Auto Sales, Garden City (Craigslist)"
-      deal: null
-      market: null
-      url: "https://www.craigslist.org/view/d/boise-2018-toyota-4runner-trd-off/88qckn5CW6J3UWFBhHu48o"
-      verdict: "Cheapest way into a TRD Off-Road — if it checks out."
-      watch: "Buy-here-pay-here lot, aftermarket lift of unknown quality, no mileage or market data. High risk — PPI plus a suspension/alignment inspection before you take it seriously."
 
 passport:
   headline: "Underrated value. No CVT (9-speed auto), big cargo box, Honda V6."
