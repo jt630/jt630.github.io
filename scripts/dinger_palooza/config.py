@@ -72,7 +72,7 @@ PLAYERS = [
     {"name": "Nathaniel Lowe",       "team": "Cleveland Guardians",         "team_id": 114, "team_abbr": "CLE", "mlb_id": 663993, "bats": "L"},
     {"name": "Evan Carter",          "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": 694497, "bats": "L"},
     {"name": "Josh Jung",            "team": "Texas Rangers",           "team_id": 140, "team_abbr": "TEX", "mlb_id": 673962, "bats": "R"},
-    {"name": "Luis Robert Jr",       "team": "New York Mets",           "team_id": 121, "team_abbr": "NYM", "mlb_id": 673357, "bats": "R"},
+    {"name": "Luis Robert Jr",       "team": "Baltimore Orioles",           "team_id": 110, "team_abbr": "BAL", "mlb_id": 673357, "bats": "R"},
     {"name": "Andrew Vaughn",        "team": "Milwaukee Brewers",       "team_id": 158, "team_abbr": "MIL", "mlb_id": 683734, "bats": "R"},
     {"name": "Spencer Torkelson",    "team": "Detroit Tigers",          "team_id": 116, "team_abbr": "DET", "mlb_id": 679529, "bats": "R"},
     {"name": "Riley Greene",         "team": "Detroit Tigers",          "team_id": 116, "team_abbr": "DET", "mlb_id": 682985, "bats": "L"},
