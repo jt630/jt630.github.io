@@ -48,16 +48,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 39.666666666666664,
+          "hr": 2,
+          "hr9": 0.45,
+          "bb9": 3.18,
+          "k9": 7.49,
+          "era": 3.18,
+          "innings_pitched": "39.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 13.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823416,
@@ -66,16 +79,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 87.0,
+          "hr": 10,
+          "hr9": 1.03,
+          "bb9": 4.76,
+          "k9": 9.62,
+          "era": 3.31,
+          "innings_pitched": "87.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 42.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823413,
@@ -154,9 +180,9 @@
     "park_score": 57.7,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 52.3,
+    "pitcher_score": 46.1,
     "favorable_matchups": 1,
-    "platoon_advantages": 1,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -208,16 +234,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 642547,
+          "name": "Freddy Peralta",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 147.0,
+          "hr": 23,
+          "hr9": 1.41,
+          "bb9": 3.31,
+          "k9": 8.57,
+          "era": 4.96,
+          "innings_pitched": "147.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 54.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824871,
@@ -226,16 +265,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 94.33333333333333,
+          "hr": 14,
+          "hr9": 1.34,
+          "bb9": 3.05,
+          "k9": 9.64,
+          "era": 3.82,
+          "innings_pitched": "94.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 48.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824872,
@@ -244,16 +296,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 160.0,
+          "hr": 19,
+          "hr9": 1.07,
+          "bb9": 1.35,
+          "k9": 5.34,
+          "era": 3.04,
+          "innings_pitched": "160.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 32.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824873,
@@ -314,7 +379,7 @@
     "park_score": 52.1,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 47.2,
+    "pitcher_score": 45.1,
     "favorable_matchups": 0,
     "platoon_advantages": 1,
     "batter_splits": {}
@@ -368,16 +433,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 642547,
+          "name": "Freddy Peralta",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 147.0,
+          "hr": 23,
+          "hr9": 1.41,
+          "bb9": 3.31,
+          "k9": 8.57,
+          "era": 4.96,
+          "innings_pitched": "147.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 66.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824871,
@@ -386,16 +464,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 94.33333333333333,
+          "hr": 14,
+          "hr9": 1.34,
+          "bb9": 3.05,
+          "k9": 9.64,
+          "era": 3.82,
+          "innings_pitched": "94.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 60.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824872,
@@ -404,16 +495,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 160.0,
+          "hr": 19,
+          "hr9": 1.07,
+          "bb9": 1.35,
+          "k9": 5.34,
+          "era": 3.04,
+          "innings_pitched": "160.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 44.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824873,
@@ -474,9 +578,9 @@
     "park_score": 52.1,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 45.5,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 48.5,
+    "favorable_matchups": 1,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -528,16 +632,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 39.666666666666664,
+          "hr": 2,
+          "hr9": 0.45,
+          "bb9": 3.18,
+          "k9": 7.49,
+          "era": 3.18,
+          "innings_pitched": "39.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 13.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823416,
@@ -546,16 +663,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 87.0,
+          "hr": 10,
+          "hr9": 1.03,
+          "bb9": 4.76,
+          "k9": 9.62,
+          "era": 3.31,
+          "innings_pitched": "87.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 42.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823413,
@@ -634,9 +764,9 @@
     "park_score": 57.7,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 52.3,
+    "pitcher_score": 46.1,
     "favorable_matchups": 1,
-    "platoon_advantages": 1,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -688,16 +818,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 642547,
+          "name": "Freddy Peralta",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 147.0,
+          "hr": 23,
+          "hr9": 1.41,
+          "bb9": 3.31,
+          "k9": 8.57,
+          "era": 4.96,
+          "innings_pitched": "147.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 54.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824871,
@@ -706,16 +849,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 94.33333333333333,
+          "hr": 14,
+          "hr9": 1.34,
+          "bb9": 3.05,
+          "k9": 9.64,
+          "era": 3.82,
+          "innings_pitched": "94.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 48.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824872,
@@ -724,16 +880,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 160.0,
+          "hr": 19,
+          "hr9": 1.07,
+          "bb9": 1.35,
+          "k9": 5.34,
+          "era": 3.04,
+          "innings_pitched": "160.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 32.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824873,
@@ -794,7 +963,7 @@
     "park_score": 52.1,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 47.2,
+    "pitcher_score": 45.1,
     "favorable_matchups": 0,
     "platoon_advantages": 1,
     "batter_splits": {}
@@ -848,16 +1017,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 39.666666666666664,
+          "hr": 2,
+          "hr9": 0.45,
+          "bb9": 3.18,
+          "k9": 7.49,
+          "era": 3.18,
+          "innings_pitched": "39.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 1.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823416,
@@ -866,16 +1048,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 87.0,
+          "hr": 10,
+          "hr9": 1.03,
+          "bb9": 4.76,
+          "k9": 9.62,
+          "era": 3.31,
+          "innings_pitched": "87.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 30.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823413,
@@ -954,7 +1149,7 @@
     "park_score": 57.7,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.6,
+    "pitcher_score": 41.0,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -1008,16 +1203,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 39.666666666666664,
+          "hr": 2,
+          "hr9": 0.45,
+          "bb9": 3.18,
+          "k9": 7.49,
+          "era": 3.18,
+          "innings_pitched": "39.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 1.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823416,
@@ -1026,16 +1234,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 87.0,
+          "hr": 10,
+          "hr9": 1.03,
+          "bb9": 4.76,
+          "k9": 9.62,
+          "era": 3.31,
+          "innings_pitched": "87.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 30.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823413,
@@ -1114,7 +1335,7 @@
     "park_score": 57.7,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.6,
+    "pitcher_score": 41.0,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -1168,16 +1389,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 39.666666666666664,
+          "hr": 2,
+          "hr9": 0.45,
+          "bb9": 3.18,
+          "k9": 7.49,
+          "era": 3.18,
+          "innings_pitched": "39.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 1.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823416,
@@ -1186,16 +1420,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 87.0,
+          "hr": 10,
+          "hr9": 1.03,
+          "bb9": 4.76,
+          "k9": 9.62,
+          "era": 3.31,
+          "innings_pitched": "87.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 30.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823413,
@@ -1274,7 +1521,7 @@
     "park_score": 57.7,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.6,
+    "pitcher_score": 41.0,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -1328,16 +1575,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 39.666666666666664,
+          "hr": 2,
+          "hr9": 0.45,
+          "bb9": 3.18,
+          "k9": 7.49,
+          "era": 3.18,
+          "innings_pitched": "39.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 1.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823416,
@@ -1346,16 +1606,29 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 87.0,
+          "hr": 10,
+          "hr9": 1.03,
+          "bb9": 4.76,
+          "k9": 9.62,
+          "era": 3.31,
+          "innings_pitched": "87.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 30.9,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823413,
@@ -1434,7 +1707,7 @@
     "park_score": 57.7,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 50.6,
+    "pitcher_score": 41.0,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -1488,16 +1761,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 642547,
+          "name": "Freddy Peralta",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 147.0,
+          "hr": 23,
+          "hr9": 1.41,
+          "bb9": 3.31,
+          "k9": 8.57,
+          "era": 4.96,
+          "innings_pitched": "147.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 66.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824871,
@@ -1506,16 +1792,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 94.33333333333333,
+          "hr": 14,
+          "hr9": 1.34,
+          "bb9": 3.05,
+          "k9": 9.64,
+          "era": 3.82,
+          "innings_pitched": "94.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 60.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824872,
@@ -1524,16 +1823,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 160.0,
+          "hr": 19,
+          "hr9": 1.07,
+          "bb9": 1.35,
+          "k9": 5.34,
+          "era": 3.04,
+          "innings_pitched": "160.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 44.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824873,
@@ -1594,9 +1906,9 @@
     "park_score": 52.1,
     "best_park_game": "Citizens Bank Park",
     "best_park_factor": 107,
-    "pitcher_score": 45.5,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 48.5,
+    "favorable_matchups": 1,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -8112,10 +8424,10 @@
     "name": "Luis Robert Jr",
     "team": "Baltimore Orioles",
     "team_id": 110,
-    "team_abbr": "NYM",
+    "team_abbr": "BAL",
     "mlb_id": 673357,
     "bats": "R",
-    "team_stale": true,
+    "team_stale": false,
     "games_this_week": 6,
     "high_opportunity": true,
     "games": [
@@ -9495,16 +9807,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.66666666666666,
+          "hr": 15,
+          "hr9": 0.79,
+          "bb9": 2.2,
+          "k9": 11.01,
+          "era": 2.04,
+          "innings_pitched": "171.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 15.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823497,
@@ -9513,16 +9838,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 701542,
+          "name": "Will Warren",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 136.33333333333334,
+          "hr": 20,
+          "hr9": 1.32,
+          "bb9": 3.1,
+          "k9": 8.78,
+          "era": 4.16,
+          "innings_pitched": "136.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 48.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823499,
@@ -9531,16 +9869,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608331,
+          "name": "Max Fried",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 95.66666666666667,
+          "hr": 3,
+          "hr9": 0.28,
+          "bb9": 2.73,
+          "k9": 8.18,
+          "era": 2.73,
+          "innings_pitched": "95.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 3.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824227,
@@ -9601,9 +9952,9 @@
     "park_score": 58.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 36.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -9624,16 +9975,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.66666666666666,
+          "hr": 15,
+          "hr9": 0.79,
+          "bb9": 2.2,
+          "k9": 11.01,
+          "era": 2.04,
+          "innings_pitched": "171.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 15.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823497,
@@ -9642,16 +10006,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 701542,
+          "name": "Will Warren",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 136.33333333333334,
+          "hr": 20,
+          "hr9": 1.32,
+          "bb9": 3.1,
+          "k9": 8.78,
+          "era": 4.16,
+          "innings_pitched": "136.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 48.0,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823499,
@@ -9660,16 +10037,29 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608331,
+          "name": "Max Fried",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 95.66666666666667,
+          "hr": 3,
+          "hr9": 0.28,
+          "bb9": 2.73,
+          "k9": 8.18,
+          "era": 2.73,
+          "innings_pitched": "95.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 3.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824227,
@@ -9730,9 +10120,9 @@
     "park_score": 58.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 36.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {

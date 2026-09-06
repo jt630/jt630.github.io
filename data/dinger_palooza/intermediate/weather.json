@@ -43,7 +43,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -65,7 +69,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -220,7 +228,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 642547,
+          "name": "Freddy Peralta",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -242,7 +254,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -264,7 +280,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -397,7 +417,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 642547,
+          "name": "Freddy Peralta",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -419,7 +443,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -441,7 +469,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -574,7 +606,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -596,7 +632,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -751,7 +791,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 642547,
+          "name": "Freddy Peralta",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -773,7 +817,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -795,7 +843,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -928,7 +980,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -950,7 +1006,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -1105,7 +1165,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -1127,7 +1191,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -1282,7 +1350,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -1304,7 +1376,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -1459,7 +1535,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669713,
+          "name": "Hayden Wesneski",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -1481,7 +1561,11 @@
         "opponent": "Houston Astros",
         "opponent_team_id": 117,
         "venue": "Citizens Bank Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 686613,
+          "name": "Hunter Brown",
+          "note": ""
+        },
         "park_factor": 107,
         "park_factor_score": 63.2,
         "park_notes": "Hitter-friendly; loud crowd",
@@ -1636,7 +1720,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 642547,
+          "name": "Freddy Peralta",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -1658,7 +1746,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 643377,
+          "name": "Griffin Jax",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -1680,7 +1772,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Truist Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 101,
         "park_factor_score": 50.3,
         "park_notes": "Slight hitter lean",
@@ -8562,10 +8658,10 @@
     "name": "Luis Robert Jr",
     "team": "Baltimore Orioles",
     "team_id": 110,
-    "team_abbr": "NYM",
+    "team_abbr": "BAL",
     "mlb_id": 673357,
     "bats": "R",
-    "team_stale": true,
+    "team_stale": false,
     "games_this_week": 6,
     "high_opportunity": true,
     "games": [
@@ -9999,7 +10095,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
@@ -10021,7 +10121,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 701542,
+          "name": "Will Warren",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
@@ -10043,7 +10147,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608331,
+          "name": "Max Fried",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
@@ -10150,7 +10258,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 693645,
+          "name": "Cam Schlittler",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
@@ -10172,7 +10284,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 701542,
+          "name": "Will Warren",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
@@ -10194,7 +10310,11 @@
         "opponent": "New York Yankees",
         "opponent_team_id": 147,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608331,
+          "name": "Max Fried",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
