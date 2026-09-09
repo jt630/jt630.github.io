@@ -66,6 +66,11 @@ table.cars-tbl tr.row-promo td { background: rgba(212,175,55,0.10); }
 .pick-price { font-family: 'Impact', sans-serif; font-size: 20px; color: var(--gold); white-space: nowrap; }
 .pick-meta { font-size: 12px; color: var(--white-faint); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 3px; }
 .pick-brand { color: #ff6b6b; font-weight: 700; font-size: 12px; margin-top: 8px; letter-spacing: 0.03em; }
+.skip-box { border: 2px solid #ff6b6b; background: rgba(255,107,107,0.06); padding: 12px 16px; margin: 16px 0; font-size: 13px; color: var(--white-dim); }
+.skip-box ul { margin: 8px 0 0; padding-left: 20px; }
+.skip-box li { margin-bottom: 6px; line-height: 1.5; }
+table.cars-tbl tr.row-flagged td { background: rgba(255,107,107,0.07); }
+.flag-mark { color: #ff6b6b; cursor: help; }
 .pick-verdict { color: var(--white-dim); line-height: 1.55; font-size: 14px; margin: 10px 0 0; }
 .pick-watch { color: var(--white-faint); line-height: 1.5; font-size: 13px; margin: 8px 0 0; }
 .pick-link { margin-top: auto; padding-top: 12px; color: var(--pink); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; }
@@ -318,7 +323,7 @@ table.cars-tbl tr.row-promo td { background: rgba(212,175,55,0.10); }
     <p class="pick-headline">{{ .headline }}</p>
     <div class="pick-list">
       {{ range .picks }}
-      <div class="pick-card{{ if eq .flag "branded" }} pick-card--warn{{ end }}">
+      <div class="pick-card{{ if or (eq .flag "branded") (eq .flag "dealer") }} pick-card--warn{{ end }}">
         <div class="pick-top">
           <span class="pick-title">{{ .title }}</span>
           <span class="pick-price">${{ lang.FormatNumberCustom 0 .price }}</span>
@@ -333,6 +338,7 @@ table.cars-tbl tr.row-promo td { background: rgba(212,175,55,0.10); }
         </div>
         {{ end }}
         {{ if eq .flag "branded" }}<div class="pick-brand">⚠ REBUILT / BRANDED TITLE — read the note</div>{{ end }}
+        {{ if eq .flag "dealer" }}<div class="pick-brand">⚑ DEALER FLAGGED — you visited, staff were rude</div>{{ end }}
         <p class="pick-verdict">{{ .verdict }}</p>
         <p class="pick-watch"><strong>Watch:</strong> {{ .watch }}</p>
         <a class="pick-link" href="{{ .url }}" target="_blank" rel="noopener">See the listing →</a>
@@ -348,6 +354,13 @@ table.cars-tbl tr.row-promo td { background: rgba(212,175,55,0.10); }
   <p class="cars-assump">
     {{ with $L }}Scraped {{ .generated }} by <code>scripts/car_finder.py</code>. Sorted best-value first within each model. Deal rating and &ldquo;$ vs. market&rdquo; come from Cars.com&rsquo;s price analysis; Craigslist listings carry no mileage or deal data.{{ else }}Run <code>python scripts/car_finder.py</code> to populate <code>data/car_listings.yaml</code>.{{ end }}
   </p>
+  <div class="skip-box">
+    <strong>⚑ Dealers we&rsquo;re steering around</strong> (rows below are marked, not hidden):
+    <ul>
+      <li><strong>Dennis Dillon group</strong> (GMC/Fiat, CJDR Caldwell, Mitsubishi, Nissan) — visited Sept 2026, staff were rude, bad vibes. A couple of their listings are priced well; decide if the sales floor is worth it.</li>
+      <li><strong>AutoSavvy</strong> — rebuilt / branded-title dealer by design. Every AutoSavvy car shows as a &ldquo;deal&rdquo; because Cars.com compares it to clean-title prices.</li>
+    </ul>
+  </div>
 
   {{ with $L }}
   {{ $cats := slice
@@ -367,7 +380,7 @@ table.cars-tbl tr.row-promo td { background: rgba(212,175,55,0.10); }
         <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Deal</th><th>Where</th><th>Src</th><th></th></tr></thead>
         <tbody>
         {{ range $ordered }}
-          <tr class="listing-row">
+          <tr class="listing-row{{ with .dealer_flag }} row-flagged{{ end }}">
             <td>{{ .title }}</td>
             <td>{{ with .year }}{{ . }}{{ else }}&mdash;{{ end }}</td>
             <td>{{ with .price }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
@@ -377,7 +390,7 @@ table.cars-tbl tr.row-promo td { background: rgba(212,175,55,0.10); }
               {{ with .market_delta }}<span class="deal-mkt">{{ if lt . 0 }}${{ lang.FormatNumberCustom 0 (math.Abs .) }} below{{ else }}${{ lang.FormatNumberCustom 0 . }} above{{ end }}</span>{{ end }}
               {{ if and (not .deal_rating) (not .market_delta) }}&mdash;{{ end }}
             </td>
-            <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}{{ with .dealer_flag }} <span class="flag-mark" title="{{ . }}">⚑</span>{{ end }}</td>
             <td><span class="listing-src">{{ with .source }}{{ . }}{{ else }}craigslist{{ end }}</span></td>
             <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
           </tr>
