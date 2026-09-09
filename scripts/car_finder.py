@@ -78,9 +78,9 @@ ZIP = "83714"  # Garden City / Boise
 SEARCHES = [
     # key, cl_terms, min_year, max_price, title_must, require_year,
     #      carscom_make, carscom_model
-    ("forester",   ["forester"],       2019, 34500, ["forester"],           False, "subaru", "subaru-forester"),
+    ("forester",   ["forester"],       2019, 35500, ["forester"],           False, "subaru", "subaru-forester"),
     ("rav4",       ["rav4"],            2019, 33000, ["rav4", "rav 4"],      False, "toyota", "toyota-rav_4"),
-    ("fourrunner", ["4runner"],         2010, 41000, ["4runner", "4 runner"], False, "toyota", "toyota-4runner"),
+    ("fourrunner", ["4runner"],         2010, 36500, ["4runner", "4 runner"], False, "toyota", "toyota-4runner"),
     # Honda Passport: require a parsed year >= 2019 to exclude the 90s
     # Isuzu-based Passport.
     ("passport",   ["passport"],        2019, 34000, ["passport"],           True,  "honda",  "honda-passport"),
