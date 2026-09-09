@@ -1,7 +1,8 @@
 # Hand-picked shortlist, refreshed 2026-09-08 after a weekend of shopping.
-# Changes this round: the CarMax 2020 Touring sold; Dennis Dillon lots
-# (rude in person) are flagged, not dropped. Ordering cross-checked against
-# Cars.com deal ratings + $ vs. market.
+# Scoped to what's realistically in reach: nothing here is over ~$35k, and the
+# sensible picks sit in the high-$20s to low-$30s. Changes this round: the
+# CarMax 2020 Touring sold; Dennis Dillon lots (rude in person) are flagged,
+# not dropped. Ordering cross-checked against Cars.com deal ratings + $ vs market.
 # flag: branded  -> rebuilt-title warning.   flag: dealer -> bad-vibes warning.
 
 updated: "2026-09-08"
@@ -69,7 +70,7 @@ rav4:
       watch: "Craigslist listing — no mileage, title, or market data. Call, confirm a clean title, get the miles."
 
 fourrunner:
-  headline: "His pick. Body-on-frame, no CVT, holds value like nothing else. ~17 mpg is the running cost."
+  headline: "His pick. Body-on-frame, no CVT, holds value like nothing else. ~17 mpg is the running cost. In reach means a 2017-2018 Limited around $29-31k, or stretching for lower miles."
   picks:
     - title: "2018 4Runner Limited"
       price: 30994
@@ -90,24 +91,6 @@ fourrunner:
       url: "https://www.cars.com/vehicledetail/b1b2fd73-dd8d-4287-b581-b02fb47f17d6/"
       verdict: "Dropped to $32.5k — newest, lowest-mile 4Runner in the valley and now $2.4k under market. The price is genuinely the best on the board."
       watch: "This is a Dennis Dillon lot — you found the staff rude. If you can grind through the sales floor for a truck this good, the number is real. Otherwise the 2018 Limited above is the clean alternative."
-    - title: "2022 4Runner TRD Off-Road"
-      price: 39093
-      miles: 69537
-      dealer: "Corwin Ford, Nampa"
-      deal: "Good Deal"
-      market: null
-      url: "https://www.cars.com/vehicledetail/c3ad5551-ac00-4a80-9df4-cc41a14b223d/"
-      verdict: "The exact trim for this brief — locking rear diff, Crawl Control, Multi-Terrain Select — at a non-Dillon dealer."
-      watch: "Dillon Mitsubishi has a 2021 TRD Off-Road Premium at $40.5k with only 46k miles (Great Deal) — better car, worse dealer. Your call."
-    - title: "2020 4Runner TRD Pro"
-      price: 39998
-      miles: 94212
-      dealer: "CarMax, Meridian"
-      deal: "Great Deal"
-      market: "$1,000 below market"
-      url: "https://www.cars.com/vehicledetail/df9449a6-6d00-445e-bf37-d6a7825d7835/"
-      verdict: "Top trim (Fox internal-bypass shocks, unique tune), CarMax guaranteed-clean title, rated a Great Deal."
-      watch: "94k miles and the highest price here — you're paying for the trim and the clean title, not low mileage."
     - title: "2017 4Runner Limited"
       price: 29287
       miles: 98003
@@ -115,8 +98,26 @@ fourrunner:
       deal: "Great Deal"
       market: null
       url: "https://www.cars.com/vehicledetail/6de47688-c10e-4f23-9a21-14f3e038f2cd/"
-      verdict: "Under $30k, under 100k miles, loaded Limited trim, rated a Great Deal. The value sweet spot."
+      verdict: "Under $30k, under 100k miles, loaded Limited trim (full-time 4WD, locking center diff, leather), rated a Great Deal. The value sweet spot."
       watch: "Small independent lot — PPI at a Toyota specialist essential. Check underbody rust and CarFax."
+    - title: "2018 4Runner Limited"
+      price: 28592
+      miles: 107180
+      dealer: "Peterson Auto Group, Boise"
+      deal: "Great Deal"
+      market: "$3,000 below market"
+      url: "https://www.cars.com/vehicledetail/ea212fb4-0e4f-419b-87b0-ce978e316792/"
+      verdict: "The cheapest way into a newer Limited — $3k under market, one model year newer than the Ozzy's car, from a franchise dealer. The trade is the miles."
+      watch: "107k miles. On a 1GR-FE V6 that's barely middle-aged, but it may push your credit-union's mileage cap for the 4.99% rate — confirm first."
+    - title: "2018 4Runner Limited"
+      price: 35490
+      miles: 60423
+      dealer: "Kendall Chevrolet, Nampa"
+      deal: "Good Deal"
+      market: null
+      url: "https://www.cars.com/vehicledetail/25da1170-0b48-4d31-9b4c-aebc3ea31013/"
+      verdict: "The lowest-mile 4Runner in reach. Top of the range, but 60k miles on a 2018 Limited buys years of runway."
+      watch: "Non-Toyota dealer — PPI at a Toyota specialist. This is a stretch on price; the sub-$31k Limiteds above are the sensible picks."
 
 passport:
   headline: "Underrated value. No CVT (9-speed auto), big cargo box, Honda V6."
