@@ -1,4 +1,4 @@
-generated: 2026-09-08
+generated: 2026-09-09
 
 forester:
   - source: cars.com
@@ -114,7 +114,7 @@ forester:
     price: 26440
     year: null
     odometer: null
-    url: "https://www.craigslist.org/view/d/boise-subaru-forester-financing-for/JrSI3dSc8RGgA61pKerpRg"
+    url: "https://www.craigslist.org/view/d/boise-subaru-forester-financing-for/xKGy7uqr8RGH4Oy4VQ9sEQ"
     post_date: null
     location: Boise
     deal_rating: null
@@ -180,7 +180,7 @@ forester:
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
-    dealer_flag: null
+    dealer_flag: Seen in person Sept 2026 -- passed. Clean Carfax, but scratched inside and out and felt beat for the miles (54k / ~21k per year).
   - source: cars.com
     title: "2023 Subaru Forester Limited"
     price: 29998
@@ -299,6 +299,18 @@ rav4:
     url: "https://www.craigslist.org/view/d/boise-2019-toyota-rav4-dealer-fees/mktnm1al8RGwb-5ep-7HSQ"
     post_date: null
     location: drivenboise.com
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: null
+  - source: craigslist
+    title: "2026 Toyota RAV4 Woodland 4WD"
+    price: 29550
+    year: 2026
+    odometer: null
+    url: "https://www.craigslist.org/view/d/caldwell-2026-toyota-rav4-woodland-4wd/mDtpjhYmFSV824onJ1aHtY"
+    post_date: null
+    location: null
     deal_rating: null
     market_delta: null
     value_score: null

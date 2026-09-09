@@ -70,6 +70,15 @@ SOLD_URLS = {
     "https://www.cars.com/vehicledetail/1b763353-50fa-4910-90d2-7e161f4a4293/",
 }
 
+# Listings seen in person and passed on. Kept on the page, flagged with why.
+LISTING_FLAGS = {
+    # 2024 Forester Touring, Capital City Auto -- clean Carfax but hard-used:
+    # scratches inside and out, felt more worn than its 54k miles.
+    "https://www.cars.com/vehicledetail/d342e928-7a58-47e1-9be2-d5478f12de0b/":
+        "Seen in person Sept 2026 -- passed. Clean Carfax, but scratched "
+        "inside and out and felt beat for the miles (54k / ~21k per year).",
+}
+
 _HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(_HERE, "..", "data", "car_listings.yaml")
 CACHE_DIR = os.path.join(_HERE, "..", "data", ".cache")
@@ -564,7 +573,7 @@ def main():
         total_dropped += dropped
         for r in kept:
             loc = (r.get("location") or "").lower()
-            r["dealer_flag"] = next(
+            r["dealer_flag"] = LISTING_FLAGS.get(r.get("url")) or next(
                 (msg for sub, msg in DEALER_FLAGS.items() if sub in loc), None)
         kept.sort(key=lambda r: (r.get("price") is None, r.get("price") or 0))
         kept = kept[:35]
