@@ -34,6 +34,8 @@ table.cars-tbl .best { color: #6dd36d; font-weight: 700; }
 table.cars-tbl .worst { color: #ff6b6b; }
 
 .cars-assump { font-size: 12px; color: var(--white-faint); font-style: italic; margin: 8px 0 0; }
+table.cars-tbl tr.row-promo td { background: rgba(212,175,55,0.10); }
+.pmt-note { display: block; font-size: 10px; color: var(--white-faint); text-transform: uppercase; letter-spacing: 0.03em; }
 
 /* model cards */
 .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 20px 0; }
@@ -64,6 +66,11 @@ table.cars-tbl .worst { color: #ff6b6b; }
 .pick-price { font-family: 'Impact', sans-serif; font-size: 20px; color: var(--gold); white-space: nowrap; }
 .pick-meta { font-size: 12px; color: var(--white-faint); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 3px; }
 .pick-brand { color: #ff6b6b; font-weight: 700; font-size: 12px; margin-top: 8px; letter-spacing: 0.03em; }
+.skip-box { border: 2px solid #ff6b6b; background: rgba(255,107,107,0.06); padding: 12px 16px; margin: 16px 0; font-size: 13px; color: var(--white-dim); }
+.skip-box ul { margin: 8px 0 0; padding-left: 20px; }
+.skip-box li { margin-bottom: 6px; line-height: 1.5; }
+table.cars-tbl tr.row-flagged td { background: rgba(255,107,107,0.07); }
+.flag-mark { color: #ff6b6b; cursor: help; }
 .pick-verdict { color: var(--white-dim); line-height: 1.55; font-size: 14px; margin: 10px 0 0; }
 .pick-watch { color: var(--white-faint); line-height: 1.5; font-size: 13px; margin: 8px 0 0; }
 .pick-link { margin-top: auto; padding-top: 12px; color: var(--pink); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; }
@@ -126,10 +133,11 @@ table.cars-tbl .worst { color: #ff6b6b; }
           {{ if gt .tco_7yr $max }}{{ $max = .tco_7yr }}{{ end }}
         {{ end }}
         {{ range $m.scenarios }}
-        <tr>
-          <td>{{ .name }}</td>
+        {{ $promo := or (strings.Contains .name "promo") (strings.Contains .name "%") }}
+        <tr class="{{ if $promo }}row-promo{{ end }}">
+          <td>{{ .name | replaceRE " -- " " — " }}</td>
           <td>${{ lang.FormatNumberCustom 0 .otd }}</td>
-          <td>${{ .pmt_mo }}</td>
+          <td>${{ .pmt_mo }}{{ if $promo }}<span class="pmt-note">short term</span>{{ end }}</td>
           <td>${{ lang.FormatNumberCustom 0 .interest }}</td>
           <td>${{ lang.FormatNumberCustom 0 .insurance }}</td>
           <td>${{ lang.FormatNumberCustom 0 .maintenance }}</td>
@@ -152,11 +160,77 @@ table.cars-tbl .worst { color: #ff6b6b; }
 
   <h3>The verdict</h3>
   <p class="prose">
-    The 2&ndash;3-year-old used car is the sweet spot: past the depreciation cliff,
-    usually still inside the 5yr/60k powertrain warranty, and for Subaru it&rsquo;s the
-    good-era CVT. Buying <em>new</em> costs roughly $3.5&ndash;7k more over 7 years for
-    little benefit. The strict-dollars pick is an older high-mile Forester, but you
-    then own an out-of-warranty boxer engine with the maintenance line climbing.
+    At <strong>ordinary financing</strong> (7%+ new, ~9% used), the 2&ndash;3-year-old used
+    car wins: past the depreciation cliff, still near the powertrain warranty, good-era
+    CVT. Buying new that way costs ~$3.5&ndash;7k more over 7 years.
+  </p>
+  <p class="prose">
+    <strong>But the manufacturer APR changes the answer.</strong> With Subaru&rsquo;s
+    <strong>1.9% / 36-month</strong> promo, a new Forester&rsquo;s 7-year cost drops to
+    ~$42k &mdash; the <em>cheapest</em> Forester line in the table, because saving ~7 points
+    of interest more than offsets the extra depreciation. The catch is the payment:
+    ~$906/mo for three years instead of ~$509 for the used one. A
+    <strong>CPO Forester at ~4.29%</strong> splits the difference &mdash; ~$43k all-in,
+    ~$486/mo, with warranty and clean history. See the incentives note below &mdash; those
+    rates are real but move monthly and need confirming with a Boise ZIP.
+  </p>
+
+  <!-- ─────────── MANUFACTURER INCENTIVES ─────────── -->
+  <h2>Manufacturer incentives — Sept 2026</h2>
+  <p class="cars-assump">
+    Gathered 2026-09-01, mostly from search-indexed copies of manufacturer / dealer
+    pages (subaru.com and buyatoyota.com blocked direct access). Treat as a starting
+    point: enter ZIP 83704 at <strong>subaru.com</strong> and
+    <strong>buyatoyota.com/pacificnorthwest</strong> and read the offer fine print for
+    exact trims and end dates. Idaho is in the Pacific-NW Toyota region; Subaru captive
+    financing is national.
+  </p>
+  <div class="cars-table-wrap">
+    <table class="cars-tbl">
+      <thead><tr><th>Vehicle</th><th>Captive APR offer</th><th>Cash</th><th>Notes</th><th>Confidence</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>New Forester (gas)</td>
+          <td>1.9% / 36 mo, $0 down</td>
+          <td>none</td>
+          <td>All 2026 gas trims. Hybrid: 3.9% / 48. This is a <em>pullback</em> from 0.9%/36 in spring 2026 — Subaru isn&rsquo;t leaning in.</td>
+          <td>secondary</td>
+        </tr>
+        <tr>
+          <td>Subaru CPO Forester</td>
+          <td>~4.29% APR</td>
+          <td>none</td>
+          <td>2021&ndash;2026 certified. Adds 7yr/100k powertrain from in-service date.</td>
+          <td>primary-ish</td>
+        </tr>
+        <tr>
+          <td>New RAV4</td>
+          <td>~4.99% / 48 mo</td>
+          <td>none</td>
+          <td>Supply-tight; no bonus cash. 5.99%/60, 6.99%/72.</td>
+          <td>secondary</td>
+        </tr>
+        <tr>
+          <td>New 4Runner</td>
+          <td>~4.99% / 48 mo</td>
+          <td>none</td>
+          <td>i-FORCE MAX hybrid has its own APR (~6.49%/72), confirmed to 9/30/2026.</td>
+          <td>secondary</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="prose">
+    <strong>No customer or bonus cash</strong> on any of the three volume models right
+    now — all are supply-constrained — so there&rsquo;s no APR-vs-rebate tradeoff to weigh.
+    You take the subvented rate or bring your own financing. The only stackable cash is
+    $500 military / $500 recent-grad (Toyota) and $500 educator (Subaru).
+  </p>
+  <p class="prose">
+    &ldquo;0% down&rdquo; is just the standard structure on these APR deals — not a discount.
+    The lever that matters is the <strong>rate</strong>: 1.9% on a new Forester vs. ~9%
+    on a used one is worth ~$5,000 of interest over the loan, which is why the promo row
+    beats the used rows in the table above — <em>if</em> you can carry the 36-month payment.
   </p>
 
   <!-- ─────────── THE CVT QUESTION ─────────── -->
@@ -249,7 +323,7 @@ table.cars-tbl .worst { color: #ff6b6b; }
     <p class="pick-headline">{{ .headline }}</p>
     <div class="pick-list">
       {{ range .picks }}
-      <div class="pick-card{{ if eq .flag "branded" }} pick-card--warn{{ end }}">
+      <div class="pick-card{{ if or (eq .flag "branded") (eq .flag "dealer") }} pick-card--warn{{ end }}">
         <div class="pick-top">
           <span class="pick-title">{{ .title }}</span>
           <span class="pick-price">${{ lang.FormatNumberCustom 0 .price }}</span>
@@ -264,6 +338,7 @@ table.cars-tbl .worst { color: #ff6b6b; }
         </div>
         {{ end }}
         {{ if eq .flag "branded" }}<div class="pick-brand">⚠ REBUILT / BRANDED TITLE — read the note</div>{{ end }}
+        {{ if eq .flag "dealer" }}<div class="pick-brand">⚑ DEALER FLAGGED — you visited, staff were rude</div>{{ end }}
         <p class="pick-verdict">{{ .verdict }}</p>
         <p class="pick-watch"><strong>Watch:</strong> {{ .watch }}</p>
         <a class="pick-link" href="{{ .url }}" target="_blank" rel="noopener">See the listing →</a>
@@ -279,6 +354,13 @@ table.cars-tbl .worst { color: #ff6b6b; }
   <p class="cars-assump">
     {{ with $L }}Scraped {{ .generated }} by <code>scripts/car_finder.py</code>. Sorted best-value first within each model. Deal rating and &ldquo;$ vs. market&rdquo; come from Cars.com&rsquo;s price analysis; Craigslist listings carry no mileage or deal data.{{ else }}Run <code>python scripts/car_finder.py</code> to populate <code>data/car_listings.yaml</code>.{{ end }}
   </p>
+  <div class="skip-box">
+    <strong>⚑ Dealers we&rsquo;re steering around</strong> (rows below are marked, not hidden):
+    <ul>
+      <li><strong>Dennis Dillon group</strong> (GMC/Fiat, CJDR Caldwell, Mitsubishi, Nissan) — visited Sept 2026, staff were rude, bad vibes. A couple of their listings are priced well; decide if the sales floor is worth it.</li>
+      <li><strong>AutoSavvy</strong> — rebuilt / branded-title dealer by design. Every AutoSavvy car shows as a &ldquo;deal&rdquo; because Cars.com compares it to clean-title prices.</li>
+    </ul>
+  </div>
 
   {{ with $L }}
   {{ $cats := slice
@@ -298,7 +380,7 @@ table.cars-tbl .worst { color: #ff6b6b; }
         <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Deal</th><th>Where</th><th>Src</th><th></th></tr></thead>
         <tbody>
         {{ range $ordered }}
-          <tr class="listing-row">
+          <tr class="listing-row{{ with .dealer_flag }} row-flagged{{ end }}">
             <td>{{ .title }}</td>
             <td>{{ with .year }}{{ . }}{{ else }}&mdash;{{ end }}</td>
             <td>{{ with .price }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
@@ -308,7 +390,7 @@ table.cars-tbl .worst { color: #ff6b6b; }
               {{ with .market_delta }}<span class="deal-mkt">{{ if lt . 0 }}${{ lang.FormatNumberCustom 0 (math.Abs .) }} below{{ else }}${{ lang.FormatNumberCustom 0 . }} above{{ end }}</span>{{ end }}
               {{ if and (not .deal_rating) (not .market_delta) }}&mdash;{{ end }}
             </td>
-            <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}{{ with .dealer_flag }} <span class="flag-mark" title="{{ . }}">⚑</span>{{ end }}</td>
             <td><span class="listing-src">{{ with .source }}{{ . }}{{ else }}craigslist{{ end }}</span></td>
             <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
           </tr>
@@ -377,28 +459,64 @@ table.cars-tbl .worst { color: #ff6b6b; }
     <a href="https://www.facebook.com/marketplace/boise/search?query=honda%20passport&exact=false&radius_km=160" target="_blank" rel="noopener">Passport</a>
   </div>
 
-  <!-- ─────────── INSPECTION CHECKLIST ─────────── -->
-  <h2>Used-SUV inspection checklist</h2>
-  <h3>Any Subaru</h3>
+  <!-- ─────────── TEST DRIVE ─────────── -->
+  <h2>Test drive</h2>
+
+  <h3>Before you go</h3>
   <ul class="checklist">
-    <li>Oil consumption — check the dipstick, ask for records; some FB25 burn a quart/1,000 mi</li>
-    <li>Head gasket history (mostly a pre-2013 problem, but ask)</li>
-    <li>CVT fluid: has it ever been changed? Any shudder at 20&ndash;40 mph light throttle?</li>
-    <li>Confirm CVT warranty status on 2014&ndash;2018 (10yr/100k extension — VIN-specific)</li>
-    <li>Wheel bearings — listen for a droning hum that changes when you sway the wheel</li>
-    <li>Rust on rear subframe / lateral links (Idaho winters + road salt)</li>
-    <li>Windshield — Subaru glass is expensive and EyeSight recalibration adds cost</li>
+    <li><strong>Ask for a cold car</strong> — arrange to arrive before it&rsquo;s been started that day. A warmed-up engine hides the tells (startup rattle, smoke, rough idle).</li>
+    <li><strong>Line up two or three in one day.</strong> Back-to-back is the only way to feel the difference — impressions fade fast.</li>
+    <li><strong>She drives first and longest.</strong> She&rsquo;s the primary driver — seat fit, visibility, driving position, and where the controls fall matter more than anything on paper.</li>
+    <li><strong>Bring Grandpa</strong> (the mechanic) and an OBD2 Bluetooth reader ($20). Plug it in even with no warning light: pull stored/pending codes and check that the readiness monitors all say &ldquo;ready&rdquo; — several &ldquo;not ready&rdquo; means codes were recently cleared to drop a light before the sale.</li>
+    <li><strong>Drive 25+ minutes:</strong> surface streets, a full-throttle highway on-ramp, rough pavement, and tight parking-lot circles both directions. Windows down the first few minutes to hear the drivetrain, then test the A/C.</li>
+    <li><strong>CarMax</strong> offers a 24-hour test drive on most cars — use it for the Touring so she can live with it overnight.</li>
+    <li>Photograph everything: VIN, odometer, all four tire DOT date codes, any damage.</li>
   </ul>
-  <h3>Any used SUV</h3>
+
+  <h3>What you two drive for</h3>
   <ul class="checklist">
-    <li>Cold start — first key of the day, listen for rattle, watch for smoke</li>
-    <li>Tires: matched brand + even wear (mismatched = AWD neglect / alignment)</li>
-    <li>All-wheel-drive engages — dirt lot, tight circle, feel for binding or clunk</li>
-    <li>Underbody — skid-plate scrapes, bent tie rods, fresh undercoating hiding rust</li>
-    <li>Every warning light cycles on at key-on and then goes out</li>
-    <li>Carfax / title: no branded title, service at real intervals, one or two owners</li>
-    <li>Pre-purchase inspection at an independent shop — $150, non-negotiable</li>
-    <li>Timing: chain (Subaru, Toyota V6, Honda V6) vs belt — none of the shortlist uses a belt</li>
+    <li><strong>Full-throttle merge, once.</strong> Any hesitation, rpm flare, or shudder is a flag.</li>
+    <li><strong>Firm brake from 45 in a straight line</strong> — no pulling, no pedal pulsing (warped rotors), no ABS chatter on dry pavement.</li>
+    <li><strong>Hold 65&ndash;70 on the highway</strong> — no steering-wheel vibration (wheels/balance/bent rim), no wandering (alignment), no wind roar (failed seal or prior bodywork).</li>
+    <li><strong>Lift off the gas on a downhill</strong> — listen for a driveline clunk.</li>
+    <li><strong>Every button:</strong> A/C blows genuinely cold, heat, all windows, sunroof, heated seats, CarPlay/screen, backup camera, all four door locks, cruise, wipers, rear defrost.</li>
+    <li><strong>Nose test:</strong> musty = water intrusion (lift the floor mats and the spare-tire cover and feel for damp); sweet syrup smell = coolant leak.</li>
+    <li><strong>Park on a hill, set the brake</strong> — confirm it actually holds.</li>
+  </ul>
+
+  <h3>Forester — the CVT drive</h3>
+  <ul class="checklist">
+    <li><strong>Accelerate smoothly 20 &rarr; 45 mph on light-to-moderate throttle.</strong> It should feel rubber-bandy but <em>seamless</em>. Any shudder, judder, or a &ldquo;slipping / searching&rdquo; sensation is the classic failing-CVT sign — walk away.</li>
+    <li><strong>Stop-and-go creep:</strong> ease forward from a dead stop several times. Feel for a hesitation or a &ldquo;catch&rdquo; before it engages.</li>
+    <li><strong>Engage X-Mode</strong> (button by the shifter) — confirm the dash indicator lights.</li>
+    <li><strong>EyeSight on the highway:</strong> adaptive cruise engages and holds a gap; lane-keep nudges the wheel; no EyeSight fault light after startup.</li>
+    <li>Slight side-to-side shake at idle is normal for the boxer engine. A rhythmic miss or a top-end tick is not.</li>
+  </ul>
+
+  <h3>4Runner — the truck drive</h3>
+  <ul class="checklist">
+    <li><strong>The float-y, trucky ride is normal</strong> — don&rsquo;t mistake it for worn shocks. But after a speed bump it should settle in one or two bounces, not keep bobbing.</li>
+    <li><strong>Shift into 4-Hi</strong> (rolling slowly or stopped — it&rsquo;s part-time on SR5/TRD): dash light confirms, no grinding. Shift back to 2WD and confirm no binding or clunk on pavement.</li>
+    <li><strong>TRD trims:</strong> in a lot, test the locking rear diff (needs 4-Lo), Crawl Control, and Multi-Terrain Select — each should activate and indicate.</li>
+    <li><strong>Power rear window</strong> (the glass that drops into the tailgate) — cycle it fully up and down. It&rsquo;s a known, pricey failure point.</li>
+    <li>The 5-speed auto revs higher on the highway (~2,400 rpm at 75) — that&rsquo;s the old gearbox, not a problem. Shifts should be smooth with no flare between gears.</li>
+    <li>Listen for a driveline vibration or drone at 40&ndash;50 mph (driveshaft / carrier bearing).</li>
+  </ul>
+
+  <h3>For Grandpa — the model-specific spots</h3>
+  <p class="prose">He&rsquo;ll know what a tired car feels like better than any list. These are the
+  quirks specific to these models that might not come up if he hasn&rsquo;t worked on them:</p>
+  <ul class="checklist">
+    <li><strong>Forester — oil consumption.</strong> The FB25 boxer on some 2019&ndash;21 cars burns a quart per 1,000&ndash;1,200 mi. Check the dipstick cold; ask to come back in a week and recheck. Ask for oil-change records — short intervals suggest the owner was managing it.</li>
+    <li><strong>Forester — CVT fluid.</strong> Subaru calls it &ldquo;lifetime&rdquo;; it isn&rsquo;t. Has it ever been dropped and filled? Fluid should be reddish, not brown or burnt-smelling.</li>
+    <li><strong>Forester — wheel bearings and rear lateral links.</strong> Droning hum that changes as you sway the car = bearing. Check the rear subframe and lateral-link bushings for rot (Idaho road salt).</li>
+    <li><strong>Forester — windshield.</strong> Subaru glass plus EyeSight recalibration runs $1,000+. A chipped one is a bargaining chip.</li>
+    <li><strong>4Runner — frame rust.</strong> Less of an issue in dry Idaho than the salt belt, but still: probe the frame rails, especially around the rear spring hangers and the crossmember, and look for fresh undercoating hiding scale.</li>
+    <li><strong>4Runner — KDSS</strong> (if equipped): look for hydraulic fluid weeping at the valve body under the vehicle. A working system corners noticeably flatter.</li>
+    <li><strong>4Runner — the 1GR-FE V6</strong> is chain-driven and famously tough; no known engine or 5-speed-auto failure modes. Front diff / CV boots and the secondary air-injection system (pre-2016) are the spots.</li>
+    <li><strong>Both — tires:</strong> matched brand, even wear across all four. A mismatched set on an AWD/4WD car means neglect and possibly a chewed-up center diff or transfer case.</li>
+    <li><strong>Both — CarFax / title:</strong> clean title, service at real intervals, one or two owners, no gap where it might have sat wrecked.</li>
+    <li>A lift inspection at an independent shop ($120&ndash;150) is still worth it even with Grandpa along — a second set of eyes and a rack you don&rsquo;t have in a seller&rsquo;s driveway.</li>
   </ul>
 
 </div>

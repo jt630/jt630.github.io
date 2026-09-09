@@ -52,6 +52,24 @@ UA = {
     )
 }
 SLEEP = 2.0
+
+# Dealers to flag on the page. Keyed by a lowercase substring of the listing
+# location. Reasons come from Jeremy's own visits -- his read of a lot beats
+# any badge. A flagged listing still shows; it just carries a warning.
+DEALER_FLAGS = {
+    "dillon": "Dennis Dillon group (GMC/Fiat, CJDR Caldwell, Mitsubishi, "
+              "Nissan) -- visited Sept 2026, staff were rude, bad vibes.",
+    "autosavvy": "AutoSavvy -- rebuilt / branded-title dealer by business "
+                 "model. A branded car always shows as a 'deal' vs clean-title "
+                 "prices. Resale + insurance hit; rebuilt-title buyers only.",
+}
+
+# Listings confirmed gone in person (Cars.com lags real inventory). Suppressed.
+SOLD_URLS = {
+    # 2020 Forester Touring, CarMax Meridian -- dead when they went 2026-09
+    "https://www.cars.com/vehicledetail/1b763353-50fa-4910-90d2-7e161f4a4293/",
+}
+
 _HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(_HERE, "..", "data", "car_listings.yaml")
 CACHE_DIR = os.path.join(_HERE, "..", "data", ".cache")
@@ -60,9 +78,9 @@ ZIP = "83714"  # Garden City / Boise
 SEARCHES = [
     # key, cl_terms, min_year, max_price, title_must, require_year,
     #      carscom_make, carscom_model
-    ("forester",   ["forester"],       2019, 30000, ["forester"],           False, "subaru", "subaru-forester"),
+    ("forester",   ["forester"],       2019, 34500, ["forester"],           False, "subaru", "subaru-forester"),
     ("rav4",       ["rav4"],            2019, 33000, ["rav4", "rav 4"],      False, "toyota", "toyota-rav_4"),
-    ("fourrunner", ["4runner"],         2010, 38000, ["4runner", "4 runner"], False, "toyota", "toyota-4runner"),
+    ("fourrunner", ["4runner"],         2010, 41000, ["4runner", "4 runner"], False, "toyota", "toyota-4runner"),
     # Honda Passport: require a parsed year >= 2019 to exclude the 90s
     # Isuzu-based Passport.
     ("passport",   ["passport"],        2019, 34000, ["passport"],           True,  "honda",  "honda-passport"),
@@ -499,7 +517,7 @@ def dump_yaml(data):
             first = True
             for f in ("source", "title", "price", "year", "odometer", "url",
                       "post_date", "location", "deal_rating", "market_delta",
-                      "value_score"):
+                      "value_score", "dealer_flag"):
                 prefix = "  - " if first else "    "
                 lines.append(f"{prefix}{f}: {_yv(r.get(f))}")
                 first = False
@@ -540,11 +558,16 @@ def main():
 
         merged = dedupe(cl_rows + cc_rows)
         kept = [r for r in merged
-                if in_region(r.get("location"), r.get("url"))]
+                if in_region(r.get("location"), r.get("url"))
+                and r.get("url") not in SOLD_URLS]
         dropped = len(merged) - len(kept)
         total_dropped += dropped
+        for r in kept:
+            loc = (r.get("location") or "").lower()
+            r["dealer_flag"] = next(
+                (msg for sub, msg in DEALER_FLAGS.items() if sub in loc), None)
         kept.sort(key=lambda r: (r.get("price") is None, r.get("price") or 0))
-        kept = kept[:25]
+        kept = kept[:35]
         result[key] = kept
 
         all_notes += [f"[{key}] {n}" for n in notes]

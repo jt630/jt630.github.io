@@ -20,6 +20,28 @@ scenarios:
     depreciation: 17700
     tco_7yr: 48575
     per_mo_allin: 578
+  - name: "NEW 2026 Forester Premium -- 1.9% promo (36mo)"
+    otd: 35692
+    financed: 31692
+    pmt_mo: 906
+    interest: 937
+    insurance: 8995
+    maintenance: 3650
+    fuel: 10800
+    depreciation: 17700
+    tco_7yr: 42082
+    per_mo_allin: 501
+  - name: "NEW 2026 Forester Premium -- 3.9% est. (60mo)"
+    otd: 35692
+    financed: 31692
+    pmt_mo: 582
+    interest: 3242
+    insurance: 8995
+    maintenance: 3650
+    fuel: 10800
+    depreciation: 17700
+    tco_7yr: 44387
+    per_mo_allin: 528
   - name: "USED 2023 Forester (~30k mi)"
     otd: 28590
     financed: 24590
@@ -31,6 +53,39 @@ scenarios:
     depreciation: 14000
     tco_7yr: 44985
     per_mo_allin: 536
+  - name: "CPO 2023 Forester (~30k mi) -- Subaru 4.29%"
+    otd: 30180
+    financed: 26180
+    pmt_mo: 486
+    interest: 2955
+    insurance: 8170
+    maintenance: 6050
+    fuel: 10800
+    depreciation: 15000
+    tco_7yr: 42975
+    per_mo_allin: 512
+  - name: "USED 2023 Forester (~30k mi) -- your 4.99% line"
+    otd: 28590
+    financed: 24590
+    pmt_mo: 464
+    interest: 3246
+    insurance: 8170
+    maintenance: 6050
+    fuel: 10800
+    depreciation: 14000
+    tco_7yr: 42266
+    per_mo_allin: 503
+  - name: "USED 2020 Forester (~65k mi) -- your 4.99% line"
+    otd: 22230
+    financed: 18230
+    pmt_mo: 420
+    interest: 1918
+    insurance: 7840
+    maintenance: 7650
+    fuel: 11200
+    depreciation: 12000
+    tco_7yr: 40608
+    per_mo_allin: 483
   - name: "USED 2020 Forester (~65k mi)"
     otd: 22230
     financed: 18230

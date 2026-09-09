@@ -26,6 +26,11 @@ MILES_PER_YEAR = 12000
 # Rates: "higher for longer" view. Sept 2026.
 APR_NEW = 0.072                 # 0.069-0.079 band, captive/credit-union new
 APR_USED = 0.089               # 0.084-0.099 band, used 3-6 yr old
+APR_BUYER = 0.0499             # Jeremy's pre-approval: used-car loan, up to
+                               # $100k, 65 mo, 4.99% fixed APR (secured, no
+                               # variable-rate risk). Terms below kept < 65 mo
+                               # deliberately -- pay it faster, no prepay
+                               # penalty, build equity sooner.
 
 # Annual costs that DIFFER by age
 def insurance(age_of_car_start):
@@ -41,6 +46,16 @@ def maintenance(model_year_age):
 
 GAS_PER_GAL = 3.60             # Boise regular, higher-oil view; 3.40-3.90 band
 
+# Manufacturer captive-APR offers, Boise, Sept 2026. SECONDARY-sourced
+# (subaru.com / buyatoyota.com PNW via search snippets); confirm with a Boise
+# ZIP before relying on them. No customer/bonus cash on any of the 3 models.
+#   Subaru Forester (gas): 1.9% / 36 mo, $0 down, exp ~9/30/2026
+#   Toyota RAV4 / 4Runner: ~4.99% / 48 mo
+#   Subaru CPO Forester (2021-2026): ~4.29% (this line is PRIMARY off subaru.com)
+APR_FORESTER_PROMO = 0.019
+APR_TOYOTA_PROMO = 0.0499
+APR_SUBARU_CPO = 0.0429
+
 SCENARIOS = {
     "NEW 2026 Forester Premium": {
         "price": 33200,            # 31.5k-35k OTD-negotiated pre-tax; MSRP ~33-35k
@@ -51,6 +66,22 @@ SCENARIOS = {
         # resale after 7 yrs / ~84k mi: Subaru holds ~ well
         "resale": 15500,           # 14k-17k band -> ~47% of price
     },
+    "NEW 2026 Forester Premium -- 1.9% promo (36mo)": {
+        "price": 33200,
+        "apr": APR_FORESTER_PROMO,
+        "term": 36,                # headline rate REQUIRES the 36-mo term
+        "start_age": 0,
+        "mpg": 28,
+        "resale": 15500,
+    },
+    "NEW 2026 Forester Premium -- 3.9% est. (60mo)": {
+        "price": 33200,
+        "apr": 0.039,              # SOFT: Subaru 48/60-mo rate not published; est. band 3.4-4.9%
+        "term": 60,
+        "start_age": 0,
+        "mpg": 28,
+        "resale": 15500,
+    },
     "USED 2023 Forester (~30k mi)": {
         "price": 26500,
         "apr": APR_USED,
@@ -58,6 +89,30 @@ SCENARIOS = {
         "start_age": 3,
         "mpg": 28,
         "resale": 12500,           # 10yr-old car at sale, ~11k-14k
+    },
+    "CPO 2023 Forester (~30k mi) -- Subaru 4.29%": {
+        "price": 28000,            # CPO carries ~$1.5k premium over private used
+        "apr": APR_SUBARU_CPO,
+        "term": 60,
+        "start_age": 3,
+        "mpg": 28,
+        "resale": 13000,           # slightly better resale w/ CPO history
+    },
+    "USED 2023 Forester (~30k mi) -- your 4.99% line": {
+        "price": 26500,
+        "apr": APR_BUYER,
+        "term": 60,
+        "start_age": 3,
+        "mpg": 28,
+        "resale": 12500,
+    },
+    "USED 2020 Forester (~65k mi) -- your 4.99% line": {
+        "price": 20500,
+        "apr": APR_BUYER,
+        "term": 48,
+        "start_age": 6,
+        "mpg": 27,
+        "resale": 8500,
     },
     "USED 2020 Forester (~65k mi)": {
         "price": 20500,            # 19k-22.5k

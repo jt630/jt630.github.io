@@ -1,28 +1,30 @@
-generated: 2026-09-01
+generated: 2026-09-08
 
 forester:
   - source: cars.com
+    title: "2019 Subaru Forester Premium"
+    price: 14999
+    year: 2019
+    odometer: 144327
+    url: "https://www.cars.com/vehicledetail/fd930336-e00a-4e91-8c87-fcce87a7977a/"
+    post_date: null
+    location: Dillon GMC & Fiat, Boise, ID
+    deal_rating: Fair Price
+    market_delta: null
+    value_score: 0
+    dealer_flag: Dennis Dillon group (GMC/Fiat, CJDR Caldwell, Mitsubishi, Nissan) -- visited Sept 2026, staff were rude, bad vibes.
+  - source: cars.com
     title: "2019 Subaru Forester Base"
-    price: 15140
+    price: 15087
     year: 2019
     odometer: 132196
     url: "https://www.cars.com/vehicledetail/94f87236-496d-4528-b0be-402d88e9a384/"
     post_date: null
     location: Corwin Ford, Nampa, ID
     deal_rating: Good Deal
-    market_delta: -346
-    value_score: -346
-  - source: cars.com
-    title: "2020 Subaru Forester Limited"
-    price: 15995
-    year: 2020
-    odometer: 124504
-    url: "https://www.cars.com/vehicledetail/cb9948ab-617e-450d-aa7c-79f15ceb93ac/"
-    post_date: null
-    location: Good Life Motors, Nampa, ID
-    deal_rating: null
-    market_delta: -493
-    value_score: -493
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
   - source: cars.com
     title: "2019 Subaru Forester Limited"
     price: 19598
@@ -32,19 +34,21 @@ forester:
     post_date: null
     location: Dillon GMC & Fiat, Boise, ID
     deal_rating: Good Deal
-    market_delta: -401
-    value_score: -401
-  - source: cars.com
-    title: "2025 Subaru Forester Base"
-    price: 22600
-    year: 2025
-    odometer: 13762
-    url: "https://www.cars.com/vehicledetail/f62c1888-5536-4dbf-a6c4-0d4f1a8f63dc/"
-    post_date: null
-    location: AutoSavvy Boise, Boise, ID
-    deal_rating: null
     market_delta: null
-    value_score: null
+    value_score: -500
+    dealer_flag: Dennis Dillon group (GMC/Fiat, CJDR Caldwell, Mitsubishi, Nissan) -- visited Sept 2026, staff were rude, bad vibes.
+  - source: cars.com
+    title: "2021 Subaru Forester Premium"
+    price: 21341
+    year: 2021
+    odometer: 99337
+    url: "https://www.cars.com/vehicledetail/d7ff11bf-4613-479c-a8e2-0648195ea9c4/"
+    post_date: null
+    location: Larry H. Miller Subaru Boise, Boise, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
   - source: cars.com
     title: "2022 Subaru Forester Limited"
     price: 23100
@@ -54,41 +58,9 @@ forester:
     post_date: null
     location: AutoSavvy Boise, Boise, ID
     deal_rating: null
-    market_delta: -300
-    value_score: -300
-  - source: cars.com
-    title: "2019 Subaru Forester Sport"
-    price: 24870
-    year: 2019
-    odometer: 50566
-    url: "https://www.cars.com/vehicledetail/c527cb19-33cd-48b6-83e3-e8096d3b2f5c/"
-    post_date: null
-    location: Larry H. Miller Subaru Boise, Boise, ID
-    deal_rating: Good Deal
-    market_delta: null
-    value_score: -500
-  - source: cars.com
-    title: "2020 Subaru Forester Touring"
-    price: 24998
-    year: 2020
-    odometer: 51669
-    url: "https://www.cars.com/vehicledetail/1b763353-50fa-4910-90d2-7e161f4a4293/"
-    post_date: null
-    location: CarMax Boise (Meridian), Meridian, ID
-    deal_rating: Great Deal
-    market_delta: -1907
-    value_score: -1907
-  - source: cars.com
-    title: "2025 Subaru Forester Premium"
-    price: 25000
-    year: 2025
-    odometer: 8290
-    url: "https://www.cars.com/vehicledetail/e6562781-57b6-4a65-a3a1-3514e56d97b2/"
-    post_date: null
-    location: AutoSavvy Boise, Boise, ID
-    deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: "AutoSavvy -- rebuilt / branded-title dealer by business model. A branded car always shows as a 'deal' vs clean-title prices. Resale + insurance hit; rebuilt-title buyers only."
   - source: cars.com
     title: "2022 Subaru Forester Limited"
     price: 25000
@@ -100,6 +72,43 @@ forester:
     deal_rating: Great Deal
     market_delta: null
     value_score: -1500
+    dealer_flag: "AutoSavvy -- rebuilt / branded-title dealer by business model. A branded car always shows as a 'deal' vs clean-title prices. Resale + insurance hit; rebuilt-title buyers only."
+  - source: cars.com
+    title: "2024 Subaru Forester Sport"
+    price: 25487
+    year: 2024
+    odometer: 80441
+    url: "https://www.cars.com/vehicledetail/582bd5dd-de61-4325-af84-b1312b4dd287/"
+    post_date: null
+    location: Kendall Hyundai of Boise, Boise, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2023 Subaru Forester Premium"
+    price: 25600
+    year: 2023
+    odometer: 7840
+    url: "https://www.cars.com/vehicledetail/200a039c-e2eb-49ed-8c00-1dd933dfbaae/"
+    post_date: null
+    location: AutoSavvy Boise, Boise, ID
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: "AutoSavvy -- rebuilt / branded-title dealer by business model. A branded car always shows as a 'deal' vs clean-title prices. Resale + insurance hit; rebuilt-title buyers only."
+  - source: cars.com
+    title: "2019 Subaru Forester 2.5i Limited"
+    price: 25998
+    year: 2019
+    odometer: 34728
+    url: "https://www.cars.com/vehicledetail/aa3592f4-377a-48b7-a795-49153e5f6ce7/"
+    post_date: null
+    location: CarMax Boise (Meridian), Meridian, ID
+    deal_rating: Good Deal
+    market_delta: -1000
+    value_score: -1000
+    dealer_flag: null
   - source: craigslist
     title: Subaru Forester - FINANCING FOR EVERYONE!!!
     price: 26440
@@ -111,11 +120,180 @@ forester:
     deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: null
+  - source: cars.com
+    title: "2020 Subaru Forester Limited"
+    price: 26594
+    year: 2020
+    odometer: 76699
+    url: "https://www.cars.com/vehicledetail/df0885d9-0d5b-4fc3-8da9-95d32b8ce6be/"
+    post_date: null
+    location: Treasure Valley Subaru, Nampa, ID
+    deal_rating: Fair Price
+    market_delta: null
+    value_score: 0
+    dealer_flag: null
+  - source: cars.com
+    title: "2023 Subaru Forester Wilderness"
+    price: 26800
+    year: 2023
+    odometer: 36197
+    url: "https://www.cars.com/vehicledetail/04fa0676-a04a-4651-9544-83a9877280df/"
+    post_date: null
+    location: AutoSavvy Boise, Boise, ID
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: "AutoSavvy -- rebuilt / branded-title dealer by business model. A branded car always shows as a 'deal' vs clean-title prices. Resale + insurance hit; rebuilt-title buyers only."
+  - source: cars.com
+    title: "2024 Subaru Forester Limited"
+    price: 29494
+    year: 2024
+    odometer: 39714
+    url: "https://www.cars.com/vehicledetail/ad77a81d-5fb4-4f31-9dcf-316b74aa093e/"
+    post_date: null
+    location: Peterson Auto Group, Boise, ID
+    deal_rating: Good Deal
+    market_delta: -600
+    value_score: -600
+    dealer_flag: null
+  - source: cars.com
+    title: "2023 Subaru Forester Limited"
+    price: 29593
+    year: 2023
+    odometer: 40895
+    url: "https://www.cars.com/vehicledetail/1bbeda29-5902-464b-b0f6-268cf45a307b/"
+    post_date: null
+    location: Treasure Valley Subaru, Nampa, ID
+    deal_rating: Good Deal
+    market_delta: -780
+    value_score: -780
+    dealer_flag: null
+  - source: cars.com
+    title: "2024 Subaru Forester Touring"
+    price: 29839
+    year: 2024
+    odometer: 54400
+    url: "https://www.cars.com/vehicledetail/d342e928-7a58-47e1-9be2-d5478f12de0b/"
+    post_date: null
+    location: Capital City Auto, Boise, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2023 Subaru Forester Limited"
+    price: 29998
+    year: 2023
+    odometer: 10650
+    url: "https://www.cars.com/vehicledetail/a4a2cc79-e1f9-48b7-9acc-e0bfae315b52/"
+    post_date: null
+    location: CarMax Boise (Meridian), Meridian, ID
+    deal_rating: Great Deal
+    market_delta: null
+    value_score: -1500
+    dealer_flag: null
+  - source: cars.com
+    title: "2023 Subaru Forester Limited (Subaru CPO)"
+    price: 30593
+    year: 2023
+    odometer: 25374
+    url: "https://www.cars.com/vehicledetail/8c15b158-14a8-40aa-9685-ec4082aee20e/"
+    post_date: null
+    location: Treasure Valley Subaru, Nampa, ID
+    deal_rating: Good Deal
+    market_delta: -1700
+    value_score: -1700
+    dealer_flag: null
+  - source: cars.com
+    title: "2024 Subaru Forester Sport"
+    price: 30788
+    year: 2024
+    odometer: 25366
+    url: "https://www.cars.com/vehicledetail/66fce858-6e79-449f-8581-8abfb3cb4a48/"
+    post_date: null
+    location: Larry H. Miller Subaru Boise, Boise, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: craigslist
+    title: "2024 Subaru Forester AWD All Wheel Drive Wilderness SUV"
+    price: 30995
+    year: 2024
+    odometer: null
+    url: "https://www.craigslist.org/view/d/boise-2024-subaru-forester-awd-all/JvYTXK-o8RGO4q_cf4gWhg"
+    post_date: null
+    location: Maverick Car Company
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: null
+  - source: cars.com
+    title: "2023 Subaru Forester Wilderness"
+    price: 31150
+    year: 2023
+    odometer: 31965
+    url: "https://www.cars.com/vehicledetail/5ccdf424-a93a-46a7-832c-4326279e2b32/"
+    post_date: null
+    location: "Steve's Hometown Toyota, Ontario, OR"
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2024 Subaru Forester Wilderness"
+    price: 31494
+    year: 2024
+    odometer: 29953
+    url: "https://www.cars.com/vehicledetail/1b54e7af-3ac2-4082-b959-596e3cf7387d/"
+    post_date: null
+    location: Maverick Car Company, Boise, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2024 Subaru Forester Wilderness (Subaru CPO)"
+    price: 33441
+    year: 2024
+    odometer: 18267
+    url: "https://www.cars.com/vehicledetail/8598da60-61ef-45e5-a26a-6d9c5aaeb049/"
+    post_date: null
+    location: Larry H. Miller Subaru Boise, Boise, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2024 Subaru Forester Wilderness"
+    price: 33998
+    year: 2024
+    odometer: 18279
+    url: "https://www.cars.com/vehicledetail/8ff15b84-4419-466a-8e66-ee01b781214e/"
+    post_date: null
+    location: CarMax Boise (Meridian), Meridian, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2024 Subaru Forester Limited"
+    price: 33998
+    year: 2024
+    odometer: 14599
+    url: "https://www.cars.com/vehicledetail/1419853e-7af9-4c15-9849-11adb487e874/"
+    post_date: null
+    location: CarMax Boise (Meridian), Meridian, ID
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: null
 
 rav4:
   - source: craigslist
     title: "2019 Toyota RAV4 - $0 DEALER FEES"
-    price: 19899
+    price: 19499
     year: 2019
     odometer: null
     url: "https://www.craigslist.org/view/d/boise-2019-toyota-rav4-dealer-fees/mktnm1al8RGwb-5ep-7HSQ"
@@ -124,41 +302,45 @@ rav4:
     deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: null
   - source: craigslist
-    title: "2020 Toyota RAV4 TRD Off-Road Sport Utility 4D - Driven in Boise!"
-    price: 29699
+    title: "2020 Toyota RAV4 - $0 DEALER FEES"
+    price: 29599
     year: 2020
     odometer: null
-    url: "https://www.craigslist.org/view/d/boise-2020-toyota-rav4-trd-off-road/WGX32VeU8RGAvrmYj_3Rvg"
+    url: "https://www.craigslist.org/view/d/boise-2020-toyota-rav4-dealer-fees/Ym9xm_Cm8RGCWfip4EY8Og"
     post_date: null
     location: drivenboise.com
     deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: null
   - source: craigslist
     title: Toyota RAV4 - BAD CREDIT BANKRUPTCY REPO SSI RETIRED APPROVED
     price: 31981
     year: null
     odometer: null
-    url: "https://www.craigslist.org/view/d/boise-toyota-rav4-bad-credit-bankruptcy/YgDDVGOi8RG3Ka98yAv5Mg"
+    url: "https://www.craigslist.org/view/d/boise-toyota-rav4-bad-credit-bankruptcy/-GHDzuKr8RGihJoTw89xMg"
     post_date: null
     location: null
     deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: null
 
 fourrunner:
-  - source: cars.com
-    title: "2010 Toyota 4Runner SR5"
-    price: 14707
-    year: 2010
-    odometer: 212461
-    url: "https://www.cars.com/vehicledetail/48fa9a60-63e1-41c0-84a8-c7f26014a238/"
+  - source: craigslist
+    title: ☀️2011 TOYOTA 4RUNNER SR5☀️ONE OWNER☀️4WD☀️RELIABLE☀️
+    price: 14995
+    year: 2011
+    odometer: null
+    url: "https://www.craigslist.org/view/d/boise-2011-toyota-4runner-sr5one/iAk4jofEWrquw3jHaAsVVC"
     post_date: null
-    location: Larry H. Miller Subaru Boise, Boise, ID
-    deal_rating: Good Deal
-    market_delta: -370
-    value_score: -370
+    location: Bargain Auto Sales / Garden City
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: null
   - source: craigslist
     title: ☀️2012 TOYOTA 4RUNNER SR5☀️4WD☀️3RD ROW SEAT☀️RELIABLE☀️
     price: 14995
@@ -170,17 +352,7 @@ fourrunner:
     deal_rating: null
     market_delta: null
     value_score: null
-  - source: craigslist
-    title: ☀️2011 TOYOTA 4RUNNER SR5☀️ONE OWNER☀️4WD☀️RELIABLE☀️
-    price: 14995
-    year: 2011
-    odometer: null
-    url: "https://www.craigslist.org/view/d/boise-2011-toyota-4runner-sr5one/v4DQcWTixcCVHjLcNsuHdr"
-    post_date: null
-    location: Bargain Auto Sales / Garden City
-    deal_rating: null
-    market_delta: null
-    value_score: null
+    dealer_flag: null
   - source: craigslist
     title: "2013 Toyota 4Runner Limited 4wd"
     price: 15000
@@ -192,17 +364,19 @@ fourrunner:
     deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: null
   - source: craigslist
     title: ☀️2015 TOYOTA 4RUNNER SR5☀️4WD☀️RELIABLE☀️ADVENTURE READY
     price: 19995
     year: 2015
     odometer: null
-    url: "https://www.craigslist.org/view/d/boise-2015-toyota-4runner/bShDF8bWPi6zG6aVuoshaQ"
+    url: "https://www.craigslist.org/view/d/boise-2015-toyota-4runner/vRnk9enAR53T4G116oQXPX"
     post_date: null
     location: Bargain Auto Sales / Garden City
     deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: null
   - source: cars.com
     title: "2017 Toyota 4Runner SR5 Premium"
     price: 21193
@@ -214,6 +388,7 @@ fourrunner:
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
+    dealer_flag: null
   - source: cars.com
     title: "2016 Toyota 4Runner Trail Premium"
     price: 21750
@@ -225,6 +400,19 @@ fourrunner:
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2016 Toyota 4Runner Limited"
+    price: 22898
+    year: 2016
+    odometer: 161564
+    url: "https://www.cars.com/vehicledetail/6585abf0-61ac-44f4-bc26-d322c34316ae/"
+    post_date: null
+    location: Get The Funk Out Auto Sales, Nampa, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
   - source: cars.com
     title: "2017 Toyota 4Runner TRD Pro"
     price: 26150
@@ -234,19 +422,33 @@ fourrunner:
     post_date: null
     location: "Steve's Hometown Toyota, Ontario, OR"
     deal_rating: Great Deal
-    market_delta: -1100
-    value_score: -1100
-  - source: cars.com
-    title: "2017 Toyota 4Runner Limited"
-    price: 27494
-    year: 2017
-    odometer: 146651
-    url: "https://www.cars.com/vehicledetail/f817377d-1e96-4942-aa55-294a2babd148/"
-    post_date: null
-    location: Kendall Value Lot of Nampa, Nampa, ID
-    deal_rating: Good Deal
     market_delta: null
-    value_score: -500
+    value_score: -1500
+    dealer_flag: null
+  - source: cars.com
+    title: "2016 Toyota 4Runner Limited"
+    price: 27487
+    year: 2016
+    odometer: 119698
+    url: "https://www.cars.com/vehicledetail/aab936f3-a9bd-42f4-bc89-41c7fea5e2fc/"
+    post_date: null
+    location: Kendall Nissan of Nampa, Nampa, ID
+    deal_rating: Fair Price
+    market_delta: null
+    value_score: 0
+    dealer_flag: null
+  - source: cars.com
+    title: "2018 Toyota 4Runner Limited"
+    price: 28592
+    year: 2018
+    odometer: 107180
+    url: "https://www.cars.com/vehicledetail/ea212fb4-0e4f-419b-87b0-ce978e316792/"
+    post_date: null
+    location: Peterson Auto Group, Boise, ID
+    deal_rating: Great Deal
+    market_delta: -3000
+    value_score: -3000
+    dealer_flag: null
   - source: cars.com
     title: "2017 Toyota 4Runner Limited"
     price: 29287
@@ -258,28 +460,31 @@ fourrunner:
     deal_rating: Great Deal
     market_delta: null
     value_score: -1500
+    dealer_flag: null
   - source: craigslist
     title: ☀️2018 TOYOTA 4RUNNER TRD OFF-ROAD☀️LIFTED☀️4WD☀️ADVENTURE READY
     price: 29995
     year: 2018
     odometer: null
-    url: "https://www.craigslist.org/view/d/boise-2018-toyota-4runner-trd-off/88qckn5CW6J3UWFBhHu48o"
+    url: "https://www.craigslist.org/view/d/boise-2018-toyota-4runner-trd-off/bbSMpJDLXvu2tS94EPuFyy"
     post_date: null
     location: Bargain Auto Sales / Garden City
     deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: null
   - source: cars.com
     title: "2021 Toyota 4Runner SR5"
-    price: 30699
+    price: 29999
     year: 2021
     odometer: 130027
     url: "https://www.cars.com/vehicledetail/062bbf01-7ab5-4e9f-b111-11b892c499f9/"
     post_date: null
     location: Driven, Boise, ID
     deal_rating: Fair Price
-    market_delta: -100
-    value_score: -100
+    market_delta: -700
+    value_score: -700
+    dealer_flag: null
   - source: cars.com
     title: "2022 Toyota 4Runner SR5"
     price: 30902
@@ -291,72 +496,55 @@ fourrunner:
     deal_rating: Great Deal
     market_delta: -571
     value_score: -571
-  - source: craigslist
-    title: ☀️2019 TOYOTA 4RUNNER SR5☀️CLEAN CARFAX☀️4WD☀️3RD ROW SEAT☀️
-    price: 30995
-    year: 2019
-    odometer: null
-    url: "https://www.craigslist.org/view/d/boise-2019-toyota-4runner-sr5clean/qs9C2HVaWdxwrURD9DFdB1"
-    post_date: null
-    location: Bargain Auto Sales / Garden City
-    deal_rating: null
-    market_delta: null
-    value_score: null
+    dealer_flag: null
   - source: cars.com
     title: "2018 Toyota 4Runner Limited"
-    price: 31594
+    price: 30994
     year: 2018
     odometer: 91622
     url: "https://www.cars.com/vehicledetail/f4d237de-1b00-4276-841a-3eb19ad49e3e/"
     post_date: null
     location: Peterson Auto Group, Boise, ID
     deal_rating: Great Deal
-    market_delta: -700
-    value_score: -700
+    market_delta: -1300
+    value_score: -1300
+    dealer_flag: null
+  - source: craigslist
+    title: ☀️2019 TOYOTA 4RUNNER SR5☀️CLEAN CARFAX☀️4WD☀️3RD ROW SEAT☀️
+    price: 30995
+    year: 2019
+    odometer: null
+    url: "https://www.craigslist.org/view/d/boise-2019-toyota-4runner-sr5clean/aWym1HSzrJwL9Y9sD98Bdh"
+    post_date: null
+    location: Bargain Auto Sales / Garden City
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: null
   - source: cars.com
-    title: "2018 Toyota 4Runner Limited"
-    price: 31597
-    year: 2018
-    odometer: 107180
-    url: "https://www.cars.com/vehicledetail/ea212fb4-0e4f-419b-87b0-ce978e316792/"
+    title: "2019 Toyota 4Runner SR5"
+    price: 32193
+    year: 2019
+    odometer: 100043
+    url: "https://www.cars.com/vehicledetail/3e8e8ccb-bb26-4796-be6a-47af4d18b4a8/"
     post_date: null
     location: Peterson Auto Group, Boise, ID
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
-  - source: craigslist
-    title: "2019 Toyota 4Runner SR5 Sport Utility 4D - Driven in Boise!"
-    price: 32599
-    year: 2019
-    odometer: null
-    url: "https://www.craigslist.org/view/d/boise-2019-toyota-4runner-sr5-sport/Knc05kOe8RGPQ9NmRVZ2pQ"
-    post_date: null
-    location: drivenboise.com
-    deal_rating: null
-    market_delta: null
-    value_score: null
+    dealer_flag: null
   - source: cars.com
-    title: "2019 Toyota 4Runner SR5"
-    price: 32599
-    year: 2019
-    odometer: 93765
-    url: "https://www.cars.com/vehicledetail/10c213a0-19c1-49d5-b166-b66f555827bb/"
+    title: "2022 Toyota 4Runner SR5"
+    price: 32499
+    year: 2022
+    odometer: 57790
+    url: "https://www.cars.com/vehicledetail/b1b2fd73-dd8d-4287-b581-b02fb47f17d6/"
     post_date: null
-    location: Driven, Boise, ID
-    deal_rating: Good Deal
-    market_delta: -100
-    value_score: -100
-  - source: cars.com
-    title: "2016 Toyota 4Runner SR5"
-    price: 32998
-    year: 2016
-    odometer: 72998
-    url: "https://www.cars.com/vehicledetail/181db67a-bb85-4a94-9386-21762ca459f0/"
-    post_date: null
-    location: CarMax Boise (Meridian), Meridian, ID
-    deal_rating: Fair Price
-    market_delta: null
-    value_score: 0
+    location: Dillon Chrysler Jeep Dodge RAM, Caldwell, ID
+    deal_rating: Great Deal
+    market_delta: -2400
+    value_score: -2400
+    dealer_flag: Dennis Dillon group (GMC/Fiat, CJDR Caldwell, Mitsubishi, Nissan) -- visited Sept 2026, staff were rude, bad vibes.
   - source: cars.com
     title: "2019 Toyota 4Runner SR5"
     price: 33193
@@ -368,6 +556,19 @@ fourrunner:
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
+    dealer_flag: null
+  - source: craigslist
+    title: "2018 Toyota 4Runner 4x4 4WD 4 Runner SR5 Premium SUV"
+    price: 33495
+    year: 2018
+    odometer: null
+    url: "https://www.craigslist.org/view/d/boise-2018-toyota-4runner-4x4-4wd/MmRKsqOo8RGZq8vslSAfZQ"
+    post_date: null
+    location: Maverick Car Company
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: null
   - source: cars.com
     title: "2018 Toyota 4Runner Limited"
     price: 33687
@@ -379,50 +580,127 @@ fourrunner:
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
+    dealer_flag: null
   - source: cars.com
-    title: "2022 Toyota 4Runner SR5"
-    price: 34994
-    year: 2022
-    odometer: 57790
-    url: "https://www.cars.com/vehicledetail/b1b2fd73-dd8d-4287-b581-b02fb47f17d6/"
+    title: "2018 Toyota 4Runner SR5 Premium"
+    price: 33994
+    year: 2018
+    odometer: 69755
+    url: "https://www.cars.com/vehicledetail/70186b50-df53-4fd7-9864-494d3e94c2da/"
     post_date: null
-    location: Dillon Chrysler Jeep Dodge RAM, Caldwell, ID
-    deal_rating: Great Deal
-    market_delta: -912
-    value_score: -912
+    location: Maverick Car Company, Boise, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
   - source: cars.com
     title: "2018 Toyota 4Runner Limited"
     price: 35490
     year: 2018
     odometer: 60423
-    url: "https://www.cars.com/vehicledetail/f9645d6c-f04e-45e2-9281-4eac4e5b5d15/"
+    url: "https://www.cars.com/vehicledetail/25da1170-0b48-4d31-9b4c-aebc3ea31013/"
     post_date: null
-    location: Kendall GMC Buick of Nampa, Nampa, ID
+    location: Kendall Chevrolet of Nampa, Nampa, ID
     deal_rating: Good Deal
-    market_delta: -1900
-    value_score: -1900
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
   - source: cars.com
     title: "2021 Toyota 4Runner SR5 Premium"
-    price: 36234
+    price: 36315
     year: 2021
     odometer: 72430
     url: "https://www.cars.com/vehicledetail/7dce0725-f35c-4563-bd24-85c803337703/"
     post_date: null
     location: Dillon Chrysler Jeep Dodge RAM, Caldwell, ID
     deal_rating: Good Deal
-    market_delta: -1200
-    value_score: -1200
+    market_delta: null
+    value_score: -500
+    dealer_flag: Dennis Dillon group (GMC/Fiat, CJDR Caldwell, Mitsubishi, Nissan) -- visited Sept 2026, staff were rude, bad vibes.
+  - source: craigslist
+    title: "2020 Toyota 4Runner 4x4 4WD 4 Runner SR5 Premium SUV"
+    price: 36975
+    year: 2020
+    odometer: null
+    url: "https://www.craigslist.org/view/d/boise-2020-toyota-4runner-4x4-4wd/1HBZ26io8RG4bIqDQp5GcA"
+    post_date: null
+    location: Maverick Car Company
+    deal_rating: null
+    market_delta: null
+    value_score: null
+    dealer_flag: null
+  - source: cars.com
+    title: "2020 Toyota 4Runner SR5 Premium"
+    price: 37475
+    year: 2020
+    odometer: 76446
+    url: "https://www.cars.com/vehicledetail/89ed4b40-1a21-4502-b7a3-d1b93492dded/"
+    post_date: null
+    location: Maverick Car Company, Boise, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2019 Toyota 4Runner TRD Pro"
+    price: 38594
+    year: 2019
+    odometer: 91759
+    url: "https://www.cars.com/vehicledetail/a3453f80-605c-47c9-9e28-e333d8c6d4c0/"
+    post_date: null
+    location: Peterson Auto Group, Boise, ID
+    deal_rating: Great Deal
+    market_delta: -1000
+    value_score: -1000
+    dealer_flag: null
+  - source: cars.com
+    title: "2019 Toyota 4Runner Limited Nightshade"
+    price: 38998
+    year: 2019
+    odometer: 68665
+    url: "https://www.cars.com/vehicledetail/23cae6a1-c2b0-4704-90e4-a15eb7e1dd69/"
+    post_date: null
+    location: CarMax Boise (Meridian), Meridian, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2022 Toyota 4Runner TRD Off Road"
+    price: 39093
+    year: 2022
+    odometer: 69537
+    url: "https://www.cars.com/vehicledetail/c3ad5551-ac00-4a80-9df4-cc41a14b223d/"
+    post_date: null
+    location: Corwin Ford, Nampa, ID
+    deal_rating: Good Deal
+    market_delta: null
+    value_score: -500
+    dealer_flag: null
+  - source: cars.com
+    title: "2020 Toyota 4Runner TRD Pro"
+    price: 39998
+    year: 2020
+    odometer: 94212
+    url: "https://www.cars.com/vehicledetail/df9449a6-6d00-445e-bf37-d6a7825d7835/"
+    post_date: null
+    location: CarMax Boise (Meridian), Meridian, ID
+    deal_rating: Great Deal
+    market_delta: -1000
+    value_score: -1000
+    dealer_flag: null
   - source: cars.com
     title: "2021 Toyota 4Runner TRD Off Road Premium"
-    price: 36504
+    price: 40499
     year: 2021
-    odometer: 94997
-    url: "https://www.cars.com/vehicledetail/7afaae8e-094b-4233-83bc-543d75a70ca4/"
+    odometer: 45609
+    url: "https://www.cars.com/vehicledetail/3a744759-28d1-4764-a07a-c8903f8d0091/"
     post_date: null
-    location: Dillon Nissan, Boise, ID
+    location: Dillon Mitsubishi, Boise, ID
     deal_rating: Great Deal
     market_delta: null
     value_score: -1500
+    dealer_flag: Dennis Dillon group (GMC/Fiat, CJDR Caldwell, Mitsubishi, Nissan) -- visited Sept 2026, staff were rude, bad vibes.
 
 passport:
   - source: cars.com
@@ -436,6 +714,7 @@ passport:
     deal_rating: null
     market_delta: null
     value_score: null
+    dealer_flag: "AutoSavvy -- rebuilt / branded-title dealer by business model. A branded car always shows as a 'deal' vs clean-title prices. Resale + insurance hit; rebuilt-title buyers only."
   - source: cars.com
     title: "2022 Honda Passport AWD TrailSport"
     price: 26000
@@ -447,6 +726,7 @@ passport:
     deal_rating: null
     market_delta: -400
     value_score: -400
+    dealer_flag: "AutoSavvy -- rebuilt / branded-title dealer by business model. A branded car always shows as a 'deal' vs clean-title prices. Resale + insurance hit; rebuilt-title buyers only."
   - source: cars.com
     title: "2020 Honda Passport Touring"
     price: 27492
@@ -458,6 +738,7 @@ passport:
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
+    dealer_flag: null
   - source: cars.com
     title: "2019 Honda Passport EX-L"
     price: 28760
@@ -469,6 +750,7 @@ passport:
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
+    dealer_flag: null
   - source: cars.com
     title: "2022 Honda Passport TrailSport"
     price: 32594
@@ -480,6 +762,7 @@ passport:
     deal_rating: Good Deal
     market_delta: null
     value_score: -500
+    dealer_flag: null
 
 # Toyota Certified Pre-Owned (TCUV) — pulled 2026-09-01 via cars.com CPO search
 # (zip 83714, 100-250 mi). Dealer sites (Peterson Toyota, Hometown/Steve's,
