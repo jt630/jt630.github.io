@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-09-11T12:37:21.619921+00:00",
+  "checked_at": "2026-09-12T11:58:42.846725+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -966,7 +966,7 @@
           "team": "LAD",
           "team_id": 119,
           "mlb_id": 660271,
-          "is_injured": false,
+          "is_injured": true,
           "draft_pick": 1,
           "proj_hr": null,
           "hrs": 2,
