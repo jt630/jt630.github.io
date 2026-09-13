@@ -216,16 +216,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687064,
+          "name": "Brandon Young",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 140.66666666666666,
+          "hr": 20,
+          "hr9": 1.28,
+          "bb9": 3.2,
+          "k9": 7.17,
+          "era": 3.71,
+          "innings_pitched": "140.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823574,
@@ -234,16 +247,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 169.0,
+          "hr": 14,
+          "hr9": 0.75,
+          "bb9": 3.09,
+          "k9": 7.99,
+          "era": 4.05,
+          "innings_pitched": "169.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 31.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823576,
@@ -252,16 +278,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 90.33333333333333,
+          "hr": 10,
+          "hr9": 1.0,
+          "bb9": 3.59,
+          "k9": 6.58,
+          "era": 4.88,
+          "innings_pitched": "90.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 46.1,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823573,
@@ -340,9 +379,9 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "pitcher_score": 50.0,
+    "pitcher_score": 47.7,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -1929,16 +1968,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687064,
+          "name": "Brandon Young",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 140.66666666666666,
+          "hr": 20,
+          "hr9": 1.28,
+          "bb9": 3.2,
+          "k9": 7.17,
+          "era": 3.71,
+          "innings_pitched": "140.2"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 50.6,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823574,
@@ -1947,16 +1999,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 169.0,
+          "hr": 14,
+          "hr9": 0.75,
+          "bb9": 3.09,
+          "k9": 7.99,
+          "era": 4.05,
+          "innings_pitched": "169.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 25.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823576,
@@ -1965,16 +2030,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 90.33333333333333,
+          "hr": 10,
+          "hr9": 1.0,
+          "bb9": 3.59,
+          "k9": 6.58,
+          "era": 4.88,
+          "innings_pitched": "90.1"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 40.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823573,
@@ -2053,7 +2131,7 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "pitcher_score": 50.0,
+    "pitcher_score": 45.1,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -2076,16 +2154,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687064,
+          "name": "Brandon Young",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 140.66666666666666,
+          "hr": 20,
+          "hr9": 1.28,
+          "bb9": 3.2,
+          "k9": 7.17,
+          "era": 3.71,
+          "innings_pitched": "140.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823574,
@@ -2094,16 +2185,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 169.0,
+          "hr": 14,
+          "hr9": 0.75,
+          "bb9": 3.09,
+          "k9": 7.99,
+          "era": 4.05,
+          "innings_pitched": "169.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 19.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823576,
@@ -2112,16 +2216,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 90.33333333333333,
+          "hr": 10,
+          "hr9": 1.0,
+          "bb9": 3.59,
+          "k9": 6.58,
+          "era": 4.88,
+          "innings_pitched": "90.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 34.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823573,
@@ -2200,7 +2317,7 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.5,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -2223,16 +2340,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687064,
+          "name": "Brandon Young",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 140.66666666666666,
+          "hr": 20,
+          "hr9": 1.28,
+          "bb9": 3.2,
+          "k9": 7.17,
+          "era": 3.71,
+          "innings_pitched": "140.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823574,
@@ -2241,16 +2371,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 169.0,
+          "hr": 14,
+          "hr9": 0.75,
+          "bb9": 3.09,
+          "k9": 7.99,
+          "era": 4.05,
+          "innings_pitched": "169.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 19.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823576,
@@ -2259,16 +2402,29 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 90.33333333333333,
+          "hr": 10,
+          "hr9": 1.0,
+          "bb9": 3.59,
+          "k9": 6.58,
+          "era": 4.88,
+          "innings_pitched": "90.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 34.1,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823573,
@@ -2347,7 +2503,7 @@
     "park_score": 41.6,
     "best_park_game": "Citi Field",
     "best_park_factor": 97,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.5,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -2605,16 +2761,29 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 67.66666666666667,
+          "hr": 14,
+          "hr9": 1.86,
+          "bb9": 3.72,
+          "k9": 6.78,
+          "era": 6.38,
+          "innings_pitched": "67.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 81.6,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824548,
@@ -2693,8 +2862,8 @@
     "park_score": 46.8,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "pitcher_score": 46.3,
-    "favorable_matchups": 0,
+    "pitcher_score": 50.8,
+    "favorable_matchups": 1,
     "platoon_advantages": 0,
     "batter_splits": {}
   },
@@ -2765,16 +2934,29 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 67.66666666666667,
+          "hr": 14,
+          "hr9": 1.86,
+          "bb9": 3.72,
+          "k9": 6.78,
+          "era": 6.38,
+          "innings_pitched": "67.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 93.6,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824548,
@@ -2853,9 +3035,9 @@
     "park_score": 46.8,
     "best_park_game": "Rogers Centre",
     "best_park_factor": 100,
-    "pitcher_score": 48.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 1,
+    "pitcher_score": 54.2,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -4848,16 +5030,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 168.0,
+          "hr": 17,
+          "hr9": 0.91,
+          "bb9": 2.41,
+          "k9": 10.23,
+          "era": 3.32,
+          "innings_pitched": "168.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 25.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823980,
@@ -4866,16 +5061,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 84.33333333333333,
+          "hr": 18,
+          "hr9": 1.92,
+          "bb9": 4.16,
+          "k9": 6.72,
+          "era": 5.12,
+          "innings_pitched": "84.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 92.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823979,
@@ -4884,16 +5092,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 53.0,
+          "hr": 7,
+          "hr9": 1.19,
+          "bb9": 3.91,
+          "k9": 9.17,
+          "era": 4.75,
+          "innings_pitched": "53.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 43.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824303,
@@ -4954,9 +5175,9 @@
     "park_score": 71.9,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 51.9,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -4977,16 +5198,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 71.66666666666667,
+          "hr": 16,
+          "hr9": 2.01,
+          "bb9": 3.14,
+          "k9": 8.67,
+          "era": 5.65,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 86.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823654,
@@ -4995,16 +5229,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 117.66666666666667,
+          "hr": 18,
+          "hr9": 1.38,
+          "bb9": 2.6,
+          "k9": 6.5,
+          "era": 4.28,
+          "innings_pitched": "117.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 51.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823655,
@@ -5013,16 +5260,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 119.33333333333333,
+          "hr": 23,
+          "hr9": 1.73,
+          "bb9": 2.79,
+          "k9": 7.47,
+          "era": 4.98,
+          "innings_pitched": "119.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 70.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 825032,
@@ -5083,8 +5343,8 @@
     "park_score": 54.6,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
+    "pitcher_score": 59.9,
+    "favorable_matchups": 2,
     "platoon_advantages": 0,
     "batter_splits": {}
   },
@@ -5390,16 +5650,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 131.33333333333334,
+          "hr": 14,
+          "hr9": 0.96,
+          "bb9": 4.04,
+          "k9": 8.02,
+          "era": 5.28,
+          "innings_pitched": "131.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 45.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824627,
@@ -5408,16 +5681,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 166.33333333333334,
+          "hr": 24,
+          "hr9": 1.3,
+          "bb9": 2.49,
+          "k9": 9.25,
+          "era": 4.6,
+          "innings_pitched": "166.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 48.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824626,
@@ -5426,16 +5712,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 162.33333333333334,
+          "hr": 34,
+          "hr9": 1.89,
+          "bb9": 2.05,
+          "k9": 8.65,
+          "era": 3.88,
+          "innings_pitched": "162.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 87.6,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824138,
@@ -5496,9 +5795,9 @@
     "park_score": 53.5,
     "best_park_game": "Daikin Park",
     "best_park_factor": 110,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 55.2,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -5997,16 +6296,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608379,
+          "name": "Michael Wacha",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 182.66666666666666,
+          "hr": 24,
+          "hr9": 1.18,
+          "bb9": 2.36,
+          "k9": 7.24,
+          "era": 3.25,
+          "innings_pitched": "182.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 50.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824140,
@@ -6015,16 +6327,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663738,
+          "name": "Daniel Lynch IV",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 71.66666666666667,
+          "hr": 6,
+          "hr9": 0.75,
+          "bb9": 2.76,
+          "k9": 6.15,
+          "era": 3.52,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 17.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824141,
@@ -6033,16 +6358,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607625,
+          "name": "Seth Lugo",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 164.0,
+          "hr": 19,
+          "hr9": 1.04,
+          "bb9": 2.91,
+          "k9": 6.91,
+          "era": 4.99,
+          "innings_pitched": "164.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 48.5,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824138,
@@ -6103,9 +6441,9 @@
     "park_score": 69.7,
     "best_park_game": "Daikin Park",
     "best_park_factor": 110,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -6126,16 +6464,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 131.33333333333334,
+          "hr": 14,
+          "hr9": 0.96,
+          "bb9": 4.04,
+          "k9": 8.02,
+          "era": 5.28,
+          "innings_pitched": "131.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 33.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824627,
@@ -6144,16 +6495,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 166.33333333333334,
+          "hr": 24,
+          "hr9": 1.3,
+          "bb9": 2.49,
+          "k9": 9.25,
+          "era": 4.6,
+          "innings_pitched": "166.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 60.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824626,
@@ -6162,16 +6526,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 162.33333333333334,
+          "hr": 34,
+          "hr9": 1.89,
+          "bb9": 2.05,
+          "k9": 8.65,
+          "era": 3.88,
+          "innings_pitched": "162.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 75.6,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824138,
@@ -6232,9 +6609,9 @@
     "park_score": 53.5,
     "best_park_game": "Daikin Park",
     "best_park_factor": 110,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 53.2,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -6410,16 +6787,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 71.66666666666667,
+          "hr": 16,
+          "hr9": 2.01,
+          "bb9": 3.14,
+          "k9": 8.67,
+          "era": 5.65,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 86.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823654,
@@ -6428,16 +6818,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 117.66666666666667,
+          "hr": 18,
+          "hr9": 1.38,
+          "bb9": 2.6,
+          "k9": 6.5,
+          "era": 4.28,
+          "innings_pitched": "117.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 51.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823655,
@@ -6446,16 +6849,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 119.33333333333333,
+          "hr": 23,
+          "hr9": 1.73,
+          "bb9": 2.79,
+          "k9": 7.47,
+          "era": 4.98,
+          "innings_pitched": "119.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 70.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 825032,
@@ -6516,8 +6932,8 @@
     "park_score": 54.6,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
+    "pitcher_score": 59.9,
+    "favorable_matchups": 2,
     "platoon_advantages": 0,
     "batter_splits": {}
   },
@@ -7198,16 +7614,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 131.33333333333334,
+          "hr": 14,
+          "hr9": 0.96,
+          "bb9": 4.04,
+          "k9": 8.02,
+          "era": 5.28,
+          "innings_pitched": "131.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 45.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824627,
@@ -7216,16 +7645,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 166.33333333333334,
+          "hr": 24,
+          "hr9": 1.3,
+          "bb9": 2.49,
+          "k9": 9.25,
+          "era": 4.6,
+          "innings_pitched": "166.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 48.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824626,
@@ -7234,16 +7676,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 162.33333333333334,
+          "hr": 34,
+          "hr9": 1.89,
+          "bb9": 2.05,
+          "k9": 8.65,
+          "era": 3.88,
+          "innings_pitched": "162.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 87.6,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824138,
@@ -7304,9 +7759,9 @@
     "park_score": 53.5,
     "best_park_game": "Daikin Park",
     "best_park_factor": 110,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 55.2,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -7456,16 +7911,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 71.66666666666667,
+          "hr": 16,
+          "hr9": 2.01,
+          "bb9": 3.14,
+          "k9": 8.67,
+          "era": 5.65,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 98.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823654,
@@ -7474,16 +7942,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 117.66666666666667,
+          "hr": 18,
+          "hr9": 1.38,
+          "bb9": 2.6,
+          "k9": 6.5,
+          "era": 4.28,
+          "innings_pitched": "117.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 63.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823655,
@@ -7492,16 +7973,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 119.33333333333333,
+          "hr": 23,
+          "hr9": 1.73,
+          "bb9": 2.79,
+          "k9": 7.47,
+          "era": 4.98,
+          "innings_pitched": "119.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 82.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 825032,
@@ -7562,9 +8056,9 @@
     "park_score": 54.6,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 65.9,
+    "favorable_matchups": 2,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -7585,16 +8079,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 71.66666666666667,
+          "hr": 16,
+          "hr9": 2.01,
+          "bb9": 3.14,
+          "k9": 8.67,
+          "era": 5.65,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 98.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823654,
@@ -7603,16 +8110,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 117.66666666666667,
+          "hr": 18,
+          "hr9": 1.38,
+          "bb9": 2.6,
+          "k9": 6.5,
+          "era": 4.28,
+          "innings_pitched": "117.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 63.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823655,
@@ -7621,16 +8141,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 119.33333333333333,
+          "hr": 23,
+          "hr9": 1.73,
+          "bb9": 2.79,
+          "k9": 7.47,
+          "era": 4.98,
+          "innings_pitched": "119.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 82.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 825032,
@@ -7691,9 +8224,9 @@
     "park_score": 54.6,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 65.9,
+    "favorable_matchups": 2,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -7882,16 +8415,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 168.0,
+          "hr": 17,
+          "hr9": 0.91,
+          "bb9": 2.41,
+          "k9": 10.23,
+          "era": 3.32,
+          "innings_pitched": "168.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 37.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823980,
@@ -7900,16 +8446,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 84.33333333333333,
+          "hr": 18,
+          "hr9": 1.92,
+          "bb9": 4.16,
+          "k9": 6.72,
+          "era": 5.12,
+          "innings_pitched": "84.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 80.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823979,
@@ -7918,16 +8477,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 53.0,
+          "hr": 7,
+          "hr9": 1.19,
+          "bb9": 3.91,
+          "k9": 9.17,
+          "era": 4.75,
+          "innings_pitched": "53.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824303,
@@ -7988,9 +8560,9 @@
     "park_score": 71.9,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 53.9,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -8011,16 +8583,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 168.0,
+          "hr": 17,
+          "hr9": 0.91,
+          "bb9": 2.41,
+          "k9": 10.23,
+          "era": 3.32,
+          "innings_pitched": "168.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 37.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823980,
@@ -8029,16 +8614,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 84.33333333333333,
+          "hr": 18,
+          "hr9": 1.92,
+          "bb9": 4.16,
+          "k9": 6.72,
+          "era": 5.12,
+          "innings_pitched": "84.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 80.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823979,
@@ -8047,16 +8645,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 53.0,
+          "hr": 7,
+          "hr9": 1.19,
+          "bb9": 3.91,
+          "k9": 9.17,
+          "era": 4.75,
+          "innings_pitched": "53.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824303,
@@ -8117,9 +8728,9 @@
     "park_score": 71.9,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 53.9,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -10638,16 +11249,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 85.66666666666667,
+          "hr": 12,
+          "hr9": 1.26,
+          "bb9": 3.15,
+          "k9": 10.51,
+          "era": 4.1,
+          "innings_pitched": "85.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823334,
@@ -10726,7 +11350,7 @@
     "park_score": 48.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 49.1,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -10767,16 +11391,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 85.66666666666667,
+          "hr": 12,
+          "hr9": 1.26,
+          "bb9": 3.15,
+          "k9": 10.51,
+          "era": 4.1,
+          "innings_pitched": "85.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 56.8,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823334,
@@ -10855,9 +11492,9 @@
     "park_score": 48.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 51.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -10896,16 +11533,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 85.66666666666667,
+          "hr": 12,
+          "hr9": 1.26,
+          "bb9": 3.15,
+          "k9": 10.51,
+          "era": 4.1,
+          "innings_pitched": "85.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823334,
@@ -10984,7 +11634,7 @@
     "park_score": 48.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 49.1,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -11193,16 +11843,29 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 85.66666666666667,
+          "hr": 12,
+          "hr9": 1.26,
+          "bb9": 3.15,
+          "k9": 10.51,
+          "era": 4.1,
+          "innings_pitched": "85.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 44.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823334,
@@ -11281,7 +11944,7 @@
     "park_score": 48.1,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 50.0,
+    "pitcher_score": 49.1,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -11304,16 +11967,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 71.66666666666667,
+          "hr": 16,
+          "hr9": 2.01,
+          "bb9": 3.14,
+          "k9": 8.67,
+          "era": 5.65,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 98.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823654,
@@ -11322,16 +11998,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 117.66666666666667,
+          "hr": 18,
+          "hr9": 1.38,
+          "bb9": 2.6,
+          "k9": 6.5,
+          "era": 4.28,
+          "innings_pitched": "117.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 63.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823655,
@@ -11340,16 +12029,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 119.33333333333333,
+          "hr": 23,
+          "hr9": 1.73,
+          "bb9": 2.79,
+          "k9": 7.47,
+          "era": 4.98,
+          "innings_pitched": "119.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 82.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 825032,
@@ -11410,9 +12112,9 @@
     "park_score": 54.6,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 65.9,
+    "favorable_matchups": 2,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -11433,16 +12135,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 168.0,
+          "hr": 17,
+          "hr9": 0.91,
+          "bb9": 2.41,
+          "k9": 10.23,
+          "era": 3.32,
+          "innings_pitched": "168.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 37.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823980,
@@ -11451,16 +12166,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 84.33333333333333,
+          "hr": 18,
+          "hr9": 1.92,
+          "bb9": 4.16,
+          "k9": 6.72,
+          "era": 5.12,
+          "innings_pitched": "84.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 80.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823979,
@@ -11469,16 +12197,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 53.0,
+          "hr": 7,
+          "hr9": 1.19,
+          "bb9": 3.91,
+          "k9": 9.17,
+          "era": 4.75,
+          "innings_pitched": "53.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 55.2,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824303,
@@ -11539,9 +12280,9 @@
     "park_score": 71.9,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 53.9,
+    "favorable_matchups": 1,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -12130,16 +12871,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 168.0,
+          "hr": 17,
+          "hr9": 0.91,
+          "bb9": 2.41,
+          "k9": 10.23,
+          "era": 3.32,
+          "innings_pitched": "168.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 25.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823980,
@@ -12148,16 +12902,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 84.33333333333333,
+          "hr": 18,
+          "hr9": 1.92,
+          "bb9": 4.16,
+          "k9": 6.72,
+          "era": 5.12,
+          "innings_pitched": "84.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 92.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823979,
@@ -12166,16 +12933,29 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 53.0,
+          "hr": 7,
+          "hr9": 1.19,
+          "bb9": 3.91,
+          "k9": 9.17,
+          "era": 4.75,
+          "innings_pitched": "53.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 43.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824303,
@@ -12236,9 +13016,9 @@
     "park_score": 71.9,
     "best_park_game": "Coors Field",
     "best_park_factor": 124,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 51.9,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -12892,16 +13672,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "Chase Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 106,
         "park_factor_score": 61.1,
         "park_notes": "Retractable roof, warm",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 200.0,
+          "hr": 22,
+          "hr9": 0.99,
+          "bb9": 2.48,
+          "k9": 6.43,
+          "era": 3.78,
+          "innings_pitched": "200.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 30.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 825030,
@@ -12910,16 +13703,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "Chase Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 676083,
+          "name": "Janson Junk",
+          "note": ""
+        },
         "park_factor": 106,
         "park_factor_score": 61.1,
         "park_notes": "Retractable roof, warm",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 111.0,
+          "hr": 13,
+          "hr9": 1.05,
+          "bb9": 2.43,
+          "k9": 6.0,
+          "era": 4.54,
+          "innings_pitched": "111.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 35.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 825031,
@@ -12928,16 +13734,29 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "Chase Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687473,
+          "name": "Ryan Gusto",
+          "note": ""
+        },
         "park_factor": 106,
         "park_factor_score": 61.1,
         "park_notes": "Retractable roof, warm",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 78.33333333333333,
+          "hr": 9,
+          "hr9": 1.03,
+          "bb9": 2.87,
+          "k9": 7.47,
+          "era": 4.14,
+          "innings_pitched": "78.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 33.4,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 825032,
@@ -12998,7 +13817,7 @@
     "park_score": 61.1,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
+    "pitcher_score": 41.6,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -13150,16 +13969,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 71.66666666666667,
+          "hr": 16,
+          "hr9": 2.01,
+          "bb9": 3.14,
+          "k9": 8.67,
+          "era": 5.65,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 86.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823654,
@@ -13168,16 +14000,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 117.66666666666667,
+          "hr": 18,
+          "hr9": 1.38,
+          "bb9": 2.6,
+          "k9": 6.5,
+          "era": 4.28,
+          "innings_pitched": "117.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 51.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823655,
@@ -13186,16 +14031,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 119.33333333333333,
+          "hr": 23,
+          "hr9": 1.73,
+          "bb9": 2.79,
+          "k9": 7.47,
+          "era": 4.98,
+          "innings_pitched": "119.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 70.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 825032,
@@ -13256,8 +14114,8 @@
     "park_score": 54.6,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
+    "pitcher_score": 59.9,
+    "favorable_matchups": 2,
     "platoon_advantages": 0,
     "batter_splits": {}
   },
@@ -13279,16 +14137,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 131.33333333333334,
+          "hr": 14,
+          "hr9": 0.96,
+          "bb9": 4.04,
+          "k9": 8.02,
+          "era": 5.28,
+          "innings_pitched": "131.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 33.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824627,
@@ -13297,16 +14168,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 166.33333333333334,
+          "hr": 24,
+          "hr9": 1.3,
+          "bb9": 2.49,
+          "k9": 9.25,
+          "era": 4.6,
+          "innings_pitched": "166.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 60.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824626,
@@ -13315,16 +14199,29 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 162.33333333333334,
+          "hr": 34,
+          "hr9": 1.89,
+          "bb9": 2.05,
+          "k9": 8.65,
+          "era": 3.88,
+          "innings_pitched": "162.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 75.6,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824138,
@@ -13385,9 +14282,9 @@
     "park_score": 53.5,
     "best_park_game": "Daikin Park",
     "best_park_factor": 110,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "pitcher_score": 53.2,
+    "favorable_matchups": 1,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -13576,16 +14473,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 71.66666666666667,
+          "hr": 16,
+          "hr9": 2.01,
+          "bb9": 3.14,
+          "k9": 8.67,
+          "era": 5.65,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 86.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823654,
@@ -13594,16 +14504,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 117.66666666666667,
+          "hr": 18,
+          "hr9": 1.38,
+          "bb9": 2.6,
+          "k9": 6.5,
+          "era": 4.28,
+          "innings_pitched": "117.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 51.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823655,
@@ -13612,16 +14535,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 119.33333333333333,
+          "hr": 23,
+          "hr9": 1.73,
+          "bb9": 2.79,
+          "k9": 7.47,
+          "era": 4.98,
+          "innings_pitched": "119.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 70.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 825032,
@@ -13682,8 +14618,8 @@
     "park_score": 54.6,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
+    "pitcher_score": 59.9,
+    "favorable_matchups": 2,
     "platoon_advantages": 0,
     "batter_splits": {}
   },
@@ -13705,16 +14641,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608379,
+          "name": "Michael Wacha",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 182.66666666666666,
+          "hr": 24,
+          "hr9": 1.18,
+          "bb9": 2.36,
+          "k9": 7.24,
+          "era": 3.25,
+          "innings_pitched": "182.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824140,
@@ -13723,16 +14672,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663738,
+          "name": "Daniel Lynch IV",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 71.66666666666667,
+          "hr": 6,
+          "hr9": 0.75,
+          "bb9": 2.76,
+          "k9": 6.15,
+          "era": 3.52,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 29.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824141,
@@ -13741,16 +14703,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607625,
+          "name": "Seth Lugo",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 164.0,
+          "hr": 19,
+          "hr9": 1.04,
+          "bb9": 2.91,
+          "k9": 6.91,
+          "era": 4.99,
+          "innings_pitched": "164.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 36.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824138,
@@ -13811,9 +14786,9 @@
     "park_score": 69.7,
     "best_park_game": "Daikin Park",
     "best_park_factor": 110,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -13834,16 +14809,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 71.66666666666667,
+          "hr": 16,
+          "hr9": 2.01,
+          "bb9": 3.14,
+          "k9": 8.67,
+          "era": 5.65,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 86.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 823654,
@@ -13852,16 +14840,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 117.66666666666667,
+          "hr": 18,
+          "hr9": 1.38,
+          "bb9": 2.6,
+          "k9": 6.5,
+          "era": 4.28,
+          "innings_pitched": "117.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 51.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823655,
@@ -13870,16 +14871,29 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 119.33333333333333,
+          "hr": 23,
+          "hr9": 1.73,
+          "bb9": 2.79,
+          "k9": 7.47,
+          "era": 4.98,
+          "innings_pitched": "119.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 70.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 825032,
@@ -13940,8 +14954,8 @@
     "park_score": 54.6,
     "best_park_game": "Chase Field",
     "best_park_factor": 106,
-    "pitcher_score": 50.0,
-    "favorable_matchups": 0,
+    "pitcher_score": 59.9,
+    "favorable_matchups": 2,
     "platoon_advantages": 0,
     "batter_splits": {}
   },
@@ -13963,16 +14977,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608379,
+          "name": "Michael Wacha",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 182.66666666666666,
+          "hr": 24,
+          "hr9": 1.18,
+          "bb9": 2.36,
+          "k9": 7.24,
+          "era": 3.25,
+          "innings_pitched": "182.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 38.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824140,
@@ -13981,16 +15008,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663738,
+          "name": "Daniel Lynch IV",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 71.66666666666667,
+          "hr": 6,
+          "hr9": 0.75,
+          "bb9": 2.76,
+          "k9": 6.15,
+          "era": 3.52,
+          "innings_pitched": "71.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 29.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824141,
@@ -13999,16 +15039,29 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607625,
+          "name": "Seth Lugo",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 164.0,
+          "hr": 19,
+          "hr9": 1.04,
+          "bb9": 2.91,
+          "k9": 6.91,
+          "era": 4.99,
+          "innings_pitched": "164.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 36.5,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824138,
@@ -14069,9 +15122,9 @@
     "park_score": 69.7,
     "best_park_game": "Daikin Park",
     "best_park_factor": 110,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -14247,16 +15300,29 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650911,
+          "name": "Cristopher S\u00e1nchez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 187.33333333333334,
+          "hr": 16,
+          "hr9": 0.77,
+          "bb9": 2.02,
+          "k9": 10.09,
+          "era": 2.79,
+          "innings_pitched": "187.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 16.4,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822680,
@@ -14265,16 +15331,29 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 554430,
+          "name": "Zack Wheeler",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.33333333333334,
+          "hr": 20,
+          "hr9": 1.26,
+          "bb9": 2.83,
+          "k9": 10.8,
+          "era": 3.14,
+          "innings_pitched": "143.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 53.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823005,
@@ -14335,9 +15414,9 @@
     "park_score": 45.5,
     "best_park_game": "Busch Stadium",
     "best_park_factor": 100,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -14358,16 +15437,29 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650911,
+          "name": "Cristopher S\u00e1nchez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 187.33333333333334,
+          "hr": 16,
+          "hr9": 0.77,
+          "bb9": 2.02,
+          "k9": 10.09,
+          "era": 2.79,
+          "innings_pitched": "187.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 16.4,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822680,
@@ -14376,16 +15468,29 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 554430,
+          "name": "Zack Wheeler",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.33333333333334,
+          "hr": 20,
+          "hr9": 1.26,
+          "bb9": 2.83,
+          "k9": 10.8,
+          "era": 3.14,
+          "innings_pitched": "143.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 53.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823005,
@@ -14446,9 +15551,9 @@
     "park_score": 45.5,
     "best_park_game": "Busch Stadium",
     "best_park_factor": 100,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -14469,16 +15574,29 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650911,
+          "name": "Cristopher S\u00e1nchez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 187.33333333333334,
+          "hr": 16,
+          "hr9": 0.77,
+          "bb9": 2.02,
+          "k9": 10.09,
+          "era": 2.79,
+          "innings_pitched": "187.1"
+        },
+        "pitcher_hand": "L",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 22.4,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822680,
@@ -14487,16 +15605,29 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 554430,
+          "name": "Zack Wheeler",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 143.33333333333334,
+          "hr": 20,
+          "hr9": 1.26,
+          "bb9": 2.83,
+          "k9": 10.8,
+          "era": 3.14,
+          "innings_pitched": "143.1"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 47.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823005,
@@ -14557,7 +15688,7 @@
     "park_score": 45.5,
     "best_park_game": "Busch Stadium",
     "best_park_factor": 100,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.1,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}

@@ -206,7 +206,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687064,
+          "name": "Brandon Young",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -228,7 +232,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -250,7 +258,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -1883,7 +1895,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687064,
+          "name": "Brandon Young",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -1905,7 +1921,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -1927,7 +1947,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -2056,7 +2080,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687064,
+          "name": "Brandon Young",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -2078,7 +2106,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -2100,7 +2132,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -2229,7 +2265,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687064,
+          "name": "Brandon Young",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -2251,7 +2291,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 669358,
+          "name": "Shane Baz",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -2273,7 +2317,11 @@
         "opponent": "Baltimore Orioles",
         "opponent_team_id": 110,
         "venue": "Citi Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 605135,
+          "name": "Chris Bassitt",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -2635,7 +2683,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
@@ -2812,7 +2864,11 @@
         "opponent": "Toronto Blue Jays",
         "opponent_team_id": 141,
         "venue": "Rogers Centre",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 453286,
+          "name": "Max Scherzer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Dome; neutral HR factor",
@@ -5081,7 +5137,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -5103,7 +5163,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -5125,7 +5189,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -5232,7 +5300,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -5254,7 +5326,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -5276,7 +5352,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -5693,7 +5773,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -5715,7 +5799,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -5737,7 +5825,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -6325,7 +6417,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608379,
+          "name": "Michael Wacha",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -6347,7 +6443,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663738,
+          "name": "Daniel Lynch IV",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -6369,7 +6469,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607625,
+          "name": "Seth Lugo",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -6476,7 +6580,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -6498,7 +6606,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -6520,7 +6632,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -6786,7 +6902,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -6808,7 +6928,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -6830,7 +6954,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -7585,7 +7713,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -7607,7 +7739,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -7629,7 +7765,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -7887,7 +8027,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -7909,7 +8053,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -7931,7 +8079,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -8038,7 +8190,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -8060,7 +8216,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -8082,7 +8242,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -8352,7 +8516,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -8374,7 +8542,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -8396,7 +8568,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -8503,7 +8679,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -8525,7 +8705,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -8547,7 +8731,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -11220,7 +11408,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
@@ -11371,7 +11563,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
@@ -11522,7 +11718,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
@@ -11836,7 +12036,11 @@
         "opponent": "Pittsburgh Pirates",
         "opponent_team_id": 134,
         "venue": "PNC Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 683003,
+          "name": "Jared Jones",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral",
@@ -11965,7 +12169,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -11987,7 +12195,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -12009,7 +12221,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -12116,7 +12332,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -12138,7 +12358,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -12160,7 +12384,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -12887,7 +13115,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 672282,
+          "name": "Reid Detmers",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -12909,7 +13141,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 696270,
+          "name": "Ryan Johnson",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -12931,7 +13167,11 @@
         "opponent": "Los Angeles Angels",
         "opponent_team_id": 108,
         "venue": "Angel Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 579328,
+          "name": "Yusei Kikuchi",
+          "note": ""
+        },
         "park_factor": 98,
         "park_factor_score": 43.8,
         "park_notes": "Neutral, marine layer",
@@ -13678,7 +13918,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "Chase Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 645261,
+          "name": "Sandy Alcantara",
+          "note": ""
+        },
         "park_factor": 106,
         "park_factor_score": 61.1,
         "park_notes": "Retractable roof, warm",
@@ -13700,7 +13944,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "Chase Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 676083,
+          "name": "Janson Junk",
+          "note": ""
+        },
         "park_factor": 106,
         "park_factor_score": 61.1,
         "park_notes": "Retractable roof, warm",
@@ -13722,7 +13970,11 @@
         "opponent": "Miami Marlins",
         "opponent_team_id": 146,
         "venue": "Chase Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 687473,
+          "name": "Ryan Gusto",
+          "note": ""
+        },
         "park_factor": 106,
         "park_factor_score": 61.1,
         "park_notes": "Retractable roof, warm",
@@ -13980,7 +14232,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14002,7 +14258,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14024,7 +14284,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14131,7 +14395,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656849,
+          "name": "David Peterson",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -14153,7 +14421,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 592332,
+          "name": "Kevin Gausman",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -14175,7 +14447,11 @@
         "opponent": "Chicago Cubs",
         "opponent_team_id": 112,
         "venue": "Wrigley Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "note": ""
+        },
         "park_factor": 95,
         "park_factor_score": 37.3,
         "park_notes": "Wind-dependent; can be great or awful",
@@ -14445,7 +14721,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14467,7 +14747,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14489,7 +14773,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14596,7 +14884,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608379,
+          "name": "Michael Wacha",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -14618,7 +14910,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663738,
+          "name": "Daniel Lynch IV",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -14640,7 +14936,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607625,
+          "name": "Seth Lugo",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -14747,7 +15047,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 665152,
+          "name": "Dean Kremer",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14769,7 +15073,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 641927,
+          "name": "Bailey Ober",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14791,7 +15099,11 @@
         "opponent": "Minnesota Twins",
         "opponent_team_id": 142,
         "venue": "Target Field",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 805673,
+          "name": "Zebby Matthews",
+          "note": ""
+        },
         "park_factor": 100,
         "park_factor_score": 48.1,
         "park_notes": "Neutral",
@@ -14898,7 +15210,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 608379,
+          "name": "Michael Wacha",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -14920,7 +15236,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 663738,
+          "name": "Daniel Lynch IV",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -14942,7 +15262,11 @@
         "opponent": "Kansas City Royals",
         "opponent_team_id": 118,
         "venue": "Daikin Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607625,
+          "name": "Seth Lugo",
+          "note": ""
+        },
         "park_factor": 110,
         "park_factor_score": 69.7,
         "park_notes": "Short left field Crawford Boxes",
@@ -15208,7 +15532,11 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650911,
+          "name": "Cristopher S\u00e1nchez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -15230,7 +15558,11 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 554430,
+          "name": "Zack Wheeler",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -15337,7 +15669,11 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650911,
+          "name": "Cristopher S\u00e1nchez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -15359,7 +15695,11 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 554430,
+          "name": "Zack Wheeler",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -15466,7 +15806,11 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 650911,
+          "name": "Cristopher S\u00e1nchez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
@@ -15488,7 +15832,11 @@
         "opponent": "Philadelphia Phillies",
         "opponent_team_id": 143,
         "venue": "Nationals Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 554430,
+          "name": "Zack Wheeler",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Slight pitcher lean",
