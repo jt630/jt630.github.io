@@ -1,0 +1,37 @@
+# Source: Experian AutoCheck report pulled at CarMax Meridian, 2026-09-09.
+# This is the actual car Jeremy bought.
+vin: "JF2SKAUC1KH571550"
+year: 2019
+trim: "2.5i Limited"
+engine: "2.5L H4, AWD, CVT"
+plant: "Ota, Japan"
+purchased_from: "CarMax, Meridian, ID"
+purchase_date: "2026-09-09"
+in_service_date: "2019-08-07"
+selling_dealer_new: "Larry H. Miller Subaru Boise"
+title: "Clean — no accidents, no damage, no theft, no odometer issues, 1 owner, personal use"
+last_odometer: 34728
+last_odometer_date: "2026-08-08"
+
+service_history:
+  - {date: "2019-08-07", odometer: 3,   note: "Pre-delivery, LHM Subaru Boise"}
+  - {date: "2019-08-08", odometer: 4,   note: "Recommended maintenance, detail — LHM Subaru Boise"}
+  - {date: "2020-02-24", odometer: 3180,  note: "Fuel system service, MPI, oil/filter, tires — LHM"}
+  - {date: "2021-02-18", odometer: 8103,  note: "Fuel system service, MPI, oil/filter, tires — LHM"}
+  - {date: "2021-10-29", odometer: 12140, note: "MPI, oil/filter, tires, fluids — LHM"}
+  - {date: "2022-05-09", odometer: 14953, note: "MPI, oil/filter, tires, fluids — LHM"}
+  - {date: "2022-11-03", odometer: 17475, note: "MPI, oil/filter, tires, fluids — LHM (3rd coolant flush recorded here)"}
+  - {date: "2023-04-24", odometer: 19610, note: "Fuel system service, MPI, oil/filter, tires — LHM"}
+  - {date: "2023-10-06", odometer: 21800, note: "Fuel system service, air filter, MPI, oil/filter, tires — LHM"}
+  - {date: "2024-03-22", odometer: 23640, note: "Fuel system service, air filter, MPI, oil/filter, tires — LHM"}
+  - {date: "2024-08-07", odometer: 25804, note: "Fuel system service, MPI, oil/filter, tires — LHM"}
+  - {date: "2024-12-20", odometer: 27488, note: "MPI only — LHM"}
+  - {date: "2025-06-30", odometer: 29702, note: "Fuel system service, MPI, oil/filter, tires — LHM"}
+  - {date: "2026-02-25", odometer: 32844, note: "Fuel system service, MPI, oil/filter, tires — LHM — most recent oil change on record"}
+
+owner_notes: >
+  One owner, Eagle/Boise ID the entire life. Serviced at the selling dealer
+  (Larry H. Miller Subaru Boise) every single time for 7 years — 11 oil
+  changes, roughly every 2,000-4,000 miles (tighter than the factory interval).
+  ~5,000 mi/year. No accidents, no rust-belt exposure. This is as clean a
+  used-Subaru history as exists.
