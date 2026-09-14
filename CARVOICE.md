@@ -77,17 +77,29 @@ Output of the diagnose pipeline — the plain-English report for one drive log.
 
 **Goal:** get real PID data off a car onto disk.
 
-**Context for Sonnet:** This needs actual OBD2 hardware to test against — a cheap
-ELM327 Bluetooth/WiFi adapter. `python-obd` (`pip install obd`) is the standard
-library for talking to ELM327 adapters. If no adapter is plugged in this session,
-build the script with a `--dry-run` mode that fakes plausible readings, and say
-plainly that the real-hardware path is untested — don't claim it works against a
-car you haven't connected to.
+**Context for Sonnet:** This needs actual OBD2 hardware to test against.
+Read `carvoice/research/hardware-options.md` and `obd2-reference.md` first —
+two independent research passes both converged on **Bluetooth Classic (SPP)**,
+not WiFi or BLE: `python-obd` treats the adapter as a plain serial port, so
+Bluetooth Classic pairs and works with zero extra code, while BLE-only
+adapters need a separate `bleak`-based bridge and `python-obd`'s WiFi socket
+support is unreliable (open GitHub issue, no fix). WiFi has a second problem
+specific to this project — a WiFi-hotspot-style adapter can take the laptop
+off the internet entirely, which breaks Session 2's need to reach the Claude
+API. Recommended adapter: **OBDLink MX+** (non-clone chipset, real sleep mode
+so it won't drain a parked car's battery); cheap fallback: **BAFX 34t5**
+(~$25–30, Bluetooth Classic, reviewed as working on Subarus). Avoid sub-$10
+no-name "ELM327" listings — they're the single biggest source of dropped
+connections and bad readings in every source checked. If no adapter is
+plugged in this session, build the script with a `--dry-run` mode that fakes
+plausible readings, and say plainly that the real-hardware path is untested —
+don't claim it works against a car you haven't connected to.
 
 - [ ] Add a `data/carvoice/vehicles.yaml` entry for the target vehicle (year/make/model
       required, VIN and adapter model optional — fill in what's known)
 - [ ] `scripts/carvoice/obd2_logger.py`:
-  - Connect via `python-obd`
+  - Connect via `python-obd` over Bluetooth Classic (SPP) — see PID hex codes
+    and DTC reference in `carvoice/research/obd2-reference.md`
   - Poll a fixed PID set: RPM, coolant temp, vehicle speed, engine load, fuel level, active DTCs
   - Write one JSON line per sample to `data/carvoice/drives/{vehicle_id}_{YYYYMMDD}.jsonl`
   - `--dry-run` flag that generates fake but plausible readings, no hardware required
