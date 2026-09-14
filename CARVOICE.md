@@ -63,6 +63,9 @@ Output of the diagnose pipeline — the plain-English report for one drive log.
 - `scripts/carvoice/obd2_logger.py` — reads live OBD2 PIDs, writes drive logs *(to be built)*
 - `scripts/carvoice/diagnose.py` — drive log + maintenance history → Claude → plain-English report *(to be built)*
 - `content/gadgets/carvoice-ai-assistant.md` — public pitch/spec post
+- `carvoice/agents/` — role-context briefs (research, coder, hardware, pm, qa,
+  mechanic-reviewer, analyst) — point a session at one instead of re-explaining
+  scope each time; see `carvoice/agents/README.md`
 
 ---
 

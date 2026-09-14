@@ -66,6 +66,9 @@ Key files:
 - `scripts/carvoice/obd2_logger.py` — reads live OBD2 PIDs *(to be built)*
 - `scripts/carvoice/diagnose.py` — drive log + maintenance history → Claude → plain-English report *(to be built)*
 - `content/gadgets/carvoice-ai-assistant.md` — public pitch/spec post
+- `carvoice/agents/` — role-context briefs (research, coder, hardware, pm, qa,
+  mechanic-reviewer, analyst); not registered Claude Code subagents, just
+  plain markdown to point a session at
 
 ## Layouts
 
