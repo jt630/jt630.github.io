@@ -1,0 +1,139 @@
+# Hidden features, secret storage, and owner hacks for the 2019 Forester
+# 2.5i Limited (SK body). Sourced from owner's-manual mirrors (suforester5.com,
+# subsuv.com, subarumanuals.org) and forum/search snippets where noted.
+# Researched 2026-09-14. subaruforester.org now blocks direct fetch behind a
+# paywall proxy -- forum items here came from cached search snippets, not the
+# full thread, so treat those as a starting point, not gospel.
+
+features:
+  - title: "Both mirrors can tilt down in reverse, not just the passenger one"
+    confidence: primary
+    text: >
+      Factory default only dips the passenger mirror in Reverse. The manual
+      explicitly allows changing this so both sides tilt. Ask for it at your
+      next service — several owners report dealers do it free at the counter,
+      no parts, just a settings flip.
+  - title: "Configurable proximity-unlock: driver door only vs. all doors"
+    confidence: primary
+    text: >
+      Grabbing the driver's door handle always unlocks just that door.
+      Grabbing the passenger handle can be set to unlock only itself or the
+      whole car + liftgate — Car Settings → Keyless Access Settings →
+      Driver's Door Unlock on the touchscreen.
+  - title: "Cruise control RES/ACC does more than resume"
+    confidence: primary
+    text: >
+      Tap once above ~20 mph to resume your last set speed. <strong>Hold it
+      down</strong> to accelerate and set a new cruise speed at whatever
+      point you release — faster than tap-tap-tapping. When you're within
+      ~4 mph of the set speed, quick taps nudge it 1 mph at a time. The ON
+      button doubles as cancel (tap once to pause, again to fully shut off).
+  - title: "Trip A and B run at the same time in the background"
+    confidence: primary
+    text: >
+      Resetting and viewing Trip A doesn't stop Trip B from silently
+      counting the same miles behind the scenes. Use A for "since fill-up"
+      and B for "since oil change" and both stay accurate even though only
+      one shows on screen at a time. Hold the trip-reset knob 2+ seconds on
+      whichever trip is selected to zero it.
+  - title: "Courtesy-light fade timer and auto-headlight sensitivity are both adjustable"
+    confidence: primary
+    text: >
+      How long the interior lights linger after you close the doors, and
+      how sensitive the auto-headlights are to dusk, are both settings —
+      not fixed — accessible through the color LCD trip computer menu on
+      the Limited.
+  - title: "Turning the dash-brightness dial all the way up kills auto-dimming"
+    confidence: primary
+    text: >
+      Max manual brightness on the instrument cluster overrides the
+      auto-dimming mirror entirely, if you find it distracting at night.
+  - title: "X-Mode + Hill Descent Control also works in reverse"
+    confidence: secondary
+    text: >
+      With X-Mode on, lifting off the brake in reverse on a grade lets hill
+      descent control manage the backdown the same way it manages forward
+      descents — and leaving it engaged in Drive on a steep uphill start
+      helps arrest rollback too.
+  - title: "A secret dealer settings menu exists on the head unit"
+    confidence: secondary
+    text: >
+      Forum-reported, not manual-confirmed: with the engine in
+      ignition-on/engine-off (press the start button twice, foot off the
+      brake), hold HOME and tap the tune knob six times fast, then let go
+      of HOME. Reportedly opens a speaker test, mic volume, and diagnostic
+      menu. Unverified beyond forum chatter — harmless to try since it's
+      just a display menu, not a wiring change.
+  - title: "Auto Stop/Start can't be permanently disabled from the factory"
+    confidence: secondary
+    text: >
+      It resets to \"on\" every key cycle — there's no built-in way to make
+      \"off\" stick, and the old trick of shorting the button's wires
+      doesn't work on this generation per forum consensus. If it bothers
+      you, the real fix is a small aftermarket module (~$30-100) that
+      remembers your last choice — not a wiring hack.
+  - title: "Adjustable lane-centering sensitivity doesn't exist on this year — checked and ruled out"
+    confidence: secondary
+    text: >
+      Worth knowing so you don't go hunting for a menu that isn't there:
+      that adjustment arrived on 2023+ head units. On this 2019 car, Lane
+      Centering can be switched off independently of Lane Keep Assist, but
+      there's no sensitivity dial.
+
+storage:
+  - title: "The cargo cover has its own dedicated stowage bay"
+    confidence: secondary-leaning-primary
+    text: >
+      When you don't want the roll-up cargo cover deployed, it detaches —
+      and there's a slot built into the cargo area sized specifically to
+      store the rolled-up cover, separate from the spare tire well. Widely
+      and consistently reported by owners.
+  - title: "Extra dead space around the underfloor cargo tray"
+    confidence: secondary
+    text: >
+      The tray sits over foam blocks rather than a flat floor. Some owners
+      remove the tray entirely and report the floor doesn't drop flush —
+      meaning there's a little unused space around the tray's footprint. No
+      hard dimensions reported; explore it with a flashlight before you
+      trust anything valuable to it.
+  - title: "Wire channels run under both door sills, spare-tire well to front footwells"
+    confidence: secondary
+    text: >
+      Meant for running dashcam/accessory wiring front-to-back without
+      exposed cable (pop the sill trim, route through the channel). It's
+      also just empty void space — long enough to tuck something flat
+      alongside the wire if you're not using it for that.
+  - title: "The prop-open hook/string for the cargo floor lid is sometimes missing"
+    confidence: secondary
+    text: >
+      Should hook the floor panel open to a tether point so it doesn't flop
+      shut while you're digging for the spare. Some cars left the factory
+      without it or lost it; check yours, and know it's a cheap part shared
+      with older Forester generations if you need to add one.
+  - title: "No, there's no rifle-shaped hidden compartment on this generation"
+    confidence: myth
+    text: >
+      That oddly-shaped molded cutout behind the rear seats is real — but
+      it's documented on the 2003-2008 (SG) Forester, not this 2019-2024
+      (SK) body. No forum reports of it carrying forward. Don't go tearing
+      out the cargo floor looking for it.
+  - title: "No factory cold-air glovebox vent either — also a myth for this car"
+    confidence: myth
+    text: >
+      Some other brands do this. Forester forum search only turns up
+      complaints about uneven AC airflow near the glovebox, not an
+      intentional cooling design. Don't count on the glovebox as a cooler.
+
+hacks:
+  - title: "Ask for the both-mirrors-tilt-down setting at your next oil change — it's free"
+    confidence: secondary
+    text: "The single best-actionable find here: several owners report dealers flip this at the service counter on request, no charge, no parts."
+  - title: "Use Trip A and Trip B for two running totals at once"
+    confidence: primary
+    text: "Since-fill-up and since-oil-change, tracked simultaneously, no math required."
+  - title: "On steep descents, use low gear / engine braking, and light parking-brake taps to modulate — not just the pedal"
+    confidence: secondary
+    text: "General technique repeated across Forester off-road threads, not SK-specific, but consistently recommended for exactly the mountain driving you're already doing."
+  - title: "Hold RES/ACC to set a new cruise speed instead of tapping repeatedly"
+    confidence: primary
+    text: "Hold to accelerate, release at your target speed — it's memorized as the new set point."

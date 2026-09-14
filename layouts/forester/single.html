@@ -43,6 +43,11 @@ table.fst-tbl .due-now td:first-child { color: #ff6b6b; font-weight: 700; }
 
 .fst-callout { border: 2px solid var(--gold); background: rgba(212,175,55,0.06); padding: 12px 16px; margin: 16px 0; font-size: 14px; color: var(--white-dim); }
 .fst-callout strong { color: var(--gold); }
+
+.fst-conf { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 1px 6px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+.fst-conf-primary { background: #1c7a3c; color: #eafff0; }
+.fst-conf-secondary { background: #7a6b1c; color: #fff8e0; }
+.fst-conf-myth { background: #8a2d2d; color: #ffe8e8; }
 </style>
 {{ end }}
 
@@ -152,6 +157,69 @@ table.fst-tbl .due-now td:first-child { color: #ff6b6b; font-weight: 700; }
     <li><strong>Learn X-Mode</strong> (the AWD terrain-mode button near the shifter) and how to force a lower "gear" on the CVT for engine braking on long descents &mdash; exactly what you want for the mountain driving you're already doing.</li>
     <li><strong>The spare is a compact temporary only</strong> — no full-size option ever existed for this generation. Max 50 mph, use it on the rear only (swap a good rear wheel to the front if a front tire fails), inflate to 60 psi, and never fit tire chains to it. Find it under the cargo floor now and confirm the jack and tools are actually present.</li>
     <li><strong>No TPMS reset button exists on this generation.</strong> After a tire rotation the system self-relearns over ~10-15 minutes of driving above 25 mph once pressures are corrected. If a full wheel/tire set is ever replaced, a shop needs a TPMS tool to re-register the sensor IDs.</li>
+  </ul>
+
+  <!-- ─────────── HIDDEN FEATURES & STORAGE ─────────── -->
+  <h2>Hidden features &amp; secret storage</h2>
+  <p class="prose">
+    A weekend afternoon with the manual, cross-checked against the owner community.
+    Manual-confirmed items are marked <span class="fst-conf fst-conf-primary">confirmed</span>;
+    forum-sourced ones are <span class="fst-conf fst-conf-secondary">unverified</span> —
+    harmless to try, just don't treat them as gospel. Two popular claims turned out to be
+    <span class="fst-conf fst-conf-myth">myths</span> for this generation, included so you
+    don't waste time chasing them.
+  </p>
+
+  {{ $hf := .Site.Data.forester_hidden_features }}
+
+  <h3>Features you probably haven't found</h3>
+  <ul class="fst-checklist">
+    {{ range $hf.features }}
+    <li><span class="fst-conf fst-conf-{{ .confidence }}">{{ if eq .confidence "primary" }}confirmed{{ else }}unverified{{ end }}</span> <strong>{{ .title }}</strong><br>{{ .text | safeHTML }}</li>
+    {{ end }}
+  </ul>
+
+  <h3>Where to hide a travel kit</h3>
+  <ul class="fst-checklist">
+    {{ range $hf.storage }}
+    <li>
+      <span class="fst-conf fst-conf-{{ if eq .confidence "myth" }}myth{{ else if in .confidence "primary" }}primary{{ else }}secondary{{ end }}">{{ if eq .confidence "myth" }}myth{{ else if in .confidence "primary" }}confirmed{{ else }}unverified{{ end }}</span>
+      <strong>{{ .title }}</strong><br>{{ .text | safeHTML }}
+    </li>
+    {{ end }}
+  </ul>
+
+  <h3>Owner hacks worth trying</h3>
+  <ul class="fst-checklist">
+    {{ range $hf.hacks }}
+    <li><span class="fst-conf fst-conf-{{ .confidence }}">{{ if eq .confidence "primary" }}confirmed{{ else }}unverified{{ end }}</span> <strong>{{ .title }}</strong><br>{{ .text | safeHTML }}</li>
+    {{ end }}
+  </ul>
+  <p class="fst-note">
+    Forum source (subaruforester.org) now blocks automated fetches behind a paywall proxy,
+    so the forum-sourced items above came from cached search snippets, not full threads —
+    worth opening the source thread yourself in a browser before fully trusting one.
+  </p>
+
+  <!-- ─────────── MAKE IT TERRIFIC ─────────── -->
+  <h2>Making it terrific — where to spend time</h2>
+  <p class="prose">
+    Roughly in order of payoff per hour, on top of the maintenance items above.
+  </p>
+  <h3>This weekend</h3>
+  <ul class="fst-checklist">
+    <li><strong>A real reset detail.</strong> Wash, clay bar if the paint feels gritty, a one-step polish + sealant (Griot's or Adam's DIY kits, ~$100-150, half a day), leather conditioner on the seats, tire dressing. This is what took the car from "used" to "cared-for" in the first place — keep it that way.</li>
+    <li><strong>Start a maintenance log today.</strong> Ten minutes to set up (a spreadsheet, or an app like Simply Auto), then log every service going forward. This is the single highest-leverage habit here — it's exactly what made the previous owner's LHM Subaru history so good that you bought the car on the strength of it. You're the one writing that history now.</li>
+  </ul>
+  <h3>First month</h3>
+  <ul class="fst-checklist">
+    <li><strong>Undercarriage rust-proofing</strong> (Fluid Film or equivalent, DIY spray or a shop, $50-150, half a day) — real insurance given gravel roads, mountain trips, and Idaho winters ahead.</li>
+    <li><strong>Headlight lens check.</strong> At 7 years old, a haze-restoration kit ($15-20, 30 minutes) brings them back to like-new — cheap and the first thing anyone notices at night.</li>
+  </ul>
+  <h3>Before the next big trip</h3>
+  <ul class="fst-checklist">
+    <li><strong>Real all-weather or winter tires</strong> if the current ones are basic all-season — the single biggest functional upgrade available. The AWD system is only as good as the rubber under it.</li>
+    <li><strong>A small recovery kit</strong> for the glovebox or one of the storage spots above: tire plug kit, compact 12V compressor, tow strap, headlamp, basic first aid.</li>
   </ul>
 
   <p class="fst-note">
