@@ -64,8 +64,10 @@ Output of the diagnose pipeline — the plain-English report for one drive log.
 - `scripts/carvoice/diagnose.py` — drive log + maintenance history → Claude → plain-English report *(to be built)*
 - `content/gadgets/carvoice-ai-assistant.md` — public pitch/spec post
 - `carvoice/agents/` — role-context briefs (research, coder, hardware, pm, qa,
-  mechanic-reviewer, analyst) — point a session at one instead of re-explaining
-  scope each time; see `carvoice/agents/README.md`
+  mechanic-reviewer, analyst, business) — point a session at one instead of
+  re-explaining scope each time; see `carvoice/agents/README.md`
+- `carvoice/research/` — findings written by research sessions (OBD2
+  reference, competitor scan, hardware options, business economics/viability)
 
 ---
 

@@ -23,6 +23,10 @@ Point a session here when the task is: look something up, don't build anything y
   context. Research can surface facts; hardware decides.
 - Anything that touches code → **coder** context.
 - Whether a finding is mechanically sound → **mechanic-reviewer** context.
+- Whether CarVoice is already done by someone else, market sizing, and any
+  "is this worth building" verdict → **business** context. This role produces
+  the raw competitor feature/pricing facts; business turns that into a
+  viability judgment — don't duplicate its verdict here.
 
 ## Out of scope
 
