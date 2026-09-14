@@ -1,0 +1,236 @@
+{{ define "head-extra" }}
+<style>
+/* ===========================
+   THE FORESTER — ownership page
+   =========================== */
+.fst-page { max-width: 1080px; margin: 0 auto; padding: 0 24px 100px; }
+
+.fst-hero { text-align: center; padding: 48px 16px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 40px; }
+.fst-hero h1 {
+  font-family: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  font-size: clamp(48px, 10vw, 100px); line-height: 0.9; margin: 0 0 12px;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.02em;
+  text-shadow: 4px 4px 0 var(--black), 8px 8px 0 var(--pink);
+}
+.fst-badge { display: inline-block; background: var(--pink); color: var(--black); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 12px; margin-top: 10px; }
+
+.fst-page h2 {
+  font-family: 'Impact', 'Arial Narrow Bold', sans-serif; text-transform: uppercase;
+  font-size: 26px; letter-spacing: 0.03em; color: var(--gold);
+  border-bottom: 2px solid var(--pink); padding-bottom: 6px; margin: 52px 0 18px;
+}
+.fst-page h3 { color: var(--pink); margin: 24px 0 8px; font-size: 18px; }
+.fst-page .prose { color: var(--white-dim); line-height: 1.65; }
+.fst-page a { color: var(--pink); }
+
+.fst-vitals { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
+.fst-vital { border: 2px outset rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); padding: 10px 14px; }
+.fst-vital .k { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white-faint); }
+.fst-vital .v { font-size: 15px; color: var(--white); margin-top: 2px; }
+
+.fst-table-wrap { overflow-x: auto; margin: 16px 0; border: 2px outset rgba(255,255,255,0.15); }
+table.fst-tbl { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+table.fst-tbl th, table.fst-tbl td { padding: 8px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); vertical-align: top; }
+table.fst-tbl th { background: var(--black); color: var(--gold); text-transform: uppercase; font-size: 11px; letter-spacing: 0.06em; }
+table.fst-tbl tr:hover td { background: rgba(255,45,138,0.06); }
+table.fst-tbl .due-now td:first-child { color: #ff6b6b; font-weight: 700; }
+.fst-note { font-size: 12px; color: var(--white-faint); font-style: italic; }
+
+.fst-checklist { columns: 2; column-gap: 32px; color: var(--white-dim); line-height: 1.7; margin: 8px 0 24px; }
+.fst-checklist li { break-inside: avoid; margin-bottom: 8px; }
+.fst-checklist li strong { color: var(--white); }
+@media (max-width: 640px) { .fst-checklist { columns: 1; } }
+
+.fst-callout { border: 2px solid var(--gold); background: rgba(212,175,55,0.06); padding: 12px 16px; margin: 16px 0; font-size: 14px; color: var(--white-dim); }
+.fst-callout strong { color: var(--gold); }
+
+.fst-conf { display: inline-block; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 1px 6px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+.fst-conf-primary { background: #1c7a3c; color: #eafff0; }
+.fst-conf-secondary { background: #7a6b1c; color: #fff8e0; }
+.fst-conf-myth { background: #8a2d2d; color: #ffe8e8; }
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $h := .Site.Data.forester_history }}
+{{ $m := .Site.Data.forester_maintenance }}
+
+<div class="fst-page">
+
+  <div class="fst-hero">
+    <h1>The Forester</h1>
+    <span class="fst-badge">2019 · 2.5i Limited</span>
+  </div>
+
+  <div class="prose">{{ .Content }}</div>
+
+  <!-- ─────────── VITALS ─────────── -->
+  <h2>Vitals</h2>
+  <div class="fst-vitals">
+    <div class="fst-vital"><div class="k">VIN</div><div class="v">{{ $h.vin }}</div></div>
+    <div class="fst-vital"><div class="k">In service</div><div class="v">{{ $h.in_service_date }}</div></div>
+    <div class="fst-vital"><div class="k">Bought</div><div class="v">{{ $h.purchase_date }} · {{ $h.purchased_from }}</div></div>
+    <div class="fst-vital"><div class="k">Sold new by</div><div class="v">{{ $h.selling_dealer_new }}</div></div>
+    <div class="fst-vital"><div class="k">Engine</div><div class="v">{{ $h.engine }}</div></div>
+    <div class="fst-vital"><div class="k">Built</div><div class="v">{{ $h.plant }}</div></div>
+    <div class="fst-vital"><div class="k">Odometer (last recorded)</div><div class="v">{{ lang.FormatNumberCustom 0 $h.last_odometer }} mi ({{ $h.last_odometer_date }})</div></div>
+    <div class="fst-vital"><div class="k">Title</div><div class="v">{{ $h.title }}</div></div>
+  </div>
+  <p class="prose">{{ $h.owner_notes }}</p>
+
+  <!-- ─────────── SERVICE HISTORY ─────────── -->
+  <h2>Full service history</h2>
+  <p class="fst-note">Pulled from the Experian AutoCheck report at time of purchase. This is the whole documented life of the car before it was yours.</p>
+  <div class="fst-table-wrap">
+    <table class="fst-tbl">
+      <thead><tr><th>Date</th><th>Odometer</th><th>Service</th></tr></thead>
+      <tbody>
+        {{ range $h.service_history }}
+        <tr><td>{{ .date }}</td><td>{{ with .odometer }}{{ lang.FormatNumberCustom 0 . }} mi{{ end }}</td><td>{{ .note }}</td></tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─────────── MAINTENANCE SCHEDULE ─────────── -->
+  <h2>Maintenance schedule — what's actually due</h2>
+  <p class="prose">
+    Baseline: <strong>{{ lang.FormatNumberCustom 0 $m.current_odometer }} mi</strong> as of {{ $m.current_date }}.
+    Last oil change was <strong>{{ lang.FormatNumberCustom 0 $m.last_oil_change.odometer }} mi</strong>
+    ({{ $m.last_oil_change.date }}). Subaru's official schedule undersells a couple of these —
+    read the notes.
+  </p>
+  <div class="fst-table-wrap">
+    <table class="fst-tbl">
+      <thead><tr><th>Item</th><th>Interval</th><th>Status</th><th>Note</th></tr></thead>
+      <tbody>
+        {{ range $m.schedule }}
+        <tr{{ if or (in .next_due "now") (in .next_due "overdue") (in .next_due "not in") }} class="due-now"{{ end }}>
+          <td>{{ .item }}</td>
+          <td>{{ .interval }}{{ with .severe_interval }}<br><span class="fst-note">Severe: {{ . }}</span>{{ end }}</td>
+          <td>{{ .next_due }}</td>
+          <td>{{ with .note }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+  <div class="fst-callout">
+    <strong>The one thing that matters most:</strong> the CVT fluid. Subaru's "Normal" schedule
+    calls it lifetime; their own "Severe" schedule (which covers exactly the driving this car
+    will see — Boise gravel, mountain trips, short commutes) says every 30,000 miles. There's no
+    record of it ever being changed. At 35k miles, do it now — it's the cheapest insurance
+    against the one failure mode that actually ends a Subaru.
+  </div>
+
+  <!-- ─────────── MIN-MAX CHECKLIST ─────────── -->
+  <h2>The min-max checklist — first month</h2>
+  <p class="prose">
+    Coming from a 2006 car, a lot of this generation's stuff didn't exist yet. None of it is
+    hard, all of it is worth doing in the first few weeks rather than discovering it by accident.
+  </p>
+
+  <h3>Do this week</h3>
+  <ul class="fst-checklist">
+    <li><strong>Check for open recalls</strong> at <a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener">nhtsa.gov/recalls</a> by VIN ({{ $h.vin }}) — free, 30 seconds, and CarMax's own check only covers what's been reported to them.</li>
+    <li><strong>Get a spare key cut now.</strong> Used cars often come with one fob. Losing your only key is a $300&ndash;400 dealer/locksmith job and you can't drive the car in the meantime. A Subaru dealer or a locksmith with the right equipment can cut and program a second one for less if you do it before you need it.</li>
+    <li><strong>Transfer the MySubaru / Starlink account.</strong> Subaru renamed Starlink to <em>MySubaru Safety/Security</em>; it's tied to the VIN, not the car. Call Subaru with the VIN + your bill of sale — they detach it from the previous owner (occasionally needs a notarized affidavit if that owner is unreachable) and let you re-enroll. Do this early: remote lock/start and recall/service alerts route through it. Note that the original owner's free trial (3yr Safety / 6mo Security from new) is long expired on a 2019 car — you'll be buying a subscription, not getting a fresh trial.</li>
+    <li><strong>Delete the previous owner's paired phone</strong> from Bluetooth before pairing your own — it's very likely still paired and may still be routing call/text notifications through the car.</li>
+    <li><strong>Download the digital owner's manual</strong> from Subaru's site by VIN or model year &mdash; a used car frequently doesn't come with the glovebox copy.</li>
+    <li><strong>Confirm full-coverage insurance is bound</strong> before you drive it off the lot; your lender requires it and CarMax won't release the car without proof.</li>
+    <li><strong>Save the roadside assistance number</strong> into your phone now, not when you need it on the side of a mountain road.</li>
+  </ul>
+
+  <h3>Make it yours</h3>
+  <ul class="fst-checklist">
+    <li><strong>All-weather floor liners</strong> (genuine Subaru or WeatherTech, by year/trim) &mdash; protects a genuinely clean interior through Boise winters and gravel-road mud.</li>
+    <li><strong>Check the mirror for HomeLink before assuming you have it.</strong> Subaru's own equipment pages don't cleanly confirm whether HomeLink was standard on 2019 Limited or Premium-package-only, and owner reports disagree. Look at the bottom of the rearview mirror housing: three unlabeled buttons means the hardware's there and just needs pairing to your garage door; a plain mirror means it wasn't installed and can't be retrofitted without swapping the whole mirror assembly.</li>
+    <li><strong>Set the infotainment preferences</strong>: clock/date (this unit usually pulls time from GPS once nav gets a fix — check it indoors before that happens), backup-camera guideline lines on/off, auto lock-on-drive and unlock-on-park behavior &mdash; all buried in a settings menu that didn't exist in 2006.</li>
+    <li><strong>Update the nav/map software</strong> the real way for this generation — it's USB-based, not over-the-air: on the head unit go to Settings → Navigation → Map Update Information to get a request code → create a free account at <strong>subaru-maps.com</strong> → enter the code for an activation code → install Subaru's "Map Downloader" app on a computer → download the update to a 16GB+ USB drive → plug into the front USB port with the engine running <em>outdoors</em> (never in a closed garage) and follow the prompts.</li>
+    <li><strong>Look for a memory-seat button on the door armrest</strong> (numbered "1"/"2" near the window switches) before assuming you have seat-position-per-key-fob — two independent sources say that feature was Touring-exclusive in 2019, not included on the Limited. If the button's not there, this car doesn't have it, no matter what the generic owner's manual describes for the model line.</li>
+  </ul>
+
+  <h3>Know before you need it</h3>
+  <ul class="fst-checklist">
+    <li><strong>There's a hidden keyless-entry PIN — this is the "trunk code" you were thinking of.</strong> There's no numeric keypad mounted anywhere, but the Forester has a real <em>PIN Code Access</em> feature: with the fob out of range and ignition off, press the rear liftgate lock button in a sequence to register a 5-digit code (10 presses = "0", complete within 30 seconds), then re-enter that same sequence on the same button anytime to unlock without the fob. 5 wrong attempts locks it out for 5 minutes. Skip weak codes (00000, 12345, your plate digits) — the manual calls that out specifically.</li>
+    <li><strong>EyeSight and the windshield are linked.</strong> A cracked windshield means OEM glass ($650-700) <em>plus</em> EyeSight camera recalibration ($220-600 depending on static vs. dynamic procedure) — commonly $800-1,200 all-in. Insist on OEM glass and a shop that explicitly does Subaru-spec calibration; cut-rate aftermarket glass can leave EyeSight silently miscalibrated.</li>
+    <li><strong>Learn X-Mode</strong> (the AWD terrain-mode button near the shifter) and how to force a lower "gear" on the CVT for engine braking on long descents &mdash; exactly what you want for the mountain driving you're already doing.</li>
+    <li><strong>The spare is a compact temporary only</strong> — no full-size option ever existed for this generation. Max 50 mph, use it on the rear only (swap a good rear wheel to the front if a front tire fails), inflate to 60 psi, and never fit tire chains to it. Find it under the cargo floor now and confirm the jack and tools are actually present.</li>
+    <li><strong>No TPMS reset button exists on this generation.</strong> After a tire rotation the system self-relearns over ~10-15 minutes of driving above 25 mph once pressures are corrected. If a full wheel/tire set is ever replaced, a shop needs a TPMS tool to re-register the sensor IDs.</li>
+  </ul>
+
+  <!-- ─────────── HIDDEN FEATURES & STORAGE ─────────── -->
+  <h2>Hidden features &amp; secret storage</h2>
+  <p class="prose">
+    A weekend afternoon with the manual, cross-checked against the owner community.
+    Manual-confirmed items are marked <span class="fst-conf fst-conf-primary">confirmed</span>;
+    forum-sourced ones are <span class="fst-conf fst-conf-secondary">unverified</span> —
+    harmless to try, just don't treat them as gospel. Two popular claims turned out to be
+    <span class="fst-conf fst-conf-myth">myths</span> for this generation, included so you
+    don't waste time chasing them.
+  </p>
+
+  {{ $hf := .Site.Data.forester_hidden_features }}
+
+  <h3>Features you probably haven't found</h3>
+  <ul class="fst-checklist">
+    {{ range $hf.features }}
+    <li><span class="fst-conf fst-conf-{{ .confidence }}">{{ if eq .confidence "primary" }}confirmed{{ else }}unverified{{ end }}</span> <strong>{{ .title }}</strong><br>{{ .text | safeHTML }}</li>
+    {{ end }}
+  </ul>
+
+  <h3>Where to hide a travel kit</h3>
+  <ul class="fst-checklist">
+    {{ range $hf.storage }}
+    <li>
+      <span class="fst-conf fst-conf-{{ if eq .confidence "myth" }}myth{{ else if in .confidence "primary" }}primary{{ else }}secondary{{ end }}">{{ if eq .confidence "myth" }}myth{{ else if in .confidence "primary" }}confirmed{{ else }}unverified{{ end }}</span>
+      <strong>{{ .title }}</strong><br>{{ .text | safeHTML }}
+    </li>
+    {{ end }}
+  </ul>
+
+  <h3>Owner hacks worth trying</h3>
+  <ul class="fst-checklist">
+    {{ range $hf.hacks }}
+    <li><span class="fst-conf fst-conf-{{ .confidence }}">{{ if eq .confidence "primary" }}confirmed{{ else }}unverified{{ end }}</span> <strong>{{ .title }}</strong><br>{{ .text | safeHTML }}</li>
+    {{ end }}
+  </ul>
+  <p class="fst-note">
+    Forum source (subaruforester.org) now blocks automated fetches behind a paywall proxy,
+    so the forum-sourced items above came from cached search snippets, not full threads —
+    worth opening the source thread yourself in a browser before fully trusting one.
+  </p>
+
+  <!-- ─────────── MAKE IT TERRIFIC ─────────── -->
+  <h2>Making it terrific — where to spend time</h2>
+  <p class="prose">
+    Roughly in order of payoff per hour, on top of the maintenance items above.
+  </p>
+  <h3>This weekend</h3>
+  <ul class="fst-checklist">
+    <li><strong>A real reset detail.</strong> Wash, clay bar if the paint feels gritty, a one-step polish + sealant (Griot's or Adam's DIY kits, ~$100-150, half a day), leather conditioner on the seats, tire dressing. This is what took the car from "used" to "cared-for" in the first place — keep it that way.</li>
+    <li><strong>Start a maintenance log today.</strong> Ten minutes to set up (a spreadsheet, or an app like Simply Auto), then log every service going forward. This is the single highest-leverage habit here — it's exactly what made the previous owner's LHM Subaru history so good that you bought the car on the strength of it. You're the one writing that history now.</li>
+  </ul>
+  <h3>First month</h3>
+  <ul class="fst-checklist">
+    <li><strong>Undercarriage rust-proofing</strong> (Fluid Film or equivalent, DIY spray or a shop, $50-150, half a day) — real insurance given gravel roads, mountain trips, and Idaho winters ahead.</li>
+    <li><strong>Headlight lens check.</strong> At 7 years old, a haze-restoration kit ($15-20, 30 minutes) brings them back to like-new — cheap and the first thing anyone notices at night.</li>
+  </ul>
+  <h3>Before the next big trip</h3>
+  <ul class="fst-checklist">
+    <li><strong>Real all-weather or winter tires</strong> if the current ones are basic all-season — the single biggest functional upgrade available. The AWD system is only as good as the rubber under it.</li>
+    <li><strong>A small recovery kit</strong> for the glovebox or one of the storage spots above: tire plug kit, compact 12V compressor, tow strap, headlamp, basic first aid.</li>
+  </ul>
+
+  <p class="fst-note">
+    One thing that outranks this whole page: the paper maintenance-schedule booklet in the
+    glovebox is model-year-specific and is the actual document Subaru issued for this exact
+    car. If it disagrees with the table above, it wins.
+  </p>
+  <p class="fst-note">
+    Data behind this page: <code>data/forester_history.yaml</code> and
+    <code>data/forester_maintenance.yaml</code> &mdash; edit those, not this template, to update it.
+  </p>
+
+</div>
+{{ end }}
