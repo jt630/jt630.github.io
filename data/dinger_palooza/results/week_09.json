@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-09-13T13:07:13.538135+00:00",
+  "checked_at": "2026-09-14T14:44:57.160003+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -1359,7 +1359,7 @@
           "team": "BOS",
           "team_id": 111,
           "mlb_id": 575929,
-          "is_injured": true,
+          "is_injured": false,
           "draft_pick": 82,
           "proj_hr": null,
           "hrs": 0,
