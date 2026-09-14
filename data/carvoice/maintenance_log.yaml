@@ -1,0 +1,19 @@
+# CarVoice Maintenance Log
+#
+# One entry per service event, keyed by vehicle_id (see data/carvoice/vehicles.yaml).
+# This is the ground truth the diagnose pipeline reads alongside live OBD2 data —
+# a misfire code reads differently if the plugs were just changed vs. 60k miles ago.
+#
+# See CARVOICE.md for the full build plan.
+
+maintenance_events: []
+
+# ─── TEMPLATE ────────────────────────────────────────────────────────────────
+# - vehicle_id: "2019_subaru_forester"
+#   date: "2026-09-14"
+#   mileage: 62000
+#   type: "oil_change"           # oil_change | tire_rotation | brake_service | repair | inspection | other
+#   description: "Full synthetic 0W-20, OEM filter"
+#   cost_usd: 65
+#   shop: "self"                 # or shop name
+# ─────────────────────────────────────────────────────────────────────────────

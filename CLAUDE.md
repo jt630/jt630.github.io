@@ -50,6 +50,23 @@ Key files:
 - `content/monkeys/{lang}_{YYYYMMDD}.md` — individual coin posts
 - `layouts/monkeys/` — coin display templates
 
+### CarVoice subsystem
+
+An OBD2-adapter + Claude project (give your car's computer a voice) lives under
+`content/gadgets/carvoice-ai-assistant.md`. Full architecture, data schema, and
+session-by-session build plan are in **`CARVOICE.md`** — read it before any
+CarVoice session.
+
+Key files:
+- `CARVOICE.md` — project spec, architecture, and session build plan
+- `data/carvoice/vehicles.yaml` — one entry per tracked vehicle
+- `data/carvoice/maintenance_log.yaml` — maintenance history, keyed by vehicle
+- `data/carvoice/drives/{vehicle_id}_{YYYYMMDD}.jsonl` — raw OBD2 session logs *(to be built)*
+- `data/carvoice/reports/{vehicle_id}_{YYYYMMDD}.md` — generated diagnosis reports *(to be built)*
+- `scripts/carvoice/obd2_logger.py` — reads live OBD2 PIDs *(to be built)*
+- `scripts/carvoice/diagnose.py` — drive log + maintenance history → Claude → plain-English report *(to be built)*
+- `content/gadgets/carvoice-ai-assistant.md` — public pitch/spec post
+
 ## Layouts
 
 - `layouts/_default/baseof.html` — master shell (nav, marquee ticker, footer)

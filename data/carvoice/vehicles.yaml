@@ -1,0 +1,26 @@
+# CarVoice Vehicle Registry
+#
+# One entry per tracked vehicle. Each vehicle gets its own OBD2 drive logs and
+# maintenance history, filed by vehicle_id.
+#
+# VEHICLE_ID FORMAT: {year}_{make}_{model}, lowercase, underscores
+#                     (e.g. "2019_subaru_forester")
+# DRIVE LOG PATH:     data/carvoice/drives/{vehicle_id}_{YYYYMMDD}.jsonl
+# MAINTENANCE LOG:    data/carvoice/maintenance_log.yaml (keyed by vehicle_id)
+#
+# See CARVOICE.md for the full build plan.
+
+vehicles: []
+
+# ─── TEMPLATE ────────────────────────────────────────────────────────────────
+# - vehicle_id: "2019_subaru_forester"
+#   year: 2019
+#   make: "Subaru"
+#   model: "Forester"
+#   vin: null                    # optional, fill in once known
+#   owner: "jeremy"
+#   obd2_adapter: null           # e.g. "ELM327 WiFi" — fill in once hardware is bought
+#   added_date: null
+#   total_drive_logs: 0
+#   last_diagnosis_date: null
+# ─────────────────────────────────────────────────────────────────────────────
