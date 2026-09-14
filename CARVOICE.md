@@ -16,6 +16,18 @@ Registries: `data/carvoice/vehicles.yaml`, `data/carvoice/maintenance_log.yaml`
 **Phase 1 (Prototype) — not started.** No OBD2 hardware acquired yet. No vehicle
 registered. Nothing in this repo touches a real car yet.
 
+**Viability verdict: PARTIALLY DONE** (see `carvoice/research/business-viability.md`
+for full findings). "OBD2 + LLM explains your codes" is already shipped by at least
+four real products (OBDAI, LAUNCH AIOBD, MECH AI, and funded startup SPARQ
+Diagnostics) — that framing alone is not a differentiator anymore. The one gap none
+of them fill is **bring-your-own-API-key** (no vendor markup on AI cost, no vendor
+custody of diagnostic data) — the only prior art there is `open-mechanic`, a ~33-star
+open-source hobby project with no company or users behind it. If this moves past a
+personal-use prototype, the pitch in `content/gadgets/carvoice-ai-assistant.md`
+needs to lead with BYOK + maintenance-history-aware prediction, not "AI explains
+your check engine light" — and the tagline should move away from "give your car's
+computer a voice," which reads as a near-reskin of SPARQ's existing ad campaign.
+
 ---
 
 ## Architecture
