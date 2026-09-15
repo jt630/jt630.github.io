@@ -15,12 +15,20 @@ down what happened.
 > vehicle; that supersedes the earlier Bluetooth Classic recommendation in
 > `carvoice/research/hardware-options.md` for a first prototype.
 >
-> **Corrected same day:** open-mechanic's specific pick (OBDLink EX, ~$60)
-> is Ford-*optimized* (FORScan/MS-CAN support) — their own test vehicle was
-> a Ford. For this household's Subaru, use **OBDLink SX** instead (~$40) —
-> same standard OBD2/CAN coverage, same USB-serial connection to
-> `python-obd`, without paying for Ford-only features. Use EX only if the
-> target vehicle is ever a Ford/Lincoln/Mercury.
+> **Corrected same day, twice:** first corrected to OBDLink SX (~$40, cheaper,
+> assumed the household only had a non-Ford Subaru). Then corrected back to
+> **OBDLink EX** (~$60) once it came out that the household also has an
+> existing **1999 Ford F-150** — SX and EX both support the F-150's protocol
+> (SAE J1850 PWM, since it predates CAN entirely) equally well for CarVoice's
+> own generic-OBD2 purposes, but EX's FORScan-compatible proprietary Ford
+> access is a genuine bonus for the truck if FORScan itself is ever wanted
+> for real Ford-specific work — not wasted spend once a Ford is actually in
+> the picture. This also surfaced a real bug: `obd2_logger.py` had
+> `OBD_PROTOCOL=6` (CAN) hardcoded, copied from open-mechanic's own newer
+> CAN-based Ford — that would have failed against the '99 truck's J1850 PWM.
+> Fixed to auto-detect with a per-vehicle cached value in `vehicles.yaml`.
+> Lesson: always check what vehicle(s) are actually in play before picking
+> hardware or a protocol default — don't assume "a Subaru" without asking.
 
 ## Owns
 

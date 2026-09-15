@@ -38,11 +38,14 @@ from dataclasses import asdict, dataclass
 from datetime import date, datetime
 from pathlib import Path
 
+import yaml
+
 logger = logging.getLogger(__name__)
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 DRIVES_DIR = ROOT / "data" / "carvoice" / "drives"
 DTC_DB_PATH = ROOT / "data" / "carvoice" / "dtc_codes.json"
+VEHICLES_PATH = ROOT / "data" / "carvoice" / "vehicles.yaml"
 
 # Session 1's target PID set (RPM, coolant temp, speed, engine load, fuel
 # level) plus a few extras from open-mechanic's own sensor list that are
@@ -177,6 +180,25 @@ def read_snapshot(conn) -> dict[str, dict]:
             snapshot[name] = asdict(SensorValue(name, None, None, False))
 
     return snapshot
+
+
+def load_vehicle_protocol(vehicle_id: str) -> str | None:
+    """Look up a cached OBD protocol number for this vehicle from
+    vehicles.yaml (an optional `obd_protocol` field), so a vehicle whose
+    protocol has already been confirmed doesn't pay the ~30s auto-detect
+    cost on every run. Different vehicles can need different protocols —
+    e.g. a pre-2003ish Ford uses SAE J1850 PWM (protocol "1"), while a
+    2008+ car typically uses ISO 15765-4 CAN (protocol "6"). Don't assume
+    one protocol number is right for every vehicle."""
+    if not VEHICLES_PATH.exists():
+        return None
+    with open(VEHICLES_PATH, encoding="utf-8") as f:
+        data = yaml.safe_load(f) or {}
+    for entry in data.get("vehicles", []) or []:
+        if entry.get("vehicle_id") == vehicle_id:
+            protocol = entry.get("obd_protocol")
+            return str(protocol) if protocol is not None else None
+    return None
 
 
 def _load_dtc_db() -> dict[str, dict]:
@@ -316,8 +338,14 @@ def main() -> None:
     parser.add_argument("--port", default=None, help="Override serial port (e.g. /dev/ttyUSB0, COM3)")
     parser.add_argument(
         "--protocol",
-        default="6",
-        help="OBD protocol number, default 6 = ISO 15765-4 CAN 11/500 (most 2008+ cars, skips slow auto-detect)",
+        default=None,
+        help=(
+            "OBD protocol number (e.g. 1 = SAE J1850 PWM, most pre-2003ish Fords; "
+            "6 = ISO 15765-4 CAN 11/500, most 2008+ cars). Different vehicles need "
+            "different values — there is no safe universal default. If omitted, "
+            "checks data/carvoice/vehicles.yaml for a cached obd_protocol on this "
+            "vehicle_id; if that's also unset, falls back to slow (~30s) auto-detect."
+        ),
     )
     parser.add_argument(
         "--dry-run",
@@ -327,7 +355,15 @@ def main() -> None:
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-    run(args.vehicle_id, args.duration, args.interval, args.dry_run, args.port, args.protocol)
+    protocol = args.protocol or load_vehicle_protocol(args.vehicle_id)
+    if protocol is None and not args.dry_run:
+        logger.info(
+            "No protocol specified or cached for %s — auto-detecting (can take ~30s). "
+            "Once connected, note the protocol and add it as obd_protocol in "
+            "vehicles.yaml to skip this next time.",
+            args.vehicle_id,
+        )
+    run(args.vehicle_id, args.duration, args.interval, args.dry_run, args.port, protocol)
 
 
 if __name__ == "__main__":

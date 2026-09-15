@@ -143,20 +143,27 @@ copied (see the review file §7).
 
 **Hardware pivot:** earlier research (`hardware-options.md`) recommended a
 Bluetooth adapter (OBDLink MX+). open-mechanic's field-tested choice is
-**USB** instead — confirmed working on a real 2018 F-150 via the **OBDLink EX**.
+**USB** instead — confirmed working on a real 2018 F-150 via the OBDLink EX.
 
-**Correction (2026-09-15): use OBDLink SX, not EX, for a Subaru.** EX is
-Ford-*optimized* (FORScan support, Ford's proprietary MS-CAN bus) — it works
-on any 1996+ OBD2 vehicle, but that Ford-specific engineering is wasted on a
-Subaru. open-mechanic recommended EX because their own test vehicle was a
-Ford. **OBDLink SX** (~$40 vs. EX's ~$60, per live pricing checked
-2026-09-15) gives the same standard OBD2/CAN coverage CarVoice actually
-needs, same FTDI-quality build, same plain-USB-serial connection to
-`python-obd` — without paying for Ford-only features. Use SX unless the
-household ever owns a Ford. Set `OBD_PROTOCOL=6`
-(ISO 15765-4 CAN 11/500) explicitly rather than relying on ~30s auto-detect —
-covers the Subaru Forester (2019+, CAN-bus) per `hardware-options.md`'s
-compatibility notes.
+**Two vehicles in the picture, two different protocols — no universal default.**
+The household has an existing **1999 Ford F-150** (already owned, drivable
+today) plus the Subaru still being shopped for. The F-150 predates CAN
+entirely — it uses **SAE J1850 PWM**, a completely different protocol from
+the ISO 15765-4 CAN a 2008+ Subaru would use. Don't hardcode one protocol
+number as a default; `obd2_logger.py` auto-detects when no protocol is given
+or cached, and `data/carvoice/vehicles.yaml` has an `obd_protocol` field to
+cache each vehicle's confirmed value once known (see the file's own header
+comment for common values).
+
+**Adapter: OBDLink EX** (~$60), not SX (~$40). Both support J1850 PWM and CAN
+equally for CarVoice's own generic-PID/DTC purposes — that part was a
+same-day correction-of-a-correction (see Session Log). The reason to spend
+the extra ~$20 on EX is that it also adds FORScan-compatible proprietary Ford
+access (module programming, deeper Ford-specific diagnostics) as a genuine
+bonus for the F-150, completely separate from and unused by CarVoice itself
+(CarVoice's own hard scope boundary above still holds — it never touches
+that layer). If FORScan-level access on the truck isn't wanted, SX is the
+cheaper equivalent for CarVoice's own needs on either vehicle.
 
 If no adapter is plugged in this session, build the script with a `--dry-run`
 mode that fakes plausible readings, and say plainly that the real-hardware
@@ -166,12 +173,14 @@ path is untested — don't claim it works against a car you haven't connected to
 - [x] Vendor `data/carvoice/dtc_codes.json` from open-mechanic (with NOTICE/attribution
       in `carvoice/THIRD_PARTY_NOTICES.md`)
 - [x] `scripts/carvoice/obd2_logger.py`, adapted from open-mechanic's connection.py + reader.py + dtc.py:
-  - Connect via `python-obd` over USB serial (OBDLink SX — see hardware correction
-    above), `OBD_PROTOCOL=6` set explicitly
+  - Connect via `python-obd` over USB serial (OBDLink EX — see hardware note above)
+  - Protocol is NOT hardcoded (two vehicles need two different values — see above):
+    `--protocol` if passed, else `obd_protocol` cached in `vehicles.yaml`, else auto-detect
   - Poll a fixed PID set: RPM, coolant temp, vehicle speed, engine load, fuel level, active DTCs (plus a few extras)
   - Write one JSON line per sample to `data/carvoice/drives/{vehicle_id}_{YYYYMMDD}.jsonl`
   - `--dry-run` flag that generates fake but plausible readings, no hardware required
-- [x] Tested with `--dry-run`: produces valid JSONL, all sensor keys present, confirmed parseable
+- [x] Tested with `--dry-run`: produces valid JSONL, all sensor keys present, confirmed parseable,
+      protocol auto-detect/lookup path doesn't crash with no cached value
 - [x] Added `obd`, `pyserial`, `anthropic`, and `pyyaml` to `requirements-carvoice.txt`
 
 **Not done — needs real hardware:**
@@ -299,3 +308,20 @@ Subaru, and open-mechanic only picked it because their own test car was a
 Ford. Checked live pricing/specs via web search: **OBDLink SX** (~$40 vs.
 EX's ~$60) gives identical standard-OBD2 coverage for $20 less. Updated the
 Session 1 hardware guidance and checklist above to SX.
+
+**Same-day correction-of-the-correction:** the household also has an
+existing **1999 Ford F-150** (not just a hypothetical Subaru) — a real,
+already-owned vehicle, more available for testing than the still-unpurchased
+Subaru. That changes things: (1) SX and EX both support the F-150's protocol
+(SAE J1850 PWM, since the truck predates CAN entirely — a real bug this
+surfaced, see below), so the SX-vs-EX choice was never actually about
+compatibility; (2) EX's FORScan-compatible proprietary Ford access is a
+genuine bonus for the F-150, not wasted spend, if FORScan itself is ever
+wanted for real Ford-specific work outside CarVoice. Reverted the
+recommendation to **OBDLink EX**. Separately, fixed a real bug this exposed:
+`obd2_logger.py` had `OBD_PROTOCOL=6` (CAN) hardcoded as the default,
+copied from open-mechanic's own newer, CAN-based test Ford — that would have
+simply failed to connect to the '99 F-150's J1850 PWM. Changed the default
+to auto-detect, with an `obd_protocol` field on each `vehicles.yaml` entry
+to cache the confirmed value per vehicle once known, since different
+vehicles genuinely need different protocol numbers.

@@ -4,9 +4,19 @@
 # maintenance history, filed by vehicle_id.
 #
 # VEHICLE_ID FORMAT: {year}_{make}_{model}, lowercase, underscores
-#                     (e.g. "2019_subaru_forester")
+#                     (e.g. "2019_subaru_forester", "1999_ford_f150")
 # DRIVE LOG PATH:     data/carvoice/drives/{vehicle_id}_{YYYYMMDD}.jsonl
 # MAINTENANCE LOG:    data/carvoice/maintenance_log.yaml (keyed by vehicle_id)
+#
+# OBD_PROTOCOL: different vehicles use different OBD2 protocols — there is no
+# safe universal default. Leave null until confirmed by a real connection
+# (obd2_logger.py auto-detects and logs the protocol on first connect), then
+# fill it in here so future runs skip the ~30s auto-detect. Common values:
+#   "1" = SAE J1850 PWM       — most Ford/Lincoln/Mercury through ~2003
+#   "2" = SAE J1850 VPW       — most GM through ~2003
+#   "3" = ISO 9141-2          — most Chrysler/European/Asian through ~2003
+#   "6" = ISO 15765-4 CAN 11-bit, 500kbps — most vehicles 2008+
+# (see carvoice/research/obd2-reference.md for the full protocol list)
 #
 # See CARVOICE.md for the full build plan.
 
@@ -19,7 +29,8 @@ vehicles: []
 #   model: "Forester"
 #   vin: null                    # optional, fill in once known
 #   owner: "jeremy"
-#   obd2_adapter: null           # e.g. "ELM327 WiFi" — fill in once hardware is bought
+#   obd2_adapter: null           # e.g. "OBDLink EX" — fill in once hardware is bought
+#   obd_protocol: null           # e.g. "6" — fill in once confirmed by a real connection
 #   added_date: null
 #   total_drive_logs: 0
 #   last_diagnosis_date: null

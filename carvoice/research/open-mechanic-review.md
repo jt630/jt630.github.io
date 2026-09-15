@@ -49,13 +49,32 @@ simpler than dealing with OS Bluetooth pairing state.
 > pick for this household's Subaru. Use EX only if the target vehicle is
 > ever a Ford/Lincoln/Mercury. `CARVOICE.md` and `carvoice/agents/hardware.md`
 > have been updated to recommend SX.
+>
+> **Second correction, same day:** the household also has an existing
+> **1999 Ford F-150** — a real Ford is already in the picture, not
+> hypothetical. Confirmed via search: the '99 F-150 uses **SAE J1850 PWM**,
+> not CAN (it predates CAN entirely). Both SX and EX support J1850 PWM for
+> CarVoice's own generic OBD2 purposes equally well, so that's not the
+> deciding factor — but EX's FORScan-compatible proprietary Ford access
+> (module programming, deeper Ford-specific diagnostics) is a real, unused-
+> by-SX bonus for the truck if FORScan itself is ever wanted outside
+> CarVoice. Reverted the recommendation to **OBDLink EX**. This also
+> surfaced that §2 below's `OBD_PROTOCOL=6` advice is Ford-2018-specific
+> (CAN), not a safe universal default — fixed in `obd2_logger.py` to
+> auto-detect with a per-vehicle cached value in `vehicles.yaml` instead.
 
-## 2. Protocol tip (real, field-tested)
+## 2. Protocol tip (real, field-tested) — with a caveat this repo learned the hard way
 
 `python-obd`'s auto-detect protocol negotiation takes ~30s and can hang.
 open-mechanic hardcodes `OBD_PROTOCOL=6` (ISO 15765-4 CAN 11/500 — covers
-"most 2008+ cars," confirmed on their test Ford). Worth setting explicitly
-for a Subaru Forester (2019+, CAN-bus) rather than relying on auto-detect.
+"most 2008+ cars," confirmed on their test Ford, a 2018 F-150). **That's
+specific to their vehicle, not a safe default for this project**: the
+household's own 1999 F-150 predates CAN and uses SAE J1850 PWM (protocol
+"1") instead — hardcoding "6" would have simply failed to connect to it.
+The right approach (and what `obd2_logger.py` does): skip auto-detect once a
+vehicle's real protocol is confirmed by an actual connection, by caching it
+per-vehicle in `data/carvoice/vehicles.yaml`'s `obd_protocol` field — not by
+assuming one number works for every car.
 
 ## 3. Architecture worth adopting directly
 
