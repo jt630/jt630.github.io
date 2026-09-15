@@ -58,6 +58,17 @@ OBD2 adapter (USB) → laptop → obd2_logger.py → drive log (.jsonl)
 The user's own Claude API key does the analysis. No proprietary firmware access,
 no cloud backend required to prove the concept — that's Phase 2.
 
+**Hard out-of-scope boundary: the ECU's actual firmware/ROM.** CarVoice reads
+only standard OBD2 — Mode 01 (live PIDs) and Mode 03/04 (DTCs) via
+`python-obd`, the interface legally mandated on every 1996+ US car
+specifically for diagnostic access. It does not, and should never, touch ECU
+firmware extraction, flashing, or tuning (J2534 pass-thru, chip access,
+manufacturer proprietary tools). That's a different legal regime (DMCA
+1201's vehicle-repair exemption covers standard diagnostics, not firmware
+extraction/modification) and a different risk category (emissions-tampering
+law applies to firmware changes, not to reading OBD2 sensor data) — and
+nothing CarVoice's pitch promises requires it anyway.
+
 ---
 
 ## Data Files
