@@ -1,0 +1,4 @@
+obd>=0.7.1
+pyserial>=3.5
+anthropic>=0.20.0
+pyyaml>=6.0
