@@ -22,11 +22,18 @@ four real products (OBDAI, LAUNCH AIOBD, MECH AI, and funded startup SPARQ
 Diagnostics) — that framing alone is not a differentiator anymore. The one gap none
 of them fill is **bring-your-own-API-key** (no vendor markup on AI cost, no vendor
 custody of diagnostic data) — the only prior art there is `open-mechanic`, a ~33-star
-open-source hobby project with no company or users behind it. If this moves past a
-personal-use prototype, the pitch in `content/gadgets/carvoice-ai-assistant.md`
-needs to lead with BYOK + maintenance-history-aware prediction, not "AI explains
-your check engine light" — and the tagline should move away from "give your car's
-computer a voice," which reads as a near-reskin of SPARQ's existing ad campaign.
+open-source hobby project with no company or users behind it.
+
+**Decision (2026-09-15): personal project, not a business.** Given the viability
+verdict, this is staying scoped to personal use on the household's own car(s) —
+no hardware sales, no subscription, no dashboard-as-a-service. The code will be
+open-sourced once it exists (nothing in `scripts/carvoice/` yet — add a LICENSE,
+MIT suggested, once Session 1 actually produces code, not before). The pitch in
+`content/gadgets/carvoice-ai-assistant.md` has been rewritten to reflect this —
+no pricing, no business model, an honest "Prior Art" section, and the tagline
+moved away from "give your car's computer a voice" (too close to SPARQ's own ad
+campaign). The `business` and `analyst` role contexts are now mostly dormant;
+day-to-day work is research/hardware/coder/qa/pm/mechanic-reviewer.
 
 ---
 

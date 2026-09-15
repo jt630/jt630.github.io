@@ -1,5 +1,12 @@
 # CarVoice — Business Context
 
+> **Dormant as of 2026-09-15.** The viability research this role produced
+> (`carvoice/research/business-viability.md`) came back PARTIALLY DONE — the
+> decision was to keep CarVoice a personal, open-source project rather than
+> pursue it commercially (see `CARVOICE.md` Status). This role still applies
+> if that decision is ever revisited, but there's no active business work
+> right now.
+
 Point a session here to judge whether CarVoice is worth building as a real
 product, not just whether the code works. This context makes viability calls;
 it doesn't build the pipeline (**coder**), model CarVoice's own unit economics
