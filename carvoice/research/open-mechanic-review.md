@@ -37,6 +37,19 @@ simpler than dealing with OS Bluetooth pairing state.
 
 **Updated recommendation: OBDLink EX (USB) for Session 1**, not the MX+.
 
+> **Correction, same day:** checked live pricing/specs for OBDLink EX and its
+> sibling **OBDLink SX** via web search (direct fetch to obdlink.com was
+> blocked by this environment's egress proxy). EX is Ford-*optimized*
+> (FORScan support, Ford's proprietary MS-CAN bus) and currently runs closer
+> to **~$60**, not ~$35 — open-mechanic's README price may be outdated or
+> promotional. It works on any 1996+ OBD2 vehicle, but the Ford-specific
+> engineering is wasted on a non-Ford car. **OBDLink SX (~$40)** gives the
+> same standard OBD2/CAN protocol coverage and the same plain-USB-serial
+> connection to `python-obd`, without the Ford-only features — the better
+> pick for this household's Subaru. Use EX only if the target vehicle is
+> ever a Ford/Lincoln/Mercury. `CARVOICE.md` and `carvoice/agents/hardware.md`
+> have been updated to recommend SX.
+
 ## 2. Protocol tip (real, field-tested)
 
 `python-obd`'s auto-detect protocol negotiation takes ~30s and can hang.

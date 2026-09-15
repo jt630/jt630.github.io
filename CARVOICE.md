@@ -143,10 +143,17 @@ copied (see the review file §7).
 
 **Hardware pivot:** earlier research (`hardware-options.md`) recommended a
 Bluetooth adapter (OBDLink MX+). open-mechanic's field-tested choice is
-**USB** instead — the **OBDLink EX** (~$35, FTDI chip, plain serial port on
-every OS, zero Bluetooth pairing, confirmed working on a real 2018 F-150).
-Cheaper and simpler than Bluetooth for a laptop-tethered logging session; use
-this unless there's a specific reason to need wireless. Set `OBD_PROTOCOL=6`
+**USB** instead — confirmed working on a real 2018 F-150 via the **OBDLink EX**.
+
+**Correction (2026-09-15): use OBDLink SX, not EX, for a Subaru.** EX is
+Ford-*optimized* (FORScan support, Ford's proprietary MS-CAN bus) — it works
+on any 1996+ OBD2 vehicle, but that Ford-specific engineering is wasted on a
+Subaru. open-mechanic recommended EX because their own test vehicle was a
+Ford. **OBDLink SX** (~$40 vs. EX's ~$60, per live pricing checked
+2026-09-15) gives the same standard OBD2/CAN coverage CarVoice actually
+needs, same FTDI-quality build, same plain-USB-serial connection to
+`python-obd` — without paying for Ford-only features. Use SX unless the
+household ever owns a Ford. Set `OBD_PROTOCOL=6`
 (ISO 15765-4 CAN 11/500) explicitly rather than relying on ~30s auto-detect —
 covers the Subaru Forester (2019+, CAN-bus) per `hardware-options.md`'s
 compatibility notes.
@@ -159,7 +166,8 @@ path is untested — don't claim it works against a car you haven't connected to
 - [x] Vendor `data/carvoice/dtc_codes.json` from open-mechanic (with NOTICE/attribution
       in `carvoice/THIRD_PARTY_NOTICES.md`)
 - [x] `scripts/carvoice/obd2_logger.py`, adapted from open-mechanic's connection.py + reader.py + dtc.py:
-  - Connect via `python-obd` over USB serial (OBDLink EX), `OBD_PROTOCOL=6` set explicitly
+  - Connect via `python-obd` over USB serial (OBDLink SX — see hardware correction
+    above), `OBD_PROTOCOL=6` set explicitly
   - Poll a fixed PID set: RPM, coolant temp, vehicle speed, engine load, fuel level, active DTCs (plus a few extras)
   - Write one JSON line per sample to `data/carvoice/drives/{vehicle_id}_{YYYYMMDD}.jsonl`
   - `--dry-run` flag that generates fake but plausible readings, no hardware required
@@ -279,7 +287,15 @@ adapter owned), and the actual Claude API call in `diagnose()` (no
 in `vehicles.yaml` yet — household is still shopping for the Subaru
 (`scripts/car_buy_math.py`/`car_finder.py`), nothing to register yet.
 
-**Next session:** once there's a real vehicle and an OBDLink EX (or similar
-USB adapter) in hand, register the vehicle in `vehicles.yaml`, run
+**Next session:** once there's a real vehicle and a USB OBD2 adapter (see
+correction below) in hand, register the vehicle in `vehicles.yaml`, run
 `obd2_logger.py` for real, then run `diagnose.py` with a real
 `ANTHROPIC_API_KEY` and compare the output against a real mechanic's read.
+
+**Same-day correction:** the OBDLink EX pick above was wrong for this
+household's vehicle. EX is Ford-*optimized* (FORScan/MS-CAN support) — it
+works on any 1996+ OBD2 vehicle, but that Ford-specific work is wasted on a
+Subaru, and open-mechanic only picked it because their own test car was a
+Ford. Checked live pricing/specs via web search: **OBDLink SX** (~$40 vs.
+EX's ~$60) gives identical standard-OBD2 coverage for $20 less. Updated the
+Session 1 hardware guidance and checklist above to SX.

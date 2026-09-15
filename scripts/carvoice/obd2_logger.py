@@ -11,8 +11,10 @@ and carvoice/research/open-mechanic-review.md for what was adapted and why.
 Trimmed for CarVoice's flat-file logger: no SQLite/ORM, that's a Session 3
 (dashboard) concern, not needed here.
 
-Hardware: a USB OBD2 adapter (OBDLink EX recommended — see
-carvoice/research/open-mechanic-review.md §1), not Bluetooth/WiFi.
+Hardware: a USB OBD2 adapter, not Bluetooth/WiFi (OBDLink SX recommended for
+a non-Ford vehicle; OBDLink EX only if the target vehicle is a Ford — it's
+Ford-optimized and costs more for features that go unused otherwise. See
+carvoice/research/open-mechanic-review.md §1 for the full reasoning).
 
 Usage:
   python scripts/carvoice/obd2_logger.py --vehicle-id 2019_subaru_forester --duration 300

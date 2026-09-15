@@ -11,10 +11,16 @@ down what happened.
 
 > **Updated 2026-09-15:** current recommendation is USB, not Bluetooth — see
 > `carvoice/research/open-mechanic-review.md` §1. Prior art (`open-mechanic`)
-> field-tested an OBDLink EX USB adapter (~$35, plain serial port, no
-> pairing) on a real vehicle; that supersedes the earlier Bluetooth Classic
-> recommendation in `carvoice/research/hardware-options.md` for a first
-> prototype.
+> field-tested a USB adapter (plain serial port, no pairing) on a real
+> vehicle; that supersedes the earlier Bluetooth Classic recommendation in
+> `carvoice/research/hardware-options.md` for a first prototype.
+>
+> **Corrected same day:** open-mechanic's specific pick (OBDLink EX, ~$60)
+> is Ford-*optimized* (FORScan/MS-CAN support) — their own test vehicle was
+> a Ford. For this household's Subaru, use **OBDLink SX** instead (~$40) —
+> same standard OBD2/CAN coverage, same USB-serial connection to
+> `python-obd`, without paying for Ford-only features. Use EX only if the
+> target vehicle is ever a Ford/Lincoln/Mercury.
 
 ## Owns
 
