@@ -214,6 +214,33 @@ section) rather than inventing a new convention.
 
 ---
 
+## Backlog / Later
+
+Not scheduled into a session yet — don't act on these until they're pulled in.
+
+- **Contribute P0128 and P0230 back to open-mechanic.** Our own research
+  (`carvoice/research/obd2-reference.md`) documents two DTC codes missing from
+  their vendored 522-code database. Proposed entries: `P0128` (Coolant
+  Thermostat, `warning`/`engine`) and `P0230` (Fuel Pump Primary Circuit
+  Malfunction, `critical`/`fuel`) — reasoning and convention cross-checks are
+  in this session's chat log. **Wait until there's real hardware/vehicle data**
+  so the contribution can honestly say what it was confirmed on (their own
+  `CONTRIBUTING.md` has an optional "vehicles confirmed on" field — don't
+  fabricate it). Two paths: open a GitHub issue on their DTC-addition template,
+  or fork + PR directly.
+- **Mine more open DTC/PID reference sources to expand `data/carvoice/dtc_codes.json`.**
+  The formal standards (SAE J1979 for PIDs, SAE J2012 for DTC format) are paid,
+  copyrighted SAE specifications — not open source. But the practical code
+  meanings are widely and freely republished (Wikipedia, obd-codes.com,
+  `python-obd`'s own decoder tables, open-mechanic's MIT-licensed JSON).
+  Generic P0xxx codes are standardized and safe to treat as common knowledge;
+  manufacturer-specific P1xxx/P3xxx codes are proprietary per-brand and need
+  per-manufacturer sourcing if this is ever pursued. **Track the license/source
+  of anything pulled in** — don't lump "freely republished" and "open source"
+  together when actually vendoring more codes.
+
+---
+
 ## Session Log
 
 *(Append one entry per work session — date, what shipped, what's next.)*
