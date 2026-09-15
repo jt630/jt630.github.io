@@ -1,5 +1,12 @@
 # CarVoice — Mechanic-Reviewer Context
 
+> **Updated 2026-09-15:** `diagnose.py`'s design now bakes a severity/urgency
+> taxonomy and an "escalate, don't downplay" rule directly into the system
+> prompt, adapted from prior art (`carvoice/research/open-mechanic-review.md`
+> §4/§6). Check outputs against that schema (`severity`: info/warning/
+> critical/do_not_drive; `urgency`: immediate/soon/next_service/monitor)
+> rather than judging free-form prose — the schema itself is your checklist.
+
 Point a session here to sanity-check a Claude-generated diagnosis before it's
 trusted. This is the "grandpa validates it" success metric from the pitch doc,
 made an explicit, repeatable step instead of a one-time check. This context

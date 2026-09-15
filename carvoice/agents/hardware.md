@@ -9,9 +9,16 @@ down what happened.
 `CARVOICE.md` (architecture + Session 1 requirements) and
 `data/carvoice/vehicles.yaml` (current registered vehicle, if any).
 
+> **Updated 2026-09-15:** current recommendation is USB, not Bluetooth — see
+> `carvoice/research/open-mechanic-review.md` §1. Prior art (`open-mechanic`)
+> field-tested an OBDLink EX USB adapter (~$35, plain serial port, no
+> pairing) on a real vehicle; that supersedes the earlier Bluetooth Classic
+> recommendation in `carvoice/research/hardware-options.md` for a first
+> prototype.
+
 ## Owns
 
-- Adapter selection: ELM327 Bluetooth vs. WiFi, brand/model tradeoffs, price
+- Adapter selection: ELM327 Bluetooth vs. WiFi vs. USB, brand/model tradeoffs, price
 - Compatibility checks against the target vehicle (year/make/model in
   `data/carvoice/vehicles.yaml` — CarVoice targets OBD2, i.e. 1996+ only)
 - Connection troubleshooting: pairing, port/IP config, `python-obd` connection

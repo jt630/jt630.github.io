@@ -86,7 +86,9 @@ Output of the diagnose pipeline — the plain-English report for one drive log.
   mechanic-reviewer, analyst, business) — point a session at one instead of
   re-explaining scope each time; see `carvoice/agents/README.md`
 - `carvoice/research/` — findings written by research sessions (OBD2
-  reference, competitor scan, hardware options, business economics/viability)
+  reference, competitor scan, hardware options, business economics/viability,
+  and a full code review of prior art `open-mechanic` — read that one before
+  Session 1 or 2, it changes the plan)
 
 ---
 
@@ -96,50 +98,70 @@ Output of the diagnose pipeline — the plain-English report for one drive log.
 
 **Goal:** get real PID data off a car onto disk.
 
-**Context for Sonnet:** This needs actual OBD2 hardware to test against.
-Read `carvoice/research/hardware-options.md` and `obd2-reference.md` first —
-two independent research passes both converged on **Bluetooth Classic (SPP)**,
-not WiFi or BLE: `python-obd` treats the adapter as a plain serial port, so
-Bluetooth Classic pairs and works with zero extra code, while BLE-only
-adapters need a separate `bleak`-based bridge and `python-obd`'s WiFi socket
-support is unreliable (open GitHub issue, no fix). WiFi has a second problem
-specific to this project — a WiFi-hotspot-style adapter can take the laptop
-off the internet entirely, which breaks Session 2's need to reach the Claude
-API. Recommended adapter: **OBDLink MX+** (non-clone chipset, real sleep mode
-so it won't drain a parked car's battery); cheap fallback: **BAFX 34t5**
-(~$25–30, Bluetooth Classic, reviewed as working on Subarus). Avoid sub-$10
-no-name "ELM327" listings — they're the single biggest source of dropped
-connections and bad readings in every source checked. If no adapter is
-plugged in this session, build the script with a `--dry-run` mode that fakes
-plausible readings, and say plainly that the real-hardware path is untested —
-don't claim it works against a car you haven't connected to.
+**Context for Sonnet:** Don't write this from scratch. Read
+`carvoice/research/open-mechanic-review.md` first — `speed785/open-mechanic`
+(MIT-licensed, cloned and reviewed on 2026-09-15) already solved this exact
+plumbing and tested it on a real vehicle. Adapt its `connection.py`
+(`OBDConnection`, retry/backoff, cross-platform port detection), `reader.py`
+(`SensorPoller`, unsupported-PID-never-crashes handling), and `dtc.py`
+(`DTCReader`, gated `clear_dtcs(confirmed=True)`) into
+`scripts/carvoice/obd2_logger.py` rather than re-deriving the same design.
+Vendor its `data/dtc_codes.json` (522 codes) into
+`data/carvoice/dtc_codes.json` instead of hand-writing a short DTC list — add
+a `NOTICE` crediting open-mechanic's MIT license wherever code or data is
+copied (see the review file §7).
+
+**Hardware pivot:** earlier research (`hardware-options.md`) recommended a
+Bluetooth adapter (OBDLink MX+). open-mechanic's field-tested choice is
+**USB** instead — the **OBDLink EX** (~$35, FTDI chip, plain serial port on
+every OS, zero Bluetooth pairing, confirmed working on a real 2018 F-150).
+Cheaper and simpler than Bluetooth for a laptop-tethered logging session; use
+this unless there's a specific reason to need wireless. Set `OBD_PROTOCOL=6`
+(ISO 15765-4 CAN 11/500) explicitly rather than relying on ~30s auto-detect —
+covers the Subaru Forester (2019+, CAN-bus) per `hardware-options.md`'s
+compatibility notes.
+
+If no adapter is plugged in this session, build the script with a `--dry-run`
+mode that fakes plausible readings, and say plainly that the real-hardware
+path is untested — don't claim it works against a car you haven't connected to.
 
 - [ ] Add a `data/carvoice/vehicles.yaml` entry for the target vehicle (year/make/model
       required, VIN and adapter model optional — fill in what's known)
-- [ ] `scripts/carvoice/obd2_logger.py`:
-  - Connect via `python-obd` over Bluetooth Classic (SPP) — see PID hex codes
-    and DTC reference in `carvoice/research/obd2-reference.md`
+- [ ] Vendor `data/carvoice/dtc_codes.json` from open-mechanic (with NOTICE/attribution)
+- [ ] `scripts/carvoice/obd2_logger.py`, adapted from open-mechanic's connection.py + reader.py + dtc.py:
+  - Connect via `python-obd` over USB serial (OBDLink EX), `OBD_PROTOCOL=6` set explicitly
   - Poll a fixed PID set: RPM, coolant temp, vehicle speed, engine load, fuel level, active DTCs
   - Write one JSON line per sample to `data/carvoice/drives/{vehicle_id}_{YYYYMMDD}.jsonl`
   - `--dry-run` flag that generates fake but plausible readings, no hardware required
 - [ ] Test with `--dry-run`, confirm the output file format is something Session 2 can parse
-- [ ] Add `obd` and `pyyaml` to a `requirements-carvoice.txt`
+- [ ] Add `obd`, `pyserial`, and `pyyaml` to a `requirements-carvoice.txt`
 
 ### Session 2: Diagnose pipeline
 
-**Goal:** turn one drive log + maintenance history into a plain-English report.
+**Goal:** turn one drive log + maintenance history into a structured diagnosis.
 
-**Context for Sonnet:** `scripts/generate_monkey_post.py` already shows this repo's
-pattern for calling the `anthropic` Python SDK — read it first rather than
-reinventing the client setup. The API key comes from the user's own environment
-(`ANTHROPIC_API_KEY`), never hardcoded.
+**Context for Sonnet:** Read `carvoice/research/open-mechanic-review.md` §4
+and §6 first. `scripts/generate_monkey_post.py` shows this repo's own pattern
+for calling the `anthropic` SDK, but for the *prompt/schema design* adapt
+open-mechanic's `ai/prompts.py` + `ai/diagnose.py` instead of inventing a
+"plain English report" format from scratch — their JSON schema
+(`severity`: info/warning/critical/do_not_drive, `urgency`, `estimated_cost_usd`
+range, `diy_feasible`, always-injected `disclaimer`) is a better design and
+gives `qa.md` and `mechanic-reviewer.md` something concrete to check against.
+Bake in their hard rules as code, not just prompt text: the diagnostic
+function itself must inject the disclaimer onto every result — never trust
+the caller to add it — and the system prompt must include "when in doubt,
+escalate severity rather than downplay it." The API key comes from the
+user's own environment (`ANTHROPIC_API_KEY`), never hardcoded.
 
-- [ ] `scripts/carvoice/diagnose.py`:
+- [ ] `scripts/carvoice/diagnose.py`, adapted from open-mechanic's ai/prompts.py + ai/diagnose.py:
   - Load a drive log (`data/carvoice/drives/...`) and the vehicle's entries from
     `data/carvoice/maintenance_log.yaml`
-  - Build a prompt: raw sensor summary + maintenance context + "explain what's
-    going on, plain English, flag anything that needs attention soon"
-  - Call the Claude API, print the report to stdout
+  - System prompt enforces the structured JSON schema above (adapt, don't
+    reinvent); user message assembles vehicle context + DTCs (decoded via
+    `data/carvoice/dtc_codes.json`) + sensor snapshot + maintenance history
+  - Call the Claude API, print the structured result to stdout
+  - Disclaimer injected by the function itself, not left to the caller
   - `--save` flag to also write `data/carvoice/reports/{vehicle_id}_{YYYYMMDD}.md`
 - [ ] Run it against a `--dry-run` drive log from Session 1, sanity-check the tone
       and usefulness of the output
