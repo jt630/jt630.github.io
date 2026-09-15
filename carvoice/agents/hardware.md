@@ -29,6 +29,9 @@ down what happened.
 > Fixed to auto-detect with a per-vehicle cached value in `vehicles.yaml`.
 > Lesson: always check what vehicle(s) are actually in play before picking
 > hardware or a protocol default — don't assume "a Subaru" without asking.
+> Corrected a third time: SX turned out to be **discontinued** anyway, with
+> EX as its direct manufacturer replacement — EX is simply the current
+> adapter to buy, independent of which vehicle is involved.
 
 ## Owns
 

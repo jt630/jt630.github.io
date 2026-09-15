@@ -155,15 +155,16 @@ or cached, and `data/carvoice/vehicles.yaml` has an `obd_protocol` field to
 cache each vehicle's confirmed value once known (see the file's own header
 comment for common values).
 
-**Adapter: OBDLink EX** (~$60), not SX (~$40). Both support J1850 PWM and CAN
-equally for CarVoice's own generic-PID/DTC purposes — that part was a
-same-day correction-of-a-correction (see Session Log). The reason to spend
-the extra ~$20 on EX is that it also adds FORScan-compatible proprietary Ford
+**Adapter: OBDLink EX.** SX is no longer a live alternative — it's
+**discontinued**, with EX as its direct manufacturer replacement (old SX
+stock may still turn up at resellers, but it's not the current product).
+Separately, EX also happens to add FORScan-compatible proprietary Ford
 access (module programming, deeper Ford-specific diagnostics) as a genuine
-bonus for the F-150, completely separate from and unused by CarVoice itself
-(CarVoice's own hard scope boundary above still holds — it never touches
-that layer). If FORScan-level access on the truck isn't wanted, SX is the
-cheaper equivalent for CarVoice's own needs on either vehicle.
+bonus for the F-150 if FORScan itself is ever wanted for real Ford work —
+completely separate from and unused by CarVoice itself (the hard scope
+boundary above still holds — it never touches that layer). Net effect: EX
+is simply the adapter to buy now, for two independent reasons, not one
+weighed against the other.
 
 If no adapter is plugged in this session, build the script with a `--dry-run`
 mode that fakes plausible readings, and say plainly that the real-hardware
@@ -325,3 +326,8 @@ simply failed to connect to the '99 F-150's J1850 PWM. Changed the default
 to auto-detect, with an `obd_protocol` field on each `vehicles.yaml` entry
 to cache the confirmed value per vehicle once known, since different
 vehicles genuinely need different protocol numbers.
+
+**Final note, same day:** turns out the SX-vs-EX question was moot anyway —
+**OBDLink SX is discontinued**, with EX as the manufacturer's direct
+replacement. So EX is simply the current adapter to buy, independent of
+which vehicle is involved.

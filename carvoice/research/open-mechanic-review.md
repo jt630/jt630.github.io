@@ -62,6 +62,12 @@ simpler than dealing with OS Bluetooth pairing state.
 > surfaced that §2 below's `OBD_PROTOCOL=6` advice is Ford-2018-specific
 > (CAN), not a safe universal default — fixed in `obd2_logger.py` to
 > auto-detect with a per-vehicle cached value in `vehicles.yaml` instead.
+>
+> **Third correction, same day:** the SX-vs-EX comparison above turned out
+> to be moot — **OBDLink SX is discontinued**, with EX as the manufacturer's
+> direct replacement (confirmed via search; old SX stock may still exist at
+> resellers, but it's not the current product). EX is simply the adapter to
+> buy now, independent of vehicle.
 
 ## 2. Protocol tip (real, field-tested) — with a caveat this repo learned the hard way
 
