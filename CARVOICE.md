@@ -241,6 +241,49 @@ When this starts, follow the pattern in `layouts/monkeys/` for how this repo
 builds a custom section (own `layouts/carvoice/` templates, own `content/carvoice/`
 section) rather than inventing a new convention.
 
+### Session 4: Auction / pre-purchase triage mode
+
+**Goal:** given a car you're considering buying (not one you already own), combine
+a short test-drive's OBD2 read with the vehicle's paper history into one
+bid/pass assessment — fast enough to use during an actual auction inspection window.
+
+**Context for Sonnet:** This is a second, related use case — evaluating an unknown
+car, not tracking a known one — motivated by the household's own auction-car
+hobby with grandpa. It should reuse `diagnose.py`'s schema/pipeline ideas but is
+architecturally a separate mode, not a bolt-on to the personal-car flow (no
+`maintenance_log.yaml` history exists for a car you don't own yet). Don't start
+this until Session 1/2 are validated on real hardware — this mode needs the core
+pipeline working first.
+
+Two data sources, from research done in this session's chat log (not yet
+written to a `carvoice/research/` file — do that as part of scoping this session):
+
+- **OBD2 read from a short (~5 mile) test drive.** Active + pending DTCs and
+  freeze-frame data are available instantly regardless of drive length. The
+  single most valuable auction-specific signal is **readiness monitor status**
+  (Mode 01 PID 01) — monitors reset to "not ready" when codes are cleared, the
+  battery's disconnected, or the ECU's reflashed, and a short drive can't
+  complete them (needs mixed city+highway, ~20-30 min) but doesn't need to:
+  incomplete monitors are themselves the tell that something reset the car's
+  computer recently, worth asking the seller about. A short drive also
+  realistically covers cold-start/warmup behavior, any misfires that occur,
+  and obvious drivability symptoms. It will NOT reliably show completed
+  monitor results, full fuel-trim adaptation, or anything intermittent that
+  doesn't happen to occur in that window — the pipeline should say so, not
+  imply a clean bill of health from a short drive.
+- **Vehicle history via NMVTIS**, not Carfax. Carfax has no individual-consumer
+  API — it only sells to dealerships. The real path is an **Approved NMVTIS
+  Data Provider** (ClearVin and VinAudit are the commonly cited ones) — NMVTIS
+  is the federal system insurance companies, junk yards, and salvage yards are
+  legally required to report to. Paid per-lookup (not a subscription — doesn't
+  conflict with the project's BYOK/no-recurring-cost ethos, since it's only
+  incurred when actually evaluating a car to buy). Gives title/salvage/odometer-
+  rollback/total-loss history that OBD2 can't see at all.
+
+Combine: VIN → NMVTIS paper-trail check + short OBD2 drive (DTCs, freeze
+frames, readiness status, drivability) → Claude synthesizes both into one
+assessment, honest about what a short drive can't confirm.
+
 ---
 
 ## Backlog / Later
@@ -331,3 +374,24 @@ vehicles genuinely need different protocol numbers.
 **OBDLink SX is discontinued**, with EX as the manufacturer's direct
 replacement. So EX is simply the current adapter to buy, independent of
 which vehicle is involved.
+
+### 2026-09-18 — Auction/pre-purchase mode added to roadmap
+
+Talked through the auction-car use case: the household buys and works on cars
+from auctions with grandpa, which is a stronger fit for CarVoice than the
+original "track my own daily driver" framing — an auction car is unknown
+condition with no history, exactly where "is this real, should I worry"
+earns its keep, versus a known Subaru issue where CarVoice can mostly only
+confirm or triage.
+
+Worked out what a short (~5 mile) auction test-drive can actually reveal:
+instant DTCs/freeze-frame data regardless of drive length, and — the most
+useful auction-specific signal — readiness monitor status as a "was this
+computer recently reset" tell, without needing the monitors to actually
+complete. Also worked out the vehicle-history side: Carfax has no
+individual-consumer API (dealers only), so the real path is an Approved
+NMVTIS Data Provider (ClearVin/VinAudit) instead.
+
+Added this as **Session 4** in the Build Plan — a real future direction, not
+just a Backlog one-liner, but explicitly not started and blocked on Session
+1/2 being validated against real hardware first.
