@@ -48,6 +48,14 @@ Star, Ada County, Canyon County, ...) - rows with no local signal are
 dropped rather than kept-by-default, since these searches aren't reliably
 geo-scoped the way car_finder's Craigslist search is.
 
+Category: every lot is keyword-classified into a broad bucket (Vehicles,
+Heavy Equipment, Firearms, Electronics, Jewelry & Valuables, Tools &
+Equipment, Bikes & Recreation, Office & Furniture, Other) - see
+CATEGORY_KEYWORDS / guess_category(). The page gives Vehicles its own
+section up top (that's the one worth checking for a car/truck), and groups
+everything else by category below it, so the categories a casual bidder
+skims past don't get buried in one long list.
+
 Usage
 -----
     python scripts/auction_finder.py             # fetch, filter, write YAML
@@ -129,6 +137,56 @@ NEAR = [
     "star", "middleton", "emmett", "mountain home", "ada county",
     "canyon county", "treasure valley", "idaho",
 ]
+
+# Broad category buckets, keyword-matched against title+description.
+# "Vehicles" gets its own section on the page (that's the one Jeremy's
+# grandpa actually wants to check); everything else groups by category so
+# the categories a casual bidder skims past - tools, electronics, jewelry,
+# unclaimed property - don't get buried in one giant undifferentiated list.
+# Order matters: first match wins, so more specific buckets (Heavy
+# Equipment, Firearms) come before generic ones.
+CATEGORY_KEYWORDS = [
+    ("Heavy Equipment", [
+        "tractor", "excavator", "backhoe", "forklift", "loader", "mower",
+        "skid steer", "dump truck", "bucket truck", "generator",
+        "compressor", "trailer",
+    ]),
+    ("Vehicles", [
+        "sedan", "suv", "pickup", "motorcycle", "atv", "utv", "coupe",
+        "ford", "chevy", "chevrolet", "toyota", "honda", "dodge", "jeep",
+        "gmc", "nissan", "subaru", "mustang", "silverado", "tahoe",
+        "explorer", "wrangler", "charger", "impala", "camry", "accord",
+        "civic", "cargo van", "minivan", "vin", "odometer", "mileage",
+        "4x4", "awd", "sedan", "hatchback", "pickup truck",
+    ]),
+    ("Firearms", ["rifle", "pistol", "shotgun", "firearm", "ammo", "ammunition"]),
+    ("Electronics", [
+        "laptop", "computer", "tablet", "iphone", "smartphone", "camera",
+        "television", " tv ", "monitor", "gps", "drone", "gaming console",
+        "playstation", "xbox",
+    ]),
+    ("Jewelry & Valuables", [
+        "ring", "necklace", "bracelet", "watch", "gold", "silver",
+        "diamond", "jewelry", "coin collection",
+    ]),
+    ("Tools & Equipment", [
+        "drill", "table saw", "chainsaw", "toolbox", "tool set",
+        "air compressor", "welder", "ladder", "power tool",
+    ]),
+    ("Bikes & Recreation", [
+        "bicycle", "bike", "kayak", "canoe", "paddleboard", "scooter",
+        "skateboard",
+    ]),
+    ("Office & Furniture", ["desk", "office chair", "file cabinet", "furniture"]),
+]
+
+
+def guess_category(lot):
+    s = f" {lot.get('title', '')} {lot.get('description', '')} ".lower()
+    for label, needles in CATEGORY_KEYWORDS:
+        if any(n in s for n in needles):
+            return label
+    return "Other"
 
 
 def fetch(url, headers=None):
@@ -333,8 +391,8 @@ def main():
     for r in kept:
         r.setdefault("num_bids", None)
         r.setdefault("close_time", None)
-        r.setdefault("category", None)
         r.setdefault("description", None)
+        r["category"] = guess_category(r)
         r["estimated_value_low"] = None
         r["estimated_value_high"] = None
         r["estimated_value_mid"] = None
@@ -351,6 +409,12 @@ def main():
     for platform in PLATFORMS:
         n = sum(1 for r in kept if r.get("platform") == platform)
         print(f"  {platform:14s} {n}")
+    cat_counts = {}
+    for r in kept:
+        cat_counts[r["category"]] = cat_counts.get(r["category"], 0) + 1
+    print("\nby category:")
+    for cat, n in sorted(cat_counts.items(), key=lambda kv: -kv[1]):
+        print(f"  {cat:20s} {n}")
     print("\nfetch notes:")
     for n in all_notes:
         print("  " + n)

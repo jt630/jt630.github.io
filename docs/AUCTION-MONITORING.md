@@ -78,6 +78,24 @@ Police, City of Caldwell, Garden City, City of Eagle. Add more there as they com
 up — e.g. Kuna, Star, Emmett, Middleton, or a specific school district or fire
 district that runs its own surplus sales.
 
+## Category split — Vehicles vs. everything else
+
+Jeremy's grandpa specifically wants cars/trucks; everything else is the "casual
+bidder overlooks this" net. So every lot gets keyword-classified into a broad
+category (`CATEGORY_KEYWORDS` / `guess_category()` in `auction_finder.py`):
+Vehicles, Heavy Equipment, Firearms, Electronics, Jewelry & Valuables, Tools &
+Equipment, Bikes & Recreation, Office & Furniture, Other. This runs locally on
+title/description text — no API call, works even without
+`ANTHROPIC_API_KEY`. `/auctions/` renders **Vehicles** as its own section up
+top, then groups everything else by category below it.
+
+Classification is keyword-based and will misfile the occasional lot (a "Ford
+generator" reads as Vehicles before Heavy Equipment gets a look, for instance —
+`CATEGORY_KEYWORDS` order matters, more specific buckets are listed first on
+purpose). Tune the keyword lists as mis-classifications turn up; it doesn't need
+to be perfect, just good enough that Vehicles doesn't miss real cars and doesn't
+fill up with lawn tractors.
+
 ## Geo filter
 
 A lot is kept only if its agency/title/description/url mentions a recognized

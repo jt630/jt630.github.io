@@ -45,6 +45,8 @@ table.auctions-tbl tr.row-flagged td { background: rgba(109,211,109,0.08); }
 .auctions-note { display: block; font-size: 11px; color: var(--white-faint); margin-top: 3px; white-space: normal; max-width: 260px; text-align: left; }
 .auctions-src { font-size: 10px; padding: 1px 6px; border: 1px solid var(--white-faint); color: var(--white-faint); text-transform: uppercase; }
 .auctions-empty { color: var(--white-faint); font-style: italic; padding: 24px 0; text-align: center; }
+.auctions-cat-head { color: var(--pink); font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; margin: 28px 0 4px; border: none; padding: 0; }
+.auctions-cat-n { color: var(--white-faint); font-size: 12px; text-transform: none; letter-spacing: normal; }
 </style>
 {{ end }}
 
@@ -64,63 +66,55 @@ table.auctions-tbl tr.row-flagged td { background: rgba(109,211,109,0.08); }
   {{ with $L }}
   {{ $lots := .lots }}
   {{ $flagged := where $lots "flagged" true }}
-  {{ $rated := sort (where $lots "deal_score" "!=" nil) "deal_score" "desc" }}
-  {{ $unrated := where $lots "deal_score" nil }}
-  {{ $ordered := $rated | append $unrated }}
+  {{ $rated := where $lots "deal_score" "!=" nil }}
+  {{ $vehicles := where $lots "category" "Vehicles" }}
 
   <p class="auctions-assump">
     Generated {{ .generated }} by <code>scripts/auction_finder.py</code> +
-    <code>scripts/auction_value.py</code>. Sorted best-value gap first;
-    lots without an AI estimate (no <code>ANTHROPIC_API_KEY</code>, or not
-    enough listing detail to value) sort last.
+    <code>scripts/auction_value.py</code>. Sorted best-value gap first within
+    each section; lots without an AI estimate (no
+    <code>ANTHROPIC_API_KEY</code>, or not enough listing detail to value)
+    sort last.
   </p>
 
   <div class="auctions-summary">
     <div class="auctions-stat"><span class="n">{{ len $lots }}</span><span class="l">Lots tracked</span></div>
     <div class="auctions-stat"><span class="n">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
     <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">AI-valued</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $vehicles }}</span><span class="l">Vehicles</span></div>
   </div>
 
-  {{ if $ordered }}
-  <div class="auctions-table-wrap">
-    <table class="auctions-tbl">
-      <thead>
-        <tr>
-          <th>Lot</th><th>Agency</th><th>Bid</th><th>Est. value</th><th>Gap</th><th>Closes</th><th>Src</th><th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {{ range $ordered }}
-          <tr class="{{ if .flagged }}row-flagged{{ end }}">
-            <td>
-              {{ .title }}
-              {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}
-            </td>
-            <td>{{ with .agency }}{{ . }}{{ else }}&mdash;{{ end }}</td>
-            <td>{{ with .current_bid }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
-            <td>
-              {{ if .estimated_value_mid }}
-                ${{ lang.FormatNumberCustom 0 .estimated_value_low }}&ndash;{{ lang.FormatNumberCustom 0 .estimated_value_high }}
-              {{ else }}&mdash;{{ end }}
-            </td>
-            <td>
-              {{ if .deal_score }}
-                <span class="{{ if gt .deal_score 0 }}auctions-gap-pos{{ else }}auctions-gap-neg{{ end }}">
-                  {{ if gt .deal_score 0 }}+{{ end }}${{ lang.FormatNumberCustom 0 .deal_score }}
-                </span>
-                {{ if .flagged }}<span class="deal-badge flag">🔥 Deal</span>{{ end }}
-              {{ else }}&mdash;{{ end }}
-            </td>
-            <td>{{ with .close_time }}{{ . }}{{ else }}&mdash;{{ end }}</td>
-            <td><span class="auctions-src">{{ .platform }}</span></td>
-            <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
-          </tr>
-        {{ end }}
-      </tbody>
-    </table>
-  </div>
+  <!-- ─────────── VEHICLES — for grandpa ─────────── -->
+  <h2>🚗 Vehicles — the ones worth a drive-by</h2>
+  <p class="auctions-assump">
+    Every lot classified as a car, truck, motorcycle, or other vehicle, across
+    all four platforms and every Treasure Valley agency tracked. A title
+    alone rarely says mileage or title status — check the listing before
+    bidding, and treat the AI estimate as a rough band, not a quote.
+  </p>
+  {{ partial "auction-lot-table.html" $vehicles }}
+
+  <!-- ─────────── EVERYTHING ELSE, BY CATEGORY ─────────── -->
+  <h2>Everything else</h2>
+  <p class="auctions-assump">
+    Grouped by category so the lots most bidders scroll past — tools,
+    electronics, jewelry, unclaimed odds and ends — don't get buried under a
+    wall of vehicles. Sorted best-value gap first within each group.
+  </p>
+  {{ $catset := slice }}
+  {{ range $lots }}
+    {{ if ne .category "Vehicles" }}{{ $catset = $catset | append .category }}{{ end }}
+  {{ end }}
+  {{ $cats := $catset | uniq | sort }}
+  {{ if $cats }}
+    {{ range $cats }}
+      {{ $cat := . }}
+      {{ $group := where $lots "category" $cat }}
+      <h3 class="auctions-cat-head">{{ $cat }} <span class="auctions-cat-n">({{ len $group }})</span></h3>
+      {{ partial "auction-lot-table.html" $group }}
+    {{ end }}
   {{ else }}
-  <p class="auctions-empty">No lots tracked yet.</p>
+  <p class="auctions-empty">No non-vehicle lots tracked yet.</p>
   {{ end }}
 
   {{ else }}

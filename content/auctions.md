@@ -12,6 +12,13 @@ Meridian, and Nampa get counted. Grandpa already runs the Meridian-area circuit 
 person; this casts a wider net across the Treasure Valley and does the boring part —
 reading every lot's fine print — automatically.
 
+The page below is split in two: **Vehicles** first — every car, truck, or
+motorcycle lot found, across every platform and agency, for Grandpa to check —
+then **everything else, grouped by category**. That second half is the actual
+point of automating this: tools, electronics, jewelry, unclaimed property, the
+stuff a casual bidder scrolls past because it's buried on page 6 of a listing
+site. Those are exactly the lots most likely to be overlooked and undervalued.
+
 Everything below re-derives from `scripts/auction_finder.py` (pulls lots) and
 `scripts/auction_value.py` (estimates resale value with Claude and scores the gap
 against the current bid). See `docs/AUCTION-MONITORING.md` for how it's wired up,
