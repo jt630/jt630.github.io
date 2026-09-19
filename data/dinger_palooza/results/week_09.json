@@ -2,7 +2,7 @@
   "week_number": 9,
   "week_start": "2026-05-25",
   "week_end": "2026-05-31",
-  "checked_at": "2026-09-18T12:44:10.473097+00:00",
+  "checked_at": "2026-09-19T12:17:27.575476+00:00",
   "source": "mlb_api",
   "status": "final",
   "members": [
@@ -879,8 +879,8 @@
           "player": "Liam Hicks",
           "team": "MIA",
           "team_id": 146,
-          "mlb_id": null,
-          "is_injured": false,
+          "mlb_id": 689414,
+          "is_injured": true,
           "draft_pick": null,
           "proj_hr": null,
           "hrs": 0,
@@ -888,7 +888,7 @@
           "has_3run_or_gs": false,
           "points": 0,
           "hr_games": [],
-          "games_checked": 0,
+          "games_checked": 6,
           "games_live": 0
         }
       ]
