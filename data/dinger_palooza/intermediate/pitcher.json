@@ -17,16 +17,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.33333333333334,
+          "hr": 21,
+          "hr9": 1.1,
+          "bb9": 1.26,
+          "k9": 5.31,
+          "era": 2.94,
+          "innings_pitched": "171.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 33.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823494,
@@ -35,16 +48,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 165.33333333333334,
+          "hr": 14,
+          "hr9": 0.76,
+          "bb9": 1.58,
+          "k9": 8.87,
+          "era": 2.72,
+          "innings_pitched": "165.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 15.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823492,
@@ -141,7 +167,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -311,16 +337,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.33333333333334,
+          "hr": 21,
+          "hr9": 1.1,
+          "bb9": 1.26,
+          "k9": 5.31,
+          "era": 2.94,
+          "innings_pitched": "171.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 33.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823494,
@@ -329,16 +368,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 165.33333333333334,
+          "hr": 14,
+          "hr9": 0.76,
+          "bb9": 1.58,
+          "k9": 8.87,
+          "era": 2.72,
+          "innings_pitched": "165.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 15.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823492,
@@ -435,7 +487,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -458,16 +510,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.33333333333334,
+          "hr": 21,
+          "hr9": 1.1,
+          "bb9": 1.26,
+          "k9": 5.31,
+          "era": 2.94,
+          "innings_pitched": "171.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 45.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823494,
@@ -476,16 +541,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 165.33333333333334,
+          "hr": 14,
+          "hr9": 0.76,
+          "bb9": 1.58,
+          "k9": 8.87,
+          "era": 2.72,
+          "innings_pitched": "165.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 27.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823492,
@@ -582,9 +660,9 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 46.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -605,16 +683,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.33333333333334,
+          "hr": 21,
+          "hr9": 1.1,
+          "bb9": 1.26,
+          "k9": 5.31,
+          "era": 2.94,
+          "innings_pitched": "171.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 45.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823494,
@@ -623,16 +714,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 165.33333333333334,
+          "hr": 14,
+          "hr9": 0.76,
+          "bb9": 1.58,
+          "k9": 8.87,
+          "era": 2.72,
+          "innings_pitched": "165.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 27.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823492,
@@ -729,9 +833,9 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 46.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -752,16 +856,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.33333333333334,
+          "hr": 21,
+          "hr9": 1.1,
+          "bb9": 1.26,
+          "k9": 5.31,
+          "era": 2.94,
+          "innings_pitched": "171.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 45.3,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 823494,
@@ -770,16 +887,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 165.33333333333334,
+          "hr": 14,
+          "hr9": 0.76,
+          "bb9": 1.58,
+          "k9": 8.87,
+          "era": 2.72,
+          "innings_pitched": "165.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 27.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823492,
@@ -876,9 +1006,9 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 46.1,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -1046,16 +1176,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.33333333333334,
+          "hr": 21,
+          "hr9": 1.1,
+          "bb9": 1.26,
+          "k9": 5.31,
+          "era": 2.94,
+          "innings_pitched": "171.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 33.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823494,
@@ -1064,16 +1207,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 165.33333333333334,
+          "hr": 14,
+          "hr9": 0.76,
+          "bb9": 1.58,
+          "k9": 8.87,
+          "era": 2.72,
+          "innings_pitched": "165.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 15.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823492,
@@ -1170,7 +1326,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -1193,16 +1349,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.33333333333334,
+          "hr": 21,
+          "hr9": 1.1,
+          "bb9": 1.26,
+          "k9": 5.31,
+          "era": 2.94,
+          "innings_pitched": "171.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 33.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823494,
@@ -1211,16 +1380,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 165.33333333333334,
+          "hr": 14,
+          "hr9": 0.76,
+          "bb9": 1.58,
+          "k9": 8.87,
+          "era": 2.72,
+          "innings_pitched": "165.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 15.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823492,
@@ -1317,7 +1499,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -1340,16 +1522,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 171.33333333333334,
+          "hr": 21,
+          "hr9": 1.1,
+          "bb9": 1.26,
+          "k9": 5.31,
+          "era": 2.94,
+          "innings_pitched": "171.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 33.3,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823494,
@@ -1358,16 +1553,29 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 165.33333333333334,
+          "hr": 14,
+          "hr9": 0.76,
+          "bb9": 1.58,
+          "k9": 8.87,
+          "era": 2.72,
+          "innings_pitched": "165.1"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 15.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 823492,
@@ -1464,7 +1672,7 @@
     "park_score": 71.9,
     "best_park_game": "Yankee Stadium",
     "best_park_factor": 111,
-    "pitcher_score": 50.0,
+    "pitcher_score": 42.7,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -2339,16 +2547,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.0,
+          "hr": 15,
+          "hr9": 0.94,
+          "bb9": 2.39,
+          "k9": 10.45,
+          "era": 3.02,
+          "innings_pitched": "143.0"
+        },
+        "pitcher_hand": "L",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 31.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824710,
@@ -2357,16 +2578,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.0,
+          "hr": 16,
+          "hr9": 0.88,
+          "bb9": 2.48,
+          "k9": 8.06,
+          "era": 2.82,
+          "innings_pitched": "163.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 28.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824707,
@@ -2375,16 +2609,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.33333333333334,
+          "hr": 9,
+          "hr9": 0.57,
+          "bb9": 2.83,
+          "k9": 8.48,
+          "era": 3.27,
+          "innings_pitched": "143.1"
+        },
+        "pitcher_hand": "L",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 13.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824058,
@@ -2445,7 +2692,7 @@
     "park_score": 48.1,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
+    "pitcher_score": 37.2,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -3725,18 +3972,18 @@
         "park_notes": "Dome; neutral HR factor",
         "pitcher_stats": {
           "pitch_hand": "R",
-          "ip": 124.33333333333333,
+          "ip": 126.33333333333333,
           "hr": 18,
-          "hr9": 1.3,
-          "bb9": 3.69,
-          "k9": 7.09,
-          "era": 5.79,
-          "innings_pitched": "124.1"
+          "hr9": 1.28,
+          "bb9": 3.63,
+          "k9": 7.12,
+          "era": 5.77,
+          "innings_pitched": "126.1"
         },
         "pitcher_hand": "R",
         "platoon_label": "platoon \u2717",
         "platoon_delta": -6.0,
-        "pitcher_matchup_score": 51.9,
+        "pitcher_matchup_score": 50.8,
         "pitcher_matchup_label": "Neutral"
       },
       {
@@ -3775,7 +4022,7 @@
     "park_score": 50.2,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 61.0,
+    "pitcher_score": 60.9,
     "favorable_matchups": 2,
     "platoon_advantages": 2,
     "batter_splits": {}
@@ -4188,16 +4435,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695549,
+          "name": "Jackson Jobe",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 40.666666666666664,
+          "hr": 7,
+          "hr9": 1.55,
+          "bb9": 3.1,
+          "k9": 9.52,
+          "era": 3.98,
+          "innings_pitched": "40.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 58.9,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824219,
@@ -4240,7 +4500,7 @@
     "park_score": 44.8,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "pitcher_score": 45.4,
+    "pitcher_score": 46.8,
     "favorable_matchups": 1,
     "platoon_advantages": 1,
     "batter_splits": {}
@@ -6570,29 +6830,16 @@
         "opponent": "Cleveland Guardians",
         "opponent_team_id": 114,
         "venue": "Fenway Park",
-        "probable_pitcher": {
-          "id": 676440,
-          "name": "Tanner Bibee",
-          "note": ""
-        },
+        "probable_pitcher": null,
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": {
-          "pitch_hand": "R",
-          "ip": 182.0,
-          "hr": 29,
-          "hr9": 1.43,
-          "bb9": 2.67,
-          "k9": 7.02,
-          "era": 4.35,
-          "innings_pitched": "182.0"
-        },
-        "pitcher_hand": "R",
-        "platoon_label": "platoon \u2713",
-        "platoon_delta": 6.0,
-        "pitcher_matchup_score": 66.0,
-        "pitcher_matchup_label": "Neutral"
+        "pitcher_stats": null,
+        "pitcher_hand": null,
+        "platoon_label": "neutral",
+        "platoon_delta": 0.0,
+        "pitcher_matchup_score": 50.0,
+        "pitcher_matchup_label": "TBD"
       },
       {
         "game_pk": 824706,
@@ -6653,9 +6900,9 @@
     "park_score": 41.6,
     "best_park_game": "Fenway Park",
     "best_park_factor": 97,
-    "pitcher_score": 46.4,
-    "favorable_matchups": 1,
-    "platoon_advantages": 1,
+    "pitcher_score": 43.8,
+    "favorable_matchups": 0,
+    "platoon_advantages": 0,
     "batter_splits": {}
   },
   {
@@ -6738,29 +6985,16 @@
         "opponent": "Cleveland Guardians",
         "opponent_team_id": 114,
         "venue": "Fenway Park",
-        "probable_pitcher": {
-          "id": 676440,
-          "name": "Tanner Bibee",
-          "note": ""
-        },
+        "probable_pitcher": null,
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": {
-          "pitch_hand": "R",
-          "ip": 182.0,
-          "hr": 29,
-          "hr9": 1.43,
-          "bb9": 2.67,
-          "k9": 7.02,
-          "era": 4.35,
-          "innings_pitched": "182.0"
-        },
-        "pitcher_hand": "R",
-        "platoon_label": "platoon \u2713",
-        "platoon_delta": 6.0,
-        "pitcher_matchup_score": 66.0,
-        "pitcher_matchup_label": "Neutral"
+        "pitcher_stats": null,
+        "pitcher_hand": null,
+        "platoon_label": "neutral",
+        "platoon_delta": 0.0,
+        "pitcher_matchup_score": 50.0,
+        "pitcher_matchup_label": "TBD"
       },
       {
         "game_pk": 824706,
@@ -6821,9 +7055,9 @@
     "park_score": 41.6,
     "best_park_game": "Fenway Park",
     "best_park_factor": 97,
-    "pitcher_score": 46.4,
-    "favorable_matchups": 1,
-    "platoon_advantages": 1,
+    "pitcher_score": 43.8,
+    "favorable_matchups": 0,
+    "platoon_advantages": 0,
     "batter_splits": {}
   },
   {
@@ -7035,29 +7269,16 @@
         "opponent": "Cleveland Guardians",
         "opponent_team_id": 114,
         "venue": "Fenway Park",
-        "probable_pitcher": {
-          "id": 676440,
-          "name": "Tanner Bibee",
-          "note": ""
-        },
+        "probable_pitcher": null,
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": {
-          "pitch_hand": "R",
-          "ip": 182.0,
-          "hr": 29,
-          "hr9": 1.43,
-          "bb9": 2.67,
-          "k9": 7.02,
-          "era": 4.35,
-          "innings_pitched": "182.0"
-        },
-        "pitcher_hand": "R",
+        "pitcher_stats": null,
+        "pitcher_hand": null,
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 60.0,
-        "pitcher_matchup_label": "Neutral"
+        "pitcher_matchup_score": 50.0,
+        "pitcher_matchup_label": "TBD"
       },
       {
         "game_pk": 824706,
@@ -7118,7 +7339,7 @@
     "park_score": 41.6,
     "best_park_game": "Fenway Park",
     "best_park_factor": 97,
-    "pitcher_score": 47.4,
+    "pitcher_score": 45.8,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -7236,18 +7457,18 @@
         "park_notes": "Dome; neutral HR factor",
         "pitcher_stats": {
           "pitch_hand": "R",
-          "ip": 124.33333333333333,
+          "ip": 126.33333333333333,
           "hr": 18,
-          "hr9": 1.3,
-          "bb9": 3.69,
-          "k9": 7.09,
-          "era": 5.79,
-          "innings_pitched": "124.1"
+          "hr9": 1.28,
+          "bb9": 3.63,
+          "k9": 7.12,
+          "era": 5.77,
+          "innings_pitched": "126.1"
         },
         "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 57.9,
+        "pitcher_matchup_score": 56.8,
         "pitcher_matchup_label": "Neutral"
       },
       {
@@ -7286,7 +7507,7 @@
     "park_score": 50.2,
     "best_park_game": "Oriole Park at Camden Yards",
     "best_park_factor": 102,
-    "pitcher_score": 60.0,
+    "pitcher_score": 59.9,
     "favorable_matchups": 2,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -7748,16 +7969,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.0,
+          "hr": 15,
+          "hr9": 0.94,
+          "bb9": 2.39,
+          "k9": 10.45,
+          "era": 3.02,
+          "innings_pitched": "143.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 25.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824710,
@@ -7766,16 +8000,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.0,
+          "hr": 16,
+          "hr9": 0.88,
+          "bb9": 2.48,
+          "k9": 8.06,
+          "era": 2.82,
+          "innings_pitched": "163.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 34.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824707,
@@ -7784,16 +8031,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.33333333333334,
+          "hr": 9,
+          "hr9": 0.57,
+          "bb9": 2.83,
+          "k9": 8.48,
+          "era": 3.27,
+          "innings_pitched": "143.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 7.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824058,
@@ -7854,9 +8114,9 @@
     "park_score": 48.1,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
+    "pitcher_score": 36.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -8541,16 +8801,29 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 800600,
+          "name": "Jackson Kent",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 32.333333333333336,
+          "hr": 2,
+          "hr9": 0.56,
+          "bb9": 6.4,
+          "k9": 7.52,
+          "era": 6.4,
+          "innings_pitched": "32.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 28.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824223,
@@ -8629,9 +8902,9 @@
     "park_score": 45.9,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "pitcher_score": 50.0,
+    "pitcher_score": 46.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -8670,16 +8943,29 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 800600,
+          "name": "Jackson Kent",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 32.333333333333336,
+          "hr": 2,
+          "hr9": 0.56,
+          "bb9": 6.4,
+          "k9": 7.52,
+          "era": 6.4,
+          "innings_pitched": "32.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 16.7,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824223,
@@ -8758,7 +9044,7 @@
     "park_score": 45.9,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "pitcher_score": 50.0,
+    "pitcher_score": 44.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -10436,16 +10722,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695549,
+          "name": "Jackson Jobe",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 40.666666666666664,
+          "hr": 7,
+          "hr9": 1.55,
+          "bb9": 3.1,
+          "k9": 9.52,
+          "era": 3.98,
+          "innings_pitched": "40.2"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 70.9,
+        "pitcher_matchup_label": "Favorable"
       },
       {
         "game_pk": 824219,
@@ -10488,9 +10787,9 @@
     "park_score": 44.8,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "pitcher_score": 47.4,
-    "favorable_matchups": 1,
-    "platoon_advantages": 2,
+    "pitcher_score": 50.9,
+    "favorable_matchups": 2,
+    "platoon_advantages": 3,
     "batter_splits": {}
   },
   {
@@ -10653,16 +10952,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.0,
+          "hr": 15,
+          "hr9": 0.94,
+          "bb9": 2.39,
+          "k9": 10.45,
+          "era": 3.02,
+          "innings_pitched": "143.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 25.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824710,
@@ -10671,16 +10983,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.0,
+          "hr": 16,
+          "hr9": 0.88,
+          "bb9": 2.48,
+          "k9": 8.06,
+          "era": 2.82,
+          "innings_pitched": "163.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 34.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824707,
@@ -10689,16 +11014,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.33333333333334,
+          "hr": 9,
+          "hr9": 0.57,
+          "bb9": 2.83,
+          "k9": 8.48,
+          "era": 3.27,
+          "innings_pitched": "143.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 7.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824058,
@@ -10759,9 +11097,9 @@
     "park_score": 48.1,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
+    "pitcher_score": 36.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -10782,16 +11120,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.0,
+          "hr": 15,
+          "hr9": 0.94,
+          "bb9": 2.39,
+          "k9": 10.45,
+          "era": 3.02,
+          "innings_pitched": "143.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 37.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824710,
@@ -10800,16 +11151,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.0,
+          "hr": 16,
+          "hr9": 0.88,
+          "bb9": 2.48,
+          "k9": 8.06,
+          "era": 2.82,
+          "innings_pitched": "163.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824707,
@@ -10818,16 +11182,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.33333333333334,
+          "hr": 9,
+          "hr9": 0.57,
+          "bb9": 2.83,
+          "k9": 8.48,
+          "era": 3.27,
+          "innings_pitched": "143.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 19.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824058,
@@ -10888,9 +11265,9 @@
     "park_score": 48.1,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
+    "pitcher_score": 38.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   },
   {
@@ -11298,7 +11675,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 689981,
+          "name": "River Ryan",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
@@ -11316,16 +11697,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 623454,
+          "name": "Drew Anderson",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 102.0,
+          "hr": 14,
+          "hr9": 1.24,
+          "bb9": 3.79,
+          "k9": 9.62,
+          "era": 3.62,
+          "innings_pitched": "102.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.4,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824223,
@@ -11334,16 +11728,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 664285,
+          "name": "Framber Valdez",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 168.66666666666666,
+          "hr": 16,
+          "hr9": 0.85,
+          "bb9": 3.42,
+          "k9": 6.88,
+          "era": 4.06,
+          "innings_pitched": "168.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 24.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822681,
@@ -11404,9 +11811,9 @@
     "park_score": 43.8,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "pitcher_score": 50.0,
+    "pitcher_score": 46.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -11427,7 +11834,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 689981,
+          "name": "River Ryan",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
@@ -11445,16 +11856,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 623454,
+          "name": "Drew Anderson",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 102.0,
+          "hr": 14,
+          "hr9": 1.24,
+          "bb9": 3.79,
+          "k9": 9.62,
+          "era": 3.62,
+          "innings_pitched": "102.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 54.4,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824223,
@@ -11463,16 +11887,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 664285,
+          "name": "Framber Valdez",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 168.66666666666666,
+          "hr": 16,
+          "hr9": 0.85,
+          "bb9": 3.42,
+          "k9": 6.88,
+          "era": 4.06,
+          "innings_pitched": "168.2"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 24.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822681,
@@ -11533,9 +11970,9 @@
     "park_score": 43.8,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "pitcher_score": 50.0,
+    "pitcher_score": 46.4,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 1,
     "batter_splits": {}
   },
   {
@@ -11556,7 +11993,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 689981,
+          "name": "River Ryan",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
@@ -11574,16 +12015,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 623454,
+          "name": "Drew Anderson",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 102.0,
+          "hr": 14,
+          "hr9": 1.24,
+          "bb9": 3.79,
+          "k9": 9.62,
+          "era": 3.62,
+          "innings_pitched": "102.0"
+        },
+        "pitcher_hand": "R",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 48.4,
+        "pitcher_matchup_label": "Neutral"
       },
       {
         "game_pk": 824223,
@@ -11592,16 +12046,29 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 664285,
+          "name": "Framber Valdez",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 168.66666666666666,
+          "hr": 16,
+          "hr9": 0.85,
+          "bb9": 3.42,
+          "k9": 6.88,
+          "era": 4.06,
+          "innings_pitched": "168.2"
+        },
+        "pitcher_hand": "L",
         "platoon_label": "neutral",
         "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_matchup_score": 30.2,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 822681,
@@ -11662,7 +12129,7 @@
     "park_score": 43.8,
     "best_park_game": "Comerica Park",
     "best_park_factor": 99,
-    "pitcher_score": 50.0,
+    "pitcher_score": 46.4,
     "favorable_matchups": 0,
     "platoon_advantages": 0,
     "batter_splits": {}
@@ -13505,16 +13972,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.0,
+          "hr": 15,
+          "hr9": 0.94,
+          "bb9": 2.39,
+          "k9": 10.45,
+          "era": 3.02,
+          "innings_pitched": "143.0"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 37.6,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824710,
@@ -13523,16 +14003,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "R",
+          "ip": 163.0,
+          "hr": 16,
+          "hr9": 0.88,
+          "bb9": 2.48,
+          "k9": 8.06,
+          "era": 2.82,
+          "innings_pitched": "163.0"
+        },
+        "pitcher_hand": "R",
+        "platoon_label": "platoon \u2717",
+        "platoon_delta": -6.0,
+        "pitcher_matchup_score": 22.0,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824707,
@@ -13541,16 +14034,29 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH",
-        "pitcher_stats": null,
-        "pitcher_hand": null,
-        "platoon_label": "neutral",
-        "platoon_delta": 0.0,
-        "pitcher_matchup_score": 50.0,
-        "pitcher_matchup_label": "TBD"
+        "pitcher_stats": {
+          "pitch_hand": "L",
+          "ip": 143.33333333333334,
+          "hr": 9,
+          "hr9": 0.57,
+          "bb9": 2.83,
+          "k9": 8.48,
+          "era": 3.27,
+          "innings_pitched": "143.1"
+        },
+        "pitcher_hand": "L",
+        "platoon_label": "platoon \u2713",
+        "platoon_delta": 6.0,
+        "pitcher_matchup_score": 19.8,
+        "pitcher_matchup_label": "Tough"
       },
       {
         "game_pk": 824058,
@@ -13611,9 +14117,9 @@
     "park_score": 48.1,
     "best_park_game": "Kauffman Stadium",
     "best_park_factor": 103,
-    "pitcher_score": 50.0,
+    "pitcher_score": 38.2,
     "favorable_matchups": 0,
-    "platoon_advantages": 0,
+    "platoon_advantages": 2,
     "batter_splits": {}
   }
 ]

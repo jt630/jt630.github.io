@@ -17,7 +17,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -29,7 +33,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -219,7 +227,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -231,7 +243,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -320,7 +336,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -332,7 +352,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -421,7 +445,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -433,7 +461,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -522,7 +554,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -534,7 +570,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -724,7 +764,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -736,7 +780,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -825,7 +873,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -837,7 +889,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -926,7 +982,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 607259,
+          "name": "Nick Martinez",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -938,7 +998,11 @@
         "opponent": "Tampa Bay Rays",
         "opponent_team_id": 139,
         "venue": "Yankee Stadium",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 656876,
+          "name": "Drew Rasmussen",
+          "note": ""
+        },
         "park_factor": 111,
         "park_factor_score": 71.9,
         "park_notes": "Short RF porch; elite for LHH sluggers"
@@ -1585,7 +1649,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -1597,7 +1665,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -1609,7 +1681,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -2765,7 +2841,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695549,
+          "name": "Jackson Jobe",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -4379,11 +4459,7 @@
         "opponent": "Cleveland Guardians",
         "opponent_team_id": 114,
         "venue": "Fenway Park",
-        "probable_pitcher": {
-          "id": 676440,
-          "name": "Tanner Bibee",
-          "note": ""
-        },
+        "probable_pitcher": null,
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -4480,11 +4556,7 @@
         "opponent": "Cleveland Guardians",
         "opponent_team_id": 114,
         "venue": "Fenway Park",
-        "probable_pitcher": {
-          "id": 676440,
-          "name": "Tanner Bibee",
-          "note": ""
-        },
+        "probable_pitcher": null,
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -4670,11 +4742,7 @@
         "opponent": "Cleveland Guardians",
         "opponent_team_id": 114,
         "venue": "Fenway Park",
-        "probable_pitcher": {
-          "id": 676440,
-          "name": "Tanner Bibee",
-          "note": ""
-        },
+        "probable_pitcher": null,
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5123,7 +5191,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5135,7 +5207,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5147,7 +5223,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -5620,7 +5700,11 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 800600,
+          "name": "Jackson Kent",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -5709,7 +5793,11 @@
         "opponent": "Washington Nationals",
         "opponent_team_id": 120,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 800600,
+          "name": "Jackson Kent",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -6857,7 +6945,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 695549,
+          "name": "Jackson Jobe",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7003,7 +7095,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -7015,7 +7111,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -7027,7 +7127,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -7092,7 +7196,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -7104,7 +7212,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -7116,7 +7228,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -7448,7 +7564,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 689981,
+          "name": "River Ryan",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7460,7 +7580,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 623454,
+          "name": "Drew Anderson",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7472,7 +7596,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 664285,
+          "name": "Framber Valdez",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7537,7 +7665,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 689981,
+          "name": "River Ryan",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7549,7 +7681,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 623454,
+          "name": "Drew Anderson",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7561,7 +7697,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 664285,
+          "name": "Framber Valdez",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7626,7 +7766,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 689981,
+          "name": "River Ryan",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7638,7 +7782,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 623454,
+          "name": "Drew Anderson",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -7650,7 +7798,11 @@
         "opponent": "Detroit Tigers",
         "opponent_team_id": 116,
         "venue": "Comerica Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 664285,
+          "name": "Framber Valdez",
+          "note": ""
+        },
         "park_factor": 99,
         "park_factor_score": 45.9,
         "park_notes": "Neutral"
@@ -8916,7 +9068,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 801139,
+          "name": "Payton Tolle",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -8928,7 +9084,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 543243,
+          "name": "Sonny Gray",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
@@ -8940,7 +9100,11 @@
         "opponent": "Boston Red Sox",
         "opponent_team_id": 111,
         "venue": "Fenway Park",
-        "probable_pitcher": null,
+        "probable_pitcher": {
+          "id": 624133,
+          "name": "Ranger Suarez",
+          "note": ""
+        },
         "park_factor": 97,
         "park_factor_score": 41.6,
         "park_notes": "Green Monster helps LHH; hurts RHH"
