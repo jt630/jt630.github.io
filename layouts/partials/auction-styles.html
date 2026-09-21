@@ -46,4 +46,20 @@ table.auctions-tbl tr.row-flagged td { background: rgba(109,211,109,0.08); }
 .auctions-empty { color: var(--white-faint); font-style: italic; padding: 24px 0; text-align: center; }
 .auctions-cat-head { color: var(--pink); font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em; margin: 28px 0 4px; border: none; padding: 0; }
 .auctions-cat-n { color: var(--white-faint); font-size: 12px; text-transform: none; letter-spacing: normal; }
+
+/* dial-in controls */
+.auctions-dialin { border: 2px outset rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); padding: 16px 20px; margin: 8px 0 28px; }
+.dialin-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.dialin-row + .dialin-row { margin-top: 12px; }
+.auctions-dialin label { color: var(--white-dim); font-size: 13px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.auctions-dialin label strong { color: var(--gold); }
+.dialin-hint { color: var(--white-faint); font-size: 11px; }
+.auctions-dialin input[type="range"] { flex: 1 1 200px; min-width: 160px; accent-color: var(--pink); }
+.dialin-actions { justify-content: space-between; }
+.dialin-count { color: var(--white-dim); font-size: 13px; }
+.dialin-count strong { color: var(--pink); font-family: 'Impact', sans-serif; font-size: 16px; }
+.dialin-email-btn { border: 2px outset rgba(255,255,255,0.2); background: transparent; padding: 8px 16px; color: var(--gold); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; font-family: inherit; }
+.dialin-email-btn:hover { background: var(--pink); color: var(--black); border-color: var(--pink); }
+.dialin-note { font-size: 11px; color: var(--white-faint); font-style: italic; margin: 10px 0 0; }
+.dialin-note code { color: var(--white-dim); }
 </style>

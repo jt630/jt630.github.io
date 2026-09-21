@@ -12,5 +12,8 @@ washer, dryer, generator, and similar lot found across all five tracked
 platforms, nothing else mixed in. Bookmark this one.
 
 Same data, same AI value estimate, same 🔥 badge for a bid that's well under
-what the thing's actually worth. Re-derives from `scripts/auction_finder.py` +
+what the thing's actually worth. The slider below lets you dial the deal
+threshold up or down live — no rebuild needed — and "Email this digest" opens
+a pre-filled email in your own mail app so you can send it to yourself and
+grandpa. Re-derives from `scripts/auction_finder.py` +
 `scripts/auction_value.py` — see `docs/AUCTION-MONITORING.md`.

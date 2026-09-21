@@ -31,10 +31,12 @@
 
   <div class="auctions-summary">
     <div class="auctions-stat"><span class="n">{{ len $lots }}</span><span class="l">Lots tracked</span></div>
-    <div class="auctions-stat"><span class="n">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
+    <div class="auctions-stat"><span class="n" id="flagged-count">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
     <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">AI-valued</span></div>
     <div class="auctions-stat"><span class="n">{{ len $vehicles }}</span><span class="l">Vehicles</span></div>
   </div>
+
+  {{ partial "auction-dial-in.html" (dict "pageTitle" "Auction Watch" "pageURL" $.Permalink) }}
 
   <!-- ─────────── VEHICLES — for grandpa ─────────── -->
   <h2>🚗 Vehicles — the ones worth a drive-by</h2>

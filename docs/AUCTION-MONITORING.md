@@ -150,6 +150,50 @@ item's actual condition, or completeness. Treat a flagged lot as "worth a second
 look," not "safe to bid against sight unseen." A future pass could feed the lot's
 photo(s) to a vision-capable Claude call for a better estimate — not built yet.
 
+## Dialing in the search — live threshold slider + email digest
+
+Both `/auctions/` and `/grandpas-shop/` have a control panel (rendered by
+`layouts/partials/auction-dial-in.html`) right under the summary stats:
+
+- **A "Deal threshold" slider (5%–60%, default 30%)** — purely client-side. It
+  re-reads the `data-deal-pct` / `data-est-mid` attributes `auction-lot-table.html`
+  already puts on every row and recomputes which rows are flagged, live, with no
+  page reload and no rebuild. This is deliberately *not* baked into a fixed
+  backend setting — Jeremy and his grandpa can each try different thresholds in
+  their own browser to see what turns up more or fewer lots before agreeing on
+  where to leave it.
+- **An "Email this digest" link** — builds a `mailto:` link (recipients from
+  `data/auction_contacts.yaml`, subject + a plain-text list of whatever's
+  currently flagged at the slider's threshold, capped at the top 15 by gap
+  size) and keeps its `href` live-synced as the slider moves. Clicking it opens
+  the visitor's own mail app with everything pre-filled — **nothing is sent
+  automatically**, no SMTP credentials or API keys are stored anywhere. Jeremy
+  reviews and hits send himself, to himself and his grandpa both.
+
+To include grandpa in the digest, set `grandpa_email` in
+`data/auction_contacts.yaml` (currently blank — the page shows a note
+reminding you it's blank, and the "To" field just addresses Jeremy alone
+until it's filled in).
+
+**A gotcha that bit this exact feature during development**, worth knowing if
+you touch this partial: `auction-dial-in.html` is invoked from inside a
+`{{ with $L }}` block in both page templates, which rebinds `.` to the lots
+data — so `.Permalink` inside that block silently resolves to `nil`, not the
+page. Use `$.Permalink` (root context) instead. A real-browser test (Playwright)
+caught this as `pageURL` literally rendering as the string `"null"` in the
+built email body.
+
+Second gotcha, also only caught by testing against real rendered output: piping
+a value through `| jsonify` inside a `<script>` block and *not* following it
+with `| safeJS` causes Hugo's `html/template` contextual auto-escaper to
+JSON-encode the already-quoted output a second time — the literal characters
+`"..."` end up embedded inside the JS string itself. This silently turned an
+*empty* `grandpa_email` into the two-character string `""`, which is
+non-empty and therefore `truthy` in JS, so a blank recipient slipped into the
+"To" field even though `.filter(Boolean)` was supposed to drop it. Always
+pipe `| jsonify | safeJS` together when assigning a Hugo value to a JS
+variable inside `<script>`.
+
 ## Running it manually
 
 ```bash

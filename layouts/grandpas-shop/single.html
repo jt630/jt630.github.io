@@ -31,9 +31,11 @@
 
   <div class="auctions-summary">
     <div class="auctions-stat"><span class="n">{{ len $lots }}</span><span class="l">Lots tracked</span></div>
-    <div class="auctions-stat"><span class="n">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
+    <div class="auctions-stat"><span class="n" id="flagged-count">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
     <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">AI-valued</span></div>
   </div>
+
+  {{ partial "auction-dial-in.html" (dict "pageTitle" "Grandpa's Shop" "pageURL" $.Permalink) }}
 
   {{ partial "auction-lot-table.html" $lots }}
 
