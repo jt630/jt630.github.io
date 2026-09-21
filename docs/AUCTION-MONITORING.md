@@ -76,43 +76,51 @@ What that run found, and what `auction_finder.py` now does with it:
   available. `.github/workflows/auction-monitor.yml`'s "Install Playwright's
   Chromium" step (`playwright install --with-deps chromium`) is what
   actually provides the browser in production.
-  **UNVERIFIED** — this dev sandbox can't reach `bid.musickauction.com`
-  either, browser or not (same network policy blocking everything else in
-  this file), so `musick_render.py` has only been smoke-tested by rendering
-  a *reachable* page (confirms Playwright itself launches, navigates, and
-  returns real content) — never against the actual target. Same
-  debug-and-inspect process as everything else here: dispatch
-  `debug_html: true`, and this time `debug_html/musick_catalog__*.html`
-  should hold real **rendered** markup (or a clear failure note if the
-  render itself fails/times out) to write the actual per-item lot parser
-  against — the `jsonld_to_lot()` extraction it currently falls through to
-  is very unlikely to be what a real bidding SPA emits; expect that part to
-  need real work once there's something to look at.
-- **Two ways of hunting for a lighter alternative to browser rendering**,
-  both purely reconnaissance right now (log/report only, nothing parses
-  their results yet):
-  - `render_catalog_page()` also logs every XHR/fetch request Playwright
-    sees the page make while loading, straight into the fetch notes
-    (`[musick-catalog] ...: N XHR/fetch call(s) seen while rendering`).
-    Most SPAs like this populate themselves by calling a JSON API under
-    the hood - if one shows up here, a future pass could call that
-    endpoint directly with a plain request and drop Playwright entirely,
-    the way every other platform in this file already works.
-  - `brute_force_musick_api()` separately (and more speculatively) tries
-    ~15 guessed REST-ish URL patterns directly against
-    `bid.musickauction.com`, using both numeric ids seen on the first
-    event - the catalog URL's id (e.g. `915`) and the different id
-    embedded in that same event's image URL (e.g. `883` in
-    `/images/auction/883_m.jpg`) - since which one (if either) the API
-    wants is unknown. Logged as `[musick-api-probe] <url>: code=... bytes=...
-    json-like=...` for each guess. Pure brute force, not informed by
-    anything except common API shapes - the passive XHR/fetch log above is
-    the more reliable of the two, this is just extra shots on goal.
-- Until that next pass happens, this is the practical ceiling: event-level
-  info (what's happening, when, where, roughly what's in it) rather than a
-  per-item current bid. The event-level row is kept either way rather than
-  being dropped, so this isn't "broken" - it's real, useful information at
-  the resolution the public site's static pages actually offer.
+  Confirmed **live** via a `debug_html: true` run against the actual
+  target (workflow run `35563823234`): Chromium rendered real catalog
+  content for all 6 events, 41KB–216KB each, saved to
+  `debug_html/musick_catalog__914.html` through `__919.html` on the
+  `debug/auction-html` branch.
+- **No hidden JSON API — the SPA doesn't need one.** Both hunts (the
+  passive XHR/fetch log in `render_catalog_page()` and the ~15-pattern
+  `brute_force_musick_api()` guess probe) came back empty-handed: the only
+  XHR/fetch call the page makes while loading is
+  `POST https://bid.musickauction.com/sync/lot`, which just live-updates
+  bids in place *after* the page has already rendered — the initial page
+  load is server-rendered with every lot's data already in the markup, so
+  there was never a lighter endpoint to find. `brute_force_musick_api()`
+  and its 15 guessed URL patterns are kept in the code as a cheap
+  reconnaissance pass (still logs `[musick-api-probe] ...` every run) in
+  case that ever changes, but the real answer turned out to be "render
+  once, the data's already there."
+- **`parse_musick_lots()` now extracts real per-item lots** from that
+  rendered markup — CONFIRMED against all 6 real saved catalog pages, not
+  guessed. Each lot lives in
+  `<li id="blkLotItemMain{lotId}" class="item-block">…</li>`, with a lot
+  number, title + detail-page link, current bid (`item-currentbid`),
+  asking bid (`item-askingbid`), bid count (`Bidding history(N bids)`),
+  and time left. A lot nobody has bid on yet shows `item-starting-bid`
+  ("Starting") instead of a current bid — those are kept with
+  `current_bid: None` (a minimum isn't a real bid — same rule
+  `auction_value.py` already applies) and their starting price/time-left
+  folded into the description instead, rather than being dropped.
+  `fetch_musick_catalog()` tries `jsonld_to_lot()` first (cheap, and correct
+  if the site ever adds real JSON-LD) and falls back to this real parser —
+  which is what actually fires today, since Musick's rendered markup has no
+  JSON-LD at all.
+  **Only page 1 of each catalog is fetched** (the pager shows "Viewing items
+  1-50 of N" — up to 1087 for the biggest sale seen so far), so this covers
+  the first 50 lots per auction, not the full catalog; paging through
+  `?page=N` is future work if that proves worth the extra Playwright
+  renders.
+- **Real numbers from that run**, across the 6 currently-upcoming sales: 251
+  real per-lot rows total (50 each from 5 sales, 1 from the single-lot
+  "OFFSITE — manufactured home" sale), spanning real current bids from $8
+  (a 6-pack of LED flashlights) up to $5,200 (a 2017 Infiniti QX60), including
+  several actual police-surplus vehicles in the Meridian government-surplus
+  sale ("2020 FORD EXPLORER - LOCAL POLICE AGENCY!", "2010 DODGE CHARGER -
+  GOVERNMENT SURPLUS!"). This is real, per-item, currently-live bid data —
+  not the event-level placeholder rows this file used to be stuck at.
 - The event titles are genuinely category-rich text ("TRUCKS, CARS, GUNS,
   AMMO..."), which is what motivated switching `guess_category()`'s matching
   from a plain substring check to `\bword s?\b` (word-boundary, optional
