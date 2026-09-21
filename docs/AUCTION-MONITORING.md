@@ -12,80 +12,94 @@ score), scheduled by
 
 ## Why bother
 
-The Boise PD auction alone runs dozens of lots at a time; Ada County, Canyon County,
-Meridian, and Nampa each run their own on top of that. Reading every listing's fine
-print by hand across five sites, every few days, doesn't scale. This automates the
-boring part — pull everything, filter to the Treasure Valley, ask Claude what each
-lot would actually resell for, and surface the gap.
+Reading a local auctioneer's listings by hand every few days doesn't scale.
+This automates the boring part — pull what's coming up, ask Claude (and eBay
+sold comps) what each lot would actually resell for, and surface the gap.
+Grandpa already runs the Meridian-area circuit in person via Musick Auction
+Co.; this watches that same source and adds the value-checking he wouldn't
+otherwise have time for.
 
-Grandpa already runs the Meridian-area circuit in person and knows that turf well.
-This casts a wider net on purpose — Boise PD, Ada County, and Canyon County lots
-that aren't on anyone's regular rounds — rather than duplicating it.
+## Scope is currently narrowed to Musick alone
 
-## ⚠️ Known limitation: unverified against live markup
+`PLATFORMS` in `auction_finder.py` is `("musick",)` by explicit request —
+Musick Auction Co. is the one platform actually tied to Grandpa's real
+auction circuit, not a national listing site he'd otherwise never visit. The
+other four (`_DISABLED_PLATFORMS`: PublicSurplus, GovDeals, Municibid,
+PropertyRoom) still have working fetch code, just not in the active
+`PLATFORMS` tuple — add any back to re-enable. They remain **unverified
+against live markup** (this dev sandbox's network policy blocks all of
+them), unlike Musick below.
 
-This was built in a sandboxed dev session whose network egress policy blocks
-`publicsurplus.com`, `govdeals.com`, `municibid.com`, `propertyroom.com`, and
-`musickauction.com` outright (confirmed via the proxy status endpoint, not
-guessed). **None of the fetch/parse code in `auction_finder.py` has run
-against real HTML from these sites.** The search URLs and the reliance on
-embedded JSON-LD are informed guesses based on how these platforms and
-similar auction sites are generally built, not verified endpoints.
+## Musick, verified against real markup (2026-09-21)
 
-`musickauction.com` carries an extra layer of uncertainty on top of that:
-it's a **guessed domain**, not just an unverified one. "Musick" + a Boise
-police-auction context strongly suggests **Musick Auction Co.**, a
-Nampa-based Idaho auction house that runs a lot of the actual in-person
-Treasure Valley law-enforcement sales — but that inference hasn't been
-confirmed against the real site. If `musickauction.com` turns out to be
-wrong (or dead), fix `MUSICK_BASE` in `auction_finder.py` to the real URL.
+`musickauction.com` was a domain *guess* ("musick" + Boise-auction context →
+Musick Auction Co., Nampa/Meridian, ID) - confirmed correct via a live
+GitHub Actions run whose raw HTML landed on the `debug/auction-html` branch
+(see `.github/workflows/auction-monitor.yml`'s `debug_html` dispatch input).
+What that run found, and what `auction_finder.py` now does with it:
 
-Treat the first real run as a debugging session, the same way `car_finder.py`
-needed a few passes to nail down Craigslist's markup and Cars.com's Akamai
-block:
-
-1. Run the `Auction Watch — refresh lots` workflow manually (Actions tab →
-   `workflow_dispatch`) — a GitHub-hosted runner has open internet, unlike this
-   dev sandbox.
-2. Read the **Fetch lots** step's log. Each `(platform, agency term)` pair prints
-   a note: how many rows came back, or why none did (`403 BLOCKED`, `empty`, or
-   `no json-ld found`).
-3. For any platform reporting `0 rows` across the board, view one of its search
-   pages by hand in a browser, check whether it has `<script
-   type="application/ld+json">` blocks at all, and if not, add a
-   platform-specific regex parser (see `PLATFORM_FALLBACK` comment stub in
-   `auction_finder.py` — follow the shape of `car_finder.py`'s `carscom_parse`
-   for the pattern: read the real markup, write a targeted parser, cache
-   successful runs as a fallback for when the site blocks the next request).
-
-Until that pass happens, `/auctions/` will most likely show "no lots tracked
-yet" or a thin result. That's expected, not broken.
+- **musickauction.com is a WordPress/Divi marketing site, not the bidding
+  platform.** It carries zero price/bid data. `/`, `/auctions`, and
+  `/upcoming-auctions` all 200; `/current-auctions`, `/online-auctions`, and
+  `/law-enforcement` all 404 — "Current Auctions" in the nav just links to
+  `/auctions/`. `MUSICK_PATHS` is now `["/auctions", "/upcoming-auctions"]`
+  (the homepage has no listings at all; both remaining paths embed the
+  identical widget, kept as a fallback pair rather than trimmed to one).
+- **Each upcoming sale is one AUCTION EVENT, not one lot** — a Divi "Query
+  Wrapper" widget renders a `<div class="query-row">` per event, each with a
+  `.qw-title` (the sale's headline, e.g. *"MERIDIAN - 942 - TRUCKS, CARS,
+  GUNS, AMMO, DJI DRONE, PROJECTOR, TOOLS, FURNITURE AND MORE!!"*), a date, a
+  location (Meridian or Nampa), a photo, and a link out to
+  **`bid.musickauction.com/auctions/catalog/id/N`** — a separate subdomain
+  that (presumably) has the real per-item lot/bid data.
+  `parse_musick_events()` in `auction_finder.py` parses this widget's exact
+  markup and is the verified part of this whole file.
+- **`bid.musickauction.com` itself is still unverified** — `fetch_musick()`
+  follows every discovered catalog link there (`fetch_musick_catalog()`),
+  trying the usual JSON-LD-first approach, but no real sample of that
+  subdomain's markup has been seen yet (it wasn't fetched by this debug run,
+  only linked to from one that was). If it comes back empty, the event-level
+  row is kept instead of being dropped — a headline like *"GOVERNMENT
+  SURPLUS, LOCAL POLICE EVIDENCE, FLEET VEHICLES, GUNS, AMMO, JEWELRY,
+  TOOLS"* with a date, location, and a link to go look is still real,
+  useful information even without a line-item bid on each thing in it. It
+  just won't have a current price, so it can't be scored as a "deal" the way
+  a normal lot can — that only kicks in once `bid.musickauction.com` gets
+  its own real parser. Next step: dispatch `debug_html: true` again (now
+  that the catalog stage exists, it'll try those URLs and dump whatever
+  comes back) and read the result the same way this pass read Musick's main
+  site.
+- The event titles are genuinely category-rich text ("TRUCKS, CARS, GUNS,
+  AMMO..."), which is what motivated switching `guess_category()`'s matching
+  from a plain substring check to `\bword s?\b` (word-boundary, optional
+  trailing s) — a bare substring match on short words like "car" or "gun"
+  would have false-positived on "scar"/"cargo"/"gunmetal" etc. Also added
+  "car", "truck", "vehicle", and "gun" as keywords once that was safe.
 
 ## A second, separate concern: Terms of Service
 
-This fetches public search-result pages at a polite rate (one request every 2s,
-browser `User-Agent`, no login, no CAPTCHA-solving) — the same posture as this
-repo's existing `car_finder.py` against Craigslist/Cars.com. It's still worth a
-read of each site's ToS before leaning on this long-term. If a platform pushes
-back (blocks, rate-limits, or its ToS turns out to explicitly bar automated
-access), drop it from `PLATFORMS` in `auction_finder.py` rather than working
-around the block.
+This fetches public pages at a polite rate (one request every 2s, browser
+`User-Agent`, no login, no CAPTCHA-solving) — the same posture as this repo's
+existing `car_finder.py` against Craigslist/Cars.com. It's still worth a read
+of Musick's ToS before leaning on this long-term. If they push back (blocks,
+rate-limits, or their ToS turns out to explicitly bar automated access),
+drop `"musick"` from `PLATFORMS` rather than working around the block.
 
 ## Platforms
 
-| Platform | Why it's here | Search strategy |
-|---|---|---|
-| **PublicSurplus.com** | Most Idaho city/county/PD auctions run through this — including Boise PD, Ada County, Meridian. | Keyword search per agency name, `s=id` (state filter). |
-| **GovDeals.com** | Larger municipal/county surplus; some ID agencies list here instead of PublicSurplus. | Keyword search, `locState=ID`. |
-| **Municibid.com** | Zip-radius search around Boise (83702) catches smaller cities a keyword search on agency name would miss. | `zipcode=83702`, 60mi radius, plus keyword. |
-| **PropertyRoom.com** | Police/sheriff evidence and seized-property auctions specifically. | Keyword search per agency name. |
-| **MusickAuction.com** *(domain guessed)* | Nampa-based Idaho auction house running actual in-person Treasure Valley law-enforcement/government sales — the circuit Grandpa already runs. | Single local auctioneer, not a national keyword-search platform — scans a handful of likely listing pages (`/`, `/auctions`, `/current-auctions`, ...) instead of searching per agency. Exempt from the geo filter (see below) since being on their site at all is the local signal. |
+| Platform | Status | Why it's here | Search strategy |
+|---|---|---|---|
+| **MusickAuction.com** | **Active, verified** | Nampa/Meridian, ID auction house running the actual in-person sales Grandpa already attends. | See "Musick, verified against real markup" above. |
+| **PublicSurplus.com** | Disabled, unverified | Most Idaho city/county/PD auctions run through this — including Boise PD, Ada County, Meridian. | Keyword search per agency name, `s=id` (state filter). |
+| **GovDeals.com** | Disabled, unverified | Larger municipal/county surplus; some ID agencies list here instead of PublicSurplus. | Keyword search, `locState=ID`. |
+| **Municibid.com** | Disabled, unverified | Zip-radius search around Boise (83702) catches smaller cities a keyword search on agency name would miss. | `zipcode=83702`, 60mi radius, plus keyword. |
+| **PropertyRoom.com** | Disabled, unverified | Police/sheriff evidence and seized-property auctions specifically. | Keyword search per agency name. |
 
-Agencies searched (`AGENCY_TERMS` in `auction_finder.py`): Boise PD, City of Boise,
-Ada County, City/PD of Meridian, Canyon County, City/PD of Nampa, Idaho State
-Police, City of Caldwell, Garden City, City of Eagle. Add more there as they come
-up — e.g. Kuna, Star, Emmett, Middleton, or a specific school district or fire
-district that runs its own surplus sales.
+"Disabled" means the code is intact but not in the `PLATFORMS` tuple — these
+were built as a wider net beyond Grandpa's usual rounds, but the current
+focus is Musick. `AGENCY_TERMS` in `auction_finder.py` (Boise PD, Ada
+County, Meridian, Nampa, Canyon County, Idaho State Police, Caldwell,
+Garden City, Eagle) only matters for those four, not Musick.
 
 ## Category split — Vehicles, Grandpa's Shop, and everything else
 

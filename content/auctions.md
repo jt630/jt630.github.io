@@ -2,15 +2,19 @@
 title: "Auction Watch"
 type: "auctions"
 layout: "single"
-description: "Monitoring Boise-metro government and police surplus auctions — PublicSurplus, GovDeals, Municibid, PropertyRoom, Musick Auction — and flagging lots where the current bid is well under what the thing would actually resell for."
+description: "Monitoring Boise-metro government and police surplus auctions — currently Musick Auction Co. — and flagging lots where the current bid is well under what the thing would actually resell for."
 tabTitle: "🔨 AUCTION WATCH"
 ---
 
-Boise-metro police and government surplus auctions run deep — the Boise PD auction
-alone regularly has dozens of lots, and that's before Ada County, Canyon County,
-Meridian, and Nampa get counted. Grandpa already runs the Meridian-area circuit in
-person; this casts a wider net across the Treasure Valley and does the boring part —
-reading every lot's fine print — automatically.
+Grandpa already runs the Meridian-area circuit in person via **Musick Auction
+Co.** (Nampa/Meridian, ID) — this watches that same source and does the boring
+part, reading every sale's fine print, automatically. Musick posts upcoming
+*auction events* (not individual lots) on its own site — real dates, locations,
+and category-rich titles ("TRUCKS, CARS, GUNS, AMMO..."), each linking out to
+a separate bidding subdomain for the actual line items. (Four more platforms —
+PublicSurplus, GovDeals, Municibid, PropertyRoom — are built but currently
+switched off; see `docs/AUCTION-MONITORING.md` if that net needs widening
+again later.)
 
 The page below is split in two: **Vehicles** first — every car, truck, or
 motorcycle lot found, across every platform and agency, for Grandpa to check —

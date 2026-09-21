@@ -110,18 +110,28 @@ OUT = os.path.join(_HERE, "..", "data", "auction_lots.yaml")
 CACHE_DIR = os.path.join(_HERE, "..", "data", ".cache")
 ZIP = "83702"  # Boise
 
-PLATFORMS = ("publicsurplus", "govdeals", "municibid", "propertyroom", "musick")
+# Narrowed to Musick alone by request: it's the one platform tied to
+# Jeremy's grandpa's actual auction circuit (a Nampa, ID auction house, not
+# a national platform). The other four keep their working fetch/parse code
+# in _DISABLED_PLATFORMS below - add any back to PLATFORMS to re-enable.
+PLATFORMS = ("musick",)
+_DISABLED_PLATFORMS = ("publicsurplus", "govdeals", "municibid", "propertyroom")
 
 # Musick Auction Co. (Nampa, ID) isn't a national keyword-search platform -
 # it's a single local auctioneer, so instead of searching per agency term
-# (like the other four) it just gets a handful of likely listing pages
-# scanned once. MUSICK_BASE is an unverified domain guess - see module
-# docstring.
+# (like the other four) it just gets a handful of listing pages scanned
+# once. CONFIRMED against real markup 2026-09-21 (domain, paths, and the
+# query-row parser below all verified via a live GitHub Actions run whose
+# raw HTML landed on the debug/auction-html branch - see
+# docs/AUCTION-MONITORING.md). musickauction.com is a WordPress/Divi
+# marketing site; "/current-auctions", "/online-auctions", and
+# "/law-enforcement" all 404 - there's no such page, "Current Auctions" in
+# the nav just points at "/auctions/".
 MUSICK_BASE = "https://www.musickauction.com"
-MUSICK_PATHS = [
-    "/", "/auctions", "/current-auctions", "/upcoming-auctions",
-    "/online-auctions", "/law-enforcement",
-]
+# "/" (homepage) has no events at all; "/auctions" and "/upcoming-auctions"
+# both embed the identical event-list widget (redundant but cheap, and a
+# fallback if one page's structure ever changes independently of the other).
+MUSICK_PATHS = ["/auctions", "/upcoming-auctions"]
 
 # Agencies whose auctions are worth searching for by name (police auctions
 # are the deep ones - Boise PD and Ada County both run big multi-lot sales).
@@ -191,17 +201,19 @@ CATEGORY_KEYWORDS = [
         "skid steer", "dump truck", "bucket truck", "trailer",
     ]),
     ("Vehicles", [
-        "sedan", "suv", "pickup", "motorcycle", "atv", "utv", "coupe",
-        "ford", "chevy", "chevrolet", "toyota", "honda", "dodge", "jeep",
-        "gmc", "nissan", "subaru", "mustang", "silverado", "tahoe",
+        "car", "truck", "vehicle", "sedan", "suv", "pickup", "motorcycle", "atv", "utv",
+        "coupe", "ford", "chevy", "chevrolet", "toyota", "honda", "dodge",
+        "jeep", "gmc", "nissan", "subaru", "mustang", "silverado", "tahoe",
         "explorer", "wrangler", "charger", "impala", "camry", "accord",
         "civic", "cargo van", "minivan", "vin", "odometer", "mileage",
         "4x4", "awd", "sedan", "hatchback", "pickup truck",
     ]),
-    ("Firearms", ["rifle", "pistol", "shotgun", "firearm", "ammo", "ammunition"]),
+    ("Firearms", [
+        "rifle", "pistol", "shotgun", "firearm", "ammo", "ammunition", "gun",
+    ]),
     ("Electronics", [
         "laptop", "computer", "tablet", "iphone", "smartphone", "camera",
-        "television", " tv ", "monitor", "gps", "drone", "gaming console",
+        "television", "tv", "monitor", "gps", "drone", "gaming console",
         "playstation", "xbox",
     ]),
     ("Jewelry & Valuables", [
@@ -223,7 +235,11 @@ CATEGORY_KEYWORDS = [
 def guess_category(lot):
     s = f" {lot.get('title', '')} {lot.get('description', '')} ".lower()
     for label, needles in CATEGORY_KEYWORDS:
-        if any(n in s for n in needles):
+        # \b...s?\b: word-boundary match with an optional trailing "s", so
+        # "car"/"truck"/"excavator" also catch "cars"/"trucks"/"excavators"
+        # without matching inside unrelated words ("scar", "cargo") the way
+        # a plain substring check would.
+        if any(re.search(r"\b" + re.escape(n) + r"s?\b", s) for n in needles):
             return label
     return "Other"
 
@@ -411,16 +427,136 @@ def fetch_platform(platform, terms, all_notes):
     return rows
 
 
+# Musick's public site is built with a Divi "Query Wrapper" widget that
+# lists upcoming AUCTION EVENTS (not individual lots - musickauction.com
+# itself carries no price/bid data at all). Each event links out to
+# bid.musickauction.com, a separate subdomain that presumably has the real
+# per-item lot/bid data - CONFIRMED the link pattern exists, UNVERIFIED what
+# that subdomain's markup looks like (see fetch_musick_catalog below).
+# Verified 2026-09-21 against real markup (debug/auction-html branch):
+#   <div class="query-row ...">
+#     <div class="query-field query-field-meta_auction_link qw-link">URL</div>
+#     <div class="query-field query-field-meta_image_url qw-image">
+#       <a href="URL"><img src="IMAGE_URL"></a></div>
+#     <div class="query-field query-field-meta_auction_title qw-title">
+#       <a href="URL"><h2>TITLE</h2></a></div>
+#     <div class="query-field query-field-meta_auction_date">DATE</div>
+#     <div class="query-field query-field-meta_auction_location">LOCATION</div>
+#     ...
+#   </div>
+_MUSICK_ROW_SPLIT_RE = re.compile(r'<div class="query-row[^"]*">')
+_MUSICK_LINK_RE = re.compile(r'query-field-meta_auction_link qw-link">\s*(\S[^<]*?)\s*<', re.S)
+_MUSICK_IMG_RE = re.compile(r'query-field-meta_image_url qw-image">.*?<img[^>]*src="([^"]+)"', re.S)
+_MUSICK_TITLE_RE = re.compile(r'query-field-meta_auction_title qw-title">\s*<a[^>]*>\s*<h2>(.*?)</h2>', re.S)
+_MUSICK_DATE_RE = re.compile(r'query-field-meta_auction_date">\s*([^<]+?)\s*<', re.S)
+_MUSICK_LOC_RE = re.compile(r'query-field-meta_auction_location">\s*([^<]+?)\s*<', re.S)
+
+
+def parse_musick_events(page):
+    """Parse Musick's upcoming-auction-events widget. Returns lot-shaped
+    dicts with current_bid=None (this page has no price data - just what
+    sale is happening, when, where, and a link to the real catalog)."""
+    out = []
+    for chunk in _MUSICK_ROW_SPLIT_RE.split(page)[1:]:
+        link_m = _MUSICK_LINK_RE.search(chunk)
+        title_m = _MUSICK_TITLE_RE.search(chunk)
+        if not link_m or not title_m:
+            continue
+        url = link_m.group(1).strip()
+        title = html.unescape(re.sub(r"<[^>]+>", "", title_m.group(1))).strip()
+        if not url or not title:
+            continue
+        date_m = _MUSICK_DATE_RE.search(chunk)
+        loc_m = _MUSICK_LOC_RE.search(chunk)
+        img_m = _MUSICK_IMG_RE.search(chunk)
+        location = loc_m.group(1).strip() if loc_m else None
+        out.append({
+            "platform": "musick",
+            "title": title,
+            "url": url,
+            "image_url": img_m.group(1) if img_m else None,
+            "current_bid": None,
+            "num_bids": None,
+            "close_time": date_m.group(1).strip() if date_m else None,
+            "category": None,
+            "description": f"Musick Auction event in {location}" if location else None,
+            "agency": f"Musick Auction Co. ({location})" if location else "Musick Auction Co.",
+        })
+    return out
+
+
+def fetch_musick_catalog(event_url, all_notes):
+    """Follow one event's catalog link to bid.musickauction.com for
+    individual lot-level data. UNVERIFIED - no real markup sample for this
+    subdomain yet (musickauction.com's own pages don't need login or JS to
+    read, but bid.musickauction.com might be a JS-rendered bidding app that
+    urllib can't see at all; that would show up here as 0 rows same as a
+    markup mismatch would). Falls back to json-ld the same way every other
+    platform in this file does; if that comes back empty, the calling event
+    row is kept as-is rather than dropped."""
+    code, page = fetch(event_url)
+    _save_html("musick_catalog", event_url.rstrip("/").rsplit("/", 1)[-1], page)
+    if code == 403:
+        all_notes.append(f"[musick-catalog] {event_url!r}: 403 BLOCKED")
+        return []
+    if not page:
+        all_notes.append(f"[musick-catalog] {event_url!r}: empty (code {code})")
+        return []
+    rows = [jsonld_to_lot(it, "musick") for it in extract_jsonld(page)]
+    rows = [r for r in rows if r.get("title")]
+    if rows:
+        all_notes.append(f"[musick-catalog] {event_url!r}: {len(rows)} lots via json-ld")
+    else:
+        all_notes.append(
+            f"[musick-catalog] {event_url!r}: 0 rows (no json-ld found, page "
+            f"{len(page)}b) -- bid.musickauction.com markup not yet verified, "
+            f"see docs/AUCTION-MONITORING.md"
+        )
+    return rows
+
+
 def fetch_musick(all_notes):
     platform = "musick"
     cache = os.path.join(CACHE_DIR, f"auction_{platform}.json")
-    rows = []
+    events = []
     for path in MUSICK_PATHS:
         url = MUSICK_BASE + path
         code, page = fetch(url)
-        rows.extend(parse_search(page, code, platform, path, all_notes))
+        _save_html(platform, path, page)
+        if code == 403:
+            all_notes.append(f"[{platform}] {path!r}: 403 BLOCKED")
+        elif not page:
+            all_notes.append(f"[{platform}] {path!r}: empty (code {code})")
+        else:
+            found = parse_musick_events(page)
+            if found:
+                all_notes.append(f"[{platform}] {path!r}: {len(found)} auction events")
+                events.extend(found)
+            else:
+                all_notes.append(
+                    f"[{platform}] {path!r}: 0 rows (no auction-event rows "
+                    f"found, page {len(page)}b) -- markup may have changed, "
+                    f"see docs/AUCTION-MONITORING.md"
+                )
         time.sleep(SLEEP)
-    rows = dedupe(rows)
+    events = dedupe(events)
+
+    # Stage 2: try to get real per-item lots from each event's catalog page.
+    # Whatever doesn't yield real lots keeps its event-level row instead of
+    # being dropped - "a sale is happening Monday with vehicles in it" is
+    # still useful even without per-item bids.
+    lots = []
+    for event in events:
+        catalog_rows = fetch_musick_catalog(event["url"], all_notes)
+        time.sleep(SLEEP)
+        if catalog_rows:
+            for r in catalog_rows:
+                r["agency"] = event["agency"]
+            lots.extend(catalog_rows)
+        else:
+            lots.append(event)
+
+    rows = dedupe(lots)
     if rows:
         os.makedirs(CACHE_DIR, exist_ok=True)
         with open(cache, "w", encoding="utf-8") as fh:
@@ -437,6 +573,10 @@ def fetch_musick(all_notes):
 
 
 def guess_agency(lot, term):
+    if lot.get("agency"):
+        # Already set by the fetcher itself (e.g. parse_musick_events()
+        # knows the real event location) - trust that over a guess.
+        return lot["agency"]
     s = f"{lot.get('title', '')} {lot.get('description', '')}".lower()
     for needle, label in AGENCY_LABELS:
         if needle in s:
