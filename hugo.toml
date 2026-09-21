@@ -146,15 +146,25 @@ title = "Almond Farm"
     parent = "ops"
     weight = 9
   [[menu.main]]
+    name = "The Forester"
+    url = "/forester/"
+    parent = "ops"
+    weight = 10
+  [[menu.main]]
+    name = "Garage"
+    url = "/garage/"
+    parent = "ops"
+    weight = 11
+  [[menu.main]]
     name = "Auction Watch"
     url = "/auctions/"
     parent = "ops"
-    weight = 10
+    weight = 12
   [[menu.main]]
     name = "Grandpa's Shop"
     url = "/grandpas-shop/"
     parent = "ops"
-    weight = 11
+    weight = 13
 
 [taxonomies]
   tag = "tags"

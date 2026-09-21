@@ -1,0 +1,59 @@
+# Subaru's official "Normal" maintenance schedule for a 2019 Forester 2.5i
+# (FB25, non-turbo, CVT). Sourced from Subaru's own maintenance-schedule
+# booklet (mirrored at subaruforester.org / transcribed at cars101.com) plus
+# Subaru's tech-info docs. Verify against the paper booklet in the glovebox
+# if it disagrees -- that's the actual document issued for this VIN.
+# Current mileage baseline: 34,728 mi as of 2026-08-08 (last oil change 32,844 mi, 2026-02-25).
+current_odometer: 34728
+current_date: "2026-08-08"
+last_oil_change: {odometer: 32844, date: "2026-02-25"}
+
+schedule:
+  - item: "Engine oil & filter"
+    interval: "Every 6,000 mi / 6 months (0W-20 synthetic)"
+    next_due: "~38,844 mi"
+    note: "No shorter break-in interval on this generation -- 6,000 mi applied from new."
+  - item: "Tire rotation"
+    interval: "Every 6,000 mi (bundled with oil change)"
+    next_due: "~38,844 mi"
+    note: null
+  - item: "Cabin air filter"
+    interval: "Every 12,000 mi / 12 months"
+    next_due: "check now — no replacement recorded since new"
+    note: "Not in the service history at all in 7 years. Replace it; it's a 10-minute glovebox job."
+  - item: "Engine air filter"
+    interval: "Every 30,000 mi / 30 months"
+    next_due: "due ~2026, last replaced 2024-03 (23,640 mi)"
+    note: null
+  - item: "Brake fluid"
+    interval: "Every 24,000 mi / 24 months"
+    next_due: "overdue — no brake fluid flush recorded in the service history"
+    note: "Cheap ($100-150) and it's brake fluid — don't skip it on a 7-year-old car."
+  - item: "Spark plugs"
+    interval: "Every 60,000 mi (iridium-tipped)"
+    next_due: "~60,000 mi — not yet due"
+    note: null
+  - item: "Coolant"
+    interval: "First change 137,500 mi / 11 yr, then every 75,000 mi / 6 yr"
+    next_due: "not due for years"
+    note: "3 coolant flushes appear in the dealer service history well before this interval — likely dealer-menu upsells, harmless but not required this early."
+  - item: "CVT (Lineartronic) fluid"
+    interval: "Subaru's official Normal schedule: inspection only, no fixed change. Severe schedule: inspect at 30,000 mi/30mo."
+    next_due: "do it now"
+    note: "Subaru Canada's own published normal interval is every 60,000 mi / 100,000 km — more conservative than the US 'inspect only' language, and independent Subaru specialists consistently recommend a drain-and-fill every 60k regardless of the US marketing. No record of it ever being done. At 35k miles under Boise conditions (short trips + mountain driving = 'severe' by Subaru's own definition), do it now — cheapest insurance ($150-300) against the one failure mode that actually ends a Subaru."
+  - item: "Differential / transfer fluid"
+    interval: "Inspect only under normal schedule"
+    next_due: "n/a"
+    note: null
+  - item: "Timing"
+    interval: "n/a — timing CHAIN, not belt (confirmed, no interference-belt item exists for this engine)"
+    next_due: "n/a"
+    note: "No scheduled replacement, ever. One of the real advantages of this engine vs older belt-driven Subarus."
+  - item: "12V battery"
+    interval: "No fixed interval; typical life 4-6 years"
+    next_due: "test it now"
+    note: "Car is 7 years old. If it's the original battery, have it load-tested at the next service — don't wait for it to strand you."
+  - item: "Brake pads"
+    interval: "Wear-based, inspected at every service; typical real-world life 40,000-70,000 mi"
+    next_due: "inspect — no pad replacement recorded yet at 35k, plausible for light-use miles"
+    note: null

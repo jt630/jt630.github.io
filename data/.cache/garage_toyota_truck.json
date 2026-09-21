@@ -1,0 +1,150 @@
+{
+  "fetched": "2026-09-14",
+  "source_note": "Retrieved via WebFetch on 2026-09-14; cars.com returns 403 to scripted/datacenter requests. Cars.com's 100mi-radius param did not confine results to the Treasure Valley -- it returned inventory nationwide (Seattle, Portland, Salt Lake City, Billings MT, Sacramento, etc.), which reads as: there is currently no matching cars.com dealer inventory within real driving range of Boise for these old/cheap categories. All rows below get geo-filtered out by garage_finder.py's in_region() unless a future run finds one that's actually ID.",
+  "rows": [
+    {
+      "source": "cars.com",
+      "title": "2003 Toyota Tacoma Xtracab",
+      "price": 15080,
+      "year": 2003,
+      "odometer": 168790,
+      "url": "https://www.cars.com/vehicledetail/065261ab-36d2-48f7-a0b7-e4117be0981e/",
+      "post_date": null,
+      "location": "Hayes Auto Sales, Roseville, CA",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2004 Toyota Tacoma Base",
+      "price": 15080,
+      "year": 2004,
+      "odometer": 69772,
+      "url": "https://www.cars.com/vehicledetail/3f351b0a-1564-449e-a96c-4fbb0f13cafa/",
+      "post_date": null,
+      "location": "Hayes Auto Sales, Roseville, CA",
+      "deal_rating": "Great Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2001 Toyota Tacoma Xtracab",
+      "price": 17195,
+      "year": 2001,
+      "odometer": 180669,
+      "url": "https://www.cars.com/vehicledetail/8a7da028-0559-46e8-9ee8-c10fd62c9899/",
+      "post_date": null,
+      "location": "Eastlake Auto Brokers, Kirkland, WA",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2003 Toyota Tacoma Double Cab",
+      "price": 19594,
+      "year": 2003,
+      "odometer": 141068,
+      "url": "https://www.cars.com/vehicledetail/e7341582-af5b-4273-8165-58b0fc37fadb/",
+      "post_date": null,
+      "location": "Dastrup Auto Inc, Lindon, UT",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2003 Toyota Tacoma PreRunner Double Cab",
+      "price": 23999,
+      "year": 2003,
+      "odometer": 105748,
+      "url": "https://www.cars.com/vehicledetail/42fa0c7d-4218-4821-94bd-34b874c6f0da/",
+      "post_date": null,
+      "location": "Seattle Finest Motors, Lynnwood, WA",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2002 Toyota Tacoma Xtracab",
+      "price": 6995,
+      "year": 2002,
+      "odometer": 300000,
+      "url": "https://www.cars.com/vehicledetail/1074ca6b-b6a8-4473-86fd-f1ec87b2c189/",
+      "post_date": null,
+      "location": "Redline Auto Sales, Vancouver, WA",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2003 Toyota Tacoma PreRunner Xtracab",
+      "price": 8145,
+      "year": 2003,
+      "odometer": 264665,
+      "url": "https://www.cars.com/vehicledetail/62e30ee6-05c5-41e1-a9f7-bfea45c547cc/",
+      "post_date": null,
+      "location": "Rickie's Auto LLC, Portland, OR",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2001 Toyota Tacoma Xtracab",
+      "price": 9145,
+      "year": 2001,
+      "odometer": 226991,
+      "url": "https://www.cars.com/vehicledetail/bf105c34-95bd-4300-8007-6127e8710c64/",
+      "post_date": null,
+      "location": "Rickie's Auto LLC, Portland, OR",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2003 Toyota Tacoma Xtracab",
+      "price": 10995,
+      "year": 2003,
+      "odometer": 241607,
+      "url": "https://www.cars.com/vehicledetail/be1a9e2e-059d-45bc-93fb-882d05f2e983/",
+      "post_date": null,
+      "location": "Clear Choice Automotive, Milwaukie, OR",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2004 Toyota Tacoma Double Cab",
+      "price": 11988,
+      "year": 2004,
+      "odometer": 277396,
+      "url": "https://www.cars.com/vehicledetail/9222cb17-5b92-48e9-b8c2-dbecccd43cbf/",
+      "post_date": null,
+      "location": "Speedy Car Sales, Sacramento, CA",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1996 Toyota Tacoma Xtracab",
+      "price": 12145,
+      "year": 1996,
+      "odometer": 209639,
+      "url": "https://www.cars.com/vehicledetail/f938e1b1-5a6b-405a-b105-2a803b9408d7/",
+      "post_date": null,
+      "location": "Rickie's Auto LLC, Portland, OR",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2002 Toyota Tacoma Double Cab",
+      "price": 12195,
+      "year": 2002,
+      "odometer": 247510,
+      "url": "https://www.cars.com/vehicledetail/c5470632-3bac-431a-85c6-72e4093eb373/",
+      "post_date": null,
+      "location": "Parkway Auto, Deer Park, WA",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    }
+  ]
+}

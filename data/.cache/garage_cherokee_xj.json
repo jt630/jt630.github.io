@@ -1,0 +1,78 @@
+{
+  "fetched": "2026-09-14",
+  "source_note": "Retrieved via WebFetch on 2026-09-14; cars.com returns 403 to scripted/datacenter requests. Cars.com's 100mi-radius param did not confine results to the Treasure Valley -- it returned inventory nationwide (Seattle, Portland, Salt Lake City, Billings MT, Sacramento, etc.), which reads as: there is currently no matching cars.com dealer inventory within real driving range of Boise for these old/cheap categories. All rows below get geo-filtered out by garage_finder.py's in_region() unless a future run finds one that's actually ID.",
+  "rows": [
+    {
+      "source": "cars.com",
+      "title": "1998 Jeep Cherokee Classic 4WD",
+      "price": 3101,
+      "year": 1998,
+      "odometer": 298290,
+      "url": "https://www.cars.com/vehicledetail/ea813fc6-b103-4a1d-b0ae-58851efeeffb/",
+      "post_date": null,
+      "location": "Performance Auto Sales Inc, Billings, MT",
+      "deal_rating": "Great Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2000 Jeep Cherokee Sport 4WD",
+      "price": 14700,
+      "year": 2000,
+      "odometer": 136240,
+      "url": "https://www.cars.com/vehicledetail/575d8d44-dc6e-41ae-a8b6-e515f57184c4/",
+      "post_date": null,
+      "location": "Oregon's Best Auto Sales, Canby, OR",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1997 Jeep Cherokee Country",
+      "price": 15594,
+      "year": 1997,
+      "odometer": 185555,
+      "url": "https://www.cars.com/vehicledetail/66a04f0a-a122-4ba8-943d-76ca328b09ba/",
+      "post_date": null,
+      "location": "Dastrup Auto Inc., Lindon, UT",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2000 Jeep Cherokee SE",
+      "price": 3995,
+      "year": 2000,
+      "odometer": 92141,
+      "url": "https://www.cars.com/vehicledetail/bea7eea0-9264-48e4-b782-be9741b12929/",
+      "post_date": null,
+      "location": "Roseville Auto Sales, Roseville, CA",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1997 Jeep Cherokee SE 4WD",
+      "price": 7238,
+      "year": 1997,
+      "odometer": 264412,
+      "url": "https://www.cars.com/vehicledetail/f6b1db00-6e06-4fd2-a592-f7274bc285a5/",
+      "post_date": null,
+      "location": "Bickmore Auto Sales, Gresham, OR",
+      "deal_rating": "Great Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2001 Jeep Cherokee Sport",
+      "price": 9145,
+      "year": 2001,
+      "odometer": 176522,
+      "url": "https://www.cars.com/vehicledetail/8e8a2576-ae03-4b96-969b-186d40950105/",
+      "post_date": null,
+      "location": "Rickie's Auto LLC, Portland, OR",
+      "deal_rating": "Fair Price",
+      "market_delta": null
+    }
+  ]
+}

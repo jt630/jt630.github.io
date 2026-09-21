@@ -1,0 +1,150 @@
+{
+  "fetched": "2026-09-14",
+  "source_note": "Retrieved via WebFetch on 2026-09-14; cars.com returns 403 to scripted/datacenter requests. Cars.com's 100mi-radius param did not confine results to the Treasure Valley -- it returned inventory nationwide (Seattle, Portland, Salt Lake City, Billings MT, Sacramento, etc.), which reads as: there is currently no matching cars.com dealer inventory within real driving range of Boise for these old/cheap categories. All rows below get geo-filtered out by garage_finder.py's in_region() unless a future run finds one that's actually ID.",
+  "rows": [
+    {
+      "source": "cars.com",
+      "title": "2000 Toyota 4Runner SR5",
+      "price": 7699,
+      "year": 2000,
+      "odometer": 272917,
+      "url": "https://www.cars.com/vehicledetail/f5e16eae-9ca7-4fc4-b41a-e43a9cdf50dc/",
+      "post_date": null,
+      "location": "Rich's Car Corner, Seattle, WA",
+      "deal_rating": "Good Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1999 Toyota 4Runner SR5",
+      "price": 8999,
+      "year": 1999,
+      "odometer": 335793,
+      "url": "https://www.cars.com/vehicledetail/a680b7a7-2919-4635-9428-aa38109095a1/",
+      "post_date": null,
+      "location": "Seattle Finest Motors, Lynnwood, WA",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1990 Toyota 4Runner SR5 4WD",
+      "price": 17100,
+      "year": 1990,
+      "odometer": 180465,
+      "url": "https://www.cars.com/vehicledetail/f4aacc90-b7cd-4a5d-a1ea-ce48402d7ba5/",
+      "post_date": null,
+      "location": "Oregon's Best Auto Sales, Canby, OR",
+      "deal_rating": "Great Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1990 Toyota 4Runner SR5 4WD",
+      "price": 17100,
+      "year": 1990,
+      "odometer": 185707,
+      "url": "https://www.cars.com/vehicledetail/06929f0c-9092-4997-8667-043719256c23/",
+      "post_date": null,
+      "location": "Oregon's Best Auto Sales, Canby, OR",
+      "deal_rating": "Great Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1997 Toyota 4Runner SR5",
+      "price": 17988,
+      "year": 1997,
+      "odometer": 248839,
+      "url": "https://www.cars.com/vehicledetail/f9860ff0-dc70-41ac-8409-89075a003dd3/",
+      "post_date": null,
+      "location": "Advantage Nissan, Bremerton, WA",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1999 Toyota 4Runner SR5",
+      "price": 5294,
+      "year": 1999,
+      "odometer": 286000,
+      "url": "https://www.cars.com/vehicledetail/c914798c-9aa8-42ab-9c08-749917b1ebfc/",
+      "post_date": null,
+      "location": "Daddys Auto Sales LLC, Salt Lake City, UT",
+      "deal_rating": "Great Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2000 Toyota 4Runner SR5 Sport",
+      "price": 6991,
+      "year": 2000,
+      "odometer": 341946,
+      "url": "https://www.cars.com/vehicledetail/1112a613-a13d-4f38-9b43-c524550f6059/",
+      "post_date": null,
+      "location": "Mead Motor Company, Mead, WA",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2001 Toyota 4Runner Limited",
+      "price": 6995,
+      "year": 2001,
+      "odometer": 242929,
+      "url": "https://www.cars.com/vehicledetail/5928583d-86f4-4330-b665-59015d654d9f/",
+      "post_date": null,
+      "location": "Clear Choice Automotive, Milwaukie, OR",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1998 Toyota 4Runner SR5",
+      "price": 7149,
+      "year": 1998,
+      "odometer": 335588,
+      "url": "https://www.cars.com/vehicledetail/7756549a-b9f8-4f1a-a759-3d3f47c27323/",
+      "post_date": null,
+      "location": "Alpine Motors, Milwaukie, OR",
+      "deal_rating": "Great Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1999 Toyota 4Runner SR5",
+      "price": 10145,
+      "year": 1999,
+      "odometer": 211866,
+      "url": "https://www.cars.com/vehicledetail/f8504545-ad19-4831-a99e-5d589bfd9e85/",
+      "post_date": null,
+      "location": "Rickie's Auto LLC, Portland, OR",
+      "deal_rating": "Great Deal",
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "1995 Toyota 4Runner SR5 V6",
+      "price": 14995,
+      "year": 1995,
+      "odometer": 123951,
+      "url": "https://www.cars.com/vehicledetail/3f1e3c3f-11ac-47a6-9989-6793b8ae9152/",
+      "post_date": null,
+      "location": "Jimmy Vasser Toyota of Napa, Napa, CA",
+      "deal_rating": null,
+      "market_delta": null
+    },
+    {
+      "source": "cars.com",
+      "title": "2002 Toyota 4Runner SR5",
+      "price": 21995,
+      "year": 2002,
+      "odometer": 133535,
+      "url": "https://www.cars.com/vehicledetail/0da96fb8-83b7-41aa-a88f-57e5f710e6f8/",
+      "post_date": null,
+      "location": "Travel Motors LLC, Milwaukie, OR",
+      "deal_rating": null,
+      "market_delta": null
+    }
+  ]
+}

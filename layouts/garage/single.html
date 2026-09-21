@@ -1,0 +1,205 @@
+{{ define "head-extra" }}
+<style>
+/* ===========================
+   GARAGE — Car Hunt 2.0
+   =========================== */
+.gar-page { max-width: 1080px; margin: 0 auto; padding: 0 24px 100px; }
+
+.gar-hero { text-align: center; padding: 48px 16px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 40px; }
+.gar-hero h1 {
+  font-family: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  font-size: clamp(56px, 12vw, 120px); line-height: 0.9; margin: 0 0 12px;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.02em;
+  text-shadow: 4px 4px 0 var(--black), 8px 8px 0 var(--pink);
+}
+.gar-page a { color: var(--pink); }
+.gar-page h2 {
+  font-family: 'Impact', 'Arial Narrow Bold', sans-serif; text-transform: uppercase;
+  font-size: 27px; letter-spacing: 0.03em; color: var(--gold);
+  border-bottom: 2px solid var(--pink); padding-bottom: 6px; margin: 54px 0 18px;
+}
+.gar-page h3 { color: var(--pink); margin: 26px 0 8px; font-size: 18px; }
+.gar-page .prose { color: var(--white-dim); line-height: 1.65; }
+
+.gar-model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 20px 0; }
+.gar-model-card { border: 2px outset rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); padding: 18px 20px; }
+.gar-model-card h3 { margin-top: 0; }
+.gar-rank { font-family: 'Impact', sans-serif; font-size: 12px; color: var(--gold); letter-spacing: 0.1em; }
+.gar-tag { display: inline-block; font-size: 11px; padding: 2px 8px; margin: 4px 4px 4px 0; border: 1px solid var(--pink); color: var(--pink); text-transform: uppercase; letter-spacing: 0.05em; }
+.gar-model-card p { color: var(--white-dim); line-height: 1.55; font-size: 14px; margin: 8px 0 0; }
+.gar-watch { border-left: 3px solid #ff6b6b; padding-left: 10px; margin-top: 10px; font-size: 13px; color: var(--white-faint); }
+
+.gar-table-wrap { overflow-x: auto; margin: 16px 0; border: 2px outset rgba(255,255,255,0.15); }
+table.gar-tbl { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 600px; }
+table.gar-tbl th, table.gar-tbl td { padding: 8px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+table.gar-tbl th { background: var(--black); color: var(--gold); text-transform: uppercase; font-size: 11px; letter-spacing: 0.06em; }
+table.gar-tbl tr:hover td { background: rgba(255,45,138,0.06); }
+.gar-cat-label { margin: 26px 0 6px; color: var(--pink); font-size: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+.gar-empty { color: var(--white-faint); font-style: italic; padding: 6px 0 18px; }
+
+.gar-callout { border: 2px solid #ff6b6b; background: rgba(255,107,107,0.06); padding: 12px 16px; margin: 16px 0; font-size: 14px; color: var(--white-dim); }
+.gar-callout strong { color: #ff6b6b; }
+
+.gar-checklist { columns: 2; column-gap: 32px; color: var(--white-dim); line-height: 1.7; margin: 8px 0 24px; }
+.gar-checklist li { break-inside: avoid; margin-bottom: 6px; }
+@media (max-width: 640px) { .gar-checklist { columns: 1; } }
+
+.gar-fb-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.gar-fb-links a { border: 2px outset rgba(255,255,255,0.2); padding: 8px 14px; color: var(--gold); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+.gar-fb-links a:hover { background: var(--pink); color: var(--black); }
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $L := .Site.Data.garage_listings }}
+<div class="gar-page">
+
+  <div class="gar-hero"><h1>Garage</h1></div>
+  <div class="prose">{{ .Content }}</div>
+
+  <!-- ─────────── THE FRAME-RUST WARNING (goes first, matters most) ─────────── -->
+  <div class="gar-callout">
+    <strong>Before anything else: check the frame.</strong> Toyota ran a well-known
+    frame-rust recall/buyback program covering roughly 1995&ndash;2000 Tacomas, 4Runners,
+    and T100s after frames were perforating and failing structurally. Any Toyota
+    truck or 4Runner from that window needs the frame rails and rear leaf-spring
+    hangers inspected before you fall in love with it &mdash; a rusted-through frame
+    isn't a project, it's a paperweight. A truck with buyback/frame-replacement
+    paperwork is actually a plus, not a red flag. Idaho salts roads less than the
+    Rust Belt or coastal Pacific NW, but check harder on anything that spent its
+    life somewhere wetter before landing here.
+  </div>
+
+  <!-- ─────────── MODEL SHORTLIST ─────────── -->
+  <h2>The three candidates</h2>
+  <div class="gar-model-grid">
+    <div class="gar-model-card">
+      <span class="gar-rank">MOST CAPABLE</span>
+      <h3>4Runner — 2nd gen (1990&ndash;95) or 3rd gen (1996&ndash;2002)</h3>
+      <span class="gar-tag">Solid rear axle (2nd gen)</span><span class="gar-tag">Huge aftermarket</span><span class="gar-tag">Cult following</span>
+      <p>The 2nd-gen is boxier, has a stronger solid rear axle, and is quietly
+        becoming collectible — clean ones aren't cheap anymore. The 3rd-gen rides
+        better and is still affordable. Both offer a bulletproof 4-cylinder
+        (22RE / 2RZ-FE) or a punchier V6 with a real weak point — see below.</p>
+      <div class="gar-watch"><strong>Watch:</strong> the 3.4L V6 (5VZ-FE, 3rd gen) and
+        3.0L V6 (3VZE, 2nd gen) both run a <strong>timing belt</strong>, not a chain,
+        on an interference engine — a snapped belt destroys the motor. Confirm the
+        belt's been done in the last ~90k miles or budget for it immediately. The
+        4-cylinders are chain-driven and don't have this risk.</div>
+    </div>
+    <div class="gar-model-card">
+      <span class="gar-rank">SIMPLEST TO WRENCH ON</span>
+      <h3>Toyota Pickup (pre-1995) or 1st-gen Tacoma (1995&ndash;2004)</h3>
+      <span class="gar-tag">Cheapest entry</span><span class="gar-tag">Simple mechanicals</span><span class="gar-tag">Legendary reliability</span>
+      <p>Same drivetrain family as the 4Runner of its era. A regular-cab, manual,
+        4-cylinder truck is about as simple and beatable-up as it gets — this is
+        the "drive it into the ground and don't cry about it" pick.</p>
+      <div class="gar-watch"><strong>Watch:</strong> same V6 timing-belt caveat as the
+        4Runner if it's not the 4-cylinder. Same frame-rust window if it's a
+        1995&ndash;2000 truck.</div>
+    </div>
+    <div class="gar-model-card">
+      <span class="gar-rank">CHEAPEST, BIGGEST COMMUNITY</span>
+      <h3>Jeep Cherokee XJ (1984&ndash;2001)</h3>
+      <span class="gar-tag">4.0L I6 — nearly indestructible</span><span class="gar-tag">Unibody</span><span class="gar-tag">Massive aftermarket</span>
+      <p>The 4.0L inline six (1987+) is one of the toughest engines ever put in
+        an American vehicle — pushrod-simple, torquey, and still supported with
+        crate replacements today. Unibody construction means lighter and better
+        on-road manners than a body-on-frame truck, at some cost to "real truck"
+        feel. Cheapest way into this list by a wide margin, and the XJ community
+        is still enormous.</p>
+      <div class="gar-watch"><strong>Watch:</strong> aging electrical (dash grounds,
+        wiring harness gremlins are the XJ's signature annoyance), and
+        <strong>unibody rust</strong> in the rockers/floor pans/rear shock towers —
+        this is structural in a way frame rust on a body-on-frame truck isn't.
+        Prefer the AX15/NV3550 manual or the AW4 automatic; the earlier
+        Peugeot BA10/5 manual (1987&ndash;89) is a known weak point.</div>
+    </div>
+  </div>
+
+  <!-- ─────────── LIVE LISTINGS ─────────── -->
+  <h2>Live listings — Boise metro</h2>
+  <p class="prose">
+    {{ with $L }}Scraped {{ .generated }} by <code>scripts/garage_finder.py</code>.
+    Sorted by <strong>miles per year</strong> where the mileage is known — lowest
+    first, since that's the actual filter for this hunt. Craigslist search pages
+    don't carry odometer; individual listings sometimes do once you open them.
+    {{ else }}Run <code>python scripts/garage_finder.py</code> to populate <code>data/garage_listings.yaml</code>.{{ end }}
+  </p>
+  <div class="gar-callout">
+    <strong>Honest read on today's inventory: thin.</strong> Three listings total
+    across all of the Treasure Valley right now, and none of them is the
+    genuine low-miles find this hunt is looking for — the 4Runner is a
+    216,000-mile truck (~6,750 mi/yr, unremarkable), and the better of the two
+    Cherokees is closer (~5,000 mi/yr) but still not a standout. These vehicles
+    trade mostly on Facebook Marketplace and by word of mouth, not dealer lots
+    — re-run the scraper periodically and check the FB links below rather than
+    treating today's list as the field.
+  </div>
+  {{ with $L }}
+  {{ $cats := slice
+      (dict "key" "fourrunner_classic" "label" "Classic 4Runner (1990-2002)")
+      (dict "key" "toyota_truck" "label" "Toyota Pickup / 1st-gen Tacoma")
+      (dict "key" "cherokee_xj" "label" "Jeep Cherokee XJ") }}
+  {{ range $cats }}
+    {{ $rows := index $L .key }}
+    {{ $rated := sort (where $rows "miles_per_year" "!=" nil) "miles_per_year" }}
+    {{ $unrated := where $rows "miles_per_year" nil }}
+    {{ $ordered := $rated | append $unrated }}
+    <div class="gar-cat-label">{{ .label }} &mdash; {{ len $rows }} listed</div>
+    {{ if $rows }}
+    <div class="gar-table-wrap">
+      <table class="gar-tbl">
+        <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Mi/yr</th><th>Where</th><th></th></tr></thead>
+        <tbody>
+        {{ range $ordered }}
+          <tr>
+            <td>{{ .title }}</td>
+            <td>{{ with .year }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .price }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .odometer }}{{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .miles_per_year }}{{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+            <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
+          </tr>
+        {{ end }}
+        </tbody>
+      </table>
+    </div>
+    {{ else }}
+    <p class="gar-empty">Nothing listed right now — check Facebook Marketplace below.</p>
+    {{ end }}
+  {{ end }}
+  {{ end }}
+
+  <h3>Facebook Marketplace</h3>
+  <p class="prose">This is where old project trucks actually trade. Saved searches (150 mi around Boise):</p>
+  <div class="gar-fb-links">
+    <a href="https://www.facebook.com/marketplace/boise/search?query=toyota%204runner&exact=false&radius_km=240" target="_blank" rel="noopener">Classic 4Runner</a>
+    <a href="https://www.facebook.com/marketplace/boise/search?query=toyota%20pickup&exact=false&radius_km=240" target="_blank" rel="noopener">Toyota Pickup</a>
+    <a href="https://www.facebook.com/marketplace/boise/search?query=toyota%20tacoma&exact=false&radius_km=240" target="_blank" rel="noopener">1st-gen Tacoma</a>
+    <a href="https://www.facebook.com/marketplace/boise/search?query=jeep%20cherokee&exact=false&radius_km=240" target="_blank" rel="noopener">Jeep Cherokee XJ</a>
+  </div>
+
+  <!-- ─────────── INSPECTION CHECKLIST ─────────── -->
+  <h2>What to check on an old one</h2>
+  <ul class="gar-checklist">
+    <li><strong>Frame / unibody rust</strong> — see the callout above. Get underneath with a flashlight and a screwdriver (gently probe suspect rust, don't stab good metal).</li>
+    <li><strong>Timing belt records</strong> (V6 engines only) — if unknown, price in an immediate belt/water-pump job before it becomes a destroyed engine.</li>
+    <li><strong>Title status</strong> — clean vs. rebuilt/salvage matters even more on a cheap old vehicle; a rebuilt title on a $5k truck is a different conversation than on a $30k daily driver.</li>
+    <li><strong>Cold start</strong> — smoke color, idle roughness, any death-rattle from the top end.</li>
+    <li><strong>4WD actually engages</strong> — old transfer cases seize from disuse; test it in a dirt lot, both high and low range.</li>
+    <li><strong>Manual transmission feel</strong> (if equipped) — clutch chatter, grinding into gear, and on the Jeep specifically confirm it's the AX15/NV3550, not the weaker early Peugeot box.</li>
+    <li><strong>Electrical basics</strong> — every gauge, all lights, A/C blows cold. Old wiring is where these vehicles nickel-and-dime you.</li>
+    <li><strong>Suspension/steering play</strong> — expected on a 25-30 year old vehicle to some degree, but excessive play or clunking over bumps means ball joints / tie rods / bushings, all doable DIY jobs but worth knowing about before you buy.</li>
+    <li><strong>Parts availability check</strong> — before buying, search the exact model/engine on RockAuto or the model's forum (yotatech.com for Toyota, naxja.org / cherokeeforum.com for the XJ) to confirm it's as easy to source as reputation suggests. It almost always is for these three.</li>
+  </ul>
+
+  <p class="fst-note" style="font-size:12px;color:var(--white-faint);font-style:italic;">
+    Data behind this page: <code>data/garage_listings.yaml</code>, generated by
+    <code>scripts/garage_finder.py</code> — re-run it periodically, this category
+    turns over slowly and today's list is thin.
+  </p>
+
+</div>
+{{ end }}
