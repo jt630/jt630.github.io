@@ -2,7 +2,7 @@
 title: "Auction Watch"
 type: "auctions"
 layout: "single"
-description: "Monitoring Boise-metro government and police surplus auctions — PublicSurplus, GovDeals, Municibid, PropertyRoom — and flagging lots where the current bid is well under what the thing would actually resell for."
+description: "Monitoring Boise-metro government and police surplus auctions — PublicSurplus, GovDeals, Municibid, PropertyRoom, Musick Auction — and flagging lots where the current bid is well under what the thing would actually resell for."
 tabTitle: "🔨 AUCTION WATCH"
 ---
 

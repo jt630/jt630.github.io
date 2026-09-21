@@ -12,6 +12,10 @@ Sources
 3. Municibid.com      - zip-radius search around Boise (83702); picks up
    smaller cities that don't show up on a keyword search.
 4. PropertyRoom.com   - police/sheriff evidence & seized-property auctions.
+5. MusickAuction.com  - Nampa-based Idaho auction house that runs a lot of
+   the actual Treasure Valley law-enforcement/government sales in person
+   (Jeremy's grandpa's usual circuit). Domain is a best guess (see below) -
+   confirm/correct it if it's wrong.
 
 Each platform gets a search URL per agency term (see AGENCY_TERMS). Parsing
 tries, in order:
@@ -23,9 +27,12 @@ tries, in order:
      never fabricate a row.
 
 IMPORTANT - unverified against live markup. This was written in a sandboxed
-dev session whose network policy blocks all four of these domains outright
+dev session whose network policy blocks all five of these domains outright
 (confirmed via the egress proxy status, not guessed), so none of this has
-been run against real HTML. Treat the parsers as informed first drafts, the
+been run against real HTML. musickauction.com specifically is also an
+unverified *domain guess* (inferred from "musick" + Boise/police-auction
+context, not looked up) - if that's not the real site, fix MUSICK_BASE
+below. Treat the parsers as informed first drafts, the
 same starting point car_finder.py had for Craigslist/Cars.com before a few
 real runs shook out the actual markup. First live run should be the
 `auction-monitor` GitHub Action's `workflow_dispatch` (a GH-hosted runner has
@@ -34,19 +41,25 @@ open internet) - read its job log's fetch notes, and if a platform reports
 follow-up pass with a platform-specific regex added to `PLATFORM_FALLBACK`
 below, informed by what the log/a manual page-view shows.
 
-A second, separate concern: PublicSurplus/GovDeals/Municibid/PropertyRoom
-Terms of Service may restrict automated access. This fetches public search-
-result pages at a polite rate (one request per SLEEP seconds, browser
-User-Agent, no login) for personal, non-commercial monitoring - the same
-posture as this repo's existing car_finder.py - but it's worth a read of
-each site's ToS before leaning on this long-term, and backing off (or
-dropping a platform) if a site pushes back.
+A second, separate concern: any of these five sites' Terms of Service may
+restrict automated access. This fetches public search-result / listing
+pages at a polite rate (one request per SLEEP seconds, browser User-Agent,
+no login) for personal, non-commercial monitoring - the same posture as
+this repo's existing car_finder.py - but it's worth a read of each site's
+ToS before leaning on this long-term, and backing off (or dropping a
+platform) if a site pushes back. Musick is a small local business, not a
+national platform, so this is worth double-checking there in particular -
+if scraping their site isn't welcome, drop "musick" from PLATFORMS and
+just check it by hand.
 
 Geo filter: agency/title/description text must mention a Treasure Valley
 city or county (Boise, Meridian, Eagle, Nampa, Caldwell, Garden City, Kuna,
 Star, Ada County, Canyon County, ...) - rows with no local signal are
 dropped rather than kept-by-default, since these searches aren't reliably
-geo-scoped the way car_finder's Craigslist search is.
+geo-scoped the way car_finder's Craigslist search is. Musick is exempt from
+this filter - being listed on a Nampa, ID auction house's own site already
+is the local signal, and its lots won't reliably repeat a city name in
+their title/description the way a national platform's do.
 
 Category: every lot is keyword-classified into a broad bucket (Vehicles,
 Heavy Equipment, Firearms, Electronics, Jewelry & Valuables, Tools &
@@ -94,7 +107,18 @@ OUT = os.path.join(_HERE, "..", "data", "auction_lots.yaml")
 CACHE_DIR = os.path.join(_HERE, "..", "data", ".cache")
 ZIP = "83702"  # Boise
 
-PLATFORMS = ("publicsurplus", "govdeals", "municibid", "propertyroom")
+PLATFORMS = ("publicsurplus", "govdeals", "municibid", "propertyroom", "musick")
+
+# Musick Auction Co. (Nampa, ID) isn't a national keyword-search platform -
+# it's a single local auctioneer, so instead of searching per agency term
+# (like the other four) it just gets a handful of likely listing pages
+# scanned once. MUSICK_BASE is an unverified domain guess - see module
+# docstring.
+MUSICK_BASE = "https://www.musickauction.com"
+MUSICK_PATHS = [
+    "/", "/auctions", "/current-auctions", "/upcoming-auctions",
+    "/online-auctions", "/law-enforcement",
+]
 
 # Agencies whose auctions are worth searching for by name (police auctions
 # are the deep ones - Boise PD and Ada County both run big multi-lot sales).
@@ -357,6 +381,31 @@ def fetch_platform(platform, terms, all_notes):
     return rows
 
 
+def fetch_musick(all_notes):
+    platform = "musick"
+    cache = os.path.join(CACHE_DIR, f"auction_{platform}.json")
+    rows = []
+    for path in MUSICK_PATHS:
+        url = MUSICK_BASE + path
+        code, page = fetch(url)
+        rows.extend(parse_search(page, code, platform, path, all_notes))
+        time.sleep(SLEEP)
+    rows = dedupe(rows)
+    if rows:
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        with open(cache, "w", encoding="utf-8") as fh:
+            json.dump({"fetched": date.today().isoformat(), "rows": rows}, fh)
+    elif os.path.exists(cache):
+        with open(cache, encoding="utf-8") as fh:
+            c = json.load(fh)
+        rows = c.get("rows", [])
+        all_notes.append(
+            f"[{platform}] no live rows; used cache from {c.get('fetched')} "
+            f"({len(rows)} rows)"
+        )
+    return rows
+
+
 def guess_agency(lot, term):
     s = f"{lot.get('title', '')} {lot.get('description', '')}".lower()
     for needle, label in AGENCY_LABELS:
@@ -366,6 +415,8 @@ def guess_agency(lot, term):
 
 
 def in_region(lot):
+    if lot.get("platform") == "musick":
+        return True  # a Nampa, ID auctioneer's own listings are local by definition
     s = " ".join(
         str(lot.get(k) or "") for k in ("agency", "title", "description", "url")
     ).lower()
@@ -379,9 +430,14 @@ def main():
 
     all_rows, all_notes = [], []
     for platform in PLATFORMS:
-        rows = fetch_platform(platform, AGENCY_TERMS, all_notes)
+        if platform == "musick":
+            rows = fetch_musick(all_notes)
+            fallback_agency = "Musick Auction Co."
+        else:
+            rows = fetch_platform(platform, AGENCY_TERMS, all_notes)
+            fallback_agency = None
         for r in rows:
-            r["agency"] = guess_agency(r, None)
+            r["agency"] = guess_agency(r, fallback_agency)
         all_rows.extend(rows)
 
     merged = dedupe(all_rows)

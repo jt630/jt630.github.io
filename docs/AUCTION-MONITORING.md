@@ -14,7 +14,7 @@ score), scheduled by
 
 The Boise PD auction alone runs dozens of lots at a time; Ada County, Canyon County,
 Meridian, and Nampa each run their own on top of that. Reading every listing's fine
-print by hand across four sites, every few days, doesn't scale. This automates the
+print by hand across five sites, every few days, doesn't scale. This automates the
 boring part — pull everything, filter to the Treasure Valley, ask Claude what each
 lot would actually resell for, and surface the gap.
 
@@ -25,12 +25,20 @@ that aren't on anyone's regular rounds — rather than duplicating it.
 ## ⚠️ Known limitation: unverified against live markup
 
 This was built in a sandboxed dev session whose network egress policy blocks
-`publicsurplus.com`, `govdeals.com`, `municibid.com`, and `propertyroom.com`
-outright (confirmed via the proxy status endpoint, not guessed). **None of the
-fetch/parse code in `auction_finder.py` has run against real HTML from these
-sites.** The search URLs and the reliance on embedded JSON-LD are informed
-guesses based on how these platforms and similar auction sites are generally
-built, not verified endpoints.
+`publicsurplus.com`, `govdeals.com`, `municibid.com`, `propertyroom.com`, and
+`musickauction.com` outright (confirmed via the proxy status endpoint, not
+guessed). **None of the fetch/parse code in `auction_finder.py` has run
+against real HTML from these sites.** The search URLs and the reliance on
+embedded JSON-LD are informed guesses based on how these platforms and
+similar auction sites are generally built, not verified endpoints.
+
+`musickauction.com` carries an extra layer of uncertainty on top of that:
+it's a **guessed domain**, not just an unverified one. "Musick" + a Boise
+police-auction context strongly suggests **Musick Auction Co.**, a
+Nampa-based Idaho auction house that runs a lot of the actual in-person
+Treasure Valley law-enforcement sales — but that inference hasn't been
+confirmed against the real site. If `musickauction.com` turns out to be
+wrong (or dead), fix `MUSICK_BASE` in `auction_finder.py` to the real URL.
 
 Treat the first real run as a debugging session, the same way `car_finder.py`
 needed a few passes to nail down Craigslist's markup and Cars.com's Akamai
@@ -71,6 +79,7 @@ around the block.
 | **GovDeals.com** | Larger municipal/county surplus; some ID agencies list here instead of PublicSurplus. | Keyword search, `locState=ID`. |
 | **Municibid.com** | Zip-radius search around Boise (83702) catches smaller cities a keyword search on agency name would miss. | `zipcode=83702`, 60mi radius, plus keyword. |
 | **PropertyRoom.com** | Police/sheriff evidence and seized-property auctions specifically. | Keyword search per agency name. |
+| **MusickAuction.com** *(domain guessed)* | Nampa-based Idaho auction house running actual in-person Treasure Valley law-enforcement/government sales — the circuit Grandpa already runs. | Single local auctioneer, not a national keyword-search platform — scans a handful of likely listing pages (`/`, `/auctions`, `/current-auctions`, ...) instead of searching per agency. Exempt from the geo filter (see below) since being on their site at all is the local signal. |
 
 Agencies searched (`AGENCY_TERMS` in `auction_finder.py`): Boise PD, City of Boise,
 Ada County, City/PD of Meridian, Canyon County, City/PD of Nampa, Idaho State
@@ -106,6 +115,12 @@ search (which defaults to *keep* on unknown location), this defaults to *drop* �
 these auction searches aren't reliably geo-scoped the way a Craigslist regional
 subdomain is, so an unrecognized row is more likely noise than a real Boise-area
 lot.
+
+**Musick is exempt** from this filter (`in_region()` short-circuits to `True`
+for `platform == "musick"`) — it's a single Nampa, ID auction house, so
+everything on its site is already local by construction, and its listings
+won't reliably repeat a city name in the title the way a national platform's
+would.
 
 ## Value estimation
 
