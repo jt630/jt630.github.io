@@ -63,18 +63,36 @@ What that run found, and what `auction_finder.py` now does with it:
 - **`bid.musickauction.com` does not respond to a plain GET** —
   `fetch_musick_catalog()` tried all 6 discovered catalog links; every one
   came back `HTTP 202` with an **empty body**. That pattern (a "request
-  accepted" status with nothing to parse) is consistent with a JavaScript-
+  accepted" status with nothing to parse) is the signature of a JavaScript-
   rendered single-page bidding app — the kind of thing `urllib` fundamentally
   can't see into, no matter how the parser is written, since the real content
-  never arrives in that initial response at all. Confirming that for certain
-  (and, if so, what it would take to go further — a headless-browser render
-  step, or finding whatever JSON API the JS app itself calls) is unverified
-  next work, not a quick regex fix. Until/unless that happens, this is the
-  practical ceiling: event-level info (what's happening, when, where,
-  roughly what's in it) rather than a per-item current bid. The event-level
-  row is kept either way rather than being dropped, so this isn't "broken" -
-  it's real, useful information at the resolution the public site actually
-  offers.
+  never arrives in that initial response at all.
+- **`scripts/musick_render.py`** is the fix for that: it loads a catalog URL
+  in a real headless browser (Playwright + Chromium) and waits for the
+  network to go idle before reading the rendered HTML, so JS has had a
+  chance to actually populate the page. `fetch_musick_catalog()` now tries
+  this first and only falls back to the old plain-`fetch()` path (which
+  won't produce real data, per above) if Playwright genuinely isn't
+  available. `.github/workflows/auction-monitor.yml`'s "Install Playwright's
+  Chromium" step (`playwright install --with-deps chromium`) is what
+  actually provides the browser in production.
+  **UNVERIFIED** — this dev sandbox can't reach `bid.musickauction.com`
+  either, browser or not (same network policy blocking everything else in
+  this file), so `musick_render.py` has only been smoke-tested by rendering
+  a *reachable* page (confirms Playwright itself launches, navigates, and
+  returns real content) — never against the actual target. Same
+  debug-and-inspect process as everything else here: dispatch
+  `debug_html: true`, and this time `debug_html/musick_catalog__*.html`
+  should hold real **rendered** markup (or a clear failure note if the
+  render itself fails/times out) to write the actual per-item lot parser
+  against — the `jsonld_to_lot()` extraction it currently falls through to
+  is very unlikely to be what a real bidding SPA emits; expect that part to
+  need real work once there's something to look at.
+- Until that next pass happens, this is the practical ceiling: event-level
+  info (what's happening, when, where, roughly what's in it) rather than a
+  per-item current bid. The event-level row is kept either way rather than
+  being dropped, so this isn't "broken" - it's real, useful information at
+  the resolution the public site's static pages actually offer.
 - The event titles are genuinely category-rich text ("TRUCKS, CARS, GUNS,
   AMMO..."), which is what motivated switching `guess_category()`'s matching
   from a plain substring check to `\bword s?\b` (word-boundary, optional
@@ -265,6 +283,9 @@ ANTHROPIC_API_KEY=sk-... python scripts/auction_value.py --dry-run  # preview, d
 ANTHROPIC_API_KEY=sk-... python scripts/auction_value.py --all      # re-estimate every lot
 
 python scripts/ebay_comps.py "Kirby G6 vacuum"   # test the eBay comp lookup on its own
+
+# needs: pip install playwright && playwright install chromium
+python scripts/musick_render.py "https://bid.musickauction.com/auctions/catalog/id/915"
 ```
 
 Then `hugo --minify` to confirm the page builds, or `hugo server` to look at

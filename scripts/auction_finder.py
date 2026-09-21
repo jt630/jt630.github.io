@@ -487,30 +487,48 @@ def parse_musick_events(page):
 
 def fetch_musick_catalog(event_url, all_notes):
     """Follow one event's catalog link to bid.musickauction.com for
-    individual lot-level data. UNVERIFIED - no real markup sample for this
-    subdomain yet (musickauction.com's own pages don't need login or JS to
-    read, but bid.musickauction.com might be a JS-rendered bidding app that
-    urllib can't see at all; that would show up here as 0 rows same as a
-    markup mismatch would). Falls back to json-ld the same way every other
-    platform in this file does; if that comes back empty, the calling event
-    row is kept as-is rather than dropped."""
-    code, page = fetch(event_url)
-    _save_html("musick_catalog", event_url.rstrip("/").rsplit("/", 1)[-1], page)
-    if code == 403:
-        all_notes.append(f"[musick-catalog] {event_url!r}: 403 BLOCKED")
-        return []
+    individual lot-level data.
+
+    CONFIRMED (not guessed) via a live debug run: a plain GET here returns
+    HTTP 202 with an empty body - the signature of a JavaScript-rendered
+    single-page app, not a markup-mismatch problem urllib could ever solve.
+    So this renders the page with a real headless browser instead
+    (musick_render.py, Playwright + Chromium) and only falls back to a
+    plain fetch()/json-ld if Playwright isn't available for some reason
+    (e.g. not installed - see .github/workflows/auction-monitor.yml's
+    "Install dependencies" step, which is where it actually gets installed;
+    this dev sandbox doesn't have it and can't reach this subdomain either
+    way, so this path is UNVERIFIED against the real site - same
+    debug-and-inspect process as everything else in this file applies).
+    If nothing usable comes back, the calling event row is kept as-is
+    rather than dropped."""
+    try:
+        from musick_render import render_catalog_page
+        page = render_catalog_page(event_url)
+    except ImportError:
+        page = None
     if not page:
-        all_notes.append(f"[musick-catalog] {event_url!r}: empty (code {code})")
-        return []
+        # Fall back to a plain fetch in case Playwright genuinely isn't
+        # available - won't produce real data (see docstring), but keeps
+        # this from silently doing nothing if the render step is broken.
+        code, page = fetch(event_url)
+        if code == 403:
+            all_notes.append(f"[musick-catalog] {event_url!r}: 403 BLOCKED (plain fetch, no render)")
+            return []
+        if not page:
+            all_notes.append(f"[musick-catalog] {event_url!r}: empty (plain fetch, no render, code {code})")
+            return []
+
+    _save_html("musick_catalog", event_url.rstrip("/").rsplit("/", 1)[-1], page)
     rows = [jsonld_to_lot(it, "musick") for it in extract_jsonld(page)]
     rows = [r for r in rows if r.get("title")]
     if rows:
         all_notes.append(f"[musick-catalog] {event_url!r}: {len(rows)} lots via json-ld")
     else:
         all_notes.append(
-            f"[musick-catalog] {event_url!r}: 0 rows (no json-ld found, page "
-            f"{len(page)}b) -- bid.musickauction.com markup not yet verified, "
-            f"see docs/AUCTION-MONITORING.md"
+            f"[musick-catalog] {event_url!r}: 0 rows (no json-ld in rendered "
+            f"page, {len(page)}b) -- needs a real parser against the "
+            f"rendered markup, see docs/AUCTION-MONITORING.md"
         )
     return rows
 
