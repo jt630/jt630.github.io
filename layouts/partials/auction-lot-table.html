@@ -1,0 +1,70 @@
+{{/* Renders a sorted auction-lot table. Usage: {{ partial "auction-lot-table.html" $lots }}
+     Sort order: eBay-sold-comp-backed estimates first (real transaction
+     data - the "objectively best deals" tier), then AI-text-only estimates,
+     then unrated, each group sorted by deal_score descending within
+     itself. A real comp beats a bigger *nominal* gap from a pure guess. */}}
+{{ $lots := . }}
+{{ $ebayRated := sort (where $lots "value_source" "ebay") "deal_score" "desc" }}
+{{ $aiRated := sort (where $lots "value_source" "ai") "deal_score" "desc" }}
+{{ $unrated := where $lots "value_source" nil }}
+{{ $ordered := $ebayRated | append $aiRated | append $unrated }}
+{{ if $ordered }}
+<div class="auctions-table-wrap">
+  <table class="auctions-tbl">
+    <thead>
+      <tr>
+        <th>Lot</th><th>Agency</th><th>Bid</th><th>Est. value</th><th>Gap</th><th>Closes</th><th>Src</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range $ordered }}
+        {{/* data-* attrs let the client-side deal-threshold slider (see
+             auction-dial-in.html) recompute "is this flagged" live, and
+             let the digest button read a lot's numbers without re-parsing
+             rendered text. Absent/nil fields render as "" (empty attr),
+             which JS treats as "no data" - never as 0. */}}
+        <tr class="auctions-lot-row {{ if .flagged }}row-flagged{{ end }}"
+            data-title="{{ .title }}"
+            data-agency="{{ with .agency }}{{ . }}{{ end }}"
+            data-bid="{{ if .current_bid }}{{ .current_bid }}{{ end }}"
+            data-est-low="{{ if .estimated_value_low }}{{ .estimated_value_low }}{{ end }}"
+            data-est-high="{{ if .estimated_value_high }}{{ .estimated_value_high }}{{ end }}"
+            data-est-mid="{{ if .estimated_value_mid }}{{ .estimated_value_mid }}{{ end }}"
+            data-deal-score="{{ if .deal_score }}{{ .deal_score }}{{ end }}"
+            data-deal-pct="{{ if .deal_pct }}{{ .deal_pct }}{{ end }}"
+            data-url="{{ .url }}">
+          <td>
+            {{ .title }}
+            {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}
+          </td>
+          <td>{{ with .agency }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+          <td>{{ with .current_bid }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+          <td>
+            {{ if .estimated_value_mid }}
+              ${{ lang.FormatNumberCustom 0 .estimated_value_low }}&ndash;{{ lang.FormatNumberCustom 0 .estimated_value_high }}
+              {{ if eq .value_source "ebay" }}
+                <span class="value-src value-src-ebay" title="{{ .ebay_n }} recent eBay sold listings for this item">✓ {{ .ebay_n }} sold</span>
+              {{ else if eq .value_source "ai" }}
+                <span class="value-src value-src-ai" title="AI text estimate — not enough eBay sold comps to anchor this one">AI est.</span>
+              {{ end }}
+            {{ else }}&mdash;{{ end }}
+          </td>
+          <td>
+            {{ if .deal_score }}
+              <span class="{{ if gt .deal_score 0 }}auctions-gap-pos{{ else }}auctions-gap-neg{{ end }}">
+                {{ if gt .deal_score 0 }}+{{ end }}${{ lang.FormatNumberCustom 0 .deal_score }}
+              </span>
+              <span class="deal-badge flag" {{ if not .flagged }}style="display:none"{{ end }}>🔥 Deal</span>
+            {{ else }}&mdash;{{ end }}
+          </td>
+          <td>{{ with .close_time }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+          <td><span class="auctions-src">{{ .platform }}</span></td>
+          <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
+        </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div>
+{{ else }}
+<p class="auctions-empty">No lots in this category yet.</p>
+{{ end }}

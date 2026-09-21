@@ -1,0 +1,6 @@
+# Recipients for the "Email this digest" button on /auctions/ and
+# /grandpas-shop/. Nothing here is sent anywhere automatically — it only
+# pre-fills a mailto: link that opens in your own mail app, so you review
+# and hit send yourself. See docs/AUCTION-MONITORING.md.
+jeremy_email: "jeremythompson630@gmail.com"
+grandpa_email: ""  # fill in to include him in the digest's "To" field

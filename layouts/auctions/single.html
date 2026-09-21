@@ -1,0 +1,86 @@
+{{ define "head-extra" }}
+{{ partial "auction-styles.html" . }}
+{{ end }}
+
+{{ define "main" }}
+{{ $L := .Site.Data.auction_lots }}
+
+<div class="auctions-page">
+
+  <div class="auctions-hero">
+    <h1>Auction Watch</h1>
+  </div>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{ with $L }}
+  {{ $lots := .lots }}
+  {{ $flagged := where $lots "flagged" true }}
+  {{ $rated := where $lots "deal_score" "!=" nil }}
+  {{ $ebayBacked := where $lots "value_source" "ebay" }}
+  {{ $vehicles := where $lots "category" "Vehicles" }}
+
+  <p class="auctions-assump">
+    Generated {{ .generated }} by <code>scripts/auction_finder.py</code> +
+    <code>scripts/auction_value.py</code>. Sorted best-value gap first within
+    each section; lots without an AI estimate (no
+    <code>ANTHROPIC_API_KEY</code>, or not enough listing detail to value)
+    sort last.
+  </p>
+
+  <div class="auctions-summary">
+    <div class="auctions-stat"><span class="n">{{ len $lots }}</span><span class="l">Lots tracked</span></div>
+    <div class="auctions-stat"><span class="n" id="flagged-count">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">Valued</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $ebayBacked }}</span><span class="l">eBay-backed</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $vehicles }}</span><span class="l">Vehicles</span></div>
+  </div>
+
+  {{ partial "auction-dial-in.html" (dict "pageTitle" "Auction Watch" "pageURL" $.Permalink) }}
+
+  <!-- ─────────── VEHICLES — for grandpa ─────────── -->
+  <h2>🚗 Vehicles — the ones worth a drive-by</h2>
+  <p class="auctions-assump">
+    Every lot classified as a car, truck, motorcycle, or other vehicle, across
+    every platform currently tracked (Musick Auction Co. for now — see
+    docs/AUCTION-MONITORING.md). A title alone rarely says mileage or title
+    status — check the listing before bidding, and treat the AI estimate as
+    a rough band, not a quote.
+  </p>
+  {{ partial "auction-lot-table.html" $vehicles }}
+
+  <!-- ─────────── EVERYTHING ELSE, BY CATEGORY ─────────── -->
+  <h2>Everything else</h2>
+  <p class="auctions-assump">
+    Grouped by category so the lots most bidders scroll past — tools,
+    electronics, jewelry, unclaimed odds and ends — don't get buried under a
+    wall of vehicles. Sorted best-value gap first within each group.
+  </p>
+  {{ $catset := slice }}
+  {{ range $lots }}
+    {{ if ne .category "Vehicles" }}{{ $catset = $catset | append .category }}{{ end }}
+  {{ end }}
+  {{ $cats := $catset | uniq | sort }}
+  {{ if $cats }}
+    {{ range $cats }}
+      {{ $cat := . }}
+      {{ $group := where $lots "category" $cat }}
+      <h3 class="auctions-cat-head">{{ $cat }} <span class="auctions-cat-n">({{ len $group }})</span></h3>
+      {{ partial "auction-lot-table.html" $group }}
+    {{ end }}
+  {{ else }}
+  <p class="auctions-empty">No non-vehicle lots tracked yet.</p>
+  {{ end }}
+
+  {{ else }}
+  <p class="auctions-empty">
+    Run <code>python scripts/auction_finder.py</code> then
+    <code>python scripts/auction_value.py</code> to populate
+    <code>data/auction_lots.yaml</code>.
+  </p>
+  {{ end }}
+
+</div>
+{{ end }}
