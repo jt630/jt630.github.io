@@ -53,22 +53,28 @@ What that run found, and what `auction_finder.py` now does with it:
   **`bid.musickauction.com/auctions/catalog/id/N`** — a separate subdomain
   that (presumably) has the real per-item lot/bid data.
   `parse_musick_events()` in `auction_finder.py` parses this widget's exact
-  markup and is the verified part of this whole file.
-- **`bid.musickauction.com` itself is still unverified** — `fetch_musick()`
-  follows every discovered catalog link there (`fetch_musick_catalog()`),
-  trying the usual JSON-LD-first approach, but no real sample of that
-  subdomain's markup has been seen yet (it wasn't fetched by this debug run,
-  only linked to from one that was). If it comes back empty, the event-level
-  row is kept instead of being dropped — a headline like *"GOVERNMENT
-  SURPLUS, LOCAL POLICE EVIDENCE, FLEET VEHICLES, GUNS, AMMO, JEWELRY,
-  TOOLS"* with a date, location, and a link to go look is still real,
-  useful information even without a line-item bid on each thing in it. It
-  just won't have a current price, so it can't be scored as a "deal" the way
-  a normal lot can — that only kicks in once `bid.musickauction.com` gets
-  its own real parser. Next step: dispatch `debug_html: true` again (now
-  that the catalog stage exists, it'll try those URLs and dump whatever
-  comes back) and read the result the same way this pass read Musick's main
-  site.
+  markup, and is now confirmed working **live in production**, not just
+  against a saved sample: the `debug_html: true` run on the merged code
+  extracted all 6 currently-upcoming events with correct titles, dates,
+  locations, and category classification (3 Vehicles, 1 Heavy Equipment,
+  1 Firearms, 1 Other) — matching a local dry-run against the same saved
+  HTML exactly. `data/auction_lots.yaml` on `main` now holds this real data,
+  and it's live on `/auctions/`.
+- **`bid.musickauction.com` does not respond to a plain GET** —
+  `fetch_musick_catalog()` tried all 6 discovered catalog links; every one
+  came back `HTTP 202` with an **empty body**. That pattern (a "request
+  accepted" status with nothing to parse) is consistent with a JavaScript-
+  rendered single-page bidding app — the kind of thing `urllib` fundamentally
+  can't see into, no matter how the parser is written, since the real content
+  never arrives in that initial response at all. Confirming that for certain
+  (and, if so, what it would take to go further — a headless-browser render
+  step, or finding whatever JSON API the JS app itself calls) is unverified
+  next work, not a quick regex fix. Until/unless that happens, this is the
+  practical ceiling: event-level info (what's happening, when, where,
+  roughly what's in it) rather than a per-item current bid. The event-level
+  row is kept either way rather than being dropped, so this isn't "broken" -
+  it's real, useful information at the resolution the public site actually
+  offers.
 - The event titles are genuinely category-rich text ("TRUCKS, CARS, GUNS,
   AMMO..."), which is what motivated switching `guess_category()`'s matching
   from a plain substring check to `\bword s?\b` (word-boundary, optional
