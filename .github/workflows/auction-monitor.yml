@@ -49,6 +49,28 @@ jobs:
           path: debug_html/
           retention-days: 3
 
+      - name: Push raw HTML to debug branch
+        # Belt-and-suspenders alongside the artifact upload above: the
+        # artifact download URL points at Azure blob storage, which isn't
+        # reachable from the dev sandbox this repo's tooling gets built in
+        # (same network policy that blocks the 5 auction sites + ebay.com
+        # directly) - but plain `git` to github.com clearly *is* reachable,
+        # so pushing the dump to its own branch is the actual way to get
+        # real markup back into that session for writing parsers.
+        if: github.event.inputs.debug_html == 'true'
+        run: |
+          if [ -d debug_html ] && [ -n "$(ls -A debug_html 2>/dev/null)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git checkout -B debug/auction-html
+            git add -f debug_html/
+            git commit -m "debug: raw HTML dump from auction sites + eBay [skip ci]"
+            git push -f origin debug/auction-html
+            git checkout main
+          else
+            echo "no debug_html files to push"
+          fi
+
       - name: Estimate value (needs ANTHROPIC_API_KEY secret)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
