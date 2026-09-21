@@ -485,32 +485,128 @@ def parse_musick_events(page):
     return out
 
 
+# Guessed JSON-API URL patterns to probe directly against
+# bid.musickauction.com, on the theory that whatever JS populates the
+# catalog page calls a real endpoint under the hood - if one of these (or
+# something close to it) hits, the whole Playwright-rendering approach in
+# fetch_musick_catalog() could be replaced with a plain, fast, cheap
+# request instead. Pure brute force: nothing here is verified, these are
+# just common REST-ish shapes for this kind of site. {id} gets both the
+# catalog URL's id (e.g. 915) and the id embedded in that event's image
+# URL (e.g. 883 in /images/auction/883_m.jpg) - CONFIRMED these two
+# numbers differ for the same event, so whichever id the API actually
+# wants is unknown; trying both roughly doubles the odds of a hit.
+_MUSICK_API_GUESSES = [
+    "/api/auctions/{id}",
+    "/api/auctions/{id}/lots",
+    "/api/auctions/{id}/items",
+    "/api/catalog/{id}",
+    "/api/catalog/{id}/lots",
+    "/api/v1/auctions/{id}",
+    "/api/v1/catalog/{id}",
+    "/api/v1/lots?auction_id={id}",
+    "/auctions/api/catalog/id/{id}",
+    "/auctions/catalog/id/{id}.json",
+    "/auctions/catalog/id/{id}/lots",
+    "/auctions/catalog/id/{id}/items",
+    "/auctions/catalog/id/{id}/lots.json",
+    "/lots.json?auction_id={id}",
+    "/lots?auction_id={id}",
+]
+_MUSICK_IMG_ID_RE = re.compile(r"/images/auction/(\d+)_")
+
+
+def brute_force_musick_api(events, all_notes):
+    """Try each _MUSICK_API_GUESSES pattern, with both id candidates from
+    the first event, as a plain direct request (no browser) against
+    bid.musickauction.com. Logs status/size/whether-it-looks-like-JSON for
+    each guess - doesn't parse anything, this is purely reconnaissance for
+    a human (or a future pass) to read the notes and follow up on whatever
+    actually hit. Bounded to one event's worth of guesses so this stays
+    cheap regardless of how many events got found."""
+    if not events:
+        return
+    m = re.search(r"/id/(\d+)", events[0].get("url") or "")
+    catalog_id = m.group(1) if m else None
+    img_m = _MUSICK_IMG_ID_RE.search(events[0].get("image_url") or "")
+    image_id = img_m.group(1) if img_m else None
+    ids = [i for i in {catalog_id, image_id} if i]
+    if not ids:
+        all_notes.append("[musick-api-probe] no numeric id found on the first event, skipping")
+        return
+
+    base = "https://bid.musickauction.com"
+    tried = set()
+    for pattern in _MUSICK_API_GUESSES:
+        for auction_id in ids:
+            url = base + pattern.format(id=auction_id)
+            if url in tried:
+                continue
+            tried.add(url)
+            code, body = fetch(url, headers={**UA, "Accept": "application/json, */*"})
+            looks_json = bool(body) and body.lstrip()[:1] in "{["
+            all_notes.append(
+                f"[musick-api-probe] {url}: code={code} bytes={len(body or '')} "
+                f"json-like={looks_json}"
+            )
+            time.sleep(0.5)
+
+
 def fetch_musick_catalog(event_url, all_notes):
     """Follow one event's catalog link to bid.musickauction.com for
-    individual lot-level data. UNVERIFIED - no real markup sample for this
-    subdomain yet (musickauction.com's own pages don't need login or JS to
-    read, but bid.musickauction.com might be a JS-rendered bidding app that
-    urllib can't see at all; that would show up here as 0 rows same as a
-    markup mismatch would). Falls back to json-ld the same way every other
-    platform in this file does; if that comes back empty, the calling event
-    row is kept as-is rather than dropped."""
-    code, page = fetch(event_url)
-    _save_html("musick_catalog", event_url.rstrip("/").rsplit("/", 1)[-1], page)
-    if code == 403:
-        all_notes.append(f"[musick-catalog] {event_url!r}: 403 BLOCKED")
-        return []
+    individual lot-level data.
+
+    CONFIRMED (not guessed) via a live debug run: a plain GET here returns
+    HTTP 202 with an empty body - the signature of a JavaScript-rendered
+    single-page app, not a markup-mismatch problem urllib could ever solve.
+    So this renders the page with a real headless browser instead
+    (musick_render.py, Playwright + Chromium) and only falls back to a
+    plain fetch()/json-ld if Playwright isn't available for some reason
+    (e.g. not installed - see .github/workflows/auction-monitor.yml's
+    "Install dependencies" step, which is where it actually gets installed;
+    this dev sandbox doesn't have it and can't reach this subdomain either
+    way, so this path is UNVERIFIED against the real site - same
+    debug-and-inspect process as everything else in this file applies).
+    Also logs every XHR/fetch request Playwright saw the page make while
+    loading (musick_render.py captures these) - if this SPA calls a JSON
+    API under the hood, that's the one chance to actually see the URL
+    instead of guessing at it. See brute_force_musick_api() below for a
+    second, more direct way of hunting for the same thing.
+
+    If nothing usable comes back, the calling event row is kept as-is
+    rather than dropped."""
+    api_calls = []
+    try:
+        from musick_render import render_catalog_page
+        page, api_calls = render_catalog_page(event_url)
+    except ImportError:
+        page = None
+    if api_calls:
+        all_notes.append(f"[musick-catalog] {event_url!r}: {len(api_calls)} XHR/fetch call(s) seen while rendering:")
+        for c in api_calls[:15]:
+            all_notes.append(f"    {c['method']} {c['url']}")
     if not page:
-        all_notes.append(f"[musick-catalog] {event_url!r}: empty (code {code})")
-        return []
+        # Fall back to a plain fetch in case Playwright genuinely isn't
+        # available - won't produce real data (see docstring), but keeps
+        # this from silently doing nothing if the render step is broken.
+        code, page = fetch(event_url)
+        if code == 403:
+            all_notes.append(f"[musick-catalog] {event_url!r}: 403 BLOCKED (plain fetch, no render)")
+            return []
+        if not page:
+            all_notes.append(f"[musick-catalog] {event_url!r}: empty (plain fetch, no render, code {code})")
+            return []
+
+    _save_html("musick_catalog", event_url.rstrip("/").rsplit("/", 1)[-1], page)
     rows = [jsonld_to_lot(it, "musick") for it in extract_jsonld(page)]
     rows = [r for r in rows if r.get("title")]
     if rows:
         all_notes.append(f"[musick-catalog] {event_url!r}: {len(rows)} lots via json-ld")
     else:
         all_notes.append(
-            f"[musick-catalog] {event_url!r}: 0 rows (no json-ld found, page "
-            f"{len(page)}b) -- bid.musickauction.com markup not yet verified, "
-            f"see docs/AUCTION-MONITORING.md"
+            f"[musick-catalog] {event_url!r}: 0 rows (no json-ld in rendered "
+            f"page, {len(page)}b) -- needs a real parser against the "
+            f"rendered markup, see docs/AUCTION-MONITORING.md"
         )
     return rows
 
@@ -540,6 +636,8 @@ def fetch_musick(all_notes):
                 )
         time.sleep(SLEEP)
     events = dedupe(events)
+
+    brute_force_musick_api(events, all_notes)
 
     # Stage 2: try to get real per-item lots from each event's catalog page.
     # Whatever doesn't yield real lots keeps its event-level row instead of

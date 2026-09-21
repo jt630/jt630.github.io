@@ -31,7 +31,16 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install pyyaml
+        run: pip install pyyaml playwright
+
+      - name: Install Playwright's Chromium
+        # Needed for scripts/musick_render.py: bid.musickauction.com's
+        # per-item lot pages are a JS-rendered app (confirmed - a plain
+        # GET there returns HTTP 202 with an empty body), so getting real
+        # bid data means loading them in an actual browser, not just
+        # fetching the URL. --with-deps also installs the OS libraries
+        # Chromium needs that a bare ubuntu-latest runner won't have.
+        run: playwright install --with-deps chromium
 
       - name: Fetch lots
         run: |
