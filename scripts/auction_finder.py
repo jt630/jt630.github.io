@@ -326,7 +326,22 @@ def platform_urls(platform, term):
 # lot-dict shape jsonld_to_lot() produces).
 
 
+SAVE_HTML_DIR = None  # set from --save-html; dumps each fetched page for
+                       # writing a platform-specific parser against real markup
+
+
+def _save_html(platform, term, page):
+    if not SAVE_HTML_DIR or not page:
+        return
+    os.makedirs(SAVE_HTML_DIR, exist_ok=True)
+    safe = re.sub(r"[^a-zA-Z0-9_-]+", "_", str(term)).strip("_")[:60] or "index"
+    path = os.path.join(SAVE_HTML_DIR, f"{platform}__{safe}.html")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(page)
+
+
 def parse_search(page, code, platform, term, notes):
+    _save_html(platform, term, page)
     if code == 403:
         notes.append(f"[{platform}] {term!r}: 403 BLOCKED")
         return []
@@ -426,7 +441,14 @@ def in_region(lot):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--save-html", metavar="DIR",
+                     help="dump each fetched page's raw HTML to DIR, for "
+                          "writing a platform-specific parser against real "
+                          "markup (see PLATFORM_FALLBACK)")
     a = ap.parse_args()
+
+    global SAVE_HTML_DIR
+    SAVE_HTML_DIR = a.save_html
 
     all_rows, all_notes = [], []
     for platform in PLATFORMS:

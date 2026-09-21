@@ -3,6 +3,12 @@ name: Auction Watch — refresh lots
 on:
   workflow_dispatch:   # run manually from the Actions UI first, and check
                         # the "Fetch lots" step's log for per-platform notes
+    inputs:
+      debug_html:
+        description: "Upload each fetched page's raw HTML as a build artifact (for writing/fixing a platform parser against real markup)"
+        required: false
+        default: false
+        type: boolean
   schedule:
     - cron: "0 13 * * *"   # daily, 13:00 UTC (~6-7am Boise, before most auctions close)
 
@@ -28,7 +34,20 @@ jobs:
         run: pip install pyyaml
 
       - name: Fetch lots
-        run: python scripts/auction_finder.py
+        run: |
+          if [ "${{ github.event.inputs.debug_html }}" = "true" ]; then
+            python scripts/auction_finder.py --save-html debug_html
+          else
+            python scripts/auction_finder.py
+          fi
+
+      - name: Upload raw HTML (debug)
+        if: github.event.inputs.debug_html == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: auction-debug-html
+          path: debug_html/
+          retention-days: 3
 
       - name: Estimate value (needs ANTHROPIC_API_KEY secret)
         env:
@@ -40,7 +59,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/auction_lots.yaml data/.cache/auction_*.json
+          git add data/auction_lots.yaml
+          shopt -s nullglob
+          cache_files=(data/.cache/auction_*.json)
+          if [ ${#cache_files[@]} -gt 0 ]; then
+            git add "${cache_files[@]}"
+          fi
           if git diff --cached --quiet; then
             echo "No changes to commit."
             echo "committed=false" >> "$GITHUB_OUTPUT"
