@@ -159,8 +159,12 @@ def apply_estimate(lot, r):
 
     lot["estimated_value_low"] = low
     lot["estimated_value_high"] = high
-    if isinstance(mid, (int, float)):
-        bid = lot.get("current_bid") or 0
+    bid = lot.get("current_bid")
+    # No bid data (e.g. a Musick event-level row with no per-item price yet)
+    # is not the same as a $0 bid - `or 0` here would silently manufacture a
+    # fake 100%-off "deal" out of every valued lot that simply has no price
+    # to compare against. Only score a gap when there's an actual bid.
+    if isinstance(mid, (int, float)) and isinstance(bid, (int, float)):
         deal_pct = round((mid - bid) / mid, 3) if mid else None
         lot["estimated_value_mid"] = mid
         lot["deal_score"] = mid - bid
@@ -169,7 +173,7 @@ def apply_estimate(lot, r):
             deal_pct is not None and deal_pct >= FLAG_THRESHOLD and mid >= FLAG_MIN_VALUE
         )
     else:
-        lot["estimated_value_mid"] = None
+        lot["estimated_value_mid"] = mid if isinstance(mid, (int, float)) else None
         lot["deal_score"] = None
         lot["deal_pct"] = None
         lot["flagged"] = False
@@ -232,8 +236,16 @@ def main():
         print("ANTHROPIC_API_KEY not set - skipping valuation, lots keep null estimates.")
         return
 
-    todo = lots if a.all else [l for l in lots if l.get("estimated_value_mid") is None]
-    print(f"estimating {len(todo)} of {len(lots)} lots ({MODEL})...")
+    # A lot with no current_bid (e.g. a Musick event-level row that's really
+    # "several categories of stuff happening Monday," not one priced item)
+    # can never produce a deal_score - skip spending an eBay lookup + a
+    # Claude call on something that will just come back with no gap anyway.
+    valuable = [l for l in lots if l.get("current_bid") is not None]
+    todo = valuable if a.all else [l for l in valuable if l.get("estimated_value_mid") is None]
+    skipped = len(lots) - len(valuable)
+    if skipped:
+        print(f"skipping {skipped} lot(s) with no current_bid (can't score a deal without one)")
+    print(f"estimating {len(todo)} of {len(valuable)} valuable lots ({MODEL})...")
     estimate(todo)
 
     lots.sort(key=lambda l: (l.get("deal_score") is None, -(l.get("deal_score") or 0)))
