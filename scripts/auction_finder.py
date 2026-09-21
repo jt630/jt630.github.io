@@ -61,13 +61,16 @@ this filter - being listed on a Nampa, ID auction house's own site already
 is the local signal, and its lots won't reliably repeat a city name in
 their title/description the way a national platform's do.
 
-Category: every lot is keyword-classified into a broad bucket (Vehicles,
-Heavy Equipment, Firearms, Electronics, Jewelry & Valuables, Tools &
-Equipment, Bikes & Recreation, Office & Furniture, Other) - see
-CATEGORY_KEYWORDS / guess_category(). The page gives Vehicles its own
-section up top (that's the one worth checking for a car/truck), and groups
-everything else by category below it, so the categories a casual bidder
-skims past don't get buried in one long list.
+Category: every lot is keyword-classified into a broad bucket (Small
+Engines & Appliances, Heavy Equipment, Vehicles, Firearms, Electronics,
+Jewelry & Valuables, Tools & Equipment, Bikes & Recreation, Office &
+Furniture, Other) - see CATEGORY_KEYWORDS / guess_category(). /auctions/
+gives Vehicles its own section up top and groups everything else by
+category below it, so the categories a casual bidder skims past don't get
+buried in one long list. Small Engines & Appliances additionally gets its
+own dedicated page at /grandpas-shop/ (content/grandpas-shop.md +
+layouts/grandpas-shop/single.html) - vacuums, mowers, chainsaws, washers,
+dryers, generators, the stuff Jeremy's grandpa actually repairs.
 
 Usage
 -----
@@ -163,17 +166,29 @@ NEAR = [
 ]
 
 # Broad category buckets, keyword-matched against title+description.
-# "Vehicles" gets its own section on the page (that's the one Jeremy's
-# grandpa actually wants to check); everything else groups by category so
-# the categories a casual bidder skims past - tools, electronics, jewelry,
-# unclaimed property - don't get buried in one giant undifferentiated list.
-# Order matters: first match wins, so more specific buckets (Heavy
-# Equipment, Firearms) come before generic ones.
+# "Vehicles" and "Small Engines & Appliances" each get their own section /
+# dedicated page (the two things Jeremy's grandpa actually wants to check -
+# he fixes small engines and appliances, mostly vacuums, on top of already
+# running the Meridian car-auction circuit); everything else groups by
+# category so the categories a casual bidder skims past - tools,
+# electronics, jewelry, unclaimed property - don't get buried in one giant
+# undifferentiated list. Order matters: first match wins, so more specific
+# buckets (Small Engines & Appliances, Firearms) come before generic ones,
+# and mower/generator/chainsaw/etc. deliberately live ONLY here, not in
+# Heavy Equipment or Tools & Equipment, so grandpa's page doesn't miss them.
 CATEGORY_KEYWORDS = [
+    ("Small Engines & Appliances", [
+        "vacuum", "shop vac", "dyson", "shark", "bissell", "hoover", "kirby",
+        "riccar", "oreck", "washer", "dryer", "washing machine",
+        "dishwasher", "refrigerator", "fridge", "freezer", "microwave",
+        "garbage disposal", "lawn mower", "push mower", "riding mower",
+        "mower", "chainsaw", "leaf blower", "snow blower", "weed eater",
+        "string trimmer", "hedge trimmer", "pressure washer", "generator",
+        "small engine", "tiller", "rototiller", "edger",
+    ]),
     ("Heavy Equipment", [
-        "tractor", "excavator", "backhoe", "forklift", "loader", "mower",
-        "skid steer", "dump truck", "bucket truck", "generator",
-        "compressor", "trailer",
+        "tractor", "excavator", "backhoe", "forklift", "loader",
+        "skid steer", "dump truck", "bucket truck", "trailer",
     ]),
     ("Vehicles", [
         "sedan", "suv", "pickup", "motorcycle", "atv", "utv", "coupe",
@@ -194,8 +209,8 @@ CATEGORY_KEYWORDS = [
         "diamond", "jewelry", "coin collection",
     ]),
     ("Tools & Equipment", [
-        "drill", "table saw", "chainsaw", "toolbox", "tool set",
-        "air compressor", "welder", "ladder", "power tool",
+        "drill", "table saw", "toolbox", "tool set", "air compressor",
+        "welder", "ladder", "power tool",
     ]),
     ("Bikes & Recreation", [
         "bicycle", "bike", "kayak", "canoe", "paddleboard", "scooter",

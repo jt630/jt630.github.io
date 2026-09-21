@@ -87,23 +87,32 @@ Police, City of Caldwell, Garden City, City of Eagle. Add more there as they com
 up — e.g. Kuna, Star, Emmett, Middleton, or a specific school district or fire
 district that runs its own surplus sales.
 
-## Category split — Vehicles vs. everything else
+## Category split — Vehicles, Grandpa's Shop, and everything else
 
-Jeremy's grandpa specifically wants cars/trucks; everything else is the "casual
+Jeremy's grandpa specifically wants two things: cars/trucks, and small engines
+& appliances — he fixes those, mostly vacuums. Everything else is the "casual
 bidder overlooks this" net. So every lot gets keyword-classified into a broad
 category (`CATEGORY_KEYWORDS` / `guess_category()` in `auction_finder.py`):
-Vehicles, Heavy Equipment, Firearms, Electronics, Jewelry & Valuables, Tools &
-Equipment, Bikes & Recreation, Office & Furniture, Other. This runs locally on
-title/description text — no API call, works even without
-`ANTHROPIC_API_KEY`. `/auctions/` renders **Vehicles** as its own section up
-top, then groups everything else by category below it.
+**Small Engines & Appliances**, Heavy Equipment, **Vehicles**, Firearms,
+Electronics, Jewelry & Valuables, Tools & Equipment, Bikes & Recreation,
+Office & Furniture, Other. This runs locally on title/description text — no
+API call, works even without `ANTHROPIC_API_KEY`.
 
-Classification is keyword-based and will misfile the occasional lot (a "Ford
-generator" reads as Vehicles before Heavy Equipment gets a look, for instance —
-`CATEGORY_KEYWORDS` order matters, more specific buckets are listed first on
-purpose). Tune the keyword lists as mis-classifications turn up; it doesn't need
-to be perfect, just good enough that Vehicles doesn't miss real cars and doesn't
-fill up with lawn tractors.
+- `/auctions/` renders **Vehicles** as its own section up top, then groups
+  everything else (including Small Engines & Appliances) by category below it.
+- `/grandpas-shop/` is a separate, dedicated page — just the Small Engines &
+  Appliances category, nothing else, meant to be bookmarked/shared directly.
+
+Small Engines & Appliances is listed **first** in `CATEGORY_KEYWORDS` on
+purpose: mower/chainsaw/generator/etc. live only there, not in Heavy Equipment
+or Tools & Equipment, so a "Toro push mower" or "Honda generator" doesn't get
+siphoned off into a different bucket before grandpa's page ever sees it.
+Classification is still keyword-based and will misfile the occasional lot (a
+brand name like "Ford" only appears in the Vehicles list, so a hypothetical
+"Ford generator" is caught correctly by Small Engines & Appliances first —
+but tune the keyword lists as real mis-classifications turn up). It doesn't
+need to be perfect, just good enough that neither Vehicles nor Small Engines &
+Appliances misses the real thing or fills up with junk from the other bucket.
 
 ## Geo filter
 
