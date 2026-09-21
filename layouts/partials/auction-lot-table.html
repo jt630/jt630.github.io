@@ -1,0 +1,46 @@
+{{/* Renders a sorted auction-lot table. Usage: {{ partial "auction-lot-table.html" $lots }} */}}
+{{ $lots := . }}
+{{ $rated := sort (where $lots "deal_score" "!=" nil) "deal_score" "desc" }}
+{{ $unrated := where $lots "deal_score" nil }}
+{{ $ordered := $rated | append $unrated }}
+{{ if $ordered }}
+<div class="auctions-table-wrap">
+  <table class="auctions-tbl">
+    <thead>
+      <tr>
+        <th>Lot</th><th>Agency</th><th>Bid</th><th>Est. value</th><th>Gap</th><th>Closes</th><th>Src</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range $ordered }}
+        <tr class="{{ if .flagged }}row-flagged{{ end }}">
+          <td>
+            {{ .title }}
+            {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}
+          </td>
+          <td>{{ with .agency }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+          <td>{{ with .current_bid }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+          <td>
+            {{ if .estimated_value_mid }}
+              ${{ lang.FormatNumberCustom 0 .estimated_value_low }}&ndash;{{ lang.FormatNumberCustom 0 .estimated_value_high }}
+            {{ else }}&mdash;{{ end }}
+          </td>
+          <td>
+            {{ if .deal_score }}
+              <span class="{{ if gt .deal_score 0 }}auctions-gap-pos{{ else }}auctions-gap-neg{{ end }}">
+                {{ if gt .deal_score 0 }}+{{ end }}${{ lang.FormatNumberCustom 0 .deal_score }}
+              </span>
+              {{ if .flagged }}<span class="deal-badge flag">🔥 Deal</span>{{ end }}
+            {{ else }}&mdash;{{ end }}
+          </td>
+          <td>{{ with .close_time }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+          <td><span class="auctions-src">{{ .platform }}</span></td>
+          <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
+        </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div>
+{{ else }}
+<p class="auctions-empty">No lots in this category yet.</p>
+{{ end }}

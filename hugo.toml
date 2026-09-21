@@ -145,6 +145,11 @@ title = "Almond Farm"
     url = "/cars/"
     parent = "ops"
     weight = 9
+  [[menu.main]]
+    name = "Auction Watch"
+    url = "/auctions/"
+    parent = "ops"
+    weight = 10
 
 [taxonomies]
   tag = "tags"
