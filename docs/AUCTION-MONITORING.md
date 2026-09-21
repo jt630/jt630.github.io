@@ -88,6 +88,26 @@ What that run found, and what `auction_finder.py` now does with it:
   against — the `jsonld_to_lot()` extraction it currently falls through to
   is very unlikely to be what a real bidding SPA emits; expect that part to
   need real work once there's something to look at.
+- **Two ways of hunting for a lighter alternative to browser rendering**,
+  both purely reconnaissance right now (log/report only, nothing parses
+  their results yet):
+  - `render_catalog_page()` also logs every XHR/fetch request Playwright
+    sees the page make while loading, straight into the fetch notes
+    (`[musick-catalog] ...: N XHR/fetch call(s) seen while rendering`).
+    Most SPAs like this populate themselves by calling a JSON API under
+    the hood - if one shows up here, a future pass could call that
+    endpoint directly with a plain request and drop Playwright entirely,
+    the way every other platform in this file already works.
+  - `brute_force_musick_api()` separately (and more speculatively) tries
+    ~15 guessed REST-ish URL patterns directly against
+    `bid.musickauction.com`, using both numeric ids seen on the first
+    event - the catalog URL's id (e.g. `915`) and the different id
+    embedded in that same event's image URL (e.g. `883` in
+    `/images/auction/883_m.jpg`) - since which one (if either) the API
+    wants is unknown. Logged as `[musick-api-probe] <url>: code=... bytes=...
+    json-like=...` for each guess. Pure brute force, not informed by
+    anything except common API shapes - the passive XHR/fetch log above is
+    the more reliable of the two, this is just extra shots on goal.
 - Until that next pass happens, this is the practical ceiling: event-level
   info (what's happening, when, where, roughly what's in it) rather than a
   per-item current bid. The event-level row is kept either way rather than
