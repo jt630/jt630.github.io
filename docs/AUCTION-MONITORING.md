@@ -131,24 +131,64 @@ everything on its site is already local by construction, and its listings
 won't reliably repeat a city name in the title the way a national platform's
 would.
 
-## Value estimation
+## Value estimation — real eBay comps first, AI text guess as fallback
 
-`auction_value.py` sends each lot's title/category/description (no photos yet) to
-Claude Haiku in batches of 12, asking for a conservative resale-range estimate and
-a one-line note — explicitly told to flag "as-is", "evidence", "salvage", etc. in
-the note, and to return `null` rather than guess when there isn't enough
-information. `deal_score` is `estimated_value_mid − current_bid`; a lot is
+Jeremy asked, in essence, "is there a good way to value lots — eBay
+transactions?" Yes, and it's the primary source now, not just a Claude guess:
+
+1. **`scripts/ebay_comps.py`** looks up each lot's title against eBay's
+   **SOLD + completed listings** search (`LH_Sold=1&LH_Complete=1`) — real
+   transaction prices, not asking prices. eBay retired its free completed-items
+   API years ago (the replacement, Marketplace Insights, is partner-gated), so
+   this works the same way every other source in this file does: fetch the
+   public search page, parse it (JSON-LD first, a markup-specific regex
+   fallback second), same resilience pattern (cache the last good result,
+   never crash, log a note).
+2. **`auction_value.py`** still sends each lot's title/category/description to
+   Claude Haiku (batches of 12) — but now also includes the eBay comp stats
+   when found, and instructs Claude to treat them as the primary anchor and
+   use its note to explain how *this specific lot's* condition/completeness
+   should move a buyer within that range (e.g. "described as non-functional,
+   price toward the bottom of the $40–90 eBay range").
+3. **Whichever number actually gets used, though, is decided in Python, not by
+   Claude:** when a lot has **`EBAY_MIN_COMPS` (3) or more** real sold comps,
+   `estimated_value_low/high/mid` come directly from those comps (`mid` is the
+   observed *median* sale price, not a synthetic midpoint of the low/high
+   band — those aren't the same number for a skewed price distribution, and
+   an earlier version of this code got that wrong before a test caught it).
+   `value_source` is recorded as `"ebay"`. Claude's own low/high is simply not
+   used in that case — only its note is kept, for context. When there aren't
+   enough comps (or eBay is unreachable), it falls back to Claude's own
+   estimate as before, with `value_source: "ai"`. Every lot also carries
+   `ebay_n` / `ebay_median` regardless of which source won, so the page can
+   show "found N comps, didn't use them" transparently.
+
+`deal_score` is `estimated_value_mid − current_bid` either way; a lot is
 `flagged` when that gap is ≥30% of the estimated value and the estimate is at
-least $20 (to skip noise on trivially cheap lots).
+least $20 (to skip noise on trivially cheap lots). **The lot tables sort
+eBay-backed estimates above AI-only ones** (each group still ranked by
+deal_score within itself) — a real comp beats a bigger *nominal* gap from a
+pure guess, which is the actual point of "objectively best deals": a lot
+flagged off 5 real sales is more trustworthy than one flagged off Claude's
+read of a title alone, even if the second one's dollar gap looks bigger on
+paper. The page marks each estimate with **"✓ N sold"** (eBay-backed, green)
+or **"AI est."** (text-only, dimmer) so that distinction is visible, not just
+baked into the sort order.
 
 Requires an `ANTHROPIC_API_KEY` repo secret (Settings → Secrets and variables →
-Actions). Without it, `auction_value.py` no-ops and lots render with just their
-current bid, close time, and link — no ranking, no flag.
+Actions) for the AI-fallback half; the eBay-comps half needs no key or secret
+at all, just network access. Without `ANTHROPIC_API_KEY`, lots with 3+ eBay
+comps are still valued (comps-only, no note); everything else keeps null
+estimates and renders with just current bid, close time, and link.
 
-**This is a text-only estimate, not an appraisal.** It doesn't look at photos, the
-item's actual condition, or completeness. Treat a flagged lot as "worth a second
-look," not "safe to bid against sight unseen." A future pass could feed the lot's
-photo(s) to a vision-capable Claude call for a better estimate — not built yet.
+**Neither source is an appraisal.** eBay comps are for "a similar item," not
+necessarily this exact lot's condition — that's what Claude's note is for.
+Treat a flagged lot as "worth a second look," not "safe to bid against sight
+unseen." Same live-markup caveat as the rest of this file applies to eBay too:
+this dev sandbox's network policy blocks ebay.com, so `ebay_comps.py` hasn't
+run against a real eBay page yet — same debugging path as everything else
+(dispatch the workflow, read the fetch notes, adjust the regex if `0 prices
+found` shows up).
 
 ## Dialing in the search — live threshold slider + email digest
 
@@ -203,6 +243,8 @@ python scripts/auction_finder.py --dry-run    # fetch + print notes, don't write
 ANTHROPIC_API_KEY=sk-... python scripts/auction_value.py           # fill in estimates
 ANTHROPIC_API_KEY=sk-... python scripts/auction_value.py --dry-run  # preview, don't write
 ANTHROPIC_API_KEY=sk-... python scripts/auction_value.py --all      # re-estimate every lot
+
+python scripts/ebay_comps.py "Kirby G6 vacuum"   # test the eBay comp lookup on its own
 ```
 
 Then `hugo --minify` to confirm the page builds, or `hugo server` to look at

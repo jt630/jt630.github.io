@@ -492,6 +492,9 @@ def main():
         r["deal_score"] = None
         r["deal_pct"] = None
         r["ai_note"] = None
+        r["value_source"] = None  # "ebay" | "ai" | None - set by auction_value.py
+        r["ebay_n"] = None
+        r["ebay_median"] = None
         r["flagged"] = False
         r["fetched_at"] = date.today().isoformat()
 

@@ -19,6 +19,7 @@
   {{ $lots := .lots }}
   {{ $flagged := where $lots "flagged" true }}
   {{ $rated := where $lots "deal_score" "!=" nil }}
+  {{ $ebayBacked := where $lots "value_source" "ebay" }}
   {{ $vehicles := where $lots "category" "Vehicles" }}
 
   <p class="auctions-assump">
@@ -32,7 +33,8 @@
   <div class="auctions-summary">
     <div class="auctions-stat"><span class="n">{{ len $lots }}</span><span class="l">Lots tracked</span></div>
     <div class="auctions-stat"><span class="n" id="flagged-count">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
-    <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">AI-valued</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">Valued</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $ebayBacked }}</span><span class="l">eBay-backed</span></div>
     <div class="auctions-stat"><span class="n">{{ len $vehicles }}</span><span class="l">Vehicles</span></div>
   </div>
 

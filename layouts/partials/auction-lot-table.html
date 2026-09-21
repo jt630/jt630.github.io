@@ -1,8 +1,13 @@
-{{/* Renders a sorted auction-lot table. Usage: {{ partial "auction-lot-table.html" $lots }} */}}
+{{/* Renders a sorted auction-lot table. Usage: {{ partial "auction-lot-table.html" $lots }}
+     Sort order: eBay-sold-comp-backed estimates first (real transaction
+     data - the "objectively best deals" tier), then AI-text-only estimates,
+     then unrated, each group sorted by deal_score descending within
+     itself. A real comp beats a bigger *nominal* gap from a pure guess. */}}
 {{ $lots := . }}
-{{ $rated := sort (where $lots "deal_score" "!=" nil) "deal_score" "desc" }}
-{{ $unrated := where $lots "deal_score" nil }}
-{{ $ordered := $rated | append $unrated }}
+{{ $ebayRated := sort (where $lots "value_source" "ebay") "deal_score" "desc" }}
+{{ $aiRated := sort (where $lots "value_source" "ai") "deal_score" "desc" }}
+{{ $unrated := where $lots "value_source" nil }}
+{{ $ordered := $ebayRated | append $aiRated | append $unrated }}
 {{ if $ordered }}
 <div class="auctions-table-wrap">
   <table class="auctions-tbl">
@@ -37,6 +42,11 @@
           <td>
             {{ if .estimated_value_mid }}
               ${{ lang.FormatNumberCustom 0 .estimated_value_low }}&ndash;{{ lang.FormatNumberCustom 0 .estimated_value_high }}
+              {{ if eq .value_source "ebay" }}
+                <span class="value-src value-src-ebay" title="{{ .ebay_n }} recent eBay sold listings for this item">✓ {{ .ebay_n }} sold</span>
+              {{ else if eq .value_source "ai" }}
+                <span class="value-src value-src-ai" title="AI text estimate — not enough eBay sold comps to anchor this one">AI est.</span>
+              {{ end }}
             {{ else }}&mdash;{{ end }}
           </td>
           <td>
