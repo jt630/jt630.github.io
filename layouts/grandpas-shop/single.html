@@ -1,0 +1,53 @@
+{{ define "head-extra" }}
+{{ partial "auction-styles.html" . }}
+{{ end }}
+
+{{ define "main" }}
+{{ $L := .Site.Data.auction_lots }}
+{{ $category := "Small Engines & Appliances" }}
+
+<div class="auctions-page">
+
+  <div class="auctions-hero">
+    <h1>Grandpa's Shop</h1>
+  </div>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{ with $L }}
+  {{ $lots := where .lots "category" $category }}
+  {{ $flagged := where $lots "flagged" true }}
+  {{ $rated := where $lots "deal_score" "!=" nil }}
+  {{ $ebayBacked := where $lots "value_source" "ebay" }}
+
+  <p class="auctions-assump">
+    Generated {{ .generated }} by <code>scripts/auction_finder.py</code> +
+    <code>scripts/auction_value.py</code>, filtered to vacuums, small
+    engines, and appliances. Sorted best-value gap first; lots without an
+    AI estimate (no <code>ANTHROPIC_API_KEY</code>, or not enough listing
+    detail to value) sort last.
+  </p>
+
+  <div class="auctions-summary">
+    <div class="auctions-stat"><span class="n">{{ len $lots }}</span><span class="l">Lots tracked</span></div>
+    <div class="auctions-stat"><span class="n" id="flagged-count">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">Valued</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $ebayBacked }}</span><span class="l">eBay-backed</span></div>
+  </div>
+
+  {{ partial "auction-dial-in.html" (dict "pageTitle" "Grandpa's Shop" "pageURL" $.Permalink) }}
+
+  {{ partial "auction-lot-table.html" $lots }}
+
+  {{ else }}
+  <p class="auctions-empty">
+    Run <code>python scripts/auction_finder.py</code> then
+    <code>python scripts/auction_value.py</code> to populate
+    <code>data/auction_lots.yaml</code>.
+  </p>
+  {{ end }}
+
+</div>
+{{ end }}

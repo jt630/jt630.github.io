@@ -150,6 +150,11 @@ title = "Almond Farm"
     url = "/auctions/"
     parent = "ops"
     weight = 10
+  [[menu.main]]
+    name = "Grandpa's Shop"
+    url = "/grandpas-shop/"
+    parent = "ops"
+    weight = 11
 
 [taxonomies]
   tag = "tags"

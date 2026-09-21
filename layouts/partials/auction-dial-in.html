@@ -1,0 +1,129 @@
+{{/* Live "dial in the search" controls + email-digest button.
+     Usage: {{ partial "auction-dial-in.html" (dict "pageTitle" "Auction Watch" "pageURL" .Permalink) }}
+     Pure client-side: reads the data-* attrs auction-lot-table.html already
+     puts on every <tr>, so no rebuild is needed to try a different deal
+     threshold, and the "Email this digest" button only opens a mailto:
+     link in the visitor's own mail app - nothing is sent from here. */}}
+{{ $pageTitle := .pageTitle }}
+{{ $pageURL := .pageURL }}
+{{ $contacts := site.Data.auction_contacts }}
+
+<div class="auctions-dialin">
+  <div class="dialin-row">
+    <label for="deal-threshold">
+      Deal threshold: <strong><span id="deal-threshold-val">30</span>%</strong>
+      <span class="dialin-hint">est. value over current bid</span>
+    </label>
+    <input type="range" id="deal-threshold" min="5" max="60" step="5" value="30">
+  </div>
+  <div class="dialin-row dialin-actions">
+    <span class="dialin-count"><strong id="dialin-flagged-n">&mdash;</strong> lots flagged at this threshold</span>
+    <a id="dialin-email-btn" class="dialin-email-btn" href="#">📧 Email this digest</a>
+  </div>
+  {{ if not $contacts.grandpa_email }}
+  <p class="dialin-note">Add grandpa's email to <code>data/auction_contacts.yaml</code> to include him automatically — for now the digest only addresses {{ $contacts.jeremy_email }}.</p>
+  {{ end }}
+</div>
+
+<script>
+(function () {
+  var MIN_VALUE = 20; // matches scripts/auction_value.py FLAG_MIN_VALUE
+  var slider = document.getElementById('deal-threshold');
+  var valOut = document.getElementById('deal-threshold-val');
+  var countOut = document.getElementById('dialin-flagged-n');
+  var emailBtn = document.getElementById('dialin-email-btn');
+  if (!slider || !emailBtn) return;
+
+  {{/* jsonify already produces a quoted JS/JSON literal (e.g. `"foo"`);
+       without safeJS, Hugo's html/template auto-escapes <script> content
+       and JSON-encodes that AGAIN, embedding literal quote characters
+       into the string value itself (caught by a real browser test - an
+       empty grandpa_email became the *string* `""`, which is non-empty
+       and therefore truthy, silently adding a blank recipient). */}}
+  var contacts = {
+    jeremy: {{ $contacts.jeremy_email | jsonify | safeJS }},
+    grandpa: {{ $contacts.grandpa_email | jsonify | safeJS }}
+  };
+  var pageTitle = {{ $pageTitle | jsonify | safeJS }};
+  var pageURL = {{ $pageURL | jsonify | safeJS }};
+
+  function rows() {
+    return Array.prototype.slice.call(document.querySelectorAll('.auctions-lot-row'));
+  }
+
+  function isFlagged(row, thresholdPct) {
+    var pct = parseFloat(row.dataset.dealPct);
+    var mid = parseFloat(row.dataset.estMid);
+    if (isNaN(pct) || isNaN(mid)) return false;
+    return pct >= (thresholdPct / 100) && mid >= MIN_VALUE;
+  }
+
+  function buildMailto(thresholdPct, flagged) {
+    var top = flagged.slice(0, 15);
+    var to = [contacts.jeremy, contacts.grandpa].filter(Boolean).join(',');
+    var subject = pageTitle + ' — ' + top.length + ' flagged deal' + (top.length === 1 ? '' : 's') +
+      ' (' + thresholdPct + '%+ under value)';
+
+    var lines = [];
+    lines.push(pageTitle + ' — lots flagged at ' + thresholdPct + '%+ under estimated value:');
+    lines.push('');
+    if (top.length === 0) {
+      lines.push('(none at this threshold — try lowering the slider)');
+    }
+    top.forEach(function (row, i) {
+      var bid = row.dataset.bid ? '$' + Number(row.dataset.bid).toLocaleString() : '?';
+      var estLow = row.dataset.estLow ? Number(row.dataset.estLow).toLocaleString() : '?';
+      var estHigh = row.dataset.estHigh ? Number(row.dataset.estHigh).toLocaleString() : '?';
+      var gap = row.dataset.dealScore ? '+$' + Number(row.dataset.dealScore).toLocaleString() : '?';
+      lines.push((i + 1) + '. ' + row.dataset.title + (row.dataset.agency ? ' — ' + row.dataset.agency : ''));
+      lines.push('   bid ' + bid + ', est. $' + estLow + '–' + estHigh + ' (' + gap + ')');
+      lines.push('   ' + row.dataset.url);
+      lines.push('');
+    });
+    if (flagged.length > top.length) {
+      lines.push('...and ' + (flagged.length - top.length) + ' more — see ' + pageURL);
+    } else {
+      lines.push('Full page: ' + pageURL);
+    }
+
+    return 'mailto:' + encodeURIComponent(to).replace(/%2C/g, ',') +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  function recompute() {
+    var thresholdPct = parseInt(slider.value, 10);
+    valOut.textContent = thresholdPct;
+    var n = 0;
+    var flagged = [];
+    rows().forEach(function (row) {
+      var isFlag = isFlagged(row, thresholdPct);
+      row.classList.toggle('row-flagged', isFlag);
+      var badge = row.querySelector('.deal-badge.flag');
+      if (badge) badge.style.display = isFlag ? '' : 'none';
+      if (isFlag) { n++; flagged.push(row); }
+    });
+    countOut.textContent = n;
+    // keep the page's own "Flagged deals" summary stat (if present) in sync
+    var stat = document.getElementById('flagged-count');
+    if (stat) stat.textContent = n;
+
+    flagged.sort(function (a, b) {
+      return (parseFloat(b.dataset.dealScore) || 0) - (parseFloat(a.dataset.dealScore) || 0);
+    });
+    // a real mailto: href (not a click handler) so it's a normal link:
+    // right-click "copy email address", cmd/ctrl-click for a new tab, etc.
+    emailBtn.href = buildMailto(thresholdPct, flagged);
+  }
+
+  slider.addEventListener('input', recompute);
+  // This <script> is parsed before the lot tables further down the page
+  // exist yet, so the first recompute() has to wait for the full DOM
+  // (DOMContentLoaded) - calling it synchronously here would find zero rows.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', recompute);
+  } else {
+    recompute();
+  }
+})();
+</script>

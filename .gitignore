@@ -11,3 +11,6 @@ __pycache__/
 # board.json and league.json ARE committed; the 21MB raw ESPN pull is not.
 data/beer_sheet/intermediate/
 scratchpad/
+
+# scripts/auction_finder.py --save-html debug dump
+debug_html/
