@@ -1,32 +1,10 @@
-generated: '2026-09-21'
+generated: '2026-09-22'
 lots:
-- platform: musick
-  title: MERIDIAN - 942 - TRUCKS, CARS, GUNS, AMMO, DJI DRONE, PROJECTOR, TOOLS, FURNITURE
-    AND MORE!! **SEPTEMBER 21, 2026 - 1PM**
-  url: https://bid.musickauction.com/auctions/catalog/id/915
-  image_url: https://bid.musickauction.com/images/auction/883_m.jpg?ts=1789772807
-  current_bid: null
-  num_bids: null
-  close_time: Monday - Sep 21, 2026  1:00pm
-  category: Vehicles
-  description: Musick Auction event in Meridian, ID
-  agency: Musick Auction Co. (Meridian, ID)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-21'
 - platform: musick
   title: NAMPA - 1698 - CARS, TRUCKS, BANK REPOS, LUMBER, KNIVES, COINS, FLOOR SCRUBBER,
     FURNITURE, TOOLS, AND MORE!! ***SEPTEMBER 22, 2206 - 1PM***
   url: https://bid.musickauction.com/auctions/catalog/id/917
-  image_url: https://bid.musickauction.com/images/auction/885_m.jpg?ts=1790001941
+  image_url: https://bid.musickauction.com/images/auction/885_m.jpg?ts=1790089661
   current_bid: null
   num_bids: null
   close_time: Tuesday - Sep 22, 2026  1:00pm
@@ -43,13 +21,13 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-21'
+  fetched_at: '2026-09-22'
 - platform: musick
   title: MERIDIAN - 938 -  CONSTRUCTION SALE! LOCAL FLEET VEHICLES, HYSTER, CONNEX,
     NEW MINI EXCAVATORS, NEW GOLF CARTS, NEW SKID STEER LOADER, NEW CAR PORTS, LUMBER,
     POWER TOOLS AND MORE!! **SEPTEMBER 23, 2026 - 6PM**
   url: https://bid.musickauction.com/auctions/catalog/id/914
-  image_url: https://bid.musickauction.com/images/auction/882_m.jpg?ts=1789665016
+  image_url: https://bid.musickauction.com/images/auction/882_m.jpg?ts=1790018264
   current_bid: null
   num_bids: null
   close_time: Wednesday - Sep 23, 2026  6:00pm
@@ -66,11 +44,34 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-21'
+  fetched_at: '2026-09-22'
+- platform: musick
+  title: MERIDIAN - 943 -SUVS, CARS, FLATBED TRAILER, TRACTORS, GUNS, URANIUM GLASS
+    GEMS, Wii, VR DRONE KIT,AMMO, CABELAS ELECTRIC FRIE PLACE AND MORE!!  **SEPTEMBER
+    28, 2026 - 1PM**
+  url: https://bid.musickauction.com/auctions/catalog/id/920
+  image_url: https://bid.musickauction.com/images/auction/888_m.jpg?ts=1790033863
+  current_bid: null
+  num_bids: null
+  close_time: Monday - Sep 28, 2026  1:00pm
+  category: Heavy Equipment
+  description: Musick Auction event in Meridian, ID
+  agency: Musick Auction Co. (Meridian, ID)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-22'
 - platform: musick
   title: NAMPA - 1697 - SEPTEMBER 29, 2026 - 6PM - BIG BOY TOY AND GUNS!!!
   url: https://bid.musickauction.com/auctions/catalog/id/916
-  image_url: https://bid.musickauction.com/images/auction/884_m.jpg?ts=1789744246
+  image_url: https://bid.musickauction.com/images/auction/884_m.jpg?ts=1790090486
   current_bid: null
   num_bids: null
   close_time: Tuesday - Sep 29, 2026  6:00pm
@@ -87,7 +88,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-21'
+  fetched_at: '2026-09-22'
 - platform: musick
   title: MERIDIAN - 945 - **OFF SITE** ARROWROCK, ALL AGE MANUFACTURED HOME COMMUNITY!!
     10621 W. ABRAM LANE SP.#77, BOISE ID, 83713 **SEPTEMBER 30, 2026 - 1PM**
@@ -109,12 +110,12 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-21'
+  fetched_at: '2026-09-22'
 - platform: musick
   title: MERIDIAN - 940 - GOVERNMENT SURPLUS, LOCAL POLICE EVIDENCE, FLEET VEHICLES,
     GUNS, AMMO,  JEWELRY, TOOLS AND MORE!! **SEPTEMBER 30, 2026 - 6PM**
   url: https://bid.musickauction.com/auctions/catalog/id/918
-  image_url: https://bid.musickauction.com/images/auction/886_m.jpg?ts=1789758773
+  image_url: https://bid.musickauction.com/images/auction/886_m.jpg?ts=1790025400
   current_bid: null
   num_bids: null
   close_time: Wednesday - Sep 30, 2026  6:00pm
@@ -131,4 +132,4 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-21'
+  fetched_at: '2026-09-22'
