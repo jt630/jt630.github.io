@@ -1,34 +1,11 @@
-generated: '2026-09-23'
+generated: '2026-09-24'
 lots:
-- platform: musick
-  title: MERIDIAN - 938 -  CONSTRUCTION SALE! LOCAL FLEET VEHICLES, HYSTER, CONNEX,
-    NEW MINI EXCAVATORS, NEW GOLF CARTS, NEW SKID STEER LOADER, NEW CAR PORTS, LUMBER,
-    POWER TOOLS AND MORE!! **SEPTEMBER 23, 2026 - 6PM**
-  url: https://bid.musickauction.com/auctions/catalog/id/914
-  image_url: https://bid.musickauction.com/images/auction/882_m.jpg?ts=1790106500
-  current_bid: null
-  num_bids: null
-  close_time: Wednesday - Sep 23, 2026  6:00pm
-  category: Heavy Equipment
-  description: Musick Auction event in Meridian, ID
-  agency: Musick Auction Co. (Meridian, ID)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-23'
 - platform: musick
   title: MERIDIAN - 943 -SUVS, CARS, FLATBED TRAILER, GUNS, URANIUM GLASS GEMS, Wii,
     VR DRONE KIT,AMMO, CABELAS ELECTRIC FRIE PLACE AND MORE!!  **SEPTEMBER 28, 2026
     - 1PM**
   url: https://bid.musickauction.com/auctions/catalog/id/920
-  image_url: https://bid.musickauction.com/images/auction/888_m.jpg?ts=1790182120
+  image_url: https://bid.musickauction.com/images/auction/888_m.jpg?ts=1790268307
   current_bid: null
   num_bids: null
   close_time: Monday - Sep 28, 2026  1:00pm
@@ -45,12 +22,12 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-23'
+  fetched_at: '2026-09-24'
 - platform: musick
   title: NAMPA - 1701 - CARS, TRUCKS, DOLLAR STORE LIQUIDATION, GUNS, JEWELRY, PIANO,
     AND MORE!! ***SEPTEMBER 29, 2026 - 1PM***
   url: https://bid.musickauction.com/auctions/catalog/id/921
-  image_url: https://bid.musickauction.com/images/auction/889_m.jpg?ts=1790181433
+  image_url: https://bid.musickauction.com/images/auction/889_m.jpg?ts=1790263245
   current_bid: null
   num_bids: null
   close_time: Tuesday - Sep 29, 2026  1:00pm
@@ -67,11 +44,11 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-23'
+  fetched_at: '2026-09-24'
 - platform: musick
   title: NAMPA - 1697 - SEPTEMBER 29, 2026 - 6PM - BIG BOY TOY AND GUNS!!!
   url: https://bid.musickauction.com/auctions/catalog/id/916
-  image_url: https://bid.musickauction.com/images/auction/884_m.jpg?ts=1790178565
+  image_url: https://bid.musickauction.com/images/auction/884_m.jpg?ts=1790267146
   current_bid: null
   num_bids: null
   close_time: Tuesday - Sep 29, 2026  6:00pm
@@ -88,12 +65,12 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-23'
+  fetched_at: '2026-09-24'
 - platform: musick
   title: MERIDIAN - 945 - **OFF SITE** ARROWROCK, ALL AGE MANUFACTURED HOME COMMUNITY!!
     10621 W. ABRAM LANE SP.#77, BOISE ID, 83713 **SEPTEMBER 30, 2026 - 1PM**
   url: https://bid.musickauction.com/auctions/catalog/id/919
-  image_url: https://bid.musickauction.com/images/auction/887_m.jpg?ts=1789684524
+  image_url: https://bid.musickauction.com/images/auction/887_m.jpg?ts=1790265603
   current_bid: null
   num_bids: null
   close_time: Wednesday - Sep 30, 2026  1:00pm
@@ -110,7 +87,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-23'
+  fetched_at: '2026-09-24'
 - platform: musick
   title: MERIDIAN - 940 - GOVERNMENT SURPLUS, LOCAL POLICE EVIDENCE, FLEET VEHICLES,
     GUNS, AMMO,  JEWELRY, TOOLS AND MORE!! **SEPTEMBER 30, 2026 - 6PM**
@@ -132,4 +109,26 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-23'
+  fetched_at: '2026-09-24'
+- platform: musick
+  title: MERIDIAN - 939 - "TOWN OF STEVENSON MUSEUM" COLLECTION- TRUCKS, CARS,  RARE
+    ANTIQUES, HIGH END JEWELRY,GUNS, AMMO, COINS AND MORE!! **OCTOBER 7, 2026 - 6PM**
+  url: https://bid.musickauction.com/auctions/catalog/id/922
+  image_url: https://bid.musickauction.com/images/auction/890_m.jpg?ts=1790264654
+  current_bid: null
+  num_bids: null
+  close_time: Wednesday - Oct 7, 2026  6:00pm
+  category: Vehicles
+  description: Musick Auction event in Meridian, ID
+  agency: Musick Auction Co. (Meridian, ID)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-24'
