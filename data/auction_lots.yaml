@@ -1,11 +1,11 @@
-generated: '2026-09-25'
+generated: '2026-09-26'
 lots:
 - platform: musick
   title: MERIDIAN - 943 -SUVS, CARS, FLATBED TRAILER, GUNS, URANIUM GLASS GEMS, Wii,
     VR DRONE KIT,AMMO, CABELAS ELECTRIC FRIE PLACE AND MORE!!  **SEPTEMBER 28, 2026
     - 1PM**
   url: https://bid.musickauction.com/auctions/catalog/id/920
-  image_url: https://bid.musickauction.com/images/auction/888_m.jpg?ts=1790273087
+  image_url: https://bid.musickauction.com/images/auction/888_m.jpg?ts=1790373560
   current_bid: null
   num_bids: null
   close_time: Monday - Sep 28, 2026  1:00pm
@@ -22,12 +22,12 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-25'
+  fetched_at: '2026-09-26'
 - platform: musick
   title: NAMPA - 1701 - CARS, TRUCKS, DOLLAR STORE LIQUIDATION, GUNS, JEWELRY, PIANO,
     AND MORE!! ***SEPTEMBER 29, 2026 - 1PM***
   url: https://bid.musickauction.com/auctions/catalog/id/921
-  image_url: https://bid.musickauction.com/images/auction/889_m.jpg?ts=1790352368
+  image_url: https://bid.musickauction.com/images/auction/889_m.jpg?ts=1790376439
   current_bid: null
   num_bids: null
   close_time: Tuesday - Sep 29, 2026  1:00pm
@@ -44,11 +44,11 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-25'
+  fetched_at: '2026-09-26'
 - platform: musick
   title: NAMPA - 1697 - SEPTEMBER 29, 2026 - 6PM - BIG BOY TOY AND GUNS!!!
   url: https://bid.musickauction.com/auctions/catalog/id/916
-  image_url: https://bid.musickauction.com/images/auction/884_m.jpg?ts=1790291004
+  image_url: https://bid.musickauction.com/images/auction/884_m.jpg?ts=1790378091
   current_bid: null
   num_bids: null
   close_time: Tuesday - Sep 29, 2026  6:00pm
@@ -65,29 +65,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-25'
-- platform: musick
-  title: MERIDIAN - 945 - **OFF SITE** ARROWROCK, ALL AGE MANUFACTURED HOME COMMUNITY!!
-    10621 W. ABRAM LANE SP.#77, BOISE ID, 83713 **SEPTEMBER 30, 2026 - 1PM**
-  url: https://bid.musickauction.com/auctions/catalog/id/919
-  image_url: https://bid.musickauction.com/images/auction/887_m.jpg?ts=1790265603
-  current_bid: null
-  num_bids: null
-  close_time: Wednesday - Sep 30, 2026  1:00pm
-  category: Other
-  description: Musick Auction event in Meridian, ID
-  agency: Musick Auction Co. (Meridian, ID)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-25'
+  fetched_at: '2026-09-26'
 - platform: musick
   title: MERIDIAN - 940 - GOVERNMENT SURPLUS, LOCAL POLICE EVIDENCE, FLEET VEHICLES,
     GUNS, AMMO,  JEWELRY, TOOLS AND MORE!! **SEPTEMBER 30, 2026 - 6PM**
@@ -109,7 +87,29 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-25'
+  fetched_at: '2026-09-26'
+- platform: musick
+  title: MERIDIAN - 945 - **OFF SITE** ARROWROCK, ALL AGE MANUFACTURED HOME COMMUNITY!!
+    10621 W. ABRAM LANE SP.#77, BOISE ID, 83713 **OCTOBER 2, 2026 - 1PM**
+  url: https://bid.musickauction.com/auctions/catalog/id/919
+  image_url: https://bid.musickauction.com/images/auction/887_m.jpg?ts=1790379883
+  current_bid: null
+  num_bids: null
+  close_time: Friday - Oct 2, 2026  1:00pm
+  category: Other
+  description: Musick Auction event in Meridian, ID
+  agency: Musick Auction Co. (Meridian, ID)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-26'
 - platform: musick
   title: MERIDIAN - 939 - "TOWN OF STEVENSON MUSEUM" COLLECTION- TRUCKS, CARS,  RARE
     ANTIQUES, HIGH END JEWELRY,GUNS, AMMO, COINS AND MORE!! **OCTOBER 7, 2026 - 6PM**
@@ -131,11 +131,11 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-25'
+  fetched_at: '2026-09-26'
 - platform: musick
   title: NAMPA - 1699 - AMAZON OVERSTOCK AND MORE!! ***OCTOBER 8, 2026 - 6PM***
   url: https://bid.musickauction.com/auctions/catalog/id/923
-  image_url: https://bid.musickauction.com/images/auction/891_m.jpg?ts=1790293578
+  image_url: https://bid.musickauction.com/images/auction/891_m.jpg?ts=1790377290
   current_bid: null
   num_bids: null
   close_time: Thursday - Oct 8, 2026  6:00pm
@@ -152,4 +152,4 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-25'
+  fetched_at: '2026-09-26'
