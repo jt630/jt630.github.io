@@ -552,6 +552,100 @@ def brute_force_musick_api(events, all_notes):
             time.sleep(0.5)
 
 
+# Real per-lot markup, CONFIRMED via a live debug run against the actual
+# rendered bid.musickauction.com catalog pages (debug_html/musick_catalog__*.html
+# on the debug/auction-html branch) - not guessed. The page is server-rendered
+# with one <li id="blkLotItemMain{lotId}" class="item-block"> per lot, each
+# holding a lot number, title+detail link, current/asking bid, bid count, and
+# time left. There is no separate JSON API call for this: the "sync/lot" URL
+# seen in brute_force_musick_api()/the XHR log is just how the page live-updates
+# bids in place after this initial render, so rendering the page once already
+# carries everything needed. Only page 1 (50 lots) of the catalog is fetched -
+# the same "Results: Viewing items 1-N of TOTAL" pager seen on every catalog
+# page means larger auctions (700+ lots) are only partially covered; paging
+# through `?page=N` is future work if that proves worth the extra fetches.
+_MUSICK_LOT_SPLIT_RE = re.compile(r'<li id="blkLotItemMain\d+" class="item-block\s*">')
+_MUSICK_LOT_DETAIL_URL_RE = re.compile(r'<span class="lotTitle"><a class="yaaa" href="([^"]+)">')
+_MUSICK_LOT_TITLE_RE = re.compile(r'<span class="lotTitle"><a class="yaaa" href="[^"]+">([^<]*)</a></span>')
+_MUSICK_LOT_NUM_RE = re.compile(r'<span class="lot_no">Lot #<span class="no">(\d+)</span>')
+_MUSICK_LOT_IMG_RE = re.compile(r'<img src="([^"]+)"')
+# Currency span class is "scur{auction_id}" (e.g. scur915, scur919) on most
+# lots, but plain "scur"/"scur2" shows up too (CONFIRMED - both forms seen
+# across the 6 real saved catalog pages) - match either with scur\d*.
+_MUSICK_LOT_CURBID_RE = re.compile(
+    r'item-currentbid"><span class="title">Current bid</span>'
+    r'<span class="value"><span class="scur\d*">\$</span>'
+    r'<span class="exratetip[^>]*>([\d,]+)</span>'
+)
+_MUSICK_LOT_ASKBID_RE = re.compile(
+    r'item-askingbid"><span class="title">Asking bid</span>'
+    r'<span class="value"><span class="scur\d*">\$</span>'
+    r'<span class="exratetip[^>]*>([\d,]+)</span>'
+)
+# A lot nobody has bid on yet shows "Starting" instead of "Current bid" -
+# CONFIRMED on musick_catalog__919.html (a single-lot offsite auction with
+# no bids). That's a minimum, not an actual bid, so it's kept out of
+# current_bid (same "a missing bid isn't a $0 bid" rule as auction_value.py)
+# and surfaced in the description instead.
+_MUSICK_LOT_STARTBID_RE = re.compile(
+    r'item-starting-bid"><span class="title">Starting</span>'
+    r'<span class="value"><span class="scur\d*">\$</span>'
+    r'<span class="exratetip[^>]*>([\d,]+)</span>'
+)
+_MUSICK_LOT_NUMBIDS_RE = re.compile(r'Bidding history\((\d+)\s*bids?\)')
+_MUSICK_LOT_TIMELEFT_RE = re.compile(r'Time left:&nbsp;<a[^>]*>([^<]*)</a>')
+
+
+def parse_musick_lots(page):
+    """Parse real per-lot rows out of a rendered bid.musickauction.com
+    catalog page (see markup notes above). Current bid is used as the
+    lot's price for deal-scoring - it's what a bidder actually has to beat,
+    same convention as every other platform in this file. Asking bid isn't
+    kept on the lot dict (not part of the shared schema), but shows up in
+    the fetch notes for the curious. A lot with no bids yet keeps its
+    starting-bid price in the description with current_bid left None (not
+    a real price to score against), rather than being dropped."""
+    out = []
+    for chunk in _MUSICK_LOT_SPLIT_RE.split(page)[1:]:
+        title_m = _MUSICK_LOT_TITLE_RE.search(chunk)
+        url_m = _MUSICK_LOT_DETAIL_URL_RE.search(chunk)
+        if not title_m or not url_m:
+            continue
+        bid_m = _MUSICK_LOT_CURBID_RE.search(chunk)
+        start_m = _MUSICK_LOT_STARTBID_RE.search(chunk)
+        if not bid_m and not start_m:
+            continue
+        title = html.unescape(title_m.group(1)).strip()
+        if not title:
+            continue
+        num_m = _MUSICK_LOT_NUM_RE.search(chunk)
+        img_m = _MUSICK_LOT_IMG_RE.search(chunk)
+        ask_m = _MUSICK_LOT_ASKBID_RE.search(chunk)
+        bids_m = _MUSICK_LOT_NUMBIDS_RE.search(chunk)
+        time_m = _MUSICK_LOT_TIMELEFT_RE.search(chunk)
+        desc = None
+        if ask_m:
+            desc = f"Asking bid ${ask_m.group(1)}"
+        elif start_m and not bid_m:
+            desc = f"Starting bid ${start_m.group(1)} · no bids yet"
+        if time_m:
+            tl = time_m.group(1).strip()
+            desc = f"{desc} · Time left: {tl}" if desc else f"Time left: {tl}"
+        out.append({
+            "platform": "musick",
+            "title": f"Lot #{num_m.group(1)}: {title}" if num_m else title,
+            "url": url_m.group(1),
+            "image_url": img_m.group(1) if img_m else None,
+            "current_bid": _money(bid_m.group(1)) if bid_m else None,
+            "num_bids": int(bids_m.group(1)) if bids_m else None,
+            "close_time": None,
+            "category": None,
+            "description": desc,
+            "agency": None,
+        })
+    return out
+
+
 def fetch_musick_catalog(event_url, all_notes):
     """Follow one event's catalog link to bid.musickauction.com for
     individual lot-level data.
@@ -602,11 +696,19 @@ def fetch_musick_catalog(event_url, all_notes):
     rows = [r for r in rows if r.get("title")]
     if rows:
         all_notes.append(f"[musick-catalog] {event_url!r}: {len(rows)} lots via json-ld")
+        return rows
+
+    rows = parse_musick_lots(page)
+    if rows:
+        all_notes.append(
+            f"[musick-catalog] {event_url!r}: {len(rows)} real lots via "
+            f"rendered-markup parser (page 1 only)"
+        )
     else:
         all_notes.append(
-            f"[musick-catalog] {event_url!r}: 0 rows (no json-ld in rendered "
-            f"page, {len(page)}b) -- needs a real parser against the "
-            f"rendered markup, see docs/AUCTION-MONITORING.md"
+            f"[musick-catalog] {event_url!r}: 0 rows (no json-ld and no "
+            f"blkLotItemMain rows in rendered page, {len(page)}b) -- markup "
+            f"may have changed, see docs/AUCTION-MONITORING.md"
         )
     return rows
 
