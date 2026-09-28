@@ -47,6 +47,14 @@ def _fake_render(pages_by_number, default=None):
     return render
 
 
+def _padded(html):
+    """Pad a tiny stub page to a realistic size. Real Musick pages are
+    25KB+, and musick_render.looks_blocked() treats anything under 2,000
+    bytes as a probable block page - so a stub standing in for "a real page
+    with no lots" must not be tiny."""
+    return html + "<!-- " + "x" * 3000 + " -->"
+
+
 def _synthetic_lot_html(lot_id):
     """A minimal, real-shaped closed-lot chunk (matches every regex
     price_history.py parses against) for a single sold lot with a unique
@@ -306,7 +314,7 @@ class RepeatPageAndIncompleteHarvestTests(unittest.TestCase):
             # rows are already on disk (0 new there), page 2 (the real
             # 70-lot tail) is new, page 3 is a clean empty stop.
             page5 = _read("musick_catalog_914_p5_items100.html")
-            render_ok = _fake_render({1: page1, 2: page5, 3: "<html></html>"})
+            render_ok = _fake_render({1: page1, 2: page5, 3: _padded("<html></html>")})
             rows2, appended2, complete2 = ph.harvest_catalog(
                 914, "2026-09-24T03:22:00Z", notes, render=render_ok, price_history_dir=d
             )
@@ -319,7 +327,7 @@ class RepeatPageAndIncompleteHarvestTests(unittest.TestCase):
     def test_max_catalog_pages_cap_gives_incomplete(self):
         # Every page returns exactly one brand-new lot - never empty, never
         # a repeat - so only the hard cap can end this loop.
-        pages = {n: _synthetic_lot_html(600000 + n) for n in range(1, ph.MAX_CATALOG_PAGES + 5)}
+        pages = {n: _padded(_synthetic_lot_html(600000 + n)) for n in range(1, ph.MAX_CATALOG_PAGES + 5)}
         render = _fake_render(pages)
         notes = []
         with tempfile.TemporaryDirectory() as d:
@@ -333,7 +341,7 @@ class RepeatPageAndIncompleteHarvestTests(unittest.TestCase):
     def test_zero_lots_parsed_is_incomplete_not_a_clean_stop(self):
         # Markup drift: the page renders fine but nothing parses. Must not
         # be marked harvested with 0 rows and never retried.
-        render = _fake_render({1: "<html><body>redesigned site</body></html>"})
+        render = _fake_render({1: _padded("<html><body>redesigned site</body></html>")})
         notes = []
         with tempfile.TemporaryDirectory() as d:
             rows, appended, complete = ph.harvest_catalog(

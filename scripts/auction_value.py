@@ -54,7 +54,7 @@ from datetime import datetime, timezone
 import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from ebay_comps import lookup as ebay_lookup  # noqa: E402
+from ebay_comps import lookup as ebay_lookup, circuit_open as ebay_circuit_open, circuit_summary as ebay_circuit_summary  # noqa: E402
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(_HERE, "..", "data", "auction_lots.yaml")
@@ -223,7 +223,11 @@ def fetch_ebay_comps(lots, notes):
         if not title:
             continue
         lot["_ebay_comps"] = ebay_lookup(title, notes=notes)
-        time.sleep(EBAY_SLEEP)
+        if not ebay_circuit_open():  # no point sleeping when nothing was fetched
+            time.sleep(EBAY_SLEEP)
+    summary = ebay_circuit_summary()
+    if summary:
+        notes.append(summary)
 
 
 def estimate(lots):

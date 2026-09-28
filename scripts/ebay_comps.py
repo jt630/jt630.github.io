@@ -53,6 +53,30 @@ MIN_PRICE = 3.0     # drop $0-2 junk rows (shipping-only / accessory listings)
 MAX_COMPS = 25       # cap how many sold prices we average over
 
 
+# Per-process circuit breaker. After the first 403 in a run, every remaining
+# lookup skips the network entirely (still serving cached comps if any) - if
+# a site pushes back we back off for the rest of the run, never retry.
+_CIRCUIT = {"open": False, "skipped": 0}
+
+
+def circuit_open():
+    return _CIRCUIT["open"]
+
+
+def reset_circuit():
+    _CIRCUIT["open"] = False
+    _CIRCUIT["skipped"] = 0
+
+
+def circuit_summary():
+    """One-line note for the caller to log once at the end of a run, or None
+    if the breaker never tripped."""
+    if not _CIRCUIT["open"]:
+        return None
+    return (f"[ebay] circuit open after 403, skipped {_CIRCUIT['skipped']} "
+            f"lookups (BLOCKED, backing off; see docs/AUCTION-MONITORING.md)")
+
+
 def _cache_key(query):
     return re.sub(r"[^a-z0-9]+", "_", query.lower()).strip("_")[:80]
 
@@ -259,11 +283,20 @@ def lookup(raw_query, notes=None):
         return None
     cache_path = os.path.join(CACHE_DIR, f"ebay_{_cache_key(query)}.json")
 
-    url = search_url(query)
-    code, page = fetch(url, headers=UA)
     prices = []
-    if code == 403:
-        notes.append(f"[ebay] {query!r}: 403 BLOCKED")
+    if _CIRCUIT["open"]:
+        # Breaker open: no fetch, no note per lookup (circuit_summary() gives
+        # one line at the end). Fall through to the cache fallback below.
+        _CIRCUIT["skipped"] += 1
+        code, page = None, None
+    else:
+        code, page = fetch(search_url(query), headers=UA)
+        if code == 403:
+            _CIRCUIT["open"] = True
+            notes.append(f"[ebay] {query!r}: 403 BLOCKED, opening circuit - no more eBay lookups this run")
+
+    if _CIRCUIT["open"]:
+        pass
     elif not page:
         notes.append(f"[ebay] {query!r}: empty (code {code})")
     else:
