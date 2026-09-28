@@ -93,7 +93,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 
 import yaml
 
@@ -646,6 +646,143 @@ def parse_musick_lots(page):
     return out
 
 
+# Real per-lot DETAIL page markup (distinct from the catalog LISTING page
+# parsed above) - CONFIRMED via a live probe_url debug run against a real
+# vehicle lot (see docs/AUCTION-MONITORING.md). The catalog listing never
+# visits this page and has none of this: year/make/model, mileage, color,
+# VIN, engine/cylinders/transmission/drivetrain/body, and title status all
+# sit in plain `<span class="cat-header">Label:</span> value<br>` pairs -
+# exactly the "mileage, title status, running condition" a bidder is told
+# to go check for themselves in auction_value.py's vehicle-caveat prompt.
+_MUSICK_DETAIL_FIELD_RE = re.compile(
+    r'<span class="cat-header">([^<]+):</span>\s*(.*?)<br>', re.S
+)
+_MUSICK_DETAIL_CURBID_RE = re.compile(
+    r'id="currentBid"><span class="exratetip[^>]*>\$([\d,]+)</span>'
+)
+_MUSICK_DETAIL_NUMBIDS_RE = re.compile(r'\((\d+)\s*bids?\)')
+_MUSICK_DETAIL_TIMELEFT_RE = re.compile(
+    r'class="[^"]*time-left"><span class="in-progress">Time left:</span>'
+    r'&nbsp;<span class="in-progress">([^<]*)</span>'
+)
+# A relative "9d 20h 36m 50s"-style string, CONFIRMED on both the catalog
+# and detail pages - any of the four fields can be absent (e.g. "45m 12s"
+# with no days/hours), so every group here is optional.
+_MUSICK_DURATION_RE = re.compile(
+    r'(?:(\d+)\s*d)?\s*(?:(\d+)\s*h)?\s*(?:(\d+)\s*m)?\s*(?:(\d+)\s*s)?'
+)
+# Titles seen on real listings so far: "Clear" (clean). Anything else
+# (Salvage/Rebuilt/Bill of Sale/missing) is treated as NOT clean by
+# default - same "don't manufacture confidence that isn't there" rule as
+# every other estimate in this file.
+_MUSICK_CLEAN_TITLE_WORDS = {"clear", "clean"}
+
+
+def _parse_musick_duration(raw):
+    """'9d 20h 36m 50s' -> timedelta(...), or None if nothing matched."""
+    if not raw:
+        return None
+    m = _MUSICK_DURATION_RE.match(raw.strip())
+    if not m or not any(m.groups()):
+        return None
+    d, h, mi, s = (int(g) if g else 0 for g in m.groups())
+    return timedelta(days=d, hours=h, minutes=mi, seconds=s)
+
+
+def parse_musick_lot_detail(page):
+    """Parse the year/make/model/mileage/VIN/title-status spec block plus
+    this page's own current-bid/bid-count/time-left off a rendered
+    bid.musickauction.com lot-DETAIL page (not the catalog listing - see
+    module notes above)."""
+    fields = {}
+    for m in _MUSICK_DETAIL_FIELD_RE.finditer(page):
+        label = m.group(1).strip().lower()
+        value = html.unescape(re.sub(r"<[^>]+>", "", m.group(2))).strip()
+        fields[label] = value
+
+    def _int(v):
+        try:
+            return int(re.sub(r"[^\d]", "", v)) if v else None
+        except ValueError:
+            return None
+
+    vin = (fields.get("vin") or "").strip().upper() or None
+    if vin and len(vin) != 17:
+        # Sanity check only (real VINs are always 17 characters) - not a
+        # checksum validation, just enough to catch a markup mismatch
+        # producing garbage rather than silently keeping it.
+        vin = None
+
+    bid_m = _MUSICK_DETAIL_CURBID_RE.search(page)
+    bids_m = _MUSICK_DETAIL_NUMBIDS_RE.search(page)
+    time_m = _MUSICK_DETAIL_TIMELEFT_RE.search(page)
+    return {
+        "vin": vin,
+        "mileage": _int(fields.get("mileage")),
+        "title_status": fields.get("title"),
+        "year": _int(fields.get("year")),
+        "make": fields.get("make"),
+        "model": fields.get("model"),
+        "color": fields.get("color"),
+        "engine": fields.get("engine"),
+        "cylinders": fields.get("cylinders"),
+        "transmission": fields.get("transmisson") or fields.get("transmission"),
+        "drivetrain": fields.get("drivetrain"),
+        "body": fields.get("body"),
+        "detail_current_bid": _money(bid_m.group(1)) if bid_m else None,
+        "detail_num_bids": int(bids_m.group(1)) if bids_m else None,
+        "time_left_raw": time_m.group(1).strip() if time_m else None,
+    }
+
+
+def fetch_musick_vehicle_detail(lot, all_notes):
+    """Enrich one Vehicles-category lot in place with real mileage/VIN/
+    title-status/spec data from its own lot-detail page - a second,
+    separate Playwright render per vehicle (the catalog listing page
+    parsed above never visits this page at all). Only called for lots
+    already classified as Vehicles, to keep the extra render cost scoped
+    to the one category this actually matters for. Never raises - a
+    failed render just leaves the lot without these fields, same
+    graceful-degrade rule as the rest of this file."""
+    url = lot.get("url")
+    if not url:
+        return
+    try:
+        from musick_render import render_catalog_page
+        page, _ = render_catalog_page(url)
+    except ImportError:
+        page = None
+    if not page:
+        all_notes.append(f"[musick-detail] {url!r}: render failed, no VIN/mileage/title")
+        return
+
+    detail = parse_musick_lot_detail(page)
+    for key in ("vin", "mileage", "title_status", "year", "make", "model",
+                "color", "engine", "cylinders", "transmission", "drivetrain", "body"):
+        lot[key] = detail[key]
+
+    ends_at_delta = _parse_musick_duration(detail["time_left_raw"])
+    lot["auction_ends_at"] = (
+        (datetime.now(timezone.utc) + ends_at_delta).strftime("%Y-%m-%dT%H:%M:%SZ")
+        if ends_at_delta else None
+    )
+
+    title_status = (detail["title_status"] or "").strip().lower()
+    lot["clean_title"] = title_status in _MUSICK_CLEAN_TITLE_WORDS
+    mileage, year = detail["mileage"], detail["year"]
+    lot["miles_per_year"] = (
+        round(mileage / max(1, datetime.now(timezone.utc).year - year))
+        if mileage is not None and year else None
+    )
+    # < 150,000 miles AND a clean title - both required, neither guessed:
+    # a lot with no mileage on file or a non-"Clear" title is NOT a
+    # candidate, it's unknown/excluded, same as leaving deal_pct null
+    # rather than assuming the best case.
+    lot["car_candidate"] = bool(
+        mileage is not None and mileage < 150000 and lot["clean_title"]
+    )
+
+
 def fetch_musick_catalog(event_url, all_notes):
     """Follow one event's catalog link to bid.musickauction.com for
     individual lot-level data.
@@ -696,19 +833,32 @@ def fetch_musick_catalog(event_url, all_notes):
     rows = [r for r in rows if r.get("title")]
     if rows:
         all_notes.append(f"[musick-catalog] {event_url!r}: {len(rows)} lots via json-ld")
-        return rows
-
-    rows = parse_musick_lots(page)
-    if rows:
-        all_notes.append(
-            f"[musick-catalog] {event_url!r}: {len(rows)} real lots via "
-            f"rendered-markup parser (page 1 only)"
-        )
     else:
+        rows = parse_musick_lots(page)
+        if rows:
+            all_notes.append(
+                f"[musick-catalog] {event_url!r}: {len(rows)} real lots via "
+                f"rendered-markup parser (page 1 only)"
+            )
+        else:
+            all_notes.append(
+                f"[musick-catalog] {event_url!r}: 0 rows (no json-ld and no "
+                f"blkLotItemMain rows in rendered page, {len(page)}b) -- markup "
+                f"may have changed, see docs/AUCTION-MONITORING.md"
+            )
+
+    vehicle_rows = [r for r in rows if guess_category(r) == "Vehicles"]
+    if vehicle_rows:
+        n_candidates = 0
+        for row in vehicle_rows:
+            fetch_musick_vehicle_detail(row, all_notes)
+            if row.get("car_candidate"):
+                n_candidates += 1
+            time.sleep(SLEEP)
         all_notes.append(
-            f"[musick-catalog] {event_url!r}: 0 rows (no json-ld and no "
-            f"blkLotItemMain rows in rendered page, {len(page)}b) -- markup "
-            f"may have changed, see docs/AUCTION-MONITORING.md"
+            f"[musick-detail] {event_url!r}: fetched detail for "
+            f"{len(vehicle_rows)} vehicle lot(s), {n_candidates} candidate(s) "
+            f"(<150k mi, clean title)"
         )
     return rows
 

@@ -180,6 +180,64 @@ but tune the keyword lists as real mis-classifications turn up). It doesn't
 need to be perfect, just good enough that neither Vehicles nor Small Engines &
 Appliances misses the real thing or fills up with junk from the other bucket.
 
+## Vehicle detail enrichment — VIN, mileage, title status
+
+The catalog LISTING page (parsed above) never carries this — just title, bid,
+thumbnail. Real vehicle specs sit on a completely separate page: each lot's
+own **lot-DETAIL page** (`.../lot-details/index/catalog/{auctionId}/lot/{lotId}/...`
+— the exact URL already saved as the lot's `url` field, no new URL construction
+needed). CONFIRMED via a live `probe_url` debug run against a real listing
+(a 2017 Jeep Wrangler): the detail page has a clean, consistent
+`<span class="cat-header">Label:</span> value<br>` block with **year, make,
+model, mileage, color, VIN, engine, cylinders, transmission, drivetrain,
+body, and title status** — everything `auction_value.py`'s vehicle-caveat
+prompt already says a bidder has to go find for themselves.
+
+`fetch_musick_vehicle_detail()` in `auction_finder.py` fetches this page (a
+**second** Playwright render, separate from the one catalog-page render per
+auction) for every lot `guess_category()` classifies as **Vehicles** — only
+that category, to keep the extra render cost scoped to where it matters.
+Adds these fields to the lot: `vin`, `mileage`, `title_status`, `year`,
+`make`, `model`, `color`, `engine`, `cylinders`, `transmission`,
+`drivetrain`, `body`, `auction_ends_at` (an absolute ISO timestamp computed
+from the page's own relative "9d 20h 36m 50s"-style countdown, read at the
+moment that specific lot's detail page was actually fetched), `clean_title`
+(bool), `miles_per_year` (mileage ÷ vehicle age, for ranking "unusually low
+miles for the year" higher), and `car_candidate` — **true only when mileage
+is under 150,000 AND `title_status` is "Clear"/"Clean"**, both required. A
+lot with no mileage on file, or any title status other than clean (Salvage,
+Rebuilt, Bill of Sale, or simply missing) is NOT a candidate — unknown stays
+unknown rather than assuming the best case, same rule as every other
+estimate in this file. Non-vehicle lots never get these fields at all (no
+render, no keys) rather than nulls.
+
+**Cost tradeoff, gone in eyes open:** this roughly doubles Musick's render
+work — from ~7 catalog-page loads per run to ~7 + one per vehicle lot found
+(over 100 on a run with several vehicle-heavy auctions live at once). Worth
+it for what it unlocks (real Carfax-style facts instead of "check the
+listing yourself"), but it's the reason vehicles specifically, not every
+category, get the second render.
+
+**What this does NOT give you: an actual accident-history report.** A real
+Carfax/AutoCheck pull is a paid, per-VIN service — there's no free API for
+it, so this pipeline can't fetch one automatically any more than it can
+call a paid valuation API without a key. What it *does* give you for free:
+a clean title-status flag straight from the listing itself, and a VIN
+worth pasting into NHTSA's free vPIC decoder or a Carfax/AutoCheck lookup
+by hand for anything that clears the mileage+title filter — a much shorter
+list to spend real money checking than all 100+ vehicles at once.
+
+**Vehicles still have no automated target price.** eBay comps
+(`auction_value.py`) don't carry real sold data for used cars, so
+`estimated_value_mid` stays null for Vehicles even after PR #128's
+eBay-independent-of-key fix — that gap isn't something more scraping closes
+by itself, and the owner doesn't want an `ANTHROPIC_API_KEY` secret added to
+close it via the Claude fallback either. Open question, not yet built: some
+way to get a recurring target-price judgment onto `car_candidate` lots
+without a paid key — the leading idea is a scheduled Claude Code session
+(a Routine) doing that reasoning directly and publishing the result,
+instead of a raw API call.
+
 ## Geo filter
 
 A lot is kept only if its agency/title/description/url mentions a recognized
