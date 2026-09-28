@@ -50,6 +50,24 @@ Key files:
 - `content/monkeys/{lang}_{YYYYMMDD}.md` — individual coin posts
 - `layouts/monkeys/` — coin display templates
 
+### Auction Watch subsystem
+
+Boise-metro auction monitoring (`/auctions/`, `/grandpas-shop/`), and the
+broader AI-price-discovery direction it's growing into. **`PRICE-DISCOVERY.md`**
+is the cornerstone doc — the vision, the roadmap, the non-negotiables — read
+it before any session that scales this to new sources or touches pricing.
+`docs/AUCTION-MONITORING.md` is the running engineering log: real findings
+from live debug runs, markup notes, what's actually verified vs. guessed.
+
+Key files:
+- `PRICE-DISCOVERY.md` — vision, roadmap, open questions
+- `docs/AUCTION-MONITORING.md` — engineering log, verified findings
+- `scripts/auction_finder.py` — fetch/parse/keep-bar pipeline
+- `scripts/auction_value.py` — eBay-comp + AI valuation, deal flagging
+- `scripts/business_agent.py` — stub, not wired in (see PRICE-DISCOVERY.md Phase 4)
+- `data/auction_watchlist.yaml` — the personal search/keep-bar, edit freely
+- `data/auction_lots.yaml` — live snapshot, overwritten every run
+
 ## Layouts
 
 - `layouts/_default/baseof.html` — master shell (nav, marquee ticker, footer)
