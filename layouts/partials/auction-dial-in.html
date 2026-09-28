@@ -84,11 +84,29 @@
     });
   }
 
+  var MIN_BIDS_TO_TRUST = 3; // matches scripts/auction_value.py MIN_BIDS_TO_TRUST
+
+  // Matches _lot_is_matured() in scripts/auction_value.py exactly - a
+  // price gap only means something once the market's actually tested it
+  // (real bids) or there's genuine time pressure (closing soon reuses the
+  // same 24h window as the countdown highlight above). Without this, a
+  // brand-new lot at its floor price with 0 bids and 9 days left would
+  // "flag" the instant its nominal gap crosses the slider threshold, even
+  // though it hasn't had any real chance to be bid up yet.
+  function isMatured(row) {
+    var numBids = parseInt(row.dataset.numBids, 10) || 0;
+    if (numBids >= MIN_BIDS_TO_TRUST) return true;
+    var iso = row.dataset.endsAt;
+    if (!iso) return false;
+    var ms = new Date(iso).getTime() - Date.now();
+    return ms > 0 && ms <= CLOSING_SOON_MS;
+  }
+
   function isFlagged(row, thresholdPct) {
     var pct = parseFloat(row.dataset.dealPct);
     var mid = parseFloat(row.dataset.estMid);
     if (isNaN(pct) || isNaN(mid)) return false;
-    return pct >= (thresholdPct / 100) && mid >= MIN_VALUE;
+    return pct >= (thresholdPct / 100) && mid >= MIN_VALUE && isMatured(row);
   }
 
   function buildMailto(thresholdPct, flagged) {

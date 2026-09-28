@@ -49,6 +49,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime, timezone
 
 import yaml
 
@@ -65,6 +66,17 @@ FLAG_THRESHOLD = 0.30   # flag lots where est. value beats current bid by 30%+
 FLAG_MIN_VALUE = 20     # ...and the estimate is at least worth $20, to skip noise
 EBAY_MIN_COMPS = 3      # need at least this many sold comps to trust them over Claude
 EBAY_SLEEP = 1.5        # politeness delay between eBay lookups
+# A brand-new lot at its opening price with nobody bidding yet isn't a
+# "deal" just because current_bid is still low - it hasn't had a real
+# chance to be bid up. A price gap only means something once the market's
+# actually tested it: either real bid activity, or the auction is close
+# enough to ending that there's not much runway left for the price to
+# climb before someone has to decide. Gates `flagged` only - deal_score/
+# deal_pct still show the real numeric gap either way, for transparency
+# and sort order; this only decides whether it's confident enough to wear
+# the "🔥 Deal" badge and land in the email digest.
+MIN_BIDS_TO_TRUST = 3
+CLOSING_SOON_HOURS = 24
 
 SYSTEM = (
     "You value used and government-surplus items for a Boise, Idaho auction "
@@ -138,6 +150,26 @@ def call_claude(lots):
     return json.loads(m.group(0))
 
 
+def _lot_is_matured(lot):
+    """See MIN_BIDS_TO_TRUST/CLOSING_SOON_HOURS above. Real bid activity
+    always counts; failing that, being close enough to closing that time
+    pressure is itself doing the job real bidding would have. No end-time
+    data (a non-Musick platform, or a Musick lot whose detail-page render
+    failed) falls back to bid count alone rather than blocking every such
+    lot outright."""
+    if (lot.get("num_bids") or 0) >= MIN_BIDS_TO_TRUST:
+        return True
+    ends_at = lot.get("auction_ends_at")
+    if not ends_at:
+        return False
+    try:
+        ends = datetime.strptime(ends_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return False
+    hours_left = (ends - datetime.now(timezone.utc)).total_seconds() / 3600
+    return 0 < hours_left <= CLOSING_SOON_HOURS
+
+
 def apply_estimate(lot, r):
     comps = lot.pop("_ebay_comps", None)
     lot["ebay_n"] = comps["n"] if comps else None
@@ -176,6 +208,7 @@ def apply_estimate(lot, r):
         lot["deal_pct"] = deal_pct
         lot["flagged"] = bool(
             deal_pct is not None and deal_pct >= FLAG_THRESHOLD and mid >= FLAG_MIN_VALUE
+            and _lot_is_matured(lot)
         )
     else:
         lot["estimated_value_mid"] = mid if isinstance(mid, (int, float)) else None

@@ -381,6 +381,20 @@ paper. The page marks each estimate with **"✓ N sold"** (eBay-backed, green)
 or **"AI est."** (text-only, dimmer) so that distinction is visible, not just
 baked into the sort order.
 
+**A third gate on `flagged`, beyond the 30%/$20 thresholds: the lot has to be
+"matured"** — `_lot_is_matured()` in `auction_value.py` requires either 3+
+real bids, or being within 24h of `auction_ends_at`. A lot that just opened
+at its floor price with 0 bids and 9 days left isn't a deal yet, no matter
+how big the nominal gap against its estimate looks — it hasn't had any real
+chance to be bid up, and normally will be well before it closes. This is
+explicitly about **noise**, not accuracy: `deal_score`/`deal_pct` still show
+the real numeric gap either way (so an unmatured lot with a huge gap still
+sorts near the top and is visible to browse), only the "🔥 Deal" badge and
+the email digest require maturity. The client-side deal-threshold slider
+(`auction-dial-in.html`'s `isMatured()`) mirrors this exactly, reading
+`data-num-bids` / `data-ends-at` off each row, so dragging the slider can't
+un-gate an unmatured lot the Python side already excluded.
+
 Requires an `ANTHROPIC_API_KEY` repo secret (Settings → Secrets and variables →
 Actions) for the AI-fallback half; the eBay-comps half needs no key or secret
 at all, just network access. Without `ANTHROPIC_API_KEY`, lots with 3+ eBay
