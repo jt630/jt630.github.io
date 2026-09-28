@@ -104,7 +104,7 @@ other common source:
 - [ ] Re-visit each tracked lot after its `auction_ends_at` passes and
       record the real **closing price**, final bid count, and whether it
       sold at all — not just the mid-auction snapshot already captured.
-- [ ] A persistent historical store, append-only (`data/price_history.*`
+- [ ] A persistent historical store, append-only (`research/price_history.*`
       or similar - format TBD, see Open Questions) so this survives
       every day's fetch/overwrite cycle that `auction_lots.yaml` doesn't.
 - [ ] Fix the eBay-comps bug (open, separate task) - still worth having
@@ -236,7 +236,7 @@ just the roadmap. Revisit one only with a reason from real data.
    (the display snapshot) keeps the keep bar. `price_history/` does not.
 
 3. **Storage: JSONL, append-only, one file per month.**
-   `data/price_history/YYYY-MM.jsonl`, one line per *closed* lot, keyed by
+   `research/price_history/YYYY-MM.jsonl`, one line per *closed* lot, keyed by
    `(platform, lot_id)`. Rough volume: 6 sales/week × 50 lots ≈ 15k rows/yr ×
    ~600 bytes ≈ 9 MB/yr. That is fine in git for years, diffs are readable,
    and nothing needs a server. SQLite is the wrong fit here because it is a
@@ -392,7 +392,7 @@ architectures. Guessing and building the wrong one costs a whole session.
 
 ### Session B: Close-price harvester (the Phase 1 build)
 
-**Goal:** `data/price_history/` exists and fills itself daily.
+**Goal:** `research/price_history/` exists and fills itself daily.
 
 **Context:** The schema below is the contract. Phase 3 reads it and
 calibration reads it. Don't rename fields after the first row ships.
@@ -425,8 +425,8 @@ against real saved markup: `scripts/tests/test_price_history.py`.
       every URL. **Built as designed** — pulled from the `data-lid`/`data-aid`
       attributes on each lot's `<section>` wrapper rather than parsed out of
       the URL string, same values, more robust to a URL format change.
-- [ ] ~~`data/price_history/_pending.json`~~ — **superseded by
-      `data/price_history/_harvested.json`** (owner decision, see
+- [ ] ~~`research/price_history/_pending.json`~~ — **superseded by
+      `research/price_history/_harvested.json`** (owner decision, see
       `scripts/price_history.py`'s docstring): the daily CI run itself queries
       `/auctions/?alf1=4` for closed catalogs rather than tracking pending ones
       via `auction_finder.py`, so there's no separate pending file, only a
@@ -450,7 +450,7 @@ against real saved markup: `scripts/tests/test_price_history.py`.
       price_kind is "unknown")`. See docs/AUCTION-MONITORING.md's "Close-price
       history" section for the full contract.
 - [x] New workflow step, **before** valuation, so a valuation failure can't
-      skip it. It commits `data/price_history/` in the same commit as lots.
+      skip it. It commits `research/price_history/` in the same commit as lots.
 - [x] Unit test the parser against the Session A dumps, saved as fixtures
       under `scripts/tests/fixtures/`.
 - [ ] Dispatch once on `main` after merge, confirm rows land, and confirm a

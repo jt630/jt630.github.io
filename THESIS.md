@@ -123,7 +123,7 @@ personal context is signal the market price doesn't contain.
 
 | Source | What it gives | Status |
 |---|---|---|
-| Close-price history (`data/price_history/`) | every closed Musick lot: price, bids, close time | harvester built; backfill pending (run once, locally) |
+| Close-price history (`research/price_history/`) | every closed Musick lot: price, bids, close time | harvester built; backfill pending (run once, locally) |
 | Live lots (`data/auction_lots.yaml`) | the current snapshot plus estimates (eBay/AI) | running daily |
 | Bid histories | per-bid amount + time, **no bidder identities** (verified: the site exposes none) | separate experiment, not built |
 | Personal valuations | "my max, and why" per watched lot | not built (H7) |
