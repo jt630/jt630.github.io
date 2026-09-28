@@ -128,6 +128,128 @@ What that run found, and what `auction_finder.py` now does with it:
   would have false-positived on "scar"/"cargo"/"gunmetal" etc. Also added
   "car", "truck", "vehicle", and "gun" as keywords once that was safe.
 
+## Closed lots, verified against real markup (2026-09-28)
+
+Session A of `PRICE-DISCOVERY.md`'s build plan, answered by four live `probe_url`
+dispatches against `bid.musickauction.com` (raw dumps landed on `debug/auction-html`,
+read and discarded, never committed — see that file's build plan for the loop).
+
+**Already verified going into this session** (2026-09-21/23, kept here for one place
+to look): catalog 914 closed 09/23/2026 9:22 PM MDT, is gone from the upcoming list,
+but a plain GET still renders it — `<span class="auction-closed">Closed</span>`, and
+`start-end-dates` shows absolute start/end ("09/09/2026 5:00 PM MDT - 09/23/2026 9:22
+PM MDT"). A closed lot lives in `<li id="blkLotItemMain{lotId}" class="item-block">`
+with `<li class="item-win-bid"><span class="title">Winning Bid</span>...<span
+class="exratetip" data-lid="511357">4,000</span>` and `<li id="item-status"
+class="item-status">...<span class="ended sold">Sold</span>`. A live (open) lot uses
+`item-currentbid`/`item-askingbid`/`item-starting-bid` and an empty `item-status`
+instead.
+
+**A. Is there an enumerable index of closed catalogs, and how far back?** Yes, and
+it's better than expected. `https://bid.musickauction.com/auctions/?alf1=4` (the
+"Closed" option in the filter `<select name="alf1">`, `data-id="5"` — the earlier
+guess of `?status=2&auctioneer=3` was wrong: `auctioneer` isn't a real param at all,
+it happened to collide with a *different* filter, `alf9` (Location), whose
+`data-id="3"` is "Real Estate" — that's why the first probe silently returned "No
+results found" for a location with almost no auctions, not because closed auctions
+don't exist) returns a page whose embedded JSON (`data-server="server-data-json"`,
+key `auctionRows`) lists **827 total auctions**, sorted by `end_date` descending, 50
+per page (`?page=N`, page 17 is the last). Each row is structured data, not just
+markup to scrape:
+```json
+{"id":"914","name":"MERIDIAN - 938 - CONSTRUCTION SALE! ...","end_date":"2026-09-24 03:22:00",
+ "start_date":"2026-09-09 23:00:00","status":"3","total_lots":"493","timezone_location":"America/Denver"}
+```
+`status` is `"3"` for a catalog that has actually closed (end_date in the past) and
+`"1"` for one still upcoming — despite the `alf1=4` filter, page 1 still mixes in a
+handful of not-yet-closed auctions (the 7 newest-`end_date` rows on page 1 all had
+`status: "1"`), so the filter narrows the sort/default view but the harvester should
+check `status`/`end_date` itself rather than trust the URL param alone. `end_date` is
+an absolute timestamp **in UTC**, despite the `timezone_location: "America/Denver"`
+field sitting next to it (that field is the sale's display zone, not the timestamp's).
+Cross-checked in review against each catalog page's own `start-end-dates` text: 914's
+`2026-09-24 03:22:00` is "09/23/2026 9:22 PM MDT", and 920's `2026-09-28 23:07:00` is
+"09/28/2026 5:07 PM MDT", both exactly UTC−6. Reading it as Denver time would put
+every close 6 hours late. Also note `total_lots` (493 for 914) doesn't match the
+catalog page's own "of 470" count; likely withdrawn lots, so page until empty rather
+than trusting `total_lots`. This is a materially better source of "when did this close" than parsing
+`start-end-dates` text off each catalog page individually, since it comes for free
+for all 827 catalogs in one render. This page is itself a decent target for the
+`_pending.json` harvester: one render of `?alf1=4&page=1` gives id + end_date +
+total_lots for the 50 newest sales without touching a single catalog page.
+
+Catalog IDs are **not perfectly sequential but close** — one page of results spanned
+ids 866–923 (58-wide range for 50 rows), with gaps for single-lot "OFFSITE"/real-estate
+sales interleaved in the same numbering (e.g. 866 "REAL ESTATE AUCTION", 892/893
+"OFFSITE" sales sit between normal Meridian/Nampa sale ids). So walking `catalog/id/N`
+sequentially is viable as a *supplement* — it will hit real catalogs most of the time
+but needs to tolerate gaps and the occasional single-lot/real-estate sale — but the
+`?alf1=4` index above is the better primary source since it hands over id + end_date
++ total_lots directly, no guessing which N values exist.
+
+**B. Does the bidding-history page persist the full bid trail, and is there personal
+data?** Yes to persistence, no personal data found. `https://bid.musickauction.com
+/auctions/bidding-history/id/914/lot/511357` (title: "Bidding history on lot 800 in
+sale 2173" — the lot's *display* number, 800, is different from its internal id,
+511357) rendered a `<table class="footable foolarge">` with **exactly two columns,
+Date/Time and Bid Amount** — 35 bid rows plus a header (matching the catalog's
+"Bidding history(35 bids)"), **newest first**: winning $4000 at "09/23 1:41:12 PM MDT"
+in the top row (matching `item-win-bid` on the catalog page exactly) down to the
+opening $500 at "09/10 12:28:06 PM MDT". The timestamps carry **no year**, so the
+parser has to borrow it from the catalog's `end_date` (and handle a sale that spans
+New Year). No bidder ID, handle, name, or any other identifying field
+appears anywhere in the table or its markup — the harvester can record the full bid
+trail (amount + absolute timestamp per bid) with zero risk of storing bidder
+identities, because the site itself doesn't expose them here.
+
+**C. Does `?items=N` page a closed catalog, and what do low-value/unsold lots look
+like?** `https://bid.musickauction.com/auctions/catalog/id/914?items=100&page=5`
+confirmed **`items=100` is honored** — the item-count `<select>` shows
+`data-id="100" selected="selected"`, and the page rendered exactly 70 lots, which is
+`470 − (4 × 100)` — i.e. lots 401–470, the correct tail of the 470-lot catalog at
+page size 100. **All 70 lots on this page were `<span class="ended sold">Sold</span>`**,
+with winning bids from $5 up to $185 — still no unsold/passed/no-bid lot observed in
+either sample page (page 1 high-value, this page 5 low-value). The site's own JS
+translation strings do define `langUnsold: "Unsold"` and `langReserveNotMet:
+"Reserve not met"` (found in a `<script>` config block, not in any rendered lot), so
+the markup for a genuinely unsold lot almost certainly exists and is worth grabbing a
+real sample of before the harvester's parser hard-codes "ended sold" as the only
+closed state — **not yet verified against a real unsold lot**, flagged here rather
+than guessed.
+
+**D. Lot-detail page** — not probed this session (budget spent on A–C, which were
+higher priority for the harvester design); the vehicle-detail enrichment section
+above already confirms lot-detail pages carry a clean-title status timestamp
+(`auction_ends_at` computed from a countdown at fetch time) for **live** vehicle
+lots, but whether the same page shows a winning bid / absolute close timestamp after
+close is still open. Worth one probe in Session B before relying on it.
+
+### Architecture implication for the harvester
+
+**Closed catalogs stay reachable at their normal catalog URL — there is no race
+against the upcoming-list rotation.** A catalog that has closed and dropped off
+`/auctions/` or `/upcoming-auctions/` still renders fully at
+`bid.musickauction.com/auctions/catalog/id/{N}`, with every lot's final state
+(`item-win-bid` + `item-status` "ended sold") in the same markup shape as a live
+render, just with different CSS classes. So `scripts/price_history.py` (Session B)
+doesn't need to catch a catalog in the act of closing — it can:
+
+1. Track known catalog ids + their `end_date` in `_pending.json` (populated cheaply
+   either from each catalog's own page, or — better, since it's already fetched as
+   structured JSON for many catalogs at once — from `?alf1=4&page=1`'s `auctionRows`).
+2. Once `end_date` has passed, re-render the catalog page (paged with `?items=100`,
+   confirmed honored above, to cover all lots — a 470-lot catalog needs 5 renders at
+   `items=100` instead of 10 at the default 50) and parse `item-win-bid` /
+   `item-status` per lot.
+3. No second cron run "timed near close" is needed — the catalog page doesn't go
+   away or change shape at close, it just flips from `item-currentbid`/empty-status
+   to `item-win-bid`/`ended sold`.
+
+The `?alf1=4` index is also a viable backstop/backfill path independent of
+`_pending.json`: it can enumerate closed catalogs the harvester never even knew to
+track (e.g. a catalog whose `auction_finder.py` run was skipped that day), going back
+as far as page 17 (827 total auctions) without walking ids blind.
+
 ## A second, separate concern: Terms of Service
 
 This fetches public pages at a polite rate (one request every 2s, browser
