@@ -332,6 +332,60 @@ of Musick's ToS before leaning on this long-term. If they push back (blocks,
 rate-limits, or their ToS turns out to explicitly bar automated access),
 drop `"musick"` from `PLATFORMS` rather than working around the block.
 
+**Update 2026-09-28: it happened.** See "Bot protection: Musick is behind AWS
+WAF" below. Reading the ToS is now the first task of the next session.
+
+## Bot protection: Musick is behind AWS WAF, and pushed back (2026-09-28)
+
+Every Playwright render of `bid.musickauction.com` calls out to AWS WAF's
+bot-protection service (`token.awswaf.com/.../inputs` and `.../mp_verify`,
+visible in the XHR log). That had never been noticed or mattered before.
+
+On 2026-09-28 at 18:00 UTC, after a heavy day of probing from GitHub's IPs
+(about 10 `probe_url` runs, two full pipeline runs, plus agent probes), a
+production run got **blocked partway through**:
+- Catalogs 920, 921 and 916 rendered normally (50 lots each).
+- 918, 919, 922 and 923 each returned a **212-byte page with no lots**.
+  The old code logged that as "markup may have changed", which was wrong.
+- The harvester then logged `0 catalog(s) attempted` in 1.5s. Its index
+  render was very likely blocked too, but it didn't log what came back.
+- `auction_lots.yaml` was **overwritten with the 48 lots that did load**, so
+  4 sales silently disappeared from `/auctions/`.
+
+The 212-byte page was never saved, so we don't know if it's a CAPTCHA, a
+403, or a challenge. Treat the diagnosis as "blocked, very likely rate-based"
+rather than verified markup.
+
+**Policy, per the Terms of Service section above and PRICE-DISCOVERY.md's
+non-negotiables: back off, never work around it.** No user-agent tricks, no
+proxies, no challenge-solving. The fix (PR #141):
+- `looks_blocked()` recognises a block (tiny page or challenge markers).
+- A circuit breaker stops all Musick renders on the first block.
+- The live lots file is **not rewritten** on a run that hit a block
+  (yesterday's complete snapshot beats today's partial one).
+- The harvester logs what its index page returned, stops on a block, and
+  runs slower (5s between renders, at most 3 catalogs a day).
+
+**Consequence for the backfill:** WAF rate limits are per IP. Thousands of
+renders from the owner's home connection could get **that IP blocked from
+the site the owner and grandpa actually bid on.** The bulk backfill is on
+hold until Musick's ToS has been read and a very slow, resumable schedule
+exists (see PRICE-DISCOVERY.md's handoff block).
+
+## eBay from CI: blocked (Session C verdict, 2026-09-28)
+
+The same run was the first to use the normalized search queries (PR #135)
+against eBay from GitHub Actions. Of 46 lookups, about 25 returned
+**`403 BLOCKED`**. The rest returned **~13.6 KB pages that parse to "0
+prices found"**. Real eBay results pages are far larger, so these are almost
+certainly its bot-challenge page. That page isn't saved, so it's
+unconfirmed. Conclusion: **eBay sold-comps can't work from GitHub's
+datacenter IPs.** That's the datacenter-IP block predicted in Decision 8,
+and it can't be fixed by changing the parser. PR #141 stops lookups after
+the first 403 instead of burning ~46 × 2s on a wall. What's left of
+Session C is one local comparison from a residential IP, for the record
+only, since the pipeline runs on CI.
+
 ## Platforms
 
 | Platform | Status | Why it's here | Search strategy |
