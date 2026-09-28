@@ -9,6 +9,11 @@ on:
         required: false
         default: false
         type: boolean
+      probe_url:
+        description: "One-off: render this single URL with Playwright and push it to debug/auction-html as debug_html/probe.html, without touching the main fetch/valuation pipeline (e.g. checking whether a lot-detail page has a VIN)"
+        required: false
+        default: ""
+        type: string
   schedule:
     - cron: "0 13 * * *"   # daily, 13:00 UTC (~6-7am Boise, before most auctions close)
 
@@ -43,6 +48,7 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Fetch lots
+        if: github.event.inputs.probe_url == ''
         run: |
           if [ "${{ github.event.inputs.debug_html }}" = "true" ]; then
             python scripts/auction_finder.py --save-html debug_html
@@ -50,8 +56,37 @@ jobs:
             python scripts/auction_finder.py
           fi
 
+      - name: Render probe_url (debug)
+        # Standalone one-off, deliberately outside auction_finder.py's
+        # pipeline: just load a single URL (e.g. a lot-DETAIL page, which
+        # the main fetch never visits - it only renders each auction's
+        # catalog LISTING page) and save whatever comes back, to answer a
+        # one-off "does this page even have X" question without writing a
+        # real parser for it first.
+        if: github.event.inputs.probe_url != ''
+        env:
+          # Passed as an env var rather than interpolated into the script
+          # text directly - the input is free-form text from whoever
+          # triggers the workflow, and substituting it straight into a
+          # shell/python literal is a known script-injection footgun.
+          PROBE_URL: ${{ github.event.inputs.probe_url }}
+        run: |
+          mkdir -p debug_html
+          python -c "
+          import os, sys
+          sys.path.insert(0, 'scripts')
+          from musick_render import render_catalog_page
+          url = os.environ['PROBE_URL']
+          html, api_calls = render_catalog_page(url)
+          print(f'probe_url: {len(html) if html else 0} bytes, {len(api_calls)} XHR/fetch call(s)')
+          for c in api_calls:
+              print(f'  {c[\"method\"]} {c[\"url\"]}')
+          with open('debug_html/probe.html', 'w', encoding='utf-8') as f:
+              f.write(html or '')
+          "
+
       - name: Upload raw HTML (debug)
-        if: github.event.inputs.debug_html == 'true'
+        if: github.event.inputs.debug_html == 'true' || github.event.inputs.probe_url != ''
         uses: actions/upload-artifact@v4
         with:
           name: auction-debug-html
@@ -66,7 +101,7 @@ jobs:
         # directly) - but plain `git` to github.com clearly *is* reachable,
         # so pushing the dump to its own branch is the actual way to get
         # real markup back into that session for writing parsers.
-        if: github.event.inputs.debug_html == 'true'
+        if: github.event.inputs.debug_html == 'true' || github.event.inputs.probe_url != ''
         run: |
           if [ -d debug_html ] && [ -n "$(ls -A debug_html 2>/dev/null)" ]; then
             git config user.name "github-actions[bot]"
@@ -81,11 +116,13 @@ jobs:
           fi
 
       - name: Estimate value (needs ANTHROPIC_API_KEY secret)
+        if: github.event.inputs.probe_url == ''
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/auction_value.py
 
       - name: Commit updated lots
+        if: github.event.inputs.probe_url == ''
         id: commit
         run: |
           git config user.name "github-actions[bot]"

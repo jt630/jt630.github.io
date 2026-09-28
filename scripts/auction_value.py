@@ -12,9 +12,14 @@ ANTHROPIC_API_KEY in the environment - a GitHub Actions secret in
 production, the same pattern as FRED_API_KEY / TMDB_KEY in
 .github/workflows/refresh-data.yml and deploy.yml.
 
-No key set -> the script prints a note and exits without changing anything.
-The page still renders fine without estimates (current bid, close time,
-link) - it just can't sort by deal or show a flag.
+No key set -> real eBay sold-comp pricing (free, no key needed) still runs
+and still flags deals for anything with enough comps - only the Claude
+fallback for lots eBay can't price (thin/no comps - most Vehicles, since
+eBay doesn't carry real comps for "2012 Chevrolet Traverse, mileage
+unknown") is skipped, and those specific lots keep null estimates instead
+of a guess. This used to be one gate that skipped BOTH regardless of which
+one a lot actually needed - fixed so a missing key no longer blocks the
+free path too.
 
 Value grounding: before asking Claude, each lot's title is looked up in
 scripts/ebay_comps.py against recent eBay SOLD listings - real transaction
@@ -200,8 +205,21 @@ def estimate(lots):
     for n in ebay_notes:
         print("  " + n)
 
+    have_key = bool(os.environ.get("ANTHROPIC_API_KEY"))
+    if not have_key:
+        print("ANTHROPIC_API_KEY not set - pricing eBay-comp lots only; lots "
+              "without enough comps keep null estimates instead of a guess.")
+
     for start in range(0, len(lots), BATCH_SIZE):
         batch = lots[start:start + BATCH_SIZE]
+        if not have_key:
+            # apply_estimate(lot, {}) still prices anything with enough real
+            # eBay comps on its own - it only loses the qualitative note a
+            # live Claude call would have added. Everything else keeps null
+            # estimates rather than a guess, same as a failed API call below.
+            for lot in batch:
+                apply_estimate(lot, {})
+            continue
         try:
             results = call_claude(batch)
         except Exception as e:
@@ -232,10 +250,6 @@ def main():
         doc = yaml.safe_load(f) or {}
     lots = doc.get("lots") or []
 
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("ANTHROPIC_API_KEY not set - skipping valuation, lots keep null estimates.")
-        return
-
     # A lot with no current_bid (e.g. a Musick event-level row that's really
     # "several categories of stuff happening Monday," not one priced item)
     # can never produce a deal_score - skip spending an eBay lookup + a
@@ -245,7 +259,8 @@ def main():
     skipped = len(lots) - len(valuable)
     if skipped:
         print(f"skipping {skipped} lot(s) with no current_bid (can't score a deal without one)")
-    print(f"estimating {len(todo)} of {len(valuable)} valuable lots ({MODEL})...")
+    engine = MODEL if os.environ.get("ANTHROPIC_API_KEY") else "eBay comps only, no ANTHROPIC_API_KEY"
+    print(f"estimating {len(todo)} of {len(valuable)} valuable lots ({engine})...")
     estimate(todo)
 
     lots.sort(key=lambda l: (l.get("deal_score") is None, -(l.get("deal_score") or 0)))
