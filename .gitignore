@@ -14,3 +14,8 @@ scratchpad/
 
 # scripts/auction_finder.py --save-html debug dump
 debug_html/
+
+# scripts/probe.py local render dumps - may include bidder handles, stays private
+.debug/
+# throwaway git worktrees created by Agent isolation: "worktree" runs
+.claude/worktrees/
