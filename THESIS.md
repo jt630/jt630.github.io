@@ -200,3 +200,24 @@ looked at. Owner's working hypothesis: prices converge around shared value
 as centralized AI appraisal spreads, unevenly by adoption and legibility;
 the countermeasure is personal context ("worth to me"). H1 is predicted
 directionally (convergence) by the owner's choice.
+
+**2026-09-28 (later), amendment: survivorship bias confirmed in the data
+source.** The first production harvest (2,638 lots from 5 sales) was 100%
+sold. A control-probed missing lot returned 404 while its neighbor loaded:
+**unsold (or withdrawn) lots are deleted from closed catalogs.** Consequences
+for the pre-registered plan, recorded before any analysis:
+- Every spread measure (H1, H2, H3, H5) is computed on **sold lots only**
+  and is labeled that way. Deleted lots are *missing not at random* (plausibly
+  the ones whose bids didn't reach a reserve), so dispersion is understated
+  and prices skew high.
+- H3 is at particular risk: low-bid lots that failed to sell are exactly the
+  ones removed, which could manufacture a bids-vs-spread relationship. A
+  sensitivity check will be added once "vanished" lots (seen live, absent
+  after close) are being recorded going forward.
+- The backfill cannot recover these; only forward collection can.
+- New threat to validity: **the data source's own retention policy**
+  shapes what can be learned. This is itself a finding about price
+  discovery: the market's public record keeps successes and erases
+  failures.
+Hypotheses and predictions unchanged.
+
