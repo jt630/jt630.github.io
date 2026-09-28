@@ -81,6 +81,23 @@ Don't probe to find out.
    closes, because it's the only way valuation comes back.
 6. **Session D: history page + calibration**, after about 2 weeks of closes.
 7. **Session P: "worth to me" field** (THESIS H7). Small and offline.
+   `data/search_profiles/` (from `/refine-search`, PR #144) already holds
+   the first real "worth to me" context: the backpacking-pistol profile,
+   with a price ceiling. Build P on top of that shape.
+7b. **Refine the jewelry watchlist group with `/refine-search`** (quick,
+   offline, needs the owner's taste calls). It matches **0 of 2,384** real
+   titles because it requires the exact phrase "yellow gold", which no
+   listing uses. Fine jewelry is written "14K Yellow Gold", "18K White
+   Gold", etc. A karat-based draft (10k/14k/18k/22k/24k, excluding
+   gold-tone/plated/filled/costume) was tested 2026-09-28. It found **no
+   real fine jewelry** in the closed history (those sales' jewelry was
+   costume lots), plus noise: "BD-10K" (a trailer brake drum part number),
+   "24K Gold Trim" decor, and Idaho **Goldback** currency notes. Owner
+   decides: (a) does white gold count, or yellow only? (b) are Goldbacks
+   wanted (→ Old Coins?) (c) do "10k"-style part numbers need a
+   jewelry-context word, like `"14k gold"`? Validate against live
+   snapshots over the next weeks as fine jewelry comes through (catalog 922
+   had 18K opal and platinum coral rings live on 2026-09-28).
 8. **Session H: bid-history experiment** (THESIS H6), only once items 1 and
    2 settle what request volume is acceptable.
 
@@ -93,6 +110,11 @@ python scripts/probe.py https://bid.musickauction.com/auctions/catalog/id/914
 #   one probe only: check that .debug/ has a real page (tens of KB), not a
 #   ~200-byte block page. If it's blocked, stop and wait a day.
 ```
+
+**Changing what gets watched:** use `/refine-search` (PR #144). It tests
+draft keywords against every real title before editing
+`data/auction_watchlist.yaml`, and saves the reasoning in
+`data/search_profiles/`.
 
 **Collection etiquette (applies to every session from now on)**
 - Probe from the PC (`scripts/probe.py`), **a handful of pages per session**,
