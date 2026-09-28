@@ -57,6 +57,119 @@ def _cache_key(query):
     return re.sub(r"[^a-z0-9]+", "_", query.lower()).strip("_")[:80]
 
 
+# QUERY_NORMALIZE: real auction titles look nothing like an eBay search query -
+# "Lot #5012: Large Gold-Tone Rope Chain Necklace With Circular Abalone Shell
+# Pendant, Hammered Finish" or "2017 FORD F-550 - BLUETOOTH!" - a lot-number
+# prefix, shouty trailing feature call-outs, and 10-20 words. eBay's sold
+# search is a keyword AND-match over the listing title, so a 15-word query
+# matches almost nothing even when eBay isn't actively blocking us (see the
+# module docstring) - that's a second, independent cause of "0 prices found"
+# worth ruling out on its own. This trims each title down to the handful of
+# tokens that actually identify the item (brand, model number, year, caliber,
+# karat, size) before it ever reaches search_url()/lookup(), the same way a
+# human would shorten the title before pasting it into eBay's search box.
+MAX_QUERY_TOKENS = 6
+
+_LOT_PREFIX_RE = re.compile(r"^\s*lot\s*#?\s*\d+\s*[:\-]?\s*", re.IGNORECASE)
+
+# Whole phrases that are sale-condition/marketing noise, not part of the
+# item's identity, wherever they land in the title (not just after a dash).
+_NOISE_PHRASES = (
+    "local police agency",
+    "government surplus",
+    "bank repo",
+    "buyers assurance policy",
+    "fully functional",
+    "release series",
+    "offsite",
+)
+
+# Filler/connective words with ~zero search signal. Deliberately does NOT
+# include "new" - "new in box" is a meaningful condition claim, per spec.
+_STOPWORDS = {
+    "with", "and", "the", "a", "an", "of", "for", "in", "on", "w",
+    "large", "small", "set", "lot", "assorted", "misc", "miscellaneous",
+}
+
+_YEAR_RE = re.compile(r"\b(?:19|20)\d{2}\b")
+# A token that's basically a number - year, caliber (".308"), karat ("14k"),
+# ct weight ("3.25ct"), size ("4x4"), hyphenated caliber (".30-06") - keeps
+# any internal decimal point or hyphen; anything else has its stray dots
+# stripped in the cleanup pass below (hyphens are handled separately, see
+# normalize_query).
+_NUMERIC_TOKEN_RE = re.compile(r"^\.?\d+(?:[.\-]\d+)*[a-z]*$")
+
+
+def normalize_query(title):
+    """Turn a raw auction lot title into a short eBay search query.
+
+    Strips the `Lot #N:` prefix, drops sale-type/marketing noise ("LOCAL
+    POLICE AGENCY", "GOVERNMENT SURPLUS", "BANK REPO", trailing shouted
+    features like "- BLUETOOTH!"), lowercases and collapses punctuation
+    (while preserving decimal points inside numbers, so ".308" and "3.25ct"
+    survive intact, and preserving hyphens inside alphanumeric tokens that
+    contain a digit, so ".30-06", ".30-30" and "F-550" survive as eBay would
+    expect them written - a hyphen in a plain word compound like
+    "Gold-Tone" or "Bolt-Action" still splits into two words), drops
+    low-signal filler words, and caps the result at MAX_QUERY_TOKENS tokens
+    (a hyphenated caliber/model token like ".30-06" counts as one token
+    toward that cap). Deterministic and stdlib-only (`re`) so it never needs
+    network access or an extra dependency to run or test.
+
+    Returns "" if nothing identifying is left (e.g. the title was only a lot
+    number) - callers should treat that as "skip the lookup", never send an
+    empty query to eBay's search.
+    """
+    if not title:
+        return ""
+
+    text = _LOT_PREFIX_RE.sub("", title)
+
+    for phrase in _NOISE_PHRASES:
+        text = re.sub(re.escape(phrase), " ", text, flags=re.IGNORECASE)
+
+    # "2017 FORD F-550 - BLUETOOTH!" / "... - LOCAL POLICE AGENCY! 75K MILES!"
+    # - a " - " almost always separates the item's identity (make/model/year)
+    # from a shouted feature or sale-type call-out tacked on after it. Keep
+    # whichever segment(s) carry a 4-digit year (the identity), or fall back
+    # to the first segment when no segment has one (most non-vehicle lots).
+    segments = [s.strip() for s in re.split(r"\s+-\s+", text) if s.strip()]
+    if len(segments) > 1:
+        dated = [s for s in segments if _YEAR_RE.search(s)]
+        segments = dated if dated else segments[:1]
+    text = " ".join(segments)
+
+    # Collapse everything except letters/digits/dots/hyphens/whitespace to
+    # spaces, then lowercase. Dots and hyphens both survive this pass - the
+    # per-token step below decides which hyphens were actually meaningful
+    # (".30-06", "f-550") versus a word-compound split ("gold-tone").
+    text = re.sub(r"[^a-zA-Z0-9.\-\s]+", " ", text).lower()
+
+    tokens = []
+    for raw in text.split():
+        # A hyphen between two alphanumeric halves stays put when the whole
+        # token has a digit in it somewhere - that's a caliber ("f-550",
+        # ".30-06", ".30-30") or a model number ("lr-60p"), and eBay expects
+        # it written that way, not as two separate words. A hyphen with no
+        # digit anywhere in the token is a plain word compound ("gold-tone",
+        # "bolt-action") and splits into its two words as before.
+        if "-" in raw and re.search(r"\d", raw):
+            parts = [raw]
+        else:
+            parts = raw.split("-")
+
+        for tok in parts:
+            if _NUMERIC_TOKEN_RE.match(tok):
+                pass  # numeric-ish (year/caliber/karat/ct/size) - keep as-is
+            else:
+                tok = tok.replace(".", "")
+            if not tok or tok in _STOPWORDS:
+                continue
+            tokens.append(tok)
+
+    return " ".join(tokens[:MAX_QUERY_TOKENS])
+
+
 def search_url(query):
     q = urllib.parse.urlencode({
         "_nkw": query,
@@ -130,12 +243,20 @@ def _stats(prices):
     }
 
 
-def lookup(query, notes=None):
+def lookup(raw_query, notes=None):
     """Return {"n", "median", "low", "high"} from recent eBay sold listings
-    for `query`, or None if nothing usable came back. Caches the last
-    successful result per query and falls back to it on failure, same
-    resilience pattern as auction_finder.py's per-platform caching."""
+    for `raw_query` (a raw lot title, or an already-short query - either
+    works), or None if nothing usable came back. Runs `raw_query` through
+    normalize_query() first, so both the cache key and the search URL are
+    built from the short form, not the raw 15-word auction title - see
+    normalize_query()'s docstring for why. Caches the last successful result
+    per normalized query and falls back to it on failure, same resilience
+    pattern as auction_finder.py's per-platform caching."""
     notes = notes if notes is not None else []
+    query = normalize_query(raw_query)
+    if not query:
+        notes.append(f"[ebay] {raw_query!r}: normalized to an empty query, skipping lookup")
+        return None
     cache_path = os.path.join(CACHE_DIR, f"ebay_{_cache_key(query)}.json")
 
     url = search_url(query)
