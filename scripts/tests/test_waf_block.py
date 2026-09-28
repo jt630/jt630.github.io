@@ -49,6 +49,19 @@ class LooksBlockedTests(unittest.TestCase):
     def test_real_fixture_is_not_blocked(self):
         self.assertFalse(musick_render.looks_blocked(_read("musick_catalog_914_p1.html")))
 
+    def test_real_404_page_is_gone_not_blocked(self):
+        # Byte-for-byte the page Musick served for deleted lot 509410
+        # (catalog 911) on 2026-09-28. A deleted lot must never trip the
+        # breaker, or one withdrawn vehicle would freeze the whole day's run.
+        real_404 = ('<html lang="en"><head><title>404 Not Found</title></head>'
+                    '<body><h1>404 Page Not Found</h1><a href="/">Go to the '
+                    'homepage</a></body></html>')
+        self.assertEqual(len(real_404), 138)
+        self.assertTrue(musick_render.looks_not_found(real_404))
+        self.assertFalse(musick_render.looks_blocked(real_404))
+        # ...while a same-sized non-404 page is still treated as blocked.
+        self.assertFalse(musick_render.looks_not_found(BLOCKED_212))
+
     def test_empty_and_none_are_blocked(self):
         self.assertTrue(musick_render.looks_blocked(""))
         self.assertTrue(musick_render.looks_blocked(None))

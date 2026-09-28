@@ -69,6 +69,8 @@ def looks_blocked(html):
     render failed" - callers that care check for None/empty first."""
     if not html:
         return True
+    if looks_not_found(html):
+        return False  # the page is gone, not blocked - see looks_not_found()
     if len(html) < MIN_REAL_PAGE_BYTES:
         return True
     low = html.lower()
@@ -76,6 +78,19 @@ def looks_blocked(html):
         if not any(m.lower() in low for m in _REAL_CONTENT_MARKERS):
             return True
     return False
+
+
+def looks_not_found(html):
+    """True for Musick's real 404 page - a lot deleted after close returns
+    exactly this 138-byte page (verified live, lot 509410 in catalog 911):
+    `<title>404 Not Found</title>...<h1>404 Page Not Found</h1>`. "Gone" is
+    real data (see docs/AUCTION-MONITORING.md, survivorship), not a block,
+    so it must never trip a circuit breaker."""
+    if not html or len(html) >= MIN_REAL_PAGE_BYTES:
+        return False
+    return "<title>404 not found</title>" in html.lower()
+
+
 UA_STRING = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
