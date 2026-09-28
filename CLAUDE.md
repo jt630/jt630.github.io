@@ -61,6 +61,9 @@ from live debug runs, markup notes, what's actually verified vs. guessed.
 
 Key files:
 - `PRICE-DISCOVERY.md` — vision, roadmap, open questions
+- `THESIS.md` — the research framing: pre-registered hypotheses and a lab
+  notebook. Predictions there are **never edited after data arrives**, only
+  amended in the notebook with a date and a reason.
 - `docs/AUCTION-MONITORING.md` — engineering log, verified findings
 - `scripts/auction_finder.py` — fetch/parse/keep-bar pipeline
 - `scripts/auction_value.py` — eBay-comp + AI valuation, deal flagging
