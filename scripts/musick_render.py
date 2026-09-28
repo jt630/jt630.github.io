@@ -42,6 +42,40 @@ Usage (as a library, called from auction_finder.py):
 import sys
 
 RENDER_TIMEOUT_MS = 20000
+
+# Every caller logs this exact text when a render looks blocked, so a grep of
+# the workflow log for "BLOCKED (bot protection" finds all of them.
+BLOCK_NOTE = (
+    "BLOCKED (bot protection / rate limit), backing off; "
+    "see docs/AUCTION-MONITORING.md"
+)
+
+# looks_blocked() is a HEURISTIC. No real block page has been captured yet
+# (the one production sighting was a 212-byte page nobody saved), so it must
+# not assume specific block-page markup. Real Musick pages are 25KB+
+# (verified), so anything under MIN_REAL_PAGE_BYTES is treated as "not the
+# real site". The marker check only catches larger challenge pages, and never
+# fires when the page has real lot/index data in it.
+MIN_REAL_PAGE_BYTES = 2000
+_CHALLENGE_MARKERS = ("captcha", "awswaf challenge", "request blocked", "access denied")
+_REAL_CONTENT_MARKERS = ("blkLotItemMain", "server-data-json")
+
+
+def looks_blocked(html):
+    """True if `html` is probably a bot-protection block/challenge page (or
+    nothing at all) rather than real Musick content. Conservative heuristic,
+    see the notes above: None/empty, OR < 2,000 bytes, OR a challenge marker
+    with no real-content marker. Does not distinguish "blocked" from "the
+    render failed" - callers that care check for None/empty first."""
+    if not html:
+        return True
+    if len(html) < MIN_REAL_PAGE_BYTES:
+        return True
+    low = html.lower()
+    if any(m in low for m in _CHALLENGE_MARKERS):
+        if not any(m.lower() in low for m in _REAL_CONTENT_MARKERS):
+            return True
+    return False
 UA_STRING = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"

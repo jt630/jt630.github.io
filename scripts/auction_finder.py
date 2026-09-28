@@ -97,6 +97,9 @@ from datetime import date, datetime, timedelta, timezone
 
 import yaml
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from musick_render import BLOCK_NOTE, looks_blocked  # noqa: E402 - stdlib-only module
+
 UA = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -786,7 +789,32 @@ def parse_musick_lot_detail(page):
     }
 
 
-def fetch_musick_vehicle_detail(lot, all_notes):
+class MusickRun:
+    """Per-run Musick state: the render function (injectable for tests) and
+    the circuit breaker. After the first blocked render (catalog or vehicle
+    detail), `blocked` flips True and nothing further is rendered this run;
+    main() then refuses to overwrite data/auction_lots.yaml with the partial
+    result. We back off and never work around a block."""
+
+    def __init__(self, render=None):
+        self.render = render
+        self.blocked = False
+
+    def render_page(self, url):
+        if self.render is None:
+            from musick_render import render_catalog_page
+            self.render = render_catalog_page
+        return self.render(url)
+
+    def note_block(self, url, page, all_notes):
+        self.blocked = True
+        all_notes.append(
+            f"[musick] {url!r}: {BLOCK_NOTE} ({len(page or '')} bytes); "
+            f"no further Musick renders this run"
+        )
+
+
+def fetch_musick_vehicle_detail(lot, all_notes, run=None):
     """Enrich one Vehicles-category lot in place with real mileage/VIN/
     title-status/spec data from its own lot-detail page - a second,
     separate Playwright render per vehicle (the catalog listing page
@@ -800,11 +828,17 @@ def fetch_musick_vehicle_detail(lot, all_notes):
     url = lot.get("url")
     if not url:
         return
+    run = run or MusickRun()
+    if run.blocked:
+        return
     try:
-        from musick_render import render_catalog_page
-        page, _ = render_catalog_page(url)
+        page, _ = run.render_page(url)
     except ImportError:
         page = None
+    if page and looks_blocked(page):
+        _save_html("musick_blocked", url.rstrip("/").rsplit("/", 1)[-1], page)
+        run.note_block(url, page, all_notes)
+        return
     if not page:
         all_notes.append(f"[musick-detail] {url!r}: render failed, no VIN/mileage/title")
         return
@@ -836,7 +870,7 @@ def fetch_musick_vehicle_detail(lot, all_notes):
     )
 
 
-def fetch_musick_catalog(event_url, all_notes):
+def fetch_musick_catalog(event_url, all_notes, run=None):
     """Follow one event's catalog link to bid.musickauction.com for
     individual lot-level data.
 
@@ -859,12 +893,20 @@ def fetch_musick_catalog(event_url, all_notes):
 
     If nothing usable comes back, the calling event row is kept as-is
     rather than dropped."""
+    run = run or MusickRun()
+    if run.blocked:
+        return []
     api_calls = []
     try:
-        from musick_render import render_catalog_page
-        page, api_calls = render_catalog_page(event_url)
+        page, api_calls = run.render_page(event_url)
     except ImportError:
         page = None
+    if page and looks_blocked(page):
+        # Save the page so a real block page finally gets captured
+        # (debug_html) - none has been seen yet, see musick_render.looks_blocked.
+        _save_html("musick_blocked", event_url.rstrip("/").rsplit("/", 1)[-1], page)
+        run.note_block(event_url, page, all_notes)
+        return []
     if api_calls:
         all_notes.append(f"[musick-catalog] {event_url!r}: {len(api_calls)} XHR/fetch call(s) seen while rendering:")
         for c in api_calls[:15]:
@@ -894,6 +936,9 @@ def fetch_musick_catalog(event_url, all_notes):
                 f"rendered-markup parser (page 1 only)"
             )
         else:
+            # Only reached for a page that passed looks_blocked() (>= 2,000
+            # bytes, not a challenge page), so "markup may have changed" is
+            # a fair guess here - unlike for a tiny/blocked page.
             all_notes.append(
                 f"[musick-catalog] {event_url!r}: 0 rows (no json-ld and no "
                 f"blkLotItemMain rows in rendered page, {len(page)}b) -- markup "
@@ -915,7 +960,9 @@ def fetch_musick_catalog(event_url, all_notes):
     if vehicle_rows:
         n_candidates = 0
         for row in vehicle_rows:
-            fetch_musick_vehicle_detail(row, all_notes)
+            fetch_musick_vehicle_detail(row, all_notes, run)
+            if run.blocked:
+                break  # circuit breaker: no more Musick renders this run
             if row.get("car_candidate"):
                 n_candidates += 1
             time.sleep(SLEEP)
@@ -928,7 +975,10 @@ def fetch_musick_catalog(event_url, all_notes):
     return rows
 
 
-def fetch_musick(all_notes):
+def fetch_musick(all_notes, run=None):
+    """`run` (a MusickRun) carries the render function and the block flag
+    back to main(); omitted, a private one is used."""
+    run = run or MusickRun()
     platform = "musick"
     cache = os.path.join(CACHE_DIR, f"auction_{platform}.json")
     events = []
@@ -962,7 +1012,13 @@ def fetch_musick(all_notes):
     # still useful even without per-item bids.
     lots = []
     for event in events:
-        catalog_rows = fetch_musick_catalog(event["url"], all_notes)
+        if run.blocked:
+            lots.append(event)  # breaker open: no more Musick renders
+            continue
+        catalog_rows = fetch_musick_catalog(event["url"], all_notes, run)
+        if run.blocked:
+            lots.append(event)
+            continue
         time.sleep(SLEEP)
         if catalog_rows:
             for r in catalog_rows:
@@ -972,7 +1028,7 @@ def fetch_musick(all_notes):
             lots.append(event)
 
     rows = dedupe(lots)
-    if rows:
+    if rows and not run.blocked:  # never cache a partial, block-truncated result
         os.makedirs(CACHE_DIR, exist_ok=True)
         with open(cache, "w", encoding="utf-8") as fh:
             json.dump({"fetched": date.today().isoformat(), "rows": rows}, fh)
@@ -1008,22 +1064,23 @@ def in_region(lot):
     return any(re.search(r"\b" + re.escape(n) + r"\b", s) for n in NEAR)
 
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--save-html", metavar="DIR",
                      help="dump each fetched page's raw HTML to DIR, for "
                           "writing a platform-specific parser against real "
                           "markup (see PLATFORM_FALLBACK)")
-    a = ap.parse_args()
+    a = ap.parse_args(argv)
 
     global SAVE_HTML_DIR
     SAVE_HTML_DIR = a.save_html
 
     all_rows, all_notes = [], []
+    musick_run = MusickRun()
     for platform in PLATFORMS:
         if platform == "musick":
-            rows = fetch_musick(all_notes)
+            rows = fetch_musick(all_notes, musick_run)
             fallback_agency = "Musick Auction Co."
         else:
             rows = fetch_platform(platform, AGENCY_TERMS, all_notes)
@@ -1099,6 +1156,18 @@ def main():
 
     if a.dry_run:
         print("\n--dry-run: not writing")
+        return
+
+    if musick_run.blocked:
+        # A block truncates the result (some catalogs never rendered), and
+        # writing it would silently drop live sales. Keep the last complete
+        # snapshot; exit 0 so the workflow continues and valuation just
+        # re-reads the old file.
+        print(
+            f"\nSKIPPED writing {os.path.abspath(OUT)}: Musick blocked this "
+            f"run ({BLOCK_NOTE}). Keeping the previous complete snapshot "
+            f"instead of a partial one."
+        )
         return
 
     doc = {"generated": date.today().isoformat(), "lots": kept}

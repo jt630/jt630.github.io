@@ -73,6 +73,7 @@ import sys
 import time
 from datetime import datetime, timezone
 
+from musick_render import BLOCK_NOTE, looks_blocked  # noqa: E402
 from auction_finder import (  # noqa: E402
     _MUSICK_LOT_NUM_RE as LOT_NUM_RE,
     _MUSICK_LOT_NUMBIDS_RE as LOT_NUMBIDS_RE,
@@ -95,9 +96,9 @@ STATE_PATH = os.path.join(PRICE_HISTORY_DIR, "_harvested.json")
 MUSICK_CLOSED_INDEX = "https://bid.musickauction.com/auctions/?alf1=4"
 MUSICK_CATALOG_URL = "https://bid.musickauction.com/auctions/catalog/id/{catalog_id}"
 
-DAILY_CATALOG_CAP = 5     # bound CI runtime - no backfill happens in CI
+DAILY_CATALOG_CAP = 3     # bound CI runtime + request volume - no backfill happens in CI
 ITEMS_PER_PAGE = 100      # confirmed honored on a closed catalog (docs/AUCTION-MONITORING.md)
-SLEEP_BETWEEN_RENDERS = 2.0  # polite delay between Playwright renders
+SLEEP_BETWEEN_RENDERS = 5.0  # polite delay between Playwright renders (raised from 2s after a WAF block)
 # 30 pages * 100 items/page = 3000 lots/catalog, well above the largest real
 # catalog seen so far (1090 total_lots) - a hard backstop against a site that
 # clamps ?page=N past the last real page and just re-serves it forever,
@@ -359,7 +360,8 @@ def mark_harvested(state, catalog_id, end_date_iso, lots, state_path=None):
 # ---------------------------------------------------------------------------
 
 
-def harvest_catalog(catalog_id, end_date_iso, all_notes, render=None, price_history_dir=None):
+def harvest_catalog(catalog_id, end_date_iso, all_notes, render=None, price_history_dir=None,
+                    run_state=None):
     """Render `catalog_id`'s closed catalog page, paged `?items=100&page=N`
     until a page yields zero concluded lots (confirmed honored on a real
     closed catalog - see docs/AUCTION-MONITORING.md), parse every concluded
@@ -381,6 +383,10 @@ def harvest_catalog(catalog_id, end_date_iso, all_notes, render=None, price_hist
     this catalog from scratch - rows already appended are safe to
     re-attempt, since append_rows() dedupes on (platform, lot_id) and only
     the still-missing lots get written the second time.
+
+    A render that looks blocked (musick_render.looks_blocked) is treated as
+    INCOMPLETE and sets run_state["blocked"] = True (if a dict is passed) so
+    the caller stops the whole run instead of moving on to the next catalog.
 
     `render` defaults to musick_render.render_catalog_page; injectable for
     testing so this function itself never needs network access."""
@@ -410,6 +416,16 @@ def harvest_catalog(catalog_id, end_date_iso, all_notes, render=None, price_hist
                 f"[price-history] catalog {catalog_id} page {page}: render "
                 f"failed - treating catalog as INCOMPLETE, will retry next run"
             )
+            complete = False
+            break
+        if looks_blocked(page_html):
+            all_notes.append(
+                f"[price-history] catalog {catalog_id} page {page}: {BLOCK_NOTE} "
+                f"({len(page_html)} bytes) - treating catalog as INCOMPLETE and "
+                f"stopping the run"
+            )
+            if run_state is not None:
+                run_state["blocked"] = True
             complete = False
             break
         page_rows = parse_closed_lots(page_html, catalog_id)
@@ -482,6 +498,19 @@ def daily_harvest(all_notes=None, price_history_dir=None, state_path=None, rende
 
     page1_html, _ = render_index(f"{MUSICK_CLOSED_INDEX}&page=1")
     page1_rows = extract_closed_index_rows(page1_html) if page1_html else []
+    all_notes.append(
+        f"[price-history] closed index page 1: {len(page1_html or '')} bytes, "
+        f"{len(page1_rows)} row(s) parsed"
+    )
+    if not page1_html:
+        all_notes.append("[price-history] closed index render failed (no page); nothing attempted")
+        return 0
+    if looks_blocked(page1_html):
+        all_notes.append(
+            f"[price-history] closed index: {BLOCK_NOTE}; 0 catalog(s) attempted, "
+            f"nothing marked"
+        )
+        return 0
     page1_closed = _closed_candidates(page1_rows)
     candidates = list(page1_closed)
 
@@ -491,6 +520,16 @@ def daily_harvest(all_notes=None, price_history_dir=None, state_path=None, rende
         time.sleep(SLEEP_BETWEEN_RENDERS)
         page2_html, _ = render_index(f"{MUSICK_CLOSED_INDEX}&page=2")
         page2_rows = extract_closed_index_rows(page2_html) if page2_html else []
+        all_notes.append(
+            f"[price-history] closed index page 2: {len(page2_html or '')} bytes, "
+            f"{len(page2_rows)} row(s) parsed"
+        )
+        if page2_html and looks_blocked(page2_html):
+            all_notes.append(
+                f"[price-history] closed index page 2: {BLOCK_NOTE}; "
+                f"0 catalog(s) attempted, nothing marked"
+            )
+            return 0
         candidates.extend(_closed_candidates(page2_rows))
 
     seen_ids = set()
@@ -505,19 +544,25 @@ def daily_harvest(all_notes=None, price_history_dir=None, state_path=None, rende
 
     total_appended = 0
     incomplete = []
+    run_state = {"blocked": False}
+    attempted = 0
     for cid, end_iso in to_harvest:
+        attempted += 1
         rows, appended, complete = harvest_catalog(
-            cid, end_iso, all_notes, price_history_dir=price_history_dir
+            cid, end_iso, all_notes, price_history_dir=price_history_dir,
+            run_state=run_state,
         )
         total_appended += appended
         if complete:
             mark_harvested(state, cid, end_iso, len(rows), state_path)
         else:
             incomplete.append(cid)
+        if run_state["blocked"]:
+            break  # circuit breaker: never move on to the next catalog
         time.sleep(SLEEP_BETWEEN_RENDERS)
 
     all_notes.append(
-        f"[price-history] daily: {len(to_harvest)} catalog(s) attempted, "
+        f"[price-history] daily: {attempted} catalog(s) attempted, "
         f"{total_appended} new row(s) appended"
         + (f", {len(incomplete)} incomplete (will retry next run): {incomplete}" if incomplete else "")
     )
@@ -530,7 +575,7 @@ def daily_harvest(all_notes=None, price_history_dir=None, state_path=None, rende
 # ---------------------------------------------------------------------------
 
 
-def _walk_all_index_pages(render_index, all_notes, max_pages=200):
+def _walk_all_index_pages(render_index, all_notes, max_pages=200, run_state=None):
     """Render every /auctions/?alf1=4 page (one render each) until a page
     comes back with zero auctionRows OR repeats a page already seen (same
     "clamps to the last page" risk as harvest_catalog() - unverified
@@ -546,6 +591,11 @@ def _walk_all_index_pages(render_index, all_notes, max_pages=200):
         page_html, _ = render_index(f"{MUSICK_CLOSED_INDEX}&page={page}")
         if not page_html:
             all_notes.append(f"[price-history] index page {page}: render failed, stopping")
+            break
+        if looks_blocked(page_html):
+            all_notes.append(f"[price-history] index page {page}: {BLOCK_NOTE}; stopping")
+            if run_state is not None:
+                run_state["blocked"] = True
             break
         page_rows = extract_closed_index_rows(page_html)
         if not page_rows:
@@ -622,7 +672,11 @@ def backfill_main(args, all_notes=None):
         all_notes = []
     from musick_render import render_catalog_page as render_index
 
-    all_rows = _walk_all_index_pages(render_index, all_notes)
+    run_state = {"blocked": False}
+    all_rows = _walk_all_index_pages(render_index, all_notes, run_state=run_state)
+    if run_state["blocked"]:
+        print(f"Index walk {BLOCK_NOTE}. Backfill not started; try again later.")
+        return 0
     closed = [r for r in all_rows if r.get("status") == "3"]
 
     since_dt = _parse_since(args.since)
@@ -661,7 +715,8 @@ def backfill_main(args, all_notes=None):
                 continue
             end_iso = iso_utc_from_index(r["end_date"])
             rows, appended, complete = harvest_catalog(
-                cid, end_iso, all_notes, price_history_dir=price_history_dir
+                cid, end_iso, all_notes, price_history_dir=price_history_dir,
+                run_state=run_state,
             )
             total_appended += appended
             if complete:
@@ -670,6 +725,9 @@ def backfill_main(args, all_notes=None):
                 incomplete.append(cid)
             status = "OK" if complete else "INCOMPLETE - will retry next run"
             print(f"  catalog {cid}: {len(rows)} lot(s), {appended} new ({status})")
+            if run_state["blocked"]:
+                print(f"  {BLOCK_NOTE}; stopping backfill.")
+                break
             time.sleep(SLEEP_BETWEEN_RENDERS)
     except KeyboardInterrupt:
         print(
