@@ -180,6 +180,48 @@ but tune the keyword lists as real mis-classifications turn up). It doesn't
 need to be perfect, just good enough that neither Vehicles nor Small Engines &
 Appliances misses the real thing or fills up with junk from the other bucket.
 
+## The personal watchlist — "dial in the search"
+
+`data/auction_watchlist.yaml` is Jeremy's cross-cutting personal-interest
+list — trucks & off-road/4x4, a commuter car for his sister, old project
+cars, cheap motorcycles, nice jetskis, little campers, a lightweight
+backcountry pistol, a bird shotgun, a deer rifle, yellow gold/fossil/
+meteorite jewelry, fly fishing gear, mining equipment — layered **on top
+of** category (`guess_category()`), not a replacement for it. A lot can
+match zero, one, or several groups regardless of category: a "2017 Jeep
+Wrangler 4x4" is `category: Vehicles` **and** `watchlist_matches:
+["Trucks & Off-Road/4x4"]`; a "Glock 43 9mm" is `category: Firearms`
+**and** `watchlist_matches: ["Backcountry Pistol"]`.
+
+Matched by `match_watchlist()` in `auction_finder.py`, same word-boundary
+convention as `guess_category()`, with one addition: a keyword starting or
+ending in punctuation (a caliber like `.308`) needs `(?<!\w)`/`(?!\w)`
+instead of a plain `\b` on that side — `\b` only fires between a word
+character and a non-word character, so two non-word characters in a row
+(a space next to a literal `.`) never form a boundary and `\b\.308\b`
+silently matches **nothing**, not even a real `.308` in a listing. This
+was CONFIRMED actually happening during development - every caliber
+keyword matched zero real listings until fixed.
+
+Editing `data/auction_watchlist.yaml` needs no code change - it's read
+fresh on every run. Three real false positives turned up testing against
+live data and are worth knowing about before adding more keywords:
+- A bare `truck` matched a truck **toolbox** listing, not a truck -
+  narrowed to `pickup` plus specific models.
+- Bare `tundra`/`sierra`/`colorado`/`ram` risked colliding with a YETI
+  Tundra cooler, Sierra-brand ammo (a real risk on a gun-heavy auction
+  site), the state of Colorado, and computer RAM respectively - narrowed
+  to the actual model phrase (`toyota tundra`, `gmc sierra`, etc.).
+- Bare `308`/`30-06`/`30-30` (before the punctuation-boundary fix above)
+  would have matched a **lot number** (`Lot #308: ...`) once the boundary
+  bug was fixed and plain `\b` started working on the digits-only form -
+  the leading period is required specifically to rule that out.
+
+Rendered as: a dedicated "🎯 On your watchlist" section on `/auctions/`
+(above the Vehicles section, all matches regardless of category), plus a
+small 🎯-prefixed chip on any lot row wherever it appears, anywhere on the
+site.
+
 ## Vehicle detail enrichment — VIN, mileage, title status
 
 The catalog LISTING page (parsed above) never carries this — just title, bid,

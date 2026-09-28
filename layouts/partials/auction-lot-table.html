@@ -58,6 +58,13 @@
               {{ end }}
             </div>
             {{ end }}
+            {{/* data/auction_watchlist.yaml matches (match_watchlist() in
+                 auction_finder.py) - a lot can be on more than one list. */}}
+            {{ if $lot.watchlist_matches }}
+            <div class="auctions-watch-tags">
+              {{ range $lot.watchlist_matches }}<span class="watch-chip">🎯 {{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
           </td>
           <td>{{ with .agency }}{{ . }}{{ else }}&mdash;{{ end }}</td>
           <td>{{ with .current_bid }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>

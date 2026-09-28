@@ -58,6 +58,10 @@ table.auctions-tbl tr.row-closed td.auctions-closes { font-style: italic; }
 .spec-chip-clean { color: #6dd36d; border-color: rgba(109,211,109,0.4); }
 .spec-chip-warn { color: #ff6b6b; border-color: rgba(255,107,107,0.4); }
 .spec-chip-vin { font-family: monospace; cursor: help; }
+/* data/auction_watchlist.yaml matches - Jeremy's personal "dial in the
+   search" tags, layered on top of category. */
+.auctions-watch-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; max-width: 320px; }
+.watch-chip { display: inline-block; font-size: 10px; padding: 2px 6px; border: 1px solid var(--pink); color: var(--pink); white-space: nowrap; text-transform: none; letter-spacing: normal; }
 .auctions-src { font-size: 10px; padding: 1px 6px; border: 1px solid var(--white-faint); color: var(--white-faint); text-transform: uppercase; }
 .value-src { display: block; font-size: 10px; margin-top: 2px; cursor: help; }
 .value-src-ebay { color: #6dd36d; }

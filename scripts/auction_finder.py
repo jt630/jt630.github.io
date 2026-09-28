@@ -108,6 +108,7 @@ SLEEP = 2.0
 _HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(_HERE, "..", "data", "auction_lots.yaml")
 CACHE_DIR = os.path.join(_HERE, "..", "data", ".cache")
+WATCHLIST_PATH = os.path.join(_HERE, "..", "data", "auction_watchlist.yaml")
 ZIP = "83702"  # Boise
 
 # Narrowed to Musick alone by request: it's the one platform tied to
@@ -242,6 +243,56 @@ def guess_category(lot):
         if any(re.search(r"\b" + re.escape(n) + r"s?\b", s) for n in needles):
             return label
     return "Other"
+
+
+def load_watchlist():
+    """data/auction_watchlist.yaml - Jeremy's personal cross-cutting tags
+    (trucks, project cars, a backcountry pistol, fly fishing gear, ...),
+    layered on top of category rather than replacing it. Editable without
+    a code change; missing/malformed file just means no watchlist tags,
+    same graceful-degrade rule as everything else here."""
+    try:
+        with open(WATCHLIST_PATH, encoding="utf-8") as f:
+            groups = yaml.safe_load(f) or []
+    except (OSError, yaml.YAMLError) as e:
+        sys.stderr.write(f"  [watchlist] couldn't load {WATCHLIST_PATH}: {e}\n")
+        return []
+    return [g for g in groups if g.get("label") and g.get("keywords")]
+
+
+WATCHLIST = load_watchlist()
+
+
+def _watchlist_kw_pattern(kw):
+    """Same word-boundary idea as guess_category(), but generalized: a
+    keyword starting/ending in punctuation (".308", ".30-06" - real
+    caliber keywords need the leading period to avoid matching a bare lot
+    number like "Lot #308") breaks a plain \\b there, since \\b only fires
+    between a word char and a non-word char - two non-word chars in a row
+    (a space next to a literal ".") never form a boundary, so \\b.308\\b
+    silently matches NOTHING, not even the real ".308" in a listing.
+    CONFIRMED this was actually happening before this fix: every caliber
+    keyword matched zero real listings, including .30-06 rifles plainly
+    visible in the data. (?<!\\w)/(?!\\w) (a raw non-word lookaround)
+    replaces \\b only on whichever side starts/ends with non-word
+    punctuation."""
+    esc = re.escape(kw.lower())
+    start = r"\b" if kw[0].isalnum() else r"(?<!\w)"
+    end = r"\b" if kw[-1].isalnum() else r"(?!\w)"
+    return start + esc + r"s?" + end
+
+
+def match_watchlist(lot):
+    """Every group whose keywords appear anywhere in title+description, not
+    just the first match, since a lot can genuinely be on more than one
+    list (a "2017 Jeep Wrangler 4x4" is both a truck/off-road pick and,
+    coincidentally, exactly the kind of thing a project-car listing might
+    also mention)."""
+    s = f" {lot.get('title', '')} {lot.get('description', '')} ".lower()
+    return [
+        g["label"] for g in WATCHLIST
+        if any(re.search(_watchlist_kw_pattern(kw), s) for kw in g["keywords"])
+    ]
 
 
 def fetch(url, headers=None):
@@ -976,6 +1027,7 @@ def main():
         r.setdefault("close_time", None)
         r.setdefault("description", None)
         r["category"] = guess_category(r)
+        r["watchlist_matches"] = match_watchlist(r)
         r["estimated_value_low"] = None
         r["estimated_value_high"] = None
         r["estimated_value_mid"] = None
@@ -1001,6 +1053,14 @@ def main():
     print("\nby category:")
     for cat, n in sorted(cat_counts.items(), key=lambda kv: -kv[1]):
         print(f"  {cat:20s} {n}")
+    watch_counts = {}
+    for r in kept:
+        for label in r.get("watchlist_matches") or []:
+            watch_counts[label] = watch_counts.get(label, 0) + 1
+    if watch_counts:
+        print("\nwatchlist matches:")
+        for label, n in sorted(watch_counts.items(), key=lambda kv: -kv[1]):
+            print(f"  {label:30s} {n}")
     print("\nfetch notes:")
     for n in all_notes:
         print("  " + n)
