@@ -32,7 +32,8 @@
             data-est-mid="{{ if .estimated_value_mid }}{{ .estimated_value_mid }}{{ end }}"
             data-deal-score="{{ if .deal_score }}{{ .deal_score }}{{ end }}"
             data-deal-pct="{{ if .deal_pct }}{{ .deal_pct }}{{ end }}"
-            data-url="{{ .url }}">
+            data-url="{{ .url }}"
+            data-ends-at="{{ with .auction_ends_at }}{{ . }}{{ end }}">
           <td>
             {{ .title }}
             {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}
@@ -57,7 +58,22 @@
               <span class="deal-badge flag" {{ if not .flagged }}style="display:none"{{ end }}>🔥 Deal</span>
             {{ else }}&mdash;{{ end }}
           </td>
-          <td>{{ with .close_time }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+          <td class="auctions-closes">
+            {{/* Server-rendered fallback only - accurate as of this build,
+                 which can be up to ~24h stale between the daily cron
+                 refresh (see auction-monitor.yml). auction-dial-in.html's
+                 script re-renders this live from data-ends-at on load and
+                 every 30s, which is what actually keeps it trustworthy for
+                 catching a lot closing in the next few minutes. */}}
+            {{ if .auction_ends_at }}
+              {{ $ends := time .auction_ends_at }}
+              {{ $diffH := div (sub $ends.Unix now.Unix) 3600 }}
+              {{ if lt $diffH 0 }}closed
+              {{ else if ge $diffH 24 }}{{ div $diffH 24 }}d {{ mod $diffH 24 }}h left
+              {{ else }}{{ $diffH }}h left
+              {{ end }}
+            {{ else }}{{ with .close_time }}{{ . }}{{ else }}&mdash;{{ end }}{{ end }}
+          </td>
           <td><span class="auctions-src">{{ .platform }}</span></td>
           <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
         </tr>

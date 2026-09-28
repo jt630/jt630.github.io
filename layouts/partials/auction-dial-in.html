@@ -51,6 +51,39 @@
     return Array.prototype.slice.call(document.querySelectorAll('.auctions-lot-row'));
   }
 
+  // Real countdown to each lot's own auction_ends_at, computed and
+  // re-rendered client-side every 30s - the server-rendered "Closes" text
+  // in auction-lot-table.html is only accurate as of the last build (up to
+  // ~24h stale, since the data refreshes once a day), so it can't be
+  // trusted to catch something closing in the next few minutes. This can.
+  var CLOSING_SOON_MS = 24 * 60 * 60 * 1000;   // 24h - matches the row highlight
+  var CLOSING_URGENT_MS = 60 * 60 * 1000;      // 1h - the "last-minute snag" zone
+
+  function formatRemaining(ms) {
+    if (ms <= 0) return 'closed';
+    var totalMin = Math.floor(ms / 60000);
+    var d = Math.floor(totalMin / 1440);
+    var h = Math.floor((totalMin % 1440) / 60);
+    var m = totalMin % 60;
+    if (d > 0) return d + 'd ' + h + 'h left';
+    if (h > 0) return h + 'h ' + m + 'm left';
+    return m + 'm left';
+  }
+
+  function updateCountdowns() {
+    var now = Date.now();
+    rows().forEach(function (row) {
+      var iso = row.dataset.endsAt;
+      var cell = row.querySelector('.auctions-closes');
+      if (!iso || !cell) return;
+      var ms = new Date(iso).getTime() - now;
+      cell.textContent = formatRemaining(ms);
+      row.classList.toggle('closing-soon', ms > 0 && ms <= CLOSING_SOON_MS);
+      row.classList.toggle('closing-urgent', ms > 0 && ms <= CLOSING_URGENT_MS);
+      row.classList.toggle('row-closed', ms <= 0);
+    });
+  }
+
   function isFlagged(row, thresholdPct) {
     var pct = parseFloat(row.dataset.dealPct);
     var mid = parseFloat(row.dataset.estMid);
@@ -121,9 +154,16 @@
   // exist yet, so the first recompute() has to wait for the full DOM
   // (DOMContentLoaded) - calling it synchronously here would find zero rows.
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', recompute);
+    document.addEventListener('DOMContentLoaded', function () {
+      recompute();
+      updateCountdowns();
+    });
   } else {
     recompute();
+    updateCountdowns();
   }
+  // 30s is frequent enough to actually catch a lot closing in the next
+  // few minutes without hammering the page with per-second re-renders.
+  setInterval(updateCountdowns, 30000);
 })();
 </script>
