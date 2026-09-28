@@ -426,6 +426,16 @@ def harvest_catalog(catalog_id, end_date_iso, all_notes, render=None, price_hist
         page += 1
         time.sleep(SLEEP_BETWEEN_RENDERS)
 
+    if complete and not parsed_rows:
+        # A closed catalog with zero concluded lots isn't a real result - it's
+        # what markup drift looks like (every page parses to nothing, which
+        # reads as a clean empty stop). Never mark that harvested.
+        all_notes.append(
+            f"[price-history] catalog {catalog_id}: 0 concluded lots parsed - "
+            f"possible markup change, treating as INCOMPLETE, will retry next run"
+        )
+        complete = False
+
     rows = [build_row(p, end_date_iso, observed_at) for p in parsed_rows]
     appended = append_rows(rows, price_history_dir)
     all_notes.append(

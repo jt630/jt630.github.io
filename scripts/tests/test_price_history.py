@@ -330,6 +330,19 @@ class RepeatPageAndIncompleteHarvestTests(unittest.TestCase):
         self.assertEqual(len(rows), ph.MAX_CATALOG_PAGES)
         self.assertTrue(any("MAX_CATALOG_PAGES" in n for n in notes))
 
+    def test_zero_lots_parsed_is_incomplete_not_a_clean_stop(self):
+        # Markup drift: the page renders fine but nothing parses. Must not
+        # be marked harvested with 0 rows and never retried.
+        render = _fake_render({1: "<html><body>redesigned site</body></html>"})
+        notes = []
+        with tempfile.TemporaryDirectory() as d:
+            rows, appended, complete = ph.harvest_catalog(
+                914, "2026-09-24T03:22:00Z", notes, render=render, price_history_dir=d
+            )
+        self.assertEqual((len(rows), appended), (0, 0))
+        self.assertFalse(complete)
+        self.assertTrue(any("markup change" in n for n in notes))
+
 
 @patch("price_history.time.sleep", lambda *a, **kw: None)  # no real waiting in tests
 class IndexRepeatPageTests(unittest.TestCase):
