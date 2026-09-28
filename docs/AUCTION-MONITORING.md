@@ -607,3 +607,40 @@ python scripts/musick_render.py "https://bid.musickauction.com/auctions/catalog/
 
 Then `hugo --minify` to confirm the page builds, or `hugo server` to look at
 `/auctions/` locally.
+
+## Probing live markup: local first, CI to confirm
+
+Workflow for anything new (a lot-detail page, a different auction site, a
+field that might not be on the catalog page): run `scripts/probe.py` on your
+own machine, read what lands in `.debug/`, write the parser against that
+real markup, dry-run it, then ship.
+
+Local is the default now because it's faster (no workflow-dispatch round
+trip, no waiting on a GitHub-hosted runner), it lets you probe several URLs
+in one sitting instead of one per dispatch, and the raw dumps - which can
+carry other bidders' handles - stay in a gitignored folder on your own disk
+instead of landing on a public `debug/auction-html` branch. That branch was
+only ever a workaround for a dev-sandbox network policy that blocked the
+auction sites outright; probing from a normal residential connection has no
+such problem.
+
+The caveat: local success isn't production success. The daily pipeline runs
+on GitHub Actions' own IPs, which are datacenter IPs, not residential ones -
+and eBay in particular is believed to 403 datacenter traffic while allowing
+residential. So before shipping a parser built against a local probe, do one
+`probe_url` workflow-dispatch run to confirm it still works from CI. This
+matters most for eBay comps; Musick's own pages have been less finicky about
+it so far, but check anyway.
+
+```bash
+pip install playwright && playwright install chromium
+
+# a closed catalog, to see what that markup looks like
+python scripts/probe.py "https://bid.musickauction.com/auctions/catalog/id/914"
+
+# several URLs in one run, written to a custom folder
+python scripts/probe.py URL1 URL2 URL3 --out .debug/2026-09-28
+
+# read the dump
+ls .debug/ && cat .debug/probe.log
+```
