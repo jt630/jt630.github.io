@@ -59,6 +59,14 @@ it before any session that scales this to new sources or touches pricing.
 `docs/AUCTION-MONITORING.md` is the running engineering log: real findings
 from live debug runs, markup notes, what's actually verified vs. guessed.
 
+**Start every auction session with PRICE-DISCOVERY.md's "▶ Where we are /
+next session" block**: current state, what's blocked, the next tasks in
+order. Update it before ending the session. **Collection etiquette is a
+hard rule:** Musick is behind AWS WAF and has already blocked us once.
+Probe a handful of pages per session from the owner's PC
+(`scripts/probe.py`), never in loops, and stop for the day at the first
+sign of a block. Never work around one.
+
 Key files:
 - `PRICE-DISCOVERY.md` — vision, roadmap, open questions
 - `THESIS.md` — the research framing: pre-registered hypotheses and a lab

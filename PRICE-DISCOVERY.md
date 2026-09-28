@@ -15,6 +15,70 @@ read before any session that touches this scaling-up work.
 
 ---
 
+## ▶ Where we are / next session (handoff, updated 2026-09-28)
+
+*Read this first. It's the state of play, so a new session doesn't have to
+reconstruct it. Update it at the end of every session.*
+
+**Live and working**
+- Daily pipeline (GitHub Actions, 13:00 UTC): live lots → close-price
+  harvest → valuation → **test gate** → commit → deploy.
+- `research/price_history/`: **2,638 real closing prices** from 5 sales
+  (911, 913, 914, 915, 917). All `close`, no duplicates, spot-checked
+  against live pages. (Not in `data/`: Hugo can't load .jsonl, and that
+  broke the site once. `scripts/tests/test_hugo_data_formats.py` now guards
+  against it.)
+- `THESIS.md`: pre-registered hypotheses H1–H7, with a dated notebook.
+
+**Blocked or known broken**
+- **Musick's AWS WAF blocked a production run** after a heavy day of
+  probing (engineering log: "Bot protection"). PR #141 adds back-off and
+  circuit breakers. Merge it before relying on the daily run again.
+- **eBay comps are dead from CI** (403 and challenge pages). Not fixable by
+  parsing, and not evaded by policy.
+- **The history is sales-only.** Unsold lots are deleted after close
+  (survivorship bias; engineering log and THESIS notebook).
+- **The bulk backfill is on hold** (see next).
+
+**Next sessions, in order** (the first two need the owner's PC)
+1. **Read Musick's Terms of Service** (musickauction.com and
+   bid.musickauction.com). Record what it says about automated access in
+   the engineering log's ToS section. If it bars automated access, stop
+   collecting from Musick; that's a non-negotiable, and the thesis would
+   need another source.
+2. **Decide on the backfill, given the WAF.** Options: (a) a very slow
+   resumable backfill, about one catalog every 10+ minutes, spread over
+   days, stopping on the first block; (b) no backfill, letting the daily
+   harvest build history forward (THESIS H1 then becomes forward-looking
+   only). Run `python scripts/price_history.py --backfill` (estimate only,
+   no `--yes`) to see how far back the index goes, since that decides
+   whether H1 even has a "before" period worth the risk.
+3. **Session B2** (record vanished lots) is the only way to fix the
+   survivorship bias going forward. It's offline code, so cloud is fine.
+4. **Session D** (history page + calibration) once about 2 weeks of daily
+   closes exist.
+5. Bid-history experiment (THESIS H6), only after 1 and 2 settle what
+   volume is acceptable.
+
+**First commands on the owner's PC**
+```bash
+git pull
+pip install pyyaml playwright && playwright install chromium
+python -m unittest discover scripts/tests         # should be all OK
+python scripts/probe.py https://bid.musickauction.com/auctions/catalog/id/914
+#   one probe only: check that .debug/ has a real page (tens of KB), not a
+#   ~200-byte block page. If it's blocked, stop and wait a day.
+```
+
+**Collection etiquette (applies to every session from now on)**
+- Probe from the PC (`scripts/probe.py`), **a handful of pages per session**,
+  never loops.
+- Use the workflow's `probe_url` only to confirm CI behaviour, at most one
+  or two a day.
+- On any sign of a block: stop for the day. Never retry around it.
+
+---
+
 ## The North Star
 
 > **A world where pricing is transparent, and people can verify a price
@@ -323,10 +387,13 @@ real-markup findings. Don't re-derive them.
 the Claude Code skill it exercises. Don't skip the callout.
 
 **The verify-first loop** (used by every session that touches a new page):
-dispatch `auction-monitor.yml` with `probe_url` or `debug_html` → read the
-dump on the `debug/auction-html` branch → write the parser against that real
-markup → dry-run locally against the saved HTML → ship. The dev sandbox
-can't reach these sites directly. This loop is the only way in.
+render it locally with `scripts/probe.py` → read the dump in `.debug/` →
+write the parser against that real markup → dry-run against the saved HTML
+→ ship → one `probe_url` workflow dispatch to confirm it works from CI's IPs
+too. (The old route, dispatching `probe_url` for every probe and reading the
+public `debug/auction-html` branch, was a cloud-sandbox workaround. It also
+helped trip Musick's WAF. Keep probes few; see the handoff block's
+"Collection etiquette".)
 
 ---
 
@@ -470,16 +537,14 @@ can't sneak in, so the environment should enforce that instead of memory.
 **Goal:** Know for sure whether eBay comps can work, and fix the query bug
 either way.
 
-- [ ] `normalize_query(title)`: strip `Lot #N:`, drop filler ("With",
-      "Large", "Hammered Finish"…), and cap at ~6 meaningful tokens. Unit-test
-      it on 20 real titles from `auction_lots.yaml`.
-- [ ] Wire `ebay_comps.py` into `--save-html` (it isn't today). Dispatch
-      `debug_html: true`, then read the real eBay response from the debug
-      branch.
-- [ ] If it's a 403 or challenge page: write the finding into
-      `docs/AUCTION-MONITORING.md`, set eBay to skip-with-a-note after the first
-      403 per run (stop burning 90 × 2s sleeps on a wall), close the bug.
-      **Don't evade.**
+- [x] `normalize_query(title)`: shipped in PR #135, with 36 tests.
+- [x] Verdict: the first production run with normalized queries got 403s
+      and ~13.6 KB challenge-sized pages from GitHub's IPs. **eBay is
+      blocked from CI.** Recorded in the engineering log ("eBay from CI").
+- [x] Skip after the first 403 per run: PR #141. **Not evaded.**
+- [ ] (Optional, for the record) one local lookup from the PC to confirm
+      that residential IPs get real results. That doesn't change the
+      pipeline, which runs on CI.
 - [ ] If it's real results: fix the parser against the dump and ship.
 
 **Learning opportunity:** worktree isolation. Run this as an Agent with

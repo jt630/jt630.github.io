@@ -221,3 +221,15 @@ for the pre-registered plan, recorded before any analysis:
   failures.
 Hypotheses and predictions unchanged.
 
+**2026-09-28 (evening): data-collection constraint.** Musick's site is behind
+AWS WAF and blocked a production run after a heavy day of probing. eBay is
+blocked from CI outright. The bulk backfill is **on hold** pending a read of
+Musick's ToS and a very slow collection schedule, because a block on the
+owner's home IP would cut off the site the owner actually bids on. If the
+backfill doesn't happen, H1 and H2 become forward-looking tests on the daily
+harvest, and the index's earliest `end_date` decides whether a "before"
+period even exists to be worth the risk. Hypotheses and predictions are
+unchanged. Also worth noting as a finding: **the market's own
+infrastructure limits who can observe it at scale**, which is part of the
+"missing infrastructure" this thesis argues about.
+
