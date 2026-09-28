@@ -21,6 +21,12 @@
   {{ $rated := where $lots "deal_score" "!=" nil }}
   {{ $ebayBacked := where $lots "value_source" "ebay" }}
   {{ $vehicles := where $lots "category" "Vehicles" }}
+  {{ $candidates := where $vehicles "car_candidate" true }}
+  {{/* Candidates first (real filter match - under 150k mi, clean title),
+       then everything else in the category, so a bidder scanning top-down
+       sees the qualifying cars before the ones that didn't clear the bar -
+       nothing is hidden, just ranked. */}}
+  {{ $vehiclesRanked := $candidates | append (where $vehicles "car_candidate" "!=" true) }}
 
   <p class="auctions-assump">
     Generated {{ .generated }} by <code>scripts/auction_finder.py</code> +
@@ -36,6 +42,7 @@
     <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">Valued</span></div>
     <div class="auctions-stat"><span class="n">{{ len $ebayBacked }}</span><span class="l">eBay-backed</span></div>
     <div class="auctions-stat"><span class="n">{{ len $vehicles }}</span><span class="l">Vehicles</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $candidates }}</span><span class="l">Candidates<br>&lt;150k mi, clean title</span></div>
   </div>
 
   {{ partial "auction-dial-in.html" (dict "pageTitle" "Auction Watch" "pageURL" $.Permalink) }}
@@ -45,11 +52,15 @@
   <p class="auctions-assump">
     Every lot classified as a car, truck, motorcycle, or other vehicle, across
     every platform currently tracked (Musick Auction Co. for now — see
-    docs/AUCTION-MONITORING.md). A title alone rarely says mileage or title
-    status — check the listing before bidding, and treat the AI estimate as
-    a rough band, not a quote.
+    docs/AUCTION-MONITORING.md). Real mileage, title status, and VIN are
+    pulled from each vehicle's own listing page — <strong>✓ Candidate</strong>
+    means under 150,000 miles <em>and</em> a clean title, both confirmed, not
+    guessed; anything missing that data or carrying a non-clean title sorts
+    below the candidates rather than being hidden. No automated Carfax/
+    AutoCheck pull (that costs real money per VIN) — copy the VIN shown into
+    one yourself for anything you're seriously considering.
   </p>
-  {{ partial "auction-lot-table.html" $vehicles }}
+  {{ partial "auction-lot-table.html" $vehiclesRanked }}
 
   <!-- ─────────── EVERYTHING ELSE, BY CATEGORY ─────────── -->
   <h2>Everything else</h2>

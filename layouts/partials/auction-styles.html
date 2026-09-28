@@ -36,12 +36,28 @@ table.auctions-tbl th { background: var(--black); color: var(--gold); text-trans
 table.auctions-tbl td:first-child, table.auctions-tbl th:first-child { text-align: left; white-space: normal; min-width: 220px; }
 table.auctions-tbl tr:hover td { background: rgba(255,45,138,0.08); }
 table.auctions-tbl tr.row-flagged td { background: rgba(109,211,109,0.08); }
+/* "last-minute snag" urgency, set live by auction-dial-in.html's countdown
+   script from each row's data-ends-at - never baked in at build time,
+   since the data can be up to ~24h stale between cron refreshes. */
+table.auctions-tbl tr.closing-soon td.auctions-closes { color: #ffb84d; font-weight: 700; }
+table.auctions-tbl tr.closing-urgent td.auctions-closes { color: #ff6b6b; font-weight: 700; }
+table.auctions-tbl tr.closing-urgent td.auctions-closes::before { content: "⏰ "; }
+table.auctions-tbl tr.row-closed td { opacity: 0.45; }
+table.auctions-tbl tr.row-closed td.auctions-closes { font-style: italic; }
 
 .deal-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
 .deal-badge.flag { background: #1c7a3c; color: #eafff0; }
 .auctions-gap-pos { color: #6dd36d; font-weight: 700; }
 .auctions-gap-neg { color: var(--white-faint); }
 .auctions-note { display: block; font-size: 11px; color: var(--white-faint); margin-top: 3px; white-space: normal; max-width: 260px; text-align: left; }
+/* Real vehicle spec chips (mileage/title/VIN/candidate) from each lot's
+   own detail page - see docs/AUCTION-MONITORING.md. */
+.auctions-vehicle-specs { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; max-width: 320px; }
+.spec-chip { display: inline-block; font-size: 10px; padding: 2px 6px; border: 1px solid rgba(255,255,255,0.15); color: var(--white-dim); white-space: nowrap; text-transform: none; letter-spacing: normal; }
+.spec-chip-candidate { background: #1c7a3c; border-color: #1c7a3c; color: #eafff0; font-weight: 700; }
+.spec-chip-clean { color: #6dd36d; border-color: rgba(109,211,109,0.4); }
+.spec-chip-warn { color: #ff6b6b; border-color: rgba(255,107,107,0.4); }
+.spec-chip-vin { font-family: monospace; cursor: help; }
 .auctions-src { font-size: 10px; padding: 1px 6px; border: 1px solid var(--white-faint); color: var(--white-faint); text-transform: uppercase; }
 .value-src { display: block; font-size: 10px; margin-top: 2px; cursor: help; }
 .value-src-ebay { color: #6dd36d; }

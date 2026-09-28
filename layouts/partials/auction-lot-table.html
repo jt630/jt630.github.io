@@ -18,6 +18,7 @@
     </thead>
     <tbody>
       {{ range $ordered }}
+        {{ $lot := . }}
         {{/* data-* attrs let the client-side deal-threshold slider (see
              auction-dial-in.html) recompute "is this flagged" live, and
              let the digest button read a lot's numbers without re-parsing
@@ -32,10 +33,31 @@
             data-est-mid="{{ if .estimated_value_mid }}{{ .estimated_value_mid }}{{ end }}"
             data-deal-score="{{ if .deal_score }}{{ .deal_score }}{{ end }}"
             data-deal-pct="{{ if .deal_pct }}{{ .deal_pct }}{{ end }}"
-            data-url="{{ .url }}">
+            data-url="{{ .url }}"
+            data-ends-at="{{ with .auction_ends_at }}{{ . }}{{ end }}">
           <td>
             {{ .title }}
             {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}
+            {{/* Real vehicle spec chips, from each lot's own detail page
+                 (see fetch_musick_vehicle_detail() / docs/AUCTION-MONITORING.md)
+                 - only rendered when that fetch actually succeeded, never
+                 guessed at for a lot missing this data. */}}
+            {{ if or .mileage .title_status .vin }}
+            <div class="auctions-vehicle-specs">
+              {{ if .car_candidate }}
+                <span class="spec-chip spec-chip-candidate">✓ Candidate</span>
+              {{ end }}
+              {{ with .mileage }}<span class="spec-chip">{{ lang.FormatNumberCustom 0 . }} mi</span>{{ end }}
+              {{ with .title_status }}
+                <span class="spec-chip {{ if $lot.clean_title }}spec-chip-clean{{ else }}spec-chip-warn{{ end }}">
+                  {{ if $lot.clean_title }}✓{{ else }}⚠{{ end }} {{ . }} title
+                </span>
+              {{ end }}
+              {{ with .vin }}
+                <span class="spec-chip spec-chip-vin" title="Copy into Carfax/AutoCheck/NHTSA's free VIN decoder for a real history check - not pulled automatically, that costs money per VIN">VIN {{ . }}</span>
+              {{ end }}
+            </div>
+            {{ end }}
           </td>
           <td>{{ with .agency }}{{ . }}{{ else }}&mdash;{{ end }}</td>
           <td>{{ with .current_bid }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
@@ -57,7 +79,22 @@
               <span class="deal-badge flag" {{ if not .flagged }}style="display:none"{{ end }}>🔥 Deal</span>
             {{ else }}&mdash;{{ end }}
           </td>
-          <td>{{ with .close_time }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+          <td class="auctions-closes">
+            {{/* Server-rendered fallback only - accurate as of this build,
+                 which can be up to ~24h stale between the daily cron
+                 refresh (see auction-monitor.yml). auction-dial-in.html's
+                 script re-renders this live from data-ends-at on load and
+                 every 30s, which is what actually keeps it trustworthy for
+                 catching a lot closing in the next few minutes. */}}
+            {{ if .auction_ends_at }}
+              {{ $ends := time .auction_ends_at }}
+              {{ $diffH := div (sub $ends.Unix now.Unix) 3600 }}
+              {{ if lt $diffH 0 }}closed
+              {{ else if ge $diffH 24 }}{{ div $diffH 24 }}d {{ mod $diffH 24 }}h left
+              {{ else }}{{ $diffH }}h left
+              {{ end }}
+            {{ else }}{{ with .close_time }}{{ . }}{{ else }}&mdash;{{ end }}{{ end }}
+          </td>
           <td><span class="auctions-src">{{ .platform }}</span></td>
           <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
         </tr>
