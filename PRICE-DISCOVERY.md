@@ -557,6 +557,24 @@ parsers against four saved dumps is the textbook fan-out case.
 
 ---
 
+### Session B2: Record lots that vanish (recover unsold lots)
+
+**Why:** unsold lots are deleted after close (see the engineering log,
+"Unsold lots disappear after close"), so the history is sales-only. The
+only recovery is forward: remember lots seen live, and record the ones that
+never show up in their closed catalog.
+
+- [ ] Live fetch: page through whole catalogs (`?items=100&page=N`) for
+      catalogs closing within ~48h, not just page 1. Save each lot's last
+      observed bid, bid count and `observed_at` to
+      `research/price_history/_live_seen.jsonl`.
+- [ ] Harvester: after harvesting a closed catalog, any lot in `_live_seen`
+      for that catalog but absent from the closed pages gets a row
+      `price_kind: "vanished"`, `price: null`, `last_seen_bid`,
+      `last_seen_at`. Never a close.
+- [ ] Probe one lot seen live and then vanished, to confirm the 404 pattern
+      holds across more than one lot.
+
 ### Not scheduled (and why)
 
 - **Business agent (Phase 4):** blocked on Session E by Decision 9.

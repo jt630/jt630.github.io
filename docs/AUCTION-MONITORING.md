@@ -250,6 +250,39 @@ The `?alf1=4` index is also a viable backstop/backfill path independent of
 track (e.g. a catalog whose `auction_finder.py` run was skipped that day), going back
 as far as page 17 (827 total auctions) without walking ids blind.
 
+## Unsold lots disappear after close (survivorship bias, 2026-09-28)
+
+The first production harvest (5 closed sales, 2,638 lots) came back **100%
+`ended sold`, with zero unsold**. That's suspicious for a real auction.
+Evidence that unsold lots are removed, not just absent:
+
+- **Small scattered gaps in lot numbering**, always between vehicles. In
+  catalog 911, lots 904, 908 and 910 are missing while 903/905/907/909 are
+  present. Catalog 913 is missing 303, 306, etc.
+- **Lot IDs are sequential with lot numbers** (903 = 509409, 905 = 509411),
+  so the missing lot 904 must be ID 509410.
+- **A control probe settled it:**
+  `lot-details/index/catalog/911/lot/509409` (lot 903, present) loads fine
+  **without** the title slug (57 KB, "2020 FORD F-150 - 4X4!", 27 bids),
+  while `.../lot/509410` (the missing 904) returns **404 Not Found**. The
+  URL format is valid, and the lot itself is gone.
+- The index's `total_lots` (493 for catalog 914) exceeds the catalog's own
+  visible count (470) by 23, consistent with removed lots.
+
+**What this means:** closed catalogs keep only lots that sold. The history
+file is sales-only, which is survivorship bias. Price statistics skew
+high, and "nobody wanted this at $X" (a passed or reserve-not-met lot) is
+invisible. The cluster between vehicles suggests reserve-not-met trucks,
+but we can't tell unsold from withdrawn, since the page is simply gone.
+**One confirmed lot so far**; treat it as strong evidence, not proof.
+
+**The only way to recover them is to see them while they're alive.** A lot
+that was observed live (in `auction_lots.yaml`) but never appears in its
+closed catalog can be recorded as `price_kind: "vanished"` with its last
+observed bid. That's a lower bound, never a close. It needs the live fetch
+to cover whole catalogs near close, not just page 1. Not built: see
+PRICE-DISCOVERY.md.
+
 ## Close-price history
 
 `scripts/price_history.py` (Phase 1 of `PRICE-DISCOVERY.md`, the highest-priority
