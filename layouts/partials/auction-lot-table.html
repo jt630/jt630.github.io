@@ -18,6 +18,7 @@
     </thead>
     <tbody>
       {{ range $ordered }}
+        {{ $lot := . }}
         {{/* data-* attrs let the client-side deal-threshold slider (see
              auction-dial-in.html) recompute "is this flagged" live, and
              let the digest button read a lot's numbers without re-parsing
@@ -37,6 +38,26 @@
           <td>
             {{ .title }}
             {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}
+            {{/* Real vehicle spec chips, from each lot's own detail page
+                 (see fetch_musick_vehicle_detail() / docs/AUCTION-MONITORING.md)
+                 - only rendered when that fetch actually succeeded, never
+                 guessed at for a lot missing this data. */}}
+            {{ if or .mileage .title_status .vin }}
+            <div class="auctions-vehicle-specs">
+              {{ if .car_candidate }}
+                <span class="spec-chip spec-chip-candidate">✓ Candidate</span>
+              {{ end }}
+              {{ with .mileage }}<span class="spec-chip">{{ lang.FormatNumberCustom 0 . }} mi</span>{{ end }}
+              {{ with .title_status }}
+                <span class="spec-chip {{ if $lot.clean_title }}spec-chip-clean{{ else }}spec-chip-warn{{ end }}">
+                  {{ if $lot.clean_title }}✓{{ else }}⚠{{ end }} {{ . }} title
+                </span>
+              {{ end }}
+              {{ with .vin }}
+                <span class="spec-chip spec-chip-vin" title="Copy into Carfax/AutoCheck/NHTSA's free VIN decoder for a real history check - not pulled automatically, that costs money per VIN">VIN {{ . }}</span>
+              {{ end }}
+            </div>
+            {{ end }}
           </td>
           <td>{{ with .agency }}{{ . }}{{ else }}&mdash;{{ end }}</td>
           <td>{{ with .current_bid }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
