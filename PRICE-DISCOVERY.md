@@ -171,6 +171,9 @@ how wrong a bad guess here is allowed to be.
 
 ## Open questions
 
+> Most of these now have a call in **Decisions (2026-09-28)** below. Kept
+> here as the original framing.
+
 - **Storage at scale.** `data/auction_lots.yaml` gets fully overwritten
   every run - fine for a live snapshot, wrong for permanent history.
   What actually holds thousands of closed-price observations over time -
@@ -211,3 +214,300 @@ These aren't up for revisiting just because the scope is growing:
   discipline used for every platform so far - a new source gets probed
   and its real response read before a parser is written against a
   guess.
+
+---
+
+## Decisions (2026-09-28 planning session)
+
+These answer the Open Questions above, plus a few calls the roadmap left
+implicit. They were made after reading the real code and data on `main`, not
+just the roadmap. Revisit one only with a reason from real data.
+
+1. **Phase 1 is the only thing that matters right now.** Every later phase
+   depends on owned close prices. Nothing in Phase 2–4 starts until the close
+   harvester has run on a schedule and recorded real rows.
+
+2. **History records every lot we render, not just keep-bar lots.** The
+   watchlist keep bar exists to bound *attention* and *render cost*. It was
+   never meant to bound *data*. A closed catalog page already contains all 50
+   lots whatever the watchlist says, so recording all of them adds one JSONL
+   row each and no extra render. Dropping them would throw away free price
+   data just to reduce noise that nobody sees anyway. `auction_lots.yaml`
+   (the display snapshot) keeps the keep bar. `price_history/` does not.
+
+3. **Storage: JSONL, append-only, one file per month.**
+   `data/price_history/YYYY-MM.jsonl`, one line per *closed* lot, keyed by
+   `(platform, lot_id)`. Rough volume: 6 sales/week × 50 lots ≈ 15k rows/yr ×
+   ~600 bytes ≈ 9 MB/yr. That is fine in git for years, diffs are readable,
+   and nothing needs a server. SQLite is the wrong fit here because it is a
+   binary blob in git and every commit rewrites it. **Revisit at 100k rows**
+   (or when full-catalog paging, see below, blows past that). Even then,
+   build a SQLite *index* from the JSONL at runtime instead of swapping the
+   source of truth.
+
+4. **A close price is only called a close price if we saw it close.** Each row
+   carries `price_kind`:
+   - `"close"`: read off a page that says the lot is closed/sold.
+   - `"last_seen_bid"`: the last bid we observed before the close, with
+     `observed_at` and `minutes_before_close`. This is a lower bound, not a
+     sale. Phase 3 never treats these as comps.
+   - `"passed"`: closed with no sale or no bids. This is real data too
+     ("nobody wanted this at $5"), so it gets recorded rather than skipped.
+   This is the "never manufacture false confidence" rule applied to storage.
+
+5. **The feedback loop is estimate calibration, not click tracking.** This is
+   a static site. There is no click data, and adding analytics to get some is
+   out of scope. The concrete loop: once closes exist, every lot that had an
+   estimate gets an `estimate_error = close − estimated_value_mid` in its
+   history row. The watchlist stays hand-tuned. What gets "dialed in"
+   automatically is which estimate source we trust per category (for example,
+   "eBay comps overestimate jewelry by 3×, stop flagging on them").
+
+6. **Cache invalidation: key on the item, never the bid.** Any cached per-lot
+   AI reasoning is keyed on `(platform, lot_id, sha1(title + description))`.
+   A bid change never invalidates it, because Python applies the bid
+   *after* reasoning, which is already the architecture (see "whichever
+   number gets used is decided in Python"). A title or description edit
+   invalidates it. Closed lots are frozen forever.
+
+7. **Phase 2 re-orders: auctions before classifieds.** Craigslist, KSL, and FB
+   Marketplace only show *asking* prices, and a listing disappearing is not
+   a sale. For price discovery they're weak data, and this spec's own "Why
+   auctions" section says so. So: (a) PublicSurplus/GovDeals/Municibid/
+   PropertyRoom first, because they produce real closes; (b) KSL/Craigslist
+   later, as a deal-finding feed and *asking-price* signal, stored with
+   `price_kind: "asking"`; (c) Facebook Marketplace: **default no.** It's
+   login-walled, Meta's terms prohibit automated collection, and Meta
+   actively litigates. The research session below exists to confirm or
+   overturn that, not to build a scraper.
+
+8. **eBay gets one time-boxed session, then a verdict.** 403 from a GitHub
+   Actions runner is almost certainly datacenter-IP bot defense, which a
+   parser change can't fix. Getting around it (proxies, header spoofing,
+   headless evasion) is off the table. There is also a real bug that can be
+   fixed without network access: the eBay query is the raw lot title
+   (`"Lot #5012: Large Gold-Tone Rope Chain Necklace With Circular..."`),
+   including the lot-number prefix and 15+ words. That would return ~0
+   results even from an unblocked eBay. Fix the query, dump one real
+   response, and if it's a hard 403, record that finding and move on. Phase
+   1 makes eBay less important every week it runs anyway.
+
+9. **Phase 4 (business agent) is defined as a Phase 3 derivative, not an LLM
+   judgment.** The only honest version of "is this a business input" is
+   arithmetic on owned data: `quantity × first-party expected resale −
+   expected close − fees`, with a confidence floor (N closes of that item
+   type). Without Phase 3 data, the stub keeps returning `None`. An LLM
+   saying "you could start an alterations business" with no price grounding
+   is exactly the false confidence this project refuses to ship.
+
+10. **Vehicles get a separate track.** eBay has no vehicle comps, and we have
+    no paid key. The vehicle target price comes from (a) our own vehicle
+    closes, which Musick sells 100+ of per cycle, the best-covered category
+    we have, and later (b) a scheduled Claude Code Routine that reasons over
+    `car_candidate` lots and commits a result, per the idea in
+    `docs/AUCTION-MONITORING.md`. (b) waits until (a) gives it real local
+    closes to anchor on.
+
+---
+
+## Build Plan — Session Task Lists
+
+Ordered by dependency. Each block is one session's worth of work: copy a
+block into a session and go.
+
+**Before every session:** read `PRICE-DISCOVERY.md` (this file),
+`docs/AUCTION-MONITORING.md`, and `CLAUDE.md`. The engineering log has the
+real-markup findings. Don't re-derive them.
+
+**Teaching mode:** per `CLAUDE.md` > "Learning philosophy", each session names
+the Claude Code skill it exercises. Don't skip the callout.
+
+**The verify-first loop** (used by every session that touches a new page):
+dispatch `auction-monitor.yml` with `probe_url` or `debug_html` → read the
+dump on the `debug/auction-html` branch → write the parser against that real
+markup → dry-run locally against the saved HTML → ship. The dev sandbox
+can't reach these sites directly. This loop is the only way in.
+
+---
+
+### Session A: Probe what a *closed* lot looks like (research only, ~no code)
+
+**Goal:** Answer the one question Phase 1's design depends on: *does Musick
+show the final price after close, and where?*
+
+**Context:** Catalogs 914/915 (seen in the first debug run) are no longer in
+the upcoming list, so they have almost certainly closed. That makes them free
+test subjects today. Two outcomes, two designs:
+- A **closed catalog page** still lists all lots with "Sold $X": the best
+  case. One render per auction harvests 50 closes.
+- Only **lot-detail pages** show it: harvest is one render per lot, so limit
+  it to watchlist lots plus a sample.
+- Neither shows it (lots vanish or show no price): fall back to
+  `last_seen_bid`, and add a second cron run timed near close.
+
+- [ ] Dispatch `probe_url` = `https://bid.musickauction.com/auctions/catalog/id/914`
+- [ ] Dispatch `probe_url` = one lot-detail URL from catalog 914/915 (find
+      one in `git log -p data/auction_lots.yaml`)
+- [ ] Read both dumps. Record the real markup for "sold price", "passed",
+      and "closed at" in `docs/AUCTION-MONITORING.md` under a new "Closed
+      lots, verified against real markup" heading.
+- [ ] Check whether the close timestamp is on the page (absolute or
+      relative) or has to be inferred from the event date.
+- [ ] Also check: does `?page=2` work on a closed catalog? (It decides
+      whether we can harvest all 1087 lots, not just the first 50.)
+- [ ] Update Decision 4 / Session B below with whichever outcome is real.
+
+**Learning opportunity:** this is spec-driven development's "verify before
+build" step. Thirty minutes of probing decides between three different
+architectures. Guessing and building the wrong one costs a whole session.
+
+---
+
+### Session B: Close-price harvester (the Phase 1 build)
+
+**Goal:** `data/price_history/` exists and fills itself daily.
+
+**Context:** The schema below is the contract. Phase 3 reads it and
+calibration reads it. Don't rename fields after the first row ships.
+
+- [ ] Give every lot an absolute `auction_ends_at`, not just vehicles.
+      Catalog rows already carry "Time left: 1d 14h 11m 1s" (today it's
+      stuffed into `description`). Parse it with the existing
+      `_parse_musick_duration()` at fetch time. This is cheap, with no new
+      render.
+- [ ] Add a stable `lot_id` field (the `/lot/516016/` segment of the URL) and
+      `catalog_id`. Both are already in every URL.
+- [ ] `data/price_history/_pending.json`: every catalog seen + its latest
+      end time + `harvested: false`. Written by `auction_finder.py` each run.
+      This is how we know what to go back for, since `auction_lots.yaml` is
+      overwritten daily.
+- [ ] `scripts/price_history.py`: for each pending catalog past its end time,
+      render it the way Session A found works, parse closes, append rows,
+      mark it harvested. Idempotent: never append a `(platform, lot_id)`
+      twice.
+- [ ] Row schema (one JSON object per line):
+      `platform, lot_id, catalog_id, title, category, watchlist_matches,
+      price_kind, price, num_bids, opening_bid, closed_at, observed_at,
+      minutes_before_close, location, url, vin, mileage, title_status,
+      year, make, model, est_mid_at_last_seen, value_source_at_last_seen`
+      (vehicle fields only when present; never null-padded, same rule as
+      the vehicle enrichment).
+- [ ] New workflow step, **before** valuation, so a valuation failure can't
+      skip it. It commits `data/price_history/` in the same commit as lots.
+- [ ] Unit test the parser against the Session A dumps, saved as fixtures
+      under `scripts/tests/fixtures/`.
+- [ ] Dispatch once on `main` after merge, confirm rows land, and confirm a
+      second run appends zero duplicates.
+
+**Learning opportunity:** hooks. Add a pre-commit or session-start check
+that validates every `price_history/*.jsonl` line parses and has the
+required keys. An append-only store is only trustworthy if a malformed line
+can't sneak in, so the environment should enforce that instead of memory.
+
+---
+
+### Session C: eBay verdict (time-boxed, can run in parallel with B)
+
+**Goal:** Know for sure whether eBay comps can work, and fix the query bug
+either way.
+
+- [ ] `normalize_query(title)`: strip `Lot #N:`, drop filler ("With",
+      "Large", "Hammered Finish"…), and cap at ~6 meaningful tokens. Unit-test
+      it on 20 real titles from `auction_lots.yaml`.
+- [ ] Wire `ebay_comps.py` into `--save-html` (it isn't today). Dispatch
+      `debug_html: true`, then read the real eBay response from the debug
+      branch.
+- [ ] If it's a 403 or challenge page: write the finding into
+      `docs/AUCTION-MONITORING.md`, set eBay to skip-with-a-note after the first
+      403 per run (stop burning 90 × 2s sleeps on a wall), close the bug.
+      **Don't evade.**
+- [ ] If it's real results: fix the parser against the dump and ship.
+
+**Learning opportunity:** worktree isolation. Run this as an Agent with
+`isolation: "worktree"` alongside Session B's work, since the two touch
+disjoint files. It's a real example of when parallel lanes are safe.
+
+---
+
+### Session D: Surface the history (after ~2 weeks of closes)
+
+**Goal:** Make the owned data visible, and start the calibration loop.
+
+- [ ] `/auctions/history/`: recent closes, grouped by watchlist group and
+      category, showing `price_kind` honestly ("sold $140" vs "last seen at
+      $60, 3h before close").
+- [ ] Per-category calibration table: for lots that had an estimate at last
+      sight, the median `close / estimate` ratio, n, and source. This is
+      Decision 5's feedback loop, made visible.
+- [ ] Hugo reads JSONL poorly. Have `price_history.py` also emit a small
+      aggregated `data/price_summary.yaml` for templates. The JSONL stays the
+      source of truth.
+
+**Learning opportunity:** data-driven content. It's the same data/view split
+as `music.yaml`, except now the data is generated by a pipeline rather than
+hand-written.
+
+---
+
+### Session E: First-party comps (Phase 3, gated on volume)
+
+**Gate:** don't start until some watchlist group or category has ≥ 30
+`price_kind: "close"` rows. Check with a one-liner before opening the
+session.
+
+- [ ] `scripts/history_comps.py` exposes `lookup(lot)` with **the same return
+      shape as `ebay_comps.lookup`**: `{"n", "median", "low", "high"}`.
+      Matching: same category + same watchlist group + token overlap on the
+      normalized title (reuse Session C's normalizer). Vehicles also match on
+      year ±3 and a mileage band.
+- [ ] `auction_value.py` tries history first, then eBay, then AI.
+      `value_source: "history"`. Same `EBAY_MIN_COMPS`-style threshold (rename
+      it `MIN_COMPS`). Fewer than 3 matches gives null, not a guess.
+- [ ] The page shows "✓ N local closes" in its own color, ranked above eBay
+      in the sort (owned local data beats national data).
+- [ ] Re-check the calibration table. If history-based estimates beat eBay
+      for a category, say so in the doc and consider dropping eBay there.
+
+---
+
+### Session F: Wider auction net (Phase 2, part 1)
+
+- [ ] One platform per session, in this order: **PublicSurplus** (most Idaho
+      agencies), **GovDeals**, **PropertyRoom**, **Municibid**. Each follows the
+      verify-first loop: `debug_html` dump, then parser, then dry-run, then
+      add it to `PLATFORMS`.
+- [ ] Each must feed `_pending.json` and the harvester from day one. A
+      source that can't give us closes is a lower-priority source.
+- [ ] Fan-out note: the four `debug_html` dumps can be collected in *one*
+      dispatch, and the four parsers can then be written by parallel
+      agents, one per platform, since they touch separate functions.
+
+**Learning opportunity:** parallel agent orchestration. Four independent
+parsers against four saved dumps is the textbook fan-out case.
+
+---
+
+### Session G: Research only — classifieds + Facebook Marketplace
+
+- [ ] Use the deep-research skill (parallel research agents) to read
+      Craigslist, KSL, and Meta's current terms and technical access (RSS,
+      APIs, login walls), plus relevant case law. Output: a short
+      go/no-go table appended to this file.
+- [ ] No scraper code this session. Build only what the table says is a
+      "go", in a later session, stored as `price_kind: "asking"`.
+
+---
+
+### Not scheduled (and why)
+
+- **Business agent (Phase 4):** blocked on Session E by Decision 9.
+- **Vehicle Routine:** blocked on ~a month of vehicle closes (Decision 10).
+  When unblocked, it's a good first use of scheduled Claude Code Routines.
+- **"Discovery" sampling outside the watchlist:** mostly obsoleted by
+  Decision 2. History already records non-watchlist lots, so Session D's
+  page *is* the discovery view.
+- **Full-catalog paging** (lots 51–1087): decided by Session A's `?page=2`
+  finding. If paging a *closed* catalog works, the harvester should page
+  (history wants volume). The live-bid fetch can stay at page 1 (attention
+  is bounded by the keep bar anyway).
+- **Phase 5:** unchanged. Aspirational.
