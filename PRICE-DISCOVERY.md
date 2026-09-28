@@ -345,17 +345,44 @@ test subjects today. Two outcomes, two designs:
 - Neither shows it (lots vanish or show no price): fall back to
   `last_seen_bid`, and add a second cron run timed near close.
 
-- [ ] Dispatch `probe_url` = `https://bid.musickauction.com/auctions/catalog/id/914`
-- [ ] Dispatch `probe_url` = one lot-detail URL from catalog 914/915 (find
-      one in `git log -p data/auction_lots.yaml`)
-- [ ] Read both dumps. Record the real markup for "sold price", "passed",
-      and "closed at" in `docs/AUCTION-MONITORING.md` under a new "Closed
-      lots, verified against real markup" heading.
-- [ ] Check whether the close timestamp is on the page (absolute or
-      relative) or has to be inferred from the event date.
-- [ ] Also check: does `?page=2` work on a closed catalog? (It decides
-      whether we can harvest all 1087 lots, not just the first 50.)
-- [ ] Update Decision 4 / Session B below with whichever outcome is real.
+- [x] Dispatch `probe_url` = `https://bid.musickauction.com/auctions/catalog/id/914`
+      (done in the original 09/23 session — see "Musick, verified against real
+      markup" and "Closed lots, verified against real markup" in
+      `docs/AUCTION-MONITORING.md`)
+- [x] Dispatch `probe_url` = the bidding-history page for one lot on catalog 914
+      (`/auctions/bidding-history/id/914/lot/511357`)
+- [x] Read the dumps. Recorded the real markup for "sold price" (`item-win-bid`),
+      "closed at" (`start-end-dates`, and the `auctionRows` JSON's `end_date`), and
+      the full timestamped bid trail (bidding-history page, no bidder identity data)
+      in `docs/AUCTION-MONITORING.md` under "Closed lots, verified against real
+      markup". **"Passed"/unsold was NOT found** — every lot sampled across two
+      pages (50 high-value + 70 low-value) was `ended sold`; the site's JS does
+      define `langUnsold`/`langReserveNotMet` strings, so the state almost
+      certainly exists, just not yet caught in a real sample.
+- [x] Close timestamp: **absolute**, in two independent places — `start-end-dates`
+      text on the catalog page, and `end_date` in the `auctionRows` JSON returned by
+      `/auctions/?alf1=4` (a *closed-catalogs index*, found this session, not
+      anticipated by the original plan — see below).
+- [x] `?page=N` works on a closed catalog — confirmed, and `?items=100` also works
+      (`?items=100&page=5` on catalog 914 correctly rendered lots 401–470, the tail
+      of its 470-lot catalog). Full-catalog paging is real, not a size-50 ceiling.
+- [x] Bonus, not in the original plan: found `https://bid.musickauction.com
+      /auctions/?alf1=4` — an actual enumerable index of closed auctions (827 total,
+      50/page, structured JSON per row with id/end_date/total_lots/status), which
+      changes Session B's design (see below).
+
+**Result:** All three original outcomes partially apply — it's better than the best
+case. A closed catalog page still lists every lot with its real closing price
+(`item-win-bid`) and status (`item-status` → `ended sold`), paginated to full depth
+via `?items=100`, so one catalog can be harvested in a handful of renders regardless
+of size. On top of that, a closed-catalogs *index* exists
+(`/auctions/?alf1=4`, 827 catalogs, structured JSON, absolute `end_date` per row),
+which the original plan didn't know to look for — it means the harvester can find
+what closed and when without walking catalog ids blind or depending only on
+`_pending.json`. The one open item: no unsold/passed lot has been seen in real
+markup yet, so `price_kind: "passed"` in the Session B schema is still a *design*,
+not something matched against real markup — worth one more probe (a lower-value
+catalog, or paging further into an older one) before the harvester ships.
 
 **Learning opportunity:** this is spec-driven development's "verify before
 build" step. Thirty minutes of probing decides between three different
@@ -370,21 +397,36 @@ architectures. Guessing and building the wrong one costs a whole session.
 **Context:** The schema below is the contract. Phase 3 reads it and
 calibration reads it. Don't rename fields after the first row ships.
 
-- [ ] Give every lot an absolute `auction_ends_at`, not just vehicles.
-      Catalog rows already carry "Time left: 1d 14h 11m 1s" (today it's
-      stuffed into `description`). Parse it with the existing
-      `_parse_musick_duration()` at fetch time. This is cheap, with no new
-      render.
-- [ ] Add a stable `lot_id` field (the `/lot/516016/` segment of the URL) and
-      `catalog_id`. Both are already in every URL.
+- [ ] Give every lot an absolute `auction_ends_at`, not just vehicles. **Use the
+      catalog's absolute end time, not a per-lot countdown**: `start-end-dates`
+      on the catalog page and `end_date` in the `auctionRows` JSON from
+      `/auctions/?alf1=4` both give an absolute Mountain-time timestamp for the
+      whole sale — no "Time left"/duration parsing needed at all, which avoids
+      the drift/edge cases a relative-string parser has (the countdown keeps
+      ticking between fetch and parse). `_parse_musick_duration()` stays useful
+      for `auction_ends_at` on *live* vehicle-detail pages (Session A didn't
+      touch that), just not for catalog-level end time.
+- [ ] Add a stable `lot_id` field (the `/lot/511357/` segment of the URL — the
+      lot's internal id, not its display "Lot #N", which differ, e.g. lot id
+      511357 is "lot 800" in the sale) and `catalog_id`. Both are already in
+      every URL.
 - [ ] `data/price_history/_pending.json`: every catalog seen + its latest
       end time + `harvested: false`. Written by `auction_finder.py` each run.
       This is how we know what to go back for, since `auction_lots.yaml` is
-      overwritten daily.
+      overwritten daily. **Also worth a periodic backfill pass against
+      `/auctions/?alf1=4`** (Session A found this: a real closed-catalogs index,
+      827 entries, 50/page, structured JSON with id/end_date/total_lots/status) —
+      it catches any catalog `_pending.json` missed (a skipped run, a sale that
+      never showed up in `auction_finder.py`'s active-events widget) without
+      walking catalog ids blind.
 - [ ] `scripts/price_history.py`: for each pending catalog past its end time,
-      render it the way Session A found works, parse closes, append rows,
-      mark it harvested. Idempotent: never append a `(platform, lot_id)`
-      twice.
+      render it **paged with `?items=100`** (confirmed honored on a closed
+      catalog — a 470-lot sale needs 5 renders, not 10) rather than the default
+      50/page, parse `item-win-bid` + `item-status` (`ended sold` vs. whatever a
+      genuinely unsold lot turns out to render as — not yet seen in real markup,
+      confirm on the first catalog that actually has one before trusting the
+      `"passed"` branch), append rows, mark it harvested. Idempotent: never
+      append a `(platform, lot_id)` twice.
 - [ ] Row schema (one JSON object per line):
       `platform, lot_id, catalog_id, title, category, watchlist_matches,
       price_kind, price, num_bids, opening_bid, closed_at, observed_at,
