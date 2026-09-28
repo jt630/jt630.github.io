@@ -1,0 +1,174 @@
+# Jeremy's personal "dial in the search" watchlist — cross-cutting tags
+# layered ON TOP OF category classification (guess_category() in
+# auction_finder.py), not a replacement for it. A lot can match zero, one,
+# or several of these regardless of its category: a "2017 Jeep Wrangler
+# 4x4" is category=Vehicles AND watchlist=trucks_offroad; a "Glock 43 9mm"
+# is category=Firearms AND watchlist=pistol_backcountry.
+#
+# Matched the same way guess_category() matches CATEGORY_KEYWORDS in
+# auction_finder.py: word-boundary, case-insensitive, against
+# title+description. Edit freely — no code change needed, just re-run
+# scripts/auction_finder.py (or wait for the next scheduled run).
+#
+# label: shown as a chip on the site. keywords: what to match on.
+- id: trucks_offroad
+  label: "Trucks & Off-Road/4x4"
+  keywords:
+    # "truck" alone was too generic (matched a truck TOOLBOX, not a
+    # truck) - "pickup" plus specific models carry the real signal instead.
+    - pickup
+    - "4x4"
+    - "4wd"
+    - off-road
+    - offroad
+    - bronco
+    - raptor
+    - tacoma
+    # bare "tundra" collided with a YETI Tundra cooler; "sierra" would
+    # collide with Sierra-brand ammo (this is a gun-heavy auction site);
+    # "colorado" risked matching the state, not the truck; "ram" risked
+    # matching computer RAM in an electronics listing - all four narrowed
+    # to the actual model phrase, confirmed against real data to still
+    # catch every real listing seen so far.
+    - "toyota tundra"
+    - "dodge ram"
+    - "ram 1500"
+    - "ram 2500"
+    - "ram 3500"
+    - silverado
+    - "gmc sierra"
+    - "f-150"
+    - "f-250"
+    - "f-350"
+    - "chevy colorado"
+    - "chevrolet colorado"
+    - ranger
+    - atv
+    - utv
+    - rzr
+    - "side by side"
+    - "side-by-side"
+
+- id: commuter_cars
+  label: "Commuter Car (for sister)"
+  keywords:
+    - civic
+    - corolla
+    - sentra
+    - elantra
+    - focus
+    - fiesta
+    - "mazda3"
+    - "mazda 3"
+    - yaris
+    - prius
+    - sonata
+    - jetta
+    - versa
+    - "hyundai accent"
+    - spark
+    - soul
+
+- id: project_cars
+  label: "Old Project Car"
+  keywords:
+    - project
+    - "muscle car"
+    - "hot rod"
+    - restoration
+    - patina
+    - "barn find"
+    - "does not run"
+    - "doesn't run"
+    - "show car"
+    - gasser
+
+- id: motorcycles
+  label: "Motorcycle"
+  keywords:
+    - motorcycle
+    - harley
+    - davidson
+    - ducati
+    - "dirt bike"
+    - "dual sport"
+    - "dual-sport"
+    - sportster
+    - ninja
+    - cbr
+
+- id: jetskis
+  label: "Jetski"
+  keywords:
+    - "jet ski"
+    - jetski
+    - seadoo
+    - "sea-doo"
+    - waverunner
+    - "personal watercraft"
+
+- id: campers
+  label: "Little Camper"
+  keywords:
+    - camper
+    - "travel trailer"
+    - teardrop
+    - "pop up camper"
+    - "pop-up camper"
+
+- id: pistol_backcountry
+  label: "Backcountry Pistol"
+  keywords:
+    - pistol
+    - revolver
+    - handgun
+
+- id: shotgun_birds
+  label: "Shotgun (birds)"
+  keywords:
+    - shotgun
+    - "12 gauge"
+    - "20 gauge"
+    - "over under"
+    - "over/under"
+
+- id: rifle_deer
+  label: "Rifle (deer)"
+  keywords:
+    - rifle
+    # Bare "308"/"30-06"/"30-30" without the leading period matched a LOT
+    # NUMBER ("Lot #308: ...") in real data - a real caliber is always
+    # written with the period in these listings, so requiring it here
+    # eliminates that collision without losing any real match seen so far.
+    - ".270"
+    - ".30-06"
+    - ".308"
+    - ".30-30"
+    - "bolt action"
+    - "hunting rifle"
+
+- id: jewelry_gold_fossil_meteorite
+  label: "Gold/Fossil/Meteorite Jewelry"
+  keywords:
+    - "yellow gold"
+    - fossil
+    - meteorite
+
+- id: fly_fishing
+  label: "Fly Fishing Gear"
+  keywords:
+    - "fly fishing"
+    - "fly rod"
+    - "fly reel"
+    - waders
+    - "fly tying"
+
+- id: mining
+  label: "Mining Equipment"
+  keywords:
+    - "gold pan"
+    - sluice
+    - "metal detector"
+    - "gold dredge"
+    - highbanker
+    - prospecting

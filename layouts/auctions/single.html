@@ -27,6 +27,20 @@
        sees the qualifying cars before the ones that didn't clear the bar -
        nothing is hidden, just ranked. */}}
   {{ $vehiclesRanked := $candidates | append (where $vehicles "car_candidate" "!=" true) }}
+  {{/* data/auction_watchlist.yaml matches (match_watchlist() in
+       auction_finder.py) - built with range/append rather than `where...
+       "!=" nil` since watchlist_matches is always a list (possibly
+       empty), never nil, so a nil-comparison wouldn't actually filter
+       anything out. */}}
+  {{ $watchlisted := slice }}
+  {{ range $lots }}
+    {{/* Truthy check, not len(): an OLD data/auction_lots.yaml written
+         before this field existed has no watchlist_matches key at all,
+         and len() on a genuinely absent map key errors rather than
+         returning 0 - a plain truthy check treats "missing" the same as
+         "empty list", both correctly falsy, without that crash. */}}
+    {{ if .watchlist_matches }}{{ $watchlisted = $watchlisted | append . }}{{ end }}
+  {{ end }}
 
   <p class="auctions-assump">
     Generated {{ .generated }} by <code>scripts/auction_finder.py</code> +
@@ -43,9 +57,24 @@
     <div class="auctions-stat"><span class="n">{{ len $ebayBacked }}</span><span class="l">eBay-backed</span></div>
     <div class="auctions-stat"><span class="n">{{ len $vehicles }}</span><span class="l">Vehicles</span></div>
     <div class="auctions-stat"><span class="n">{{ len $candidates }}</span><span class="l">Candidates<br>&lt;150k mi, clean title</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $watchlisted }}</span><span class="l">On your watchlist</span></div>
   </div>
 
   {{ partial "auction-dial-in.html" (dict "pageTitle" "Auction Watch" "pageURL" $.Permalink) }}
+
+  {{ if $watchlisted }}
+  <!-- ─────────── WATCHLIST — dialed-in search ─────────── -->
+  <h2>🎯 On your watchlist</h2>
+  <p class="auctions-assump">
+    Every lot matching <code>data/auction_watchlist.yaml</code> — trucks &
+    off-road/4x4, a commuter car, an old project car, motorcycles, jetskis,
+    little campers, a backcountry pistol, a bird shotgun, a deer rifle,
+    yellow gold/fossil/meteorite jewelry, fly fishing gear, mining
+    equipment — regardless of category. Edit that file to tune the list;
+    no code change needed. A lot can match more than one tag.
+  </p>
+  {{ partial "auction-lot-table.html" $watchlisted }}
+  {{ end }}
 
   <!-- ─────────── VEHICLES — for grandpa ─────────── -->
   <h2>🚗 Vehicles — the ones worth a drive-by</h2>
