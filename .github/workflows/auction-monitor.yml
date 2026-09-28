@@ -115,6 +115,18 @@ jobs:
             echo "no debug_html files to push"
           fi
 
+      - name: Harvest closed-lot prices
+        # Phase 1 of PRICE-DISCOVERY.md - "own the close price". Runs after
+        # "Fetch lots" (so it has a fresh catalog list to work from) and
+        # before "Estimate value" (so a valuation bug can never skip an
+        # append-only harvest). continue-on-error: true because a harvest
+        # failure must never block the day's lots refresh - see
+        # scripts/price_history.py's module docstring for the honesty rule
+        # this enforces.
+        if: github.event.inputs.probe_url == ''
+        continue-on-error: true
+        run: python scripts/price_history.py
+
       - name: Estimate value (needs ANTHROPIC_API_KEY secret)
         if: github.event.inputs.probe_url == ''
         env:
@@ -132,6 +144,10 @@ jobs:
           cache_files=(data/.cache/auction_*.json)
           if [ ${#cache_files[@]} -gt 0 ]; then
             git add "${cache_files[@]}"
+          fi
+          price_history_files=(data/price_history/*)
+          if [ ${#price_history_files[@]} -gt 0 ]; then
+            git add "${price_history_files[@]}"
           fi
           if git diff --cached --quiet; then
             echo "No changes to commit."

@@ -397,6 +397,18 @@ architectures. Guessing and building the wrong one costs a whole session.
 **Context:** The schema below is the contract. Phase 3 reads it and
 calibration reads it. Don't rename fields after the first row ships.
 
+**Built (2026-09-28):** `scripts/price_history.py` implements the real,
+slimmer schema (see docs/AUCTION-MONITORING.md's "Close-price history"
+section - it differs from the field list originally sketched below: no
+`url`/`opening_bid`/vehicle fields, `catalog_closed_at` instead of
+`closed_at`/`minutes_before_close`, `price_kind` is `"close"`/`"unknown"`
+only, `"passed"` collapsed into `"unknown"` since no real unsold markup has
+ever been observed). Daily CI harvest (capped at 5 new catalogs/run) is
+wired into `.github/workflows/auction-monitor.yml`, between "Fetch lots"
+and "Estimate value", `continue-on-error: true`. Backfill: run once
+locally, see `scripts/price_history.py --backfill`. Offline unit tests
+against real saved markup: `scripts/tests/test_price_history.py`.
+
 - [ ] Give every lot an absolute `auction_ends_at`, not just vehicles. **Use the
       catalog's absolute end time, not a per-lot countdown**: `start-end-dates`
       on the catalog page and `end_date` in the `auctionRows` JSON from
@@ -407,40 +419,44 @@ calibration reads it. Don't rename fields after the first row ships.
       ticking between fetch and parse). `_parse_musick_duration()` stays useful
       for `auction_ends_at` on *live* vehicle-detail pages (Session A didn't
       touch that), just not for catalog-level end time.
-- [ ] Add a stable `lot_id` field (the `/lot/511357/` segment of the URL — the
+- [x] Add a stable `lot_id` field (the `/lot/511357/` segment of the URL — the
       lot's internal id, not its display "Lot #N", which differ, e.g. lot id
       511357 is "lot 800" in the sale) and `catalog_id`. Both are already in
-      every URL.
-- [ ] `data/price_history/_pending.json`: every catalog seen + its latest
-      end time + `harvested: false`. Written by `auction_finder.py` each run.
-      This is how we know what to go back for, since `auction_lots.yaml` is
-      overwritten daily. **Also worth a periodic backfill pass against
-      `/auctions/?alf1=4`** (Session A found this: a real closed-catalogs index,
-      827 entries, 50/page, structured JSON with id/end_date/total_lots/status) —
-      it catches any catalog `_pending.json` missed (a skipped run, a sale that
-      never showed up in `auction_finder.py`'s active-events widget) without
-      walking catalog ids blind.
-- [ ] `scripts/price_history.py`: for each pending catalog past its end time,
+      every URL. **Built as designed** — pulled from the `data-lid`/`data-aid`
+      attributes on each lot's `<section>` wrapper rather than parsed out of
+      the URL string, same values, more robust to a URL format change.
+- [ ] ~~`data/price_history/_pending.json`~~ — **superseded by
+      `data/price_history/_harvested.json`** (owner decision, see
+      `scripts/price_history.py`'s docstring): the daily CI run itself queries
+      `/auctions/?alf1=4` for closed catalogs rather than tracking pending ones
+      via `auction_finder.py`, so there's no separate pending file, only a
+      harvested-state one (`{"catalogs": {"914": {"end_date", "lots",
+      "harvested_at"}}}`).
+- [x] `scripts/price_history.py`: for each closed catalog not yet harvested,
       render it **paged with `?items=100`** (confirmed honored on a closed
       catalog — a 470-lot sale needs 5 renders, not 10) rather than the default
-      50/page, parse `item-win-bid` + `item-status` (`ended sold` vs. whatever a
-      genuinely unsold lot turns out to render as — not yet seen in real markup,
-      confirm on the first catalog that actually has one before trusting the
-      `"passed"` branch), append rows, mark it harvested. Idempotent: never
-      append a `(platform, lot_id)` twice.
-- [ ] Row schema (one JSON object per line):
-      `platform, lot_id, catalog_id, title, category, watchlist_matches,
-      price_kind, price, num_bids, opening_bid, closed_at, observed_at,
-      minutes_before_close, location, url, vin, mileage, title_status,
-      year, make, model, est_mid_at_last_seen, value_source_at_last_seen`
-      (vehicle fields only when present; never null-padded, same rule as
-      the vehicle enrichment).
-- [ ] New workflow step, **before** valuation, so a valuation failure can't
+      50/page, parse `item-win-bid` + `item-status` (`ended sold` vs. any other
+      status, which becomes `price_kind: "unknown"` — no real unsold/passed lot
+      has ever been observed, see docs/AUCTION-MONITORING.md, so `"passed"`
+      never shipped as its own kind), append rows, mark it harvested. Idempotent:
+      never appends a `(platform, lot_id)` twice — verified by
+      `scripts/tests/test_price_history.py`.
+- [x] Row schema (one JSON object per line) — **shipped slimmer than
+      originally sketched here** (owner decision, no `url`/image, no
+      vehicle-enrichment fields, no `opening_bid`/`minutes_before_close`):
+      `platform, catalog_id, lot_id, lot_no, title, category,
+      watchlist_matches (omitted when empty), price_kind ("close"|"unknown"),
+      price, num_bids, catalog_closed_at, observed_at, status_raw (only when
+      price_kind is "unknown")`. See docs/AUCTION-MONITORING.md's "Close-price
+      history" section for the full contract.
+- [x] New workflow step, **before** valuation, so a valuation failure can't
       skip it. It commits `data/price_history/` in the same commit as lots.
-- [ ] Unit test the parser against the Session A dumps, saved as fixtures
+- [x] Unit test the parser against the Session A dumps, saved as fixtures
       under `scripts/tests/fixtures/`.
 - [ ] Dispatch once on `main` after merge, confirm rows land, and confirm a
-      second run appends zero duplicates.
+      second run appends zero duplicates. **Not done in this session** — this
+      needs a real GitHub Actions run against the live site, which the PR
+      review/merge step should trigger next.
 
 **Learning opportunity:** hooks. Add a pre-commit or session-start check
 that validates every `price_history/*.jsonl` line parses and has the
