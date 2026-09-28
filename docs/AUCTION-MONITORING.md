@@ -257,7 +257,7 @@ piece of the whole project) turns the findings above into a real, permanent,
 append-only record — see its module docstring for the full rationale. Short
 version:
 
-- **Schema.** One compact JSON object per line in `data/price_history/YYYY-MM.jsonl`
+- **Schema.** One compact JSON object per line in `research/price_history/YYYY-MM.jsonl`
   (grouped by the catalog's `catalog_closed_at` month), keys in this exact order:
   `platform, catalog_id, lot_id, lot_no, title, category, watchlist_matches
   (list, key omitted entirely when empty), price_kind ("close"|"unknown"), price
@@ -265,7 +265,7 @@ version:
   (the catalog's own end_date, UTC ISO-8601 "…T…Z"), observed_at (UTC ISO now),
   status_raw (present ONLY when price_kind is "unknown")`. Deduped on
   `(platform, lot_id)` across every month file — a re-run never appends a
-  duplicate. `data/price_history/_harvested.json` tracks which catalog ids are
+  duplicate. `research/price_history/_harvested.json` tracks which catalog ids are
   already fully recorded, `{"catalogs": {"914": {"end_date", "lots",
   "harvested_at"}}}`.
 - **The `price_kind` honesty rule.** A row is `"close"` only when the lot's own

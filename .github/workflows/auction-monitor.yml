@@ -133,6 +133,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python scripts/auction_value.py
 
+      - name: Run tests before committing to main
+        # This bot commits straight to main, bypassing PR review, so this is
+        # the only gate. Includes the data/-format guard: a file Hugo can't
+        # parse under data/ breaks every deploy (it happened once - the
+        # first harvest's .jsonl, deploy run #329). A failure here stops the
+        # job, so the commit below never runs.
+        if: github.event.inputs.probe_url == ''
+        run: python -m unittest discover scripts/tests
+
       - name: Commit updated lots
         if: github.event.inputs.probe_url == ''
         id: commit
@@ -145,7 +154,7 @@ jobs:
           if [ ${#cache_files[@]} -gt 0 ]; then
             git add "${cache_files[@]}"
           fi
-          price_history_files=(data/price_history/*)
+          price_history_files=(research/price_history/*)
           if [ ${#price_history_files[@]} -gt 0 ]; then
             git add "${price_history_files[@]}"
           fi

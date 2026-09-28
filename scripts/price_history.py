@@ -11,7 +11,7 @@ fully overwritten every run, so a closed lot's real winning price is gone
 the moment the next `auction_finder.py` run replaces it. This script is
 the fix: it walks Musick's closed-catalog pages (and the closed-catalogs
 index at `/auctions/?alf1=4`), reads the real winning bid off each closed
-lot, and appends one JSONL row per lot to `data/price_history/YYYY-MM.jsonl`
+lot, and appends one JSONL row per lot to `research/price_history/YYYY-MM.jsonl`
 - an append-only store that survives every daily overwrite. This is the
 single highest-priority piece of the whole Auction Watch project: every
 later phase (first-party comps, calibration, the business agent) depends
@@ -85,7 +85,11 @@ from auction_finder import (  # noqa: E402
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(_HERE, "..", "data")
-PRICE_HISTORY_DIR = os.path.join(DATA_DIR, "price_history")
+# NOT under data/: Hugo loads every file in data/ at build time and can't
+# parse .jsonl, so the first harvest there broke the site build (deploy
+# run #329). Raw research data lives in research/; the site only ever gets
+# a small aggregated summary written into data/ (PRICE-DISCOVERY Session D).
+PRICE_HISTORY_DIR = os.path.join(_HERE, "..", "research", "price_history")
 STATE_PATH = os.path.join(PRICE_HISTORY_DIR, "_harvested.json")
 
 MUSICK_CLOSED_INDEX = "https://bid.musickauction.com/auctions/?alf1=4"
@@ -260,8 +264,8 @@ def now_iso():
 
 
 # ---------------------------------------------------------------------------
-# Storage: data/price_history/YYYY-MM.jsonl (one file per catalog_closed_at
-# month), plus data/price_history/_harvested.json (state: which catalogs
+# Storage: research/price_history/YYYY-MM.jsonl (one file per catalog_closed_at
+# month), plus research/price_history/_harvested.json (state: which catalogs
 # have been fully harvested already).
 # ---------------------------------------------------------------------------
 
@@ -685,7 +689,7 @@ def backfill_main(args, all_notes=None):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Harvest real Musick Auction Co. closing prices into data/price_history/."
+        description="Harvest real Musick Auction Co. closing prices into research/price_history/."
     )
     parser.add_argument(
         "--backfill", action="store_true",
