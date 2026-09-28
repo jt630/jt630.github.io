@@ -105,7 +105,7 @@ class NormalizeQueryRealTitlesTests(unittest.TestCase):
         self.assertIn(".380", q.split())
         self.assertNotIn("w", q.split())  # "w/" -> filler, dropped
 
-    def test_firearm_mossberg_30_06_and_no_lot_prefix_variant(self):
+    def test_firearm_winchester_no_lot_prefix_variant(self):
         title = (
             "Winchester Model 670 .30-06 SPRG Bolt-Action Rifle, Weaver "
             "Scope Mounts, Sling, Serial G233878"
@@ -113,7 +113,25 @@ class NormalizeQueryRealTitlesTests(unittest.TestCase):
         # No "Lot #N:" prefix at all - must still normalize cleanly.
         q = normalize_query(title)
         self.assertTrue(q.startswith("winchester"))
-        self.assertIn(".30", q.split())
+        self.assertIn(".30-06", q.split())  # hyphenated caliber stays joined
+
+    def test_firearm_mossberg_30_06_caliber_survives_whole(self):
+        # Real title (data/auction_lots.yaml). The hyphenated caliber must
+        # come through as one token, not get split or truncated by the
+        # 6-token cap - ".30-06" and ".30-30" are real watchlist keywords
+        # (data/auction_watchlist.yaml, deer rifle group).
+        title = (
+            'Lot #5003: Mossberg Patriot Bolt-Action Rifle .30-06 SPRG, '
+            '22" Barrel, Synthetic Stock, Serial MPR086752'
+        )
+        q = normalize_query(title)
+        self.assertIn(".30-06", q.split())
+        self.assertNotIn(".30", q.split())  # not split into ".30" + "06"
+
+    def test_firearm_30_30_caliber_survives_whole(self):
+        title = "Marlin 336 .30-30 Win Lever-Action Rifle, 20in Barrel"
+        q = normalize_query(title)
+        self.assertIn(".30-30", q.split())
 
     def test_firearm_308_caliber_edge_case(self):
         # .308 doesn't appear in the current data/auction_lots.yaml, but the
@@ -130,6 +148,21 @@ class NormalizeQueryRealTitlesTests(unittest.TestCase):
     def test_vehicle_drops_trailing_feature_shout(self):
         title = "Lot #318: 2012 CHEVROLET TRAVERSE - AWD!"
         self.assertEqual(normalize_query(title), "2012 chevrolet traverse")
+
+    def test_vehicle_hyphenated_model_number_stays_joined(self):
+        # "F-550" doesn't appear in the current data/auction_lots.yaml, but
+        # it's the module docstring's own example (and this exact title
+        # format matches the F-250/F-350 lots that ARE in the data - see
+        # test_vehicle_diesel_f250_hyphenated_model below). Must survive as
+        # written, not get split into "f" + "550" - eBay treats "f-550" as
+        # one keyword.
+        title = "Lot #800: 2017 FORD F-550 - BLUETOOTH!"
+        self.assertEqual(normalize_query(title), "2017 ford f-550")
+
+    def test_vehicle_diesel_f250_hyphenated_model(self):
+        title = "2006 FORD F-250 - 4X4 - DIESEL!"
+        q = normalize_query(title)
+        self.assertIn("f-250", q.split())
 
     def test_vehicle_drops_double_bang_feature_shout(self):
         title = "Lot #322: 2010 CHEVROLET EQUINOX - AWD!!"

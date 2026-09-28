@@ -93,9 +93,11 @@ _STOPWORDS = {
 
 _YEAR_RE = re.compile(r"\b(?:19|20)\d{2}\b")
 # A token that's basically a number - year, caliber (".308"), karat ("14k"),
-# ct weight ("3.25ct"), size ("4x4") - keeps any internal decimal point;
-# anything else has its stray dots stripped in the cleanup pass below.
-_NUMERIC_TOKEN_RE = re.compile(r"^\.?\d+(?:\.\d+)*[a-z]*$")
+# ct weight ("3.25ct"), size ("4x4"), hyphenated caliber (".30-06") - keeps
+# any internal decimal point or hyphen; anything else has its stray dots
+# stripped in the cleanup pass below (hyphens are handled separately, see
+# normalize_query).
+_NUMERIC_TOKEN_RE = re.compile(r"^\.?\d+(?:[.\-]\d+)*[a-z]*$")
 
 
 def normalize_query(title):
@@ -105,9 +107,14 @@ def normalize_query(title):
     POLICE AGENCY", "GOVERNMENT SURPLUS", "BANK REPO", trailing shouted
     features like "- BLUETOOTH!"), lowercases and collapses punctuation
     (while preserving decimal points inside numbers, so ".308" and "3.25ct"
-    survive intact), drops low-signal filler words, and caps the result at
-    MAX_QUERY_TOKENS tokens. Deterministic and stdlib-only (`re`) so it never
-    needs network access or an extra dependency to run or test.
+    survive intact, and preserving hyphens inside alphanumeric tokens that
+    contain a digit, so ".30-06", ".30-30" and "F-550" survive as eBay would
+    expect them written - a hyphen in a plain word compound like
+    "Gold-Tone" or "Bolt-Action" still splits into two words), drops
+    low-signal filler words, and caps the result at MAX_QUERY_TOKENS tokens
+    (a hyphenated caliber/model token like ".30-06" counts as one token
+    toward that cap). Deterministic and stdlib-only (`re`) so it never needs
+    network access or an extra dependency to run or test.
 
     Returns "" if nothing identifying is left (e.g. the title was only a lot
     number) - callers should treat that as "skip the lookup", never send an
@@ -132,21 +139,33 @@ def normalize_query(title):
         segments = dated if dated else segments[:1]
     text = " ".join(segments)
 
-    # Collapse everything except letters/digits/dots/whitespace to spaces,
-    # then lowercase. Dots survive here so numeric tokens (".308", "3.25ct")
-    # aren't mangled before the token-level cleanup below decides which dots
-    # were actually meaningful.
-    text = re.sub(r"[^a-zA-Z0-9.\s]+", " ", text).lower()
+    # Collapse everything except letters/digits/dots/hyphens/whitespace to
+    # spaces, then lowercase. Dots and hyphens both survive this pass - the
+    # per-token step below decides which hyphens were actually meaningful
+    # (".30-06", "f-550") versus a word-compound split ("gold-tone").
+    text = re.sub(r"[^a-zA-Z0-9.\-\s]+", " ", text).lower()
 
     tokens = []
-    for tok in text.split():
-        if _NUMERIC_TOKEN_RE.match(tok):
-            pass  # numeric-ish (year/caliber/karat/ct/size) - keep dots as-is
+    for raw in text.split():
+        # A hyphen between two alphanumeric halves stays put when the whole
+        # token has a digit in it somewhere - that's a caliber ("f-550",
+        # ".30-06", ".30-30") or a model number ("lr-60p"), and eBay expects
+        # it written that way, not as two separate words. A hyphen with no
+        # digit anywhere in the token is a plain word compound ("gold-tone",
+        # "bolt-action") and splits into its two words as before.
+        if "-" in raw and re.search(r"\d", raw):
+            parts = [raw]
         else:
-            tok = tok.replace(".", "")
-        if not tok or tok in _STOPWORDS:
-            continue
-        tokens.append(tok)
+            parts = raw.split("-")
+
+        for tok in parts:
+            if _NUMERIC_TOKEN_RE.match(tok):
+                pass  # numeric-ish (year/caliber/karat/ct/size) - keep as-is
+            else:
+                tok = tok.replace(".", "")
+            if not tok or tok in _STOPWORDS:
+                continue
+            tokens.append(tok)
 
     return " ".join(tokens[:MAX_QUERY_TOKENS])
 
