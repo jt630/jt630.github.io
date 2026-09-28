@@ -165,8 +165,14 @@ markup to scrape:
 handful of not-yet-closed auctions (the 7 newest-`end_date` rows on page 1 all had
 `status: "1"`), so the filter narrows the sort/default view but the harvester should
 check `status`/`end_date` itself rather than trust the URL param alone. `end_date` is
-an absolute timestamp in `timezone_location` (`America/Denver` for every row seen) —
-this is a materially better source of "when did this close" than parsing
+an absolute timestamp **in UTC**, despite the `timezone_location: "America/Denver"`
+field sitting next to it (that field is the sale's display zone, not the timestamp's).
+Cross-checked in review against each catalog page's own `start-end-dates` text: 914's
+`2026-09-24 03:22:00` is "09/23/2026 9:22 PM MDT", and 920's `2026-09-28 23:07:00` is
+"09/28/2026 5:07 PM MDT", both exactly UTC−6. Reading it as Denver time would put
+every close 6 hours late. Also note `total_lots` (493 for 914) doesn't match the
+catalog page's own "of 470" count; likely withdrawn lots, so page until empty rather
+than trusting `total_lots`. This is a materially better source of "when did this close" than parsing
 `start-end-dates` text off each catalog page individually, since it comes for free
 for all 827 catalogs in one render. This page is itself a decent target for the
 `_pending.json` harvester: one render of `?alf1=4&page=1` gives id + end_date +
@@ -186,9 +192,12 @@ data?** Yes to persistence, no personal data found. `https://bid.musickauction.c
 /auctions/bidding-history/id/914/lot/511357` (title: "Bidding history on lot 800 in
 sale 2173" — the lot's *display* number, 800, is different from its internal id,
 511357) rendered a `<table class="footable foolarge">` with **exactly two columns,
-Date/Time and Bid Amount** — 34 rows for this lot, oldest first ($500, 09/10 12:28 PM
-MDT) to newest/winning ($4000, 09/23 1:41 PM MDT, matching `item-win-bid` on the
-catalog page exactly). No bidder ID, handle, name, or any other identifying field
+Date/Time and Bid Amount** — 35 bid rows plus a header (matching the catalog's
+"Bidding history(35 bids)"), **newest first**: winning $4000 at "09/23 1:41:12 PM MDT"
+in the top row (matching `item-win-bid` on the catalog page exactly) down to the
+opening $500 at "09/10 12:28:06 PM MDT". The timestamps carry **no year**, so the
+parser has to borrow it from the catalog's `end_date` (and handle a sale that spans
+New Year). No bidder ID, handle, name, or any other identifying field
 appears anywhere in the table or its markup — the harvester can record the full bid
 trail (amount + absolute timestamp per bid) with zero risk of storing bidder
 identities, because the site itself doesn't expose them here.

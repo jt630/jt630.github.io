@@ -400,8 +400,9 @@ calibration reads it. Don't rename fields after the first row ships.
 - [ ] Give every lot an absolute `auction_ends_at`, not just vehicles. **Use the
       catalog's absolute end time, not a per-lot countdown**: `start-end-dates`
       on the catalog page and `end_date` in the `auctionRows` JSON from
-      `/auctions/?alf1=4` both give an absolute Mountain-time timestamp for the
-      whole sale — no "Time left"/duration parsing needed at all, which avoids
+      `/auctions/?alf1=4` both give an absolute timestamp for the whole sale
+      (**`end_date` is UTC**; `start-end-dates` text is MDT/MST, see the
+      engineering log; store UTC ISO-8601 everywhere) — no "Time left"/duration parsing needed at all, which avoids
       the drift/edge cases a relative-string parser has (the countdown keeps
       ticking between fetch and parse). `_parse_musick_duration()` stays useful
       for `auction_ends_at` on *live* vehicle-detail pages (Session A didn't
