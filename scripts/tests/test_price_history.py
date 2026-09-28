@@ -14,10 +14,12 @@ Run with:
 
 import json
 import os
+import re
 import sys
 import tempfile
 import unittest
 from collections import Counter
+from unittest.mock import patch
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 import price_history as ph  # noqa: E402
@@ -28,6 +30,38 @@ FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures")
 def _read(name):
     with open(os.path.join(FIXTURES, name), encoding="utf-8") as f:
         return f.read()
+
+
+def _fake_render(pages_by_number, default=None):
+    """Build a fake render(url) -> (html, api_calls) that dispatches on the
+    `page=N` query param, for injecting into harvest_catalog()/
+    daily_harvest() without any network access. `default` is returned for
+    any page number not in `pages_by_number` (None means "render failed")."""
+    def render(url):
+        m = re.search(r"page=(\d+)", url)
+        n = int(m.group(1)) if m else 1
+        html = pages_by_number.get(n, default)
+        if html is None:
+            return None, []
+        return html, []
+    return render
+
+
+def _synthetic_lot_html(lot_id):
+    """A minimal, real-shaped closed-lot chunk (matches every regex
+    price_history.py parses against) for a single sold lot with a unique
+    id - used to force harvest_catalog() to keep finding "new" lots
+    indefinitely, for exercising the MAX_CATALOG_PAGES hard cap without a
+    3000-lot fixture."""
+    return f'''<li id="blkLotItemMain{lot_id}" class="item-block ">
+ <section id="ali{lot_id}" class="item-block-wrapper" data-lid="{lot_id}" data-aid="914" data-alid="{lot_id}">
+ <div class="bdttle"><i> </i><h2> </h2></div>
+ <figure><a href="#"><img src="x"></a></figure>
+ <div class="myTitle"><span class="lotNumber"><a href="#" class="auc-lot-link" id="lot{lot_id}"><span class="lot_no">Lot #<span class="no">{lot_id}</span></span></a> : </span><span class="lotTitle"><a class="yaaa" href="#">Synthetic Lot {lot_id}</a></span></div>
+ <div class="bd-info"><ul class="price-info"><li class="item-win-bid"><span class="title">Winning Bid</span><span class="value"><span class="scur914">$</span><span class="exratetip" data-lid="{lot_id}">100</span></span></li><li id="item-status" class="item-status"><span class="title">Status</span><span class="value"><span class="ended sold">Sold</span></span></li><li class="item-bidhistory"><span class="title">Bidding history</span><span class="value"><span class="bid-history"><a href="#">Bidding history(1 bids)</a></span></span></li><li class="clear"></li></ul></div>
+ </section>
+</li>
+'''
 
 
 class ClosedIndexTests(unittest.TestCase):
@@ -224,6 +258,94 @@ class SizeEstimateTests(unittest.TestCase):
         # same ballpark (within a few dozen bytes either way - titles vary).
         self.assertGreater(n, 100)
         self.assertLess(n, 500)
+
+
+@patch("price_history.time.sleep", lambda *a, **kw: None)  # no real waiting in tests
+class RepeatPageAndIncompleteHarvestTests(unittest.TestCase):
+    """harvest_catalog()'s two anti-infinite-loop guards (repeat-page
+    detection and MAX_CATALOG_PAGES) and the "don't mark harvested unless
+    complete" rule that prevents silent data loss on a mid-catalog render
+    failure."""
+
+    def test_repeated_page_terminates_after_page_2_with_correct_rows(self):
+        # Same real 50-lot page served no matter what page number is asked
+        # for - the "site clamps to the last page" scenario. Repeat
+        # detection must stop this after page 2 (0 new lot ids), not loop.
+        page1 = _read("musick_catalog_914_p1.html")
+        render = _fake_render({1: page1, 2: page1}, default=page1)
+        notes = []
+        with tempfile.TemporaryDirectory() as d:
+            rows, appended, complete = ph.harvest_catalog(
+                914, "2026-09-24T03:22:00Z", notes, render=render, price_history_dir=d
+            )
+        self.assertEqual(len(rows), 50)
+        self.assertEqual(appended, 50)
+        self.assertTrue(complete)  # a clean end-of-data signal, not an error
+        self.assertTrue(any("repeated" in n for n in notes))
+
+    def test_render_failure_mid_catalog_gives_incomplete_and_unmarked_state(self):
+        page1 = _read("musick_catalog_914_p1.html")
+        # Page 2 fails to render entirely.
+        render_fails = _fake_render({1: page1, 2: None})
+        notes = []
+        with tempfile.TemporaryDirectory() as d:
+            state_path = os.path.join(d, "_harvested.json")
+            rows, appended, complete = ph.harvest_catalog(
+                914, "2026-09-24T03:22:00Z", notes, render=render_fails, price_history_dir=d
+            )
+            self.assertEqual(appended, 50)  # page 1's rows are still safe to keep
+            self.assertFalse(complete)
+
+            # Caller contract: only mark_harvested() when complete.
+            state = ph.load_state(state_path)
+            if complete:
+                ph.mark_harvested(state, 914, "2026-09-24T03:22:00Z", len(rows), state_path)
+            self.assertNotIn("914", ph.load_state(state_path).get("catalogs", {}))
+
+            # A second run with a working render succeeds fully: page 1's
+            # rows are already on disk (0 new there), page 2 (the real
+            # 70-lot tail) is new, page 3 is a clean empty stop.
+            page5 = _read("musick_catalog_914_p5_items100.html")
+            render_ok = _fake_render({1: page1, 2: page5, 3: "<html></html>"})
+            rows2, appended2, complete2 = ph.harvest_catalog(
+                914, "2026-09-24T03:22:00Z", notes, render=render_ok, price_history_dir=d
+            )
+            self.assertTrue(complete2)
+            self.assertEqual(appended2, 70)  # only the missing lots, dedupe did its job
+            state2 = ph.load_state(state_path)
+            ph.mark_harvested(state2, 914, "2026-09-24T03:22:00Z", len(rows2), state_path)
+            self.assertIn("914", ph.load_state(state_path).get("catalogs", {}))
+
+    def test_max_catalog_pages_cap_gives_incomplete(self):
+        # Every page returns exactly one brand-new lot - never empty, never
+        # a repeat - so only the hard cap can end this loop.
+        pages = {n: _synthetic_lot_html(600000 + n) for n in range(1, ph.MAX_CATALOG_PAGES + 5)}
+        render = _fake_render(pages)
+        notes = []
+        with tempfile.TemporaryDirectory() as d:
+            rows, appended, complete = ph.harvest_catalog(
+                999, "2026-09-24T03:22:00Z", notes, render=render, price_history_dir=d
+            )
+        self.assertFalse(complete)
+        self.assertEqual(len(rows), ph.MAX_CATALOG_PAGES)
+        self.assertTrue(any("MAX_CATALOG_PAGES" in n for n in notes))
+
+
+@patch("price_history.time.sleep", lambda *a, **kw: None)  # no real waiting in tests
+class IndexRepeatPageTests(unittest.TestCase):
+    """_walk_all_index_pages()'s repeat-page detection - same risk as
+    harvest_catalog(), bounded at 200 renders but must not inflate the
+    backfill size estimate with duplicate rows."""
+
+    def test_repeating_index_page_stops_and_does_not_double_count(self):
+        index_page = _read("musick_closed_index_p1.html")
+        render = _fake_render({1: index_page, 2: index_page}, default=index_page)
+        notes = []
+        rows = ph._walk_all_index_pages(render, notes, max_pages=10)
+        self.assertEqual(len(rows), 50)  # not 100 - the repeat must not double-count
+        ids = [r["id"] for r in rows]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertTrue(any("repeated" in n for n in notes))
 
 
 if __name__ == "__main__":
