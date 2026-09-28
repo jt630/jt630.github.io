@@ -77,6 +77,8 @@ Key files:
 - `scripts/auction_value.py` — eBay-comp + AI valuation, deal flagging
 - `scripts/business_agent.py` — stub, not wired in (see PRICE-DISCOVERY.md Phase 4)
 - `data/auction_watchlist.yaml` — the personal search/keep-bar, edit freely
+- `data/search_profiles/` — the reasoning behind watchlist groups (use `/refine-search`)
+- `scripts/watchlist_test.py` — test keywords against real titles before shipping them
 - `data/auction_lots.yaml` — live snapshot, overwritten every run
 
 ## Layouts
@@ -188,6 +190,7 @@ The owner **deletes branches immediately after merging**. This means:
 |---------|-------------|
 | `/new-post` | Scaffolds a new Hugo post — asks for section, title, description |
 | `/campsites` | Find campsites via the recreation.gov API, including walk-up sites the website hides (`scripts/campsite_finder.py`, notes in `docs/RECREATION-API.md`) |
+| `/refine-search` | Turn what you want (e.g. a profile from another AI chat) into **tested** Auction Watch keywords: checks drafts against thousands of real Musick titles for false positives before editing `data/auction_watchlist.yaml`, and saves the *why* in `data/search_profiles/` |
 | `/mint` | Mint a monkey coin — picks language, runs generation, commits *(planned)* |
 | `/plan` | **TODO (general Claude files)** — Pre-flight parallelization planner. Reads a task spec, maps file dependencies, estimates output size per subtask, and produces a chunked execution graph with parallel lanes before any code is written. Prevents oversized single-agent tasks that timeout. |
 

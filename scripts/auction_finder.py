@@ -292,10 +292,22 @@ def match_watchlist(lot):
     coincidentally, exactly the kind of thing a project-car listing might
     also mention)."""
     s = f" {lot.get('title', '')} {lot.get('description', '')} ".lower()
-    return [
-        g["label"] for g in WATCHLIST
-        if any(re.search(_watchlist_kw_pattern(kw), s) for kw in g["keywords"])
-    ]
+    return [g["label"] for g in WATCHLIST if group_matches(g, s)]
+
+
+def group_matches(group, text):
+    """One watchlist group against already-lowercased text: any `keywords`
+    hit AND no `exclude` hit. `exclude` exists for real name collisions a
+    keyword can't dodge on its own - "hellcat" is both a Springfield pistol
+    and a Dodge Challenger trim on this vehicle-heavy site, so the pistol
+    group excludes "dodge"/"challenger"/"charger". Shared with
+    scripts/watchlist_test.py so testing a keyword uses the exact live
+    matching rules."""
+    if not any(re.search(_watchlist_kw_pattern(kw), text) for kw in group["keywords"]):
+        return False
+    return not any(
+        re.search(_watchlist_kw_pattern(kw), text) for kw in group.get("exclude") or []
+    )
 
 
 def fetch(url, headers=None):

@@ -466,6 +466,30 @@ live data and are worth knowing about before adding more keywords:
   bug was fixed and plain `\b` started working on the digits-only form -
   the leading period is required specifically to rule that out.
 
+**Testing keywords before shipping them (2026-09-28).** Every false positive
+above was found after it shipped. Now `scripts/watchlist_test.py` tests
+draft keywords against every real title in `research/price_history/` plus
+the live snapshot (2,384 unique titles at the time of writing), using the
+exact live matcher, and shows what a change ADDS and DROPS. Groups can also
+carry an `exclude:` list that vetoes a match, for collisions a keyword
+can't dodge on its own. `/refine-search` wraps the whole loop, and
+`data/search_profiles/` keeps the reasoning behind each group.
+`scripts/tests/test_watchlist.py` holds collision *guard rules*: any group
+using bare "hellcat", "g29" or "pistol" must exclude the real collisions.
+It never pins exact keywords, because it runs in the daily bot's
+pre-commit gate and must never block the owner's own edits.
+
+First run of the tester found:
+- The old bare `pistol / revolver / handgun` group matched 21 titles, 5 of
+  them junk (a sprayer's "Pistol Grip Wand", mixed ammo lots, reloading
+  bullets, a "Pistol belt" bundled with a DVD player). It's now split
+  into `pistol_backcountry` (the owner's exact targets) and
+  `handguns_other` (the broad net, junk excluded, all 16 real handguns
+  kept).
+- **"Gold/Fossil/Meteorite Jewelry" matches 0 of 2,384 real titles**, even
+  though these sales included 118 jewelry lots. That's the next group to
+  put through `/refine-search`.
+
 Rendered as: a dedicated "🎯 On your watchlist" section on `/auctions/`
 (above the Vehicles section, all matches regardless of category), plus a
 small 🎯-prefixed chip on any lot row wherever it appears, anywhere on the

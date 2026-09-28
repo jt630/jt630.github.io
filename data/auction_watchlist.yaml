@@ -11,6 +11,8 @@
 # scripts/auction_finder.py (or wait for the next scheduled run).
 #
 # label: shown as a chip on the site. keywords: what to match on.
+# exclude (optional): terms that veto a match, for real name collisions.
+# Test any change first: python scripts/watchlist_test.py (see /refine-search).
 - id: trucks_offroad
   label: "Trucks & Off-Road/4x4"
   keywords:
@@ -116,12 +118,53 @@
     - "pop up camper"
     - "pop-up camper"
 
+# Refined 2026-09-28 from data/search_profiles/backcountry_pistol.yaml
+# (/refine-search). Exact targets only, so the chip means "one of MY
+# picks". Tested against 2,384 real titles with scripts/watchlist_test.py:
+# bare "hellcat" risks the Dodge Challenger/Charger Hellcat on this
+# vehicle-heavy site, and bare "g29" the Logitech G29 racing wheel, hence
+# the excludes and "glock 29". Bare "340" is far too generic.
 - id: pistol_backcountry
   label: "Backcountry Pistol"
+  keywords:
+    - p365
+    - p365xl
+    - p365-xl
+    - ec9s
+    - hellcat
+    - glock 29
+    - glock g29
+    - m&p340
+    - m&p 340
+  exclude:
+    - dodge
+    - challenger
+    - charger
+    - srt
+    - logitech
+
+# The broad net the pistol group used to be, kept so comparable
+# lightweight/value handguns (Taurus G2C, SCCY CPX-1, Ruger LCP II all
+# appear here) stay visible without the 🎯 target chip. Excludes drop
+# the 5 real false positives the old bare "pistol" matched: a sprayer's
+# "Pistol Grip Wand", mixed ammo lots, reloading bullets, and a "Pistol
+# belt" bundled with a DVD player. Tested: 16 real handguns kept.
+- id: handguns_other
+  label: "Handguns (other)"
   keywords:
     - pistol
     - revolver
     - handgun
+  exclude:
+    - sprayer
+    - wand
+    - bullets
+    - projectiles
+    - cartridges
+    - ammunition
+    - shells
+    - reloading
+    - dvd
 
 - id: shotgun_birds
   label: "Shotgun (birds)"
