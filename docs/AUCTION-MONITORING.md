@@ -250,6 +250,46 @@ The `?alf1=4` index is also a viable backstop/backfill path independent of
 track (e.g. a catalog whose `auction_finder.py` run was skipped that day), going back
 as far as page 17 (827 total auctions) without walking ids blind.
 
+## Close-price history
+
+`scripts/price_history.py` (Phase 1 of `PRICE-DISCOVERY.md`, the highest-priority
+piece of the whole project) turns the findings above into a real, permanent,
+append-only record — see its module docstring for the full rationale. Short
+version:
+
+- **Schema.** One compact JSON object per line in `data/price_history/YYYY-MM.jsonl`
+  (grouped by the catalog's `catalog_closed_at` month), keys in this exact order:
+  `platform, catalog_id, lot_id, lot_no, title, category, watchlist_matches
+  (list, key omitted entirely when empty), price_kind ("close"|"unknown"), price
+  (int cents-free dollars, or null), num_bids (int or null), catalog_closed_at
+  (the catalog's own end_date, UTC ISO-8601 "…T…Z"), observed_at (UTC ISO now),
+  status_raw (present ONLY when price_kind is "unknown")`. Deduped on
+  `(platform, lot_id)` across every month file — a re-run never appends a
+  duplicate. `data/price_history/_harvested.json` tracks which catalog ids are
+  already fully recorded, `{"catalogs": {"914": {"end_date", "lots",
+  "harvested_at"}}}`.
+- **The `price_kind` honesty rule.** A row is `"close"` only when the lot's own
+  status span is exactly `ended sold` AND a real `item-win-bid` was parsed.
+  Anything else — a status class this parser hasn't matched before, a missing
+  win-bid — becomes `price_kind: "unknown"`, `price: null`, and the raw status
+  class+text goes in `status_raw`. **No real unsold/passed lot has ever been
+  observed** across every real sample so far (this session's synthesized-fixture
+  test aside), so `"unknown"` is currently the only fallback kind — never
+  invent a price for it. A lot that's still genuinely live (an empty
+  `item-status`, e.g. on an open catalog) isn't recorded as a row at all; it
+  hasn't concluded yet.
+- **Daily vs. backfill.** The daily GitHub Actions run (`auction-monitor.yml`,
+  between "Fetch lots" and "Estimate value", `continue-on-error: true` so a
+  harvest bug can never block the lots refresh) only harvests NEW closes: it
+  reads the closed-catalogs index page 1 (page 2 too if every closed catalog on
+  page 1 turns out to be new), and harvests up to 5 not-yet-recorded catalogs.
+  No backfill runs in CI. A one-time full backfill runs locally: `python
+  scripts/price_history.py --backfill` walks every index page, prints a size
+  estimate (catalogs, total lots, estimated renders, estimated JSONL MB at a
+  MEASURED bytes/row, estimated runtime) and exits — add `--yes` to actually
+  run it, `--since YYYY-MM-DD` to limit it. The backfill is resumable: state
+  saves after each catalog, so a Ctrl-C loses at most the catalog in progress.
+
 ## A second, separate concern: Terms of Service
 
 This fetches public pages at a polite rate (one request every 2s, browser
