@@ -222,6 +222,46 @@ Rendered as: a dedicated "🎯 On your watchlist" section on `/auctions/`
 small 🎯-prefixed chip on any lot row wherever it appears, anywhere on the
 site.
 
+### The watchlist is now the keep bar, not just a highlight
+
+Originally this project's whole point was "flag any objectively good deal
+anywhere" - a broad net over everything. As the watchlist above came
+together, the ask changed explicitly: **drop what doesn't match, as early
+as possible, so this can scale to more sources without scaling the noise
+along with it.** So `main()` in `auction_finder.py` now keeps a lot only
+if it's `category: Small Engines & Appliances` (grandpa's original core
+interest - always kept, watchlist or not) **or** `watchlist_matches` is
+non-empty. Everything else is dropped before it's ever written to
+`data/auction_lots.yaml` or rendered - not filtered out visually, gone
+from the file entirely. Confirmed against the real live 301-lot dataset:
+91 survive.
+
+The same rule gates the expensive step, not just the final output:
+`fetch_musick_catalog()` now only fetches a Vehicles-category lot's
+detail page (VIN/mileage/title - see below) when that lot **already**
+matches the watchlist on title alone. Confirmed: 47 of 114 real vehicles
+this run, cutting the single most expensive part of the whole pipeline
+(a second Playwright render per lot) by over half. This is the actual
+lever for adding more sources (PublicSurplus, GovDeals, Municibid,
+PropertyRoom are built but disabled - see Platforms below) without the
+per-run cost and page size scaling with the number of sites fetched: the
+watchlist bounds it, not the source count.
+
+**Trade-off, stated plainly:** this means a genuinely great deal sitting
+in a category nobody's watching for (some $5 lot secretly worth $200,
+outside every current keyword group) will never be seen or scored -
+gone before `auction_value.py` even runs. That's the deliberate cost of
+"no room for mid." If a category should always get a look regardless of
+the watchlist, add it as an `ALWAYS_KEEP_CATEGORY`-style exception the
+way Small Engines & Appliances already is, or add keywords broad enough
+to catch it.
+
+**Parked for later** (explicitly deferred, not built): a way to sample a
+couple of lots from categories *outside* the active watchlist each run -
+a small "discovery" pick so something interesting outside the current
+search terms doesn't stay permanently invisible. Needs actual design
+(how many, how picked, where shown) before building.
+
 ## Vehicle detail enrichment — VIN, mileage, title status
 
 The catalog LISTING page (parsed above) never carries this — just title, bid,
