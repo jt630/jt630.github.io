@@ -172,3 +172,16 @@
     - "gold dredge"
     - highbanker
     - prospecting
+
+- id: old_coins
+  label: "Old Coins"
+  keywords:
+    - coin
+    - numismatic
+    - "silver dollar"
+    - "gold coin"
+    - "proof set"
+    - morgan
+    - "peace dollar"
+    - "wheat penny"
+    - "indian head"

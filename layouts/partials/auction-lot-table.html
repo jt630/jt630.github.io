@@ -34,7 +34,8 @@
             data-deal-score="{{ if .deal_score }}{{ .deal_score }}{{ end }}"
             data-deal-pct="{{ if .deal_pct }}{{ .deal_pct }}{{ end }}"
             data-url="{{ .url }}"
-            data-ends-at="{{ with .auction_ends_at }}{{ . }}{{ end }}">
+            data-ends-at="{{ with .auction_ends_at }}{{ . }}{{ end }}"
+            data-num-bids="{{ if .num_bids }}{{ .num_bids }}{{ end }}">
           <td>
             {{ .title }}
             {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}

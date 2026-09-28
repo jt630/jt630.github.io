@@ -790,9 +790,11 @@ def fetch_musick_vehicle_detail(lot, all_notes):
     """Enrich one Vehicles-category lot in place with real mileage/VIN/
     title-status/spec data from its own lot-detail page - a second,
     separate Playwright render per vehicle (the catalog listing page
-    parsed above never visits this page at all). Only called for lots
-    already classified as Vehicles, to keep the extra render cost scoped
-    to the one category this actually matters for. Never raises - a
+    parsed above never visits this page at all). Only called for
+    Vehicles-category lots that ALSO match the personal watchlist
+    (data/auction_watchlist.yaml) - not every vehicle - to keep this,
+    the single most expensive step in the whole pipeline, scoped to
+    lots already worth a second look on title alone. Never raises - a
     failed render just leaves the lot without these fields, same
     graceful-degrade rule as the rest of this file."""
     url = lot.get("url")
@@ -898,7 +900,18 @@ def fetch_musick_catalog(event_url, all_notes):
                 f"may have changed, see docs/AUCTION-MONITORING.md"
             )
 
-    vehicle_rows = [r for r in rows if guess_category(r) == "Vehicles"]
+    # The per-lot detail-page render (fetch_musick_vehicle_detail) is by far
+    # the most expensive step in this whole pipeline - a second Playwright
+    # page load per lot. Scoped to only Vehicles that ALSO match the
+    # personal watchlist (data/auction_watchlist.yaml) rather than every
+    # vehicle: no point spending that cost on a sedan nobody's watching for
+    # just to find out its mileage. This is the main lever for "drop early,
+    # don't waste time on subpar" as more sources get added - the expensive
+    # work only happens on what was already worth a second look on title
+    # alone.
+    all_vehicles = [r for r in rows if guess_category(r) == "Vehicles"]
+    vehicle_rows = [r for r in all_vehicles if match_watchlist(r)]
+    skipped_vehicles = len(all_vehicles) - len(vehicle_rows)
     if vehicle_rows:
         n_candidates = 0
         for row in vehicle_rows:
@@ -908,8 +921,9 @@ def fetch_musick_catalog(event_url, all_notes):
             time.sleep(SLEEP)
         all_notes.append(
             f"[musick-detail] {event_url!r}: fetched detail for "
-            f"{len(vehicle_rows)} vehicle lot(s), {n_candidates} candidate(s) "
-            f"(<150k mi, clean title)"
+            f"{len(vehicle_rows)} watchlist-matched vehicle lot(s) "
+            f"(skipped {skipped_vehicles} non-matching), {n_candidates} "
+            f"candidate(s) (<150k mi, clean title)"
         )
     return rows
 
@@ -1040,10 +1054,28 @@ def main():
         r["flagged"] = False
         r["fetched_at"] = date.today().isoformat()
 
+    # "Dial in the search": don't waste storage or a bidder's attention on
+    # a lot that isn't actually being searched for. A lot is worth keeping
+    # only if it's grandpa's original core interest (Small Engines &
+    # Appliances) or it matches the personal watchlist
+    # (data/auction_watchlist.yaml) - everything else gets dropped here,
+    # before it's ever written to disk or rendered, not just hidden. This
+    # is the actual lever for scaling to more sources later: the interest
+    # bar, not the number of sites fetched, bounds how much ends up kept.
+    ALWAYS_KEEP_CATEGORY = "Small Engines & Appliances"
+    before_interest_filter = len(kept)
+    kept = [
+        r for r in kept
+        if r["category"] == ALWAYS_KEEP_CATEGORY or r["watchlist_matches"]
+    ]
+    dropped_uninteresting = before_interest_filter - len(kept)
+
     kept.sort(key=lambda r: (r.get("current_bid") is None, r.get("current_bid") or 0))
 
     print(f"kept {len(kept)} lots across {len(PLATFORMS)} platforms "
-          f"(dropped {dropped} with no Treasure Valley signal)")
+          f"(dropped {dropped} with no Treasure Valley signal, "
+          f"{dropped_uninteresting} matching neither the watchlist nor "
+          f"'{ALWAYS_KEEP_CATEGORY}')")
     for platform in PLATFORMS:
         n = sum(1 for r in kept if r.get("platform") == platform)
         print(f"  {platform:14s} {n}")

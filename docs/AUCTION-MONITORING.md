@@ -222,6 +222,46 @@ Rendered as: a dedicated "🎯 On your watchlist" section on `/auctions/`
 small 🎯-prefixed chip on any lot row wherever it appears, anywhere on the
 site.
 
+### The watchlist is now the keep bar, not just a highlight
+
+Originally this project's whole point was "flag any objectively good deal
+anywhere" - a broad net over everything. As the watchlist above came
+together, the ask changed explicitly: **drop what doesn't match, as early
+as possible, so this can scale to more sources without scaling the noise
+along with it.** So `main()` in `auction_finder.py` now keeps a lot only
+if it's `category: Small Engines & Appliances` (grandpa's original core
+interest - always kept, watchlist or not) **or** `watchlist_matches` is
+non-empty. Everything else is dropped before it's ever written to
+`data/auction_lots.yaml` or rendered - not filtered out visually, gone
+from the file entirely. Confirmed against the real live 301-lot dataset:
+91 survive.
+
+The same rule gates the expensive step, not just the final output:
+`fetch_musick_catalog()` now only fetches a Vehicles-category lot's
+detail page (VIN/mileage/title - see below) when that lot **already**
+matches the watchlist on title alone. Confirmed: 47 of 114 real vehicles
+this run, cutting the single most expensive part of the whole pipeline
+(a second Playwright render per lot) by over half. This is the actual
+lever for adding more sources (PublicSurplus, GovDeals, Municibid,
+PropertyRoom are built but disabled - see Platforms below) without the
+per-run cost and page size scaling with the number of sites fetched: the
+watchlist bounds it, not the source count.
+
+**Trade-off, stated plainly:** this means a genuinely great deal sitting
+in a category nobody's watching for (some $5 lot secretly worth $200,
+outside every current keyword group) will never be seen or scored -
+gone before `auction_value.py` even runs. That's the deliberate cost of
+"no room for mid." If a category should always get a look regardless of
+the watchlist, add it as an `ALWAYS_KEEP_CATEGORY`-style exception the
+way Small Engines & Appliances already is, or add keywords broad enough
+to catch it.
+
+**Parked for later** (explicitly deferred, not built): a way to sample a
+couple of lots from categories *outside* the active watchlist each run -
+a small "discovery" pick so something interesting outside the current
+search terms doesn't stay permanently invisible. Needs actual design
+(how many, how picked, where shown) before building.
+
 ## Vehicle detail enrichment — VIN, mileage, title status
 
 The catalog LISTING page (parsed above) never carries this — just title, bid,
@@ -340,6 +380,20 @@ read of a title alone, even if the second one's dollar gap looks bigger on
 paper. The page marks each estimate with **"✓ N sold"** (eBay-backed, green)
 or **"AI est."** (text-only, dimmer) so that distinction is visible, not just
 baked into the sort order.
+
+**A third gate on `flagged`, beyond the 30%/$20 thresholds: the lot has to be
+"matured"** — `_lot_is_matured()` in `auction_value.py` requires either 3+
+real bids, or being within 24h of `auction_ends_at`. A lot that just opened
+at its floor price with 0 bids and 9 days left isn't a deal yet, no matter
+how big the nominal gap against its estimate looks — it hasn't had any real
+chance to be bid up, and normally will be well before it closes. This is
+explicitly about **noise**, not accuracy: `deal_score`/`deal_pct` still show
+the real numeric gap either way (so an unmatured lot with a huge gap still
+sorts near the top and is visible to browse), only the "🔥 Deal" badge and
+the email digest require maturity. The client-side deal-threshold slider
+(`auction-dial-in.html`'s `isMatured()`) mirrors this exactly, reading
+`data-num-bids` / `data-ends-at` off each row, so dragging the slider can't
+un-gate an unmatured lot the Python side already excluded.
 
 Requires an `ANTHROPIC_API_KEY` repo secret (Settings → Secrets and variables →
 Actions) for the AI-fallback half; the eBay-comps half needs no key or secret
