@@ -247,6 +247,19 @@ at all, just network access. Without `ANTHROPIC_API_KEY`, lots with 3+ eBay
 comps are still valued (comps-only, no note); everything else keeps null
 estimates and renders with just current bid, close time, and link.
 
+**That was the intent from day one, but the code didn't actually do it** —
+`main()` bailed out entirely the moment `ANTHROPIC_API_KEY` was missing,
+before `estimate()` (and therefore the eBay-comps lookup) ever ran. Since
+the repo has never had that secret set, every scheduled run through the
+first real per-lot data (see "Musick, verified against real markup" above)
+silently valued nothing at all - not because eBay comps didn't help, but
+because they were never even tried. Fixed: the API-key check now only
+gates the Claude fallback call itself, inside `estimate()`'s per-batch
+loop, so a missing key no longer blocks the free half too - confirmed
+against the case that was actually broken (mocked eBay comps, no key set:
+the comp-covered lot gets priced and flagged, the one without comps stays
+null exactly as before).
+
 **Neither source is an appraisal.** eBay comps are for "a similar item," not
 necessarily this exact lot's condition — that's what Claude's note is for.
 Treat a flagged lot as "worth a second look," not "safe to bid against sight
