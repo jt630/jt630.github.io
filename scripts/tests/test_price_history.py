@@ -369,5 +369,59 @@ class IndexRepeatPageTests(unittest.TestCase):
         self.assertTrue(any("repeated" in n for n in notes))
 
 
+class ValuationsJoinTests(unittest.TestCase):
+    """build_row()'s my_max/we_bid join against Session P's
+    data/my_valuations.yaml (scripts/value_it.py). Real HTML fixture rows,
+    a synthetic valuations dict passed explicitly so this never touches
+    the real data/my_valuations.yaml on disk."""
+
+    def setUp(self):
+        self.parsed = ph.parse_closed_lots(_read("musick_catalog_914_p1.html"), 914)
+
+    def test_no_valuation_omits_fields(self):
+        parsed = next(r for r in self.parsed if r["lot_id"] == 511357)
+        row = ph.build_row(parsed, "2026-09-24T03:22:00Z", "2026-09-28T12:00:00Z", valuations={})
+        self.assertNotIn("my_max", row)
+        self.assertNotIn("we_bid", row)
+
+    def test_matching_valuation_is_joined(self):
+        parsed = next(r for r in self.parsed if r["lot_id"] == 511357)
+        valuations = {("musick", 511357): {"my_max": 3500.0, "we_bid": True}}
+        row = ph.build_row(parsed, "2026-09-24T03:22:00Z", "2026-09-28T12:00:00Z", valuations=valuations)
+        self.assertEqual(row["my_max"], 3500.0)
+        self.assertIs(row["we_bid"], True)
+        # Lands after the always-present fields, same "append, don't
+        # reorder" convention as watchlist_matches/status_raw.
+        self.assertEqual(list(row.keys())[-2:], ["my_max", "we_bid"])
+
+    def test_platform_mismatch_does_not_join(self):
+        parsed = next(r for r in self.parsed if r["lot_id"] == 511357)
+        valuations = {("ebay", 511357): {"my_max": 3500.0, "we_bid": True}}
+        row = ph.build_row(parsed, "2026-09-24T03:22:00Z", "2026-09-28T12:00:00Z", valuations=valuations)
+        self.assertNotIn("my_max", row)
+
+    def test_load_valuations_reads_real_schema(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "my_valuations.yaml")
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(
+                    "valuations:\n"
+                    "  - platform: musick\n"
+                    "    lot_id: 511357\n"
+                    "    my_max: 3500.0\n"
+                    "    we_bid: true\n"
+                    "  - platform: musick\n"
+                    "    lot_id: 999999\n"
+                    "    my_max: 40.0\n"
+                    "    we_bid: false\n"
+                )
+            loaded = ph.load_valuations(path)
+        self.assertEqual(loaded[("musick", 511357)], {"my_max": 3500.0, "we_bid": True})
+        self.assertEqual(loaded[("musick", 999999)], {"my_max": 40.0, "we_bid": False})
+
+    def test_load_valuations_missing_file_returns_empty(self):
+        self.assertEqual(ph.load_valuations("/nonexistent/path/my_valuations.yaml"), {})
+
+
 if __name__ == "__main__":
     unittest.main()

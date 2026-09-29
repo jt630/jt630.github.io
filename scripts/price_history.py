@@ -65,6 +65,7 @@ Usage
 
 import argparse
 import html
+import io
 import json
 import math
 import os
@@ -72,6 +73,8 @@ import re
 import sys
 import time
 from datetime import datetime, timezone
+
+import yaml
 
 from musick_render import BLOCK_NOTE, looks_blocked  # noqa: E402
 from auction_finder import (  # noqa: E402
@@ -92,6 +95,7 @@ DATA_DIR = os.path.join(_HERE, "..", "data")
 # a small aggregated summary written into data/ (PRICE-DISCOVERY Session D).
 PRICE_HISTORY_DIR = os.path.join(_HERE, "..", "research", "price_history")
 STATE_PATH = os.path.join(PRICE_HISTORY_DIR, "_harvested.json")
+VALUATIONS_PATH = os.path.join(DATA_DIR, "my_valuations.yaml")
 
 MUSICK_CLOSED_INDEX = "https://bid.musickauction.com/auctions/?alf1=4"
 MUSICK_CATALOG_URL = "https://bid.musickauction.com/auctions/catalog/id/{catalog_id}"
@@ -226,11 +230,36 @@ def parse_closed_lots(page, catalog_id):
     return out
 
 
-def build_row(parsed, catalog_closed_at, observed_at):
+_valuations_cache = None
+
+
+def load_valuations(path=None):
+    """(platform, lot_id) -> {my_max, we_bid} for every recorded Session P
+    valuation (scripts/value_it.py). Cached per-process; pass a `path` to
+    bypass the cache (tests only)."""
+    global _valuations_cache
+    p = path or VALUATIONS_PATH
+    if path is None and _valuations_cache is not None:
+        return _valuations_cache
+    out = {}
+    if os.path.exists(p):
+        with io.open(p, encoding="utf-8") as f:
+            doc = yaml.safe_load(f) or {}
+        for entry in doc.get("valuations") or []:
+            key = (entry.get("platform"), entry.get("lot_id"))
+            out[key] = {"my_max": entry.get("my_max"), "we_bid": bool(entry.get("we_bid"))}
+    if path is None:
+        _valuations_cache = out
+    return out
+
+
+def build_row(parsed, catalog_closed_at, observed_at, valuations=None):
     """Turn one parse_closed_lots() dict into the real row schema, in the
     exact key order the contract specifies. `watchlist_matches` is omitted
     entirely when empty (not written as `[]`); `status_raw` is only present
-    for `price_kind: "unknown"`."""
+    for `price_kind: "unknown"`. `my_max`/`we_bid` (Session P, THESIS H7)
+    are only present when a valuation was recorded for this lot before
+    close - omitted, not null, same convention as `watchlist_matches`."""
     lot = {"title": parsed["title"]}  # category/watchlist run on title only
     row = {
         "platform": "musick",
@@ -250,6 +279,12 @@ def build_row(parsed, catalog_closed_at, observed_at):
     row["observed_at"] = observed_at
     if parsed["price_kind"] == "unknown":
         row["status_raw"] = parsed["status_raw"]
+    val = (valuations if valuations is not None else load_valuations()).get(
+        ("musick", parsed["lot_id"])
+    )
+    if val:
+        row["my_max"] = val["my_max"]
+        row["we_bid"] = val["we_bid"]
     return row
 
 
