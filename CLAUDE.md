@@ -5,7 +5,7 @@ A Hugo static site deployed to GitHub Pages at [almondfarm.us](https://almondfar
 ## Stack
 
 - **Hugo 0.139.0 extended** — static site generator
-- **Single CSS file** — `assets/css/main.css` (~900 lines, no framework)
+- **Single CSS file** — `assets/css/main.css` (no framework)
 - **Vanilla JS** — only a hamburger menu toggle in `baseof.html`
 - **GitHub Actions** — auto-deploys on push to `main` (`.github/workflows/deploy.yml`)
 
@@ -19,20 +19,14 @@ hugo new content/blog/my-post.md   # scaffold a post (or use /new-post)
 
 ## Content structure
 
-```
-content/
-├── blog/       ← narrative posts
-├── cooking/    ← recipes
-├── farming/    ← farm dispatches
-├── music.md    ← rendered from data/music.yaml
-├── books.md    ← rendered from data/books.yaml
-├── gallery.md  ← scans static/images/gallery/
-├── about.md    ← rendered from data/contributors.yaml
-└── gaming/ art/ movies/ drinks/ brain/ body/ gadgets/  ← empty, fill freely
-```
-
-Data-driven sections (music, books) get their content from `data/`. Gallery pulls
-from `static/images/gallery/`. Everything else is markdown in `content/`.
+Every section is either a `content/<section>/` directory of markdown posts, or
+a single `content/<section>.md` page. Some pages are hand-written; others
+(`music.md`, `books.md`, `about.md`, `gallery.md`) render from a `data/*.yaml`
+file or a `static/` scan instead of prose. Which is which, whether a section
+has a menu entry and homepage card, and whether it has a `layouts/` override
+is **not tracked here** — it drifts. Run `python scripts/site_audit.py` (or
+read the current **`SITE-MAP.md`**) for the live picture instead of trusting a
+hand-written list.
 
 ### Monkeys subsystem
 
@@ -84,7 +78,7 @@ Key files:
 ## Layouts
 
 - `layouts/_default/baseof.html` — master shell (nav, marquee ticker, footer)
-- `layouts/index.html` — homepage (hero + 14 section cards + latest posts)
+- `layouts/index.html` — homepage (hero + section cards + latest posts — card count is in SITE-MAP.md, not here)
 - `layouts/_default/single.html` — individual post
 - `layouts/_default/list.html` — section list pages
 - `layouts/brain/list.html` — custom Brain Lab page (design experiments)

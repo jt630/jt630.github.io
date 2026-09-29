@@ -27,6 +27,11 @@ else
   echo "✖ Hugo build FAILED — check templates before editing"
 fi
 
+# ── Refresh the site audit ────────────────────────────────────────────────────
+if command -v python3 >/dev/null 2>&1; then
+  python3 "$CLAUDE_PROJECT_DIR/scripts/site_audit.py" || echo "✖ site_audit.py failed — SITE-MAP.md may be stale"
+fi
+
 # ── Session orientation ───────────────────────────────────────────────────────
 echo ""
 echo "━━ Almond Farm ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
