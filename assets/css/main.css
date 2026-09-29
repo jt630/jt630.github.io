@@ -415,26 +415,14 @@ img {
   z-index: 1;
 }
 
-/* Color accents per section — gold top border */
-.section-card.blog    { border-top: 3px solid var(--pink); }
-.section-card.cooking { border-top: 3px solid var(--gold); }
-.section-card.music   { border-top: 3px solid var(--pink-light); }
-.section-card.books   { border-top: 3px solid var(--gold-light); }
-.section-card.farming { border-top: 3px solid var(--pink); }
-.section-card.gallery { border-top: 3px solid var(--gold); }
-.section-card.gaming  { border-top: 3px solid var(--pink); }
-.section-card.art     { border-top: 3px solid var(--gold-light); }
-.section-card.movies  { border-top: 3px solid var(--pink-light); }
-.section-card.drinks  { border-top: 3px solid var(--gold); }
-.section-card.brain   { border-top: 3px solid var(--pink); }
-.section-card.body    { border-top: 3px solid var(--gold-light); }
-.section-card.gadgets  { border-top: 3px solid var(--pink-light); }
-.section-card.markets  { border-top: 3px solid var(--gold); }
-.section-card.public-health { border-top: 3px solid #2D8AFF; }
-.section-card.monkeys  { border-top: 3px solid var(--gold); }
-.section-card.dingers  { border-top: 3px solid var(--pink); }
-.section-card.news     { border-top: 3px solid var(--pink-light); }
-.section-card.coasters { border-top: 3px solid #00CFFF; }
+/* Color accents by tone — one small palette, driven by hugo.toml's
+   menu.main.params.tone instead of a per-section class */
+.section-card.tone-pink       { border-top: 3px solid var(--pink); }
+.section-card.tone-gold       { border-top: 3px solid var(--gold); }
+.section-card.tone-pink-light { border-top: 3px solid var(--pink-light); }
+.section-card.tone-gold-light { border-top: 3px solid var(--gold-light); }
+.section-card.tone-blue       { border-top: 3px solid #2D8AFF; }
+.section-card.tone-cyan       { border-top: 3px solid #00CFFF; }
 
 /* ---- RECENT POSTS (homepage) ---- */
 .recent-section {
