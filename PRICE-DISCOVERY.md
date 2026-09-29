@@ -29,13 +29,13 @@ reconstruct it. Update it at the end of every session.*
   file, and the harvester logs its index byte count and runs slowly (5s
   between page loads, at most 3 catalogs a day). eBay stops after its first
   403.
-- `research/price_history/`: **2,638 real closing prices** from 5 sales
-  (911, 913, 914, 915, 917), spot-checked against live pages. (Not in
-  `data/`: Hugo can't load .jsonl, and that broke the site once. A test now
-  guards against it.)
-- `/auctions/`: the **18:00 UTC 2026-09-28 snapshot** (47 lots, catalogs
-  920/921/916), restored by PR #142 after a blocked run wiped the page.
-  Bids are stale until a run gets through.
+- `research/price_history/`: **4,399 real closing prices** (2,638 +
+  **1,761 new** from the 2026-09-29 18:27 UTC run, which harvested
+  catalogs 920/912/907 cleanly — see "block lifted" below), spot-checked
+  against live pages. (Not in `data/`: Hugo can't load .jsonl, and that
+  broke the site once. A test now guards against it.)
+- `/auctions/`: the **18:27 UTC 2026-09-29 snapshot** (88 lots, up from
+  47 — the first clean run since the block).
 - `THESIS.md`: pre-registered hypotheses H1–H7, with a dated notebook.
 - **Session V (VIN checks): built and run live 2026-09-29.**
   `scripts/vin_check.py` + `scripts/tests/test_vin_check.py` (99 tests,
@@ -51,12 +51,16 @@ reconstruct it. Update it at the end of every session.*
   new). See Session P below for the caveat found on non-vehicle lots.
   Run: `python scripts/value_it.py LOT_URL MAX "why" [--who owner|grandpa]`.
 
+**Update 2026-09-29 18:27 UTC: the WAF block lifted.** After being blocked
+since 2026-09-28 ~18:00 UTC (confirmed still blocked at the 19:59 run), the
+next scheduled run went through clean — every catalog rendered normally
+(no 212-byte pages), 3 catalogs harvested, 1,761 new price-history rows.
+Exactly one clean run so far, not the "clean stretch of days" the backfill
+recommendation below was waiting on — don't treat this as fully resolved
+yet, just as the first good sign. Watch the next few scheduled runs before
+revisiting the backfill decision.
+
 **Blocked or known broken**
-- **Musick's AWS WAF has been blocking us** since about 18:00 UTC on
-  2026-09-28 (still blocked at the 19:59 run, the most recent run as of
-  2026-09-29). Engineering log: "Bot protection". **No scheduled run has
-  landed since** — today's 13:00 UTC slot hadn't fired as of this check;
-  consistent with GitHub's known delay, not a new signal either way.
 - **Valuation is effectively off.** eBay is dead from CI, and there's no
   `ANTHROPIC_API_KEY` (the owner's choice), so **every lot has a null
   estimate and no deal can ever be flagged.** Session E (pricing from our
@@ -67,10 +71,10 @@ reconstruct it. Update it at the end of every session.*
 - **The bulk backfill is on hold** (next-sessions item 2).
 
 **Check the next scheduled run first** (Actions → "Auction Watch", "Harvest
-closed-lot prices" step). If the index line shows a real byte count and
-catalogs harvested (catalog 920 closed 2026-09-28 23:07 UTC, so it should
-be first), the block has lifted. If it shows `BLOCKED`, wait another day.
-Don't probe to find out.
+closed-lot prices" step) before touching the backfill decision. Confirm
+the last 2-3 runs stayed clean (real byte counts, catalogs harvested, no
+`BLOCKED`) before treating the WAF block as resolved. Don't probe Musick
+directly to find out.
 
 **Next sessions, in order** (items 0–2 need the owner's PC)
 0. **Set up Claude Code on the PC.** Install it, open this repo, and it
@@ -81,16 +85,17 @@ Don't probe to find out.
    `docs/AUCTION-MONITORING.md`'s ToS section. Verdict: **no policy bars
    this** — the WAF block is purely a technical rate limit, not a
    statement of policy.
-2. **Backfill decision: hold, don't run yet — recommend option (b).** ToS
-   is clear, but the WAF is **still actively blocking** as of the last run
-   (2026-09-28 19:59). Running a bulk backfill into an active block risks
-   the owner's home IP — the one used to actually bid — getting blocked
-   from the site entirely, which is a worse outcome than slower history
-   growth. **Recommendation: let the daily harvest build history forward
-   (option b)** until there's been a clean, unblocked stretch of at least a
-   few days; THESIS H1 becomes forward-looking only in the meantime, which
-   is a real but bounded cost. Revisit backfill once runs are clean again —
-   at that point run `python scripts/price_history.py --backfill`
+2. **Backfill decision: still hold — recommend option (b), reassess soon.**
+   ToS is clear. The WAF block **lifted as of the 2026-09-29 18:27 UTC
+   run** (see "block lifted" note above), but that's one clean run, not
+   the multi-day clean stretch this recommendation was waiting on.
+   Running a bulk backfill too early, right after a block, risks the
+   owner's home IP — the one used to actually bid — getting blocked from
+   the site entirely, which is a worse outcome than slower history growth.
+   **Recommendation: watch 2-3 more scheduled runs first.** If they're
+   all clean, the backfill decision (option a vs b) is worth revisiting
+   then. THESIS H1 stays forward-looking only until it's actually run.
+   When ready, run `python scripts/price_history.py --backfill`
    (estimate only, no `--yes`) to size it before committing. **The size
    estimate runs about 25% low:** it assumes 259 bytes per row, real rows
    average 320.
