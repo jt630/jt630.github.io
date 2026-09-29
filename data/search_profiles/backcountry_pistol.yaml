@@ -1,0 +1,53 @@
+# Search profile: the WHY behind the pistol_backcountry watchlist group.
+# Source: the owner's conversation with an AI assistant, 2026-09-28, pasted
+# into /refine-search. The watchlist holds only the compiled keywords; this
+# file keeps the reasoning (purpose, threats, weight and value priorities)
+# so a future refinement starts from intent, not just a keyword list. It is
+# also exactly the "worth to me" context THESIS.md H7 is about.
+#
+# Not read by any code yet. price_ceiling_used is informational until
+# Session P ("worth to me") gives personal max prices a real home.
+
+source: "AI conversation, 2026-09-28"
+compiled_into_watchlist: [pistol_backcountry, handguns_other]
+
+user_profile:
+  purpose: Backpacking / Trail Defense
+  primary_threats: [Humans, Wolves]
+  secondary_threats: ["Bears (Deterrence/Warning Shots)"]
+  priority_metrics:
+    - "Lightweight (Preferably under 1.5 lbs loaded)"
+    - "Value / Economical cost-per-ounce"
+
+search_parameters:
+  primary_targets:
+    - manufacturer: "Sig Sauer"
+      model: "P365"
+      variations: ["Standard", "XL"]
+      caliber: "9mm Luger"
+      key_benefit: "High capacity per ounce, excellent rust resistance"
+    - manufacturer: "Ruger"
+      model: "EC9s"
+      caliber: "9mm Luger"
+      key_benefit: "Maximum weight-to-dollar budget value"
+      price_ceiling_used: 130.00  # passed at $130 once FFL/shipping fees were added
+    - manufacturer: "Springfield Armory"
+      model: "Hellcat"
+      caliber: "9mm Luger"
+      key_benefit: "High capacity micro-compact alternate"
+  secondary_targets_alternative_class:
+    - manufacturer: "Glock"
+      model: "G29"
+      caliber: "10mm Auto"
+      key_benefit: "True apex predator defense if upgrading from 9mm"
+    - manufacturer: "Smith & Wesson"
+      model: "M&P340"
+      caliber: ".357 Magnum"
+      key_benefit: "Ultralight weight tier revolver backup"
+
+ammunition_notes:
+  preferred_types:
+    - "Jacketed Hollow Point (JHP) for primary threats"
+    - "Standard Pressure (Avoid constant +P to reduce gun wear)"
+  woods_alternative:
+    - "Solid Monolithic Copper (e.g., Underwood Xtreme Penetrator)"
