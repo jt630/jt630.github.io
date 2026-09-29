@@ -280,8 +280,28 @@ but we can't tell unsold from withdrawn, since the page is simply gone.
 that was observed live (in `auction_lots.yaml`) but never appears in its
 closed catalog can be recorded as `price_kind: "vanished"` with its last
 observed bid. That's a lower bound, never a close. It needs the live fetch
-to cover whole catalogs near close, not just page 1. Not built: see
-PRICE-DISCOVERY.md.
+to cover whole catalogs near close, not just page 1.
+
+**Built 2026-09-29 (Session B2), not yet run against live markup.**
+`scripts/live_seen.py` finds catalogs closing within 48h (reusing the same
+`/auctions/?alf1=4` index page price_history.py already renders - it mixes
+in not-yet-closed `status: "1"` rows, see section A above), pages through
+each one (`?items=100&page=N`, same pattern as the closed-catalog harvest),
+and records every still-live lot to `research/price_history/_live_seen.jsonl`.
+`price_history.py`'s `harvest_catalog()` then compares a closed catalog's
+actual lot_ids against what was last seen live for it and appends a
+`price_kind: "vanished"` row for anything missing - only when the harvest
+itself was complete (a partial harvest's lot_id set isn't trustworthy to
+diff against). 26 new offline unit tests, all passing against real
+fixtures (the 920 open-catalog page, the closed-index page). **Not yet
+verified against a real live-narrowing catalog** - written without
+Playwright available locally, same caveat every other Musick-facing script
+had before its first real run. Wired into the workflow as its own
+continue-on-error step; dispatch manually with `debug_html: true` first.
+**Still open:** probe one lot seen live and then vanished (item 3 in
+PRICE-DISCOVERY.md's Session B2 checklist) to confirm the 404 pattern
+holds across more than one lot - needs a real lot to actually close first,
+so it's a wait-and-check task, not done here.
 
 ## Close-price history
 

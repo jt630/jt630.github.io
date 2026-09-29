@@ -78,6 +78,7 @@ import yaml
 
 from musick_render import BLOCK_NOTE, looks_blocked  # noqa: E402
 from auction_finder import (  # noqa: E402
+    _MUSICK_LOT_CURBID_RE as LOT_CURBID_RE,
     _MUSICK_LOT_NUM_RE as LOT_NUM_RE,
     _MUSICK_LOT_NUMBIDS_RE as LOT_NUMBIDS_RE,
     _MUSICK_LOT_SPLIT_RE as LOT_SPLIT_RE,
@@ -96,6 +97,7 @@ DATA_DIR = os.path.join(_HERE, "..", "data")
 PRICE_HISTORY_DIR = os.path.join(_HERE, "..", "research", "price_history")
 STATE_PATH = os.path.join(PRICE_HISTORY_DIR, "_harvested.json")
 VALUATIONS_PATH = os.path.join(DATA_DIR, "my_valuations.yaml")
+LIVE_SEEN_PATH = os.path.join(PRICE_HISTORY_DIR, "_live_seen.jsonl")
 
 MUSICK_CLOSED_INDEX = "https://bid.musickauction.com/auctions/?alf1=4"
 MUSICK_CATALOG_URL = "https://bid.musickauction.com/auctions/catalog/id/{catalog_id}"
@@ -228,6 +230,142 @@ def parse_closed_lots(page, catalog_id):
             )
         out.append(row)
     return out
+
+
+def parse_live_lots(page, catalog_id):
+    """Session B2 (PRICE-DISCOVERY.md): parse every STILL-LIVE lot (an
+    empty item-status - the inverse of parse_closed_lots' filter) out of a
+    rendered Musick catalog page, for _live_seen.jsonl. Same markup, same
+    split/title/lot-number/bid-count/lot-id regexes as a closed catalog -
+    CONFIRMED the data-lid/data-aid section ids are present on an OPEN
+    catalog page too (musick_catalog_920_open.html fixture). A lot with no
+    bids yet (LOT_CURBID_RE doesn't match) is still recorded, with
+    last_bid: None - a bid count of zero is real information, not a
+    parse failure."""
+    out = []
+    for chunk in LOT_SPLIT_RE.split(page)[1:]:
+        title_m = LOT_TITLE_RE.search(chunk)
+        status_m = _STATUS_RE.search(chunk)
+        if not title_m:
+            continue
+        if status_m and status_m.group(1) and status_m.group(1).strip().startswith("ended"):
+            continue  # already concluded - parse_closed_lots' job, not this one
+
+        ids_m = _SECTION_IDS_RE.search(chunk)
+        lot_id = int(ids_m.group(1)) if ids_m else None
+        if lot_id is None:
+            continue
+
+        title = html.unescape(title_m.group(1)).strip()
+        if not title:
+            continue
+        num_m = LOT_NUM_RE.search(chunk)
+        bids_m = LOT_NUMBIDS_RE.search(chunk)
+        bid_m = LOT_CURBID_RE.search(chunk)
+
+        out.append({
+            "lot_id": lot_id,
+            "catalog_id": int(catalog_id),
+            "lot_no": num_m.group(1) if num_m else None,
+            "title": title,
+            "last_bid": _money(bid_m.group(1)) if bid_m else None,
+            "num_bids": int(bids_m.group(1)) if bids_m else None,
+        })
+    return out
+
+
+def append_live_seen(rows, observed_at, live_seen_path=None):
+    """Append one line per row to _live_seen.jsonl - a plain observation
+    log, NOT deduped like the close-history month files. Every run that
+    covers a catalog appends a fresh snapshot; a reader (find_vanished_lots)
+    takes the latest observed_at per (catalog_id, lot_id). Returns the
+    count written."""
+    if not rows:
+        return 0
+    path = live_seen_path or LIVE_SEEN_PATH
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with io.open(path, "a", encoding="utf-8") as f:
+        for r in rows:
+            line = {
+                "platform": "musick",
+                "catalog_id": r["catalog_id"],
+                "lot_id": r["lot_id"],
+                "lot_no": r.get("lot_no"),
+                "title": r.get("title"),
+                "last_bid": r.get("last_bid"),
+                "num_bids": r.get("num_bids"),
+                "observed_at": observed_at,
+            }
+            f.write(json.dumps(line, separators=(",", ":")) + "\n")
+    return len(rows)
+
+
+def load_live_seen(catalog_id, live_seen_path=None):
+    """Latest observation per lot_id for one catalog from _live_seen.jsonl.
+    Missing file (nothing ever observed live near this catalog's close, or
+    Session B2's live-fetch step hasn't run yet) returns {}, not an error -
+    this is best-effort recovery, never a hard dependency."""
+    path = live_seen_path or LIVE_SEEN_PATH
+    latest = {}
+    if not os.path.exists(path):
+        return latest
+    with io.open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if row.get("catalog_id") != catalog_id:
+                continue
+            lot_id = row.get("lot_id")
+            existing = latest.get(lot_id)
+            if existing is None or row.get("observed_at", "") >= existing.get("observed_at", ""):
+                latest[lot_id] = row
+    return latest
+
+
+def build_vanished_row(seen, catalog_closed_at, observed_at):
+    """A lot observed live (via _live_seen.jsonl) but absent from its
+    closed catalog's concluded-lot pages: recorded as a lower bound, never
+    a close (see docs/AUCTION-MONITORING.md's "Unsold lots disappear after
+    close"). Same base schema as build_row(), so a reader of the month
+    files doesn't need a different code path to get platform/catalog_id/
+    lot_id/title/category out of a row - just price_kind: "vanished" and
+    price: null instead of a real close, plus last_seen_bid/last_seen_at
+    in place of the num_bids-at-close this lot never reached."""
+    lot = {"title": seen["title"]}
+    return {
+        "platform": "musick",
+        "catalog_id": seen["catalog_id"],
+        "lot_id": seen["lot_id"],
+        "lot_no": seen.get("lot_no"),
+        "title": seen["title"],
+        "category": guess_category(lot),
+        "price_kind": "vanished",
+        "price": None,
+        "catalog_closed_at": catalog_closed_at,
+        "observed_at": observed_at,
+        "last_seen_bid": seen.get("last_bid"),
+        "last_seen_num_bids": seen.get("num_bids"),
+        "last_seen_at": seen.get("observed_at"),
+    }
+
+
+def find_vanished_lots(catalog_id, closed_lot_ids, catalog_closed_at, observed_at, live_seen_path=None):
+    """Rows for every lot seen live in this catalog (via _live_seen.jsonl)
+    that never showed up among its closed-catalog lot_ids. `closed_lot_ids`
+    is whatever parse_closed_lots() actually found for this catalog run -
+    pass the real set, not an assumption."""
+    seen_by_lot = load_live_seen(catalog_id, live_seen_path)
+    vanished = [
+        build_vanished_row(seen, catalog_closed_at, observed_at)
+        for lot_id, seen in seen_by_lot.items()
+        if lot_id not in closed_lot_ids
+    ]
+    return vanished
 
 
 _valuations_cache = None
@@ -396,7 +534,7 @@ def mark_harvested(state, catalog_id, end_date_iso, lots, state_path=None):
 
 
 def harvest_catalog(catalog_id, end_date_iso, all_notes, render=None, price_history_dir=None,
-                    run_state=None):
+                    run_state=None, live_seen_path=None):
     """Render `catalog_id`'s closed catalog page, paged `?items=100&page=N`
     until a page yields zero concluded lots (confirmed honored on a real
     closed catalog - see docs/AUCTION-MONITORING.md), parse every concluded
@@ -492,10 +630,26 @@ def harvest_catalog(catalog_id, end_date_iso, all_notes, render=None, price_hist
         complete = False
 
     rows = [build_row(p, end_date_iso, observed_at) for p in parsed_rows]
+
+    # Session B2: only trust vanished-lot detection against a COMPLETE
+    # harvest - an incomplete one's closed_lot_ids is a partial set, so
+    # comparing against it would false-positive every lot on the
+    # unharvested pages as "vanished" when it may simply not be harvested
+    # yet.
+    vanished_count = 0
+    if complete:
+        closed_lot_ids = {p["lot_id"] for p in parsed_rows}
+        vanished_rows = find_vanished_lots(
+            int(catalog_id), closed_lot_ids, end_date_iso, observed_at,
+            live_seen_path=live_seen_path,
+        )
+        vanished_count = len(vanished_rows)
+        rows.extend(vanished_rows)
+
     appended = append_rows(rows, price_history_dir)
     all_notes.append(
-        f"[price-history] catalog {catalog_id}: {len(rows)} concluded lot(s) "
-        f"parsed, {appended} new row(s) appended"
+        f"[price-history] catalog {catalog_id}: {len(parsed_rows)} concluded lot(s) "
+        f"parsed, {vanished_count} vanished lot(s) recovered, {appended} new row(s) appended"
         + ("" if complete else " (INCOMPLETE - not marked harvested)")
     )
     return rows, appended, complete
@@ -518,7 +672,8 @@ def _closed_candidates(index_rows, now=None):
     return out
 
 
-def daily_harvest(all_notes=None, price_history_dir=None, state_path=None, render_index=None):
+def daily_harvest(all_notes=None, price_history_dir=None, state_path=None, render_index=None,
+                   live_seen_path=None):
     """CI daily run (Decision 1): render the closed-catalogs index page 1,
     and page 2 too if every closed catalog found on page 1 is already new
     (not yet in the state file) - a sign there may be more backlog past
@@ -585,7 +740,7 @@ def daily_harvest(all_notes=None, price_history_dir=None, state_path=None, rende
         attempted += 1
         rows, appended, complete = harvest_catalog(
             cid, end_iso, all_notes, price_history_dir=price_history_dir,
-            run_state=run_state,
+            run_state=run_state, live_seen_path=live_seen_path,
         )
         total_appended += appended
         if complete:
