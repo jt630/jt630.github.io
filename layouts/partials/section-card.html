@@ -1,0 +1,5 @@
+<a href="{{ .url }}" class="section-card{{ with .tone }} tone-{{ . }}{{ end }}">
+  {{ with .icon }}<span class="card-icon">{{ . | safeHTML }}</span>{{ end }}
+  <h3>{{ .title }}</h3>
+  <p>{{ .blurb }}</p>
+</a>

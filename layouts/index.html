@@ -10,16 +10,39 @@
     <h2 class="group-label">{{ .Name }}</h2>
     <div class="section-cards">
       {{ range .Children }}
-      <a href="{{ .URL }}" class="section-card tone-{{ .Params.tone }}">
-        <span class="card-icon">{{ .Params.icon | safeHTML }}</span>
-        <h3>{{ .Params.title | default .Name }}</h3>
-        <p>{{ .Params.blurb }}</p>
-      </a>
+        {{ partial "section-card.html" (dict
+          "url" .URL
+          "title" (.Params.title | default .Name)
+          "blurb" .Params.blurb
+          "icon" .Params.icon
+          "tone" .Params.tone
+        ) }}
       {{ end }}
     </div>
   </div>
   {{ end }}
 </div>
+
+{{ $hubs := where .Site.RegularPages "Section" "hubs" }}
+{{ if $hubs }}
+<section class="section-group connections-strip">
+  <h2 class="group-label">Connections</h2>
+  <div class="section-cards">
+    {{ range $hubs.ByTitle }}
+      {{ partial "section-card.html" (dict
+        "url" .RelPermalink
+        "title" .Title
+        "blurb" .Description
+      ) }}
+    {{ end }}
+    {{ partial "section-card.html" (dict
+      "url" "/hubs/"
+      "title" "See all"
+      "blurb" "Every hub, one place"
+    ) }}
+  </div>
+</section>
+{{ end }}
 
 {{ $recent := where .Site.RegularPages "Section" "ne" "" }}
 

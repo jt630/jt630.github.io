@@ -457,6 +457,30 @@ img {
   flex: 1;
 }
 
+/* Hub back-link — rendered once in baseof.html above every page's main
+   block, so it sits outside .page-wrap and needs its own width. */
+.hub-backlink {
+  max-width: 960px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.hub-backlink a {
+  display: inline-block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+  padding-bottom: 2px;
+}
+
+.hub-backlink a:hover {
+  color: var(--pink);
+  border-color: var(--pink);
+}
+
 /* Page header */
 .page-header {
   margin-bottom: 2.5rem;

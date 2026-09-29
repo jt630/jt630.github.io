@@ -1,0 +1,12 @@
+{{- /* Returns the tone param of the menu.main leaf whose URL matches the
+       given RelPermalink, or "" if the page isn't a menu item. Lets hub
+       member cards match their section's homepage color without hub
+       front matter duplicating the tone. */ -}}
+{{- $target := . -}}
+{{- $tone := "" -}}
+{{- range site.Menus.main -}}
+  {{- range .Children -}}
+    {{- if eq .URL $target -}}{{- $tone = .Params.tone -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $tone -}}
