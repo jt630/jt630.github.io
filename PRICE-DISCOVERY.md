@@ -15,50 +15,91 @@ read before any session that touches this scaling-up work.
 
 ---
 
-## ▶ Where we are / next session (handoff, updated 2026-09-28)
+## ▶ Where we are / next session (handoff, updated 2026-09-28 late)
 
 *Read this first. It's the state of play, so a new session doesn't have to
 reconstruct it. Update it at the end of every session.*
 
 **Live and working**
-- Daily pipeline (GitHub Actions, 13:00 UTC): live lots → close-price
-  harvest → valuation → **test gate** → commit → deploy.
+- Daily pipeline (GitHub Actions, 13:00 UTC; GitHub often runs it hours
+  late): live lots → close-price harvest → valuation → **test gate** →
+  commit → deploy.
+- **Block handling (PR #141):** the first blocked page load stops all Musick
+  requests for the run, a blocked run **never rewrites** the live lots
+  file, and the harvester logs its index byte count and runs slowly (5s
+  between page loads, at most 3 catalogs a day). eBay stops after its first
+  403.
 - `research/price_history/`: **2,638 real closing prices** from 5 sales
-  (911, 913, 914, 915, 917). All `close`, no duplicates, spot-checked
-  against live pages. (Not in `data/`: Hugo can't load .jsonl, and that
-  broke the site once. `scripts/tests/test_hugo_data_formats.py` now guards
-  against it.)
+  (911, 913, 914, 915, 917), spot-checked against live pages. (Not in
+  `data/`: Hugo can't load .jsonl, and that broke the site once. A test now
+  guards against it.)
+- `/auctions/`: the **18:00 UTC 2026-09-28 snapshot** (47 lots, catalogs
+  920/921/916), restored by PR #142 after a blocked run wiped the page.
+  Bids are stale until a run gets through.
 - `THESIS.md`: pre-registered hypotheses H1–H7, with a dated notebook.
 
 **Blocked or known broken**
-- **Musick's AWS WAF blocked a production run** after a heavy day of
-  probing (engineering log: "Bot protection"). PR #141 adds back-off and
-  circuit breakers. Merge it before relying on the daily run again.
-- **eBay comps are dead from CI** (403 and challenge pages). Not fixable by
-  parsing, and not evaded by policy.
+- **Musick's AWS WAF has been blocking us** since about 18:00 UTC on
+  2026-09-28 (still blocked at the 19:59 run). Engineering log: "Bot
+  protection".
+- **Valuation is effectively off.** eBay is dead from CI, and there's no
+  `ANTHROPIC_API_KEY` (the owner's choice), so **every lot has a null
+  estimate and no deal can ever be flagged.** Session E (pricing from our
+  own close history) is the real fix. It's the only valuation source that
+  isn't blocked or paid.
 - **The history is sales-only.** Unsold lots are deleted after close
-  (survivorship bias; engineering log and THESIS notebook).
-- **The bulk backfill is on hold** (see next).
+  (survivorship). Session B2 fixes it going forward.
+- **The bulk backfill is on hold** (next-sessions item 2).
+- **VINs are collected but never checked** (Session V). Two candidates are
+  already suspect: see Session V.
 
-**Next sessions, in order** (the first two need the owner's PC)
+**Check the next scheduled run first** (Actions → "Auction Watch", "Harvest
+closed-lot prices" step). If the index line shows a real byte count and
+catalogs harvested (catalog 920 closed 2026-09-28 23:07 UTC, so it should
+be first), the block has lifted. If it shows `BLOCKED`, wait another day.
+Don't probe to find out.
+
+**Next sessions, in order** (items 0–2 need the owner's PC)
+0. **Set up Claude Code on the PC.** Install it, open this repo, and it
+   reads `CLAUDE.md`, which points here. Then run the first commands below.
 1. **Read Musick's Terms of Service** (musickauction.com and
    bid.musickauction.com). Record what it says about automated access in
    the engineering log's ToS section. If it bars automated access, stop
    collecting from Musick; that's a non-negotiable, and the thesis would
    need another source.
-2. **Decide on the backfill, given the WAF.** Options: (a) a very slow
-   resumable backfill, about one catalog every 10+ minutes, spread over
-   days, stopping on the first block; (b) no backfill, letting the daily
-   harvest build history forward (THESIS H1 then becomes forward-looking
-   only). Run `python scripts/price_history.py --backfill` (estimate only,
-   no `--yes`) to see how far back the index goes, since that decides
-   whether H1 even has a "before" period worth the risk.
-3. **Session B2** (record vanished lots) is the only way to fix the
-   survivorship bias going forward. It's offline code, so cloud is fine.
-4. **Session D** (history page + calibration) once about 2 weeks of daily
-   closes exist.
-5. Bid-history experiment (THESIS H6), only after 1 and 2 settle what
-   volume is acceptable.
+2. **Decide on the backfill, given the WAF.** (a) a very slow resumable
+   backfill, about one catalog every 10+ minutes over days, stopping on the
+   first block; or (b) no backfill, so the daily harvest builds history
+   forward (THESIS H1 then becomes forward-looking only). First run
+   `python scripts/price_history.py --backfill` (estimate only, no `--yes`)
+   to see how far back the index goes. **The size estimate runs about 25%
+   low:** it assumes 259 bytes per row, and real rows average 320.
+3. **Session V: VIN checks.** Free NHTSA data, no Musick load. Good for the
+   PC, since the cloud sandbox can't reach NHTSA.
+4. **Session B2: record vanished lots.** Offline code; cloud is fine.
+5. **Session E: first-party comps**, as soon as any item type has 30+
+   closes, because it's the only way valuation comes back.
+6. **Session D: history page + calibration**, after about 2 weeks of closes.
+7. **Session P: "worth to me" field** (THESIS H7). Small and offline.
+   `data/search_profiles/` (from `/refine-search`, PR #144) already holds
+   the first real "worth to me" context: the backpacking-pistol profile,
+   with a price ceiling. Build P on top of that shape.
+7b. **Refine the jewelry watchlist group with `/refine-search`** (quick,
+   offline, needs the owner's taste calls). It matches **0 of 2,384** real
+   titles because it requires the exact phrase "yellow gold", which no
+   listing uses. Fine jewelry is written "14K Yellow Gold", "18K White
+   Gold", etc. A karat-based draft (10k/14k/18k/22k/24k, excluding
+   gold-tone/plated/filled/costume) was tested 2026-09-28. It found **no
+   real fine jewelry** in the closed history (those sales' jewelry was
+   costume lots), plus noise: "BD-10K" (a trailer brake drum part number),
+   "24K Gold Trim" decor, and Idaho **Goldback** currency notes. Owner
+   decides: (a) does white gold count, or yellow only? (b) are Goldbacks
+   wanted (→ Old Coins?) (c) do "10k"-style part numbers need a
+   jewelry-context word, like `"14k gold"`? Validate against live
+   snapshots over the next weeks as fine jewelry comes through (catalog 922
+   had 18K opal and platinum coral rings live on 2026-09-28).
+8. **Session H: bid-history experiment** (THESIS H6), only once items 1 and
+   2 settle what request volume is acceptable.
 
 **First commands on the owner's PC**
 ```bash
@@ -70,12 +111,28 @@ python scripts/probe.py https://bid.musickauction.com/auctions/catalog/id/914
 #   ~200-byte block page. If it's blocked, stop and wait a day.
 ```
 
+**Changing what gets watched:** use `/refine-search` (PR #144). It tests
+draft keywords against every real title before editing
+`data/auction_watchlist.yaml`, and saves the reasoning in
+`data/search_profiles/`.
+
 **Collection etiquette (applies to every session from now on)**
 - Probe from the PC (`scripts/probe.py`), **a handful of pages per session**,
   never loops.
 - Use the workflow's `probe_url` only to confirm CI behaviour, at most one
   or two a day.
 - On any sign of a block: stop for the day. Never retry around it.
+
+**Housekeeping backlog (not urgent)**
+- `guess_category()` puts **72% of harvested lots in "Other"** (e.g. a 2005
+  Freightliner M2). That's fine for the thesis, which uses normalized-title
+  item types, but bad for any page grouped by category. Widen the keywords
+  using real titles from `research/price_history/`.
+- The public `debug/auction-html` branch still holds raw page dumps from
+  the cloud-sandbox probing era. Delete it once local probing is routine.
+- The cloud environment's network policy blocks `vpic.nhtsa.dot.gov` and
+  `api.nhtsa.gov`. Add them to its allowed domains if VIN work should ever
+  run from cloud sessions; GitHub Actions and the PC can already reach them.
 
 ---
 
@@ -639,6 +696,79 @@ never show up in their closed catalog.
       `last_seen_at`. Never a close.
 - [ ] Probe one lot seen live and then vanished, to confirm the 404 pattern
       holds across more than one lot.
+
+### Session V: VIN checks (free NHTSA data, no Musick load)
+
+**Why:** 18 vehicles in the 2026-09-28 snapshot have VINs, and 10 pass the
+candidate filter (under 150k miles, clean title). Nothing checks them. An
+offline pass that day (VIN check digit plus model-year code) found two
+suspect **candidates**:
+- **1996 Toyota Tacoma, 4TANL42N8TZ179445, listed at 51 miles.** On a
+  30-year-old truck, that's almost certainly an odometer rollover or unknown
+  true mileage. It's a "candidate" only because 51 < 150,000, which is a
+  hole in our own filter.
+- **Dodge Ram 3500 listed as 1998, 3B7MF33W5VM550364.** The VIN's year code
+  `V` means model year **1997**. It may be a registration-year difference,
+  but check the title, because model year affects parts and value.
+All other check digits were valid and year codes matched.
+
+- [ ] `scripts/vin_check.py`, with a check-digit and model-year-code
+      validator (offline, pure function, unit-tested). The logic already
+      used above: transliteration table, weights `8765432X098765432`, and
+      the year code at position 10.
+- [ ] NHTSA vPIC decode
+      (`https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/{VIN}?format=json`,
+      free, no key, official public API). Compare decoded year, make and
+      model (plus engine and trim for context) against the listing, and flag
+      any mismatch. **A mismatch is the strongest red flag we can compute
+      for free.**
+- [ ] Recalls and complaints by make/model/year
+      (`https://api.nhtsa.gov/recalls/recallsByVehicle?...`,
+      `.../complaints/complaintsByVehicle?...`): counts plus the top few
+      recall summaries.
+- [ ] Plausibility flags: mileage under 1,000 on a vehicle more than 5 years
+      old means "odometer suspect", and the lot is **not** a candidate
+      (unknown stays unknown). Very high miles per year gets flagged too.
+- [ ] Cache per VIN **forever** (`data/.cache/vin_{VIN}.json`). A VIN's
+      facts never change, per Decision 6: key on the item, not the bid.
+- [ ] Run for watchlist vehicles only, after the detail enrichment step,
+      with polite pacing. Show a small ✓/⚠ with details on each vehicle row.
+- [ ] Doesn't replace a paid Carfax/AutoCheck history (accidents, owners).
+      It shortens the list worth paying for.
+
+**Where:** the owner's PC or GitHub Actions. The cloud sandbox's network
+policy blocks both NHTSA hosts.
+
+### Session P: "worth to me": record personal valuations (THESIS H7)
+
+**Why:** H7 needs a personal valuation recorded **before** the close, to
+compare against the market price. Nothing records one today.
+- [ ] `data/my_valuations.yaml`: per lot (platform plus lot_id), `my_max`,
+      `why` (free text: repair cost, use value, resale plan), `who` (owner,
+      grandpa), and `recorded_at`. Hand-edited, or through a simple
+      `scripts/value_it.py LOT_URL MAX "why"` helper.
+- [ ] The harvester joins these to closes, and the history rows get
+      `my_max` where one exists (plus a `we_bid` flag, for THESIS's observer
+      effect).
+- [ ] Never back-filled after the close: a valuation recorded after the
+      price is known is contaminated.
+
+### Session H: bid-history experiment (THESIS H6)
+
+**Gate:** only after the ToS read and the backfill decision set an
+acceptable request budget. Every bid-history page is one more page load.
+- [ ] Sampling design first, written into THESIS.md before any fetch:
+      watchlist lots plus a small random stratified sample per sale, capped
+      at N pages per day.
+- [ ] Parse `.../bidding-history/id/{catalog}/lot/{lot}` (verified: a
+      two-column table of time and amount, newest first, **no bidder
+      identities**, timestamps with **no year**, so borrow it from the
+      catalog's `end_date` and handle sales that span New Year).
+- [ ] Store bid trails in `research/bid_history/`. Never store identities,
+      even if the site starts exposing them.
+- [ ] Measures from THESIS H6: share of price movement in the final 10% of
+      the auction's duration, and share of bids with snipe-like timing,
+      over time.
 
 ### Not scheduled (and why)
 
