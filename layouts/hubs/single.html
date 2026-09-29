@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="subtitle">{{ . }}</p>{{ end }}
+  </div>
+  {{ with .Content }}
+    <div style="margin-bottom: 2rem;">{{ . }}</div>
+  {{ end }}
+
+  <div class="section-cards">
+    {{ range .Params.members }}
+      {{ $path := .path }}
+      {{ $member := site.GetPage $path }}
+      {{ if not $member }}
+        {{ errorf "hub %q: member path %q in front matter does not resolve to a page" $.File.Path $path }}
+      {{ else }}
+        {{ $tone := partial "menu-tone.html" $member.RelPermalink }}
+        {{ partial "section-card.html" (dict
+          "url" $member.RelPermalink
+          "title" $member.Title
+          "blurb" (.note | default $member.Description)
+          "tone" $tone
+        ) }}
+      {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

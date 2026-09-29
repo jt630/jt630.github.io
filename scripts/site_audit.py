@@ -39,6 +39,12 @@ SPEC_DOCS = [
     "docs/RECREATION-API.md",
 ]
 
+# Sections that are intentionally outside the main menu — linked from
+# somewhere else on purpose (e.g. hubs/ is reachable via the homepage
+# Connections strip, not the nav) — so a missing menu entry there isn't
+# drift and shouldn't be flagged as an orphan.
+NON_MENU_SECTIONS = {"hubs"}
+
 
 def load_menu():
     with open(ROOT / "hugo.toml", "rb") as f:
@@ -229,7 +235,7 @@ def build_table():
         spec_docs = find_spec_doc(url, name)
         inbound = count_inbound_links(url)
 
-        if not in_menu and not has_card:
+        if not in_menu and not has_card and url not in NON_MENU_SECTIONS:
             orphans.append(url)
 
         rows.append(

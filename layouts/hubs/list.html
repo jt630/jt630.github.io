@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="page-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="subtitle">{{ . }}</p>{{ end }}
+  </div>
+  {{ with .Content }}
+    <div style="margin-bottom: 2rem;">{{ . }}</div>
+  {{ end }}
+
+  <div class="section-cards">
+    {{ range .Pages.ByTitle }}
+      {{ partial "section-card.html" (dict
+        "url" .RelPermalink
+        "title" .Title
+        "blurb" .Description
+      ) }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

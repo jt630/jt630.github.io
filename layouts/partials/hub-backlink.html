@@ -1,0 +1,15 @@
+{{- /* Renders "Part of X" above the page when the current page is a
+       member of a hub — derived from the hub's own front matter, never
+       hand-written on the member page. Included once in baseof.html. */ -}}
+{{- $cur := . -}}
+{{- range where site.RegularPages "Section" "hubs" -}}
+  {{- $hub := . -}}
+  {{- range $hub.Params.members -}}
+    {{- $member := site.GetPage .path -}}
+    {{- if $member -}}
+      {{- if eq $member.RelPermalink $cur.RelPermalink -}}
+<div class="hub-backlink"><a href="{{ $hub.RelPermalink }}">&larr; Part of {{ $hub.Title }}</a></div>
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
