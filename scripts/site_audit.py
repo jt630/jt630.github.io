@@ -41,9 +41,10 @@ SPEC_DOCS = [
 
 # Sections that are intentionally outside the main menu — linked from
 # somewhere else on purpose (e.g. hubs/ is reachable via the homepage
-# Connections strip, not the nav) — so a missing menu entry there isn't
-# drift and shouldn't be flagged as an orphan.
-NON_MENU_SECTIONS = {"hubs"}
+# Connections strip, not the nav; about is reachable via the footer
+# contributor links) — so a missing menu entry there isn't drift and
+# shouldn't be flagged as an orphan.
+NON_MENU_SECTIONS = {"hubs", "about"}
 
 
 def load_menu():
