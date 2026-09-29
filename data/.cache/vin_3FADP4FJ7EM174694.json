@@ -1,0 +1,21 @@
+{
+  "nhtsa_decode": {
+    "engine": "4",
+    "error_code": "0",
+    "error_text": "0 - VIN decoded clean. Check Digit (9th position) is correct",
+    "make": "FORD",
+    "model": "Fiesta",
+    "trim": "Titanium",
+    "year": "2014"
+  },
+  "recalls": {
+    "complaint_count": 502,
+    "recall_count": 7,
+    "recall_summaries": [
+      "Ford Motor Company (Ford) is recalling certain 2014 Escape, 2014-2015 Fiesta ST, 2013-2014 Fusion and 2013-2015 Transit Connect vehicles equipped with 1.6L GTDI engines.  If the vehicle is started and",
+      "Ford Motor Company (Ford) is recalling certain 2014 Ford Fiesta, 2013-2014 Ford Fusion and 2013-2014 Lincoln MKZ vehicles.  A component within the door latches may break making the doors difficult to ",
+      "Ford Motor Company (Ford) notified the agency on April 23, 2015, that they are recalling certain model year 2013-2014 Ford Fusion and Lincoln MKZ vehicles manufactured July 1, 2012, to May 31, 2013, a"
+    ]
+  },
+  "recalls_fetched_at": 1790704086.5144517
+}

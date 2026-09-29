@@ -1,0 +1,21 @@
+{
+  "nhtsa_decode": {
+    "engine": "6",
+    "error_code": "0",
+    "error_text": "0 - VIN decoded clean. Check Digit (9th position) is correct",
+    "make": "FORD",
+    "model": "F-150",
+    "trim": "SuperCab",
+    "year": "2017"
+  },
+  "recalls": {
+    "complaint_count": 56,
+    "recall_count": 18,
+    "recall_summaries": [
+      "Ford Motor Company (Ford) is recalling certain 2015-2019 Ford F-150 and 2017-2019 Ford F-250 Super Duty, F-350 Super Duty, F-450 Super Duty, and F-550 Super Duty pick-up trucks equipped with an engine",
+      "Ford Motor Company (Ford) is recalling certain 2015-2019 Ford F-150 and 2017-2019 Ford F-250 Super Duty, F-350 Super Duty, F-450 Super Duty, and F-550 Super Duty pick-up trucks equipped with an engine",
+      "Ford Motor Company (Ford) is recalling certain 2015-2018 Ford F-150 Regular Cab and SuperCrew Cab vehicles.  If a front seat belt pretensioner deploys as the result of a crash, the sparks may ignite m"
+    ]
+  },
+  "recalls_fetched_at": 1790704137.5630589
+}

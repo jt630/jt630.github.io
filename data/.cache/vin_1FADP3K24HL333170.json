@@ -1,0 +1,21 @@
+{
+  "nhtsa_decode": {
+    "engine": "4",
+    "error_code": "0",
+    "error_text": "0 - VIN decoded clean. Check Digit (9th position) is correct",
+    "make": "FORD",
+    "model": "Focus",
+    "trim": "SE",
+    "year": "2017"
+  },
+  "recalls": {
+    "complaint_count": 903,
+    "recall_count": 10,
+    "recall_summaries": [
+      "Ford Motor Company (Ford) is recalling certain 2012-2018 Ford Focus vehicles with a 2.0L GDI or 2.0L GTDI engine.  The Canister Purge Valve (CPV) may malfunction, possibly causing excessive vacuum in ",
+      "Ford Motor Company (Ford) is recalling certain 2012 and 2017 Focus vehicles equipped with 2.0L GDI gasoline engines and 2013-2014 Focus ST vehicles equipped with 2.0L GTDI engines, previously recalled",
+      "Ford Motor Company (Ford) is recalling certain 2016-2018 Ford Focus vehicles equipped with a 1.0L Fox GTDI engine and a 6-speed manual transmission.  The clutch may fracture, resulting in damage to th"
+    ]
+  },
+  "recalls_fetched_at": 1790704069.5540066
+}

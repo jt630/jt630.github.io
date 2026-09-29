@@ -1,0 +1,19 @@
+{
+  "nhtsa_decode": {
+    "engine": null,
+    "error_code": "0",
+    "error_text": "0 - VIN decoded clean. Check Digit (9th position) is correct",
+    "make": "KIA",
+    "model": "Sportage",
+    "trim": "KM",
+    "year": "2006"
+  },
+  "recalls": {
+    "complaint_count": 111,
+    "recall_count": 1,
+    "recall_summaries": [
+      "HUYNDAI-KIA IS RECALLING 139,844 MY 2006-2007- SEDONA, SPORTAGE, SORENTO AND MY RONDO AND AMANTI VEHICLES.  THE STOP LAMP SWITCH IN THE AFFECTED VEHICLES MAY MALFUNCTION.  A MALFUNCTIONING STOP LAMP S"
+    ]
+  },
+  "recalls_fetched_at": 1790704145.9537647
+}
