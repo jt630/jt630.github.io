@@ -335,6 +335,28 @@ drop `"musick"` from `PLATFORMS` rather than working around the block.
 **Update 2026-09-28: it happened.** See "Bot protection: Musick is behind AWS
 WAF" below. Reading the ToS is now the first task of the next session.
 
+**Update 2026-09-29: read.** Checked both domains directly:
+- `musickauction.com` has **no Terms of Service or Terms of Use page.**
+  Confirmed via the full sitemap (`page-sitemap.xml`, 52 URLs) — the only
+  legal document is a Privacy Policy (`/privacy-policy/`, read in full), which
+  says nothing about automated access, scraping, bots, or crawlers.
+- `robots.txt` on **both** domains explicitly permits crawling:
+  `musickauction.com` → `Disallow:` (empty), `Crawl-delay: 10`.
+  `bid.musickauction.com` (the platform we actually scrape) → `Disallow:
+  /language` only, `Crawl-delay: 5`. Both `robots.txt` files served normally
+  even while the rest of `bid.musickauction.com` was WAF-blocked, confirming
+  the block is a bot-protection heuristic, not a policy statement.
+- Could not reach a bidder agreement, if one exists — it would be gated
+  behind account registration on `bid.musickauction.com`, which is the same
+  WAF wall currently blocking the pipeline. Not probed further (no-workaround
+  rule).
+
+**Verdict: no published policy bars this.** The site's own `robots.txt`
+allows a faster cadence than the pipeline's current block-handling posture
+(5s between renders). This doesn't touch the WAF's active block — that's
+still a technical rate limit, not resolved by this finding — but it clears
+the policy question that was gating the backfill decision.
+
 ## Bot protection: Musick is behind AWS WAF, and pushed back (2026-09-28)
 
 Every Playwright render of `bid.musickauction.com` calls out to AWS WAF's

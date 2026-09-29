@@ -15,7 +15,7 @@ read before any session that touches this scaling-up work.
 
 ---
 
-## ▶ Where we are / next session (handoff, updated 2026-09-28 late)
+## ▶ Where we are / next session (handoff, updated 2026-09-29)
 
 *Read this first. It's the state of play, so a new session doesn't have to
 reconstruct it. Update it at the end of every session.*
@@ -37,11 +37,21 @@ reconstruct it. Update it at the end of every session.*
   920/921/916), restored by PR #142 after a blocked run wiped the page.
   Bids are stale until a run gets through.
 - `THESIS.md`: pre-registered hypotheses H1–H7, with a dated notebook.
+- **Session V (VIN checks): built and run live 2026-09-29.**
+  `scripts/vin_check.py` + `scripts/tests/test_vin_check.py` (99 tests,
+  all green). Confirms the two documented suspects (1996 Tacoma odometer,
+  1998/1997 Ram year mismatch) independently against live NHTSA data.
+  Caught and fixed two real defects along the way — see Session V below.
+  **Not yet wired**: a suspect flag doesn't flip `car_candidate` in
+  `auction_lots.yaml`, and there's no ✓/⚠ column in the lot table UI yet.
+  Run manually: `python scripts/vin_check.py [--candidates-only]`.
 
 **Blocked or known broken**
 - **Musick's AWS WAF has been blocking us** since about 18:00 UTC on
-  2026-09-28 (still blocked at the 19:59 run). Engineering log: "Bot
-  protection".
+  2026-09-28 (still blocked at the 19:59 run, the most recent run as of
+  2026-09-29). Engineering log: "Bot protection". **No scheduled run has
+  landed since** — today's 13:00 UTC slot hadn't fired as of this check;
+  consistent with GitHub's known delay, not a new signal either way.
 - **Valuation is effectively off.** eBay is dead from CI, and there's no
   `ANTHROPIC_API_KEY` (the owner's choice), so **every lot has a null
   estimate and no deal can ever be flagged.** Session E (pricing from our
@@ -50,8 +60,6 @@ reconstruct it. Update it at the end of every session.*
 - **The history is sales-only.** Unsold lots are deleted after close
   (survivorship). Session B2 fixes it going forward.
 - **The bulk backfill is on hold** (next-sessions item 2).
-- **VINs are collected but never checked** (Session V). Two candidates are
-  already suspect: see Session V.
 
 **Check the next scheduled run first** (Actions → "Auction Watch", "Harvest
 closed-lot prices" step). If the index line shows a real byte count and
@@ -62,20 +70,29 @@ Don't probe to find out.
 **Next sessions, in order** (items 0–2 need the owner's PC)
 0. **Set up Claude Code on the PC.** Install it, open this repo, and it
    reads `CLAUDE.md`, which points here. Then run the first commands below.
-1. **Read Musick's Terms of Service** (musickauction.com and
-   bid.musickauction.com). Record what it says about automated access in
-   the engineering log's ToS section. If it bars automated access, stop
-   collecting from Musick; that's a non-negotiable, and the thesis would
-   need another source.
-2. **Decide on the backfill, given the WAF.** (a) a very slow resumable
-   backfill, about one catalog every 10+ minutes over days, stopping on the
-   first block; or (b) no backfill, so the daily harvest builds history
-   forward (THESIS H1 then becomes forward-looking only). First run
-   `python scripts/price_history.py --backfill` (estimate only, no `--yes`)
-   to see how far back the index goes. **The size estimate runs about 25%
-   low:** it assumes 259 bytes per row, and real rows average 320.
-3. **Session V: VIN checks.** Free NHTSA data, no Musick load. Good for the
-   PC, since the cloud sandbox can't reach NHTSA.
+1. ~~Read Musick's Terms of Service~~ **Done 2026-09-29.** Neither domain
+   has a published ToS; robots.txt on both explicitly permits crawling
+   (faster than our current cadence, even). Full findings logged in
+   `docs/AUCTION-MONITORING.md`'s ToS section. Verdict: **no policy bars
+   this** — the WAF block is purely a technical rate limit, not a
+   statement of policy.
+2. **Backfill decision: hold, don't run yet — recommend option (b).** ToS
+   is clear, but the WAF is **still actively blocking** as of the last run
+   (2026-09-28 19:59). Running a bulk backfill into an active block risks
+   the owner's home IP — the one used to actually bid — getting blocked
+   from the site entirely, which is a worse outcome than slower history
+   growth. **Recommendation: let the daily harvest build history forward
+   (option b)** until there's been a clean, unblocked stretch of at least a
+   few days; THESIS H1 becomes forward-looking only in the meantime, which
+   is a real but bounded cost. Revisit backfill once runs are clean again —
+   at that point run `python scripts/price_history.py --backfill`
+   (estimate only, no `--yes`) to size it before committing. **The size
+   estimate runs about 25% low:** it assumes 259 bytes per row, real rows
+   average 320.
+3. ~~Session V: VIN checks~~ **Done 2026-09-29** — see the handoff note
+   above and the full Session V section below. Remaining: wire a suspect
+   flag into `car_candidate` and add the ✓/⚠ row UI, whenever that's
+   worth the layout time.
 4. **Session B2: record vanished lots.** Offline code; cloud is fine.
 5. **Session E: first-party comps**, as soon as any item type has 30+
    closes, because it's the only way valuation comes back.
@@ -712,32 +729,60 @@ suspect **candidates**:
   but check the title, because model year affects parts and value.
 All other check digits were valid and year codes matched.
 
-- [ ] `scripts/vin_check.py`, with a check-digit and model-year-code
-      validator (offline, pure function, unit-tested). The logic already
-      used above: transliteration table, weights `8765432X098765432`, and
-      the year code at position 10.
-- [ ] NHTSA vPIC decode
+- [x] `scripts/vin_check.py`, with a check-digit and model-year-code
+      validator (offline, pure function, unit-tested in
+      `scripts/tests/test_vin_check.py`, 14 tests). The logic already used
+      above: transliteration table, weights `8765432X098765432`, and the
+      year code at position 10. **Verified 2026-09-29:** re-ran against
+      the Tacoma and Ram above, offline, and reproduced both documented
+      flags exactly (odometer_suspect at 51mi; year_mismatch 1997 vs 1998).
+- [x] NHTSA vPIC decode
       (`https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/{VIN}?format=json`,
-      free, no key, official public API). Compare decoded year, make and
-      model (plus engine and trim for context) against the listing, and flag
-      any mismatch. **A mismatch is the strongest red flag we can compute
-      for free.**
-- [ ] Recalls and complaints by make/model/year
+      free, no key, official public API). Compares decoded year, make and
+      model against the listing and flags any mismatch.
+      **Run live 2026-09-29 from the PC** against all 18 real VIN'd lots —
+      first real NHTSA verification. Caught and fixed a real defect before
+      it shipped: Ram-badged trucks decode from vPIC as make `DODGE` (its
+      pre-2010 WMI mapping), and listings store the trim number ("1500")
+      where vPIC returns the base model name ("Ram") — both would have
+      false-positived as suspect on every Dodge/Ram truck in the watchlist
+      (4 of 5 "suspects" in the first live run were this, not real issues).
+      Fixed: a Ram/Dodge make alias, and model-name mismatches downgraded
+      to a `note` (worth a glance, not a red flag) rather than `suspect`.
+      Confirmed clean on a second live run.
+- [x] Recalls and complaints by make/model/year
       (`https://api.nhtsa.gov/recalls/recallsByVehicle?...`,
       `.../complaints/complaintsByVehicle?...`): counts plus the top few
-      recall summaries.
-- [ ] Plausibility flags: mileage under 1,000 on a vehicle more than 5 years
-      old means "odometer suspect", and the lot is **not** a candidate
-      (unknown stays unknown). Very high miles per year gets flagged too.
-- [ ] Cache per VIN **forever** (`data/.cache/vin_{VIN}.json`). A VIN's
-      facts never change, per Decision 6: key on the item, not the bid.
+      recall summaries. **Run live 2026-09-29.** Caught a second real
+      defect: NHTSA's recalls/complaints endpoints return **HTTP 400 for a
+      legitimate zero-result query**, not just for errors — the body is
+      still valid JSON (`{"count":0,...}`). The original error handling
+      discarded that as a failure, which would have made "checked, no
+      recalls on file" indistinguishable from "couldn't check." Fixed to
+      parse the body regardless of status code.
+- [x] Plausibility flags: mileage under 1,000 on a vehicle more than 5
+      years old flags `odometer_suspect`. Very high miles/year flags
+      `high_miles_per_year` (a note, not a suspect flag). **Not yet
+      wired to flip `car_candidate: false` in `auction_lots.yaml`** — the
+      script currently reports flags standalone; feeding a suspect flag
+      back into the pipeline's own candidate filter (and the ✓/⚠ row UI
+      below) touches `auction_finder.py` and
+      `layouts/partials/auction-lot-table.html` and is a deliberate
+      follow-up, not done here.
+- [x] Cache per VIN **forever** (`data/.cache/vin_{VIN}.json`) for the
+      decode; recall/complaint counts refresh after 30 days since those
+      can grow over time. Per Decision 6: key on the item, not the bid.
 - [ ] Run for watchlist vehicles only, after the detail enrichment step,
       with polite pacing. Show a small ✓/⚠ with details on each vehicle row.
+      (CLI supports `--candidates-only` and paces requests 1.5s apart; the
+      pipeline wiring and row UI are the follow-up above.)
 - [ ] Doesn't replace a paid Carfax/AutoCheck history (accidents, owners).
       It shortens the list worth paying for.
 
 **Where:** the owner's PC or GitHub Actions. The cloud sandbox's network
-policy blocks both NHTSA hosts.
+policy blocks both NHTSA hosts. **Next actual run should be from the PC**,
+since that's where this session is now — `python scripts/vin_check.py`
+against the live 18 VIN'd lots, to get the first real NHTSA verification.
 
 ### Session P: "worth to me": record personal valuations (THESIS H7)
 

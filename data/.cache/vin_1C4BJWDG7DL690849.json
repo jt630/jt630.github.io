@@ -1,0 +1,21 @@
+{
+  "nhtsa_decode": {
+    "engine": "6",
+    "error_code": "0",
+    "error_text": "0 - VIN decoded clean. Check Digit (9th position) is correct",
+    "make": "JEEP",
+    "model": "Wrangler",
+    "trim": "Sport",
+    "year": "2013"
+  },
+  "recalls": {
+    "complaint_count": 653,
+    "recall_count": 7,
+    "recall_summaries": [
+      "Chrysler (FCA US LLC) is recalling certain 2010 Dodge Ram 3500, Ram 4500/5500, 2010-2011 Dodge Dakota, 2010-2014 Dodge Challenger, 2010-2015 Dodge Challenger, Chrysler 300, and 2010-2016 Jeep Wrangler",
+      "Chrysler (FCA US LLC) is recalling certain 2011-2018 Jeep Wrangler right hand drive vehicles.  The driver's seat belt buckle mounting strap may fracture and separate from the seat frame.",
+      "Chrysler (FCA US LLC) is recalling certain 2009-2013 Jeep Wrangler, Chrysler 300, Dodge Challenger and Dodge Charger vehicles, and 2009-2011 Dodge Dakota vehicles sold, or ever registered, in the stat"
+    ]
+  },
+  "recalls_fetched_at": 1790704112.5071764
+}

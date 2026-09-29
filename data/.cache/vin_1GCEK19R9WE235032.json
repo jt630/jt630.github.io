@@ -1,0 +1,17 @@
+{
+  "nhtsa_decode": {
+    "engine": "8",
+    "error_code": "0",
+    "error_text": "0 - VIN decoded clean. Check Digit (9th position) is correct",
+    "make": "CHEVROLET",
+    "model": "GMT-400",
+    "trim": null,
+    "year": "1998"
+  },
+  "recalls": {
+    "complaint_count": 4,
+    "recall_count": 0,
+    "recall_summaries": []
+  },
+  "recalls_fetched_at": 1790704073.664281
+}

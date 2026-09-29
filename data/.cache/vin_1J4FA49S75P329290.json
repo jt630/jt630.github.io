@@ -1,0 +1,20 @@
+{
+  "nhtsa_decode": {
+    "engine": "6",
+    "error_code": "0",
+    "error_text": "0 - VIN decoded clean. Check Digit (9th position) is correct",
+    "make": "JEEP",
+    "model": "Wrangler",
+    "trim": "Sport",
+    "year": "2005"
+  },
+  "recalls": {
+    "complaint_count": 650,
+    "recall_count": 2,
+    "recall_summaries": [
+      "CERTAIN AFTERMARKET BRAKE HYDRAULIC MASTER CYLINDERS SOLD AS REPLACEMENT BRAKE CYLINDERS FOR CERTAIN FORD, DAIMLERCHRYSLER, AND JEEP PASSENGER VEHICLES.  THESE BRAKE CYLINDERS WERE SOLD UNDER THE BRAN",
+      "ON CERTAIN PICKUP TRUCKS, SPORT UTILITY AND PASSENGER VEHICLES EQUIPPED WITH 42RLE AUTOMATIC TRANSMISSIONS, THE CUP PLUG THAT RETAINS THE PARK PAWL ANCHOR SHAFT MAY BE IMPROPERLY INSTALLED.  IF THE SH"
+    ]
+  },
+  "recalls_fetched_at": 1790704117.133983
+}
