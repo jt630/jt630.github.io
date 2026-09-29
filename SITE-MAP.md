@@ -46,31 +46,6 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 - layouts/coasters/analysis-list.html vs layouts/coasters/analysis/list.html
 - layouts/coasters/analysis-single.html vs layouts/coasters/analysis/single.html
 
-**Data files nothing in layouts/ or content/ references:**
-- `data/robots/organs/brain_check_in.yaml`
-- `data/robots/organs/brain_evening_routine.yaml`
-- `data/robots/organs/brain_intent_queue.yaml`
-- `data/robots/organs/brain_medication_reminder.yaml`
-- `data/robots/organs/brain_memory.yaml`
-- `data/robots/organs/brain_morning_routine.yaml`
-- `data/robots/organs/brain_planner.yaml`
-- `data/robots/organs/core_battery.yaml`
-- `data/robots/organs/core_power_bus.yaml`
-- `data/robots/organs/core_safety_monitor.yaml`
-- `data/robots/organs/guts_filament_tank.yaml`
-- `data/robots/organs/guts_waste_bay.yaml`
-- `data/robots/organs/guts_water_tank.yaml`
-- `data/robots/organs/hand_fine_tip.yaml`
-- `data/robots/organs/hand_paw_grip.yaml`
-- `data/robots/organs/hand_pincer.yaml`
-- `data/robots/organs/leg_wheel.yaml`
-- `data/robots/organs/skin_mic.yaml`
-- `data/robots/organs/skin_sensor_array.yaml`
-- `data/robots/organs/skin_speaker.yaml`
-- `data/robots/organs/skin_spill_cleanup.yaml`
-- `data/robots/organs/thigh_joint.yaml`
-- `data/robots/organs/thigh_power_route.yaml`
-
 **Menu/card mismatches:** 0
 
 <!-- SITE_AUDIT:END -->
@@ -85,10 +60,12 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 - ~~`content/news.md` has no menu item and no homepage card~~ — resolved
   by PR-D: it's now a member of the Live Data hub, reachable from
   `/hubs/live-data/` and the homepage Connections strip.
-- `data/robots/organs/*.yaml` (23 files) has no detected reader anywhere
-  in layouts/, content/, scripts/, docs/, or the slash commands — this is
-  the Goddard robot-planning subsystem's spec-ahead-of-build files, not
-  Almond Farm site drift; left alone here.
+- ~~`data/robots/organs/*.yaml` (23 files) has no detected reader
+  anywhere~~ — resolved: `find_unread_data_files()` now treats a
+  directory reference like `data/robots/organs/` (present in
+  `scripts/validate_organs.py`'s docstring and throughout `docs/goddard/`)
+  as reading every file under that directory, not just literal per-file
+  path/filename mentions. Unread count dropped from 23 → 0 on this run.
 - Correction, since PR-A first ran this audit: `data/recipes/staples.yaml`,
   `data/pantry_inventory.yaml`, `data/shopping_log.yaml`, and
   `data/my_valuations.yaml` were wrongly cleared as "read" by PR-A's first

@@ -153,7 +153,12 @@ def find_unread_data_files():
     3. Mention by filename+extension (e.g. "arm_fetch_object.yaml") in
        that same set plus content/ — looser than #2 (no directory
        prefix required) but still requires the extension, which is
-       specific enough to avoid #1's prose-collision problem."""
+       specific enough to avoid #1's prose-collision problem.
+    4. Directory access — a script or doc that references the file's
+       containing data/ directory (e.g. "data/robots/organs/", including
+       as a glob prefix like "data/robots/organs/*.yaml") is treated as
+       reading every file under it, since scripts commonly walk a whole
+       directory rather than naming each member file."""
     data_dir = ROOT / "data"
     template_haystack = ""
     for p in list((ROOT / "layouts").rglob("*.html")) + list(
@@ -194,7 +199,9 @@ def find_unread_data_files():
         combined = template_haystack + repo_haystack
         read_by_path = str(rel).replace("\\", "/") in repo_haystack
         read_by_filename = p.name in combined
-        if not (read_by_template or read_by_path or read_by_filename):
+        dir_rel = str(rel.parent).replace("\\", "/")
+        read_by_dir = dir_rel != "." and f"data/{dir_rel}/" in combined
+        if not (read_by_template or read_by_path or read_by_filename or read_by_dir):
             unread.append(str(rel).replace("\\", "/"))
     return sorted(unread)
 
