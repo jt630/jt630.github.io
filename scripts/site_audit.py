@@ -137,24 +137,88 @@ def find_dead_layout_dupes():
 
 
 def find_unread_data_files():
-    """Data files whose basename (no extension) never appears in
-    layouts/ or content/ — a rough but cheap dead-data check."""
+    """Data files with no detectable reader, checked three ways:
+
+    1. Hugo template access — `Data.<name>` in layouts/ or content/. Strict
+       on purpose: an earlier version matched a bare substring/word on the
+       name and was fooled by unrelated prose ("cooking/ recipes that go
+       off" in layouts/brain/list.html falsely cleared
+       data/recipes/staples.yaml, which no template actually loads).
+    2. Script/doc access — the file's path relative to data/ appearing in
+       scripts/, docs/, .claude/commands/, root-level *.md, or the GitHub
+       Actions workflows. Several data files exist only to feed a Python
+       script, a slash command, or a design doc, not a Hugo template, and
+       are legitimately "read" that way.
+    3. Mention by filename+extension (e.g. "arm_fetch_object.yaml") in
+       that same set plus content/ — looser than #2 (no directory
+       prefix required) but still requires the extension, which is
+       specific enough to avoid #1's prose-collision problem."""
     data_dir = ROOT / "data"
-    haystack = ""
+    template_haystack = ""
     for p in list((ROOT / "layouts").rglob("*.html")) + list(
         (ROOT / "content").rglob("*.md")
     ):
-        haystack += p.read_text(encoding="utf-8", errors="ignore")
+        template_haystack += p.read_text(encoding="utf-8", errors="ignore")
+
+    repo_haystack = ""
+    self_exclude = {Path(__file__).resolve(), (ROOT / "SITE-MAP.md").resolve()}
+    for p in (
+        list((ROOT / "scripts").rglob("*.py"))
+        + list((ROOT / "docs").rglob("*.md"))
+        + list((ROOT / "docs").rglob("*.yaml"))
+        + list(ROOT.glob("*.md"))
+        + list((ROOT / ".github" / "workflows").glob("*.yml"))
+        + list((ROOT / ".claude" / "commands").glob("*.md"))
+    ):
+        if p.resolve() in self_exclude:
+            # this script's own docstrings quote example paths, and
+            # SITE-MAP.md is generated output — without this exclusion,
+            # a file this function flags "unread" gets its path printed
+            # into SITE-MAP.md, which the *next* run then reads back as
+            # a reference and un-flags, oscillating run to run.
+            continue
+        repo_haystack += p.read_text(encoding="utf-8", errors="ignore")
 
     unread = []
     for p in data_dir.rglob("*.yaml"):
         rel = p.relative_to(data_dir)
         # a nested file is usually addressed by its parent dir name
-        # (e.g. data/dinger_palooza/members.yaml -> "dinger_palooza")
+        # (e.g. data/dinger_palooza/members.yaml -> Data.dinger_palooza)
         needle = rel.parts[0].replace(".yaml", "")
-        if needle not in haystack and p.stem not in haystack:
+        candidates = {needle, p.stem}  # parent-dir namespace, or own leaf name
+        read_by_template = any(
+            re.search(r"Data\." + re.escape(c) + r"\b", template_haystack)
+            for c in candidates
+        )
+        combined = template_haystack + repo_haystack
+        read_by_path = str(rel).replace("\\", "/") in repo_haystack
+        read_by_filename = p.name in combined
+        if not (read_by_template or read_by_path or read_by_filename):
             unread.append(str(rel).replace("\\", "/"))
     return sorted(unread)
+
+
+def load_hub_member_urls():
+    """URLs that are members of a hub — reachable via the Connections
+    strip + hub page even without a menu entry or homepage card, so the
+    orphan check shouldn't flag them. Parses front matter directly
+    rather than importing Hugo, since this is a one-off read at audit
+    time, not a render."""
+    import yaml
+
+    urls = set()
+    hubs_dir = ROOT / "content" / "hubs"
+    if not hubs_dir.exists():
+        return urls
+    for p in hubs_dir.glob("*.md"):
+        text = p.read_text(encoding="utf-8", errors="ignore")
+        if not text.startswith("---"):
+            continue
+        front_matter = text.split("---", 2)[1]
+        data = yaml.safe_load(front_matter) or {}
+        for member in data.get("members", []):
+            urls.add(member["path"].strip("/"))
+    return urls
 
 
 def count_inbound_links(url):
@@ -209,6 +273,7 @@ def build_table():
     cards = load_cards()
     sections, loose_files = content_sections()
     dirs, page_overrides = layout_dirs()
+    hub_member_urls = load_hub_member_urls()
 
     menu_urls = {m["url"] for m in menu}
     if cards is None:
@@ -235,7 +300,12 @@ def build_table():
         spec_docs = find_spec_doc(url, name)
         inbound = count_inbound_links(url)
 
-        if not in_menu and not has_card and url not in NON_MENU_SECTIONS:
+        if (
+            not in_menu
+            and not has_card
+            and url not in NON_MENU_SECTIONS
+            and url not in hub_member_urls
+        ):
             orphans.append(url)
 
         rows.append(

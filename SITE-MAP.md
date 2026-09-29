@@ -10,51 +10,69 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 
 | Section | URL | Menu? | Card? | Layout? | Tags? | Spec doc | Inbound links |
 |---|---|---|---|---|---|---|---|
-| about | `/about/` | — | — | — | — | PRICE-DISCOVERY.md, THESIS.md, GODDARD.md, docs/AUCTION-MONITORING.md | 95 |
-| APIs | `/apis/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, MARKETS.md | 95 |
-| Art | `/art/` | ✔ | ✔ | — | — | MONKEYS.md | 95 |
-| Auction Watch | `/auctions/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, docs/AUCTION-MONITORING.md | 96 |
-| Backpacking | `/backpacking/` | ✔ | ✔ | — | ✔ | docs/RECREATION-API.md | 99 |
-| Beer Sheet | `/beer-sheet/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 95 |
-| Blog | `/blog/` | ✔ | ✔ | ✔ | ✔ | CUNTY-THEME-GUIDE.md | 100 |
-| Body | `/body/` | ✔ | ✔ | — | — | MONKEYS.md, PRICE-DISCOVERY.md, CUNTY-THEME-GUIDE.md, GODDARD.md, docs/AUCTION-MONITORING.md | 95 |
-| Books | `/books/` | ✔ | ✔ | — | — | CUNTY-THEME-GUIDE.md, BEER_SHEET.md, MARKETS.md | 95 |
-| Brain Lab | `/brain/` | ✔ | ✔ | ✔ | — | GODDARD.md | 99 |
-| Calendar | `/calendar/` | ✔ | ✔ | ✔ | — | THESIS.md, BEER_SHEET.md, docs/RECREATION-API.md | 95 |
-| Car Hunt | `/cars/` | ✔ | ✔ | ✔ | — | — | 95 |
-| Coasters | `/coasters/` | ✔ | ✔ | ✔ | — | — | 95 |
-| Cooking | `/cooking/` | ✔ | ✔ | — | ✔ | CUNTY-THEME-GUIDE.md | 99 |
-| Dingers | `/dinger-palooza/` | ✔ | ✔ | ✔ | — | DINGER_PALOOZA.md | 102 |
-| Drinks | `/drinks/` | ✔ | ✔ | ✔ | — | — | 95 |
-| Farming | `/farming/` | ✔ | ✔ | — | ✔ | — | 96 |
-| The Forester | `/forester/` | ✔ | ✔ | ✔ | — | — | 95 |
-| Gadgets | `/gadgets/` | ✔ | ✔ | — | ✔ | — | 96 |
-| Gallery | `/gallery/` | ✔ | ✔ | — | — | — | 95 |
-| Gaming | `/gaming/` | ✔ | ✔ | — | — | — | 95 |
-| Garage | `/garage/` | ✔ | ✔ | ✔ | — | — | 95 |
-| Grandpa's Shop | `/grandpas-shop/` | ✔ | ✔ | ✔ | — | docs/AUCTION-MONITORING.md | 96 |
+| about | `/about/` | — | — | — | — | PRICE-DISCOVERY.md, THESIS.md, GODDARD.md, docs/AUCTION-MONITORING.md | 97 |
+| APIs | `/apis/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, MARKETS.md | 97 |
+| Art | `/art/` | ✔ | ✔ | — | — | MONKEYS.md | 97 |
+| Auction Watch | `/auctions/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, docs/AUCTION-MONITORING.md | 98 |
+| Backpacking | `/backpacking/` | ✔ | ✔ | — | ✔ | docs/RECREATION-API.md | 101 |
+| Beer Sheet | `/beer-sheet/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 97 |
+| Blog | `/blog/` | ✔ | ✔ | ✔ | ✔ | CUNTY-THEME-GUIDE.md | 102 |
+| Body | `/body/` | ✔ | ✔ | — | — | MONKEYS.md, PRICE-DISCOVERY.md, CUNTY-THEME-GUIDE.md, GODDARD.md, docs/AUCTION-MONITORING.md | 97 |
+| Books | `/books/` | ✔ | ✔ | — | — | CUNTY-THEME-GUIDE.md, BEER_SHEET.md, MARKETS.md | 97 |
+| Brain Lab | `/brain/` | ✔ | ✔ | ✔ | — | GODDARD.md | 101 |
+| Calendar | `/calendar/` | ✔ | ✔ | ✔ | — | THESIS.md, BEER_SHEET.md, docs/RECREATION-API.md | 97 |
+| Car Hunt | `/cars/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Coasters | `/coasters/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Cooking | `/cooking/` | ✔ | ✔ | — | ✔ | CUNTY-THEME-GUIDE.md | 101 |
+| Dingers | `/dinger-palooza/` | ✔ | ✔ | ✔ | — | DINGER_PALOOZA.md | 104 |
+| Drinks | `/drinks/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Farming | `/farming/` | ✔ | ✔ | — | ✔ | — | 98 |
+| The Forester | `/forester/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Gadgets | `/gadgets/` | ✔ | ✔ | — | ✔ | — | 98 |
+| Gallery | `/gallery/` | ✔ | ✔ | — | — | — | 97 |
+| Gaming | `/gaming/` | ✔ | ✔ | — | — | — | 97 |
+| Garage | `/garage/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Grandpa's Shop | `/grandpas-shop/` | ✔ | ✔ | ✔ | — | docs/AUCTION-MONITORING.md | 98 |
 | hubs | `/hubs/` | — | — | ✔ | — | — | 0 |
-| Markets | `/markets/` | ✔ | ✔ | ✔ | — | THESIS.md, MARKETS.md | 95 |
-| Monkeys | `/monkeys/` | ✔ | ✔ | ✔ | — | MONKEYS.md, PRICE-DISCOVERY.md, MARKETS.md | 95 |
-| Movies | `/movies/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 95 |
-| Music | `/music/` | ✔ | ✔ | — | — | PRICE-DISCOVERY.md, CUNTY-THEME-GUIDE.md, MARKETS.md | 95 |
+| Markets | `/markets/` | ✔ | ✔ | ✔ | — | THESIS.md, MARKETS.md | 97 |
+| Monkeys | `/monkeys/` | ✔ | ✔ | ✔ | — | MONKEYS.md, PRICE-DISCOVERY.md, MARKETS.md | 97 |
+| Movies | `/movies/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 97 |
+| Music | `/music/` | ✔ | ✔ | — | — | PRICE-DISCOVERY.md, CUNTY-THEME-GUIDE.md, MARKETS.md | 97 |
 | news | `/news/` | — | — | ✔ | — | — | 0 |
-| Public Health | `/public-health/` | ✔ | ✔ | ✔ | — | — | 95 |
-| Videos | `/videos/` | ✔ | ✔ | ✔ | — | — | 95 |
+| Public Health | `/public-health/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Videos | `/videos/` | ✔ | ✔ | ✔ | — | — | 97 |
 
 **Orphan sections (no menu entry, no homepage card):**
 - `/about/`
-- `/news/`
 
 **Possible dead layout duplicates (lookup-order conflict):**
 - layouts/coasters/analysis-list.html vs layouts/coasters/analysis/list.html
 - layouts/coasters/analysis-single.html vs layouts/coasters/analysis/single.html
 
 **Data files nothing in layouts/ or content/ references:**
-- `data/my_valuations.yaml`
-- `data/pantry_inventory.yaml`
-- `data/search_profiles/backcountry_pistol.yaml`
-- `data/shopping_log.yaml`
+- `data/robots/organs/brain_check_in.yaml`
+- `data/robots/organs/brain_evening_routine.yaml`
+- `data/robots/organs/brain_intent_queue.yaml`
+- `data/robots/organs/brain_medication_reminder.yaml`
+- `data/robots/organs/brain_memory.yaml`
+- `data/robots/organs/brain_morning_routine.yaml`
+- `data/robots/organs/brain_planner.yaml`
+- `data/robots/organs/core_battery.yaml`
+- `data/robots/organs/core_power_bus.yaml`
+- `data/robots/organs/core_safety_monitor.yaml`
+- `data/robots/organs/guts_filament_tank.yaml`
+- `data/robots/organs/guts_waste_bay.yaml`
+- `data/robots/organs/guts_water_tank.yaml`
+- `data/robots/organs/hand_fine_tip.yaml`
+- `data/robots/organs/hand_paw_grip.yaml`
+- `data/robots/organs/hand_pincer.yaml`
+- `data/robots/organs/leg_wheel.yaml`
+- `data/robots/organs/skin_mic.yaml`
+- `data/robots/organs/skin_sensor_array.yaml`
+- `data/robots/organs/skin_speaker.yaml`
+- `data/robots/organs/skin_spill_cleanup.yaml`
+- `data/robots/organs/thigh_joint.yaml`
+- `data/robots/organs/thigh_power_route.yaml`
 
 **Menu/card mismatches:** 0
 
@@ -62,8 +80,29 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 
 ## Known drift
 
-- `content/news.md` has no menu item and no homepage card (see Orphan
-  sections above).
+- `content/about.md` has no menu item and no homepage card, and isn't a
+  hub member either (see Orphan sections above) — it's reachable only via
+  the footer contributor links. Not touched by this remodel; flagging for
+  a future decision (menu entry, hub membership, or leave as footer-only).
+- ~~`content/news.md` has no menu item and no homepage card~~ — resolved
+  by PR-D: it's now a member of the Live Data hub, reachable from
+  `/hubs/live-data/` and the homepage Connections strip.
+- `data/robots/organs/*.yaml` (23 files) has no detected reader anywhere
+  in layouts/, content/, scripts/, docs/, or the slash commands — this is
+  the Goddard robot-planning subsystem's spec-ahead-of-build files, not
+  Almond Farm site drift; left alone here.
+- Correction, since PR-A first ran this audit: `data/recipes/staples.yaml`,
+  `data/pantry_inventory.yaml`, `data/shopping_log.yaml`, and
+  `data/my_valuations.yaml` were wrongly cleared as "read" by PR-A's first
+  version of `find_unread_data_files()` — it matched a bare substring on
+  the file's name, and got fooled by unrelated prose ("cooking/ recipes
+  that go off" in `layouts/brain/list.html` coincidentally contains
+  "recipes"). Fixed in PR-D to require the real Hugo `Data.<name>` access
+  idiom, or an exact path/filename mention in scripts, docs, or the
+  `.claude/commands/` slash commands that actually consume these files.
+  All four are genuinely read (three by `/scan-pantry` and `/scan-receipt`,
+  one by `scripts/value_it.py`) — the correction only fixes the audit's
+  reasoning, not the underlying facts.
 
 ## Grouping rationale
 
@@ -106,10 +145,24 @@ Hubs so far:
   (they're auto-updating auction feeds, not a personal timeline) and
   cross-link in prose instead — already the case before this PR
   (`content/auctions.md` ↔ `content/grandpas-shop.md`).
-- **Farm to Table** and **Live Data / Dashboards** — proposed in the
-  structure-remodel review, not yet built. Planned for PR-D.
+- **Farm to Table** (`/hubs/farm-to-table/`, PR-D) — Farming, Cooking,
+  Drinks. Thin on posts (farming has 2, cooking has 5) but strong on data
+  (`almond_lifecycle.yaml`, `seasons.yaml`, `recipes/staples.yaml`,
+  `cocktails.yaml`) — this hub is the throughline the menu doesn't show.
+- **Live Data** (`/hubs/live-data/`, PR-D) — Markets, APIs, Calendar,
+  News, Dinger Palooza, Beer Sheet, Auction Watch, Coasters' Analysis
+  section. The structure-remodel review's "strongest third hub" candidate:
+  every member auto-updates, which cuts across Build (Coasters) and the
+  Live Data *menu group* (which groups by topic, not update-frequency —
+  the two aren't the same axis, hence a hub instead of a menu merge).
+  Also closes out `/news/`'s orphan status (see Known drift).
 
-Cross-links added in prose (no hub, just a mutual link) this session:
-Dinger Palooza ↔ Beer Sheet, in each template's footer-note block (both
-are entirely data-rendered with no markdown body for a hub card or prose
-link to land in otherwise).
+The orphan check itself now knows about hub membership: a page with no
+menu entry and no homepage card is still not flagged if some hub lists it
+as a member (`load_hub_member_urls()` in `scripts/site_audit.py`, reading
+`content/hubs/*.md` front matter directly rather than importing Hugo).
+
+Cross-links added in prose (no hub, just a mutual link): Dinger Palooza ↔
+Beer Sheet (PR-C), in each template's footer-note block, since both are
+entirely data-rendered with no markdown body for a hub card or prose link
+to land in otherwise.
