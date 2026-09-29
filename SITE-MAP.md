@@ -42,9 +42,6 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 | Public Health | `/public-health/` | ✔ | ✔ | ✔ | — | — | 97 |
 | Videos | `/videos/` | ✔ | ✔ | ✔ | — | — | 97 |
 
-**Orphan sections (no menu entry, no homepage card):**
-- `/about/`
-
 **Possible dead layout duplicates (lookup-order conflict):**
 - layouts/coasters/analysis-list.html vs layouts/coasters/analysis/list.html
 - layouts/coasters/analysis-single.html vs layouts/coasters/analysis/single.html
@@ -80,10 +77,11 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 
 ## Known drift
 
-- `content/about.md` has no menu item and no homepage card, and isn't a
-  hub member either (see Orphan sections above) — it's reachable only via
-  the footer contributor links. Not touched by this remodel; flagging for
-  a future decision (menu entry, hub membership, or leave as footer-only).
+- `content/about.md` has no menu item, no homepage card, and isn't a hub
+  member — reachable only via the footer contributor links. Whitelisted
+  in `NON_MENU_SECTIONS` (not flagged as an orphan) since that's the
+  intended access path, not a gap. No menu/hub decision has been made;
+  revisit if that changes.
 - ~~`content/news.md` has no menu item and no homepage card~~ — resolved
   by PR-D: it's now a member of the Live Data hub, reachable from
   `/hubs/live-data/` and the homepage Connections strip.
