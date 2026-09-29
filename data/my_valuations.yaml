@@ -1,0 +1,11 @@
+# Session P (PRICE-DISCOVERY.md), THESIS.md H7: a personal valuation
+# recorded BEFORE a lot closes, to compare against the market price after.
+#
+# Written by scripts/value_it.py - don't hand-edit an existing entry's
+# my_max or why after the fact; that's exactly the contamination H7 exists
+# to prevent. Add a dated note instead if a valuation needs a correction.
+#
+# platform + lot_id is the join key scripts/price_history.py uses to
+# attach my_max (and we_bid) onto a lot's eventual close row.
+
+valuations: []

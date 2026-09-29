@@ -45,6 +45,11 @@ reconstruct it. Update it at the end of every session.*
   **Not yet wired**: a suspect flag doesn't flip `car_candidate` in
   `auction_lots.yaml`, and there's no ✓/⚠ column in the lot table UI yet.
   Run manually: `python scripts/vin_check.py [--candidates-only]`.
+- **Session P (worth-to-me valuations): built and run live 2026-09-29.**
+  `scripts/value_it.py` records a pre-close valuation, joined into close
+  rows by `price_history.py`'s `build_row()`. 117 tests total pass (30
+  new). See Session P below for the caveat found on non-vehicle lots.
+  Run: `python scripts/value_it.py LOT_URL MAX "why" [--who owner|grandpa]`.
 
 **Blocked or known broken**
 - **Musick's AWS WAF has been blocking us** since about 18:00 UTC on
@@ -97,10 +102,9 @@ Don't probe to find out.
 5. **Session E: first-party comps**, as soon as any item type has 30+
    closes, because it's the only way valuation comes back.
 6. **Session D: history page + calibration**, after about 2 weeks of closes.
-7. **Session P: "worth to me" field** (THESIS H7). Small and offline.
-   `data/search_profiles/` (from `/refine-search`, PR #144) already holds
-   the first real "worth to me" context: the backpacking-pistol profile,
-   with a price ceiling. Build P on top of that shape.
+7. ~~Session P: "worth to me" field~~ **Done 2026-09-29** — see the
+   handoff note above and the full Session P section below. Remaining: no
+   UI surfaces `my_max`/`we_bid` yet.
 7b. **Refine the jewelry watchlist group with `/refine-search`** (quick,
    offline, needs the owner's taste calls). It matches **0 of 2,384** real
    titles because it requires the exact phrase "yellow gold", which no
@@ -788,15 +792,40 @@ against the live 18 VIN'd lots, to get the first real NHTSA verification.
 
 **Why:** H7 needs a personal valuation recorded **before** the close, to
 compare against the market price. Nothing records one today.
-- [ ] `data/my_valuations.yaml`: per lot (platform plus lot_id), `my_max`,
+
+**Built and verified 2026-09-29.**
+- [x] `data/my_valuations.yaml`: per lot (platform plus lot_id), `my_max`,
       `why` (free text: repair cost, use value, resale plan), `who` (owner,
-      grandpa), and `recorded_at`. Hand-edited, or through a simple
-      `scripts/value_it.py LOT_URL MAX "why"` helper.
-- [ ] The harvester joins these to closes, and the history rows get
-      `my_max` where one exists (plus a `we_bid` flag, for THESIS's observer
-      effect).
-- [ ] Never back-filled after the close: a valuation recorded after the
-      price is known is contaminated.
+      grandpa), `we_bid`, and `recorded_at`. Written by
+      `scripts/value_it.py LOT_URL MAX "why" [--who owner|grandpa]` (never
+      hand-edit an existing entry — see the file's own header).
+      `scripts/value_it.py --mark-bid LOT_URL` sets `we_bid: true` on an
+      existing entry, for THESIS's observer-effect measure (did recording
+      a number change whether we actually bid?).
+- [x] The harvester joins these to closes: `price_history.py`'s
+      `build_row()` now takes an optional `valuations` dict and adds
+      `my_max`/`we_bid` to a close row when a (platform, lot_id) match
+      exists — omitted entirely otherwise, same convention as
+      `watchlist_matches`. `load_valuations()` reads and caches
+      `data/my_valuations.yaml`.
+- [x] Never back-filled after the close: `value_it.py` refuses to record
+      (or mark a bid on) a lot that's already closed, and refuses to
+      overwrite an existing valuation. **Caveat found during smoke
+      testing:** the close-time check only works for vehicle lots — most
+      categories (coins, jewelry, tools) don't carry an `auction_ends_at`
+      field at all. For those, the only guard is "still in the live
+      snapshot", which is valid (a closed lot vanishes from the next
+      day's fetch) but only as fresh as the last successful pipeline run
+      — currently stale, since Musick is still WAF-blocked. Documented in
+      `value_it.py`'s `_guard_not_closed()` docstring.
+- [x] 30 new offline unit tests (`scripts/tests/test_value_it.py`,
+      `ValuationsJoinTests` in `test_price_history.py`) — 117 total pass.
+      Smoke-tested live against the real `auction_lots.yaml` (via a
+      scratch copy, never touching the real `my_valuations.yaml`): record,
+      mark-bid, duplicate-refusal, and the ends_at-missing case all
+      behaved as designed.
+- [ ] Not yet done: no UI surfaces `my_max`/`we_bid` anywhere (the lot
+      table, a history page). Small follow-up once Session D exists.
 
 ### Session H: bid-history experiment (THESIS H6)
 
