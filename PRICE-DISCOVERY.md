@@ -50,6 +50,12 @@ reconstruct it. Update it at the end of every session.*
   rows by `price_history.py`'s `build_row()`. 117 tests total pass (30
   new). See Session P below for the caveat found on non-vehicle lots.
   Run: `python scripts/value_it.py LOT_URL MAX "why" [--who owner|grandpa]`.
+- **Session B2 (vanished-lot recovery): built 2026-09-29, not yet run
+  live.** `scripts/live_seen.py` (new) + `price_history.py`'s
+  `find_vanished_lots()`. 144 tests total pass (26 new). **Not verified
+  against real markup yet** — dispatch the workflow manually with
+  `debug_html: true` before trusting a scheduled run. See Session B2
+  below for the caveat and the still-open live-probe item.
 
 **Update 2026-09-29 18:27 UTC: the WAF block lifted.** After being blocked
 since 2026-09-28 ~18:00 UTC (confirmed still blocked at the 19:59 run), the
@@ -66,8 +72,10 @@ revisiting the backfill decision.
   estimate and no deal can ever be flagged.** Session E (pricing from our
   own close history) is the real fix. It's the only valuation source that
   isn't blocked or paid.
-- **The history is sales-only.** Unsold lots are deleted after close
-  (survivorship). Session B2 fixes it going forward.
+- **The history is still sales-only for now.** Session B2's vanished-lot
+  recovery is built but not yet proven against a real catalog — the fix
+  exists, hasn't been confirmed working. Dispatch manually first (see
+  Session B2 below).
 - **The bulk backfill is on hold** (next-sessions item 2).
 
 **Check the next scheduled run first** (Actions → "Auction Watch", "Harvest
@@ -103,7 +111,14 @@ directly to find out.
    above and the full Session V section below. Remaining: wire a suspect
    flag into `car_candidate` and add the ✓/⚠ row UI, whenever that's
    worth the layout time.
-4. **Session B2: record vanished lots.** Offline code; cloud is fine.
+4. ~~Session B2: record vanished lots~~ **Built 2026-09-29, needs a live
+   dispatch to verify.** Correction to this item's original "offline code;
+   cloud is fine" note — that was wrong, this touches live Musick catalog
+   pages (unlike Session V's NHTSA-only calls), so it needed the same
+   Playwright/GitHub Actions environment as the rest of the Musick
+   pipeline. See the handoff note above and the full Session B2 section
+   below. Remaining: dispatch manually with `debug_html: true` to verify
+   against real markup, then the live-probe-one-lot confirmation.
 5. **Session E: first-party comps**, as soon as any item type has 30+
    closes, because it's the only way valuation comes back.
 6. **Session D: history page + calibration**, after about 2 weeks of closes.
@@ -712,16 +727,38 @@ parsers against four saved dumps is the textbook fan-out case.
 only recovery is forward: remember lots seen live, and record the ones that
 never show up in their closed catalog.
 
-- [ ] Live fetch: page through whole catalogs (`?items=100&page=N`) for
-      catalogs closing within ~48h, not just page 1. Save each lot's last
+**Built 2026-09-29.**
+- [x] Live fetch: `scripts/live_seen.py` finds catalogs closing within
+      ~48h (`open_candidates_closing_soon()`, reusing the `?alf1=4` index
+      page's not-yet-closed rows) and pages through each whole catalog
+      (`?items=100&page=N`, not just page 1). Saves each lot's last
       observed bid, bid count and `observed_at` to
-      `research/price_history/_live_seen.jsonl`.
-- [ ] Harvester: after harvesting a closed catalog, any lot in `_live_seen`
-      for that catalog but absent from the closed pages gets a row
+      `research/price_history/_live_seen.jsonl` via
+      `price_history.append_live_seen()`.
+- [x] Harvester: `price_history.py`'s `harvest_catalog()` now calls
+      `find_vanished_lots()` after a **complete** harvest — any lot seen
+      live for that catalog but absent from the closed pages gets a row
       `price_kind: "vanished"`, `price: null`, `last_seen_bid`,
-      `last_seen_at`. Never a close.
-- [ ] Probe one lot seen live and then vanished, to confirm the 404 pattern
-      holds across more than one lot.
+      `last_seen_num_bids`, `last_seen_at`. Never a close. Skipped
+      entirely on an incomplete harvest (a partial lot_id set would
+      false-positive every not-yet-fetched lot as vanished).
+      26 new offline unit tests (144 total pass), including an
+      end-to-end `harvest_catalog()` integration test with a synthetic
+      vanished lot.
+- [ ] **Not yet done:** probe one lot seen live and then vanished, to
+      confirm the 404 pattern holds across more than one lot. Needs a real
+      lot to actually close first — a wait-and-check task, not something
+      to force in one session.
+- **Caveat, same as every new Musick-facing script before its first real
+  run:** the render/page-walking logic in `live_seen.py` is unverified
+  against live markup — written without Playwright available locally (see
+  its module docstring). The parsing logic itself (`parse_live_lots()`)
+  reuses `price_history.py`'s already-verified regexes and is tested
+  against the real `musick_catalog_920_open.html` fixture. Wired into
+  `.github/workflows/auction-monitor.yml` as its own
+  `continue-on-error: true` step — **dispatch manually with
+  `debug_html: true` first** and check `_live_seen.jsonl` before trusting
+  a scheduled run.
 
 ### Session V: VIN checks (free NHTSA data, no Musick load)
 

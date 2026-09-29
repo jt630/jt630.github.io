@@ -171,6 +171,143 @@ class OpenCatalogNegativeTests(unittest.TestCase):
         self.assertEqual(rows, [])
 
 
+class LiveLotParsingTests(unittest.TestCase):
+    """parse_live_lots() (Session B2) against the same real OPEN catalog
+    fixture used above - the inverse of parse_closed_lots()."""
+
+    def setUp(self):
+        self.rows = ph.parse_live_lots(_read("musick_catalog_920_open.html"), 920)
+
+    def test_row_count_matches_closed_lots_zero_count(self):
+        # 50 live lots on this page, 0 concluded (ClosedLotTailPageTests'
+        # sibling assertion) - together they should account for every lot.
+        self.assertEqual(len(self.rows), 50)
+
+    def test_real_lot_fields(self):
+        row = next(r for r in self.rows if r["lot_id"] == 515221)
+        self.assertEqual(row["catalog_id"], 920)
+        self.assertEqual(row["lot_no"], "300")
+        self.assertEqual(row["title"], "2017 FORD F-150 - 4x4!!")
+        self.assertEqual(row["last_bid"], 8800)
+        self.assertEqual(row["num_bids"], 47)
+
+    def test_second_real_lot(self):
+        row = next(r for r in self.rows if r["lot_id"] == 515222)
+        self.assertEqual(row["lot_no"], "301")
+        self.assertEqual(row["last_bid"], 4200)
+        self.assertEqual(row["num_bids"], 44)
+
+    def test_never_yields_a_lot_id_that_parse_closed_lots_also_returns(self):
+        closed_ids = {r["lot_id"] for r in ph.parse_closed_lots(_read("musick_catalog_920_open.html"), 920)}
+        live_ids = {r["lot_id"] for r in self.rows}
+        self.assertEqual(closed_ids & live_ids, set())
+
+    def test_closed_catalog_page_yields_zero_live_lots(self):
+        # The inverse of ClosedLotTailPageTests - every lot on a genuinely
+        # closed page is `ended`, so parse_live_lots must find none.
+        rows = ph.parse_live_lots(_read("musick_catalog_914_p1.html"), 914)
+        self.assertEqual(rows, [])
+
+
+class LiveSeenStorageTests(unittest.TestCase):
+    """append_live_seen()/load_live_seen() round-trip and the
+    latest-observation-wins logic find_vanished_lots() depends on."""
+
+    def test_round_trip(self):
+        rows = [
+            {"catalog_id": 920, "lot_id": 1, "lot_no": "1", "title": "A", "last_bid": 100, "num_bids": 2},
+            {"catalog_id": 920, "lot_id": 2, "lot_no": "2", "title": "B", "last_bid": None, "num_bids": None},
+        ]
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "_live_seen.jsonl")
+            written = ph.append_live_seen(rows, "2026-09-28T12:00:00Z", live_seen_path=path)
+            self.assertEqual(written, 2)
+            latest = ph.load_live_seen(920, live_seen_path=path)
+            self.assertEqual(len(latest), 2)
+            self.assertEqual(latest[1]["last_bid"], 100)
+            self.assertEqual(latest[1]["observed_at"], "2026-09-28T12:00:00Z")
+
+    def test_latest_observation_wins_on_repeat(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "_live_seen.jsonl")
+            ph.append_live_seen(
+                [{"catalog_id": 920, "lot_id": 1, "lot_no": "1", "title": "A", "last_bid": 100, "num_bids": 2}],
+                "2026-09-27T12:00:00Z", live_seen_path=path,
+            )
+            ph.append_live_seen(
+                [{"catalog_id": 920, "lot_id": 1, "lot_no": "1", "title": "A", "last_bid": 250, "num_bids": 5}],
+                "2026-09-28T12:00:00Z", live_seen_path=path,
+            )
+            latest = ph.load_live_seen(920, live_seen_path=path)
+            self.assertEqual(latest[1]["last_bid"], 250)
+            self.assertEqual(latest[1]["num_bids"], 5)
+
+    def test_missing_file_returns_empty(self):
+        self.assertEqual(ph.load_live_seen(920, live_seen_path="/nonexistent/_live_seen.jsonl"), {})
+
+    def test_wrong_catalog_id_excluded(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "_live_seen.jsonl")
+            ph.append_live_seen(
+                [{"catalog_id": 921, "lot_id": 1, "lot_no": "1", "title": "A", "last_bid": 100, "num_bids": 2}],
+                "2026-09-28T12:00:00Z", live_seen_path=path,
+            )
+            self.assertEqual(ph.load_live_seen(920, live_seen_path=path), {})
+
+
+class VanishedLotTests(unittest.TestCase):
+    """find_vanished_lots()/build_vanished_row(): a lot seen live but
+    absent from its closed catalog's parsed lot_ids."""
+
+    def test_lot_absent_from_closed_set_is_vanished(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "_live_seen.jsonl")
+            ph.append_live_seen(
+                [
+                    {"catalog_id": 920, "lot_id": 1, "lot_no": "904", "title": "MISSING TRUCK",
+                     "last_bid": 500, "num_bids": 3},
+                    {"catalog_id": 920, "lot_id": 2, "lot_no": "905", "title": "SOLD TRUCK",
+                     "last_bid": 4000, "num_bids": 27},
+                ],
+                "2026-09-28T12:00:00Z", live_seen_path=path,
+            )
+            closed_lot_ids = {2}  # only lot 2 shows up in the closed catalog
+            vanished = ph.find_vanished_lots(
+                920, closed_lot_ids, "2026-09-28T23:07:00Z", "2026-09-29T13:00:00Z",
+                live_seen_path=path,
+            )
+        self.assertEqual(len(vanished), 1)
+        row = vanished[0]
+        self.assertEqual(row["lot_id"], 1)
+        self.assertEqual(row["platform"], "musick")
+        self.assertEqual(row["price_kind"], "vanished")
+        self.assertIsNone(row["price"])
+        self.assertEqual(row["last_seen_bid"], 500)
+        self.assertEqual(row["last_seen_num_bids"], 3)
+        self.assertEqual(row["last_seen_at"], "2026-09-28T12:00:00Z")
+        self.assertEqual(row["catalog_closed_at"], "2026-09-28T23:07:00Z")
+        self.assertEqual(row["observed_at"], "2026-09-29T13:00:00Z")
+
+    def test_no_live_seen_file_means_no_vanished_lots(self):
+        vanished = ph.find_vanished_lots(
+            920, {1, 2, 3}, "2026-09-28T23:07:00Z", "2026-09-29T13:00:00Z",
+            live_seen_path="/nonexistent/_live_seen.jsonl",
+        )
+        self.assertEqual(vanished, [])
+
+    def test_all_seen_lots_closed_means_nothing_vanished(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "_live_seen.jsonl")
+            ph.append_live_seen(
+                [{"catalog_id": 920, "lot_id": 1, "lot_no": "1", "title": "A", "last_bid": 100, "num_bids": 2}],
+                "2026-09-28T12:00:00Z", live_seen_path=path,
+            )
+            vanished = ph.find_vanished_lots(
+                920, {1}, "2026-09-28T23:07:00Z", "2026-09-29T13:00:00Z", live_seen_path=path,
+            )
+        self.assertEqual(vanished, [])
+
+
 class UnknownStatusTests(unittest.TestCase):
     """A synthesized fixture (real catalog 914 markup, lot 511358's status
     span edited from `ended sold`/"Sold" to `ended unsold`/"Unsold" - no
@@ -367,6 +504,59 @@ class IndexRepeatPageTests(unittest.TestCase):
         ids = [r["id"] for r in rows]
         self.assertEqual(len(ids), len(set(ids)))
         self.assertTrue(any("repeated" in n for n in notes))
+
+
+@patch("price_history.time.sleep", lambda *a, **kw: None)
+class HarvestCatalogVanishedLotIntegrationTests(unittest.TestCase):
+    """harvest_catalog() actually calls find_vanished_lots() and folds the
+    result into its returned/appended rows - not just the standalone unit
+    tested above."""
+
+    def test_vanished_lot_appears_in_harvested_rows(self):
+        page1 = _read("musick_catalog_914_p1.html")
+        render = _fake_render({1: page1}, default=page1)
+        notes = []
+        with tempfile.TemporaryDirectory() as d:
+            live_seen_path = os.path.join(d, "_live_seen.jsonl")
+            # A lot NOT present anywhere in the real 914 fixture - stands
+            # in for "seen live, then gone" (docs/AUCTION-MONITORING.md's
+            # real missing-904 case, same shape).
+            ph.append_live_seen(
+                [{"catalog_id": 914, "lot_id": 999999, "lot_no": "904",
+                  "title": "MISSING TRUCK", "last_bid": 500, "num_bids": 3}],
+                "2026-09-23T12:00:00Z", live_seen_path=live_seen_path,
+            )
+            rows, appended, complete = ph.harvest_catalog(
+                914, "2026-09-24T03:22:00Z", notes, render=render,
+                price_history_dir=d, live_seen_path=live_seen_path,
+            )
+        self.assertTrue(complete)
+        vanished = [r for r in rows if r["price_kind"] == "vanished"]
+        self.assertEqual(len(vanished), 1)
+        self.assertEqual(vanished[0]["lot_id"], 999999)
+        self.assertEqual(vanished[0]["last_seen_bid"], 500)
+        self.assertEqual(appended, 51)  # 50 real closes + 1 vanished
+        self.assertTrue(any("1 vanished lot(s) recovered" in n for n in notes))
+
+    def test_incomplete_harvest_never_runs_vanished_detection(self):
+        # A render failure mid-catalog must not treat every not-yet-fetched
+        # lot as vanished - complete=False skips the comparison entirely.
+        page1 = _read("musick_catalog_914_p1.html")
+        render_fails = _fake_render({1: page1, 2: None})
+        notes = []
+        with tempfile.TemporaryDirectory() as d:
+            live_seen_path = os.path.join(d, "_live_seen.jsonl")
+            ph.append_live_seen(
+                [{"catalog_id": 914, "lot_id": 999999, "lot_no": "904",
+                  "title": "MISSING TRUCK", "last_bid": 500, "num_bids": 3}],
+                "2026-09-23T12:00:00Z", live_seen_path=live_seen_path,
+            )
+            rows, appended, complete = ph.harvest_catalog(
+                914, "2026-09-24T03:22:00Z", notes, render=render_fails,
+                price_history_dir=d, live_seen_path=live_seen_path,
+            )
+        self.assertFalse(complete)
+        self.assertEqual([r for r in rows if r["price_kind"] == "vanished"], [])
 
 
 class ValuationsJoinTests(unittest.TestCase):

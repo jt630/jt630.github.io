@@ -115,6 +115,23 @@ jobs:
             echo "no debug_html files to push"
           fi
 
+      - name: Record live-seen lots (vanished-lot recovery)
+        # Session B2 (PRICE-DISCOVERY.md): records still-live lots in
+        # catalogs closing within 48h, so a lot that never sells (and
+        # therefore vanishes without a trace - see docs/AUCTION-MONITORING.md's
+        # "Unsold lots disappear after close") can still be recovered as a
+        # price_kind: "vanished" row once its catalog is harvested below.
+        # UNVERIFIED against live markup as of introduction - written
+        # without Playwright available (see scripts/live_seen.py's module
+        # docstring). continue-on-error: true for the same reason as the
+        # harvest step below: a bug here must never block the day's lots
+        # refresh or the close-price harvest. Dispatch manually with
+        # debug_html: true and check the job log / research/price_history/
+        # _live_seen.jsonl before trusting a scheduled run's output.
+        if: github.event.inputs.probe_url == ''
+        continue-on-error: true
+        run: python scripts/live_seen.py
+
       - name: Harvest closed-lot prices
         # Phase 1 of PRICE-DISCOVERY.md - "own the close price". Runs after
         # "Fetch lots" (so it has a fresh catalog list to work from) and
