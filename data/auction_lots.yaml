@@ -1,4 +1,4 @@
-generated: '2026-09-29'
+generated: '2026-09-30'
 lots:
 - platform: musick
   title: 'Buffalo Nickel Set: 10 Coins from 1916 to 1938, Mixed Mint Marks'
@@ -8,7 +8,7 @@ lots:
   num_bids: 1
   close_time: null
   category: Other
-  description: 'Asking bid $6 · Time left: 6d 0h 29m 36s'
+  description: 'Asking bid $6 · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Old Coins
@@ -22,7 +22,94 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: Bunk Of Lumber, 6x12, 18ft, 6x6, 12ft, 4x7, 15ft, 4x4 12ft
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518862/Bunk-Of-Lumber-6x12-18ft-6x6-12ft-4x7-15ft-4x4-12ft?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087263_m.jpg?ts=1790726078
+  current_bid: 5
+  num_bids: 1
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $6 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: null
+  mileage: null
+  title_status: null
+  year: null
+  make: null
+  model: null
+  color: null
+  engine: null
+  cylinders: null
+  transmission: null
+  drivetrain: null
+  body: null
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: false
+  miles_per_year: null
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #1010: IMR 4350 Smokeless Powder, 1 lb, Suitable For Medium-To-Large
+    Capacity Rifle Cartridges (One Sealed & One Partial)'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518870/IMR-4350-Smokeless-Powder-1-lb-Suitable-For-Medium-To-Large-Capacity-Rifle-Cartridges-One-Sealed-One-Partial?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087299_m.jpg?ts=1790726180
+  current_bid: 5
+  num_bids: 1
+  close_time: null
+  category: Firearms
+  description: 'Asking bid $6 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Rifle (deer)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #1011: Hodgdon H870, Retumbo, Triple Seven (FFG) 1lb Rifle & Muzzleloader
+    Powder Bottles, Spherical/Extreme (Partial Bottles)'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518871/Hodgdon-H870-Retumbo-Triple-Seven-FFG-1lb-Rifle-Muzzleloader-Powder-Bottles-Spherical-Extreme-Partial-Bottles?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087302_m.jpg?ts=1790726181
+  current_bid: 5
+  num_bids: 1
+  close_time: null
+  category: Firearms
+  description: 'Asking bid $6 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Rifle (deer)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'U.S. Coin Lot: Kennedy Half Dollars (1971-1999-D), SBA & Presidential $1s
     (1979-2009, Mixed Mints)'
@@ -32,7 +119,7 @@ lots:
   num_bids: 3
   close_time: null
   category: Other
-  description: 'Asking bid $7 · Time left: 6d 0h 29m 36s'
+  description: 'Asking bid $7 · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Old Coins
@@ -46,7 +133,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #993: 14K Yellow Gold Multi-Color Sapphire & Diamond Ring, 3.77ct Sapphires,
     0.28ct Diamonds'
@@ -56,7 +143,7 @@ lots:
   num_bids: 7
   close_time: null
   category: Jewelry & Valuables
-  description: 'Asking bid $14 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $14 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Gold/Fossil/Meteorite Jewelry
@@ -70,7 +157,31 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #1005: 1974-S Eisenhower Silver Dollar, Mint Error, Obverse Die Break,
+    MS69, 40% Silver, San Francisco'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518858/1974-S-Eisenhower-Silver-Dollar-Mint-Error-Obverse-Die-Break-MS69-40-Silver-San-Francisco?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087248_m.jpg?ts=1790725943
+  current_bid: 19
+  num_bids: 5
+  close_time: null
+  category: Jewelry & Valuables
+  description: 'Asking bid $20 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Old Coins
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #4000: Kahr CM40 .40 S&W Semi-Auto Pistol, 3.1" Barrel, 5+1 Capacity,
     Two Magazines'
@@ -80,7 +191,7 @@ lots:
   num_bids: 1
   close_time: null
   category: Firearms
-  description: 'Asking bid $55 · Time left: 6d 0h 29m 36s'
+  description: 'Asking bid $55 · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -94,31 +205,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #4003: FEG PA-63 Semi-Auto 9mm Makarov Pistol, Hungary, Alloy Frame,
-    Two-Tone, SN AB0895, 1 Mag'
-  url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518100/FEG-PA-63-Semi-Auto-9mm-Makarov-Pistol-Hungary-Alloy-Frame-Two-Tone-SN-AB0895-1-Mag?url=%2Fauctions%2Fcatalog%2Fid%2F924
-  image_url: https://bid.musickauction.com/images/lot/3078/3078369_m.jpg?ts=1790639707
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 6d 0h 29m 36s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #4004: RG Industries RG25 .22 LR Revolver, 2" Barrel, 6-Round Capacity,
     Blued Finish'
@@ -128,7 +215,7 @@ lots:
   num_bids: 1
   close_time: null
   category: Other
-  description: 'Asking bid $55 · Time left: 6d 0h 29m 36s'
+  description: 'Asking bid $55 · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -142,31 +229,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #958: Marlin 25MN .22 WMR Bolt-Action Rifle, 22" Barrel, 7-Round Magazine,
-    Hardwood Stock'
-  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516747/Marlin-25MN-22-WMR-Bolt-Action-Rifle-22-Barrel-7-Round-Magazine-Hardwood-Stock?url=%2Fauctions%2Fcatalog%2Fid%2F922
-  image_url: https://bid.musickauction.com/images/lot/3069/3069918_m.jpg?ts=1790206377
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 8d 5h 29m 13s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Rifle (deer)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #959: Jennings J-22 .22 LR Pistol, Chrome, Wood Grips, 2.5" Barrel,
     6-Round Mag, SN 028130'
@@ -176,7 +239,7 @@ lots:
   num_bids: 1
   close_time: null
   category: Firearms
-  description: 'Asking bid $55 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $55 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -190,7 +253,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #6002: Sterling Arms Model 302 .22 LR Semi-Automatic Pistol, Serial
     No. A95596'
@@ -200,7 +263,7 @@ lots:
   num_bids: 3
   close_time: null
   category: Firearms
-  description: 'Asking bid $65 · Time left: 1d 5h 30m 21s'
+  description: 'Asking bid $65 · Time left: 8h 50m 59s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -214,17 +277,17 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #955: Smith & Wesson SW9VE 9mm Pistol, Stainless Slide, 4" Barrel, 16rd
     Mag, Serial DWK6008'
   url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516744/Smith-Wesson-SW9VE-9mm-Pistol-Stainless-Slide-4-Barrel-16rd-Mag-Serial-DWK6008?url=%2Fauctions%2Fcatalog%2Fid%2F922
   image_url: https://bid.musickauction.com/images/lot/3069/3069893_m.jpg?ts=1790206256
-  current_bid: 60
-  num_bids: 3
+  current_bid: 70
+  num_bids: 5
   close_time: null
   category: Firearms
-  description: 'Asking bid $65 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $75 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -238,41 +301,17 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #986: 18K Yellow Gold Ring with 1.39ct Emerald & 0.25ct Diamond Halo,
-    IAS Appraisal RN004180'
-  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516770/18K-Yellow-Gold-Ring-with-1-39ct-Emerald-0-25ct-Diamond-Halo-IAS-Appraisal-RN004180?url=%2Fauctions%2Fcatalog%2Fid%2F922
-  image_url: https://bid.musickauction.com/images/lot/3070/3070118_m.jpg?ts=1790207299
-  current_bid: 60
-  num_bids: 17
-  close_time: null
-  category: Jewelry & Valuables
-  description: 'Asking bid $65 · Time left: 8d 5h 29m 13s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Gold/Fossil/Meteorite Jewelry
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #6008: Hi-Point JHP .45 ACP Semi-Automatic Pistol – Black, 4.5" Barrel,
     9-Round Magazine, Serial X47550x'
   url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514431/Hi-Point-JHP-45-ACP-Semi-Automatic-Pistol-Black-4-5-Barrel-9-Round-Magazine-Serial-X47550x?url=%2Fauctions%2Fcatalog%2Fid%2F918
   image_url: https://bid.musickauction.com/images/lot/3044/3044671_m.jpg?ts=1789604294
-  current_bid: 75
-  num_bids: 6
+  current_bid: 80
+  num_bids: 7
   close_time: null
   category: Firearms
-  description: 'Asking bid $80 · Time left: 1d 5h 30m 21s'
+  description: 'Asking bid $85 · Time left: 8h 47m 59s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -286,65 +325,17 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #5001: New England Firearms Pardner SBI 12 Gauge Shotgun Full Choke
-    28" Barrel Ser# NG296434'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/516004/New-England-Firearms-Pardner-SBI-12-Gauge-Shotgun-Full-Choke-28-Barrel-Ser-NG296434?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064548_m.jpg?ts=1790123067
-  current_bid: 80
-  num_bids: 7
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $85 · Time left: 4h 32m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Shotgun (birds)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #4001: Taurus The Judge Revolver, .45 Colt/.410 Bore, 3” Barrel, Blued
-    Finish, Rubber Grip, SN: BU656750'
-  url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518098/Taurus-The-Judge-Revolver-45-Colt-410-Bore-3-Barrel-Blued-Finish-Rubber-Grip-SN-BU656750?url=%2Fauctions%2Fcatalog%2Fid%2F924
-  image_url: https://bid.musickauction.com/images/lot/3078/3078352_m.jpg?ts=1790639694
-  current_bid: 80
-  num_bids: 7
-  close_time: null
-  category: Other
-  description: 'Asking bid $85 · Time left: 6d 0h 29m 36s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #6001: Rossi M68 .38 Special Revolver, 2" Barrel, Blued, Interarms Import,
-    Serial AA267486, Brazil'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514421/Rossi-M68-38-Special-Revolver-2-Barrel-Blued-Interarms-Import-Serial-AA267486-Brazil?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044578_m.jpg?ts=1789603814
-  current_bid: 105
+  title: 'Lot #4003: FEG PA-63 Semi-Auto 9mm Makarov Pistol, Hungary, Alloy Frame,
+    Two-Tone, SN AB0895, 1 Mag'
+  url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518100/FEG-PA-63-Semi-Auto-9mm-Makarov-Pistol-Hungary-Alloy-Frame-Two-Tone-SN-AB0895-1-Mag?url=%2Fauctions%2Fcatalog%2Fid%2F924
+  image_url: https://bid.musickauction.com/images/lot/3078/3078369_m.jpg?ts=1790639707
+  current_bid: 95
   num_bids: 5
   close_time: null
-  category: Other
-  description: 'Asking bid $110 · Time left: 1d 5h 30m 21s'
+  category: Firearms
+  description: 'Asking bid $100 · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -358,31 +349,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #6006: Taurus .38 Special Revolver Blued 4-inch Barrel, Serial 814126,
-    Made in Brazil'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514428/Taurus-38-Special-Revolver-Blued-4-inch-Barrel-Serial-814126-Made-in-Brazil?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044643_m.jpg?ts=1789604108
-  current_bid: 105
-  num_bids: 7
-  close_time: null
-  category: Other
-  description: 'Asking bid $110 · Time left: 1d 5h 30m 21s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #956: Winchester Model 670 .30-06 SPRG Bolt-Action Rifle, Weaver Scope
     Mounts, Sling, Serial G233878'
@@ -392,7 +359,7 @@ lots:
   num_bids: 12
   close_time: null
   category: Firearms
-  description: 'Asking bid $110 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $110 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Rifle (deer)
@@ -406,90 +373,17 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #6007: Winchester 1300 Defender 12 Gauge Pump 18" Barrel, 7+1, Wood
-    Stock L2647867'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514430/Winchester-1300-Defender-12-Gauge-Pump-18-Barrel-7-1-Wood-Stock-L2647867?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044664_m.jpg?ts=1789604227
+  title: 'Lot #6001: Rossi M68 .38 Special Revolver, 2" Barrel, Blued, Interarms Import,
+    Serial AA267486, Brazil'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514421/Rossi-M68-38-Special-Revolver-2-Barrel-Blued-Interarms-Import-Serial-AA267486-Brazil?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044578_m.jpg?ts=1789603814
   current_bid: 115
-  num_bids: 13
+  num_bids: 7
   close_time: null
   category: Other
-  description: 'Asking bid $120 · Time left: 1d 5h 30m 21s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Shotgun (birds)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #5004: Ruger EC9s 9MM Luger, Serial 456-34206, 3.12" Barrel, Black,
-    Striker-Fired Subcompact Pistol'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/516007/Ruger-EC9s-9MM-Luger-Serial-456-34206-3-12-Barrel-Black-Striker-Fired-Subcompact-Pistol?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064576_m.jpg?ts=1790123201
-  current_bid: 140
-  num_bids: 12
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $145 · Time left: 4h 31m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Backcountry Pistol
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: Emperor Arms MPTAC12 Ultra 12GA Pump Shotgun, Tactical Stock, Red Dot, Flashlight,
-    21SRP0177
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514426/Emperor-Arms-MPTAC12-Ultra-12GA-Pump-Shotgun-Tactical-Stock-Red-Dot-Flashlight-21SRP0177?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044623_m.jpg?ts=1789604096
-  current_bid: 155
-  num_bids: 14
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $160 · Time left: 1d 5h 30m 21s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Shotgun (birds)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #6005: FireStorm .380 ACP Compact Pistol, DA/SA, 7+1, Alloy Frame, Bersa
-    Argentina, Serial 523746'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514427/FireStorm-380-ACP-Compact-Pistol-DA-SA-7-1-Alloy-Frame-Bersa-Argentina-Serial-523746?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044635_m.jpg?ts=1789604102
-  current_bid: 160
-  num_bids: 10
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $165 · Time left: 1d 5h 30m 21s'
+  description: 'Asking bid $120 · Time left: 8h 50m 59s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -503,18 +397,18 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #5002: Harrington & Richardson Premier .22 Rimfire Top-Break Revolver,
-    Serial 334235, Holster'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/516005/Harrington-Richardson-Premier-22-Rimfire-Top-Break-Revolver-Serial-334235-Holster?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064557_m.jpg?ts=1790123072
-  current_bid: 165
-  num_bids: 25
+  title: 'Lot #6006: Taurus .38 Special Revolver Blued 4-inch Barrel, Serial 814126,
+    Made in Brazil'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514428/Taurus-38-Special-Revolver-Blued-4-inch-Barrel-Serial-814126-Made-in-Brazil?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044643_m.jpg?ts=1789604108
+  current_bid: 115
+  num_bids: 9
   close_time: null
   category: Other
-  description: 'Asking bid $170 · Time left: 4h 31m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
+  description: 'Asking bid $120 · Time left: 8h 48m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
   estimated_value_low: null
@@ -527,17 +421,41 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #965: Colombian Emerald (2.96ct) & Diamond (0.72ct) 18K White and Yellow
-    Gold Ring, AIGL Appraised'
-  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516751/Colombian-Emerald-2-96ct-Diamond-0-72ct-18K-White-and-Yellow-Gold-Ring-AIGL-Appraised?url=%2Fauctions%2Fcatalog%2Fid%2F922
-  image_url: https://bid.musickauction.com/images/lot/3069/3069943_m.jpg?ts=1790206464
-  current_bid: 175
-  num_bids: 15
+  title: 'Lot #958: Marlin 25MN .22 WMR Bolt-Action Rifle, 22" Barrel, 7-Round Magazine,
+    Hardwood Stock'
+  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516747/Marlin-25MN-22-WMR-Bolt-Action-Rifle-22-Barrel-7-Round-Magazine-Hardwood-Stock?url=%2Fauctions%2Fcatalog%2Fid%2F922
+  image_url: https://bid.musickauction.com/images/lot/3069/3069918_m.jpg?ts=1790206377
+  current_bid: 115
+  num_bids: 2
+  close_time: null
+  category: Firearms
+  description: 'Asking bid $120 · Time left: 7d 5h 40m 36s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Rifle (deer)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #986: 18K Yellow Gold Ring with 1.39ct Emerald & 0.25ct Diamond Halo,
+    IAS Appraisal RN004180'
+  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516770/18K-Yellow-Gold-Ring-with-1-39ct-Emerald-0-25ct-Diamond-Halo-IAS-Appraisal-RN004180?url=%2Fauctions%2Fcatalog%2Fid%2F922
+  image_url: https://bid.musickauction.com/images/lot/3070/3070118_m.jpg?ts=1790207299
+  current_bid: 135
+  num_bids: 31
   close_time: null
   category: Jewelry & Valuables
-  description: 'Asking bid $180 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $140 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Gold/Fossil/Meteorite Jewelry
@@ -551,41 +469,17 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #5003: Mossberg Patriot Bolt-Action Rifle .30-06 SPRG, 22" Barrel, Synthetic
-    Stock, Serial MPR086752'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/516006/Mossberg-Patriot-Bolt-Action-Rifle-30-06-SPRG-22-Barrel-Synthetic-Stock-Serial-MPR086752?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064567_m.jpg?ts=1790123079
-  current_bid: 185
-  num_bids: 20
+  title: 'Lot #6007: Winchester 1300 Defender 12 Gauge Pump 18" Barrel, 7+1, Wood
+    Stock L2647867'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514430/Winchester-1300-Defender-12-Gauge-Pump-18-Barrel-7-1-Wood-Stock-L2647867?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044664_m.jpg?ts=1789604227
+  current_bid: 145
+  num_bids: 18
   close_time: null
-  category: Firearms
-  description: 'Asking bid $190 · Time left: 4h 31m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Rifle (deer)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #6003: Centurion BP-12 12 Gauge Bullpup Semi-Auto Shotgun, 20" Barrel,
-    5+1 Mag, Adler Arms, SN 21US-09319'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514424/Centurion-BP-12-12-Gauge-Bullpup-Semi-Auto-Shotgun-20-Barrel-5-1-Mag-Adler-Arms-SN-21US-09319?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044602_m.jpg?ts=1789603972
-  current_bid: 185
-  num_bids: 21
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $190 · Time left: 1d 5h 30m 21s'
+  category: Other
+  description: 'Asking bid $150 · Time left: 8h 48m 59s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Shotgun (birds)
@@ -599,7 +493,127 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #6005: FireStorm .380 ACP Compact Pistol, DA/SA, 7+1, Alloy Frame, Bersa
+    Argentina, Serial 523746'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514427/FireStorm-380-ACP-Compact-Pistol-DA-SA-7-1-Alloy-Frame-Bersa-Argentina-Serial-523746?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044635_m.jpg?ts=1789604102
+  current_bid: 170
+  num_bids: 12
+  close_time: null
+  category: Firearms
+  description: 'Asking bid $175 · Time left: 8h 48m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #6003: Centurion BP-12 12 Gauge Bullpup Semi-Auto Shotgun, 20" Barrel,
+    5+1 Mag, Adler Arms, SN 21US-09319'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514424/Centurion-BP-12-12-Gauge-Bullpup-Semi-Auto-Shotgun-20-Barrel-5-1-Mag-Adler-Arms-SN-21US-09319?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044602_m.jpg?ts=1789603972
+  current_bid: 190
+  num_bids: 22
+  close_time: null
+  category: Firearms
+  description: 'Asking bid $195 · Time left: 8h 49m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Shotgun (birds)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #4001: Taurus The Judge Revolver, .45 Colt/.410 Bore, 3” Barrel, Blued
+    Finish, Rubber Grip, SN: BU656750'
+  url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518098/Taurus-The-Judge-Revolver-45-Colt-410-Bore-3-Barrel-Blued-Finish-Rubber-Grip-SN-BU656750?url=%2Fauctions%2Fcatalog%2Fid%2F924
+  image_url: https://bid.musickauction.com/images/lot/3078/3078352_m.jpg?ts=1790639694
+  current_bid: 205
+  num_bids: 16
+  close_time: null
+  category: Other
+  description: 'Asking bid $210 · Time left: 5d 0h 42m 10s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #965: Colombian Emerald (2.96ct) & Diamond (0.72ct) 18K White and Yellow
+    Gold Ring, AIGL Appraised'
+  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516751/Colombian-Emerald-2-96ct-Diamond-0-72ct-18K-White-and-Yellow-Gold-Ring-AIGL-Appraised?url=%2Fauctions%2Fcatalog%2Fid%2F922
+  image_url: https://bid.musickauction.com/images/lot/3069/3069943_m.jpg?ts=1790206464
+  current_bid: 205
+  num_bids: 16
+  close_time: null
+  category: Jewelry & Valuables
+  description: 'Asking bid $210 · Time left: 7d 5h 40m 36s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Gold/Fossil/Meteorite Jewelry
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: Emperor Arms MPTAC12 Ultra 12GA Pump Shotgun, Tactical Stock, Red Dot, Flashlight,
+    21SRP0177
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514426/Emperor-Arms-MPTAC12-Ultra-12GA-Pump-Shotgun-Tactical-Stock-Red-Dot-Flashlight-21SRP0177?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044623_m.jpg?ts=1789604096
+  current_bid: 260
+  num_bids: 29
+  close_time: null
+  category: Firearms
+  description: 'Asking bid $270 · Time left: 8h 49m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Shotgun (birds)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #630: Motorcycle Trailer'
   url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/515170/Motorcycle-Trailer?url=%2Fauctions%2Fcatalog%2Fid%2F918
@@ -608,7 +622,7 @@ lots:
   num_bids: 35
   close_time: null
   category: Heavy Equipment
-  description: 'Asking bid $310 · Time left: 1d 5h 30m 21s'
+  description: 'Asking bid $310 · Time left: 8h 51m 59s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Motorcycle
@@ -622,79 +636,32 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #6000: Canik METE SFT 9mm Pistol with Custom Digital Camo Finish and
-    Streamlight TLR-7A'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514419/Canik-METE-SFT-9mm-Pistol-with-Custom-Digital-Camo-Finish-and-Streamlight-TLR-7A?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044557_m.jpg?ts=1789603707
-  current_bid: 400
-  num_bids: 36
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $410 · Time left: 1d 5h 30m 21s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 1999 JAYCO POP-UP CAMPER TRAILER
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/514745/1999-JAYCO-POP-UP-CAMPER-TRAILER?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3046/3046334_m.jpg?ts=1789612221
-  current_bid: 500
-  num_bids: 1
-  close_time: null
-  category: Heavy Equipment
-  description: 'Asking bid $550 · Time left: 9h 51m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Little Camper
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #621: BANK REPO - 2012 TOYOTA PRIUS - HYBRID!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514404/BANK-REPO-2012-TOYOTA-PRIUS-HYBRID?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044182_m.jpg?ts=1789601950
+  title: 'Lot #625: BANK REPO - 2012 NISSAN VERSA - CRUISE CONTROL!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514412/BANK-REPO-2012-NISSAN-VERSA-CRUISE-CONTROL?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044435_m.jpg?ts=1789603135
   current_bid: 500
   num_bids: 1
   close_time: null
   category: Vehicles
-  description: 'Asking bid $550 · Time left: 1d 5h 30m 21s'
+  description: 'Asking bid $550 · Time left: 8h 53m 59s'
   agency: Musick Auction Co. (Meridian, ID)
-  vin: JTDKDTB32C1004121
-  mileage: 181530
+  vin: 3N1CN7AP6CL853418
+  mileage: 195482
   title_status: Clear
   year: 2012
-  make: TOYOTA
-  model: PRIUS
-  color: White
-  engine: Hybrid
+  make: NISSAN
+  model: VERSA
+  color: GREY
+  engine: Gas
   cylinders: '4'
   transmission: Auto
-  drivetrain: 2WD
-  body: Hatchbacks
-  auction_ends_at: '2026-09-30T23:59:59Z'
+  drivetrain: FWD
+  body: Sedans
+  auction_ends_at: '2026-10-01T03:11:01Z'
   clean_title: true
-  miles_per_year: 12966
+  miles_per_year: 13963
   car_candidate: false
   watchlist_matches:
   - Commuter Car (for sister)
@@ -708,16 +675,40 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #6000: Canik METE SFT 9mm Pistol with Custom Digital Camo Finish and
+    Streamlight TLR-7A'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514419/Canik-METE-SFT-9mm-Pistol-with-Custom-Digital-Camo-Finish-and-Streamlight-TLR-7A?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044557_m.jpg?ts=1789603707
+  current_bid: 500
+  num_bids: 44
+  close_time: null
+  category: Firearms
+  description: 'Asking bid $550 · Time left: 8h 50m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #404: 2018 GMC YUKON XL - SUNROOF! 4X4!'
   url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518075/2018-GMC-YUKON-XL-SUNROOF-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F924
-  image_url: https://bid.musickauction.com/images/lot/3086/3086228_m.jpg?ts=1790697253
+  image_url: https://bid.musickauction.com/images/lot/3086/3086228_m.jpg?ts=1790714066
   current_bid: 500
   num_bids: 1
   close_time: null
   category: Vehicles
-  description: 'Asking bid $550 · Time left: 6d 0h 29m 36s'
+  description: 'Asking bid $550 · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: 1GKS2GKC4JR351577
   mileage: 209280
@@ -747,7 +738,202 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #100: 2017 JEEP GRAND CHEROKEE LIMITED - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518824/2017-JEEP-GRAND-CHEROKEE-LIMITED-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086459_m.jpg?ts=1790722244
+  current_bid: 500
+  num_bids: 1
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $550 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1C4RJFBG7HC884384
+  mileage: 106562
+  title_status: Clear
+  year: 2017
+  make: Jeep
+  model: Grand Cherokee
+  color: Red
+  engine: Gas
+  cylinders: '6'
+  transmission: Auto
+  drivetrain: 4x4
+  body: SUVs
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: true
+  miles_per_year: 11840
+  car_candidate: true
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #103: 2013 FORD F-350 - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518827/2013-FORD-F-350-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086559_m.jpg?ts=1790722684
+  current_bid: 500
+  num_bids: 1
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $550 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: null
+  mileage: 238493
+  title_status: null
+  year: 2013
+  make: Ford
+  model: F-350
+  color: White
+  engine: null
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: 4x4
+  body: Trucks
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: false
+  miles_per_year: 18346
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #104: 2018 FORD ESCAPE - 92K MILES - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518828/2018-FORD-ESCAPE-92K-MILES-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086586_m.jpg?ts=1790722862
+  current_bid: 500
+  num_bids: 1
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $550 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1FMCU9GD4JUA10826
+  mileage: 92690
+  title_status: Clear
+  year: 2018
+  make: Ford
+  model: Escape
+  color: Black
+  engine: Gas
+  cylinders: '4'
+  transmission: Auto
+  drivetrain: 4x4
+  body: Hatchbacks
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: true
+  miles_per_year: 11586
+  car_candidate: true
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #118: 2008 FORD F-150 - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518842/2008-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087002_m.jpg?ts=1790724767
+  current_bid: 500
+  num_bids: 1
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $550 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1FTPW14V18FA46356
+  mileage: 144444
+  title_status: Clear
+  year: 2008
+  make: Ford
+  model: F-150
+  color: Black
+  engine: Gas
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: 4x4
+  body: Trucks
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: true
+  miles_per_year: 8025
+  car_candidate: true
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #125: BANK REPO - 2008 FORD F-250 - DIESEL - 4X4 - MANY MODIFICATIONS!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518849/BANK-REPO-2008-FORD-F-250-DIESEL-4X4-MANY-MODIFICATIONS?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087151_m.jpg?ts=1790725457
+  current_bid: 500
+  num_bids: 1
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $550 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1FTSW21R88EA65709
+  mileage: 275257
+  title_status: Clear
+  year: 2004
+  make: Ford
+  model: F-250
+  color: White
+  engine: Diesel
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: 4x4
+  body: Trucks
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: true
+  miles_per_year: 12512
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #901: 2015 JEEP RENEGADE - 4X4!'
   url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516730/2015-JEEP-RENEGADE-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F922
@@ -756,7 +942,7 @@ lots:
   num_bids: 1
   close_time: null
   category: Vehicles
-  description: 'Asking bid $550 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $550 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: ZACCJBAT4FPB42997
   mileage: 153146
@@ -786,33 +972,33 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 2016 FORD F-350 -
-  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/518067/2016-FORD-F-350?url=%2Fauctions%2Fcatalog%2Fid%2F923
-  image_url: https://bid.musickauction.com/images/lot/3077/3077516_m.jpg?ts=1790377467
+  title: 2001 FORD F-250 - 4X4!
+  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/518069/2001-FORD-F-250-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
+  image_url: https://bid.musickauction.com/images/lot/3077/3077567_m.jpg?ts=1790377730
   current_bid: 500
   num_bids: 1
   close_time: null
   category: Vehicles
-  description: 'Asking bid $550 · Time left: 9d 5h 28m 49s'
+  description: 'Asking bid $550 · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
-  vin: 1FDRF3G63GEB68631
-  mileage: 125544
+  vin: 1FTNX21S11EB77139
+  mileage: null
   title_status: Clear
-  year: 2016
+  year: 2001
   make: Ford
-  model: F-350
-  color: White
+  model: F-250
+  color: Green
   engine: Gas
-  cylinders: '8'
+  cylinders: '10'
   transmission: Auto
-  drivetrain: 2WD
+  drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-10-09T00:00:00Z'
+  auction_ends_at: '2026-10-08T23:59:59Z'
   clean_title: true
-  miles_per_year: 12554
-  car_candidate: true
+  miles_per_year: null
+  car_candidate: false
   watchlist_matches:
   - Trucks & Off-Road/4x4
   estimated_value_low: null
@@ -825,7 +1011,85 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #101: 1996 FORD F-250 - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518825/1996-FORD-F-250-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086493_m.jpg?ts=1790722452
+  current_bid: 550
+  num_bids: 2
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $600 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1FTHX26G5TEA67232
+  mileage: 165819
+  title_status: Clear
+  year: 1996
+  make: Ford
+  model: F-250
+  color: White
+  engine: Gas
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: 4x4
+  body: Trucks
+  auction_ends_at: '2026-10-06T18:59:59Z'
+  clean_title: true
+  miles_per_year: 5527
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #123: BANK REPO - 2013 HONDA CIVIC HYBRID - SPORT MODE'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518847/BANK-REPO-2013-HONDA-CIVIC-HYBRID-SPORT-MODE?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087120_m.jpg?ts=1790725366
+  current_bid: 550
+  num_bids: 2
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $600 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 19XFB4F28DE001009
+  mileage: 150788
+  title_status: Clear
+  year: 2013
+  make: Honda
+  model: Civic
+  color: Gray
+  engine: Hybrid
+  cylinders: '4'
+  transmission: Auto
+  drivetrain: FWD
+  body: Sedans
+  auction_ends_at: '2026-10-06T18:59:59Z'
+  clean_title: true
+  miles_per_year: 11599
+  car_candidate: false
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #910: 2006 LAND RANGE ROVER - 4X4!'
   url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516738/2006-LAND-RANGE-ROVER-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F922
@@ -834,7 +1098,7 @@ lots:
   num_bids: 2
   close_time: null
   category: Vehicles
-  description: 'Asking bid $600 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $600 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: SALME15496A232418
   mileage: 168339
@@ -864,33 +1128,33 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #405: 2015 RAM 2500 - 4X4!!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518076/2015-RAM-2500-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F924
-  image_url: https://bid.musickauction.com/images/lot/3077/3077748_m.jpg?ts=1790636817
-  current_bid: 600
-  num_bids: 3
+  title: 2016 FORD F-350 -
+  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/518067/2016-FORD-F-350?url=%2Fauctions%2Fcatalog%2Fid%2F923
+  image_url: https://bid.musickauction.com/images/lot/3077/3077516_m.jpg?ts=1790377467
+  current_bid: 550
+  num_bids: 2
   close_time: null
   category: Vehicles
-  description: 'Asking bid $650 · Time left: 6d 0h 29m 36s'
-  agency: Musick Auction Co. (Meridian, ID)
-  vin: 3C6UR5CL3FG569091
-  mileage: 266782
+  description: 'Asking bid $600 · Time left: 8d 5h 40m 10s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1FDRF3G63GEB68631
+  mileage: 125544
   title_status: Clear
-  year: 2015
-  make: RAM
-  model: '2500'
-  color: WHITE
-  engine: Diesel
-  cylinders: '6'
+  year: 2016
+  make: Ford
+  model: F-350
+  color: White
+  engine: Gas
+  cylinders: '8'
   transmission: Auto
-  drivetrain: 4x4
+  drivetrain: 2WD
   body: Trucks
-  auction_ends_at: '2026-10-05T18:59:59Z'
+  auction_ends_at: '2026-10-09T00:00:00Z'
   clean_title: true
-  miles_per_year: 24253
-  car_candidate: false
+  miles_per_year: 12554
+  car_candidate: true
   watchlist_matches:
   - Trucks & Off-Road/4x4
   estimated_value_low: null
@@ -903,7 +1167,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #601: 2009 CHEVROLET SILVERADO 1500 WT HYBRID - 4X4!'
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517503/2009-CHEVROLET-SILVERADO-1500-WT-HYBRID-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -912,7 +1176,7 @@ lots:
   num_bids: 3
   close_time: null
   category: Vehicles
-  description: 'Asking bid $650 · Time left: 9d 5h 28m 49s'
+  description: 'Asking bid $650 · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: 3GCFK13509G257489
   mileage: 147484
@@ -942,95 +1206,32 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #619: 2016 JEEP PATRIOT - 4X4! 66K MILES!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514406/2016-JEEP-PATRIOT-4X4-66K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044252_m.jpg?ts=1789602263
+  title: 'Lot #405: 2015 RAM 2500 - 4X4!!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518076/2015-RAM-2500-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F924
+  image_url: https://bid.musickauction.com/images/lot/3077/3077748_m.jpg?ts=1790636817
   current_bid: 650
   num_bids: 4
   close_time: null
   category: Vehicles
-  description: 'Asking bid $700 · Time left: 1d 5h 30m 21s'
+  description: 'Asking bid $700 · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
-  vin: 1C4NJRFB6GD610701
-  mileage: 66716
-  title_status: Rebuilt
-  year: 2016
-  make: JEEP
-  model: PATRIOT
-  color: White
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  auction_ends_at: '2026-10-01T00:00:00Z'
-  clean_title: false
-  miles_per_year: 6672
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: Radical Firearms RF-15 AR-15 Rifle, Multi-Cal, EOTech HWS, Bipod, Savior
-    Soft Case, 16" 5.56 Barrel
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514420/Radical-Firearms-RF-15-AR-15-Rifle-Multi-Cal-EOTech-HWS-Bipod-Savior-Soft-Case-16-5-56-Barrel?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044566_m.jpg?ts=1789603711
-  current_bid: 650
-  num_bids: 28
-  close_time: null
-  category: Firearms
-  description: 'Asking bid $700 · Time left: 1d 5h 30m 21s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Rifle (deer)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #400: 2016 DODGE RAM - DIESEL!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518071/2016-DODGE-RAM-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F924
-  image_url: https://bid.musickauction.com/images/lot/3077/3077695_m.jpg?ts=1790636584
-  current_bid: 650
-  num_bids: 4
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $700 · Time left: 6d 0h 29m 36s'
-  agency: Musick Auction Co. (Meridian, ID)
-  vin: 1C6RR6NMXGS201373
-  mileage: null
+  vin: 3C6UR5CL3FG569091
+  mileage: 266782
   title_status: Clear
-  year: 2016
-  make: DODGE
-  model: RAM 1500
+  year: 2015
+  make: RAM
+  model: '2500'
   color: WHITE
   engine: Diesel
   cylinders: '6'
   transmission: Auto
-  drivetrain: 2WD
+  drivetrain: 4x4
   body: Trucks
   auction_ends_at: '2026-10-05T19:00:00Z'
   clean_title: true
-  miles_per_year: null
+  miles_per_year: 24253
   car_candidate: false
   watchlist_matches:
   - Trucks & Off-Road/4x4
@@ -1044,7 +1245,46 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #105: 2011 FORD F-250 - TURBO DIESEL - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518829/2011-FORD-F-250-TURBO-DIESEL-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086615_m.jpg?ts=1790722974
+  current_bid: 650
+  num_bids: 4
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $700 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1FT7W2BTXBEC77261
+  mileage: 180922
+  title_status: Clear
+  year: 2011
+  make: Ford
+  model: F-250
+  color: White
+  engine: Diesel
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: 4x4
+  body: Trucks
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: true
+  miles_per_year: 12061
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #900: 2009 GMC SIERRA 2500 - DIESEL!'
   url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516729/2009-GMC-SIERRA-2500-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F922
@@ -1053,7 +1293,7 @@ lots:
   num_bids: 4
   close_time: null
   category: Vehicles
-  description: 'Asking bid $700 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $700 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: 1GTHK43679F173318
   mileage: 179795
@@ -1083,46 +1323,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 2011 FORD F-250 - 4X4!
-  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/518068/2011-FORD-F-250-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
-  image_url: https://bid.musickauction.com/images/lot/3077/3077540_m.jpg?ts=1790377573
-  current_bid: 650
-  num_bids: 4
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $700 · Time left: 9d 5h 28m 49s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1FT7X2B68BEC54231
-  mileage: 204523
-  title_status: Clear
-  year: 2011
-  make: Ford
-  model: F-250
-  color: Silver
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-10-08T23:59:59Z'
-  clean_title: true
-  miles_per_year: 13635
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 2008 FORD F-250 SUPER DUTY - 4X4!
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517506/2008-FORD-F-250-SUPER-DUTY-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -1131,7 +1332,7 @@ lots:
   num_bids: 4
   close_time: null
   category: Vehicles
-  description: 'Asking bid $700 · Time left: 9d 5h 28m 49s'
+  description: 'Asking bid $700 · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: 1FTSW21R98EE46081
   mileage: 169188
@@ -1145,7 +1346,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-10-09T00:00:00Z'
+  auction_ends_at: '2026-10-08T23:59:59Z'
   clean_title: true
   miles_per_year: 9399
   car_candidate: false
@@ -1161,7 +1362,148 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #621: BANK REPO - 2012 TOYOTA PRIUS - HYBRID!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514404/BANK-REPO-2012-TOYOTA-PRIUS-HYBRID?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044182_m.jpg?ts=1789601950
+  current_bid: 700
+  num_bids: 4
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $750 · Time left: 8h 54m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  vin: JTDKDTB32C1004121
+  mileage: 181530
+  title_status: Clear
+  year: 2012
+  make: TOYOTA
+  model: PRIUS
+  color: White
+  engine: Hybrid
+  cylinders: '4'
+  transmission: Auto
+  drivetrain: 2WD
+  body: Hatchbacks
+  auction_ends_at: '2026-10-01T03:12:00Z'
+  clean_title: true
+  miles_per_year: 12966
+  car_candidate: false
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #400: 2016 DODGE RAM - DIESEL!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518071/2016-DODGE-RAM-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F924
+  image_url: https://bid.musickauction.com/images/lot/3077/3077695_m.jpg?ts=1790636584
+  current_bid: 700
+  num_bids: 5
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $750 · Time left: 5d 0h 42m 10s'
+  agency: Musick Auction Co. (Meridian, ID)
+  vin: 1C6RR6NMXGS201373
+  mileage: 141189
+  title_status: Clear
+  year: 2014
+  make: DODGE
+  model: RAM 1500
+  color: WHITE
+  engine: Diesel
+  cylinders: '6'
+  transmission: Auto
+  drivetrain: 2WD
+  body: Trucks
+  auction_ends_at: '2026-10-05T19:00:00Z'
+  clean_title: true
+  miles_per_year: 11766
+  car_candidate: true
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #102: 2015 GMC YUKON XL DENALI - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518826/2015-GMC-YUKON-XL-DENALI-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086523_m.jpg?ts=1790722485
+  current_bid: 700
+  num_bids: 5
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $750 · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1GKS2JKJ9FR534282
+  mileage: 143057
+  title_status: Clear
+  year: 2015
+  make: GMC
+  model: Yukon
+  color: Gold
+  engine: Gas
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: 4x4
+  body: SUVs
+  auction_ends_at: '2026-10-06T18:59:59Z'
+  clean_title: true
+  miles_per_year: 13005
+  car_candidate: true
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: Radical Firearms RF-15 AR-15 Rifle, Multi-Cal, EOTech HWS, Bipod, Savior
+    Soft Case, 16" 5.56 Barrel
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514420/Radical-Firearms-RF-15-AR-15-Rifle-Multi-Cal-EOTech-HWS-Bipod-Savior-Soft-Case-16-5-56-Barrel?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044566_m.jpg?ts=1789603711
+  current_bid: 750
+  num_bids: 30
+  close_time: null
+  category: Firearms
+  description: 'Asking bid $800 · Time left: 8h 50m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Rifle (deer)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 2006 FORD F-250 - 4X4 - DIESEL!
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517509/2006-FORD-F-250-4X4-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -1170,7 +1512,7 @@ lots:
   num_bids: 8
   close_time: null
   category: Vehicles
-  description: 'Asking bid $850 · Time left: 9d 5h 28m 49s'
+  description: 'Asking bid $850 · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: 1FTSW21P16EA55437
   mileage: 168101
@@ -1184,7 +1526,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-10-09T00:00:00Z'
+  auction_ends_at: '2026-10-08T23:59:59Z'
   clean_title: true
   miles_per_year: 8405
   car_candidate: false
@@ -1200,32 +1542,32 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #526: 2004 FORD EXPLORER - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515998/2004-FORD-EXPLORER-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064468_m.jpg?ts=1790122580
-  current_bid: 900
-  num_bids: 7
+  title: 'Lot #619: 2016 JEEP PATRIOT - 4X4! 66K MILES!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514406/2016-JEEP-PATRIOT-4X4-66K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044252_m.jpg?ts=1789602263
+  current_bid: 850
+  num_bids: 8
   close_time: null
   category: Vehicles
-  description: 'Asking bid $950 · Time left: 4h 34m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1FMZU73W64ZA57062
-  mileage: 183454
-  title_status: Clear
-  year: 2004
-  make: Ford
-  model: Explorer
-  color: Black
+  description: 'Asking bid $900 · Time left: 8h 54m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  vin: 1C4NJRFB6GD610701
+  mileage: 66716
+  title_status: Rebuilt
+  year: 2016
+  make: JEEP
+  model: PATRIOT
+  color: White
   engine: Gas
-  cylinders: '8'
+  cylinders: '4'
   transmission: Auto
   drivetrain: 4x4
   body: SUVs
-  auction_ends_at: '2026-09-29T23:02:59Z'
-  clean_title: true
-  miles_per_year: 8339
+  auction_ends_at: '2026-10-01T03:11:59Z'
+  clean_title: false
+  miles_per_year: 6672
   car_candidate: false
   watchlist_matches:
   - Trucks & Off-Road/4x4
@@ -1239,16 +1581,55 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 2011 FORD F-250 - 4X4!
+  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/518068/2011-FORD-F-250-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
+  image_url: https://bid.musickauction.com/images/lot/3077/3077540_m.jpg?ts=1790377573
+  current_bid: 1050
+  num_bids: 8
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $1,100 · Time left: 8d 5h 40m 10s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1FT7X2B68BEC54231
+  mileage: 204523
+  title_status: Clear
+  year: 2011
+  make: Ford
+  model: F-250
+  color: Silver
+  engine: Gas
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: 4x4
+  body: Trucks
+  auction_ends_at: '2026-10-09T00:00:00Z'
+  clean_title: true
+  miles_per_year: 13635
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #905: 2017 JEEP WRANGLER - 4X4!'
   url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516733/2017-JEEP-WRANGLER-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F922
   image_url: https://bid.musickauction.com/images/lot/3069/3069689_m.jpg?ts=1790205270
-  current_bid: 1000
-  num_bids: 11
+  current_bid: 2050
+  num_bids: 17
   close_time: null
   category: Vehicles
-  description: 'Asking bid $1,050 · Time left: 8d 5h 29m 13s'
+  description: 'Asking bid $2,100 · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: 1C4BJWEG8HL523632
   mileage: 146106
@@ -1262,7 +1643,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: SUVs
-  auction_ends_at: '2026-10-07T23:59:59Z'
+  auction_ends_at: '2026-10-08T00:00:00Z'
   clean_title: true
   miles_per_year: 16234
   car_candidate: true
@@ -1278,349 +1659,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #523: 1998 CHEVROLET C/K 1500 - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515995/1998-CHEVROLET-C-K-1500-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064383_m.jpg?ts=1790122225
-  current_bid: 1100
-  num_bids: 14
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $1,150 · Time left: 4h 35m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1GCEK19R9WE235032
-  mileage: 181076
-  title_status: Clear
-  year: 1998
-  make: Chevrolet
-  model: C/K 1500
-  color: Beige
-  engine: Gas
-  cylinders: '8'
-  transmission: Manual
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-09-29T23:04:00Z'
-  clean_title: true
-  miles_per_year: 6467
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #60: (2) SEADOO JETSKIS & TRAILER'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/514749/2-SEADOO-JETSKIS-TRAILER?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3046/3046396_m.jpg?ts=1789612619
-  current_bid: 1100
-  num_bids: 13
-  close_time: null
-  category: Heavy Equipment
-  description: 'Asking bid $1,150 · Time left: 9h 50m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Jetski
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #600: 2009 FORD SUPER DUTY F-350 - DIESEL!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514388/2009-FORD-SUPER-DUTY-F-350-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3043/3043694_m.jpg?ts=1789599607
-  current_bid: 1150
-  num_bids: 9
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $1,200 · Time left: 1d 5h 30m 21s'
-  agency: Musick Auction Co. (Meridian, ID)
-  vin: 1FDWF36RX9EB12655
-  mileage: 174407
-  title_status: Clear
-  year: 2009
-  make: Ford
-  model: Super Duty F-350
-  color: White
-  engine: Diesel
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: RWD
-  body: Trucks
-  auction_ends_at: '2026-09-30T23:59:59Z'
-  clean_title: true
-  miles_per_year: 10259
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #37: 2013 HARLEY DAVIDSON ELECTRA'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512633/2013-HARLEY-DAVIDSON-ELECTRA?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3082/3082489_m.jpg?ts=1790696064
-  current_bid: 1300
-  num_bids: 18
-  close_time: null
-  category: Other
-  description: 'Asking bid $1,350 · Time left: 9h 56m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Motorcycle
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #501: 2017 FORD FOCUS - HEATED SEATS!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515972/2017-FORD-FOCUS-HEATED-SEATS?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3063/3063903_m.jpg?ts=1790119935
-  current_bid: 1350
-  num_bids: 11
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $1,400 · Time left: 4h 42m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1FADP3K24HL333170
-  mileage: 157776
-  title_status: Clear
-  year: 2017
-  make: Ford
-  model: Focus
-  color: Red
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: FWD
-  body: Hatchbacks
-  auction_ends_at: '2026-09-29T23:10:59Z'
-  clean_title: true
-  miles_per_year: 17531
-  car_candidate: false
-  watchlist_matches:
-  - Commuter Car (for sister)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #508: 2001 RAM 1500 - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515979/2001-RAM-1500-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064022_m.jpg?ts=1790120446
-  current_bid: 1650
-  num_bids: 19
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $1,700 · Time left: 4h 40m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 3B7HF13Z61G230463
-  mileage: 238247
-  title_status: Clear
-  year: 2001
-  make: Ram
-  model: '1500'
-  color: White
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-09-29T23:08:59Z'
-  clean_title: true
-  miles_per_year: 9530
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #49: 2020 COLEMAN UTV - WINCH!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512639/2020-COLEMAN-UTV-WINCH?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3046/3046210_m.jpg?ts=1789611645
-  current_bid: 1750
-  num_bids: 28
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $1,800 · Time left: 9h 55m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: A6HMDNL0CLB001009
-  mileage: 751
-  title_status: Clear
-  year: 2020
-  make: null
-  model: null
-  color: Orange
-  engine: Gas
-  cylinders: '1'
-  transmission: Auto
-  drivetrain: RWD
-  body: null
-  auction_ends_at: '2026-09-30T04:24:59Z'
-  clean_title: true
-  miles_per_year: 125
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #500: 2011 RAM 1500 ST - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515971/2011-RAM-1500-ST-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3063/3063873_m.jpg?ts=1790119811
-  current_bid: 1850
-  num_bids: 20
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $1,900 · Time left: 4h 43m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1D7RV1GT7BS695525
-  mileage: 155559
-  title_status: Clear
-  year: 2011
-  make: Ram
-  model: '1500'
-  color: Silver
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-09-29T23:12:00Z'
-  clean_title: true
-  miles_per_year: 10371
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #529: 1999 JEEP GRAND CHEROKEE LIMITED- 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/516001/1999-JEEP-GRAND-CHEROKEE-LIMITED-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3069/3069113_m.jpg?ts=1790180455
-  current_bid: 2100
-  num_bids: 27
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $2,150 · Time left: 4h 33m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1J4GW68N1XC638311
-  mileage: 148233
-  title_status: Clear
-  year: 1999
-  make: Jeep
-  model: Grand Cherokee
-  color: Gold
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  auction_ends_at: '2026-09-29T23:01:59Z'
-  clean_title: true
-  miles_per_year: 5490
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #35: 2012 KAWASAKI NINJA 1000'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512632/2012-KAWASAKI-NINJA-1000?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3046/3046152_m.jpg?ts=1789611397
-  current_bid: 2150
-  num_bids: 15
-  close_time: null
-  category: Other
-  description: 'Asking bid $2,200 · Time left: 9h 57m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Motorcycle
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #600: 2022 FORD F-150 - 4X4!'
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517502/2022-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -1629,7 +1668,7 @@ lots:
   num_bids: 35
   close_time: null
   category: Vehicles
-  description: 'Asking bid $2,250 · Time left: 9d 5h 28m 49s'
+  description: 'Asking bid $2,250 · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: 1FTFW1E8XNFB09602
   mileage: 134753
@@ -1643,7 +1682,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-10-08T23:59:59Z'
+  auction_ends_at: '2026-10-09T00:00:00Z'
   clean_title: true
   miles_per_year: 33688
   car_candidate: true
@@ -1659,16 +1698,55 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #600: 2009 FORD SUPER DUTY F-350 - DIESEL!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514388/2009-FORD-SUPER-DUTY-F-350-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3043/3043694_m.jpg?ts=1789599607
+  current_bid: 2600
+  num_bids: 19
+  close_time: null
+  category: Vehicles
+  description: 'Asking bid $2,700 · Time left: 9h 0m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  vin: 1FDWF36RX9EB12655
+  mileage: 174407
+  title_status: Clear
+  year: 2009
+  make: Ford
+  model: Super Duty F-350
+  color: White
+  engine: Diesel
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: RWD
+  body: Trucks
+  auction_ends_at: '2026-10-01T03:18:00Z'
+  clean_title: true
+  miles_per_year: 10259
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #605: 2017 FORD EXPLORER - 4X4! 100K MILES!'
   url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514393/2017-FORD-EXPLORER-4X4-100K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F918
   image_url: https://bid.musickauction.com/images/lot/3043/3043848_m.jpg?ts=1789600366
-  current_bid: 2250
-  num_bids: 35
+  current_bid: 2600
+  num_bids: 40
   close_time: null
   category: Vehicles
-  description: 'Asking bid $2,300 · Time left: 1d 5h 30m 21s'
+  description: 'Asking bid $2,700 · Time left: 8h 58m 59s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: 1FM5K8ATXHGC66759
   mileage: 100605
@@ -1682,7 +1760,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: SUVs
-  auction_ends_at: '2026-10-01T00:00:00Z'
+  auction_ends_at: '2026-10-01T03:16:00Z'
   clean_title: true
   miles_per_year: 11178
   car_candidate: true
@@ -1698,156 +1776,16 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: LOCATED IN MERIDIAN - 2009 HOLIDAY RAMBLER MINTARO 26BHS CAMPER!
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/515112/LOCATED-IN-MERIDIAN-2009-HOLIDAY-RAMBLER-MINTARO-26BHS-CAMPER?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3048/3048195_m.jpg?ts=1789621242
-  current_bid: 3300
-  num_bids: 25
-  close_time: null
-  category: Other
-  description: 'Asking bid $3,400 · Time left: 9h 52m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Little Camper
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #507: 2012 JEEP WRANGLER RUBICON - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515978/2012-JEEP-WRANGLER-RUBICON-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3063/3063996_m.jpg?ts=1790120325
-  current_bid: 4000
-  num_bids: 35
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $4,100 · Time left: 4h 41m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1C4BJWCG1CL267023
-  mileage: 178779
-  title_status: Clear
-  year: 2012
-  make: Jeep
-  model: Wrangler
-  color: White
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  auction_ends_at: '2026-09-29T23:10:00Z'
-  clean_title: true
-  miles_per_year: 12770
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #618: 2002 FORD RANGER - GOVERNMENT FLEET!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514414/2002-FORD-RANGER-GOVERNMENT-FLEET?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044486_m.jpg?ts=1789603343
-  current_bid: 4400
-  num_bids: 36
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $4,500 · Time left: 1d 5h 30m 21s'
-  agency: Musick Auction Co. (Meridian, ID)
-  vin: 1FTYR45E12PA35712
-  mileage: 41944
-  title_status: Clear
-  year: 2002
-  make: FORD
-  model: Ranger
-  color: White
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-09-30T23:59:59Z'
-  clean_title: true
-  miles_per_year: 1748
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #19: 2005 JEEP WRANGLER SPORT - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512624/2005-JEEP-WRANGLER-SPORT-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3082/3082329_m.jpg?ts=1790695340
-  current_bid: 4600
-  num_bids: 19
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $4,700 · Time left: 9h 59m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1J4FA49S75P329290
-  mileage: 117429
-  title_status: Clear
-  year: 2005
-  make: Jeep
-  model: Wrangler
-  color: Silver
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  auction_ends_at: '2026-09-30T04:27:14Z'
-  clean_title: true
-  miles_per_year: 5592
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #617: 2003 TOYOTA TACOMA - GOVERNMENT FLEET!'
   url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514411/2003-TOYOTA-TACOMA-GOVERNMENT-FLEET?url=%2Fauctions%2Fcatalog%2Fid%2F918
   image_url: https://bid.musickauction.com/images/lot/3044/3044399_m.jpg?ts=1789602973
-  current_bid: 4600
-  num_bids: 20
+  current_bid: 5000
+  num_bids: 24
   close_time: null
   category: Vehicles
-  description: 'Asking bid $4,700 · Time left: 1d 5h 30m 21s'
+  description: 'Asking bid $5,100 · Time left: 8h 55m 59s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: 5TEGN92NX3Z269415
   mileage: 242393
@@ -1861,7 +1799,7 @@ lots:
   transmission: Auto
   drivetrain: RWD
   body: Trucks
-  auction_ends_at: '2026-09-30T23:59:59Z'
+  auction_ends_at: '2026-10-01T03:13:00Z'
   clean_title: true
   miles_per_year: 10539
   car_candidate: false
@@ -1877,459 +1815,32 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
-  title: 'Lot #504: 1996 TOYOTA TACOMA - WOODEN STAKE BED!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/517007/1996-TOYOTA-TACOMA-WOODEN-STAKE-BED?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3071/3071116_m.jpg?ts=1790212117
-  current_bid: 5100
-  num_bids: 68
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $5,200 · Time left: 4h 41m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 4TANL42N8TZ179445
-  mileage: 51
-  title_status: Clear
-  year: 1996
-  make: TOYOTA
-  model: TACOMA
-  color: GREEN
-  engine: Gas
-  cylinders: '4'
-  transmission: Manual
-  drivetrain: 2WD
-  body: Trucks
-  auction_ends_at: '2026-09-29T23:09:59Z'
-  clean_title: true
-  miles_per_year: 2
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #43: 2020 KAWASAKI UTV'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512636/2020-KAWASAKI-UTV?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3082/3082504_m.jpg?ts=1790696223
-  current_bid: 5100
-  num_bids: 60
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $5,200 · Time left: 9h 56m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: JKARFCA15LB501113
-  mileage: 5945
-  title_status: Clear
-  year: 2020
-  make: null
-  model: null
-  color: Green
-  engine: Gas
-  cylinders: null
-  transmission: Auto
-  drivetrain: 4x4
-  body: null
-  auction_ends_at: '2026-09-30T04:26:00Z'
-  clean_title: true
-  miles_per_year: 991
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #7: 1972 GMC El Camino Sprint - New Interior - Original Patina Paint'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512618/1972-GMC-El-Camino-Sprint-New-Interior-Original-Patina-Paint?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3082/3082196_m.jpg?ts=1790694771
-  current_bid: 5300
-  num_bids: 71
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $5,400 · Time left: 10h 1m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: null
-  mileage: null
-  title_status: Clear
-  year: 1972
-  make: GMC
-  model: Sprint
-  color: Green
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: RWD
-  body: Coupes
-  auction_ends_at: '2026-09-30T04:31:00Z'
-  clean_title: true
-  miles_per_year: null
-  car_candidate: false
-  watchlist_matches:
-  - Old Project Car
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #519: 1998 DODGE RAM 3500 - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515991/1998-DODGE-RAM-3500-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064295_m.jpg?ts=1790121777
-  current_bid: 5500
-  num_bids: 60
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $5,600 · Time left: 4h 36m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 3B7MF33W5VM550364
-  mileage: 145067
-  title_status: Clear
-  year: 1998
-  make: Dodge
-  model: Ram 3500
-  color: White
-  engine: Gas
-  cylinders: '10'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-09-29T23:05:00Z'
-  clean_title: true
-  miles_per_year: 5181
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #39: 2022 POLARIS RZR 1000 XP'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512634/2022-POLARIS-RZR-1000-XP?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3043/3043418_m.jpg?ts=1789577569
-  current_bid: 7000
-  num_bids: 40
-  close_time: null
-  category: Other
-  description: 'Asking bid $7,100 · Time left: 9h 56m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 2025 STARCRAFT CAMPER TRAILER
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/514739/2025-STARCRAFT-CAMPER-TRAILER?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3046/3046261_m.jpg?ts=1789611884
-  current_bid: 7200
-  num_bids: 44
-  close_time: null
-  category: Heavy Equipment
-  description: 'Asking bid $7,300 · Time left: 9h 54m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Little Camper
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #33: 2021 DUCATI DIAVEL 1260 S'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512631/2021-DUCATI-DIAVEL-1260-S?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3046/3046121_m.jpg?ts=1789611278
-  current_bid: 7700
-  num_bids: 40
-  close_time: null
-  category: Other
-  description: 'Asking bid $7,800 · Time left: 9h 57m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Motorcycle
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #13: 2020 CHEVROLET SILVERADO - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512621/2020-CHEVROLET-SILVERADO-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3082/3082266_m.jpg?ts=1790694998
-  current_bid: 7800
-  num_bids: 64
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $7,900 · Time left: 10h 0m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1GCPYFEL3LZ327943
-  mileage: 131004
-  title_status: Clear
-  year: 2020
-  make: Chevrolet
-  model: Silverado
-  color: Red
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-09-30T04:30:00Z'
-  clean_title: true
-  miles_per_year: 21834
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #15: 2019 RAM 1500 CLASSIC - 11K MILES!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512622/2019-RAM-1500-CLASSIC-11K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3082/3082298_m.jpg?ts=1790695247
-  current_bid: 7800
-  num_bids: 59
-  close_time: null
-  category: Other
-  description: 'Asking bid $7,900 · Time left: 10h 0m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #53: 2025 CONFLUENCE CAMPER'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512641/2025-CONFLUENCE-CAMPER?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3073/3073388_m.jpg?ts=1790267423
-  current_bid: 9700
-  num_bids: 60
-  close_time: null
-  category: Other
-  description: 'Asking bid $9,800 · Time left: 9h 54m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Little Camper
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #21: 1999 FORD F-350 -12 Valve Cummins -5 Speed - 4x4 Crew Cab'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512625/1999-FORD-F-350-12-Valve-Cummins-5-Speed-4x4-Crew-Cab?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3046/3046046_m.jpg?ts=1789610904
-  current_bid: 10000
-  num_bids: 47
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $10,100 · Time left: 9h 59m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1FTWW33F3XED81107
-  mileage: 447970
-  title_status: Clear
-  year: 1999
-  make: Ford
-  model: F-350
-  color: Black
-  engine: Diesel
-  cylinders: '12'
-  transmission: Manual
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-09-30T04:28:59Z'
-  clean_title: true
-  miles_per_year: 16591
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #512: 1999 DODGE RAM 2500 - DIESEL - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515983/1999-DODGE-RAM-2500-DIESEL-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064116_m.jpg?ts=1790120900
-  current_bid: 10100
-  num_bids: 64
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $10,200 · Time left: 4h 39m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1B7KF2361XJ531330
-  mileage: 182419
-  title_status: Clear
-  year: 1999
-  make: Dodge
-  model: Ram 2500
-  color: Black
-  engine: Diesel
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-09-29T23:07:59Z'
-  clean_title: true
-  miles_per_year: 6756
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #1: 1964 CHEVY II NOVA GASSER - SHOW CAR'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512615/1964-CHEVY-II-NOVA-GASSER-SHOW-CAR?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3077/3077597_m.jpg?ts=1790378191
-  current_bid: 10500
+  title: 'Lot #618: 2002 FORD RANGER - GOVERNMENT FLEET!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514414/2002-FORD-RANGER-GOVERNMENT-FLEET?url=%2Fauctions%2Fcatalog%2Fid%2F918
+  image_url: https://bid.musickauction.com/images/lot/3044/3044486_m.jpg?ts=1789603343
+  current_bid: 6500
   num_bids: 52
   close_time: null
   category: Vehicles
-  description: 'Asking bid $10,600 · Time left: 10h 2m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: null
-  mileage: null
+  description: 'Asking bid $6,600 · Time left: 8h 55m 59s'
+  agency: Musick Auction Co. (Meridian, ID)
+  vin: 1FTYR45E12PA35712
+  mileage: 41944
   title_status: Clear
-  year: 1964
-  make: Chevrolet
-  model: Nova
-  color: Purple and Green
-  engine: Gas
-  cylinders: null
-  transmission: Auto
-  drivetrain: null
-  body: null
-  auction_ends_at: '2026-09-30T04:31:59Z'
-  clean_title: true
-  miles_per_year: null
-  car_candidate: false
-  watchlist_matches:
-  - Old Project Car
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 2007 DODGE RAM 3500 LARAMIE - 4X4!
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/515968/2007-DODGE-RAM-3500-LARAMIE-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3061/3061896_m.jpg?ts=1790090353
-  current_bid: 11200
-  num_bids: 61
-  close_time: null
-  category: Vehicles
-  description: 'Asking bid $11,300 · Time left: 9h 59m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 3D7MX38A77G802844
-  mileage: 142088
-  title_status: Clear
-  year: 2007
-  make: Ram
-  model: '3500'
+  year: 2002
+  make: FORD
+  model: Ranger
   color: White
-  engine: Diesel
+  engine: Gas
   cylinders: '6'
   transmission: Auto
   drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-09-30T04:29:00Z'
+  auction_ends_at: '2026-10-01T03:13:00Z'
   clean_title: true
-  miles_per_year: 7478
+  miles_per_year: 1748
   car_candidate: true
   watchlist_matches:
   - Trucks & Off-Road/4x4
@@ -2343,69 +1854,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #41: 2021 POLARIS RZR XP 4 1000 PREMIUM'
-  url: https://bid.musickauction.com/lot-details/index/catalog/916/lot/512635/2021-POLARIS-RZR-XP-4-1000-PREMIUM?url=%2Fauctions%2Fcatalog%2Fid%2F916
-  image_url: https://bid.musickauction.com/images/lot/3082/3082414_m.jpg?ts=1790695720
-  current_bid: 14800
-  num_bids: 22
-  close_time: null
-  category: Other
-  description: 'Asking bid $14,900 · Time left: 9h 56m 9s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #524: 2006 KIA SPORTAGE - 4x4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/921/lot/515996/2006-KIA-SPORTAGE-4x4?url=%2Fauctions%2Fcatalog%2Fid%2F921
-  image_url: https://bid.musickauction.com/images/lot/3064/3064412_m.jpg?ts=1790122382
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 4h 34m 28s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: KNDJE723667237372
-  mileage: 227232
-  title_status: Clear
-  year: 2006
-  make: Kia
-  model: Sportage
-  color: White
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  auction_ends_at: '2026-09-29T23:02:59Z'
-  clean_title: true
-  miles_per_year: 11362
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #624: BANK REPO - 2010 FORD FOCUS - LOW MILES!'
   url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514410/BANK-REPO-2010-FORD-FOCUS-LOW-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F918
@@ -2414,7 +1863,7 @@ lots:
   num_bids: 0
   close_time: null
   category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 1d 5h 30m 21s'
+  description: 'Starting bid $500 · no bids yet · Time left: 8h 53m 59s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: 1FAHP3FN5AW242967
   mileage: 149411
@@ -2428,7 +1877,7 @@ lots:
   transmission: Auto
   drivetrain: FWD
   body: Sedans
-  auction_ends_at: '2026-09-30T23:59:59Z'
+  auction_ends_at: '2026-10-01T03:11:00Z'
   clean_title: true
   miles_per_year: 9338
   car_candidate: true
@@ -2444,63 +1893,24 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 'Lot #625: BANK REPO - 2012 NISSAN VERSA - CRUISE CONTROL!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/918/lot/514412/BANK-REPO-2012-NISSAN-VERSA-CRUISE-CONTROL?url=%2Fauctions%2Fcatalog%2Fid%2F918
-  image_url: https://bid.musickauction.com/images/lot/3044/3044435_m.jpg?ts=1789603135
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 1d 5h 30m 21s'
-  agency: Musick Auction Co. (Meridian, ID)
-  vin: 3N1CN7AP6CL853418
-  mileage: 195482
-  title_status: Clear
-  year: 2012
-  make: NISSAN
-  model: VERSA
-  color: GREY
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: FWD
-  body: Sedans
-  auction_ends_at: '2026-10-01T00:00:00Z'
-  clean_title: true
-  miles_per_year: 13963
-  car_candidate: false
-  watchlist_matches:
-  - Commuter Car (for sister)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #401: 2021 NISSAN VERSA - BUYER''S ASSURANCE POLICY!'
   url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518072/2021-NISSAN-VERSA-BUYER-S-ASSURANCE-POLICY?url=%2Fauctions%2Fcatalog%2Fid%2F924
-  image_url: https://bid.musickauction.com/images/lot/3077/3077696_m.jpg?ts=1790636585
+  image_url: https://bid.musickauction.com/images/lot/3091/3091591_m.jpg?ts=1790784279
   current_bid: null
   num_bids: 0
   close_time: null
   category: Vehicles
-  description: 'Starting bid $501 · no bids yet · Time left: 6d 0h 29m 36s'
+  description: 'Starting bid $501 · no bids yet · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
   vin: 3N1CN8EV9ML878734
-  mileage: null
+  mileage: 81783
   title_status: Clear
   year: 2021
   make: NISSAN
   model: VERSA
-  color: null
+  color: SILVER
   engine: Gas
   cylinders: '4'
   transmission: Auto
@@ -2508,8 +1918,8 @@ lots:
   body: Sedans
   auction_ends_at: '2026-10-05T19:00:00Z'
   clean_title: true
-  miles_per_year: null
-  car_candidate: false
+  miles_per_year: 16357
+  car_candidate: true
   watchlist_matches:
   - Commuter Car (for sister)
   estimated_value_low: null
@@ -2522,7 +1932,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #417: 2008 MAZDA 3 - BUYER''S ASSURANCE POLICY'
   url: https://bid.musickauction.com/lot-details/index/catalog/924/lot/518089/2008-MAZDA-3-BUYER-S-ASSURANCE-POLICY?url=%2Fauctions%2Fcatalog%2Fid%2F924
@@ -2531,7 +1941,7 @@ lots:
   num_bids: 0
   close_time: null
   category: Other
-  description: 'Starting bid $500 · no bids yet · Time left: 6d 0h 29m 36s'
+  description: 'Starting bid $500 · no bids yet · Time left: 5d 0h 42m 10s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Commuter Car (for sister)
@@ -2545,7 +1955,264 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #108: 2015 HYUNDAI ACCENT - 95K MILES!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518832/2015-HYUNDAI-ACCENT-95K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086701_m.jpg?ts=1790723352
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Other
+  description: 'Starting bid $500 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #112: 2011 JEEP GRAND CHEROKEE - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518836/2011-JEEP-GRAND-CHEROKEE-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086818_m.jpg?ts=1790723928
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Vehicles
+  description: 'Starting bid $500 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1J4RR4GG58C507219
+  mileage: 156844
+  title_status: Clear
+  year: 2011
+  make: Jeep
+  model: Grand Cherokee
+  color: Silver
+  engine: Gas
+  cylinders: '6'
+  transmission: Auto
+  drivetrain: 4x4
+  body: SUVs
+  auction_ends_at: '2026-10-06T18:59:59Z'
+  clean_title: true
+  miles_per_year: 10456
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #114: 2008 FORD F-150 - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518838/2008-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3086/3086881_m.jpg?ts=1790724194
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Vehicles
+  description: 'Starting bid $500 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1FTPX14V58FB43881
+  mileage: 138547
+  title_status: Clear
+  year: 2008
+  make: Ford
+  model: F-150
+  color: Blue
+  engine: Gas
+  cylinders: '8'
+  transmission: Auto
+  drivetrain: 4x4
+  body: Trucks
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: true
+  miles_per_year: 7697
+  car_candidate: true
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #119: 2005 CHEVROLET TRAILBLAZER - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518843/2005-CHEVROLET-TRAILBLAZER-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087032_m.jpg?ts=1790724901
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Vehicles
+  description: 'Starting bid $500 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  vin: 1GNDT13S952218355
+  mileage: 216849
+  title_status: Clear
+  year: 2005
+  make: Chevrolet
+  model: Trailblazer
+  color: Gray
+  engine: Gas
+  cylinders: '6'
+  transmission: Auto
+  drivetrain: 4x4
+  body: SUVs
+  auction_ends_at: '2026-10-06T19:00:00Z'
+  clean_title: true
+  miles_per_year: 10326
+  car_candidate: false
+  watchlist_matches:
+  - Trucks & Off-Road/4x4
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #124: BANK REPO - 2013 HYUNDAI ELANTRA -'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518848/BANK-REPO-2013-HYUNDAI-ELANTRA?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087150_m.jpg?ts=1790725456
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Other
+  description: 'Starting bid $500 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #1000: Taurus Model 73 .32 Long 6-Shot Revolver, 4" Barrel, Blued, Wood
+    Grips, Serial #651071, Brazil'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518851/Taurus-Model-73-32-Long-6-Shot-Revolver-4-Barrel-Blued-Wood-Grips-Serial-651071-Brazil?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087182_m.jpg?ts=1790725604
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Other
+  description: 'Starting bid $50 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: 'Lot #1001: Ruger SR40 .40 S&W Semi-Automatic Pistol, Stainless Steel Slide,
+    4.14" Barrel, Serial 342-62761'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518852/Ruger-SR40-40-S-W-Semi-Automatic-Pistol-Stainless-Steel-Slide-4-14-Barrel-Serial-342-62761?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087192_m.jpg?ts=1790725732
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Firearms
+  description: 'Starting bid $50 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: Taurus PT111 G2C 9mm Pistol, Polymer Frame, ABA241139, Made in Brazil
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518854/Taurus-PT111-G2C-9mm-Pistol-Polymer-Frame-ABA241139-Made-in-Brazil?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087210_m.jpg?ts=1790725847
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Firearms
+  description: 'Starting bid $50 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
+- platform: musick
+  title: Paramount Model 1920 .25 ACP Semi-Auto Pistol, Serial 3894, Belgian Made
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518855/Paramount-Model-1920-25-ACP-Semi-Auto-Pistol-Serial-3894-Belgian-Made?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  image_url: https://bid.musickauction.com/images/lot/3087/3087220_m.jpg?ts=1790725855
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  category: Firearms
+  description: 'Starting bid $50 · no bids yet · Time left: 6d 0h 41m 45s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #902: 2017 HYUNDAI ELANTRA GT - FWD!'
   url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516731/2017-HYUNDAI-ELANTRA-GT-FWD?url=%2Fauctions%2Fcatalog%2Fid%2F922
@@ -2554,7 +2221,7 @@ lots:
   num_bids: 0
   close_time: null
   category: Other
-  description: 'Starting bid $500 · no bids yet · Time left: 8d 5h 29m 13s'
+  description: 'Starting bid $500 · no bids yet · Time left: 7d 5h 40m 36s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Commuter Car (for sister)
@@ -2568,7 +2235,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 2005 FORD F-250 -4X4!
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517507/2005-FORD-F-250-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -2577,7 +2244,7 @@ lots:
   num_bids: 0
   close_time: null
   category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 9d 5h 28m 49s'
+  description: 'Starting bid $500 · no bids yet · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: null
   mileage: 180715
@@ -2591,7 +2258,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-10-09T00:00:00Z'
+  auction_ends_at: '2026-10-08T23:59:59Z'
   clean_title: false
   miles_per_year: 8605
   car_candidate: false
@@ -2607,46 +2274,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
-- platform: musick
-  title: 2001 FORD F-250 - 4X4!
-  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/518069/2001-FORD-F-250-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
-  image_url: https://bid.musickauction.com/images/lot/3077/3077567_m.jpg?ts=1790377730
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 9d 5h 28m 49s'
-  agency: Musick Auction Co. (Nampa, ID)
-  vin: 1FTNX21S11EB77139
-  mileage: null
-  title_status: Clear
-  year: 2001
-  make: Ford
-  model: F-250
-  color: Green
-  engine: Gas
-  cylinders: '10'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  auction_ends_at: '2026-10-09T00:00:00Z'
-  clean_title: true
-  miles_per_year: null
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #603: 2018 FORD F-250 XL - WEATHERTECH FLOORMATS - 4X4 - DIESEL!'
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517508/2018-FORD-F-250-XL-WEATHERTECH-FLOORMATS-4X4-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -2655,7 +2283,7 @@ lots:
   num_bids: 0
   close_time: null
   category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 9d 5h 28m 49s'
+  description: 'Starting bid $500 · no bids yet · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: 1FT7X2BT5JEB43351
   mileage: 220506
@@ -2669,7 +2297,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-10-09T00:00:00Z'
+  auction_ends_at: '2026-10-08T23:59:59Z'
   clean_title: false
   miles_per_year: 27563
   car_candidate: false
@@ -2685,7 +2313,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #604: 2011 FORD F-350 -'
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517510/2011-FORD-F-350?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -2694,7 +2322,7 @@ lots:
   num_bids: 0
   close_time: null
   category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 9d 5h 28m 49s'
+  description: 'Starting bid $500 · no bids yet · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: null
   mileage: null
@@ -2724,7 +2352,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #605: 2006 FORD F-250 - 4X4 - DIESEL!'
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517511/2006-FORD-F-250-4X4-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -2733,7 +2361,7 @@ lots:
   num_bids: 0
   close_time: null
   category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 9d 5h 28m 49s'
+  description: 'Starting bid $500 · no bids yet · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: 1FTSW21P66EC55925
   mileage: null
@@ -2747,7 +2375,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-10-08T23:59:59Z'
+  auction_ends_at: '2026-10-09T00:00:00Z'
   clean_title: true
   miles_per_year: null
   car_candidate: false
@@ -2763,7 +2391,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
 - platform: musick
   title: 'Lot #606: 2003 FORD F-250 - 4X4!'
   url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517512/2003-FORD-F-250-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
@@ -2772,7 +2400,7 @@ lots:
   num_bids: 0
   close_time: null
   category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 9d 5h 28m 49s'
+  description: 'Starting bid $500 · no bids yet · Time left: 8d 5h 40m 10s'
   agency: Musick Auction Co. (Nampa, ID)
   vin: 1FTNX21F03EB06584
   mileage: null
@@ -2786,7 +2414,7 @@ lots:
   transmission: Auto
   drivetrain: 4x4
   body: Trucks
-  auction_ends_at: '2026-10-09T00:00:00Z'
+  auction_ends_at: '2026-10-09T00:00:01Z'
   clean_title: false
   miles_per_year: null
   car_candidate: false
@@ -2802,4 +2430,4 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-09-29'
+  fetched_at: '2026-09-30'
