@@ -121,20 +121,23 @@ table.gar-tbl tr:hover td { background: rgba(255,45,138,0.06); }
   <h2>Live listings — Boise metro</h2>
   <p class="prose">
     {{ with $L }}Scraped {{ .generated }} by <code>scripts/garage_finder.py</code>.
-    Sorted by <strong>miles per year</strong> where the mileage is known — lowest
-    first, since that's the actual filter for this hunt. Craigslist search pages
-    don't carry odometer; individual listings sometimes do once you open them.
+    Current lean: a <strong>manual, 4x4 pickup</strong> — still picked on price,
+    not a hard filter, so listings whose title says both <span class="gar-tag">4x4</span>
+    and <span class="gar-tag">Manual</span> float to the top of each category, then
+    it falls back to <strong>miles per year</strong> where mileage is known. Craigslist
+    search pages don't carry odometer or drivetrain reliably; individual listings
+    sometimes do once you open them.
     {{ else }}Run <code>python scripts/garage_finder.py</code> to populate <code>data/garage_listings.yaml</code>.{{ end }}
   </p>
   <div class="gar-callout">
     <strong>Honest read on today's inventory: thin.</strong> Three listings total
-    across all of the Treasure Valley right now, and none of them is the
-    genuine low-miles find this hunt is looking for — the 4Runner is a
-    216,000-mile truck (~6,750 mi/yr, unremarkable), and the better of the two
-    Cherokees is closer (~5,000 mi/yr) but still not a standout. These vehicles
-    trade mostly on Facebook Marketplace and by word of mouth, not dealer lots
-    — re-run the scraper periodically and check the FB links below rather than
-    treating today's list as the field.
+    across all of the Treasure Valley right now — a $1,250 '89 Toyota pickup with
+    no listed mileage, a 4x4 '94 Cherokee Sport at $9,999, and a 2wd '99 Cherokee
+    at $2,200. None of them is a confirmed manual, and none is the genuine
+    low-miles find this hunt is looking for. These vehicles trade mostly on
+    Facebook Marketplace and by word of mouth, not dealer lots — re-run the
+    scraper periodically and check the FB links below rather than treating
+    today's list as the field.
   </div>
   {{ with $L }}
   {{ $cats := slice
@@ -143,14 +146,18 @@ table.gar-tbl tr:hover td { background: rgba(255,45,138,0.06); }
       (dict "key" "cherokee_xj" "label" "Jeep Cherokee XJ") }}
   {{ range $cats }}
     {{ $rows := index $L .key }}
-    {{ $rated := sort (where $rows "miles_per_year" "!=" nil) "miles_per_year" }}
-    {{ $unrated := where $rows "miles_per_year" nil }}
-    {{ $ordered := $rated | append $unrated }}
+    {{ $matched := where $rows "is_4x4" true }}
+    {{ $matched := where $matched "is_manual" true }}
+    {{ $rest := where $rows "is_4x4" "!=" true }}
+    {{ $rest = $rest | append (where (where $rows "is_4x4" true) "is_manual" "!=" true) }}
+    {{ $restRated := sort (where $rest "miles_per_year" "!=" nil) "miles_per_year" }}
+    {{ $restUnrated := where $rest "miles_per_year" nil }}
+    {{ $ordered := $matched | append $restRated | append $restUnrated }}
     <div class="gar-cat-label">{{ .label }} &mdash; {{ len $rows }} listed</div>
     {{ if $rows }}
     <div class="gar-table-wrap">
       <table class="gar-tbl">
-        <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Mi/yr</th><th>Where</th><th></th></tr></thead>
+        <thead><tr><th>Listing</th><th>Year</th><th>Price</th><th>Miles</th><th>Mi/yr</th><th>4x4</th><th>Manual</th><th>Where</th><th></th></tr></thead>
         <tbody>
         {{ range $ordered }}
           <tr>
@@ -159,6 +166,8 @@ table.gar-tbl tr:hover td { background: rgba(255,45,138,0.06); }
             <td>{{ with .price }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
             <td>{{ with .odometer }}{{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
             <td>{{ with .miles_per_year }}{{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+            <td>{{ if .is_4x4 }}✓{{ else }}&mdash;{{ end }}</td>
+            <td>{{ if .is_manual }}✓{{ else }}&mdash;{{ end }}</td>
             <td>{{ with .location }}{{ . }}{{ else }}&mdash;{{ end }}</td>
             <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
           </tr>
