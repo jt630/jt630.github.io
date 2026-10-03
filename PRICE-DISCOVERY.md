@@ -212,6 +212,84 @@ beyond just this one site's convenience.
 
 ---
 
+## The market mechanics underneath this (2026-10-03)
+
+Why this is worth building, not just a nice-to-have feature on top of an
+auction scraper — captured from a conversation worth keeping rather than
+losing to chat scrollback.
+
+**The floor-compression problem.** A cheap, universally-available AI
+valuation ("Claude, how much??" on a screenshot) doesn't inflate prices,
+it compresses them. Once both sides of a negotiation can pull the same
+generic comp in ten seconds, it stops being leverage for whoever has it
+and becomes the shared reference price — and shared reference prices
+settle low, because "I found a lower comp" is the stickier claim in any
+negotiation than "trust my higher one." This is the same effect Carfax
+and Zillow's Zestimate already had on used cars and homes, just cheaper
+and more ambient. **Implication for this project: ubiquitous AI pricing
+favors buyers by default, not sellers — any premium has to come from
+somewhere else.**
+
+**The idiosyncratic-risk buffer, and why it's adverse selection.** A
+generic comp prices the *category*, not the unit — it has no way to know
+whether a specific item carries hidden risk (undisclosed damage, a bad
+title, a rolled-back odometer). Buyers who can't verify that apply a
+blanket discount below the floor as insurance against the unknown.
+That's a strictly negative-margin outcome for any honest seller, since
+they're discounted for a risk they don't actually carry — the market
+prices toward the worst plausible unit in the category, not the specific
+one actually on offer.
+
+**De-fungibilization is the real edge, not a better number.** The way
+out, for either side: don't try to out-guess the shared comp, retire the
+specific risk the comp can't see. A verified VIN, a documented service
+history, a frame inspection, a condition report — proof that *this* unit
+isn't the worst-case one the floor price assumes — is worth more than any
+haggling over the generic number, because it's selling certainty the
+other side's cheap tool can't give them. This project already does this
+structurally, not just in theory: `vin_check.py` against NHTSA, the
+`/garage/` frame-rust/timing-belt checklist, `miles_per_year` instead of
+raw odometer — every one of these is "verify something specific the
+cheap comp assumes away," the same move a CPO premium or a professional
+appraisal makes, just automated.
+
+**Personal-use value is the other escape hatch.** If an item is worth
+more *to a specific buyer* than to the general market — a project
+vehicle, a sentimental piece — the resale comp is irrelevant, because
+that buyer isn't pricing for an exit. It doesn't help build a pricing
+*model*, but it's the real reason `value_it.py`'s "worth to me" field
+(THESIS H7) exists as something separate from `estimated_value_mid`.
+
+**This doesn't shrink the opportunity, it relocates it.** As casual AI
+valuation gets cheap and ambient for everyone, the gap between a careful
+buyer and an eyeballing one compresses toward zero. What doesn't
+compress: owning data nobody else has (this project's first-party
+close-price history, Phase 3) and verifying specific risk nobody else
+bothered to check (VIN checks, condition history, Session V). That's the
+actual long-run case for Phase 1 and Phase 3 mattering beyond
+convenience — not "AI gives us an edge," but "an edge survives only as
+long as it isn't something everyone's cheap AI already does for free."
+
+**Who's actually doing this, casual to pro** (a framing, not a roadmap
+item):
+1. **Casual, single decision** — "is this a deal," no tooling, a one-off
+   prompt on a photo. No lasting infrastructure, no reusable method.
+2. **Power user / hobbyist** — a repeatable pipeline for one category.
+   This is where Auction Watch and the car/garage finders already live.
+3. **Small business** — the valuation is a business input (dealer
+   pricing, pawn loan-to-value, a contractor's bid). It needs a visible
+   method, not just a number, the moment someone else can check it.
+4. **Professional / institutional** — the valuation *is* the deliverable
+   and has to survive an adversarial check; every number needs a primary
+   source and a grade (see `CLAUDE.md`'s own working rules — the same
+   discipline, formalized).
+5. **Autonomous agents that act, not just advise** — `business_agent.py`
+   (Phase 4, stubbed) is this project's toe in that water, deliberately
+   gated on Phase 3 data existing first (Decision 9): acting on a number
+   nobody's verified is a worse failure mode than a wrong price estimate.
+
+---
+
 ## Why auctions are a genuinely good testbed for this
 
 Not a rationalization after the fact — auctions have real structural
