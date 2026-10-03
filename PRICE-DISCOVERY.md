@@ -218,17 +218,28 @@ Why this is worth building, not just a nice-to-have feature on top of an
 auction scraper — captured from a conversation worth keeping rather than
 losing to chat scrollback.
 
-**The floor-compression problem.** A cheap, universally-available AI
-valuation ("Claude, how much??" on a screenshot) doesn't inflate prices,
-it compresses them. Once both sides of a negotiation can pull the same
-generic comp in ten seconds, it stops being leverage for whoever has it
-and becomes the shared reference price — and shared reference prices
-settle low, because "I found a lower comp" is the stickier claim in any
-negotiation than "trust my higher one." This is the same effect Carfax
-and Zillow's Zestimate already had on used cars and homes, just cheaper
-and more ambient. **Implication for this project: ubiquitous AI pricing
-favors buyers by default, not sellers — any premium has to come from
-somewhere else.**
+**The floor-compression problem — corrected 2026-10-03, see Related
+research below.** The original claim here was stronger than the
+evidence supports, so the correction is logged rather than quietly
+edited away: a cheap, universally-available AI valuation ("Claude, how
+much??" on a screenshot) was framed as *favoring buyers by default*,
+on the logic that once both sides of a negotiation can pull the same
+generic comp, "I found a lower comp" beats "trust my higher one." A
+live-research pass found the real study closest to this claim — Fu,
+Jin & Liu (NBER WP 29880) plus a 2025 Marketing Science paper on
+Zillow's Zestimate — shows the opposite distribution: automated
+valuation transparency raised **both** buyer surplus (~6%) and seller
+profit (~4%+), with the largest gains in lower-information markets. The
+honest version: price transparency tends to look like a **shared gain
+from reduced friction/uncertainty**, not a one-sided transfer to
+whichever side has the comp. The floor-compression logic may still hold
+narrowly — a live two-party haggle over one specific item with
+unresolved idiosyncratic risk is a different setting than a published
+AVM feeding an entire market — but it shouldn't be stated as a general
+law. Idaho auction bidding (many bidders, a real close, no
+back-and-forth haggle) is closer to the AVM case than the haggle case,
+which is worth remembering before assuming this project's own tooling
+mechanically favors Jeremy as a bidder.
 
 **The idiosyncratic-risk buffer, and why it's adverse selection.** A
 generic comp prices the *category*, not the unit — it has no way to know
@@ -287,6 +298,141 @@ item):
    (Phase 4, stubbed) is this project's toe in that water, deliberately
    gated on Phase 3 data existing first (Decision 9): acting on a number
    nobody's verified is a worse failure mode than a wrong price estimate.
+
+---
+
+## Related research (verified via live search, 2026-10-03)
+
+The market-mechanics section above was a conversation, not a literature
+review. This section is the literature review — four research passes,
+each required to confirm citations via live search rather than recall,
+and to say plainly when something couldn't be confirmed rather than
+invent a source. Confidence is noted per item; re-verify anything going
+into a client-facing deliverable rather than trusting this list alone.
+
+**Foundational information-asymmetry theory**
+- **Akerlof (1970), "The Market for 'Lemons'," QJE 84(3):488–500.**
+  Confirmed against hosted PDFs/RePEc. The direct fit: sellers knowing
+  more than buyers about quality causes buyers to discount price for
+  lemon-risk, good sellers exit, average quality (and price) spirals
+  down. This is the exact failure mode the project's de-fungibilization
+  tools (VIN checks, frame inspection) counteract.
+- **Spence (1973), "Job Market Signaling," QJE 87(3):355–374.**
+  Confirmed (DOI 10.2307/1882010). Partial fit only, worth stating as a
+  contrast rather than an analogy: signaling theory is about the
+  *informed* party (the seller) credibly revealing quality. A free AI
+  valuation tool instead arms the *uninformed* party (the buyer) — closer
+  to Stigler's logic below than Spence's.
+- **Grossman & Stiglitz (1980), "On the Impossibility of
+  Informationally Efficient Markets," AER 70(3):393–408.** Confirmed.
+  Double-edged, flagged deliberately: if AI pushes the cost of
+  valuation information toward zero, this paradox predicts the
+  *incentive to gather or trade on private information collapses* —
+  markets could converge on "the AI's number" rather than staying
+  informationally rich. A real tension for this project's long-run
+  thesis, not a clean win.
+- **Stigler (1961), "The Economics of Information," JPE 69(3):213–225.**
+  Confirmed (DOI 10.1086/258464). Cleanest fit of the four: price
+  dispersion persists because search costs money/time; falling search
+  costs predict narrowing dispersion. An AI tool making "what's this
+  worth" instant and free is close to a live test of this prediction.
+
+**Auction theory**
+- **Capen, Clapp & Campbell (1971), "Competitive Bidding in High-Risk
+  Situations," Journal of Petroleum Technology 23(6):641–653.**
+  Confirmed. The winner's curse: in common-value auctions, the winning
+  bid comes from whoever had the highest *estimate*, which is
+  systematically more likely to be an overestimate than the truth. This
+  project, observing many closed lots, can measure realized winner's-
+  curse bias directly — something a single bidder never could.
+- **Vickrey (1961), "Counterspeculation, Auctions, and Competitive
+  Sealed Tenders," Journal of Finance 16(1):8–37.** Confirmed, but for
+  second-price/truthful-bidding mechanics specifically, not the
+  private-vs-common-value taxonomy (that split is standard later
+  textbook material, e.g. Milgrom or Krishna's *Auction Theory* — not
+  sourced to Vickrey directly). The taxonomy itself matters here: a used
+  truck is closer to **private-value** (worth modeling as a distribution,
+  buyer use varies), a gold coin or jewelry lot is closer to
+  **common-value** (closer to one estimable number, and the winner's-
+  curse correction actually applies there, not to the trucks).
+- **Wilson (1977), "A Bidding Model of Perfect Competition," Review of
+  Economic Studies 44(3):511–518** (bid shading — rational bidders
+  underbid their own value estimate to correct for the winner's curse,
+  more shading as bidder count rises). Mechanism confirmed; the exact
+  page citation was **not** independently re-verified against a primary
+  source — re-check before using it beyond this internal doc.
+- **Ockenfels & Roth (2006), "Late and Multiple Bidding in Second-Price
+  Internet Auctions," Games and Economic Behavior 55(2):297–320.**
+  Confirmed. On fixed-deadline platforms, bidders rationally "snipe" —
+  bid only in the closing seconds — far more than on auto-extending
+  platforms. Directly testable against this project's own full bid-
+  timing data (THESIS H6 / Session H), not something to assume.
+
+**Price-transparency empirics — includes the correction logged above**
+- **Fu, Jin & Liu, NBER Working Paper 29880 (2022, rev. 2023)** +
+  **a 2025 Marketing Science paper** on Zillow's Zestimate. High
+  confidence (NBER PDF plus independent press corroboration). Finding:
+  raised buyer surplus ~6% **and** seller profit ~4%+, bigger gains in
+  lower-information markets — a shared-gain result, not a one-sided
+  transfer. This is the source for the correction above.
+- **Brown & Goolsbee (2002), "Does the Internet Make Markets More
+  Competitive? Evidence from the Life Insurance Industry," JPE
+  110(3).** High confidence. Internet comparison tools cut term-life
+  prices 8–15%, consumer surplus +$115–215M/year — but dispersion rose
+  initially as tools were adopted, then fell as usage spread.
+  Non-monotonic; don't assume transparency compresses a market
+  instantly rather than over an adoption curve.
+- **Carfax / used-car surplus shift: no clean causal study found.**
+  Real, relevant background exists (Biglaiser, Li, Murry & Zhou, FTC
+  working paper on dealers as information intermediaries; Cho, Frankel
+  & Martin, "Law and Lemons," HBS, on Carfax's 1992 mileage-verification
+  reports in an Akerlof-disclosure frame) but nothing directly measures
+  a buyer/seller surplus shift from Carfax specifically. "Clean Carfax
+  as a sellable premium" is a plausible inference, not a stated finding
+  — don't cite it as proven.
+
+**Current AI-valuation landscape (2024–2025 — most time-sensitive of
+all four passes; re-verify before relying on this in six months)**
+- **Shipped, not just announced:** several indie photo-to-value apps
+  (WhatsitAI, Appraizely, ResaleScan, and similar) are live on app
+  stores. eBay's "AI Price Suggestions" (Seller Hub) analyzes last-30-
+  day sold comps but requires seller confirmation — not autonomous.
+  CarMax Instant Offer and Carvana's offer flow are both real,
+  algorithmic (VIN + condition + market comps; Carvana adds computer-
+  vision condition assessment).
+- **LLMs specifically for valuation:** arXiv 2506.11812 (2025)
+  benchmarks LLMs against traditional automated-valuation models for
+  real estate. A 2025/26 Journal of Real Estate Research paper found
+  LLM-extracted features improved an XGBoost AVM's RMSE by 24.3%.
+- **Algorithmic collusion is a live legal issue, not a hypothetical.**
+  *DOJ v. RealPage* reached a proposed settlement Nov 2025 (no
+  liability admission, but real constraints: data must be ≥12 months
+  old, no real-time lease data, no below-state-level modeling, a
+  7-year court-monitored term). The foundational academic paper is
+  Calvano, Calzolari, Denicolò & Pastorello, "Artificial Intelligence,
+  Algorithmic Pricing, and Collusion," AER 110(10), **2020** (Q-learning
+  pricing bots, not LLMs — correcting an earlier draft's wrong year/
+  attribution). A 2024 arXiv paper (2404.00806) specifically found LLM
+  pricing agents also tacitly collude in repeated-pricing simulations —
+  confirmed to exist via search, abstract-level only, not full-text read.
+- **Autonomous transacting agents are real and already failing in
+  documented ways.** OpenAI's Instant Checkout / Agentic Commerce
+  Protocol (Sept 2025) is real and shipped. arXiv 2508.02630 (2025)
+  found model-dependent purchasing bias in AI shopping agents. Reported
+  (2025 journalism, not yet controlled studies) failure modes: agents
+  overbidding in auction formats, inability to weigh winning against
+  true value, prompt-injection attacks against agents holding payment
+  credentials. Directly relevant to why `business_agent.py` (Phase 4)
+  stays gated on real Phase 3 data under Decision 9 — an LLM judgment
+  with no price grounding is exactly this failure mode, already
+  observed elsewhere.
+- **Weakest area: AI tools changing everyday resale/thrifting
+  behavior.** Only a self-reported industry figure exists (ThredUp's
+  2025 report, via Forbes: 23% resale-market growth in 2024,
+  "AI-tool-driven") — an interested party's own number, not
+  independently audited. No genuine academic study was found on this
+  specific question; treat resale-tech marketing claims ("15x faster
+  pricing") as vendor claims, not research.
 
 ---
 
