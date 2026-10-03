@@ -1,44 +1,50 @@
-generated: 2026-09-14
+generated: 2026-10-02
 
-fourrunner_classic:
-  - source: craigslist
-    title: TOYOTA 4RUNNER 4X4 MANUAL
-    price: 4995
-    year: 1994
-    odometer: 216000
-    url: "https://www.craigslist.org/view/d/nampa-toyota-4runner-4x4-manual/i6gFhbKedL4zinA9CDzT6j"
-    post_date: null
-    location: Caldwell
-    deal_rating: null
-    market_delta: null
-    miles_per_year: 6750
-    dealer_flag: null
+fourrunner_classic: []
 
-toyota_truck: []
-
-cherokee_xj:
+toyota_truck:
   - source: craigslist
-    title: "1999 Jeep Cherokee Sport-ONE OWNER!"
-    price: 2495
-    year: 1999
-    odometer: 134969
-    url: "https://www.craigslist.org/view/d/boise-1999-jeep-cherokee-sport-one-owner/34W5EZEdGb6o78AewiNMzr"
-    post_date: null
-    location: Boise Bench
-    deal_rating: null
-    market_delta: null
-    miles_per_year: 4999
-    dealer_flag: null
-  - source: craigslist
-    title: "1994 Jeep Cherokee Sport SUV 2D"
-    price: 4999
-    year: 1994
+    title: "89 Toyota Pickup"
+    price: 1250
+    year: null
     odometer: null
-    url: "https://www.craigslist.org/view/d/nampa-1994-jeep-cherokee-sport-suv-2d/jNJyE-SY8RGx2ps3KF8M4w"
+    url: "https://www.craigslist.org/view/d/nampa-89-toyota-pickup/prA5pEf1MrTXaYgijdzXao"
     post_date: null
-    location: + Next Ride Auto Sales
+    location: null
     deal_rating: null
     market_delta: null
     miles_per_year: null
     dealer_flag: null
+    is_4x4: False
+    is_manual: False
+
+cherokee_xj:
+  - source: craigslist
+    title: "1994 JEEP CHEROKEE SPORT 4X4"
+    price: 9999
+    year: 1994
+    odometer: null
+    url: "https://www.craigslist.org/view/d/nampa-1994-jeep-cherokee-sport-4x4/e2AFgp8ECLc5PznktPQXje"
+    post_date: null
+    location: NAMPA
+    deal_rating: null
+    market_delta: null
+    miles_per_year: null
+    dealer_flag: null
+    is_4x4: True
+    is_manual: False
+  - source: craigslist
+    title: "1999 Jeep Cherokee Sport-ONE OWNER!(2 Wheel Drive)"
+    price: 2200
+    year: 1999
+    odometer: null
+    url: "https://www.craigslist.org/view/d/boise-1999-jeep-cherokee-sport-one/34W5EZEdGb6o78AewiNMzr"
+    post_date: null
+    location: Boise Bench
+    deal_rating: null
+    market_delta: null
+    miles_per_year: null
+    dealer_flag: null
+    is_4x4: False
+    is_manual: False
 

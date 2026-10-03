@@ -19,6 +19,12 @@ so a low-miles-for-its-age listing sorts to the top of its category. Odometer
 is usually present on Cars.com, usually absent on Craigslist search-result
 pages (noted in fetch notes, same caveat car_finder.py logs).
 
+Current lean (2026-10-02): Jeremy is leaning toward a manual, 4x4 pickup,
+still picked on price -- not a hard filter (title text is an unreliable
+enough source to drop real matches over), just a sort bias. Listings whose
+title mentions both 4x4/4wd and a manual transmission float to the top of
+their category before the miles-per-year tiebreak.
+
 This module imports its HTTP/parsing/geo-filter plumbing from car_finder.py
 rather than re-implementing it - see that file's docstring for source notes.
 
@@ -68,7 +74,14 @@ LISTING_FLAGS = {}  # nothing seen in person yet in this hunt
 
 FIELDS = ("source", "title", "price", "year", "odometer", "url", "post_date",
           "location", "deal_rating", "market_delta", "miles_per_year",
-          "dealer_flag")
+          "dealer_flag", "is_4x4", "is_manual")
+
+# Jeremy's current lean (2026-10-02): a manual, 4x4 pickup, still picked on
+# price -- not a hard filter (title-only detection would drop real matches
+# that just don't say so), just a sort bias so these float up within each
+# category instead of pure miles-per-year.
+FOURX4_RE = re.compile(r"4x4|4wd|4-wd|four\s*wheel\s*drive", re.I)
+MANUAL_RE = re.compile(r"\bmanual\b|\bstick\b|\b[4-6]\s*-?\s*sp(?:ee)?d\b", re.I)
 
 
 # --------------------------------------------------------------------------- #
@@ -240,11 +253,15 @@ def main():
             r["dealer_flag"] = LISTING_FLAGS.get(r.get("url")) or next(
                 (msg for sub, msg in DEALER_FLAGS.items() if sub in loc), None)
             r["miles_per_year"] = miles_per_year(r.get("odometer"), r.get("year"))
+            title = r.get("title") or ""
+            r["is_4x4"] = bool(FOURX4_RE.search(title))
+            r["is_manual"] = bool(MANUAL_RE.search(title))
             r.setdefault("post_date", None)
 
-        # low-miles-for-age first; unknown mpy sorts last (car_finder's
-        # price-sort fallback pattern, applied to miles_per_year instead)
-        kept.sort(key=lambda r: (r.get("miles_per_year") is None,
+        # 4x4+manual matches float up first (the current lean), then
+        # low-miles-for-age; unknown mpy sorts last within each tier.
+        kept.sort(key=lambda r: (not (r["is_4x4"] and r["is_manual"]),
+                                  r.get("miles_per_year") is None,
                                   r.get("miles_per_year") or 0))
         kept = kept[:35]
         result[key] = kept
