@@ -119,6 +119,31 @@ eventual close by more than the item type's market spread. In other words,
 personal context is signal the market price doesn't contain.
 *Against:* personal valuations landing inside the market's own spread.
 
+**H8: Winner's-curse bias concentrates in common-value item types**
+(pre-registered 2026-10-03, see notebook). Among closes with high bidder
+counts, **common-value** item types (coins, bullion, gold/gemstone
+jewelry — melt or spot value is roughly the same to every bidder) close
+*above* their item type's trailing median more often, and by a larger
+margin, than **private-value** item types (vehicles, tools — worth
+genuinely differs by buyer/use) at the same bid-count level. The
+mechanism (Capen, Clapp & Campbell 1971) only bites when bidders are all
+estimating one shared true value; it has nothing to grip on when values
+genuinely differ.
+*Measure:* within each item type, regress `(close − trailing_median) /
+trailing_median` on `num_bids`, fit separately for item types tagged
+common-value vs. private-value (a tag added to the existing
+`category`/`normalize_query()` typing, fixed before this hypothesis is
+tested against real data).
+*Against:* no difference in slope between the two tags, or private-value
+items showing an equal or larger overbid-with-bidder-count effect.
+*Caveat stated now:* the common/private tag is a judgment call per
+category (vehicles and tools are clearly private-value; coins and
+precious-metal jewelry are clearly common-value; some categories, like
+guns, are genuinely mixed and may need to be excluded rather than forced
+into either bucket) — the tagging rule is committed as code before this
+hypothesis is run against history, same discipline as H2's legibility
+classifier.
+
 ## Data
 
 | Source | What it gives | Status |
@@ -184,6 +209,33 @@ personal context is signal the market price doesn't contain.
   markets they describe.
 - Calvano et al., "Artificial Intelligence, Algorithmic Pricing, and
   Collusion" (2020).
+- Spence, "Job Market Signaling" (1973): the informed party signals
+  quality to escape a lemons discount — cited for contrast with this
+  project's approach (arming the *uninformed* party instead), not as a
+  clean analogy.
+- Stigler, "The Economics of Information" (1961): search costs and price
+  dispersion; falling search costs predict narrowing dispersion — the
+  cleanest classical fit for "AI makes search free."
+- Capen, Clapp & Campbell, "Competitive Bidding in High-Risk Situations"
+  (1971): the winner's-curse mechanism behind H8.
+- Vickrey, "Counterspeculation, Auctions, and Competitive Sealed
+  Tenders" (1961): second-price/truthful-bidding mechanics; the
+  private-vs-common-value split used in H8 is later standard auction
+  theory (e.g. Milgrom & Weber above), not sourced to Vickrey directly.
+- Wilson, "A Bidding Model of Perfect Competition" (1977): bid shading
+  as the equilibrium correction to the winner's curse, more shading as
+  bidder count rises — mechanism confirmed, exact page citation not
+  independently re-verified (see PRICE-DISCOVERY.md's research section).
+- Ockenfels & Roth, "Late and Multiple Bidding in Second-Price Internet
+  Auctions" (2006): the sniping mechanism behind H6.
+- Brown & Goolsbee, "Does the Internet Make Markets More Competitive?"
+  (2002): real evidence that price-comparison tools cut prices, with a
+  non-monotonic dispersion effect (rises on adoption, then falls) —
+  caution against assuming H1's convergence is a straight line.
+- Fu, Jin & Liu, NBER Working Paper 29880 (2022/2023), on Zillow's
+  Zestimate feedback loop: automated-valuation transparency raised both
+  buyer and seller surplus in the real data — a check against overstating
+  H5's arbitrage-closing story as purely one-sided.
 
 ---
 
@@ -232,4 +284,23 @@ period even exists to be worth the risk. Hypotheses and predictions are
 unchanged. Also worth noting as a finding: **the market's own
 infrastructure limits who can observe it at scale**, which is part of the
 "missing infrastructure" this thesis argues about.
+
+**2026-10-03: H8 added, reading list expanded.** A separate research pass
+(logged in `PRICE-DISCOVERY.md`'s "Related research" section) verified
+citations via live search for auction theory, information-asymmetry
+theory, and price-transparency empirics. Two consequences for this file,
+recorded as amendments rather than edits to existing predictions:
+- **New hypothesis H8**, pre-registered before any winner's-curse
+  analysis has been run: common-value item types should show more
+  overbidding-with-bidder-count than private-value ones. This was not
+  in the original argument's three-term decomposition explicitly, but
+  follows from it — the "common value" term is exactly where a
+  winner's-curse bias would live.
+- **Reading list expanded** with the primary sources behind H6
+  (Ockenfels & Roth) and H8 (Capen/Clapp/Campbell, Vickrey, Wilson), plus
+  two empirical papers (Brown & Goolsbee; Fu/Jin/Liu on Zestimate) that
+  push back on reading H1/H5's predicted convergence as a clean,
+  monotonic, one-sided story. H1-H7 and their directions are unchanged —
+  this only adds H8 and better-grounds citations already implicit in the
+  argument.
 
