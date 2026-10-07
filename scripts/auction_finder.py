@@ -211,9 +211,20 @@ CATEGORY_KEYWORDS = [
         "explorer", "wrangler", "charger", "impala", "camry", "accord",
         "civic", "cargo van", "minivan", "vin", "odometer", "mileage",
         "4x4", "awd", "sedan", "hatchback", "pickup truck",
+        # Makes the original list missed - cars like a "2010 MAZDA 3" or
+        # "2017 HYUNDAI ELANTRA GT" fell through to "Other" and so never
+        # got the vehicle detail fetch (VIN/mileage/title/end time).
+        # Deliberately no "ram" (matches computer RAM) or "mini".
+        "mazda", "hyundai", "kia", "volkswagen", "vw", "bmw", "mercedes",
+        "lexus", "buick", "cadillac", "chrysler", "lincoln", "mitsubishi",
+        "volvo", "audi", "tesla", "pontiac", "saturn", "infiniti", "acura",
+        "scion", "land rover", "range rover", "yukon", "tundra", "tacoma",
+        "f-150", "f-250", "f-350", "escape", "elantra", "accent",
     ]),
     ("Firearms", [
         "rifle", "pistol", "shotgun", "firearm", "ammo", "ammunition", "gun",
+        "revolver", "handgun", "carbine", "ar-15", "semi-auto",
+        "bolt-action", "muzzleloader", "derringer",
     ]),
     ("Electronics", [
         "laptop", "computer", "tablet", "iphone", "smartphone", "camera",
@@ -236,9 +247,22 @@ CATEGORY_KEYWORDS = [
 ]
 
 
+# Words that mean "this is NOT a real vehicle" even when a vehicle keyword
+# also hits: a "Bunk Of Lumber, 6x12, 4x4 12ft" matched "4x4", and a
+# "1995 Pepsi-Cola Die-Cast Delivery Truck Coin Bank" matched "truck", so
+# both were filed under Vehicles and sat in the car list.
+NOT_A_VEHICLE = [
+    "lumber", "die-cast", "die cast", "diecast", "coin bank", "toy",
+    "model kit", "scale model", "1:24", "1:18", "1:64",
+]
+
+
 def guess_category(lot):
     s = f" {lot.get('title', '')} {lot.get('description', '')} ".lower()
+    not_vehicle = any(re.search(r"(?<!\w)" + re.escape(n) + r"(?!\w)", s) for n in NOT_A_VEHICLE)
     for label, needles in CATEGORY_KEYWORDS:
+        if label == "Vehicles" and not_vehicle:
+            continue
         # \b...s?\b: word-boundary match with an optional trailing "s", so
         # "car"/"truck"/"excavator" also catch "cars"/"trucks"/"excavators"
         # without matching inside unrelated words ("scar", "cargo") the way
@@ -662,7 +686,7 @@ _MUSICK_LOT_NUMBIDS_RE = re.compile(r'Bidding history\((\d+)\s*bids?\)')
 _MUSICK_LOT_TIMELEFT_RE = re.compile(r'Time left:&nbsp;<a[^>]*>([^<]*)</a>')
 
 
-def parse_musick_lots(page):
+def parse_musick_lots(page, now=None):
     """Parse real per-lot rows out of a rendered bid.musickauction.com
     catalog page (see markup notes above). Current bid is used as the
     lot's price for deal-scoring - it's what a bidder actually has to beat,
@@ -670,7 +694,15 @@ def parse_musick_lots(page):
     kept on the lot dict (not part of the shared schema), but shows up in
     the fetch notes for the curious. A lot with no bids yet keeps its
     starting-bid price in the description with current_bid left None (not
-    a real price to score against), rather than being dropped."""
+    a real price to score against), rather than being dropped.
+
+    Every lot also gets `auction_ends_at` (UTC ISO) computed from its own
+    catalog "Time left" string. Before this, only vehicles that got a
+    second, expensive detail-page render ever had an end time, so
+    firearms/coins/jewelry/etc. all showed no timing at all even though
+    the string was sitting right there in the catalog row.
+    `now` is injectable for tests."""
+    now = now or datetime.now(timezone.utc)
     out = []
     for chunk in _MUSICK_LOT_SPLIT_RE.split(page)[1:]:
         title_m = _MUSICK_LOT_TITLE_RE.search(chunk)
@@ -697,6 +729,7 @@ def parse_musick_lots(page):
         if time_m:
             tl = time_m.group(1).strip()
             desc = f"{desc} · Time left: {tl}" if desc else f"Time left: {tl}"
+        left = _parse_musick_duration(time_m.group(1)) if time_m else None
         out.append({
             "platform": "musick",
             "title": f"Lot #{num_m.group(1)}: {title}" if num_m else title,
@@ -705,6 +738,9 @@ def parse_musick_lots(page):
             "current_bid": _money(bid_m.group(1)) if bid_m else None,
             "num_bids": int(bids_m.group(1)) if bids_m else None,
             "close_time": None,
+            "auction_ends_at": (
+                (now + left).strftime("%Y-%m-%dT%H:%M:%SZ") if left else None
+            ),
             "category": None,
             "description": desc,
             "agency": None,
@@ -723,6 +759,15 @@ def parse_musick_lots(page):
 _MUSICK_DETAIL_FIELD_RE = re.compile(
     r'<span class="cat-header">([^<]+):</span>\s*(.*?)<br>', re.S
 )
+# The seller's own condition notes ("Runs, Drives, and Shifts Correctly...",
+# or the problems - "check engine light", "does not start") sit between the
+# "Description:" header and the spec block. CONFIRMED against a real lot
+# page (tests/fixtures/musick_lot_detail_wrangler.html, probed 2026-10-07).
+_MUSICK_DETAIL_DESC_RE = re.compile(
+    r'<span class="desc-header">Description:</span>(.*?)(?:<span class="cat-header">|</div>)',
+    re.S,
+)
+CONDITION_TEXT_MAX = 800
 _MUSICK_DETAIL_CURBID_RE = re.compile(
     r'id="currentBid"><span class="exratetip[^>]*>\$([\d,]+)</span>'
 )
@@ -782,7 +827,14 @@ def parse_musick_lot_detail(page):
     bid_m = _MUSICK_DETAIL_CURBID_RE.search(page)
     bids_m = _MUSICK_DETAIL_NUMBIDS_RE.search(page)
     time_m = _MUSICK_DETAIL_TIMELEFT_RE.search(page)
+    desc_m = _MUSICK_DETAIL_DESC_RE.search(page)
+    condition_text = None
+    if desc_m:
+        raw = re.sub(r"</?(?:br|p)[^>]*>", " ", desc_m.group(1))
+        raw = html.unescape(re.sub(r"<[^>]+>", "", raw))
+        condition_text = re.sub(r"\s+", " ", raw).strip()[:CONDITION_TEXT_MAX] or None
     return {
+        "condition_text": condition_text,
         "vin": vin,
         "mileage": _int(fields.get("mileage")),
         "title_status": fields.get("title"),
@@ -856,15 +908,21 @@ def fetch_musick_vehicle_detail(lot, all_notes, run=None):
         return
 
     detail = parse_musick_lot_detail(page)
+    lot["condition_text"] = detail["condition_text"]
     for key in ("vin", "mileage", "title_status", "year", "make", "model",
                 "color", "engine", "cylinders", "transmission", "drivetrain", "body"):
         lot[key] = detail[key]
 
     ends_at_delta = _parse_musick_duration(detail["time_left_raw"])
-    lot["auction_ends_at"] = (
-        (datetime.now(timezone.utc) + ends_at_delta).strftime("%Y-%m-%dT%H:%M:%SZ")
-        if ends_at_delta else None
-    )
+    if ends_at_delta:
+        # The detail page's own countdown is the most precise reading, so
+        # it wins - but a detail page with no parseable countdown keeps
+        # the catalog-derived value instead of wiping it to None.
+        lot["auction_ends_at"] = (
+            datetime.now(timezone.utc) + ends_at_delta
+        ).strftime("%Y-%m-%dT%H:%M:%SZ")
+    else:
+        lot.setdefault("auction_ends_at", None)
 
     title_status = (detail["title_status"] or "").strip().lower()
     lot["clean_title"] = title_status in _MUSICK_CLEAN_TITLE_WORDS
@@ -1067,6 +1125,90 @@ def guess_agency(lot, term):
     return term
 
 
+ALWAYS_KEEP_CATEGORY = "Small Engines & Appliances"
+
+
+def normalize_lot(r):
+    """Fill every lot with the shared schema defaults (category, watchlist
+    tags, empty valuation fields). One place so lots merged in from the
+    deep catalog crawl (merge_deep_lots) look exactly like fetched ones."""
+    r.setdefault("num_bids", None)
+    r.setdefault("close_time", None)
+    r.setdefault("description", None)
+    r["category"] = guess_category(r)
+    r["watchlist_matches"] = match_watchlist(r)
+    r["estimated_value_low"] = None
+    r["estimated_value_high"] = None
+    r["estimated_value_mid"] = None
+    r["deal_score"] = None
+    r["deal_pct"] = None
+    r["ai_note"] = None
+    r["value_source"] = None  # "ebay" | "ai" | None - set by auction_value.py
+    r["ebay_n"] = None
+    r["ebay_median"] = None
+    r["flagged"] = False
+    r["fetched_at"] = date.today().isoformat()
+    return r
+
+
+_LOT_ID_IN_URL_RE = re.compile(r"/catalog/(\d+)/lot/(\d+)/")
+
+
+def _lot_key(url):
+    m = _LOT_ID_IN_URL_RE.search(url or "")
+    return (int(m.group(1)), int(m.group(2))) if m else url
+
+
+def merge_deep_lots(deep_rows, out_path=None):
+    """Add small-engine/appliance lots found by the full-catalog crawl
+    (scripts/live_seen.py) to the live snapshot.
+
+    Why: fetch_musick_catalog() only sees page 1 (50 lots) of each catalog,
+    but vacuums/mowers/chainsaws sit anywhere in a 700+ lot sale (on
+    2026-10-06, all 20 in catalog 925 were at positions 90-736). The
+    crawl pages whole catalogs anyway for vanished-lot recovery, so this
+    reuses those rows - ZERO extra Musick requests.
+
+    Only ALWAYS_KEEP_CATEGORY lots are added (the personal watchlist keeps
+    its page-1-only behavior). Deduped by (catalog, lot) id since the same
+    lot's URL carries different query strings on different pages. Never
+    creates the file: with no snapshot to extend there's nothing to merge
+    into. Returns the number of lots added."""
+    out_path = out_path or OUT
+    if not deep_rows or not os.path.exists(out_path):
+        return 0
+    with open(out_path, encoding="utf-8") as f:
+        doc = yaml.safe_load(f) or {}
+    lots = doc.get("lots") or []
+    have = {_lot_key(l.get("url")) for l in lots}
+    agency_by_catalog = {}
+    for l in lots:
+        k = _lot_key(l.get("url"))
+        if isinstance(k, tuple) and l.get("agency"):
+            agency_by_catalog.setdefault(k[0], l["agency"])
+    added = []
+    for r in deep_rows:
+        k = _lot_key(r.get("url"))
+        if k in have:
+            continue
+        r = dict(r)
+        if guess_category(r) != ALWAYS_KEEP_CATEGORY:
+            continue
+        r["agency"] = agency_by_catalog.get(k[0] if isinstance(k, tuple) else None,
+                                            "Musick Auction Co.")
+        normalize_lot(r)
+        have.add(k)
+        added.append(r)
+    if not added:
+        return 0
+    lots.extend(added)
+    lots.sort(key=lambda r: (r.get("current_bid") is None, r.get("current_bid") or 0))
+    doc["lots"] = lots
+    with open(out_path, "w", encoding="utf-8") as f:
+        yaml.dump(doc, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+    return len(added)
+
+
 def in_region(lot):
     if lot.get("platform") == "musick":
         return True  # a Nampa, ID auctioneer's own listings are local by definition
@@ -1106,22 +1248,7 @@ def main(argv=None):
     dropped = len(merged) - len(kept)
 
     for r in kept:
-        r.setdefault("num_bids", None)
-        r.setdefault("close_time", None)
-        r.setdefault("description", None)
-        r["category"] = guess_category(r)
-        r["watchlist_matches"] = match_watchlist(r)
-        r["estimated_value_low"] = None
-        r["estimated_value_high"] = None
-        r["estimated_value_mid"] = None
-        r["deal_score"] = None
-        r["deal_pct"] = None
-        r["ai_note"] = None
-        r["value_source"] = None  # "ebay" | "ai" | None - set by auction_value.py
-        r["ebay_n"] = None
-        r["ebay_median"] = None
-        r["flagged"] = False
-        r["fetched_at"] = date.today().isoformat()
+        normalize_lot(r)
 
     # "Dial in the search": don't waste storage or a bidder's attention on
     # a lot that isn't actually being searched for. A lot is worth keeping
@@ -1131,7 +1258,6 @@ def main(argv=None):
     # before it's ever written to disk or rendered, not just hidden. This
     # is the actual lever for scaling to more sources later: the interest
     # bar, not the number of sites fetched, bounds how much ends up kept.
-    ALWAYS_KEEP_CATEGORY = "Small Engines & Appliances"
     before_interest_filter = len(kept)
     kept = [
         r for r in kept

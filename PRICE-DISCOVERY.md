@@ -20,6 +20,58 @@ read before any session that touches this scaling-up work.
 *Read this first. It's the state of play, so a new session doesn't have to
 reconstruct it. Update it at the end of every session.*
 
+**2026-10-07 session (timing + hide + swarm pricing)** — not yet verified
+against a live run, dispatch the workflow and check the new `auction_ends_at`
+coverage:
+- **Timing bug fixed:** `parse_musick_lots()` now derives `auction_ends_at`
+  from each catalog row's own "Time left" string. Before, only vehicles that
+  got the expensive detail render had an end time, so firearms/coins/jewelry
+  showed "—". The detail step no longer wipes it when its own countdown is
+  missing. Tests: `scripts/tests/test_musick_timing.py`.
+- **Categorizer fixed:** Mazda/Hyundai/Kia/etc. cars were landing in "Other"
+  (so never got VIN/mileage/title fetches); "revolver" wasn't a firearm word;
+  lumber ("4x4") and a die-cast toy truck were filed as Vehicles.
+- **Hide-a-lot:** ✕ button per row, remembered per browser in localStorage
+  (keyed by lot URL), "Show N hidden" toggle, hidden lots excluded from the
+  flagged count and email digest. Not synced across devices (static site).
+- **Swarm pricing:** `research/swarm_prices_2026-10-07.yaml` — 22 lots (11
+  `car_candidate` vehicles + 11 firearms) priced by one Haiku each. Rough
+  and unverified (see its `caveats`): truck retails look high for 130k+ mile
+  fleet units, and car hammer guesses ignore the live bid trajectory.
+- **Small engines / vacuums (the grandpa gap):** the live finder only sees
+  page 1 (50 lots) of each catalog; on 2026-10-06 all 20 small-engine lots in
+  catalog 925 sat at positions 90-736. `live_seen.py` already pages whole
+  catalogs closing within 48h, so it now also hands those lots to
+  `auction_finder.merge_deep_lots()` (small engines only, deduped by lot id)
+  - **zero extra Musick requests**. Scope limits: only catalogs closing
+  within 48h are deep-crawled, and the personal watchlist still only sees
+  page 1. Unverified on a live run - check `[live-seen] merged N` in the log.
+- **Listing-aware valuation:** one `probe_url` run (2026-10-07, Wrangler lot)
+  showed the seller's condition text lives in `description-info-content`;
+  `parse_musick_lot_detail()` now returns `condition_text` (fixture:
+  `tests/fixtures/musick_lot_detail_wrangler.html`), stored on vehicles during
+  the existing detail render. `auction_value.py` now sends it to the model as
+  `condition_notes` (+ year/make/model/mileage/title) and prices a decent
+  RUNNING example first, then adjusts down for described problems. Only
+  vehicles get it so far (guns/small engines don't get a detail render).
+- **Close-price comps ("deep currents"):** `scripts/comp_baseline.py` - for
+  vehicles/firearms/small engines, median + recency-weighted (60d half-life)
+  average of comparable past Musick closes, trailing 365d, reported with n
+  and days of history. History only starts 2026-08-27 so it is ~6 weeks old,
+  not a year, until it accrues. Runs in the workflow before valuation and is
+  shown on the page. Context for THIS auction, not a target.
+- **Buyer's premium:** `scripts/musick_fees.py` + "≈ $X all-in" under each
+  bid. Reading of the terms tab: 15% under $10k, 10% at/above, +$150 vehicle
+  doc fee, +$15 per firearm. Quirk: winning at $10,000 costs less all-in than
+  winning at ~$9,100-$9,999. **Not** folded into deal flags (THESIS
+  pre-registered definitions). The "15%" is my reading of an ambiguous
+  sentence - confirm with Musick.
+- Suspect rows in the close history (a Wrangler at $19, a Paramount pistol at
+  $9) look like parse artifacts; comp_baseline trims them but the harvester
+  should be checked.
+- Still open: wire swarm/`value_it.py` valuations into `auction_lots.yaml`;
+  fold musick_fees into the deal math if the owner wants it.
+
 **Live and working**
 - Daily pipeline (GitHub Actions, 13:00 UTC; GitHub often runs it hours
   late): live lots → close-price harvest → valuation → **test gate** →

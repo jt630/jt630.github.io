@@ -13,7 +13,7 @@
   <table class="auctions-tbl">
     <thead>
       <tr>
-        <th>Lot</th><th>Agency</th><th>Bid</th><th>Est. value</th><th>Gap</th><th>Closes</th><th>Src</th><th></th>
+        <th>Lot</th><th>Agency</th><th>Bid</th><th>Est. value</th><th>Gap</th><th>Closes</th><th>Src</th><th></th><th></th>
       </tr>
     </thead>
     <tbody>
@@ -39,6 +39,14 @@
           <td>
             {{ .title }}
             {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}
+            {{/* Seller's own condition notes, read off the lot page by the
+                 existing vehicle detail render (no extra request). Absent
+                 means "page not read", NOT "no problems". */}}
+            {{ with .condition_text }}<div class="auctions-seller-note" title="{{ . }}">📝 {{ . | truncate 170 }}</div>{{ end }}
+            {{/* Moving average of what comparable lots actually closed for
+                 here (scripts/comp_baseline.py). Context for THIS auction,
+                 not a target - see that file's docstring. */}}
+            {{ with .comp_note }}<div class="auctions-comp" title="Past Musick closes for comparable lots: 25th–75th percentile ${{ lang.FormatNumberCustom 0 $lot.comp_low }}–${{ lang.FormatNumberCustom 0 $lot.comp_high }}; recency-weighted avg ${{ lang.FormatNumberCustom 0 $lot.comp_wavg }}; {{ $lot.comp_span_days }} days of history">📊 {{ . }}</div>{{ end }}
             {{/* Real vehicle spec chips, from each lot's own detail page
                  (see fetch_musick_vehicle_detail() / docs/AUCTION-MONITORING.md)
                  - only rendered when that fetch actually succeeded, never
@@ -68,7 +76,16 @@
             {{ end }}
           </td>
           <td>{{ with .agency }}{{ . }}{{ else }}&mdash;{{ end }}</td>
-          <td>{{ with .current_bid }}${{ lang.FormatNumberCustom 0 . }}{{ else }}&mdash;{{ end }}</td>
+          <td>{{ with .current_bid }}${{ lang.FormatNumberCustom 0 . }}
+            {{/* What winning actually costs: Musick's buyer's premium (15%
+                 under $10k, 10% at/above) plus doc/firearm fee. Mirrors
+                 scripts/musick_fees.py - keep the two in sync. */}}
+            {{ if eq $lot.platform "musick" }}
+              {{ $rate := cond (lt . 10000) 1.15 1.10 }}
+              {{ $fee := 0 }}{{ if eq $lot.category "Vehicles" }}{{ $fee = 150 }}{{ else if eq $lot.category "Firearms" }}{{ $fee = 15 }}{{ end }}
+              <div class="auctions-allin" title="Bid + buyer's premium + doc/firearm fee, before Idaho sales tax">≈ ${{ lang.FormatNumberCustom 0 (add (math.Round (mul . $rate)) $fee) }} all-in</div>
+            {{ end }}
+          {{ else }}&mdash;{{ end }}</td>
           <td>
             {{ if .estimated_value_mid }}
               ${{ lang.FormatNumberCustom 0 .estimated_value_low }}&ndash;{{ lang.FormatNumberCustom 0 .estimated_value_high }}
@@ -105,6 +122,7 @@
           </td>
           <td><span class="auctions-src">{{ .platform }}</span></td>
           <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
+          <td><button type="button" class="lot-hide-btn" title="Hide this lot (remembered in this browser)" aria-label="Hide this lot">✕</button></td>
         </tr>
       {{ end }}
     </tbody>
