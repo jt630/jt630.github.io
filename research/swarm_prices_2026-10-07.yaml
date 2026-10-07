@@ -1,0 +1,274 @@
+generated: '2026-10-07'
+snapshot: data/auction_lots.yaml as of 2026-10-06 (77 lots)
+method: One Claude Haiku agent per lot, WebSearch comps / model knowledge. NOT verified against sold listings; no eBay-comp backing. Treat as
+  rough first-pass.
+caveats:
+- Haiku anchored car "likely_hammer" on a fixed %-of-retail rule, not on the live bid trajectory; for lots with 30-50 bids the live bid is the
+  better hammer signal.
+- Several truck retails look high for 130k+ mile fleet units (2022 F-150 134k mi mid $33k; 2017 F-150 101k mi mid $21k; 2016 F-350 mid $19.5k).
+- Firearm hammer estimates are crowd-sourced guesses; condition unknown, buyer premium/FFL transfer fees not included.
+lots:
+- kind: car
+  title: 'Lot #514: 2010 FORD F-150 - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/928/lot/520963/2010-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F928
+  ends_at: '2026-10-12T19:00:00Z'
+  bid_at_snapshot: 500
+  value_low: 7500
+  value_mid: 9000
+  value_high: 11000
+  likely_hammer: 5250
+  hammer_minus_bid: 4750
+  value_mid_minus_bid: 8500
+  confidence: med
+- kind: car
+  title: 'Lot #601: 2009 CHEVROLET SILVERADO 1500 WT HYBRID - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517503/2009-CHEVROLET-SILVERADO-1500-WT-HYBRID-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
+  ends_at: '2026-10-08T23:59:59Z'
+  bid_at_snapshot: 750
+  value_low: 4500
+  value_mid: 6000
+  value_high: 7500
+  likely_hammer: 1800
+  hammer_minus_bid: 1050
+  value_mid_minus_bid: 5250
+  confidence: med
+- kind: car
+  title: 2016 FORD F-350 - 125K MILES
+  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/518067/2016-FORD-F-350-125K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F923
+  ends_at: '2026-10-09T00:00:00Z'
+  bid_at_snapshot: 850
+  value_low: 14000
+  value_mid: 19500
+  value_high: 23000
+  likely_hammer: 5500
+  hammer_minus_bid: 4650
+  value_mid_minus_bid: 18650
+  confidence: med
+- kind: car
+  title: 2017 FORD F-150 - 4x4!!
+  url: https://bid.musickauction.com/lot-details/index/catalog/926/lot/519583/2017-FORD-F-150-4x4?url=%2Fauctions%2Fcatalog%2Fid%2F926
+  ends_at: '2026-10-14T19:00:00Z'
+  bid_at_snapshot: 850
+  value_low: 17000
+  value_mid: 21000
+  value_high: 25000
+  likely_hammer: 5500
+  hammer_minus_bid: 4650
+  value_mid_minus_bid: 20150
+  confidence: med
+- kind: car
+  title: 'Lot #100: 2017 JEEP GRAND CHEROKEE LIMITED - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518824/2017-JEEP-GRAND-CHEROKEE-LIMITED-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: '2026-10-06T23:12:00Z'
+  bid_at_snapshot: 2200
+  value_low: 11500
+  value_mid: 12500
+  value_high: 14000
+  likely_hammer: 10000
+  hammer_minus_bid: 7800
+  value_mid_minus_bid: 10300
+  confidence: med
+- kind: car
+  title: 'Lot #114: 2008 FORD F-150 - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518838/2008-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: '2026-10-06T23:07:00Z'
+  bid_at_snapshot: 3000
+  value_low: 5400
+  value_mid: 6100
+  value_high: 6900
+  likely_hammer: 5700
+  hammer_minus_bid: 2700
+  value_mid_minus_bid: 3100
+  confidence: high
+- kind: car
+  title: 'Lot #104: 2018 FORD ESCAPE - 92K MILES - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518828/2018-FORD-ESCAPE-92K-MILES-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: '2026-10-06T23:11:00Z'
+  bid_at_snapshot: 3300
+  value_low: 7500
+  value_mid: 8500
+  value_high: 9500
+  likely_hammer: 5200
+  hammer_minus_bid: 1900
+  value_mid_minus_bid: 5200
+  confidence: med
+- kind: car
+  title: 'Lot #905: 2017 JEEP WRANGLER - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516733/2017-JEEP-WRANGLER-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F922
+  ends_at: '2026-10-08T00:00:00Z'
+  bid_at_snapshot: 4600
+  value_low: 13000
+  value_mid: 15500
+  value_high: 17000
+  likely_hammer: 9500
+  hammer_minus_bid: 4900
+  value_mid_minus_bid: 10900
+  confidence: med
+- kind: car
+  title: 'Lot #118: 2008 FORD F-150 - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518842/2008-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: '2026-10-06T23:04:59Z'
+  bid_at_snapshot: 4700
+  value_low: 5500
+  value_mid: 6800
+  value_high: 8000
+  likely_hammer: 5900
+  hammer_minus_bid: 1200
+  value_mid_minus_bid: 2100
+  confidence: med
+- kind: car
+  title: 'Lot #600: 2022 FORD F-150 - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/923/lot/517502/2022-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F923
+  ends_at: '2026-10-09T00:00:00Z'
+  bid_at_snapshot: 5100
+  value_low: 28000
+  value_mid: 33000
+  value_high: 39000
+  likely_hammer: 11000
+  hammer_minus_bid: 5900
+  value_mid_minus_bid: 27900
+  confidence: med
+- kind: car
+  title: 'Lot #102: 2015 GMC YUKON XL DENALI - 4X4!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518826/2015-GMC-YUKON-XL-DENALI-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: '2026-10-06T23:10:59Z'
+  bid_at_snapshot: 6300
+  value_low: 13500
+  value_mid: 15500
+  value_high: 17500
+  likely_hammer: 8200
+  hammer_minus_bid: 1900
+  value_mid_minus_bid: 9200
+  confidence: med
+- kind: gun
+  title: 'Lot #959: Jennings J-22 .22 LR Pistol, Chrome, Wood Grips, 2.5" Barrel, 6-Round Mag, SN 028130'
+  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516748/Jennings-J-22-22-LR-Pistol-Chrome-Wood-Grips-2-5-Barrel-6-Round-Mag-SN-028130?url=%2Fauctions%2Fcatalog%2Fid%2F922
+  ends_at: null
+  bid_at_snapshot: 55
+  value_low: 90
+  value_mid: 170
+  value_high: 240
+  likely_hammer: 155
+  hammer_minus_bid: 100
+  value_mid_minus_bid: 115
+  confidence: med
+- kind: gun
+  title: 'Lot #5002: Ruger 22/45 Target .22 LR Semi-Auto Pistol, 5.5" Barrel, Serial 225-96064, Adjustable Sights W/O Magazine'
+  url: https://bid.musickauction.com/lot-details/index/catalog/928/lot/520970/Ruger-22-45-Target-22-LR-Semi-Auto-Pistol-5-5-Barrel-Serial-225-96064-Adjustable-Sights-W-O-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F928
+  ends_at: null
+  bid_at_snapshot: 60
+  value_low: 240
+  value_mid: 320
+  value_high: 390
+  likely_hammer: 280
+  hammer_minus_bid: 220
+  value_mid_minus_bid: 260
+  confidence: med
+- kind: gun
+  title: Taurus PT111 G2C 9mm Pistol, Polymer Frame, ABA241139, Made in Brazil
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518854/Taurus-PT111-G2C-9mm-Pistol-Polymer-Frame-ABA241139-Made-in-Brazil?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: null
+  bid_at_snapshot: 110
+  value_low: 120
+  value_mid: 155
+  value_high: 185
+  likely_hammer: 168
+  hammer_minus_bid: 58
+  value_mid_minus_bid: 45
+  confidence: med
+- kind: gun
+  title: 'Lot #958: Marlin 25MN .22 WMR Bolt-Action Rifle, 22" Barrel, 7-Round Magazine, Hardwood Stock'
+  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516747/Marlin-25MN-22-WMR-Bolt-Action-Rifle-22-Barrel-7-Round-Magazine-Hardwood-Stock?url=%2Fauctions%2Fcatalog%2Fid%2F922
+  ends_at: null
+  bid_at_snapshot: 115
+  value_low: 330
+  value_mid: 380
+  value_high: 420
+  likely_hammer: 310
+  hammer_minus_bid: 195
+  value_mid_minus_bid: 265
+  confidence: med
+- kind: gun
+  title: 'Lot #1001: Ruger SR40 .40 S&W Semi-Automatic Pistol, Stainless Steel Slide, 4.14" Barrel, Serial 342-62761'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518852/Ruger-SR40-40-S-W-Semi-Automatic-Pistol-Stainless-Steel-Slide-4-14-Barrel-Serial-342-62761?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: null
+  bid_at_snapshot: 125
+  value_low: 200
+  value_mid: 280
+  value_high: 350
+  likely_hammer: 285
+  hammer_minus_bid: 160
+  value_mid_minus_bid: 155
+  confidence: med
+- kind: gun
+  title: 'Lot #956: Winchester Model 670 .30-06 SPRG Bolt-Action Rifle, Weaver Scope Mounts, Sling, Serial G233878'
+  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516745/Winchester-Model-670-30-06-SPRG-Bolt-Action-Rifle-Weaver-Scope-Mounts-Sling-Serial-G233878?url=%2Fauctions%2Fcatalog%2Fid%2F922
+  ends_at: null
+  bid_at_snapshot: 135
+  value_low: 350
+  value_mid: 475
+  value_high: 575
+  likely_hammer: 450
+  hammer_minus_bid: 315
+  value_mid_minus_bid: 340
+  confidence: med
+- kind: gun
+  title: 'Lot #955: Smith & Wesson SW9VE 9mm Pistol, Stainless Slide, 4" Barrel, 16rd Mag, Serial DWK6008'
+  url: https://bid.musickauction.com/lot-details/index/catalog/922/lot/516744/Smith-Wesson-SW9VE-9mm-Pistol-Stainless-Slide-4-Barrel-16rd-Mag-Serial-DWK6008?url=%2Fauctions%2Fcatalog%2Fid%2F922
+  ends_at: null
+  bid_at_snapshot: 155
+  value_low: 185
+  value_mid: 230
+  value_high: 320
+  likely_hammer: 265
+  hammer_minus_bid: 110
+  value_mid_minus_bid: 75
+  confidence: med
+- kind: gun
+  title: 'Lot #5000: American Tactical Alpha Maxx AR Pistol 8.5" Barrel, Multi-Cal, 60-Round , Sights, NX121051'
+  url: https://bid.musickauction.com/lot-details/index/catalog/928/lot/520968/American-Tactical-Alpha-Maxx-AR-Pistol-8-5-Barrel-Multi-Cal-60-Round-Sights-NX121051?url=%2Fauctions%2Fcatalog%2Fid%2F928
+  ends_at: null
+  bid_at_snapshot: 155
+  value_low: 240
+  value_mid: 310
+  value_high: 380
+  likely_hammer: 330
+  hammer_minus_bid: 175
+  value_mid_minus_bid: 155
+  confidence: med
+- kind: gun
+  title: Paramount Model 1920 .25 ACP Semi-Auto Pistol, Serial 3894, Belgian Made
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518855/Paramount-Model-1920-25-ACP-Semi-Auto-Pistol-Serial-3894-Belgian-Made?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: null
+  bid_at_snapshot: 165
+  value_low: 300
+  value_mid: 450
+  value_high: 600
+  likely_hammer: 380
+  hammer_minus_bid: 215
+  value_mid_minus_bid: 285
+  confidence: med
+- kind: gun
+  title: 'Lot #1000: Taurus Model 73 .32 Long 6-Shot Revolver, 4" Barrel, Blued, Wood Grips, Serial #651071, Brazil'
+  url: https://bid.musickauction.com/lot-details/index/catalog/925/lot/518851/Taurus-Model-73-32-Long-6-Shot-Revolver-4-Barrel-Blued-Wood-Grips-Serial-651071-Brazil?url=%2Fauctions%2Fcatalog%2Fid%2F925
+  ends_at: null
+  bid_at_snapshot: 195
+  value_low: 280
+  value_mid: 345
+  value_high: 420
+  likely_hammer: 375
+  hammer_minus_bid: 180
+  value_mid_minus_bid: 150
+  confidence: med
+- kind: gun
+  title: 'Lot #5004: AG Galesi Italy .25 ACP Semi-Auto Pistol, Nickel Finish, Serial 012189, Florida Firearms Corp Import'
+  url: https://bid.musickauction.com/lot-details/index/catalog/928/lot/520972/AG-Galesi-Italy-25-ACP-Semi-Auto-Pistol-Nickel-Finish-Serial-012189-Florida-Firearms-Corp-Import?url=%2Fauctions%2Fcatalog%2Fid%2F928
+  ends_at: null
+  bid_at_snapshot: null
+  value_low: 250
+  value_mid: 310
+  value_high: 375
+  likely_hammer: 285
+  hammer_minus_bid: null
+  value_mid_minus_bid: null
+  confidence: med

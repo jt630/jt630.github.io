@@ -20,6 +20,26 @@ read before any session that touches this scaling-up work.
 *Read this first. It's the state of play, so a new session doesn't have to
 reconstruct it. Update it at the end of every session.*
 
+**2026-10-07 session (timing + hide + swarm pricing)** — not yet verified
+against a live run, dispatch the workflow and check the new `auction_ends_at`
+coverage:
+- **Timing bug fixed:** `parse_musick_lots()` now derives `auction_ends_at`
+  from each catalog row's own "Time left" string. Before, only vehicles that
+  got the expensive detail render had an end time, so firearms/coins/jewelry
+  showed "—". The detail step no longer wipes it when its own countdown is
+  missing. Tests: `scripts/tests/test_musick_timing.py`.
+- **Categorizer fixed:** Mazda/Hyundai/Kia/etc. cars were landing in "Other"
+  (so never got VIN/mileage/title fetches); "revolver" wasn't a firearm word;
+  lumber ("4x4") and a die-cast toy truck were filed as Vehicles.
+- **Hide-a-lot:** ✕ button per row, remembered per browser in localStorage
+  (keyed by lot URL), "Show N hidden" toggle, hidden lots excluded from the
+  flagged count and email digest. Not synced across devices (static site).
+- **Swarm pricing:** `research/swarm_prices_2026-10-07.yaml` — 22 lots (11
+  `car_candidate` vehicles + 11 firearms) priced by one Haiku each. Rough
+  and unverified (see its `caveats`): truck retails look high for 130k+ mile
+  fleet units, and car hammer guesses ignore the live bid trajectory.
+- Still open: wire swarm/`value_it.py` valuations into `auction_lots.yaml`.
+
 **Live and working**
 - Daily pipeline (GitHub Actions, 13:00 UTC; GitHub often runs it hours
   late): live lots → close-price harvest → valuation → **test gate** →

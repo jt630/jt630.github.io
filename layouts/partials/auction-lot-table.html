@@ -13,7 +13,7 @@
   <table class="auctions-tbl">
     <thead>
       <tr>
-        <th>Lot</th><th>Agency</th><th>Bid</th><th>Est. value</th><th>Gap</th><th>Closes</th><th>Src</th><th></th>
+        <th>Lot</th><th>Agency</th><th>Bid</th><th>Est. value</th><th>Gap</th><th>Closes</th><th>Src</th><th></th><th></th>
       </tr>
     </thead>
     <tbody>
@@ -105,6 +105,7 @@
           </td>
           <td><span class="auctions-src">{{ .platform }}</span></td>
           <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
+          <td><button type="button" class="lot-hide-btn" title="Hide this lot (remembered in this browser)" aria-label="Hide this lot">✕</button></td>
         </tr>
       {{ end }}
     </tbody>

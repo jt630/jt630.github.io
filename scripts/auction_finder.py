@@ -211,9 +211,20 @@ CATEGORY_KEYWORDS = [
         "explorer", "wrangler", "charger", "impala", "camry", "accord",
         "civic", "cargo van", "minivan", "vin", "odometer", "mileage",
         "4x4", "awd", "sedan", "hatchback", "pickup truck",
+        # Makes the original list missed - cars like a "2010 MAZDA 3" or
+        # "2017 HYUNDAI ELANTRA GT" fell through to "Other" and so never
+        # got the vehicle detail fetch (VIN/mileage/title/end time).
+        # Deliberately no "ram" (matches computer RAM) or "mini".
+        "mazda", "hyundai", "kia", "volkswagen", "vw", "bmw", "mercedes",
+        "lexus", "buick", "cadillac", "chrysler", "lincoln", "mitsubishi",
+        "volvo", "audi", "tesla", "pontiac", "saturn", "infiniti", "acura",
+        "scion", "land rover", "range rover", "yukon", "tundra", "tacoma",
+        "f-150", "f-250", "f-350", "escape", "elantra", "accent",
     ]),
     ("Firearms", [
         "rifle", "pistol", "shotgun", "firearm", "ammo", "ammunition", "gun",
+        "revolver", "handgun", "carbine", "ar-15", "semi-auto",
+        "bolt-action", "muzzleloader", "derringer",
     ]),
     ("Electronics", [
         "laptop", "computer", "tablet", "iphone", "smartphone", "camera",
@@ -236,9 +247,22 @@ CATEGORY_KEYWORDS = [
 ]
 
 
+# Words that mean "this is NOT a real vehicle" even when a vehicle keyword
+# also hits: a "Bunk Of Lumber, 6x12, 4x4 12ft" matched "4x4", and a
+# "1995 Pepsi-Cola Die-Cast Delivery Truck Coin Bank" matched "truck", so
+# both were filed under Vehicles and sat in the car list.
+NOT_A_VEHICLE = [
+    "lumber", "die-cast", "die cast", "diecast", "coin bank", "toy",
+    "model kit", "scale model", "1:24", "1:18", "1:64",
+]
+
+
 def guess_category(lot):
     s = f" {lot.get('title', '')} {lot.get('description', '')} ".lower()
+    not_vehicle = any(re.search(r"(?<!\w)" + re.escape(n) + r"(?!\w)", s) for n in NOT_A_VEHICLE)
     for label, needles in CATEGORY_KEYWORDS:
+        if label == "Vehicles" and not_vehicle:
+            continue
         # \b...s?\b: word-boundary match with an optional trailing "s", so
         # "car"/"truck"/"excavator" also catch "cars"/"trucks"/"excavators"
         # without matching inside unrelated words ("scar", "cargo") the way
@@ -662,7 +686,7 @@ _MUSICK_LOT_NUMBIDS_RE = re.compile(r'Bidding history\((\d+)\s*bids?\)')
 _MUSICK_LOT_TIMELEFT_RE = re.compile(r'Time left:&nbsp;<a[^>]*>([^<]*)</a>')
 
 
-def parse_musick_lots(page):
+def parse_musick_lots(page, now=None):
     """Parse real per-lot rows out of a rendered bid.musickauction.com
     catalog page (see markup notes above). Current bid is used as the
     lot's price for deal-scoring - it's what a bidder actually has to beat,
@@ -670,7 +694,15 @@ def parse_musick_lots(page):
     kept on the lot dict (not part of the shared schema), but shows up in
     the fetch notes for the curious. A lot with no bids yet keeps its
     starting-bid price in the description with current_bid left None (not
-    a real price to score against), rather than being dropped."""
+    a real price to score against), rather than being dropped.
+
+    Every lot also gets `auction_ends_at` (UTC ISO) computed from its own
+    catalog "Time left" string. Before this, only vehicles that got a
+    second, expensive detail-page render ever had an end time, so
+    firearms/coins/jewelry/etc. all showed no timing at all even though
+    the string was sitting right there in the catalog row.
+    `now` is injectable for tests."""
+    now = now or datetime.now(timezone.utc)
     out = []
     for chunk in _MUSICK_LOT_SPLIT_RE.split(page)[1:]:
         title_m = _MUSICK_LOT_TITLE_RE.search(chunk)
@@ -697,6 +729,7 @@ def parse_musick_lots(page):
         if time_m:
             tl = time_m.group(1).strip()
             desc = f"{desc} · Time left: {tl}" if desc else f"Time left: {tl}"
+        left = _parse_musick_duration(time_m.group(1)) if time_m else None
         out.append({
             "platform": "musick",
             "title": f"Lot #{num_m.group(1)}: {title}" if num_m else title,
@@ -705,6 +738,9 @@ def parse_musick_lots(page):
             "current_bid": _money(bid_m.group(1)) if bid_m else None,
             "num_bids": int(bids_m.group(1)) if bids_m else None,
             "close_time": None,
+            "auction_ends_at": (
+                (now + left).strftime("%Y-%m-%dT%H:%M:%SZ") if left else None
+            ),
             "category": None,
             "description": desc,
             "agency": None,
@@ -861,10 +897,15 @@ def fetch_musick_vehicle_detail(lot, all_notes, run=None):
         lot[key] = detail[key]
 
     ends_at_delta = _parse_musick_duration(detail["time_left_raw"])
-    lot["auction_ends_at"] = (
-        (datetime.now(timezone.utc) + ends_at_delta).strftime("%Y-%m-%dT%H:%M:%SZ")
-        if ends_at_delta else None
-    )
+    if ends_at_delta:
+        # The detail page's own countdown is the most precise reading, so
+        # it wins - but a detail page with no parseable countdown keeps
+        # the catalog-derived value instead of wiping it to None.
+        lot["auction_ends_at"] = (
+            datetime.now(timezone.utc) + ends_at_delta
+        ).strftime("%Y-%m-%dT%H:%M:%SZ")
+    else:
+        lot.setdefault("auction_ends_at", None)
 
     title_status = (detail["title_status"] or "").strip().lower()
     lot["clean_title"] = title_status in _MUSICK_CLEAN_TITLE_WORDS

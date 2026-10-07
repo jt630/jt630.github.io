@@ -18,6 +18,7 @@
   </div>
   <div class="dialin-row dialin-actions">
     <span class="dialin-count"><strong id="dialin-flagged-n">&mdash;</strong> lots flagged at this threshold</span>
+    <button type="button" id="dialin-unhide-btn" class="dialin-unhide-btn" style="display:none"></button>
     <a id="dialin-email-btn" class="dialin-email-btn" href="#">📧 Email this digest</a>
   </div>
   {{ if not $contacts.grandpa_email }}
@@ -50,6 +51,61 @@
   function rows() {
     return Array.prototype.slice.call(document.querySelectorAll('.auctions-lot-row'));
   }
+
+  // Hide-a-lot: remembered per browser in localStorage, keyed by lot URL
+  // (the site is static, so there's no server to store this). A hidden lot
+  // is also left out of the flagged count and the email digest. Every
+  // storage touch is try/catch'd - private windows can throw.
+  var HIDE_KEY = 'auctions-hidden-lots';
+  var unhideBtn = document.getElementById('dialin-unhide-btn');
+  var showHidden = false;
+
+  function loadHidden() {
+    try { return JSON.parse(localStorage.getItem(HIDE_KEY) || '{}') || {}; }
+    catch (e) { return {}; }
+  }
+  function saveHidden(map) {
+    try { localStorage.setItem(HIDE_KEY, JSON.stringify(map)); } catch (e) {}
+  }
+  var hidden = loadHidden();
+
+  function isHidden(row) { return !!hidden[row.dataset.url]; }
+  function visibleRows() { return rows().filter(function (r) { return !isHidden(r); }); }
+
+  function applyHidden() {
+    var n = 0;
+    rows().forEach(function (row) {
+      var h = isHidden(row);
+      row.classList.toggle('lot-hidden', h);
+      var btn = row.querySelector('.lot-hide-btn');
+      if (btn) {
+        btn.textContent = h ? '↺' : '✕';
+        btn.title = h ? 'Unhide this lot' : 'Hide this lot (remembered in this browser)';
+      }
+      if (h) n++;
+    });
+    document.body.classList.toggle('auctions-show-hidden', showHidden);
+    if (unhideBtn) {
+      unhideBtn.style.display = n ? '' : 'none';
+      unhideBtn.textContent = (showHidden ? 'Re-hide ' : 'Show ') + n + ' hidden';
+    }
+  }
+
+  document.addEventListener('click', function (ev) {
+    var btn = ev.target.closest && ev.target.closest('.lot-hide-btn');
+    if (!btn) return;
+    var row = btn.closest('.auctions-lot-row');
+    if (!row) return;
+    if (hidden[row.dataset.url]) delete hidden[row.dataset.url];
+    else hidden[row.dataset.url] = Date.now();
+    saveHidden(hidden);
+    applyHidden();
+    recompute();
+  });
+  if (unhideBtn) unhideBtn.addEventListener('click', function () {
+    showHidden = !showHidden;
+    applyHidden();
+  });
 
   // Real countdown to each lot's own auction_ends_at, computed and
   // re-rendered client-side every 30s - the server-rendered "Closes" text
@@ -147,7 +203,7 @@
     valOut.textContent = thresholdPct;
     var n = 0;
     var flagged = [];
-    rows().forEach(function (row) {
+    visibleRows().forEach(function (row) {
       var isFlag = isFlagged(row, thresholdPct);
       row.classList.toggle('row-flagged', isFlag);
       var badge = row.querySelector('.deal-badge.flag');
@@ -173,10 +229,12 @@
   // (DOMContentLoaded) - calling it synchronously here would find zero rows.
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
+      applyHidden();
       recompute();
       updateCountdowns();
     });
   } else {
+    applyHidden();
     recompute();
     updateCountdowns();
   }
