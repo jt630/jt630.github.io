@@ -15,7 +15,7 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 | Art | `/art/` | ✔ | ✔ | — | — | MONKEYS.md | 97 |
 | Auction Watch | `/auctions/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, docs/AUCTION-MONITORING.md | 98 |
 | Backpacking | `/backpacking/` | ✔ | ✔ | — | ✔ | docs/RECREATION-API.md | 101 |
-| Beer Sheet | `/beer-sheet/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 97 |
+| Beer Sheet | `/beer-sheet/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 98 |
 | Blog | `/blog/` | ✔ | ✔ | ✔ | ✔ | CUNTY-THEME-GUIDE.md | 102 |
 | Body | `/body/` | ✔ | ✔ | — | — | MONKEYS.md, PRICE-DISCOVERY.md, CUNTY-THEME-GUIDE.md, GODDARD.md, docs/AUCTION-MONITORING.md | 97 |
 | Books | `/books/` | ✔ | ✔ | — | — | CUNTY-THEME-GUIDE.md, BEER_SHEET.md, MARKETS.md | 97 |
@@ -31,10 +31,10 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 | Gadgets | `/gadgets/` | ✔ | ✔ | — | ✔ | — | 98 |
 | Gallery | `/gallery/` | ✔ | ✔ | — | — | — | 97 |
 | Gaming | `/gaming/` | ✔ | ✔ | — | — | — | 97 |
-| Garage | `/garage/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Garage | `/garage/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md | 97 |
 | Grandpa's Shop | `/grandpas-shop/` | ✔ | ✔ | ✔ | — | docs/AUCTION-MONITORING.md | 98 |
 | hubs | `/hubs/` | — | — | ✔ | — | — | 0 |
-| Markets | `/markets/` | ✔ | ✔ | ✔ | — | THESIS.md, MARKETS.md | 97 |
+| Markets | `/markets/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, THESIS.md, MARKETS.md | 97 |
 | Monkeys | `/monkeys/` | ✔ | ✔ | ✔ | — | MONKEYS.md, PRICE-DISCOVERY.md, MARKETS.md | 97 |
 | Movies | `/movies/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 97 |
 | Music | `/music/` | ✔ | ✔ | — | — | PRICE-DISCOVERY.md, CUNTY-THEME-GUIDE.md, MARKETS.md | 97 |
