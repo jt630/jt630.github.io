@@ -66,6 +66,30 @@ class CategoryTests(unittest.TestCase):
     def test_real_trucks_still_vehicles(self):
         self.assertEqual(self.cat("2010 FORD F-150 - 4X4!"), "Vehicles")
 
+    # Real titles from the 2026-10-07 live run that landed on grandpa's
+    # page because an appliance word appeared as a description, not a thing.
+    def test_appliance_words_used_as_descriptions_are_not_appliances(self):
+        for t in (
+            "Lot #9025: Mixed Fossil and Mineral Lot – Quartz, Shark Tooth, "
+            "Arrowheads, Coral Fossils, Bone, 8 Pieces",
+            "Lot #6378: Pet Care Bundle: Stainless Steel Cat Litter Box, "
+            "2 Muddy Mats, 2 Litter Catcher Mats, Dryer Towel",
+            "Lot #6189: Famiware Jupiter 24-Piece Stoneware Dinnerware Set "
+            "for 8 – Light Green, Microwave & Dishwasher Safe",
+        ):
+            self.assertNotEqual(self.cat(t), "Small Engines & Appliances", t)
+
+    def test_real_small_engines_and_appliances_still_match(self):
+        for t in (
+            "Makita EG1000R Portable Generator, 1.0 kVA Max Output, Honda G150 Engine",
+            "Lot #6188: Folconroad 14-Inch Manual Push Reel Lawn Mower",
+            "Shark Navigator Lift-Away Upright Vacuum",
+            "Whirlpool Electric Dryer",
+            "Panasonic Countertop Microwave",
+            "Bosch 24in Dishwasher",
+        ):
+            self.assertEqual(self.cat(t), "Small Engines & Appliances", t)
+
 
 if __name__ == "__main__":
     unittest.main()

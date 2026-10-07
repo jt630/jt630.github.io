@@ -15,10 +15,55 @@ read before any session that touches this scaling-up work.
 
 ---
 
-## ▶ Where we are / next session (handoff, updated 2026-09-29)
+## ▶ Where we are / next session (handoff, updated 2026-10-07, orchestrator session)
 
 *Read this first. It's the state of play, so a new session doesn't have to
 reconstruct it. Update it at the end of every session.*
+
+**2026-10-07 orchestrator session: live verification of PR #158**
+(branch `claude/auction-orchestrator-verify-wv03ox`, not yet merged)
+- **Verified live** (dispatched run #37, 37636864378, on d3f0189, clean,
+  no Musick block in real traffic, committed e28bb39 and deployed):
+  `auction_ends_at` on **87/87** lots; `condition_text` on **51/52**
+  vehicles; `comp_*` on **66/87** lots (13,771 closes);
+  `[live-seen] merged 5 small-engine/appliance lot(s) from 1332
+  deep-crawled lot(s)` (catalogs 922 + 923 only, the two closing in 48h).
+- **Still unverified:** the AI valuation prompt change (no
+  `ANTHROPIC_API_KEY`; eBay 403'd on its first lookup again) and how the
+  `comp_*`/all-in text actually look on the deployed `/auctions/` page.
+- **Oct 4 scheduled failure, fixed on this branch:** the Dinger Palooza
+  bot pushed to main mid-run (17:24:58) and our `git push` was rejected
+  ("fetch first"), losing the day's lots. The commit step now does
+  `git pull --rebase` + push, 4 tries. Unverified until merged and run.
+- **Oct 5 scheduled failure: cause unknown.** The job was *cancelled*
+  (not failed) at exactly 15:01; its log is 404 and the zip host is
+  blocked from the sandbox. Owner asked whether it was a manual cancel.
+- **Log-reading trap:** after "Ran N tests" the job log prints fake
+  fetch notes from the test fixtures (`catalog/id/1,2,3`, a 212-byte
+  `BLOCKED`). Those are NOT real Musick traffic. Only read fetch notes
+  above the test step.
+- **Grandpa-page false positives fixed:** "Shark Tooth" (fossil lot),
+  "Dryer Towel" (pet bundle), "Microwave & Dishwasher Safe" (dinnerware)
+  matched appliance keywords. `NOT_AN_APPLIANCE_RE` in
+  `auction_finder.py` strips those phrases first; tests use the real
+  titles. Left on purpose for owner: a Pilates bundle that does include
+  a mini washing machine, and a core drill "with Vacuum Base".
+- **Request budget per daily run (from run #37's log): ~140 Musick page
+  loads.** ~61 fetch (2 index, 7 catalog page-1, 52 vehicle details),
+  **30 guessed-API GETs that always return 202/empty**, ~29 live_seen,
+  ~20+ harvest. Dropping the dead API probes would free ~30 loads/run,
+  enough to pay for most of a wider deep crawl. Not done: owner decides.
+- **Catalog 893** parsed 0 concluded lots and is retried every run
+  (INCOMPLETE). Watch it; if it never parses, look at its markup once.
+- **Blocked this session:** the close-history junk-price audit (task 4)
+  - reading `research/price_history/` was denied by the session's
+  permission check. Needs the owner's OK.
+- **Owner decisions pending:** (1) widen deep crawl past 48h / to
+  cars+guns (all 7 open catalogs ≈ +55 loads/run, about the 30 probes
+  freed + 25); (2) drop the API probes; (3) confirm buyer's premium
+  wording (15% <$10k, 10% ≥$10k, +$150 vehicle doc, +$15/firearm);
+  (4) seller notes for guns/small engines need a detail render each
+  (~1 load per lot, 19 guns + ~4 small engines today ≈ +23/run).
 
 **2026-10-07 session (timing + hide + swarm pricing)** — not yet verified
 against a live run, dispatch the workflow and check the new `auction_ends_at`

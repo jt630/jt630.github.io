@@ -257,11 +257,29 @@ NOT_A_VEHICLE = [
 ]
 
 
+# Phrases where an appliance word describes something else, removed before
+# the Small Engines & Appliances check: on 2026-10-07 a fossil lot ("Shark
+# Tooth"), a pet bundle ("Dryer Towel") and a dinnerware set ("Microwave &
+# Dishwasher Safe") all landed on grandpa's page.
+NOT_AN_APPLIANCE_RE = re.compile(
+    r"\b(?:microwave|dishwasher|oven|freezer|dryer)"
+    r"(?:\s*(?:&|and|/|,)\s*(?:microwave|dishwasher|oven|freezer|dryer))*"
+    r"[\s-]+safe\b"
+    r"|\bdryer\s+(?:towel|sheet|ball|vent|hose|lint)s?\b"
+    r"|\bshark\s+(?:tooth|teeth)\b"
+)
+
+
 def guess_category(lot):
     s = f" {lot.get('title', '')} {lot.get('description', '')} ".lower()
     not_vehicle = any(re.search(r"(?<!\w)" + re.escape(n) + r"(?!\w)", s) for n in NOT_A_VEHICLE)
+    s_appliance = NOT_AN_APPLIANCE_RE.sub(" ", s)
     for label, needles in CATEGORY_KEYWORDS:
         if label == "Vehicles" and not_vehicle:
+            continue
+        if label == "Small Engines & Appliances":
+            if any(re.search(r"\b" + re.escape(n) + r"s?\b", s_appliance) for n in needles):
+                return label
             continue
         # \b...s?\b: word-boundary match with an optional trailing "s", so
         # "car"/"truck"/"excavator" also catch "cars"/"trucks"/"excavators"
