@@ -83,7 +83,7 @@ def open_candidates_closing_soon(index_rows, now=None, hours=CLOSING_SOON_HOURS)
     return out
 
 
-def fetch_catalog_live_lots(catalog_id, all_notes, render=None):
+def fetch_catalog_live_lots(catalog_id, all_notes, render=None, deep_out=None):
     """Page through one open catalog (?items=100&page=N), same
     repeat-page/MAX_CATALOG_PAGES guards as harvest_catalog(). Returns
     (rows, complete) - complete=False on a render failure, a block, or the
@@ -133,12 +133,26 @@ def fetch_catalog_live_lots(catalog_id, all_notes, render=None):
         for r in new_rows:
             seen_lot_ids.add(r["lot_id"])
         rows.extend(new_rows)
+        if deep_out is not None:
+            # Same page, richer parse (URL/image/time-left) for the small-
+            # engine merge - no extra request. A parse failure here must
+            # never cost us the live-seen rows above.
+            try:
+                import auction_finder as af
+                new_ids = {r["lot_id"] for r in new_rows}
+                deep_out.extend(
+                    d for d in af.parse_musick_lots(page_html)
+                    if (af._lot_key(d.get("url")) or (0, 0))[1] in new_ids
+                )
+            except Exception as e:  # noqa: BLE001
+                all_notes.append(f"[live-seen] catalog {catalog_id} page {page}: deep parse failed: {e}")
         page += 1
         time.sleep(ph.SLEEP_BETWEEN_RENDERS)
     return rows, complete
 
 
-def run(all_notes=None, render_index=None, render=None, live_seen_path=None, hours=CLOSING_SOON_HOURS):
+def run(all_notes=None, render_index=None, render=None, live_seen_path=None,
+        hours=CLOSING_SOON_HOURS, merge=True, lots_path=None):
     """Full pass: find catalogs closing within `hours`, page each, append
     every observed live lot to _live_seen.jsonl. Returns total rows
     written."""
@@ -162,8 +176,11 @@ def run(all_notes=None, render_index=None, render=None, live_seen_path=None, hou
     )
 
     total_written = 0
+    deep_rows = []  # full lot dicts from COMPLETE catalogs only
     for catalog_id, end_iso in candidates:
-        rows, complete = fetch_catalog_live_lots(catalog_id, all_notes, render=render)
+        cat_deep = []
+        rows, complete = fetch_catalog_live_lots(
+            catalog_id, all_notes, render=render, deep_out=cat_deep)
         if not complete:
             all_notes.append(
                 f"[live-seen] catalog {catalog_id}: incomplete fetch, not recorded "
@@ -172,6 +189,7 @@ def run(all_notes=None, render_index=None, render=None, live_seen_path=None, hou
             continue
         written = ph.append_live_seen(rows, ph.now_iso(), live_seen_path=live_seen_path)
         total_written += written
+        deep_rows.extend(cat_deep)
         all_notes.append(
             f"[live-seen] catalog {catalog_id} (closes {end_iso}): "
             f"{len(rows)} live lot(s) recorded"
@@ -179,6 +197,15 @@ def run(all_notes=None, render_index=None, render=None, live_seen_path=None, hou
         time.sleep(ph.SLEEP_BETWEEN_RENDERS)
 
     all_notes.append(f"[live-seen] {total_written} live-lot observation(s) written this run")
+    if merge and deep_rows:
+        try:
+            import auction_finder as af
+            n = af.merge_deep_lots(deep_rows, out_path=lots_path)
+            all_notes.append(
+                f"[live-seen] merged {n} small-engine/appliance lot(s) from "
+                f"{len(deep_rows)} deep-crawled lot(s) into the live snapshot")
+        except Exception as e:  # noqa: BLE001 - never block the day's refresh
+            all_notes.append(f"[live-seen] small-engine merge failed: {e}")
     return total_written
 
 

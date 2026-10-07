@@ -144,6 +144,15 @@ jobs:
         continue-on-error: true
         run: python scripts/price_history.py
 
+      - name: Compute Musick close-price comps
+        # Moving average of what comparable lots actually closed for
+        # (research/price_history). Runs BEFORE valuation so the AI prompt
+        # can see it. Pure local file reads; continue-on-error so a bug here
+        # can never block the day's refresh.
+        if: github.event.inputs.probe_url == ''
+        continue-on-error: true
+        run: python scripts/comp_baseline.py --apply
+
       - name: Estimate value (needs ANTHROPIC_API_KEY secret)
         if: github.event.inputs.probe_url == ''
         env:

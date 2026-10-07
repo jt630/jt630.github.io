@@ -759,6 +759,15 @@ def parse_musick_lots(page, now=None):
 _MUSICK_DETAIL_FIELD_RE = re.compile(
     r'<span class="cat-header">([^<]+):</span>\s*(.*?)<br>', re.S
 )
+# The seller's own condition notes ("Runs, Drives, and Shifts Correctly...",
+# or the problems - "check engine light", "does not start") sit between the
+# "Description:" header and the spec block. CONFIRMED against a real lot
+# page (tests/fixtures/musick_lot_detail_wrangler.html, probed 2026-10-07).
+_MUSICK_DETAIL_DESC_RE = re.compile(
+    r'<span class="desc-header">Description:</span>(.*?)(?:<span class="cat-header">|</div>)',
+    re.S,
+)
+CONDITION_TEXT_MAX = 800
 _MUSICK_DETAIL_CURBID_RE = re.compile(
     r'id="currentBid"><span class="exratetip[^>]*>\$([\d,]+)</span>'
 )
@@ -818,7 +827,14 @@ def parse_musick_lot_detail(page):
     bid_m = _MUSICK_DETAIL_CURBID_RE.search(page)
     bids_m = _MUSICK_DETAIL_NUMBIDS_RE.search(page)
     time_m = _MUSICK_DETAIL_TIMELEFT_RE.search(page)
+    desc_m = _MUSICK_DETAIL_DESC_RE.search(page)
+    condition_text = None
+    if desc_m:
+        raw = re.sub(r"</?(?:br|p)[^>]*>", " ", desc_m.group(1))
+        raw = html.unescape(re.sub(r"<[^>]+>", "", raw))
+        condition_text = re.sub(r"\s+", " ", raw).strip()[:CONDITION_TEXT_MAX] or None
     return {
+        "condition_text": condition_text,
         "vin": vin,
         "mileage": _int(fields.get("mileage")),
         "title_status": fields.get("title"),
@@ -892,6 +908,7 @@ def fetch_musick_vehicle_detail(lot, all_notes, run=None):
         return
 
     detail = parse_musick_lot_detail(page)
+    lot["condition_text"] = detail["condition_text"]
     for key in ("vin", "mileage", "title_status", "year", "make", "model",
                 "color", "engine", "cylinders", "transmission", "drivetrain", "body"):
         lot[key] = detail[key]
@@ -1108,6 +1125,90 @@ def guess_agency(lot, term):
     return term
 
 
+ALWAYS_KEEP_CATEGORY = "Small Engines & Appliances"
+
+
+def normalize_lot(r):
+    """Fill every lot with the shared schema defaults (category, watchlist
+    tags, empty valuation fields). One place so lots merged in from the
+    deep catalog crawl (merge_deep_lots) look exactly like fetched ones."""
+    r.setdefault("num_bids", None)
+    r.setdefault("close_time", None)
+    r.setdefault("description", None)
+    r["category"] = guess_category(r)
+    r["watchlist_matches"] = match_watchlist(r)
+    r["estimated_value_low"] = None
+    r["estimated_value_high"] = None
+    r["estimated_value_mid"] = None
+    r["deal_score"] = None
+    r["deal_pct"] = None
+    r["ai_note"] = None
+    r["value_source"] = None  # "ebay" | "ai" | None - set by auction_value.py
+    r["ebay_n"] = None
+    r["ebay_median"] = None
+    r["flagged"] = False
+    r["fetched_at"] = date.today().isoformat()
+    return r
+
+
+_LOT_ID_IN_URL_RE = re.compile(r"/catalog/(\d+)/lot/(\d+)/")
+
+
+def _lot_key(url):
+    m = _LOT_ID_IN_URL_RE.search(url or "")
+    return (int(m.group(1)), int(m.group(2))) if m else url
+
+
+def merge_deep_lots(deep_rows, out_path=None):
+    """Add small-engine/appliance lots found by the full-catalog crawl
+    (scripts/live_seen.py) to the live snapshot.
+
+    Why: fetch_musick_catalog() only sees page 1 (50 lots) of each catalog,
+    but vacuums/mowers/chainsaws sit anywhere in a 700+ lot sale (on
+    2026-10-06, all 20 in catalog 925 were at positions 90-736). The
+    crawl pages whole catalogs anyway for vanished-lot recovery, so this
+    reuses those rows - ZERO extra Musick requests.
+
+    Only ALWAYS_KEEP_CATEGORY lots are added (the personal watchlist keeps
+    its page-1-only behavior). Deduped by (catalog, lot) id since the same
+    lot's URL carries different query strings on different pages. Never
+    creates the file: with no snapshot to extend there's nothing to merge
+    into. Returns the number of lots added."""
+    out_path = out_path or OUT
+    if not deep_rows or not os.path.exists(out_path):
+        return 0
+    with open(out_path, encoding="utf-8") as f:
+        doc = yaml.safe_load(f) or {}
+    lots = doc.get("lots") or []
+    have = {_lot_key(l.get("url")) for l in lots}
+    agency_by_catalog = {}
+    for l in lots:
+        k = _lot_key(l.get("url"))
+        if isinstance(k, tuple) and l.get("agency"):
+            agency_by_catalog.setdefault(k[0], l["agency"])
+    added = []
+    for r in deep_rows:
+        k = _lot_key(r.get("url"))
+        if k in have:
+            continue
+        r = dict(r)
+        if guess_category(r) != ALWAYS_KEEP_CATEGORY:
+            continue
+        r["agency"] = agency_by_catalog.get(k[0] if isinstance(k, tuple) else None,
+                                            "Musick Auction Co.")
+        normalize_lot(r)
+        have.add(k)
+        added.append(r)
+    if not added:
+        return 0
+    lots.extend(added)
+    lots.sort(key=lambda r: (r.get("current_bid") is None, r.get("current_bid") or 0))
+    doc["lots"] = lots
+    with open(out_path, "w", encoding="utf-8") as f:
+        yaml.dump(doc, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+    return len(added)
+
+
 def in_region(lot):
     if lot.get("platform") == "musick":
         return True  # a Nampa, ID auctioneer's own listings are local by definition
@@ -1147,22 +1248,7 @@ def main(argv=None):
     dropped = len(merged) - len(kept)
 
     for r in kept:
-        r.setdefault("num_bids", None)
-        r.setdefault("close_time", None)
-        r.setdefault("description", None)
-        r["category"] = guess_category(r)
-        r["watchlist_matches"] = match_watchlist(r)
-        r["estimated_value_low"] = None
-        r["estimated_value_high"] = None
-        r["estimated_value_mid"] = None
-        r["deal_score"] = None
-        r["deal_pct"] = None
-        r["ai_note"] = None
-        r["value_source"] = None  # "ebay" | "ai" | None - set by auction_value.py
-        r["ebay_n"] = None
-        r["ebay_median"] = None
-        r["flagged"] = False
-        r["fetched_at"] = date.today().isoformat()
+        normalize_lot(r)
 
     # "Dial in the search": don't waste storage or a bidder's attention on
     # a lot that isn't actually being searched for. A lot is worth keeping
@@ -1172,7 +1258,6 @@ def main(argv=None):
     # before it's ever written to disk or rendered, not just hidden. This
     # is the actual lever for scaling to more sources later: the interest
     # bar, not the number of sites fetched, bounds how much ends up kept.
-    ALWAYS_KEEP_CATEGORY = "Small Engines & Appliances"
     before_interest_filter = len(kept)
     kept = [
         r for r in kept
