@@ -1,0 +1,134 @@
+{{ define "main" }}
+<div class="page-wrap">
+  <div class="flows-page">
+    <h1>River Flows</h1>
+    <div class="prose">{{ .Content }}</div>
+
+    <div id="flows-status" class="flows-status">Loading USGS readings…</div>
+    <div id="flows-cards" class="flows-cards"></div>
+
+    <p class="flows-note">
+      Source: <a href="https://waterdata.usgs.gov/nwis/rt" rel="noopener">USGS National Water Information System</a>
+      api.waterdata.usgs.gov, 15-minute values. Provisional data, subject to revision. Water
+      temperature shows only where the gauge has a sensor. A big jump in
+      flow in 24 hours usually means a release change: fish may relocate and
+      wading can get sketchy, so check before you cross.
+    </p>
+  </div>
+</div>
+
+<style>
+  .flows-page { max-width: 760px; margin: 0 auto; }
+  .flows-status { color: var(--white-dim); margin: 1rem 0; }
+  .flows-cards { display: grid; gap: 1rem; }
+  .flows-card { background: var(--black-card); border: 2px outset var(--gold); border-radius: var(--radius-lg); padding: 1rem; }
+  .flows-card h2 { margin: 0 0 .25rem; font-size: 1.05rem; color: var(--gold-light); }
+  .flows-card .flows-id { color: var(--white-faint); font-size: .8rem; margin-bottom: .75rem; }
+  .flows-stats { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: .75rem; }
+  .flows-stat b { display: block; font-size: 1.8rem; color: var(--pink); line-height: 1.1; }
+  .flows-stat span { color: var(--white-dim); font-size: .8rem; }
+  .flows-card svg { width: 100%; height: 90px; display: block; }
+  .flows-card svg path { fill: none; stroke: var(--pink); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .flows-warn { color: var(--gold-light); }
+  .flows-note { color: var(--white-faint); font-size: .8rem; margin-top: 1.5rem; }
+</style>
+
+<script>
+(function () {
+  // Candidate gauges; the names shown come from USGS itself, so a wrong guess
+  // here is visible as a wrong name rather than silently misleading.
+  // 13190500 is at Anderson Ranch Dam (coordinates confirmed from the API).
+  var SITES = ['13190500', '13186000'];
+  var BASE = 'https://api.waterdata.usgs.gov/ogcapi/v1/collections/';
+  var status = document.getElementById('flows-status');
+  var cards = document.getElementById('flows-cards');
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function getJSON(u) {
+    return fetch(u).then(function (r) {
+      if (!r.ok) throw new Error('USGS returned HTTP ' + r.status);
+      return r.json();
+    });
+  }
+  // The API returns oldest-first, so always ask for a recent window (time=P7D).
+  function series(site, code) {
+    return getJSON(BASE + 'continuous/items?f=json&limit=10000&time=P7D' +
+      '&monitoring_location_id=USGS-' + site + '&parameter_code=' + code)
+      .then(function (j) {
+        return j.features.map(function (f) {
+          return { t: new Date(f.properties.time), v: parseFloat(f.properties.value) };
+        }).filter(function (p) { return isFinite(p.v); })
+          .sort(function (a, b) { return a.t - b.t; });
+      }).catch(function () { return []; });
+  }
+  function siteName(site) {
+    return getJSON(BASE + 'monitoring-locations/items/USGS-' + site + '?f=json')
+      .then(function (j) { return j.properties.monitoring_location_name; })
+      .catch(function () { return null; });
+  }
+  function spark(pts) {
+    var W = 300, H = 90, min = Infinity, max = -Infinity;
+    pts.forEach(function (p) { min = Math.min(min, p.v); max = Math.max(max, p.v); });
+    var t0 = pts[0].t, span = (pts[pts.length - 1].t - t0) || 1, rng = (max - min) || 1;
+    var d = pts.map(function (p, i) {
+      return (i ? 'L' : 'M') + ((p.t - t0) / span * W).toFixed(1) + ' ' + (H - 6 - (p.v - min) / rng * (H - 12)).toFixed(1);
+    }).join(' ');
+    var ns = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('preserveAspectRatio', 'none');
+    var path = document.createElementNS(ns, 'path');
+    path.setAttribute('d', d);
+    svg.appendChild(path);
+    return svg;
+  }
+  function stat(value, label, cls) {
+    var s = el('div', 'flows-stat');
+    s.appendChild(el('b', cls, value));
+    s.appendChild(el('span', '', label));
+    return s;
+  }
+
+  Promise.all(SITES.map(function (id) {
+    return Promise.all([series(id, '00060'), series(id, '00010'), siteName(id)])
+      .then(function (r) { return { id: id, flow: r[0], temp: r[1], name: r[2] }; });
+  })).then(function (all) {
+    var shown = all.filter(function (s) { return s.flow.length; });
+    if (!shown.length) {
+      status.textContent = 'No flow data came back from USGS right now. Try https://waterdata.usgs.gov/monitoring-location/USGS-13190500/';
+      return;
+    }
+    shown.forEach(function (s) {
+      var f = s.flow, last = f[f.length - 1];
+      var card = el('div', 'flows-card');
+      card.appendChild(el('h2', '', s.name || ('USGS ' + s.id)));
+      card.appendChild(el('div', 'flows-id', 'USGS ' + s.id + ' · updated ' + last.t.toLocaleString()));
+      var stats = el('div', 'flows-stats');
+      stats.appendChild(stat(Math.round(last.v) + ' cfs', 'flow now'));
+      var cutoff = last.t - 24 * 3600e3;
+      var dayAgo = f.filter(function (p) { return p.t <= cutoff; }).pop();
+      if (dayAgo && dayAgo.v > 0) {
+        var pct = (last.v - dayAgo.v) / dayAgo.v * 100;
+        stats.appendChild(stat((pct >= 0 ? '+' : '') + pct.toFixed(0) + '%', 'vs 24h ago (' + Math.round(dayAgo.v) + ' cfs)', Math.abs(pct) >= 15 ? 'flows-warn' : ''));
+      }
+      if (s.temp.length) {
+        var tl = s.temp[s.temp.length - 1];
+        stats.appendChild(stat((tl.v * 9 / 5 + 32).toFixed(1) + ' °F', 'water temp'));
+      }
+      card.appendChild(stats);
+      card.appendChild(el('div', 'flows-id', '7-day flow'));
+      card.appendChild(spark(f));
+      cards.appendChild(card);
+    });
+    status.textContent = '';
+  }).catch(function (e) {
+    status.textContent = 'Couldn’t load USGS data (' + e.message + '). Try https://waterdata.usgs.gov/monitoring-location/USGS-13190500/';
+  });
+})();
+</script>
+{{ end }}
