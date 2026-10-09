@@ -9,7 +9,7 @@
 
     <p class="flows-note">
       Source: <a href="https://waterdata.usgs.gov/nwis/rt" rel="noopener">USGS National Water Information System</a>
-      instantaneous values. Provisional data, subject to revision. Water
+      api.waterdata.usgs.gov, 15-minute values. Provisional data, subject to revision. Water
       temperature shows only where the gauge has a sensor. A big jump in
       flow in 24 hours usually means a release change: fish may relocate and
       wading can get sketchy, so check before you cross.
@@ -35,11 +35,11 @@
 
 <script>
 (function () {
-  // Candidate gauges. Names shown on the page come from USGS itself, so a wrong
-  // guess here is visible as a wrong name rather than silently misleading.
+  // Candidate gauges; the names shown come from USGS itself, so a wrong guess
+  // here is visible as a wrong name rather than silently misleading.
+  // 13190500 is at Anderson Ranch Dam (coordinates confirmed from the API).
   var SITES = ['13190500', '13186000'];
-  var url = 'https://waterservices.usgs.gov/nwis/iv/?format=json&sites=' + SITES.join(',') +
-            '&parameterCd=00060,00010&period=P7D&siteStatus=all';
+  var BASE = 'https://api.waterdata.usgs.gov/ogcapi/v1/collections/';
   var status = document.getElementById('flows-status');
   var cards = document.getElementById('flows-cards');
 
@@ -49,10 +49,27 @@
     if (text !== undefined) e.textContent = text;
     return e;
   }
-  function valid(series, nodata) {
-    return series.values[0].value
-      .map(function (p) { return { t: new Date(p.dateTime), v: parseFloat(p.value) }; })
-      .filter(function (p) { return isFinite(p.v) && p.v !== nodata; });
+  function getJSON(u) {
+    return fetch(u).then(function (r) {
+      if (!r.ok) throw new Error('USGS returned HTTP ' + r.status);
+      return r.json();
+    });
+  }
+  // The API returns oldest-first, so always ask for a recent window (time=P7D).
+  function series(site, code) {
+    return getJSON(BASE + 'continuous/items?f=json&limit=10000&time=P7D' +
+      '&monitoring_location_id=USGS-' + site + '&parameter_code=' + code)
+      .then(function (j) {
+        return j.features.map(function (f) {
+          return { t: new Date(f.properties.time), v: parseFloat(f.properties.value) };
+        }).filter(function (p) { return isFinite(p.v); })
+          .sort(function (a, b) { return a.t - b.t; });
+      }).catch(function () { return []; });
+  }
+  function siteName(site) {
+    return getJSON(BASE + 'monitoring-locations/items/USGS-' + site + '?f=json')
+      .then(function (j) { return j.properties.monitoring_location_name; })
+      .catch(function () { return null; });
   }
   function spark(pts) {
     var W = 300, H = 90, min = Infinity, max = -Infinity;
@@ -77,34 +94,29 @@
     return s;
   }
 
-  fetch(url).then(function (r) {
-    if (!r.ok) throw new Error('USGS returned HTTP ' + r.status);
-    return r.json();
-  }).then(function (json) {
-    var sites = {};
-    json.value.timeSeries.forEach(function (ts) {
-      var id = ts.sourceInfo.siteCode[0].value;
-      var s = sites[id] = sites[id] || { name: ts.sourceInfo.siteName };
-      var nd = ts.variable.noDataValue;
-      var pts = valid(ts, nd);
-      if (ts.variable.variableCode[0].value === '00060') s.flow = pts;
-      else s.temp = pts;
-    });
-    var ids = Object.keys(sites).filter(function (id) { return sites[id].flow && sites[id].flow.length; });
-    if (!ids.length) { status.textContent = 'USGS returned no flow data for these gauges right now.'; return; }
-    ids.forEach(function (id) {
-      var s = sites[id], f = s.flow, last = f[f.length - 1];
+  Promise.all(SITES.map(function (id) {
+    return Promise.all([series(id, '00060'), series(id, '00010'), siteName(id)])
+      .then(function (r) { return { id: id, flow: r[0], temp: r[1], name: r[2] }; });
+  })).then(function (all) {
+    var shown = all.filter(function (s) { return s.flow.length; });
+    if (!shown.length) {
+      status.textContent = 'No flow data came back from USGS right now. Try https://waterdata.usgs.gov/monitoring-location/USGS-13190500/';
+      return;
+    }
+    shown.forEach(function (s) {
+      var f = s.flow, last = f[f.length - 1];
       var card = el('div', 'flows-card');
-      card.appendChild(el('h2', '', s.name));
-      card.appendChild(el('div', 'flows-id', 'USGS ' + id + ' · updated ' + last.t.toLocaleString()));
+      card.appendChild(el('h2', '', s.name || ('USGS ' + s.id)));
+      card.appendChild(el('div', 'flows-id', 'USGS ' + s.id + ' · updated ' + last.t.toLocaleString()));
       var stats = el('div', 'flows-stats');
       stats.appendChild(stat(Math.round(last.v) + ' cfs', 'flow now'));
-      var dayAgo = f.filter(function (p) { return p.t <= new Date(last.t - 24 * 3600e3); }).pop();
+      var cutoff = last.t - 24 * 3600e3;
+      var dayAgo = f.filter(function (p) { return p.t <= cutoff; }).pop();
       if (dayAgo && dayAgo.v > 0) {
         var pct = (last.v - dayAgo.v) / dayAgo.v * 100;
         stats.appendChild(stat((pct >= 0 ? '+' : '') + pct.toFixed(0) + '%', 'vs 24h ago (' + Math.round(dayAgo.v) + ' cfs)', Math.abs(pct) >= 15 ? 'flows-warn' : ''));
       }
-      if (s.temp && s.temp.length) {
+      if (s.temp.length) {
         var tl = s.temp[s.temp.length - 1];
         stats.appendChild(stat((tl.v * 9 / 5 + 32).toFixed(1) + ' °F', 'water temp'));
       }
@@ -115,7 +127,7 @@
     });
     status.textContent = '';
   }).catch(function (e) {
-    status.textContent = 'Couldn’t load USGS data (' + e.message + '). Try the USGS site directly: https://waterdata.usgs.gov/nwis/rt';
+    status.textContent = 'Couldn’t load USGS data (' + e.message + '). Try https://waterdata.usgs.gov/monitoring-location/USGS-13190500/';
   });
 })();
 </script>
