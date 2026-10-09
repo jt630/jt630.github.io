@@ -225,13 +225,13 @@ title = "Almond Farm"
       blurb = "Small engines & appliances"
       tone = "cyan"
   [[menu.main]]
-    name = "River Flows"
+    name = "Fishing Report"
     url = "/fishing/"
     parent = "live-data"
     weight = 8
     [menu.main.params]
       icon = "&#127907;"
-      blurb = "South Fork Boise, live"
+      blurb = "Where to fish today, live"
       tone = "cyan"
 
   # Life Admin — gear, body, and the project-vehicle timeline

@@ -1,0 +1,200 @@
+# Fishing Report config — read by layouts/fishing/single.html.
+#
+# EVERYTHING numeric here is a STARTING GUESS from general knowledge, not
+# gospel. The point of the field log on /fishing/ is to correct it: log trips,
+# paste the export to Claude (/fishing-log), and these numbers get retuned
+# against what actually fished well.
+#
+# To add a spot: copy a block, set the USGS gauge id, lat/lon, and the NWS grid
+# (https://api.weather.gov/points/LAT,LON -> gridId/gridX/gridY).
+# Don't name the keys x/y: YAML reads a bare `y` as the boolean true.
+
+spots:
+  - id: sf-boise-dam
+    name: South Fork Boise below Anderson Ranch Dam
+    short: SF Boise · Dam
+    type: tailwater
+    usgs: "13190500"          # has flow + water-temp sensor
+    lat: 43.3436
+    lon: -115.4775
+    nws: {office: BOI, grid_x: 156, grid_y: 70}
+    drive: "~1 hr 20 from Boise"
+    species: Rainbows, browns, whitefish
+    # cfs: below `min` = skinny, above `max` = blown out / unwadeable.
+    flow: {min: 150, ideal_lo: 250, ideal_hi: 700, max: 1500}
+    water_f_by_month: null     # sensor on the gauge, no estimate needed
+    notes: Dam releases drive flow, not weather. Wading gets pushy north of ~800 cfs; a jump in release in 24 h is the thing to check before you cross.
+
+  - id: sf-boise-featherville
+    name: South Fork Boise near Featherville
+    short: SF Boise · Featherville
+    type: river
+    usgs: "13186000"          # flow only
+    lat: 43.4958
+    lon: -115.3081
+    nws: {office: BOI, grid_x: 162, grid_y: 76}
+    drive: "~1 hr 50 from Boise"
+    species: Rainbows, some browns, whitefish
+    flow: {min: 60, ideal_lo: 120, ideal_hi: 400, max: 1000}
+    # Jan..Dec, deg F. Rough guess for a gauge with no temp sensor.
+    water_f_by_month: [34, 35, 38, 42, 46, 52, 58, 58, 52, 46, 38, 34]
+    notes: Snowmelt freestone above the reservoir, so May-June runoff usually blows it out. Best in late summer and fall.
+
+  - id: boise-glenwood
+    name: Boise River at Glenwood Bridge
+    short: Boise R · Glenwood
+    type: river
+    usgs: "13206000"          # flow only
+    lat: 43.6606
+    lon: -116.2792
+    nws: {office: BOI, grid_x: 131, grid_y: 88}
+    drive: "In town"
+    species: Rainbows, whitefish, browns (bass/carp when it's warm)
+    flow: {min: 150, ideal_lo: 250, ideal_hi: 800, max: 2000}
+    water_f_by_month: [38, 40, 44, 49, 52, 56, 62, 64, 60, 54, 45, 40]
+    notes: Lucky Peak release schedule sets the flow (summer irrigation flows run high). Great after-work option; by July afternoons the water is often too warm for trout.
+
+  - id: silver-creek
+    name: Silver Creek at Sportsman Access
+    short: Silver Creek
+    type: spring_creek
+    usgs: "13150430"          # has flow + water-temp sensor
+    lat: 43.3234
+    lon: -114.1084
+    nws: {office: PIH, grid_x: 54, grid_y: 76}
+    drive: "~2 hr 30 from Boise"
+    species: Rainbows, browns
+    flow: {min: 35, ideal_lo: 55, ideal_hi: 140, max: 300}
+    water_f_by_month: null
+    notes: Technical spring creek, picky fish, long light tippets. Check IDFG and Nature Conservancy rules for the stretch before you go.
+
+  - id: owyhee-tailwater
+    name: Owyhee River below Owyhee Dam (OR)
+    short: Owyhee · Tailwater
+    type: tailwater
+    usgs: "13183000"          # flow only
+    lat: 43.6544
+    lon: -117.2556
+    nws: {office: BOI, grid_x: 99, grid_y: 93}
+    drive: "~2 hr from Boise"
+    species: Brown trout (big), some rainbows
+    flow: {min: 60, ideal_lo: 100, ideal_hi: 400, max: 1200}
+    water_f_by_month: [42, 43, 45, 47, 49, 52, 55, 57, 56, 53, 48, 44]
+    notes: It's in Oregon, so you need an Oregon license. Release changes (watch the 24h number) move the fish and the wading.
+
+# Season buckets: first match on the current month wins.
+seasons:
+  winter:       {label: Winter,        months: [12, 1, 2]}
+  early_spring: {label: Early spring,  months: [3, 4]}
+  late_spring:  {label: Late spring,   months: [5, 6]}
+  summer:       {label: Summer,        months: [7, 8]}
+  early_fall:   {label: Early fall,    months: [9, 10]}
+  late_fall:    {label: Late fall,     months: [11]}
+
+# What to throw: type -> season -> {hatch, fly, spin, tactic}.
+# `fly` and `spin` are two ways to fish the same water; delete whichever you
+# don't use.
+tactics:
+  tailwater:
+    winter:
+      hatch: "Midges all day; a few BWOs on cloudy afternoons."
+      fly: "Zebra midge #18-22, RS2 #20, small pheasant tail #18 under an indicator."
+      spin: "1/16 oz marabou jig (white or olive), tiny Kastmaster worked slow."
+      tactic: "Slow deep runs and tailouts, midday once the water warms a touch."
+    early_spring:
+      hatch: "BWOs on gray days, midges, early caddis."
+      fly: "RS2 / baetis nymph #18-20, pheasant tail, soft hackle; BWO dry #18-20 when fish are up; olive woolly bugger #8 swung."
+      spin: "Small Rooster Tail (1/16-1/8 oz) in olive or brown, 1/8 oz jig."
+      tactic: "Indicator nymph rig along seams; watch for risers 1-4 pm."
+    late_spring:
+      hatch: "Caddis is the big one; PMDs start; water often higher."
+      fly: "Caddis pupa #14-16 (tan/olive), elk hair caddis #14-16, pheasant tail #16; Pat's Rubberlegs #8-10 if it is pushing high."
+      spin: "Panther Martin or Mepps #2 gold, small crankbait along the bank."
+      tactic: "Fish the soft edges when flow is up; go up in tippet size if it is off-color."
+    summer:
+      hatch: "PMDs, evening caddis, golden stones early, hoppers/ants from late July."
+      fly: "PMD emerger/dry #16, elk hair caddis #14-16, Chubby Chernobyl #8-10 with a dropper, hopper-dropper in August."
+      spin: "Small spinners, Panther Martin, hopper-colored crankbait."
+      tactic: "Early morning and the last two hours of light. The tailwater stays cold, so this is the escape when the lower rivers are too warm."
+    early_fall:
+      hatch: "BWOs on cloudy days, October caddis, hoppers fading; browns turn aggressive."
+      fly: "BWO dry #18-20, October caddis #8 (orange), olive/black woolly bugger or Sculpzilla #4-8, egg patterns late October."
+      spin: "2-3 in minnow-style crankbaits, Panther Martin, Rooster Tail."
+      tactic: "Streamers on overcast days for pre-spawn browns; BWO dries in the afternoon."
+    late_fall:
+      hatch: "BWOs and midges; browns and rainbows are spawning."
+      fly: "BWO emerger #20, midge cluster, peach/cream egg, slow streamers."
+      spin: "Slow-rolled marabou jig, small spinner."
+      tactic: "Stay out of gravel redds (the pale clean patches). Fish the runs below them."
+  spring_creek:
+    winter:
+      hatch: "Midges; BWOs on warm afternoons. Slow and technical."
+      fly: "Griffith's gnat #20-22, zebra midge #20-22, 6X-7X tippet."
+      spin: "Fly water. Check regs before using anything else."
+      tactic: "Midday only. Long, drag-free drifts to rising fish."
+    early_spring:
+      hatch: "Baetis (BWO) on overcast days, midges, early caddis."
+      fly: "BWO dun/emerger #18-20, baetis nymph, 6X tippet."
+      spin: "Fly water. Check regs before using anything else."
+      tactic: "Overcast afternoons are the window. Look for noses in the seams."
+    late_spring:
+      hatch: "PMDs, caddis, speckled duns; Green Drakes late June."
+      fly: "PMD dun/emerger #16, Green Drake #10 (late June), elk hair caddis #16."
+      spin: "Fly water. Check regs before using anything else."
+      tactic: "Match the hatch exactly; fish are selective. Evenings are best."
+    summer:
+      hatch: "Tricos (morning spinner falls), PMDs, Callibaetis; hoppers, ants and beetles in the afternoon."
+      fly: "Trico spinner #20-22 (7-10 am), Callibaetis #14-16, hopper/ant/beetle patterns in the afternoon, 6X-7X."
+      spin: "Fly water. Check regs before using anything else."
+      tactic: "Trico spinner fall at first light, then terrestrials along the banks after it warms."
+    early_fall:
+      hatch: "BWOs on cloudy afternoons; Tricos wind down in early September."
+      fly: "BWO dun/spinner #20-22, late-season hopper/ant, 6X."
+      spin: "Fly water. Check regs before using anything else."
+      tactic: "Gray, drizzly afternoons are the best BWO days of the year."
+    late_fall:
+      hatch: "BWOs and midges."
+      fly: "BWO #20-22, midge cluster, 6X-7X."
+      spin: "Fly water. Check regs before using anything else."
+      tactic: "Midday on mild days. Expect few fish but they're big."
+  river:
+    winter:
+      hatch: "Midges; whitefish are active and eat anything small."
+      fly: "Pheasant tail #16-18, zebra midge, small egg, under an indicator."
+      spin: "1/16 oz jig in white or olive."
+      tactic: "Deep, slow runs midday. Whitefish will be in the same slots as trout."
+    early_spring:
+      hatch: "Baetis and midges; flows start to rise with irrigation season."
+      fly: "BWO nymph/dry #18-20, pheasant tail #16-18, olive woolly bugger #8-10."
+      spin: "Small Rooster Tail, 1/8 oz jig."
+      tactic: "Work seams and eddies; the warmest part of the day wins."
+    late_spring:
+      hatch: "Caddis. Runoff often means high, off-color water."
+      fly: "Caddis pupa #14-16, stonefly nymph #8-10, big dark streamer in the margins."
+      spin: "Mepps or Panther Martin #3, bright colors if murky."
+      tactic: "Fish the edges and backwaters, not the main current. Skip it if it is blown out."
+    summer:
+      hatch: "Caddis and PMDs in the evening; hoppers and ants in the afternoon."
+      fly: "Elk hair caddis #14-16, hopper patterns, ant/beetle, PMD #16."
+      spin: "Small spinners, hopper-colored crankbait."
+      tactic: "Dawn and dusk. If the water temp goes over ~66 F, head to the tailwater instead."
+    early_fall:
+      hatch: "BWOs, hoppers, October caddis; the best season on most freestone water."
+      fly: "Hopper-dropper, BWO #18-20, October caddis #8, olive/black woolly bugger."
+      spin: "Panther Martin, Rooster Tail, small minnow crankbait."
+      tactic: "Streamers on cloudy days, dries in the afternoon."
+    late_fall:
+      hatch: "BWOs and midges; cold snaps slow the fish down."
+      fly: "BWO #20, midge, egg, slow streamers."
+      spin: "Slow jigs and small spinners."
+      tactic: "Midday on sunny days when the water warms a degree or two."
+
+# Scoring weights (they sum to 1). Tune after you have logged some trips.
+weights: {flow: 0.30, stability: 0.15, temp: 0.30, weather: 0.25}
+
+# Trout water-temp curve in deg F: [too cold, comfortable low, comfortable high, stress, lethal-ish]
+trout_temp_f: [34, 48, 62, 68, 72]
+
+# Final score = 100 * (weighted average)^curve. 1 is linear; >1 spreads out the
+# top end so a merely-OK day doesn't read as Prime.
+score_curve: 1.6
