@@ -1,0 +1,32 @@
+# Tiny menu for skewer tests/demos - NOT the real menu (research/skewer_popup/menu.yaml).
+bundle: {count: 3, price: 10.00, regular_price: 4.00}
+defaults: {units_per_cover: 3.0, buffer_pct: 10}
+items:
+  - id: chorizo
+    name: Chorizo
+    mix_weight: 2
+    ingredients: [{name: chorizo, qty: 30, unit: g}]
+    variants:
+      - {size: standard, price: 4, cost: 1.0, prep_min: 1, portion: 1.0, default: true}
+      - {size: small, price: 2, cost: 0.5, prep_min: 1, portion: 0.5}
+      - {size: large, price: 6, cost: 1.5, prep_min: 2, portion: 1.5}
+  - id: beef
+    name: Beef
+    mix_weight: 1
+    ingredients: [{name: beef, qty: 60, unit: g}]
+    variants:
+      - {size: standard, price: 4, cost: 2.0, prep_min: 1, portion: 1.0, default: true, confirm: [cost]}
+  - id: smash
+    name: Smashed Potato
+    mix_weight: 1
+    parboil: {ingredient: small potato, per_lb: 12, waste_pct: 20}
+    ingredients: [{name: small potato, qty: 4, unit: each}]
+    variants:
+      - {size: standard, price: 4, cost: 0.7, prep_min: 2, portion: 1.0, default: true}
+  - id: baked
+    name: Baked Potato
+    category: potato
+    attach_rate: 0.1
+    ingredients: [{name: russet, qty: 1, unit: each}]
+    variants:
+      - {size: standard, price: 7.5, cost: 1.6, prep_min: 2, portion: 1.0, default: true}
