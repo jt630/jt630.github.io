@@ -28,6 +28,9 @@ No nights logged yet.
 3. Make the permit/venue phone calls. Desk research is done and the call list
    is in **`docs/SKEWER-LEGAL.md`** (CDH health license, Boise Fire charcoal
    rules, city vendor license, tax, alcohol). Nothing there is confirmed yet.
+   Entity form, venues, and the launch sequence are in
+   **`docs/SKEWER-STRATEGY.md`** (recommendation: single-member LLC, kitchenless
+   downtown taproom patio, Basque-inspired late-night slot).
 4. Run night 1, log it, read the report. Then pick the next price/size test.
 
 ---
