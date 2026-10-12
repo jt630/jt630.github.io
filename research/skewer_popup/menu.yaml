@@ -1,0 +1,189 @@
+# Skewer pop-up menu - Basque-Japanese yakitori. See SKEWER-POPUP.md.
+#
+# EVERYTHING below is a PLACEHOLDER until you confirm it. Each `confirm:` list
+# names the fields on that entry that are still guesses; delete a field from
+# the list once you've checked it (real supplier price, timed on the grill...).
+# skewer_prep.py and skewer_report.py print a warning for every flagged field
+# on the items they use, so nothing stays unconfirmed by accident.
+#
+# Structure
+#   item      one thing on the menu (id is what you type in the log)
+#   variant   a size/price you might sell it at. `size` + the item id is the
+#             "arm" the report compares. Add `small` / `large` variants freely.
+#   portion   multiplier on the item's ingredient quantities (standard = 1.0)
+#   cost      your cost to make ONE unit of that variant, $
+#   prep_min  hands-on minutes per unit (build + grill)
+#
+# Skewers (category: skewer) split the night's expected skewer total by
+# `mix_weight`. Everything else (potato, side) is sized by `attach_rate`:
+# units sold per cover.
+
+bundle:                 # the "3 for $10" deal; skewers only
+  count: 3
+  price: 10.00
+  regular_price: 4.00   # what 3 would cost without the deal = $12 -> $2 off
+
+defaults:
+  units_per_cover: 3.0  # skewers a customer buys on average
+  buffer_pct: 15        # over-prep so a sell-out doesn't hide real demand
+  confirm: [units_per_cover, buffer_pct]
+
+items:
+  - id: chorizo_piquillo
+    name: Chorizo & Piquillo
+    category: skewer
+    description: Cured chorizo and charred piquillo pepper, brushed with sherry-vinegar glaze.
+    mix_weight: 1.5
+    confirm: [mix_weight]
+    ingredients:
+      - {name: chorizo, qty: 35, unit: g}
+      - {name: piquillo pepper, qty: 25, unit: g}
+      - {name: sherry vinegar, qty: 4, unit: ml}
+      - {name: olive oil, qty: 3, unit: ml}
+    variants:
+      - {size: standard, price: 4.00, cost: 0.95, prep_min: 1.5, portion: 1.0, default: true, confirm: [cost, prep_min]}
+      - {size: small,    price: 2.00, cost: 0.50, prep_min: 1.2, portion: 0.5, confirm: [cost, prep_min]}
+      - {size: large,    price: 6.00, cost: 1.45, prep_min: 2.0, portion: 1.5, confirm: [cost, prep_min]}
+
+  - id: pimenton_chicken
+    name: Pimentón Thigh
+    category: skewer
+    description: Chicken thigh, yakitori-style, dusted with smoked pimentón and glazed with tare.
+    mix_weight: 1.2
+    confirm: [mix_weight]
+    ingredients:
+      - {name: chicken thigh, qty: 70, unit: g}
+      - {name: pimentón, qty: 1, unit: g}
+      - {name: tare, qty: 10, unit: ml}
+      - {name: sherry vinegar, qty: 3, unit: ml}
+    variants:
+      - {size: standard, price: 4.00, cost: 0.85, prep_min: 1.5, portion: 1.0, default: true, confirm: [cost, prep_min]}
+
+  - id: txuleta_beef
+    name: Txuleta Beef
+    category: skewer
+    description: Dry-aged-style beef cubes, salt and fire only, finished with a drop of sherry vinegar.
+    mix_weight: 1.5
+    confirm: [mix_weight]
+    ingredients:
+      - {name: beef sirloin, qty: 60, unit: g}
+      - {name: flaky salt, qty: 1, unit: g}
+      - {name: sherry vinegar, qty: 3, unit: ml}
+      - {name: olive oil, qty: 3, unit: ml}
+    variants:
+      - {size: standard, price: 4.00, cost: 1.90, prep_min: 1.5, portion: 1.0, default: true, confirm: [cost, prep_min]}
+      - {size: small,    price: 2.00, cost: 0.95, prep_min: 1.2, portion: 0.5, confirm: [cost, prep_min]}
+      - {size: large,    price: 6.00, cost: 2.80, prep_min: 2.0, portion: 1.5, confirm: [cost, prep_min]}
+
+  - id: tsukune
+    name: Tsukune
+    category: skewer
+    description: Chicken meatball with pimentón, glazed in sherry tare.
+    mix_weight: 1.0
+    confirm: [mix_weight]
+    ingredients:
+      - {name: ground chicken, qty: 60, unit: g}
+      - {name: panko, qty: 5, unit: g}
+      - {name: tare, qty: 10, unit: ml}
+      - {name: pimentón, qty: 0.5, unit: g}
+    variants:
+      - {size: standard, price: 4.00, cost: 0.80, prep_min: 1.8, portion: 1.0, default: true, confirm: [cost, prep_min]}
+
+  - id: pork_belly
+    name: Pork Belly & Guindilla
+    category: skewer
+    description: Crisped pork belly with pickled guindilla pepper.
+    mix_weight: 1.0
+    confirm: [mix_weight]
+    ingredients:
+      - {name: pork belly, qty: 55, unit: g}
+      - {name: pimentón, qty: 1, unit: g}
+      - {name: guindilla pepper, qty: 10, unit: g}
+      - {name: tare, qty: 5, unit: ml}
+    variants:
+      - {size: standard, price: 4.00, cost: 1.00, prep_min: 1.5, portion: 1.0, default: true, confirm: [cost, prep_min]}
+
+  - id: shiitake
+    name: Garlic Shiitake
+    category: skewer
+    description: Vegetarian. Shiitake with garlic oil and sherry vinegar.
+    mix_weight: 0.6
+    confirm: [mix_weight]
+    ingredients:
+      - {name: shiitake, qty: 60, unit: g}
+      - {name: garlic oil, qty: 3, unit: ml}
+      - {name: sherry vinegar, qty: 3, unit: ml}
+    variants:
+      - {size: standard, price: 4.00, cost: 0.65, prep_min: 1.2, portion: 1.0, default: true, confirm: [cost, prep_min]}
+
+  - id: gilda
+    name: Gilda
+    category: skewer
+    description: Basque classic on a stick - olive, anchovy, guindilla. Cold, no grill time.
+    mix_weight: 0.5
+    confirm: [mix_weight]
+    ingredients:
+      - {name: olive, qty: 2, unit: each}
+      - {name: anchovy fillet, qty: 1, unit: each}
+      - {name: guindilla pepper, qty: 10, unit: g}
+    variants:
+      - {size: standard, price: 4.00, cost: 1.10, prep_min: 0.7, portion: 1.0, default: true, confirm: [cost, prep_min]}
+
+  - id: smashed_potato
+    name: Smashed Potato Bravas
+    category: skewer
+    featured: true
+    description: Smashed small potatoes, bravas topping, smoky fry-sauce aioli, katsuobushi.
+    mix_weight: 1.5
+    confirm: [mix_weight]
+    parboil: {ingredient: small potato, per_lb: 14, waste_pct: 10}   # confirm per_lb: how many of YOUR potatoes make a pound
+    ingredients:
+      - {name: small potato, qty: 3, unit: each}
+      - {name: bravas sauce, qty: 20, unit: g}
+      - {name: pimentón mayo, qty: 10, unit: g}
+      - {name: ketchup, qty: 5, unit: g}
+      - {name: tare, qty: 3, unit: ml}
+      - {name: katsuobushi, qty: 1, unit: g}
+    variants:
+      - {size: standard, price: 4.00, cost: 0.70, prep_min: 2.0, portion: 1.0, default: true, confirm: [cost, prep_min]}
+
+  - id: baked_potato
+    name: Coal-Baked Potato
+    category: potato
+    description: Whole russet baked in the coals, split and loaded with bravas sauce, aioli and katsuobushi.
+    attach_rate: 0.10
+    confirm: [attach_rate]
+    morning_note: Scrub, oil and salt the russets; wrap in foil. Start them in the coals ~60-75 min before service.
+    ingredients:
+      - {name: russet potato, qty: 1, unit: each}
+      - {name: bravas sauce, qty: 40, unit: g}
+      - {name: pimentón mayo, qty: 20, unit: g}
+      - {name: katsuobushi, qty: 1, unit: g}
+      - {name: scallion, qty: 5, unit: g}
+    variants:
+      - {size: standard, price: 7.50, cost: 1.60, prep_min: 2.0, portion: 1.0, default: true, confirm: [price, cost, prep_min]}
+
+  - id: escabeche
+    name: Escabeche Pickles
+    category: side
+    description: Quick-pickled vegetables in sherry vinegar, to cut the grease.
+    attach_rate: 0.08
+    confirm: [attach_rate]
+    ingredients:
+      - {name: pickled vegetables, qty: 80, unit: g}
+      - {name: sherry vinegar, qty: 15, unit: ml}
+    variants:
+      - {size: standard, price: 3.00, cost: 0.60, prep_min: 0.5, portion: 1.0, default: true, confirm: [price, cost, prep_min]}
+
+  - id: aioli_cup
+    name: Extra Fry-Sauce Aioli
+    category: side
+    description: A cup of the smoky pimentón fry-sauce aioli for dipping.
+    attach_rate: 0.15
+    confirm: [attach_rate]
+    ingredients:
+      - {name: pimentón mayo, qty: 30, unit: g}
+      - {name: ketchup, qty: 10, unit: g}
+      - {name: tare, qty: 5, unit: ml}
+    variants:
+      - {size: standard, price: 1.00, cost: 0.25, prep_min: 0.3, portion: 1.0, default: true, confirm: [price, cost, prep_min]}

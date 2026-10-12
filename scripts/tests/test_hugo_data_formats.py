@@ -12,7 +12,9 @@ import os
 import unittest
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "data")
-HUGO_DATA_FORMATS = {".yaml", ".yml", ".json", ".toml", ".csv", ".xml"}
+# NOTE: .csv is NOT loadable: Hugo 0.139 fails the build with "unexpected data type
+# [][]string" (found when adding the skewer pop-up logs; they live in research/).
+HUGO_DATA_FORMATS = {".yaml", ".yml", ".json", ".toml", ".xml"}
 
 
 class HugoDataFormatTests(unittest.TestCase):

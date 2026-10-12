@@ -75,6 +75,22 @@ Key files:
 - `scripts/watchlist_test.py` — test keywords against real titles before shipping them
 - `data/auction_lots.yaml` — live snapshot, overwritten every run
 
+### Skewer Pop-up subsystem
+
+A late-night Basque-Japanese skewer pop-up in downtown Boise, run as a cheap
+experiment before a truck/storefront. **`SKEWER-POPUP.md`** is the spec,
+README, and success-criteria doc — read it first; its "Where we are / next"
+block is the handoff. Plain CLI + CSV, no database or web page.
+
+**Gotcha:** the CSVs live in `research/skewer_popup/`, *not* `data/` — Hugo
+fails the whole site build on a `.csv` in `data/` (verified on 0.139).
+
+Key files:
+- `research/skewer_popup/menu.yaml` — items, size/price variants, costs (placeholders flagged `confirm:`)
+- `research/skewer_popup/nights.csv`, `night_items.csv` — the log (one row per night / per night×item×size×price)
+- `scripts/skewer_log.py` (`open`/`close`), `skewer_prep.py`, `skewer_report.py`, shared `skewer_common.py`
+- `scripts/tests/test_skewer_*.py` — run with `python -m unittest discover scripts/tests`
+
 ## Layouts
 
 - `layouts/_default/baseof.html` — master shell (nav, marquee ticker, footer)
