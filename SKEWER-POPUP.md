@@ -25,8 +25,9 @@ No nights logged yet.
 1. Replace placeholders in `menu.yaml` with real supplier prices and a timed
    grill test; delete each field from its `confirm:` list as you verify it.
 2. Fill in the **Success criteria** below *before the first night*.
-3. Check permit/venue requirements (Central District Health for temporary food
-   service in Boise, venue's own rules, fire/charcoal rules) — not covered here.
+3. Make the permit/venue phone calls. Desk research is done and the call list
+   is in **`docs/SKEWER-LEGAL.md`** (CDH health license, Boise Fire charcoal
+   rules, city vendor license, tax, alcohol). Nothing there is confirmed yet.
 4. Run night 1, log it, read the report. Then pick the next price/size test.
 
 ---
