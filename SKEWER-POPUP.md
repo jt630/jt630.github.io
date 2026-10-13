@@ -148,6 +148,31 @@ python scripts/skewer_report.py --menu scripts/tests/fixtures/skewer_menu.yaml \
 After a few nights, `skewer_prep.py --history` sizes the next prep from your
 *observed* units/cover and item mix instead of the menu's guesses.
 
+## Grill test (home, cheap grill — recipes only, sell nothing)
+
+Purpose: replace `menu.yaml` placeholders with measured numbers *before* you
+spend on a licensed grill or a permit. A $30-150 hibachi/konro is enough. Do
+**not** sell food from it; this is R&D, and the service grill choice waits on
+the CDH and Boise Fire answers (`docs/SKEWER-LEGAL.md`).
+
+For each menu item, cook at least 3 test batches of 10 skewers and record:
+
+| Measure | How | Clears `confirm:` field |
+|---|---|---|
+| Real ingredient cost per skewer | Weigh the item's `ingredients` quantities, price them at an actual store (Cash & Carry, Basque Market, grocery) | `cost` |
+| Hands-on minutes per skewer | Time build + grill for a batch of 10, divide by 10 | `prep_min` |
+| Grill time per skewer, and sticks that fit at once | Stopwatch and tape measure; note the cooler zone for holding | informs `prep_min`, throughput |
+| Internal temp when done | Probe thermometer: poultry 165°F, pork/beef/lamb 145°F, ground 155°F | pass/fail gate, not a field |
+| Charcoal burned per hour | Weigh fuel in, weigh leftover out | cost model (add if missing) |
+| Flare-ups / smoke / grease drip | Notes + photos | answers the hood/suppression question for Boise Fire |
+| Taste and holding quality | Blind taste, plus 10 minutes held warm | `mix_weight` guess |
+
+Rules: use the real portion sizes from `menu.yaml`, calibrate the thermometer
+in ice water first, and once a field is measured, delete it from that entry's
+`confirm:` list so `skewer_prep.py` and `skewer_report.py` stop warning about it.
+`units_per_cover` and `buffer_pct` can only be learned from real nights, so
+leave them flagged until night 1.
+
 ## Menu notes
 
 - Pricing target: ~$4/skewer, 3 for $10 (skewers only), vs. $11 hot dogs / $5 pizza.
