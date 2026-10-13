@@ -33,6 +33,33 @@ No nights logged yet.
    downtown taproom patio, Basque-inspired late-night slot).
 4. Run night 1, log it, read the report. Then pick the next price/size test.
 
+### Launch plan: prep this winter, open in spring (decided 2026-10-13)
+
+Why: CDH needs ~30 days (plus a pre-op inspection ~2 weeks before opening),
+Boise winter is ~38°F highs / 25°F lows (outdoor late-night charcoal is a poor
+fit), and the license path, hood question and host terms are still open. Target
+a soft launch around Treefort (late March 2027) and regular Thu-Sat nights from
+April. Tick items as done; slip dates rather than skip steps.
+
+- [ ] **Oct-Nov:** make the CDH, Boise Fire, City Clerk calls (numbers in
+  `docs/SKEWER-LEGAL.md`). Buy a cheap grill and run the home **Grill test**
+  below (recipes only, sell nothing).
+- [ ] **Dec:** form the single-member LLC, get the EIN, DBA, bank account; get
+  2-3 liability insurance quotes; pitch 2-3 host venues (kitchen status,
+  charcoal OK, insurance minimum, fee/split); introduce yourself to the Basque
+  Museum and Center.
+- [ ] **Jan:** get fabricator quotes and order the service grill *only after*
+  Boise Fire answers the hood/suppression question; book ServSafe; sign a
+  commissary or host-kitchen agreement.
+- [ ] **Feb:** file the CDH application (≥30 days ahead; plan review $100);
+  buy extinguishers (ABC + Class K) and file the fire permits.
+- [ ] **Mar:** pass inspections; soft-launch 1-2 nights (Treefort week if ready).
+- [ ] **Apr+:** regular Thu-Sat nights; log every night, read the report.
+
+Exceptions: a host with a covered, vented indoor space and licensed kitchen
+could allow a winter indoor residency (indoor charcoal fire rules are stricter);
+and if the permit calls come back easy, an Oct-Nov test is a bonus, not the plan.
+
 ---
 
 ## Setup
