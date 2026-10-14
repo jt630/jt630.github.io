@@ -316,7 +316,14 @@ def match_watchlist(lot):
     coincidentally, exactly the kind of thing a project-car listing might
     also mention)."""
     s = f" {lot.get('title', '')} {lot.get('description', '')} ".lower()
-    return [g["label"] for g in WATCHLIST if group_matches(g, s)]
+    is_vehicle = guess_category(lot) == "Vehicles"
+    # `vehicles_only` groups (trucks, commuter cars, project cars) skip
+    # anything the categorizer didn't file under Vehicles: a Nobles "Focus
+    # II" floor scrubber is not a Ford Focus.
+    return [
+        g["label"] for g in WATCHLIST
+        if (is_vehicle or not g.get("vehicles_only")) and group_matches(g, s)
+    ]
 
 
 def group_matches(group, text):
