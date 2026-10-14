@@ -1,12 +1,14 @@
 ---
-title: "River Flows"
+title: "Fishing Report"
 type: "fishing"
 layout: "single"
-description: "Live USGS flow and water temperature for the South Fork Boise River, for deciding when and where to fish."
-tabTitle: "🎣 RIVER FLOWS"
+description: "Daily fishing conditions rating for Idaho/Oregon trout water: live USGS flow and water temp plus NWS weather, what to throw this season, and a field log."
+tabTitle: "🎣 FISHING"
 ---
 
-Live gauge readings for the South Fork Boise, pulled straight from USGS every
-time you open this page (nothing is cached on the site, so it's as fresh as the
-gauge). Flow is in cubic feet per second; the South Fork is a tailwater below
-Anderson Ranch Dam, so releases, not weather, drive most of what you see.
+Pick a day and see which spot is fishing best. Each spot gets a 0-100 rating
+from live USGS flow and water temperature, how steady the flow is, and the
+National Weather Service forecast (wind, cloud, rain, air temp, pressure
+trend), plus the best window of the day and what to throw for the season and
+conditions. Tailwaters like the South Fork Boise are driven by dam releases,
+not weather, so flow and stability carry the most weight.
