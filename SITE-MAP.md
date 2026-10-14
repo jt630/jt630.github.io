@@ -27,7 +27,7 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 | Dingers | `/dinger-palooza/` | ✔ | ✔ | ✔ | — | DINGER_PALOOZA.md | 106 |
 | Drinks | `/drinks/` | ✔ | ✔ | ✔ | — | — | 99 |
 | Farming | `/farming/` | ✔ | ✔ | — | ✔ | — | 100 |
-| River Flows | `/fishing/` | ✔ | ✔ | ✔ | — | — | 99 |
+| Fishing Report | `/fishing/` | ✔ | ✔ | ✔ | — | — | 99 |
 | The Forester | `/forester/` | ✔ | ✔ | ✔ | — | — | 99 |
 | Gadgets | `/gadgets/` | ✔ | ✔ | — | ✔ | — | 100 |
 | Gallery | `/gallery/` | ✔ | ✔ | — | — | — | 99 |

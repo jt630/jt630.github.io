@@ -1,63 +1,171 @@
 {{ define "main" }}
 <div class="page-wrap">
-  <div class="flows-page">
-    <h1>River Flows</h1>
+  <div class="fish-page">
+    <h1>Fishing Report</h1>
     <div class="prose">{{ .Content }}</div>
 
-    <div id="flows-status" class="flows-status">Loading USGS readings…</div>
-    <div id="flows-cards" class="flows-cards"></div>
+    <div class="fish-bar">
+      <div id="fish-days" class="fish-days" role="tablist" aria-label="Day"></div>
+      <button id="fish-refresh" class="fish-btn" type="button">↻ Refresh</button>
+    </div>
+    <div id="fish-status" class="fish-status">Loading USGS gauges and NWS forecasts…</div>
+    <div id="fish-cards" class="fish-cards"></div>
 
-    <p class="flows-note">
-      Source: <a href="https://waterdata.usgs.gov/nwis/rt" rel="noopener">USGS National Water Information System</a>
-      api.waterdata.usgs.gov, 15-minute values. Provisional data, subject to revision. Water
-      temperature shows only where the gauge has a sensor. A big jump in
-      flow in 24 hours usually means a release change: fish may relocate and
-      wading can get sketchy, so check before you cross.
+    <p class="fish-note">
+      Sources: <a href="https://waterdata.usgs.gov/nwis/rt" rel="noopener">USGS</a> gauges (flow, water temp;
+      provisional data) and the <a href="https://www.weather.gov/" rel="noopener">National Weather Service</a>
+      forecast grid plus Boise airport pressure. Both are fetched live in your browser, nothing is cached on the
+      site. Forecast days assume today's flow holds, which is a real guess below a dam: check the 24h change before
+      you commit to a long drive. Ratings, flow ranges and "what to throw" are starting heuristics in
+      <code>data/fishing.yaml</code>, and the log below is how they get corrected.
     </p>
+
+    <h2 class="fish-h2" id="log">Field log</h2>
+    <p class="fish-note fish-note--tight">
+      Log a trip while you are out or right after. Saving attaches what the page predicted and the live conditions
+      at that moment, so the rating can be checked against how the day actually fished. Entries live in this
+      browser until you export them and paste them to Claude (<code>/fishing-log</code>).
+    </p>
+    <form id="fish-form" class="fish-form" autocomplete="off">
+      <label>Spot <select id="f-spot" required></select></label>
+      <label>When <input id="f-when" type="datetime-local" required></label>
+      <label>Water temp °F (your thermometer) <input id="f-water" type="number" inputmode="decimal" step="0.5" placeholder="e.g. 52"></label>
+      <label>Air temp °F <input id="f-air" type="number" inputmode="decimal" step="1"></label>
+      <label>Clarity
+        <select id="f-clarity"><option value="">—</option><option>clear</option><option>slightly stained</option><option>stained</option><option>muddy</option></select>
+      </label>
+      <label>Wading
+        <select id="f-wading"><option value="">—</option><option>easy</option><option>ok</option><option>pushy</option><option>unsafe / didn't cross</option></select>
+      </label>
+      <label>Bugs / hatch seen <input id="f-bugs" type="text" placeholder="BWOs 2pm, caddis in the bushes…"></label>
+      <label>What worked <input id="f-worked" type="text" placeholder="#18 BWO emerger, olive bugger, Rooster Tail…"></label>
+      <label>Fish landed <input id="f-caught" type="number" inputmode="numeric" min="0" step="1"></label>
+      <label>Biggest (in) <input id="f-biggest" type="number" inputmode="decimal" min="0" step="0.5"></label>
+      <label>How was the day
+        <select id="f-rating" required>
+          <option value="">Pick one</option>
+          <option value="5">5 · Unreal</option><option value="4">4 · Good</option><option value="3">3 · Okay</option>
+          <option value="2">2 · Slow</option><option value="1">1 · Skunked</option>
+        </select>
+      </label>
+      <label class="fish-wide">Notes <textarea id="f-notes" rows="2" placeholder="Where exactly, time of day, what changed…"></textarea></label>
+      <button class="fish-btn fish-btn--go fish-wide" type="submit">Save trip</button>
+    </form>
+
+    <div id="fish-calib" class="fish-calib"></div>
+    <div id="fish-trips" class="fish-trips"></div>
+    <div class="fish-actions">
+      <button id="fish-copy" class="fish-btn" type="button">Copy new trips as YAML</button>
+      <button id="fish-dl" class="fish-btn" type="button">Download everything (JSON)</button>
+    </div>
+    <p id="fish-copy-msg" class="fish-note fish-note--tight" aria-live="polite"></p>
   </div>
 </div>
 
 <style>
-  .flows-page { max-width: 760px; margin: 0 auto; }
-  .flows-status { color: var(--white-dim); margin: 1rem 0; }
-  .flows-cards { display: grid; gap: 1rem; }
-  .flows-card { background: var(--black-card); border: 2px outset var(--gold); border-radius: var(--radius-lg); padding: 1rem; }
-  .flows-card h2 { margin: 0 0 .25rem; font-size: 1.05rem; color: var(--gold-light); }
-  .flows-card .flows-id { color: var(--white-faint); font-size: .8rem; margin-bottom: .75rem; }
-  .flows-stats { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: .75rem; }
-  .flows-stat b { display: block; font-size: 1.8rem; color: var(--pink); line-height: 1.1; }
-  .flows-stat span { color: var(--white-dim); font-size: .8rem; }
-  .flows-card svg { width: 100%; height: 90px; display: block; }
-  .flows-card svg path { fill: none; stroke: var(--pink); stroke-width: 2; vector-effect: non-scaling-stroke; }
-  .flows-warn { color: var(--gold-light); }
-  .flows-note { color: var(--white-faint); font-size: .8rem; margin-top: 1.5rem; }
+  .fish-page { max-width: 820px; margin: 0 auto; }
+  .fish-bar { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: space-between; margin: 1rem 0 .5rem; }
+  .fish-days { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .fish-btn, .fish-day { font: inherit; color: var(--white); background: var(--black-elevated); border: 1px solid var(--gold); border-radius: var(--radius); padding: .55rem .85rem; min-height: 44px; cursor: pointer; }
+  .fish-day[aria-selected="true"] { background: var(--pink); border-color: var(--pink); color: var(--black); font-weight: 700; }
+  .fish-btn--go { background: var(--pink); border-color: var(--pink); color: var(--black); font-weight: 700; }
+  .fish-status { color: var(--white-dim); margin: .5rem 0 1rem; min-height: 1.2em; }
+  .fish-cards { display: grid; gap: 1rem; }
+  .fish-card { background: var(--black-card); border: 2px outset var(--gold); border-radius: var(--radius-lg); padding: 1rem; }
+  .fish-card--best { border-color: var(--acid); box-shadow: 0 0 18px var(--acid-glow); }
+  .fish-head { display: flex; gap: 1rem; align-items: center; }
+  .fish-score { flex: none; width: 4.6rem; height: 4.6rem; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 3px solid var(--tone, var(--gold)); }
+  .fish-score b { font-size: 1.7rem; line-height: 1; color: var(--tone, var(--gold)); }
+  .fish-score span { font-size: .65rem; letter-spacing: .05em; text-transform: uppercase; color: var(--white-dim); }
+  .fish-card h2 { margin: 0; font-size: 1.05rem; color: var(--gold-light); }
+  .fish-sub { color: var(--white-faint); font-size: .8rem; margin-top: .15rem; }
+  .fish-badge { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .1rem .45rem; border-radius: var(--radius); margin-left: .4rem; background: var(--acid); color: var(--black); vertical-align: middle; }
+  .fish-verdict { margin: .75rem 0 .25rem; font-weight: 700; color: var(--tone, var(--white)); }
+  .fish-line { color: var(--white-dim); font-size: .9rem; margin: .2rem 0; }
+  .fish-factors { display: grid; gap: .35rem; margin: .75rem 0; }
+  .fish-factor { display: grid; grid-template-columns: 5.5rem 1fr; gap: .1rem .6rem; align-items: center; font-size: .85rem; }
+  .fish-factor .lbl { color: var(--white-dim); }
+  .fish-bartrack { height: .5rem; background: rgba(245,240,235,.12); border-radius: 3px; overflow: hidden; }
+  .fish-bartrack i { display: block; height: 100%; background: var(--tone, var(--gold)); }
+  .fish-factor .txt { grid-column: 2; color: var(--white-faint); font-size: .78rem; }
+  .fish-throw { border-top: 1px dashed rgba(245,240,235,.2); margin-top: .75rem; padding-top: .6rem; }
+  .fish-throw h3 { margin: 0 0 .3rem; font-size: .9rem; color: var(--pink-light); }
+  .fish-throw p { margin: .25rem 0; font-size: .88rem; color: var(--white-dim); }
+  .fish-throw p b { color: var(--white); }
+  .fish-card svg { width: 100%; height: 50px; display: block; margin-top: .5rem; }
+  .fish-card svg path { fill: none; stroke: var(--pink); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .fish-warn { color: var(--gold-light); }
+  .fish-note { color: var(--white-faint); font-size: .8rem; margin-top: 1.25rem; }
+  .fish-note--tight { margin-top: .25rem; }
+  .fish-h2 { margin: 2rem 0 .25rem; color: var(--gold-light); }
+  .fish-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .75rem; margin-top: .75rem; background: var(--black-card); border: 1px solid rgba(212,175,55,.5); border-radius: var(--radius-lg); padding: 1rem; }
+  .fish-form label { display: flex; flex-direction: column; gap: .25rem; font-size: .8rem; color: var(--white-dim); }
+  .fish-form input, .fish-form select, .fish-form textarea { font: inherit; font-size: 1rem; color: var(--white); background: var(--black-soft); border: 1px solid rgba(245,240,235,.25); border-radius: var(--radius); padding: .5rem; min-height: 44px; }
+  .fish-wide { grid-column: 1 / -1; }
+  .fish-calib { margin-top: 1rem; color: var(--gold-light); font-size: .9rem; }
+  .fish-trips { display: grid; gap: .5rem; margin-top: .75rem; }
+  .fish-trip { background: var(--black-card); border-left: 4px solid var(--gold); padding: .6rem .8rem; font-size: .88rem; color: var(--white-dim); border-radius: var(--radius); }
+  .fish-trip b { color: var(--white); }
+  .fish-trip .meta { color: var(--white-faint); font-size: .78rem; }
+  .fish-trip button { float: right; background: none; border: 0; color: var(--white-faint); cursor: pointer; font-size: 1rem; min-width: 44px; min-height: 44px; }
+  .fish-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+  @media (max-width: 480px) {
+    .fish-factor { grid-template-columns: 4.6rem 1fr; }
+    .fish-head { gap: .75rem; }
+  }
 </style>
 
 <script>
 (function () {
-  // Candidate gauges; the names shown come from USGS itself, so a wrong guess
-  // here is visible as a wrong name rather than silently misleading.
-  // 13190500 is at Anderson Ranch Dam (coordinates confirmed from the API).
-  var SITES = ['13190500', '13186000'];
-  var BASE = 'https://api.waterdata.usgs.gov/ogcapi/v1/collections/';
-  var status = document.getElementById('flows-status');
-  var cards = document.getElementById('flows-cards');
+  var CFG = {{ site.Data.fishing | jsonify | safeJS }};
+  var COMMITTED = {{ (site.Data.fishing_log.trips | default slice) | jsonify | safeJS }};
+  var TZ = 'America/Boise';
+  var USGS = 'https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items';
+  var NWS = 'https://api.weather.gov/';
+  var PRESSURE_STATION = 'KBOI';  // regional barometer; pressure trend is not very local
+  var LS_LOG = 'almond.fishing.log.v1', LS_HIST = 'almond.fishing.history.v1';
+  var DAYS_AHEAD = 5;
 
+  var statusEl = document.getElementById('fish-status');
+  var cardsEl = document.getElementById('fish-cards');
+  var daysEl = document.getElementById('fish-days');
+  var state = { data: {}, pressure: null, dayIdx: 0, loadedAt: null, results: {} };
+
+  // ---------- small helpers ----------
   function el(tag, cls, text) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
     if (text !== undefined) e.textContent = text;
     return e;
   }
+  function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+  function lerp(x, x0, x1, y0, y1) {
+    if (x <= x0) return y0;
+    if (x >= x1) return y1;
+    return y0 + (y1 - y0) * (x - x0) / (x1 - x0);
+  }
+  function mean(a) { return a.length ? a.reduce(function (s, v) { return s + v; }, 0) / a.length : null; }
   function getJSON(u) {
-    return fetch(u).then(function (r) {
-      if (!r.ok) throw new Error('USGS returned HTTP ' + r.status);
+    return fetch(u, { headers: { Accept: 'application/json' } }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     });
   }
-  // The API returns oldest-first, so always ask for a recent window (time=P7D).
-  function series(site, code) {
-    return getJSON(BASE + 'continuous/items?f=json&limit=10000&time=P7D' +
+  function lsGet(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+
+  var dtf = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23', minute: '2-digit' });
+  function parts(d) {
+    var o = {};
+    dtf.formatToParts(d).forEach(function (p) { o[p.type] = p.value; });
+    return { y: +o.year, m: +o.month, d: +o.day, h: +o.hour, min: +o.minute, key: o.year + '-' + o.month + '-' + o.day };
+  }
+  function hr12(h) { return ((h + 11) % 12 + 1) + (h < 12 || h === 24 ? ' am' : ' pm'); }
+  function f1(c) { return c * 9 / 5 + 32; }
+
+  // ---------- USGS ----------
+  function usgsSeries(site, code, window) {
+    return getJSON(USGS + '?f=json&limit=10000&time=' + window +
       '&monitoring_location_id=USGS-' + site + '&parameter_code=' + code)
       .then(function (j) {
         return j.features.map(function (f) {
@@ -66,69 +174,588 @@
           .sort(function (a, b) { return a.t - b.t; });
       }).catch(function () { return []; });
   }
-  function siteName(site) {
-    return getJSON(BASE + 'monitoring-locations/items/USGS-' + site + '?f=json')
-      .then(function (j) { return j.properties.monitoring_location_name; })
-      .catch(function () { return null; });
-  }
-  function spark(pts) {
-    var W = 300, H = 90, min = Infinity, max = -Infinity;
-    pts.forEach(function (p) { min = Math.min(min, p.v); max = Math.max(max, p.v); });
-    var t0 = pts[0].t, span = (pts[pts.length - 1].t - t0) || 1, rng = (max - min) || 1;
-    var d = pts.map(function (p, i) {
-      return (i ? 'L' : 'M') + ((p.t - t0) / span * W).toFixed(1) + ' ' + (H - 6 - (p.v - min) / rng * (H - 12)).toFixed(1);
-    }).join(' ');
-    var ns = 'http://www.w3.org/2000/svg';
-    var svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-    svg.setAttribute('preserveAspectRatio', 'none');
-    var path = document.createElementNS(ns, 'path');
-    path.setAttribute('d', d);
-    svg.appendChild(path);
-    return svg;
-  }
-  function stat(value, label, cls) {
-    var s = el('div', 'flows-stat');
-    s.appendChild(el('b', cls, value));
-    s.appendChild(el('span', '', label));
-    return s;
+  function valueAt(pts, msAgo) {  // last reading at or before (latest - msAgo)
+    if (!pts.length) return null;
+    var cut = pts[pts.length - 1].t - msAgo, hit = null;
+    for (var i = 0; i < pts.length; i++) { if (pts[i].t <= cut) hit = pts[i]; else break; }
+    return hit ? hit.v : null;
   }
 
-  Promise.all(SITES.map(function (id) {
-    return Promise.all([series(id, '00060'), series(id, '00010'), siteName(id)])
-      .then(function (r) { return { id: id, flow: r[0], temp: r[1], name: r[2] }; });
-  })).then(function (all) {
-    var shown = all.filter(function (s) { return s.flow.length; });
-    if (!shown.length) {
-      status.textContent = 'No flow data came back from USGS right now. Try https://waterdata.usgs.gov/monitoring-location/USGS-13190500/';
-      return;
-    }
-    shown.forEach(function (s) {
-      var f = s.flow, last = f[f.length - 1];
-      var card = el('div', 'flows-card');
-      card.appendChild(el('h2', '', s.name || ('USGS ' + s.id)));
-      card.appendChild(el('div', 'flows-id', 'USGS ' + s.id + ' · updated ' + last.t.toLocaleString()));
-      var stats = el('div', 'flows-stats');
-      stats.appendChild(stat(Math.round(last.v) + ' cfs', 'flow now'));
-      var cutoff = last.t - 24 * 3600e3;
-      var dayAgo = f.filter(function (p) { return p.t <= cutoff; }).pop();
-      if (dayAgo && dayAgo.v > 0) {
-        var pct = (last.v - dayAgo.v) / dayAgo.v * 100;
-        stats.appendChild(stat((pct >= 0 ? '+' : '') + pct.toFixed(0) + '%', 'vs 24h ago (' + Math.round(dayAgo.v) + ' cfs)', Math.abs(pct) >= 15 ? 'flows-warn' : ''));
-      }
-      if (s.temp.length) {
-        var tl = s.temp[s.temp.length - 1];
-        stats.appendChild(stat((tl.v * 9 / 5 + 32).toFixed(1) + ' °F', 'water temp'));
-      }
-      card.appendChild(stats);
-      card.appendChild(el('div', 'flows-id', '7-day flow'));
-      card.appendChild(spark(f));
-      cards.appendChild(card);
+  // ---------- NWS ----------
+  function durHours(s) {
+    var m = /^P(?:(\d+)D)?(?:T(?:(\d+)H)?)?$/.exec(s) || [];
+    return (+m[1] || 0) * 24 + (+m[2] || 0) || 1;
+  }
+  // Expand a gridpoint series into {hourStartMs: value}; `spread` divides totals (precip) across the hours.
+  function expand(series, conv, spread) {
+    var out = {};
+    ((series && series.values) || []).forEach(function (v) {
+      if (v.value == null) return;
+      var bits = v.validTime.split('/'), t0 = Date.parse(bits[0]), n = durHours(bits[1]);
+      var val = conv ? conv(v.value) : v.value;
+      for (var i = 0; i < n && i < 240; i++) out[t0 + i * 3600e3] = spread ? val / n : val;
     });
-    status.textContent = '';
-  }).catch(function (e) {
-    status.textContent = 'Couldn’t load USGS data (' + e.message + '). Try https://waterdata.usgs.gov/monitoring-location/USGS-13190500/';
+    return out;
+  }
+  // NWS drops (CORS-less) errors when hit in parallel, so queue its requests and retry.
+  var nwsChain = Promise.resolve();
+  function tryGet(u, n) {
+    return getJSON(u).catch(function (e) {
+      if (n <= 1) throw e;
+      return new Promise(function (r) { setTimeout(r, 800); }).then(function () { return tryGet(u, n - 1); });
+    });
+  }
+  function nwsGet(u) {
+    var run = function () { return tryGet(u, 3); }, p = nwsChain.then(run, run);
+    nwsChain = p.catch(function () {});
+    return p;
+  }
+  function loadForecast(spot) {
+    return nwsGet(NWS + 'gridpoints/' + spot.nws.office + '/' + spot.nws.grid_x + ',' + spot.nws.grid_y).then(function (j) {
+      var p = j.properties;
+      var s = {
+        temp: expand(p.temperature, f1),
+        cloud: expand(p.skyCover),
+        wind: expand(p.windSpeed, function (k) { return k * 0.621371; }),
+        gust: expand(p.windGust, function (k) { return k * 0.621371; }),
+        pop: expand(p.probabilityOfPrecipitation),
+        qpf: expand(p.quantitativePrecipitation, function (mm) { return mm; }, true)
+      };
+      var byDay = {};
+      Object.keys(s.temp).forEach(function (ms) {
+        var pt = parts(new Date(+ms));
+        (byDay[pt.key] = byDay[pt.key] || {})[pt.h] = {
+          temp: s.temp[ms], cloud: s.cloud[ms], wind: s.wind[ms], gust: s.gust[ms], pop: s.pop[ms], qpf: s.qpf[ms] || 0
+        };
+      });
+      return byDay;
+    }).catch(function () { return null; });
+  }
+  function loadPressure() {
+    var start = new Date(Date.now() - 7.5 * 3600e3).toISOString().replace(/\.\d+Z$/, 'Z');
+    return nwsGet(NWS + 'stations/' + PRESSURE_STATION + '/observations?limit=100&start=' + start)
+      .then(function (j) {
+        var pts = j.features.map(function (f) {
+          var b = f.properties.barometricPressure;
+          return { t: new Date(f.properties.timestamp), v: b && b.value != null ? b.value / 100 : null };
+        }).filter(function (p) { return p.v != null; }).sort(function (a, b) { return a.t - b.t; });
+        if (pts.length < 4) return null;
+        var now = mean(pts.slice(-3).map(function (p) { return p.v; }));
+        var ago = pts.filter(function (p) { return Math.abs(p.t - (pts[pts.length - 1].t - 6 * 3600e3)) < 45 * 60e3; });
+        if (!ago.length) return null;
+        return { hpa: now, delta6: now - mean(ago.map(function (p) { return p.v; })) };
+      }).catch(function () { return null; });
+  }
+
+  // ---------- scoring ----------
+  function seasonKey(month) {
+    var hit = 'summer';
+    Object.keys(CFG.seasons).forEach(function (k) { if (CFG.seasons[k].months.indexOf(month) >= 0) hit = k; });
+    return hit;
+  }
+  function fishingHours(month) {  // local clock hours worth fishing: [first, last+1)
+    return [[8, 17], [7, 18], [7, 19], [7, 20], [6, 21], [6, 21], [6, 21], [6, 20], [7, 19], [7, 18], [7, 17], [8, 17]][month - 1];
+  }
+  function estWaterF(spot, pt) {
+    var a = spot.water_f_by_month;
+    if (!a) return null;
+    var pos = (pt.m - 1) + (pt.d - 15) / 30, i = Math.floor(pos), fr = pos - i;
+    return a[(i + 12) % 12] * (1 - fr) + a[(i + 13) % 12] * fr;
+  }
+  function flowScore(f, r) {
+    if (f <= r.min) return 0.1;
+    if (f < r.ideal_lo) return lerp(f, r.min, r.ideal_lo, 0.1, 1);
+    if (f <= r.ideal_hi) return 1;
+    if (f < r.max) return lerp(f, r.ideal_hi, r.max, 1, 0.1);
+    return 0.05;
+  }
+  function tempScore(t) {
+    var c = CFG.trout_temp_f;
+    if (t <= c[0]) return 0.1;
+    if (t < c[1]) return lerp(t, c[0], c[1], 0.1, 1);
+    if (t <= c[2]) return 1;
+    if (t < c[3]) return lerp(t, c[2], c[3], 1, 0.4);
+    if (t < c[4]) return lerp(t, c[3], c[4], 0.4, 0);
+    return 0;
+  }
+  function stabilityScore(pct24, pct6) {
+    function eff(p) { return p > 0 ? p * 1.5 : Math.abs(p); }  // rising water is worse than dropping
+    return lerp(Math.max(eff(pct24 || 0), eff(pct6 || 0) * 2), 8, 40, 1, 0.1);
+  }
+  function windScore(w, g) {
+    var e = 0.6 * w + 0.4 * (g == null ? w : g);
+    if (e <= 8) return 1;
+    if (e <= 15) return lerp(e, 8, 15, 1, 0.6);
+    if (e <= 25) return lerp(e, 15, 25, 0.6, 0.15);
+    return 0.05;
+  }
+  function airScore(t) { return t < 40 ? lerp(t, 10, 40, 0.2, 1) : (t <= 85 ? 1 : lerp(t, 85, 100, 1, 0.3)); }
+  function precipScore(pop, qpf) { return clamp(1 - 0.5 * pop / 100 - (qpf > 5 ? 0.3 : qpf > 2 ? 0.1 : 0), 0.05, 1); }
+  function pressureScore(d) {
+    if (d >= 4) return 0.65;
+    if (d >= 1.5) return 0.85;
+    if (d > -1.5) return 1;
+    if (d > -4) return 0.95;
+    return 0.6;
+  }
+  // wx: {temp, cloud, wind, gust, pop, qpf}; returns 0..1 plus the parts
+  function wxScore(wx, pDelta) {
+    var parts_ = [
+      [0.20, 0.65 + 0.35 * wx.cloud / 100],
+      [0.30, windScore(wx.wind, wx.gust)],
+      [0.25, precipScore(wx.pop, wx.qpf)],
+      [0.15, airScore(wx.temp)]
+    ];
+    if (pDelta != null) parts_.push([0.10, pressureScore(pDelta)]);
+    var w = 0, s = 0;
+    parts_.forEach(function (p) { w += p[0]; s += p[0] * p[1]; });
+    return s / w;
+  }
+  function todPrior(h, month, waterF) {
+    if (month >= 6 && month <= 8 || (waterF != null && waterF > 62)) return (h <= 9 || h >= 18) ? 1 : (h <= 16 ? 0.55 : 0.8);
+    if (month >= 11 || month <= 3) return (h >= 11 && h <= 15) ? 1 : (h >= 9 && h <= 16 ? 0.8 : 0.55);
+    return (h >= 10 && h <= 16) ? 1 : 0.8;
+  }
+  function band(score) {
+    if (score >= 80) return { name: 'Prime', tone: 'var(--acid)', say: 'Go. This is the one.' };
+    if (score >= 65) return { name: 'Good', tone: 'var(--gold-light)', say: 'Worth the trip.' };
+    if (score >= 50) return { name: 'Fair', tone: 'var(--white)', say: 'Fishable, expect work for it.' };
+    if (score >= 35) return { name: 'Tough', tone: '#ff9a3c', say: 'Only if it is your one window.' };
+    return { name: 'Skip', tone: 'var(--pink)', say: 'Stay home or pick another spot.' };
+  }
+
+  function rate(spot, dayKey, isToday) {
+    var d = state.data[spot.id] || {};
+    var dt = dayKey.split('-');
+    var pt = { y: +dt[0], m: +dt[1], d: +dt[2] };
+    var factors = [], reasons = [], conf = 0;
+    var r = spot.flow;
+
+    // flow
+    var fNow = d.flow && d.flow.length ? d.flow[d.flow.length - 1].v : null;
+    var flowS = null, pct24 = null, pct6 = null;
+    if (fNow != null) {
+      var f24 = valueAt(d.flow, 24 * 3600e3), f6 = valueAt(d.flow, 6 * 3600e3);
+      if (f24 > 0) pct24 = (fNow - f24) / f24 * 100;
+      if (f6 > 0) pct6 = (fNow - f6) / f6 * 100;
+      flowS = flowScore(fNow, r);
+      var ftxt = Math.round(fNow) + ' cfs';
+      var fnote = fNow < r.min ? 'very low, skinny and spooky' : fNow < r.ideal_lo ? 'a bit low' :
+        fNow <= r.ideal_hi ? 'inside the ' + r.ideal_lo + '-' + r.ideal_hi + ' sweet spot' :
+        fNow < r.max ? 'high, wading gets harder' : 'blown out';
+      factors.push({ key: 'Flow', s: flowS, txt: ftxt + ', ' + fnote + (isToday ? '' : ' (today\'s value)') });
+      conf++;
+    } else {
+      factors.push({ key: 'Flow', s: null, txt: 'No USGS reading right now' });
+    }
+
+    // stability
+    var stabS = null;
+    if (pct24 != null && isToday) {
+      stabS = stabilityScore(pct24, pct6);
+      factors.push({ key: 'Stability', s: stabS, txt: (pct24 >= 0 ? '+' : '') + pct24.toFixed(0) + '% in 24h' +
+        (pct6 != null ? ', ' + (pct6 >= 0 ? '+' : '') + pct6.toFixed(0) + '% in 6h' : '') +
+        (Math.abs(pct24) >= 15 ? ' - a release change, fish may have moved' : ' - steady') });
+    } else if (pct24 != null) {
+      stabS = 0.75;
+      factors.push({ key: 'Stability', s: stabS, txt: 'Unknown for ' + 'this day (assumed steady, releases can change)' });
+    } else {
+      factors.push({ key: 'Stability', s: null, txt: 'n/a' });
+    }
+
+    // water temp
+    var tempF = null, tempSrc = null;
+    if (d.temp && d.temp.length) { tempF = f1(d.temp[d.temp.length - 1].v); tempSrc = 'gauge sensor'; conf++; }
+    else if (spot.water_f_by_month) { tempF = estWaterF(spot, pt); tempSrc = 'seasonal estimate, no sensor'; }
+    var tempS = null;
+    if (tempF != null) {
+      tempS = tempScore(tempF);
+      var c = CFG.trout_temp_f;
+      var tnote = tempF > c[3] ? 'too warm for trout, stress and mortality risk' : tempF > c[2] ? 'warm, fish early' :
+        tempF >= c[1] ? 'right in the trout comfort zone' : tempF > c[0] ? 'cold, fish are slow' : 'very cold';
+      factors.push({ key: 'Water temp', s: tempS, txt: tempF.toFixed(0) + ' °F (' + tempSrc + '), ' + tnote });
+    } else {
+      factors.push({ key: 'Water temp', s: null, txt: 'No sensor or estimate' });
+    }
+
+    // weather
+    var hrs = (d.wx && d.wx[dayKey]) || null, wxS = null, wxo = null, win = null, h0h1 = fishingHours(pt.m);
+    if (hrs) {
+      var sel = [];
+      var hFrom = dayKey === parts(new Date()).key ? Math.max(h0h1[0], parts(new Date()).h) : h0h1[0];
+      for (var h = hFrom; h < h1(h0h1); h++) if (hrs[h]) sel.push(hrs[h]);
+      if (sel.length >= 3) {
+        var pick = function (k) { return mean(sel.map(function (x) { return x[k]; }).filter(function (v) { return v != null; })); };
+        wxo = {
+          temp: pick('temp'), tempLo: Math.min.apply(null, sel.map(function (x) { return x.temp; })),
+          tempHi: Math.max.apply(null, sel.map(function (x) { return x.temp; })),
+          cloud: pick('cloud') == null ? 50 : pick('cloud'), wind: pick('wind') || 0,
+          gust: Math.max.apply(null, sel.map(function (x) { return x.gust || x.wind || 0; })),
+          pop: Math.max.apply(null, sel.map(function (x) { return x.pop || 0; })),
+          qpf: sel.reduce(function (s, x) { return s + (x.qpf || 0); }, 0)
+        };
+        var pd = isToday && state.pressure ? state.pressure.delta6 : null;
+        wxS = wxScore(wxo, pd);
+        conf++;
+        var bits = [Math.round(wxo.tempLo) + '-' + Math.round(wxo.tempHi) + ' °F air', Math.round(wxo.wind) + ' mph wind (gusts ' + Math.round(wxo.gust) + ')',
+          Math.round(wxo.cloud) + '% cloud', Math.round(wxo.pop) + '% rain'];
+        factors.push({ key: 'Weather', s: wxS, txt: bits.join(', ') });
+        if (pd != null) {
+          var ptxt = Math.abs(pd) < 1.5 ? 'steady' : pd > 0 ? (pd >= 4 ? 'rising fast (post-front, often slow)' : 'rising') : (pd <= -4 ? 'dropping fast (front arriving, mixed)' : 'falling slowly (often a good bite)');
+          factors.push({ key: 'Pressure', s: pressureScore(pd), txt: state.pressure.hpa.toFixed(0) + ' hPa, ' + ptxt });
+        }
+        // best 3-hour window
+        var best = null;
+        for (var s0 = hFrom; s0 + 3 <= h1(h0h1); s0++) {
+          var hs = [];
+          for (var k = s0; k < s0 + 3; k++) if (hrs[k]) hs.push(wxScore({ temp: hrs[k].temp, cloud: hrs[k].cloud == null ? 50 : hrs[k].cloud, wind: hrs[k].wind || 0, gust: hrs[k].gust, pop: hrs[k].pop || 0, qpf: hrs[k].qpf || 0 }, null) * todPrior(k, pt.m, tempF));
+          if (hs.length === 3 && (!best || mean(hs) > best.v)) best = { h: s0, v: mean(hs) };
+        }
+        if (best) win = hr12(best.h) + ' to ' + hr12(best.h + 3);
+      }
+    }
+    if (wxS == null) factors.push({ key: 'Weather', s: null, txt: state.wxPending ? 'Loading forecast…' : (d.wxFailed ? 'NWS forecast failed to load, refresh to retry' : 'No forecast for this day') });
+    if (isToday) conf++;
+
+    // combine
+    var W = CFG.weights, tot = 0, acc = 0;
+    function add(w, s) { if (s != null) { tot += w; acc += w * s; } }
+    add(W.flow, flowS); add(W.stability, stabS); add(W.temp, tempS); add(W.weather, wxS);
+    var score = tot ? 100 * Math.pow(acc / tot, CFG.score_curve || 1) : 0;
+    var caps = [];
+    if (tempF != null && tempF > CFG.trout_temp_f[3]) { score = Math.min(score, 30); caps.push('Water is over ' + CFG.trout_temp_f[3] + ' °F: leave the trout alone.'); }
+    if (fNow != null && fNow >= r.max) { score = Math.min(score, 25); caps.push('Flow is above ' + r.max + ' cfs: blown out, unsafe to wade.'); }
+    if (fNow != null && fNow <= r.min) { score = Math.min(score, 40); caps.push('Flow is under ' + r.min + ' cfs: skinny water.'); }
+    if (pct24 != null && isToday && pct24 > 40) { score = Math.min(score, 40); caps.push('Flow jumped ' + pct24.toFixed(0) + '% in a day: check before crossing.'); }
+    if (wxo && wxo.pop >= 60 && pt.m >= 5 && pt.m <= 9 && wxo.qpf > 4) caps.push('Likely heavy rain/thunder: watch the sky and stay out of the water in lightning.');
+    score = Math.round(score);
+    var confTxt = (isToday ? 3 : 1) + (tempSrc === 'gauge sensor' ? 1 : 0) >= 3 && conf >= 3 ? 'High' : conf >= 2 ? 'Medium' : 'Low';
+    if (!isToday && confTxt === 'High') confTxt = 'Medium';
+
+    return { score: score, band: band(score), factors: factors, caps: caps, window: win, wxo: wxo,
+      fNow: fNow, pct24: pct24, tempF: tempF, tempSrc: tempSrc, confidence: confTxt, month: pt.m, dayKey: dayKey };
+  }
+  function h1(pair) { return pair[1]; }
+
+  // ---------- what to throw ----------
+  function throwText(spot, res) {
+    var season = seasonKey(res.month), t = (CFG.tactics[spot.type] || {})[season];
+    if (!t) return null;
+    var mods = [], w = res.wxo, r = spot.flow;
+    if (res.fNow != null && (res.fNow > r.ideal_hi || (res.pct24 != null && res.pct24 > 15)))
+      mods.push('Water is up or rising: go bigger and darker (streamer, stonefly or worm nymph, bigger bright spinner), add weight, fish the soft edges.');
+    else if (res.fNow != null && res.fNow < r.ideal_lo)
+      mods.push('Low and clear: downsize flies, drop to lighter tippet and long leaders, approach slowly (1/16 oz jigs and small spinners if spin fishing).');
+    if (w && (w.cloud >= 70 || w.pop >= 40))
+      mods.push('Gray or damp: best mayfly (BWO) and streamer weather. Look up for risers.');
+    else if (w && w.cloud <= 25 && res.month >= 6 && res.month <= 9)
+      mods.push('Bright sun: favor shaded banks and deeper runs, and fish the edges of the day.');
+    if (w && (w.wind >= 15 || w.gust >= 25))
+      mods.push('Windy: skip delicate dries. Nymphs and streamers, or hoppers on the banks in summer.');
+    if (res.tempF != null && res.tempF > 63)
+      mods.push('Warm water: first two hours of light only, land fish fast and keep them wet.');
+    if (res.tempF != null && res.tempF < 42)
+      mods.push('Cold water: slow everything down, fish deep slow runs around midday.');
+    return { season: CFG.seasons[season].label, t: t, mods: mods.slice(0, 3) };
+  }
+
+  // ---------- rendering ----------
+  function sparkline(pts) {
+    if (!pts || pts.length < 2) return null;
+    var W = 300, H = 50, min = Infinity, max = -Infinity;
+    pts.forEach(function (p) { min = Math.min(min, p.v); max = Math.max(max, p.v); });
+    var t0 = pts[0].t, span = (pts[pts.length - 1].t - t0) || 1, rng = (max - min) || 1;
+    var path = pts.map(function (p, i) {
+      return (i ? 'L' : 'M') + ((p.t - t0) / span * W).toFixed(1) + ' ' + (H - 5 - (p.v - min) / rng * (H - 10)).toFixed(1);
+    }).join(' ');
+    var ns = 'http://www.w3.org/2000/svg', svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', '7-day flow trend');
+    var p = document.createElementNS(ns, 'path');
+    p.setAttribute('d', path);
+    svg.appendChild(p);
+    return svg;
+  }
+
+  // Skip "today" once fewer than 3 fishable hours are left in it.
+  function dayKeys() {
+    var out = [], now = parts(new Date()), skip = now.h > fishingHours(now.m)[1] - 3 ? 1 : 0;
+    for (var i = 0; i < DAYS_AHEAD; i++) out.push(parts(new Date(Date.now() + (i + skip) * 86400e3)).key);
+    return out;
+  }
+  function dayLabel(key) {
+    var t = parts(new Date()).key, tm = parts(new Date(Date.now() + 86400e3)).key;
+    if (key === t) return 'Today';
+    if (key === tm) return 'Tomorrow';
+    var d = key.split('-');
+    return new Date(Date.UTC(+d[0], +d[1] - 1, +d[2], 12)).toLocaleDateString('en-US', { weekday: 'short', month: 'numeric', day: 'numeric', timeZone: 'UTC' });
+  }
+  function renderDays() {
+    daysEl.textContent = '';
+    dayKeys().forEach(function (k, i) {
+      var b = el('button', 'fish-day', dayLabel(k));
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', i === state.dayIdx ? 'true' : 'false');
+      b.addEventListener('click', function () { state.dayIdx = i; renderDays(); renderCards(); });
+      daysEl.appendChild(b);
+    });
+  }
+
+  function renderCards() {
+    var key = dayKeys()[state.dayIdx], isToday = state.dayIdx === 0;
+    var rated = CFG.spots.map(function (s) { return { spot: s, res: rate(s, key, isToday) }; })
+      .filter(function (x) { return state.data[x.spot.id] && (state.data[x.spot.id].flow || []).length; })
+      .sort(function (a, b) { return b.res.score - a.res.score; });
+    state.results = {};
+    rated.forEach(function (x) { state.results[x.spot.id] = x.res; });
+    cardsEl.textContent = '';
+    rated.forEach(function (x, i) {
+      var s = x.spot, res = x.res, tone = res.band.tone;
+      var card = el('div', 'fish-card' + (i === 0 && res.score >= 50 ? ' fish-card--best' : ''));
+      card.style.setProperty('--tone', tone);
+      var head = el('div', 'fish-head');
+      var sc = el('div', 'fish-score');
+      sc.appendChild(el('b', '', String(res.score)));
+      sc.appendChild(el('span', '', res.band.name));
+      head.appendChild(sc);
+      var hd = el('div');
+      var h2 = el('h2', '', s.name);
+      if (i === 0 && res.score >= 50) h2.appendChild(el('span', 'fish-badge', 'Best bet'));
+      hd.appendChild(h2);
+      hd.appendChild(el('div', 'fish-sub', s.drive + ' · ' + s.species + ' · confidence: ' + res.confidence));
+      head.appendChild(hd);
+      card.appendChild(head);
+
+      card.appendChild(el('div', 'fish-verdict', res.band.say));
+      res.caps.forEach(function (c) { card.appendChild(el('div', 'fish-line fish-warn', '⚠ ' + c)); });
+      if (res.window) card.appendChild(el('div', 'fish-line', 'Best window: ' + res.window));
+
+      var fx = el('div', 'fish-factors');
+      res.factors.forEach(function (f) {
+        var row = el('div', 'fish-factor');
+        row.appendChild(el('span', 'lbl', f.key));
+        var tr = el('div', 'fish-bartrack'), bar = el('i');
+        bar.style.width = (f.s == null ? 0 : Math.round(f.s * 100)) + '%';
+        tr.appendChild(bar);
+        row.appendChild(tr);
+        row.appendChild(el('span', 'txt', f.txt));
+        fx.appendChild(row);
+      });
+      card.appendChild(fx);
+
+      var th = throwText(s, res);
+      if (th) {
+        var box = el('div', 'fish-throw');
+        box.appendChild(el('h3', '', 'What to throw · ' + th.season));
+        var line = function (lbl, txt) { var p = el('p'); p.appendChild(el('b', '', lbl + ': ')); p.appendChild(document.createTextNode(txt)); box.appendChild(p); };
+        line('Bugs', th.t.hatch);
+        line('Fly', th.t.fly);
+        line('Spin', th.t.spin);
+        line('Approach', th.t.tactic);
+        th.mods.forEach(function (m) { box.appendChild(el('p', 'fish-warn', '→ ' + m)); });
+        card.appendChild(box);
+      }
+      card.appendChild(el('div', 'fish-sub', s.notes));
+      var sp = sparkline(state.data[s.id].flow);
+      if (sp) { card.appendChild(el('div', 'fish-sub', '7-day flow · USGS ' + s.usgs)); card.appendChild(sp); }
+      cardsEl.appendChild(card);
+    });
+    var bad = CFG.spots.filter(function (s) { return !state.data[s.id]; });
+    statusEl.textContent = (state.loadedAt ? 'Updated ' + state.loadedAt.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', timeZone: TZ }) + '. ' : '') +
+      (state.wxPending ? 'Loading forecast… ' : '') + (bad.length ? 'No data for: ' + bad.map(function (s) { return s.short; }).join(', ') + '.' : '') +
+      (!rated.length ? 'Nothing loaded: USGS or NWS may be down.' : '');
+    if (isToday && !state.wxPending) snapshotToday(rated);
+    fillSpotSelect();
+  }
+
+  // ---------- local history snapshot (one per spot per day) ----------
+  function snapshotToday(rated) {
+    var hist = lsGet(LS_HIST, {}), day = dayKeys()[0];
+    rated.forEach(function (x) {
+      hist[day + '|' + x.spot.id] = { date: day, spot: x.spot.id, score: x.res.score, flow_cfs: x.res.fNow, flow_pct24: x.res.pct24 == null ? null : +x.res.pct24.toFixed(1),
+        water_f: x.res.tempF == null ? null : +x.res.tempF.toFixed(1), water_src: x.res.tempSrc,
+        air_f: x.res.wxo ? +x.res.wxo.temp.toFixed(1) : null, cloud: x.res.wxo ? Math.round(x.res.wxo.cloud) : null,
+        wind_mph: x.res.wxo ? +x.res.wxo.wind.toFixed(1) : null, pressure_hpa: state.pressure ? +state.pressure.hpa.toFixed(1) : null };
+    });
+    var keys = Object.keys(hist).sort();
+    while (keys.length > 600) delete hist[keys.shift()];
+    lsSet(LS_HIST, hist);
+  }
+
+  // ---------- field log ----------
+  var form = document.getElementById('fish-form');
+  var spotSel = document.getElementById('f-spot');
+  function fillSpotSelect() {
+    if (spotSel.options.length) return;
+    CFG.spots.forEach(function (s) { var o = document.createElement('option'); o.value = s.id; o.textContent = s.name; spotSel.appendChild(o); });
+  }
+  function nowLocalInput() {
+    var p = parts(new Date());
+    function z(n) { return String(n).padStart(2, '0'); }
+    return p.key + 'T' + z(p.h) + ':' + z(p.min);
+  }
+  document.getElementById('f-when').value = nowLocalInput();
+  fillSpotSelect();
+
+  function committedIds() { var o = {}; COMMITTED.forEach(function (t) { o[t.id] = true; }); return o; }
+  function allTrips() {
+    var done = committedIds();
+    var local = lsGet(LS_LOG, []).map(function (t) { t._local = !done[t.id]; return t; }).filter(function (t) { return t._local; });
+    return COMMITTED.map(function (t) { return { t: t, committed: true }; })
+      .concat(local.map(function (t) { return { t: t, committed: false }; }))
+      .sort(function (a, b) { return String(b.t.when).localeCompare(String(a.t.when)); });
+  }
+  function spotName(id) { var s = CFG.spots.filter(function (x) { return x.id === id; })[0]; return s ? s.short : id; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var id = document.getElementById('f-spot').value;
+    var res = state.results[id] || null;
+    // Snapshot is always LIVE conditions, so score it against today, not the selected tab.
+    var live = state.data[id] ? rate(CFG.spots.filter(function (s) { return s.id === id; })[0], dayKeys()[0], true) : null;
+    function num(i) { var v = document.getElementById(i).value; return v === '' ? null : +v; }
+    function txt(i) { return document.getElementById(i).value.trim() || null; }
+    var when = document.getElementById('f-when').value;
+    var entry = {
+      id: when.replace(/[^0-9]/g, '') + '-' + id,
+      when: when, spot: id,
+      field: { water_f: num('f-water'), air_f: num('f-air'), clarity: txt('f-clarity'), wading: txt('f-wading'),
+        bugs: txt('f-bugs'), worked: txt('f-worked'), caught: num('f-caught'), biggest_in: num('f-biggest'),
+        rating: num('f-rating'), notes: txt('f-notes') },
+      predicted: live ? { score: live.score, band: live.band.name, confidence: live.confidence } : null,
+      conditions: live ? { flow_cfs: live.fNow, flow_pct24: live.pct24 == null ? null : +live.pct24.toFixed(1),
+        water_f: live.tempF == null ? null : +live.tempF.toFixed(1), water_src: live.tempSrc,
+        air_f: live.wxo ? +live.wxo.temp.toFixed(1) : null, cloud: live.wxo ? Math.round(live.wxo.cloud) : null,
+        wind_mph: live.wxo ? +live.wxo.wind.toFixed(1) : null, pop: live.wxo ? Math.round(live.wxo.pop) : null,
+        pressure_hpa: state.pressure ? +state.pressure.hpa.toFixed(1) : null,
+        pressure_delta6: state.pressure ? +state.pressure.delta6.toFixed(1) : null } : null
+    };
+    var log = lsGet(LS_LOG, []).filter(function (t) { return t.id !== entry.id; });
+    log.push(entry);
+    if (!lsSet(LS_LOG, log)) { document.getElementById('fish-copy-msg').textContent = 'Could not save in this browser (private mode?). Use "Copy new trips" right now so you do not lose it.'; }
+    form.reset();
+    document.getElementById('f-when').value = nowLocalInput();
+    renderTrips();
+    document.getElementById('fish-copy-msg').textContent = 'Saved. Export it when you are home and send it to Claude.';
   });
+
+  function renderTrips() {
+    var box = document.getElementById('fish-trips');
+    box.textContent = '';
+    var trips = allTrips();
+    if (!trips.length) { box.appendChild(el('div', 'fish-note fish-note--tight', 'No trips logged yet.')); }
+    trips.forEach(function (x) {
+      var t = x.t, f = t.field || {};
+      var row = el('div', 'fish-trip');
+      if (!x.committed) {
+        var del = el('button', '', '✕');
+        del.type = 'button';
+        del.setAttribute('aria-label', 'Delete this trip');
+        del.addEventListener('click', function () {
+          lsSet(LS_LOG, lsGet(LS_LOG, []).filter(function (y) { return y.id !== t.id; }));
+          renderTrips();
+        });
+        row.appendChild(del);
+      }
+      var b = el('b', '', spotName(t.spot) + ' · ' + String(t.when).replace('T', ' ') + ' · ' + (f.rating || '?') + '/5');
+      row.appendChild(b);
+      var meta = [];
+      if (t.predicted) meta.push('page said ' + t.predicted.score + ' (' + t.predicted.band + ')');
+      if (f.caught != null) meta.push(f.caught + ' fish' + (f.biggest_in ? ', biggest ' + f.biggest_in + '"' : ''));
+      if (f.water_f != null) meta.push('water ' + f.water_f + ' °F');
+      meta.push(x.committed ? 'saved to site' : 'only in this browser');
+      row.appendChild(el('div', 'meta', meta.join(' · ')));
+      if (f.worked) row.appendChild(el('div', '', 'Worked: ' + f.worked));
+      if (f.bugs) row.appendChild(el('div', '', 'Bugs: ' + f.bugs));
+      if (f.notes) row.appendChild(el('div', '', f.notes));
+      box.appendChild(row);
+    });
+    // calibration: do high predicted scores line up with good days?
+    var cal = document.getElementById('fish-calib'), hi = [], lo = [];
+    trips.forEach(function (x) {
+      var f = x.t.field || {}, p = x.t.predicted;
+      if (!p || !f.rating) return;
+      (f.rating >= 4 ? hi : f.rating <= 2 ? lo : []).push(p.score);
+    });
+    cal.textContent = (hi.length && lo.length)
+      ? 'Calibration: days you rated 4-5 had an average predicted score of ' + Math.round(mean(hi)) + '; days you rated 1-2 averaged ' + Math.round(mean(lo)) + '. The rating is working if the first number is clearly higher.'
+      : (trips.length ? 'Calibration appears after you have logged at least one great day (4-5) and one slow day (1-2).' : '');
+  }
+
+  function yamlVal(v) { return v == null ? 'null' : typeof v === 'number' ? String(v) : JSON.stringify(v); }
+  function toYaml(obj, ind) {
+    var pad = new Array(ind + 1).join(' '), out = '';
+    Object.keys(obj).forEach(function (k) {
+      var v = obj[k];
+      if (v && typeof v === 'object') out += pad + k + ':\n' + toYaml(v, ind + 2);
+      else out += pad + k + ': ' + yamlVal(v) + '\n';
+    });
+    return out;
+  }
+  document.getElementById('fish-copy').addEventListener('click', function () {
+    var done = committedIds();
+    var fresh = lsGet(LS_LOG, []).filter(function (t) { return !done[t.id]; });
+    var msg = document.getElementById('fish-copy-msg');
+    if (!fresh.length) { msg.textContent = 'Nothing new to export.'; return; }
+    var y = fresh.map(function (t) {
+      var c = toYaml(t, 2).split('\n'); c[0] = '- ' + c[0].slice(2);
+      return c.join('\n');
+    }).join('');
+    (navigator.clipboard ? navigator.clipboard.writeText(y) : Promise.reject()).then(function () {
+      msg.textContent = 'Copied ' + fresh.length + ' trip(s). Paste them to Claude with /fishing-log.';
+    }, function () {
+      msg.textContent = '';
+      var ta = el('textarea', 'fish-wide'); ta.value = y; ta.rows = 10; ta.style.width = '100%';
+      msg.appendChild(document.createTextNode('Clipboard blocked: select and copy this manually.'));
+      msg.appendChild(ta);
+    });
+  });
+  document.getElementById('fish-dl').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify({ exported: new Date().toISOString(), trips: lsGet(LS_LOG, []), history: lsGet(LS_HIST, {}) }, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'fishing-export.json';
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
+  // ---------- load ----------
+  function load() {
+    statusEl.textContent = 'Loading USGS gauges…';
+    state.wxPending = true;
+    var usgs = CFG.spots.map(function (s) {
+      return Promise.all([
+        usgsSeries(s.usgs, '00060', 'P7D'),
+        s.water_f_by_month ? Promise.resolve([]) : usgsSeries(s.usgs, '00010', 'P3D')
+      ]).then(function (r) {
+        var d = state.data[s.id] = state.data[s.id] || {};
+        d.flow = r[0]; d.temp = r[1];
+      });
+    });
+    Promise.all(usgs).then(function () {
+      state.loadedAt = new Date();
+      renderCards();
+      renderTrips();
+    });
+    // NWS calls are queued one at a time (see nwsGet); render again once the weather is in.
+    var nws = [loadPressure().then(function (p) { state.pressure = p; })];
+    CFG.spots.forEach(function (s) {
+      nws.push(loadForecast(s).then(function (wx) {
+        var d = state.data[s.id] = state.data[s.id] || {};
+        d.wx = wx; d.wxFailed = !wx;
+      }));
+    });
+    Promise.all(usgs.concat(nws)).then(function () {
+      state.wxPending = false;
+      state.loadedAt = new Date();
+      renderCards();
+    }).catch(function (e) { statusEl.textContent = 'Could not load data (' + e.message + ').'; });
+  }
+  document.getElementById('fish-refresh').addEventListener('click', function () { state.data = {}; state.pressure = null; load(); });
+  renderDays();
+  renderTrips();
+  load();
 })();
 </script>
 {{ end }}
