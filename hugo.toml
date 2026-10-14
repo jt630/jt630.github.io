@@ -285,6 +285,15 @@ title = "Almond Farm"
       blurb = "Ownership home base"
       tone = "pink"
   [[menu.main]]
+    name = "Home Theater"
+    url = "/home-theater/"
+    parent = "life-admin"
+    weight = 5
+    [menu.main.params]
+      icon = "&#128266;"
+      blurb = "Surround setup & troubleshooting"
+      tone = "gold"
+  [[menu.main]]
     name = "Garage"
     url = "/garage/"
     parent = "life-admin"
