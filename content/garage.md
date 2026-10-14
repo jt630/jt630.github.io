@@ -1,9 +1,9 @@
 ---
-title: "Garage"
+title: "Project Truck"
 type: "garage"
 layout: "single"
 description: "Car Hunt 2.0 — a cheap, cool, old project vehicle worth wrenching on. Old 4Runner, old Toyota truck, or Jeep Cherokee XJ."
-tabTitle: "🔧 GARAGE"
+tabTitle: "🔧 PROJECT TRUCK"
 ---
 
 The Forester's done — this is the fun one. A **second, cheap vehicle** that's

@@ -1,13 +1,13 @@
 ---
 title: "Wheels"
-description: "The project-vehicle timeline — Car Hunt closed it out, The Forester lives here now, Garage is next."
+description: "The project-vehicle timeline — Car Hunt closed it out, The Forester lives here now, Project Truck is next."
 members:
   - path: "/cars/"
     note: "Where it started — closed out 2026-09-09 when the Forester was bought."
   - path: "/forester/"
     note: "Ownership home base for the vehicle Car Hunt found."
   - path: "/garage/"
-    note: "Car Hunt 2.0 — the next project, not started yet."
+    note: "Project Truck (Car Hunt 2.0) — the next project, not started yet."
 ---
 
 Three pages, one story: buying a daily driver, living with it, and finding

@@ -8,26 +8,23 @@ title = "Almond Farm"
   tabTitle = "ALMONDS!"
 
 [menu]
-  # Build
+  # Six groups, each named for what's in it. The homepage renders one
+  # card row per group (layouts/index.html), with the group blurb under it.
+  # Hidden stubs (art, gaming, body, movies, gallery) are draft: true until
+  # they have content; Car Hunt is retired here and lives on in the Wheels hub.
+
+  # Journal
   [[menu.main]]
-    name = "Build"
-    identifier = "build"
+    name = "Journal"
+    identifier = "journal"
     weight = 10
-  [[menu.main]]
-    name = "Brain Lab"
-    url = "/brain/"
-    parent = "build"
-    weight = 1
     [menu.main.params]
-      title = "The Lab"
-      icon = "&#129504;"
-      blurb = "Experiments & WIP"
-      tone = "pink"
+      blurb = "Stories, recipes and dispatches from the farm"
   [[menu.main]]
     name = "Blog"
     url = "/blog/"
-    parent = "build"
-    weight = 2
+    parent = "journal"
+    weight = 1
     [menu.main.params]
       icon = "&#9997;"
       blurb = "Tales from the fire line & beyond"
@@ -35,8 +32,8 @@ title = "Almond Farm"
   [[menu.main]]
     name = "Farming"
     url = "/farming/"
-    parent = "build"
-    weight = 3
+    parent = "journal"
+    weight = 2
     [menu.main.params]
       icon = "&#127793;"
       blurb = "Dispatches from the dirt"
@@ -44,49 +41,42 @@ title = "Almond Farm"
   [[menu.main]]
     name = "Cooking"
     url = "/cooking/"
-    parent = "build"
-    weight = 4
+    parent = "journal"
+    weight = 3
     [menu.main.params]
       icon = "&#127859;"
       blurb = "Recipes that go off"
       tone = "gold"
   [[menu.main]]
-    name = "Monkeys"
-    url = "/monkeys/"
-    parent = "build"
-    weight = 5
+    name = "Drinks"
+    url = "/drinks/"
+    parent = "journal"
+    weight = 4
     [menu.main.params]
-      icon = "&#128018;"
-      blurb = "Infinite Monkey Theorem"
+      icon = "&#127864;"
+      blurb = "What we're sipping"
       tone = "gold"
   [[menu.main]]
-    name = "Public Health"
-    url = "/public-health/"
-    parent = "build"
-    weight = 6
+    name = "Gadgets"
+    url = "/gadgets/"
+    parent = "journal"
+    weight = 5
     [menu.main.params]
-      icon = "&#128300;"
-      blurb = "Unlikely connections"
-      tone = "blue"
-  [[menu.main]]
-    name = "Coasters"
-    url = "/coasters/"
-    parent = "build"
-    weight = 7
-    [menu.main.params]
-      icon = "&#127906;"
-      blurb = "Jay & Kay's credit log"
-      tone = "cyan"
+      icon = "&#128268;"
+      blurb = "Tech we're into"
+      tone = "pink-light"
 
-  # Taste
+  # Culture
   [[menu.main]]
-    name = "Taste"
-    identifier = "taste"
+    name = "Culture"
+    identifier = "culture"
     weight = 20
+    [menu.main.params]
+      blurb = "What we're listening to, reading and watching"
   [[menu.main]]
     name = "Music"
     url = "/music/"
-    parent = "taste"
+    parent = "culture"
     weight = 1
     [menu.main.params]
       icon = "&#127925;"
@@ -95,122 +85,105 @@ title = "Almond Farm"
   [[menu.main]]
     name = "Books"
     url = "/books/"
-    parent = "taste"
+    parent = "culture"
     weight = 2
     [menu.main.params]
       icon = "&#128218;"
       blurb = "What we're reading"
       tone = "gold-light"
   [[menu.main]]
-    name = "Movies"
-    url = "/movies/"
-    parent = "taste"
-    weight = 3
-    [menu.main.params]
-      icon = "&#127916;"
-      blurb = "What we're watching"
-      tone = "pink-light"
-  [[menu.main]]
-    name = "Art"
-    url = "/art/"
-    parent = "taste"
-    weight = 4
-    [menu.main.params]
-      icon = "&#127912;"
-      blurb = "The creative side"
-      tone = "gold-light"
-  [[menu.main]]
-    name = "Gaming"
-    url = "/gaming/"
-    parent = "taste"
-    weight = 5
-    [menu.main.params]
-      icon = "&#127918;"
-      blurb = "What we're playing"
-      tone = "pink"
-  [[menu.main]]
-    name = "Drinks"
-    url = "/drinks/"
-    parent = "taste"
-    weight = 6
-    [menu.main.params]
-      icon = "&#127864;"
-      blurb = "What we're sipping"
-      tone = "gold"
-  [[menu.main]]
-    name = "Gallery"
-    url = "/gallery/"
-    parent = "taste"
-    weight = 7
-    [menu.main.params]
-      icon = "&#128247;"
-      blurb = "The looks"
-      tone = "gold"
-  [[menu.main]]
     name = "Videos"
     url = "/videos/"
-    parent = "taste"
-    weight = 8
+    parent = "culture"
+    weight = 3
     [menu.main.params]
       icon = "&#128250;"
       blurb = "Watch together"
       tone = "gold-light"
 
-  # Live Data — auto-updating dashboards and trackers
+  # Play
   [[menu.main]]
-    name = "Live Data"
-    identifier = "live-data"
+    name = "Play"
+    identifier = "play"
     weight = 30
+    [menu.main.params]
+      blurb = "Trails, rivers, rides and fantasy leagues"
   [[menu.main]]
-    name = "Dingers"
-    url = "/dinger-palooza/"
-    parent = "live-data"
+    name = "Backpacking"
+    url = "/backpacking/"
+    parent = "play"
     weight = 1
     [menu.main.params]
+      icon = "&#127890;"
+      blurb = "Trip planning & gear"
+      tone = "gold-light"
+  [[menu.main]]
+    name = "Fishing Report"
+    url = "/fishing/"
+    parent = "play"
+    weight = 2
+    [menu.main.params]
+      icon = "&#127907;"
+      blurb = "Where to fish today, live"
+      tone = "cyan"
+  [[menu.main]]
+    name = "Coasters"
+    url = "/coasters/"
+    parent = "play"
+    weight = 3
+    [menu.main.params]
+      icon = "&#127906;"
+      blurb = "Jay & Kay's credit log"
+      tone = "cyan"
+  [[menu.main]]
+    name = "Dinger Palooza"
+    url = "/dinger-palooza/"
+    parent = "play"
+    weight = 4
+    [menu.main.params]
       icon = "&#9918;"
-      blurb = "Homer Derby 2025"
+      blurb = "Weekly home run draft"
       tone = "pink"
   [[menu.main]]
     name = "Beer Sheet"
     url = "/beer-sheet/"
-    parent = "live-data"
-    weight = 2
-    [menu.main.params]
-      icon = "&#127866;"
-      blurb = "Fantasy draft board"
-      tone = "gold"
-  [[menu.main]]
-    name = "Markets"
-    url = "/markets/"
-    parent = "live-data"
-    weight = 3
-    [menu.main.params]
-      icon = "&#128200;"
-      blurb = "Macro dashboard"
-      tone = "gold"
-  [[menu.main]]
-    name = "Calendar"
-    url = "/calendar/"
-    parent = "live-data"
-    weight = 4
-    [menu.main.params]
-      icon = "&#128197;"
-      blurb = "What's on"
-      tone = "pink-light"
-  [[menu.main]]
-    name = "APIs"
-    url = "/apis/"
-    parent = "live-data"
+    parent = "play"
     weight = 5
     [menu.main.params]
-      icon = "&#128506;"
-      blurb = "The data manifold"
-      tone = "blue"
+      icon = "&#127866;"
+      blurb = "Fantasy football draft board"
+      tone = "gold"
+
+  # Garage
+  [[menu.main]]
+    name = "Garage"
+    identifier = "garage"
+    weight = 40
+    [menu.main.params]
+      blurb = "Our wheels, and the Boise auctions we hunt"
+  [[menu.main]]
+    name = "The Forester"
+    url = "/forester/"
+    parent = "garage"
+    weight = 1
+    [menu.main.params]
+      icon = "&#128665;"
+      blurb = "Ownership home base"
+      tone = "pink"
+  [[menu.main]]
+    name = "Project Truck"
+    url = "/garage/"
+    parent = "garage"
+    weight = 2
+    [menu.main.params]
+      icon = "&#128295;"
+      blurb = "Hunting a cheap old 4x4"
+      tone = "gold"
   [[menu.main]]
     name = "Auction Watch"
     url = "/auctions/"
-    parent = "live-data"
-    weight = 6
+    parent = "garage"
+    weight = 3
     [menu.main.params]
       icon = "&#128296;"
       blurb = "Boise price discovery"
@@ -218,81 +191,91 @@ title = "Almond Farm"
   [[menu.main]]
     name = "Grandpa's Shop"
     url = "/grandpas-shop/"
-    parent = "live-data"
-    weight = 7
+    parent = "garage"
+    weight = 4
     [menu.main.params]
       icon = "&#129520;"
       blurb = "Small engines & appliances"
       tone = "cyan"
-  [[menu.main]]
-    name = "Fishing Report"
-    url = "/fishing/"
-    parent = "live-data"
-    weight = 8
-    [menu.main.params]
-      icon = "&#127907;"
-      blurb = "Where to fish today, live"
-      tone = "cyan"
 
-  # Life Admin — gear, body, and the project-vehicle timeline
+  # Dashboards
   [[menu.main]]
-    name = "Life Admin"
-    identifier = "life-admin"
-    weight = 40
+    name = "Dashboards"
+    identifier = "dashboards"
+    weight = 50
+    [menu.main.params]
+      blurb = "Live numbers that update themselves"
   [[menu.main]]
-    name = "Gadgets"
-    url = "/gadgets/"
-    parent = "life-admin"
+    name = "Markets"
+    url = "/markets/"
+    parent = "dashboards"
     weight = 1
     [menu.main.params]
-      icon = "&#128268;"
-      blurb = "Tech we're into"
-      tone = "pink-light"
+      icon = "&#128200;"
+      blurb = "Macro dashboard"
+      tone = "gold"
   [[menu.main]]
-    name = "Body"
-    url = "/body/"
-    parent = "life-admin"
+    name = "News"
+    url = "/news/"
+    parent = "dashboards"
     weight = 2
     [menu.main.params]
-      icon = "&#128170;"
-      blurb = "Move & recover"
-      tone = "gold-light"
-  [[menu.main]]
-    name = "Backpacking"
-    url = "/backpacking/"
-    parent = "life-admin"
-    weight = 3
-    [menu.main.params]
-      icon = "&#127890;"
-      blurb = "Trip planning & gear"
-      tone = "gold-light"
-  [[menu.main]]
-    name = "Car Hunt"
-    url = "/cars/"
-    parent = "life-admin"
-    weight = 4
-    [menu.main.params]
-      icon = "&#128269;"
-      blurb = "Done — see The Forester"
+      icon = "&#128240;"
+      blurb = "Who's slanting what"
       tone = "pink-light"
   [[menu.main]]
-    name = "The Forester"
-    url = "/forester/"
-    parent = "life-admin"
-    weight = 5
+    name = "Calendar"
+    url = "/calendar/"
+    parent = "dashboards"
+    weight = 3
     [menu.main.params]
-      icon = "&#128665;"
-      blurb = "Ownership home base"
+      icon = "&#128197;"
+      blurb = "Games, holidays & farm events"
+      tone = "pink-light"
+
+  # Lab
+  [[menu.main]]
+    name = "Lab"
+    identifier = "lab"
+    weight = 60
+    [menu.main.params]
+      blurb = "Experiments and works in progress"
+  [[menu.main]]
+    name = "Brain Lab"
+    url = "/brain/"
+    parent = "lab"
+    weight = 1
+    [menu.main.params]
+      icon = "&#129504;"
+      blurb = "Experiments & WIP"
       tone = "pink"
   [[menu.main]]
-    name = "Garage"
-    url = "/garage/"
-    parent = "life-admin"
-    weight = 6
+    name = "Monkeys"
+    url = "/monkeys/"
+    parent = "lab"
+    weight = 2
     [menu.main.params]
-      icon = "&#128295;"
-      blurb = "Car Hunt 2.0: project truck"
+      icon = "&#128018;"
+      blurb = "Infinite Monkey Theorem"
       tone = "gold"
+  [[menu.main]]
+    name = "Public Health"
+    url = "/public-health/"
+    parent = "lab"
+    weight = 3
+    [menu.main.params]
+      icon = "&#128300;"
+      blurb = "Hidden health–environment links"
+      tone = "blue"
+  [[menu.main]]
+    name = "API Map"
+    url = "/apis/"
+    parent = "lab"
+    weight = 4
+    [menu.main.params]
+      icon = "&#128506;"
+      blurb = "Every free data source we use"
+      tone = "blue"
 
 [taxonomies]
   tag = "tags"
