@@ -1,0 +1,101 @@
+{{ define "head-extra" }}
+<style>
+.ht-page { max-width: 900px; margin: 0 auto; padding: 0 24px 100px; }
+.ht-hero { text-align: center; padding: 48px 16px 8px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 32px; }
+.ht-hero h1 {
+  font-family: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  font-size: clamp(44px, 10vw, 90px); line-height: 0.9; margin: 0 0 12px;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.02em;
+  text-shadow: 4px 4px 0 var(--black), 8px 8px 0 var(--pink);
+}
+.ht-page h2 {
+  font-family: 'Impact', 'Arial Narrow Bold', sans-serif; text-transform: uppercase;
+  font-size: 26px; letter-spacing: 0.03em; color: var(--gold);
+  border-bottom: 2px solid var(--pink); padding-bottom: 6px; margin: 44px 0 16px;
+}
+.ht-page .prose { color: var(--white-dim); line-height: 1.65; }
+.ht-steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+.ht-step { border: 2px outset rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); margin-bottom: 10px; padding: 12px 14px 12px 56px; position: relative; counter-increment: step; }
+.ht-step::before { content: counter(step); position: absolute; left: 14px; top: 10px; width: 30px; height: 30px; line-height: 30px; text-align: center; background: var(--pink); color: var(--black); font-weight: 700; }
+.ht-step.done { opacity: 0.55; }
+.ht-step.done::before { content: "\2713"; background: var(--gold); }
+.ht-step label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; color: var(--white); font-weight: 700; }
+.ht-step input { margin-top: 4px; accent-color: var(--pink); }
+.ht-step .check { color: var(--white-dim); margin: 6px 0 0; }
+.ht-step details { margin-top: 6px; }
+.ht-step summary { cursor: pointer; color: var(--pink); font-size: 13px; }
+.ht-step details p { color: var(--white-faint); margin: 6px 0 0; font-size: 14px; }
+.ht-reset { background: none; border: 1px solid var(--pink); color: var(--pink); padding: 4px 12px; cursor: pointer; margin-top: 8px; }
+.ht-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.ht-card { border: 2px outset rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); padding: 10px 14px; }
+.ht-card .k { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white-faint); }
+.ht-card .v { font-size: 15px; color: var(--white); margin-top: 2px; }
+.ht-card .n { font-size: 12px; color: var(--white-dim); }
+.ht-page ul { color: var(--white-dim); line-height: 1.7; }
+</style>
+{{ end }}
+
+{{ define "main" }}
+{{ $d := .Site.Data.home_theater }}
+<div class="ht-page">
+  <div class="ht-hero"><h1>Home Theater</h1></div>
+  <div class="prose">{{ .Content }}</div>
+
+  <h2>Troubleshooting</h2>
+  <p class="prose">Tick each step as you verify it (saved on this device). Tap "why" for the reasoning.</p>
+  <ol class="ht-steps" id="ht-steps">
+    {{ range $i, $s := $d.troubleshooting }}
+    <li class="ht-step">
+      <label><input type="checkbox" data-i="{{ $i }}"> {{ $s.title }}</label>
+      <p class="check">{{ $s.check }}</p>
+      <details><summary>why</summary><p>{{ $s.why }}</p></details>
+    </li>
+    {{ end }}
+  </ol>
+  <button class="ht-reset" id="ht-reset" type="button">Reset checklist</button>
+
+  <h2>Seen this before</h2>
+  <ul>
+    {{ range $d.known_issues }}
+    <li><strong>{{ .symptom }}</strong> — {{ .fix }}</li>
+    {{ end }}
+  </ul>
+
+  <h2>Receiver settings</h2>
+  <div class="ht-grid">
+    {{ range $d.settings }}
+    <div class="ht-card"><div class="k">{{ .k }}</div><div class="v">{{ .v }}</div></div>
+    {{ end }}
+  </div>
+
+  <h2>The gear</h2>
+  <div class="ht-grid">
+    <div class="ht-card"><div class="k">Receiver</div><div class="v">{{ $d.receiver.model }}</div>
+      <div class="n">{{ $d.receiver.power }}<br>{{ $d.receiver.impedance }}<br>Input: {{ $d.receiver.current_input }}<br>Remote: {{ $d.receiver.remote }}</div></div>
+    {{ range $d.speakers }}
+    <div class="ht-card"><div class="k">{{ .position }}</div><div class="v">{{ .model }}</div><div class="n">{{ .note }}</div></div>
+    {{ end }}
+  </div>
+
+  <h2>Connections</h2>
+  <ul>{{ range $d.connections }}<li>{{ . }}</li>{{ end }}</ul>
+</div>
+
+<script>
+(function () {
+  var KEY = 'ht-troubleshoot';
+  var boxes = document.querySelectorAll('#ht-steps input');
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  function save(s) { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} }
+  var state = load();
+  function paint(b) { b.closest('.ht-step').classList.toggle('done', b.checked); }
+  boxes.forEach(function (b) {
+    b.checked = !!state[b.dataset.i]; paint(b);
+    b.addEventListener('change', function () { state[b.dataset.i] = b.checked; save(state); paint(b); });
+  });
+  document.getElementById('ht-reset').addEventListener('click', function () {
+    state = {}; save(state); boxes.forEach(function (b) { b.checked = false; paint(b); });
+  });
+})();
+</script>
+{{ end }}
