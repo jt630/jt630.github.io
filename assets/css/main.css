@@ -386,6 +386,12 @@ img {
   border-bottom: 1px solid rgba(212, 175, 55, 0.25);
 }
 
+.group-blurb {
+  font-size: 0.85rem;
+  color: var(--white-dim);
+  margin: -0.5rem 0 1rem 0;
+}
+
 /* Section cards on homepage */
 .section-cards {
   display: grid;
