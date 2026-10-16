@@ -22,6 +22,19 @@ class ExcludeRuleTests(unittest.TestCase):
         self.assertTrue(af.group_matches({"keywords": ["pickup"]}, " ford pickup "))
 
 
+class VehiclesOnlyTests(unittest.TestCase):
+    def test_floor_scrubber_is_not_a_commuter_car(self):
+        lot = {"title": "Lot #7024: Nobles Focus II Walk-Behind Floor Scrubber, 20\" Path"}
+        orig = af.WATCHLIST
+        af.WATCHLIST = [{"label": "Commuter", "keywords": ["focus"], "vehicles_only": True}]
+        try:
+            self.assertEqual(af.match_watchlist(lot), [])
+            real = {"title": "2018 FORD FOCUS - 90K MILES!"}
+            self.assertEqual(af.match_watchlist(real), ["Commuter"])
+        finally:
+            af.WATCHLIST = orig
+
+
 class CollisionGuardTests(unittest.TestCase):
     """Guard RULES, not a pinned watchlist: the owner edits
     data/auction_watchlist.yaml freely, and this suite runs as the daily

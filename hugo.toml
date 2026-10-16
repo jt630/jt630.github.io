@@ -65,6 +65,15 @@ title = "Almond Farm"
       icon = "&#128268;"
       blurb = "Tech we're into"
       tone = "pink-light"
+  [[menu.main]]
+    name = "Home Theater"
+    url = "/home-theater/"
+    parent = "journal"
+    weight = 6
+    [menu.main.params]
+      icon = "&#128266;"
+      blurb = "Surround setup & troubleshooting"
+      tone = "gold"
 
   # Culture
   [[menu.main]]

@@ -1,0 +1,65 @@
+# Home theater surround setup (Boise living room). Source: hand-off prompt from
+# an earlier Claude session that did the original setup. Rendered by
+# layouts/home-theater/single.html -- edit here, not in the template.
+
+receiver:
+  model: Onkyo TX-DS696
+  power: "100 W per channel @ 8 ohms"
+  inputs: "Optical (OPT 1), DVD, VIDEO 1-4, TAPE, FM, AM, PHONO, CD"
+  current_input: "Optical from TV"
+  remote: "Basic universal remote (volume control)"
+  impedance: "Selector set to 6 OHMS MIN/SPEAKER"
+
+speakers:
+  - { position: "Front L / R", model: "Boston Acoustics CR65", note: "Floor standing, 8 ohm" }
+  - { position: "Center", model: "Boston Acoustics CRC", note: "Compact center, 8 ohm" }
+  - { position: "Surround L / R", model: "Boston Acoustics bookshelf", note: "Rear, 8 ohm" }
+  - { position: "Subwoofer", model: "Definitive Technology ProSub 80", note: "8-inch, 250 W amp" }
+
+connections:
+  - "TV to receiver: optical (TOSLINK) from the Hisense Roku TV OPT 1"
+  - "Speakers to receiver: 14 gauge speaker wire"
+  - "Subwoofer to receiver: RCA Y-cable to PRE OUT SUB"
+  - "TV audio output: PCM mode (not Bitstream)"
+
+settings:
+  - { k: "Speaker config", v: "Front L/R = Small, Center = Small, Surrounds = Small, Sub = Yes" }
+  - { k: "Speaker distances", v: "TODO: measure from the couch to each speaker" }
+  - { k: "Level calibration", v: "All speakers balanced with the pink noise test; surrounds -3 dB lower; center -3 dB" }
+  - { k: "Listening mode", v: "Dolby Digital or DTS for surround; Pro Logic II for stereo" }
+  - { k: "Audio selector", v: "Multichannel" }
+  - { k: "Master volume", v: "~48 (0-100 scale)" }
+  - { k: "Sub crossover", v: "80 Hz (dial on the back of the sub)" }
+  - { k: "Sub level", v: "Dial on the back of the ProSub 80 -- start halfway, fine-tune via Level Cal" }
+
+# Work top to bottom. Most "no sound" problems die in the first three.
+troubleshooting:
+  - title: "Master volume"
+    check: "Master Volume is not muted and is up to about 48."
+    why: "The receiver boots at 0 after a power cycle, and the TV remote's volume does nothing to it."
+  - title: "Listening mode"
+    check: "Mode is Dolby Digital or DTS -- NOT plain Stereo."
+    why: "In Stereo the center and surrounds go quiet. Use Pro Logic II for two-channel sources you want spread around the room."
+  - title: "TV digital output"
+    check: "On the Hisense Roku TV, digital audio output is ON and set to PCM (not Bitstream)."
+    why: "This was the cause of the original 'no audio at all' problem. Also confirm the receiver is on the Optical (OPT 1) input."
+  - title: "Speaker wire"
+    check: "Every wire is fully seated in the terminals, both ends, + to + and - to -."
+    why: "A loose connection made the right speaker drop out at low volume once."
+  - title: "Speaker config in Setup"
+    check: "No speaker is set to 'No' in the Setup menu (Front/Center/Surround = Small, Sub = Yes)."
+    why: "A speaker set to 'No' is silent no matter how good the wiring is."
+  - title: "Headphones"
+    check: "Nothing is plugged into the headphone jack."
+    why: "Plugging in headphones disables the speakers."
+  - title: "Recalibrate levels"
+    check: "Re-run Level Calibration with the pink noise test; surrounds -3 dB."
+    why: "Fixes 'center too loud', thin dialog, or a sub that is too boomy or too weak after anything has been moved."
+
+known_issues:
+  - symptom: "Right speaker silent at low volume"
+    fix: "Loose connection. Resolved by warming up the receiver. If it returns, re-seat the right speaker wire (step 4)."
+  - symptom: "Center speaker too loud vs. the fronts"
+    fix: "Lowered the center level by 3 dB."
+  - symptom: "No audio at all, initially"
+    fix: "Turned master volume up from 0, switched to a Dolby/DTS mode, and set the TV's digital output to PCM."

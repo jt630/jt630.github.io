@@ -1,13 +1,26 @@
-{{/* Renders a sorted auction-lot table. Usage: {{ partial "auction-lot-table.html" $lots }}
-     Sort order: eBay-sold-comp-backed estimates first (real transaction
+{{/* Renders an auction-lot table. Usage:
+       {{ partial "auction-lot-table.html" $lots }}                      default order
+       {{ partial "auction-lot-table.html" (dict "lots" $l "keep" true "arb" true) }}
+     Default order: eBay-sold-comp-backed estimates first (real transaction
      data - the "objectively best deals" tier), then AI-text-only estimates,
      then unrated, each group sorted by deal_score descending within
-     itself. A real comp beats a bigger *nominal* gap from a pure guess. */}}
-{{ $lots := . }}
-{{ $ebayRated := sort (where $lots "value_source" "ebay") "deal_score" "desc" }}
-{{ $aiRated := sort (where $lots "value_source" "ai") "deal_score" "desc" }}
-{{ $unrated := where $lots "value_source" nil }}
-{{ $ordered := $ebayRated | append $aiRated | append $unrated }}
+     itself. A real comp beats a bigger *nominal* gap from a pure guess.
+     keep=true uses the caller's order as-is; arb=true adds a reference-price
+     line under each title. Lots already closed at build time are dropped
+     (the page script hides ones that close afterwards). */}}
+{{ $lots := . }}{{ $keep := false }}{{ $arb := false }}
+{{ if reflect.IsMap . }}{{ $lots = .lots }}{{ $keep = .keep | default false }}{{ $arb = .arb | default false }}{{ end }}
+{{ $open := slice }}
+{{ range $lots }}
+  {{ if .auction_ends_at }}{{ if gt (time .auction_ends_at).Unix now.Unix }}{{ $open = $open | append . }}{{ end }}{{ else }}{{ $open = $open | append . }}{{ end }}
+{{ end }}
+{{ $ordered := $open }}
+{{ if not $keep }}
+  {{ $ebayRated := sort (where $open "value_source" "ebay") "deal_score" "desc" }}
+  {{ $aiRated := sort (where $open "value_source" "ai") "deal_score" "desc" }}
+  {{ $unrated := where $open "value_source" nil }}
+  {{ $ordered = $ebayRated | append $aiRated | append $unrated }}
+{{ end }}
 {{ if $ordered }}
 <div class="auctions-table-wrap">
   <table class="auctions-tbl">
@@ -17,14 +30,15 @@
       </tr>
     </thead>
     <tbody>
-      {{ range $ordered }}
-        {{ $lot := . }}
+      {{ range $i, $lot := $ordered }}
+        {{ with $lot }}
         {{/* data-* attrs let the client-side deal-threshold slider (see
              auction-dial-in.html) recompute "is this flagged" live, and
              let the digest button read a lot's numbers without re-parsing
              rendered text. Absent/nil fields render as "" (empty attr),
              which JS treats as "no data" - never as 0. */}}
         <tr class="auctions-lot-row {{ if .flagged }}row-flagged{{ end }}"
+            data-idx="{{ $i }}"
             data-title="{{ .title }}"
             data-agency="{{ with .agency }}{{ . }}{{ end }}"
             data-bid="{{ if .current_bid }}{{ .current_bid }}{{ end }}"
@@ -39,6 +53,9 @@
           <td>
             {{ .title }}
             {{ with .ai_note }}<span class="auctions-note">{{ . }}</span>{{ end }}
+            {{ if $arb }}{{ $r := partial "auction-ref.html" $lot }}{{ if $r.ref }}
+            <div class="auctions-arb" title="Reference price vs. what winning at the current bid would cost all-in. Early bids climb - check bid count and time left.">⚖ ref ${{ lang.FormatNumberCustom 0 $r.ref }} ({{ $r.src }}) · margin ≈ ${{ lang.FormatNumberCustom 0 $r.margin }} ({{ mul $r.pct 100 | math.Round }}%)</div>
+            {{ end }}{{ end }}
             {{/* Seller's own condition notes, read off the lot page by the
                  existing vehicle detail render (no extra request). Absent
                  means "page not read", NOT "no problems". */}}
@@ -124,10 +141,11 @@
           <td><a href="{{ .url }}" target="_blank" rel="noopener">view →</a></td>
           <td><button type="button" class="lot-hide-btn" title="Hide this lot (remembered in this browser)" aria-label="Hide this lot">✕</button></td>
         </tr>
+        {{ end }}
       {{ end }}
     </tbody>
   </table>
 </div>
 {{ else }}
-<p class="auctions-empty">No lots in this category yet.</p>
+<p class="auctions-empty">Nothing open here right now.</p>
 {{ end }}
