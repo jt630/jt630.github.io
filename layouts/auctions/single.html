@@ -17,108 +17,110 @@
 
   {{ with $L }}
   {{ $lots := .lots }}
-  {{ $flagged := where $lots "flagged" true }}
-  {{ $rated := where $lots "deal_score" "!=" nil }}
-  {{ $ebayBacked := where $lots "value_source" "ebay" }}
-  {{ $vehicles := where $lots "category" "Vehicles" }}
-  {{ $candidates := where $vehicles "car_candidate" true }}
-  {{/* Candidates first (real filter match - under 150k mi, clean title),
-       then everything else in the category, so a bidder scanning top-down
-       sees the qualifying cars before the ones that didn't clear the bar -
-       nothing is hidden, just ranked. */}}
-  {{ $vehiclesRanked := $candidates | append (where $vehicles "car_candidate" "!=" true) }}
-  {{/* data/auction_watchlist.yaml matches (match_watchlist() in
-       auction_finder.py) - built with range/append rather than `where...
-       "!=" nil` since watchlist_matches is always a list (possibly
-       empty), never nil, so a nil-comparison wouldn't actually filter
-       anything out. */}}
-  {{ $watchlisted := slice }}
+  {{/* Open lots only, everywhere: a lot whose auction_ends_at is already past
+       at build time is dropped (the page script also hides ones that close
+       after the build). Lots with no end time are kept. */}}
+  {{ $open := slice }}
   {{ range $lots }}
-    {{/* Truthy check, not len(): an OLD data/auction_lots.yaml written
-         before this field existed has no watchlist_matches key at all,
-         and len() on a genuinely absent map key errors rather than
-         returning 0 - a plain truthy check treats "missing" the same as
-         "empty list", both correctly falsy, without that crash. */}}
-    {{ if .watchlist_matches }}{{ $watchlisted = $watchlisted | append . }}{{ end }}
+    {{ if .auction_ends_at }}{{ if gt (time .auction_ends_at).Unix now.Unix }}{{ $open = $open | append . }}{{ end }}{{ else }}{{ $open = $open | append . }}{{ end }}
   {{ end }}
+  {{ $flagged := where $open "flagged" true }}
+  {{ $vehicles := where $open "category" "Vehicles" }}
+  {{ $candidates := where $vehicles "car_candidate" true }}
+  {{ $vehiclesRanked := $candidates | append (where $vehicles "car_candidate" "!=" true) }}
+  {{/* Truthy check, not len(): an OLD data file with no watchlist_matches key
+       would crash len(). */}}
+  {{ $watchlisted := slice }}
+  {{ range $open }}{{ if .watchlist_matches }}{{ $watchlisted = $watchlisted | append . }}{{ end }}{{ end }}
 
-  <p class="auctions-assump">
-    Generated {{ .generated }} by <code>scripts/auction_finder.py</code> +
-    <code>scripts/auction_value.py</code>. Sorted best-value gap first within
-    each section; lots without an AI estimate (no
-    <code>ANTHROPIC_API_KEY</code>, or not enough listing detail to value)
-    sort last.
-  </p>
+  {{/* HIGHLIGHTS: flagged deals, vetted car candidates, and watchlist lots
+       closing within 24h - soonest-closing first. */}}
+  {{ $hl := slice }}
+  {{ range $open }}
+    {{ $soon := false }}
+    {{ if .auction_ends_at }}{{ $left := sub (time .auction_ends_at).Unix now.Unix }}{{ if le $left 86400 }}{{ $soon = true }}{{ end }}{{ end }}
+    {{ if or .flagged .car_candidate (and .watchlist_matches $soon) }}{{ $hl = $hl | append . }}{{ end }}
+  {{ end }}
+  {{ $hlTimed := sort (where $hl "auction_ends_at" "!=" nil) "auction_ends_at" }}
+  {{ $hl = $hlTimed | append (where $hl "auction_ends_at" "eq" nil) }}
+
+  {{/* ARBITRAGE: open lots whose all-in cost at the current bid is at least
+       40% under a reference price (eBay/AI estimate, else the median of 3+
+       past Musick closes). Leads, not verdicts - see auction-ref.html. */}}
+  {{ $arbRows := slice }}
+  {{ range $open }}
+    {{ $r := partial "auction-ref.html" . }}
+    {{ if and $r.ref (ge $r.ref 50) (ge $r.pct 0.4) }}
+      {{ $arbRows = $arbRows | append (dict "margin" $r.margin "lot" .) }}
+    {{ end }}
+  {{ end }}
+  {{ $arbSorted := sort $arbRows "margin" "desc" }}
+  {{ $arb := slice }}
+  {{ range first 15 $arbSorted }}{{ $arb = $arb | append .lot }}{{ end }}
 
   <div class="auctions-summary">
-    <div class="auctions-stat"><span class="n">{{ len $lots }}</span><span class="l">Lots tracked</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $open }}</span><span class="l">Open lots</span></div>
     <div class="auctions-stat"><span class="n" id="flagged-count">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
-    <div class="auctions-stat"><span class="n">{{ len $rated }}</span><span class="l">Valued</span></div>
-    <div class="auctions-stat"><span class="n">{{ len $ebayBacked }}</span><span class="l">eBay-backed</span></div>
-    <div class="auctions-stat"><span class="n">{{ len $vehicles }}</span><span class="l">Vehicles</span></div>
-    <div class="auctions-stat"><span class="n">{{ len $candidates }}</span><span class="l">Candidates<br>&lt;150k mi, clean title</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $arbSorted }}</span><span class="l">Arbitrage leads</span></div>
+    <div class="auctions-stat"><span class="n">{{ len $candidates }}</span><span class="l">Car candidates<br>&lt;150k mi, clean title</span></div>
     <div class="auctions-stat"><span class="n">{{ len $watchlisted }}</span><span class="l">On your watchlist</span></div>
   </div>
+  <p class="auctions-assump">
+    Data from {{ .generated }} (<code>scripts/auction_finder.py</code> +
+    <code>scripts/auction_value.py</code>); closed lots are left out.
+    Lots without an estimate sort last.
+  </p>
 
   {{ partial "auction-dial-in.html" (dict "pageTitle" "Auction Watch" "pageURL" $.Permalink) }}
 
+  <!-- ─────────── HIGHLIGHTS ─────────── -->
+  <h2>⭐ Highlights</h2>
+  <p class="auctions-assump">Flagged deals, vetted car candidates (under 150k mi, clean title), and watchlist lots closing within 24h — soonest first.</p>
+  {{ partial "auction-lot-table.html" (dict "lots" $hl "keep" true) }}
+
+  <!-- ─────────── ARBITRAGE ─────────── -->
+  <h2>⚖ Possible arbitrage</h2>
+  <p class="auctions-assump">
+    Open lots where the all-in cost at today's bid (bid + buyer's premium +
+    fees) is 40%+ under a reference price — an eBay/AI estimate, or else the
+    median of 3+ past Musick closes of comparable lots. Top 15 by dollar
+    margin. These are <strong>leads</strong>: a lot with few bids and days
+    left will climb, and comps mix conditions (a 130k-mile truck vs. a
+    low-mile one). Check bids and time left before you get excited.
+  </p>
+  {{ partial "auction-lot-table.html" (dict "lots" $arb "keep" true "arb" true) }}
+
+  <!-- ─────────── DEEP DIVES (collapsed) ─────────── -->
+  <h2>🔎 Deep dives</h2>
+  <p class="auctions-assump">Everything open, by section. Click to expand.</p>
+
   {{ if $watchlisted }}
-  <!-- ─────────── WATCHLIST — dialed-in search ─────────── -->
-  <h2>🎯 On your watchlist</h2>
-  <p class="auctions-assump">
-    Every lot matching <code>data/auction_watchlist.yaml</code> — trucks &
-    off-road/4x4, a commuter car, an old project car, motorcycles, jetskis,
-    little campers, a backcountry pistol, a bird shotgun, a deer rifle,
-    yellow gold/fossil/meteorite jewelry, fly fishing gear, mining
-    equipment — regardless of category. Edit that file to tune the list;
-    no code change needed. A lot can match more than one tag.
-  </p>
-  {{ partial "auction-lot-table.html" $watchlisted }}
+  <details class="auctions-sec">
+    <summary>🎯 On your watchlist <span class="auctions-cat-n">({{ len $watchlisted }})</span></summary>
+    <p class="auctions-assump">Lots matching <code>data/auction_watchlist.yaml</code>, regardless of category. Edit that file to tune it.</p>
+    {{ partial "auction-lot-table.html" $watchlisted }}
+  </details>
   {{ end }}
 
-  <!-- ─────────── VEHICLES — for grandpa ─────────── -->
-  <h2>🚗 Vehicles — the ones worth a drive-by</h2>
-  <p class="auctions-assump">
-    Vehicles that matched the watchlist above (trucks/off-road, a commuter
-    car, an old project car, motorcycles) — same set, grouped by category
-    instead of search intent for a quick browse. A car that doesn't match
-    anything on the watchlist is dropped before it's even fetched in
-    detail, not just hidden - tune <code>data/auction_watchlist.yaml</code>
-    if a real one's missing. Real mileage, title status, and VIN are
-    pulled from each vehicle's own listing page — <strong>✓ Candidate</strong>
-    means under 150,000 miles <em>and</em> a clean title, both confirmed, not
-    guessed; anything missing that data or carrying a non-clean title sorts
-    below the candidates rather than being hidden. No automated Carfax/
-    AutoCheck pull (that costs real money per VIN) — copy the VIN shown into
-    one yourself for anything you're seriously considering.
-  </p>
-  {{ partial "auction-lot-table.html" $vehiclesRanked }}
+  <details class="auctions-sec">
+    <summary>🚗 Vehicles <span class="auctions-cat-n">({{ len $vehicles }})</span></summary>
+    <p class="auctions-assump">
+      <strong>✓ Candidate</strong> = under 150,000 miles <em>and</em> a clean
+      title, both confirmed from the lot page; candidates sort first. Copy the
+      VIN into a Carfax/NHTSA check yourself for anything serious.
+    </p>
+    {{ partial "auction-lot-table.html" $vehiclesRanked }}
+  </details>
 
-  <!-- ─────────── EVERYTHING ELSE, BY CATEGORY ─────────── -->
-  <h2>Everything else</h2>
-  <p class="auctions-assump">
-    Non-vehicle watchlist matches (guns, jewelry, fly fishing gear, mining
-    equipment, coins, ...) plus Grandpa's Small Engines & Appliances
-    lots — the two things this whole page keeps regardless of the
-    watchlist. Everything that matches neither is dropped before it's
-    written here at all, not filtered out visually; broaden
-    <code>data/auction_watchlist.yaml</code> if something's missing that
-    shouldn't be. Sorted best-value gap first within each group.
-  </p>
   {{ $catset := slice }}
-  {{ range $lots }}
-    {{ if ne .category "Vehicles" }}{{ $catset = $catset | append .category }}{{ end }}
-  {{ end }}
-  {{ $cats := $catset | uniq | sort }}
-  {{ if $cats }}
-    {{ range $cats }}
-      {{ $cat := . }}
-      {{ $group := where $lots "category" $cat }}
-      <h3 class="auctions-cat-head">{{ $cat }} <span class="auctions-cat-n">({{ len $group }})</span></h3>
+  {{ range $open }}{{ if ne .category "Vehicles" }}{{ $catset = $catset | append .category }}{{ end }}{{ end }}
+  {{ range ($catset | uniq | sort) }}
+    {{ $cat := . }}
+    {{ $group := where $open "category" $cat }}
+    <details class="auctions-sec">
+      <summary>{{ $cat }} <span class="auctions-cat-n">({{ len $group }})</span></summary>
       {{ partial "auction-lot-table.html" $group }}
-    {{ end }}
-  {{ else }}
-  <p class="auctions-empty">No non-vehicle lots tracked yet.</p>
+    </details>
   {{ end }}
 
   {{ else }}

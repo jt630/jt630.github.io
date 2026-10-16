@@ -16,6 +16,15 @@
     </label>
     <input type="range" id="deal-threshold" min="5" max="60" step="5" value="30">
   </div>
+  <div class="dialin-row">
+    <label for="lot-sort">Sort lots by</label>
+    <select id="lot-sort">
+      <option value="default">Best value (default)</option>
+      <option value="time">Time left — soonest first</option>
+      <option value="bid-asc">Price — low to high</option>
+      <option value="bid-desc">Price — high to low</option>
+    </select>
+  </div>
   <div class="dialin-row dialin-actions">
     <span class="dialin-count"><strong id="dialin-flagged-n">&mdash;</strong> lots flagged at this threshold</span>
     <button type="button" id="dialin-unhide-btn" class="dialin-unhide-btn" style="display:none"></button>
@@ -70,7 +79,33 @@
   var hidden = loadHidden();
 
   function isHidden(row) { return !!hidden[row.dataset.url]; }
-  function visibleRows() { return rows().filter(function (r) { return !isHidden(r); }); }
+  function visibleRows() {
+    return rows().filter(function (r) { return !isHidden(r) && !r.classList.contains('row-closed'); });
+  }
+
+  // Sort every table's rows in place. "default" restores the server order
+  // (data-idx). Rows missing the sort key (no bid / no end time) go last.
+  var sortSel = document.getElementById('lot-sort');
+  function sortKey(row, mode) {
+    if (mode === 'time') { var t = new Date(row.dataset.endsAt).getTime(); return isNaN(t) ? Infinity : t; }
+    var b = parseFloat(row.dataset.bid);
+    if (isNaN(b)) return Infinity;
+    return mode === 'bid-desc' ? -b : b;
+  }
+  function applySort() {
+    var mode = sortSel ? sortSel.value : 'default';
+    Array.prototype.slice.call(document.querySelectorAll('table.auctions-tbl tbody')).forEach(function (tb) {
+      var rs = Array.prototype.slice.call(tb.querySelectorAll('.auctions-lot-row'));
+      rs.sort(function (a, b) {
+        if (mode === 'default') return (+a.dataset.idx) - (+b.dataset.idx);
+        var d = sortKey(a, mode) - sortKey(b, mode);
+        if (d !== 0 && !isNaN(d)) return d;
+        return (+a.dataset.idx) - (+b.dataset.idx);
+      });
+      rs.forEach(function (r) { tb.appendChild(r); });
+    });
+  }
+  if (sortSel) sortSel.addEventListener('change', applySort);
 
   function applyHidden() {
     var n = 0;
@@ -230,16 +265,16 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       applyHidden();
-      recompute();
       updateCountdowns();
+      recompute();
     });
   } else {
     applyHidden();
-    recompute();
     updateCountdowns();
+    recompute();
   }
   // 30s is frequent enough to actually catch a lot closing in the next
   // few minutes without hammering the page with per-second re-renders.
-  setInterval(updateCountdowns, 30000);
+  setInterval(function () { updateCountdowns(); recompute(); }, 30000);
 })();
 </script>

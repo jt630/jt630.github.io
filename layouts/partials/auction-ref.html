@@ -1,0 +1,36 @@
+{{/* Reference price + all-in cost for one lot, for the Arbitrage section and
+     the per-row "ref" line. Usage:
+       {{ $r := partial "auction-ref.html" $lot }}
+     Returns a dict: ref, src, allin, margin, pct (any may be 0/"" when the
+     lot has no usable reference).
+
+     Reference price, best source first:
+       1. estimated_value_mid (eBay sold comps or AI estimate - set by
+          scripts/auction_value.py)
+       2. comp_median of past Musick closes, only when comp_n >= 3. This is
+          what a comparable lot has sold for HERE, so it is a weaker
+          resale signal than eBay - a lead, not a verdict.
+     All-in mirrors auction-lot-table.html / scripts/musick_fees.py:
+     buyer's premium 15% under $10k, 10% above, plus the doc/firearm fee. */}}
+{{ $lot := . }}
+{{ $ref := 0 }}{{ $src := "" }}
+{{ if $lot.estimated_value_mid }}
+  {{ $ref = $lot.estimated_value_mid }}{{ $src = cond (eq $lot.value_source "ebay") "eBay sold" "AI est." }}
+{{ else if and $lot.comp_median (ge (int $lot.comp_n) 3) }}
+  {{ $ref = $lot.comp_median }}{{ $src = printf "%d past closes" (int $lot.comp_n) }}
+{{ end }}
+{{ $allin := 0 }}
+{{ if $lot.current_bid }}
+  {{ $allin = $lot.current_bid }}
+  {{ if eq $lot.platform "musick" }}
+    {{ $rate := cond (lt $lot.current_bid 10000) 1.15 1.10 }}
+    {{ $fee := 0 }}{{ if eq $lot.category "Vehicles" }}{{ $fee = 150 }}{{ else if eq $lot.category "Firearms" }}{{ $fee = 15 }}{{ end }}
+    {{ $allin = add (math.Round (mul $lot.current_bid $rate)) $fee }}
+  {{ end }}
+{{ end }}
+{{ $margin := 0 }}{{ $pct := 0.0 }}
+{{ if and $ref $allin }}
+  {{ $margin = sub $ref $allin }}
+  {{ $pct = div (float $margin) (float $ref) }}
+{{ end }}
+{{ return (dict "ref" $ref "src" $src "allin" $allin "margin" $margin "pct" $pct) }}

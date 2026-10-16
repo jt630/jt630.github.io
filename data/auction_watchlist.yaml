@@ -12,8 +12,10 @@
 #
 # label: shown as a chip on the site. keywords: what to match on.
 # exclude (optional): terms that veto a match, for real name collisions.
+# vehicles_only (optional): true = only match lots categorized as Vehicles.
 # Test any change first: python scripts/watchlist_test.py (see /refine-search).
 - id: trucks_offroad
+  vehicles_only: true   # skip lots the categorizer did not file under Vehicles (e.g. a "Focus" floor scrubber)
   label: "Trucks & Off-Road/4x4"
   keywords:
     # "truck" alone was too generic (matched a truck TOOLBOX, not a
@@ -52,6 +54,7 @@
     - "side-by-side"
 
 - id: commuter_cars
+  vehicles_only: true   # skip lots the categorizer did not file under Vehicles (e.g. a "Focus" floor scrubber)
   label: "Commuter Car (for sister)"
   keywords:
     - civic
@@ -72,6 +75,7 @@
     - soul
 
 - id: project_cars
+  vehicles_only: true   # skip lots the categorizer did not file under Vehicles (e.g. a "Focus" floor scrubber)
   label: "Old Project Car"
   keywords:
     - project

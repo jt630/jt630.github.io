@@ -42,7 +42,7 @@ table.auctions-tbl tr.row-flagged td { background: rgba(109,211,109,0.08); }
 table.auctions-tbl tr.closing-soon td.auctions-closes { color: #ffb84d; font-weight: 700; }
 table.auctions-tbl tr.closing-urgent td.auctions-closes { color: #ff6b6b; font-weight: 700; }
 table.auctions-tbl tr.closing-urgent td.auctions-closes::before { content: "⏰ "; }
-table.auctions-tbl tr.row-closed td { opacity: 0.45; }
+table.auctions-tbl tr.row-closed { display: none; }
 table.auctions-tbl tr.row-closed td.auctions-closes { font-style: italic; }
 
 .deal-badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
@@ -95,4 +95,12 @@ table.auctions-tbl tr.lot-hidden { display: none; }
 .lot-hide-btn:hover { background: var(--pink); color: var(--black); border-color: var(--pink); }
 .dialin-unhide-btn { border: 1px solid rgba(255,255,255,0.2); background: transparent; color: var(--white-dim); font-size: 12px; padding: 6px 12px; cursor: pointer; font-family: inherit; }
 .dialin-unhide-btn:hover { border-color: var(--gold); color: var(--gold); }
+.auctions-arb { font-size: 11px; color: #6dd36d; margin-top: 3px; white-space: normal; }
+.auctions-dialin select { background: var(--black); color: var(--white-dim); border: 1px solid rgba(255,255,255,0.2); padding: 6px 10px; font-family: inherit; font-size: 13px; }
+/* Collapsible deep-dive sections */
+.auctions-sec { border: 2px outset rgba(255,255,255,0.15); background: rgba(255,255,255,0.02); margin: 10px 0; padding: 0 16px; }
+.auctions-sec[open] { padding-bottom: 8px; }
+.auctions-sec > summary { cursor: pointer; padding: 12px 0; color: var(--pink); font-size: 15px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+.auctions-sec > summary:hover { color: var(--gold); }
+@media (max-width: 640px) { .auctions-page { padding: 0 16px 80px; } }
 </style>
