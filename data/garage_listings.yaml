@@ -48,19 +48,5 @@ cherokee_xj:
     is_4x4: True
     is_manual: False
 
-mustang_gt:
-  - source: craigslist
-    title: "2004 Ford Mustang Mach 1 – V8 – 5 Speed Manual – Competition Orange"
-    price: 13496
-    year: 2004
-    odometer: null
-    url: "https://www.craigslist.org/view/d/boise-2004-ford-mustang-mach-v8-speed/jGQVP5y8drrT3gzbwVbUAA"
-    post_date: null
-    location: "11711 W FAIRVIEW AVE"
-    deal_rating: null
-    market_delta: null
-    miles_per_year: null
-    dealer_flag: null
-    is_4x4: False
-    is_manual: True
+mustang_gt: []
 

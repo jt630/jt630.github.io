@@ -13,7 +13,7 @@ Categories
                         Tacoma (1995-2004), <= $14,000
 3. cherokee_xj         - Jeep Cherokee XJ body, 1984-2001, <= $10,000
                         (explicitly NOT Grand Cherokee - different platform)
-4. mustang_gt          - Ford Mustang GT (V8), 1999-2014, <= $14,000. A
+4. mustang_gt          - Ford Mustang GT (V8), 2005-2014, <= $14,000. A
                         second, separate want: a V8 to wrench on and learn
                         manual on. Craigslist only -- Cars.com result cards
                         carry no trim, so a GT can't be told from a V6.
@@ -67,14 +67,14 @@ SEARCHES = [
      "toyota", "toyota-tacoma"),
     ("cherokee_xj", ["jeep cherokee"], 1984, 2001, 10000,
      ["cherokee"], ["grand cherokee", "grand-cherokee"], "jeep", "jeep-cherokee"),
-    # 1999-2004 "New Edge" 4.6 (cheap, simple), 2005-2010 S197 4.6 3V, 2011-14
-    # Coyote 5.0. Title must say GT (or name the V8) -- V6 cars rarely say
+    # 2005-2010 S197 4.6 3V, 2011-14 Coyote 5.0. (1999-2004 "New Edge" cars
+    # dropped 2026-10-23: owner dislikes that body style.) Title must say GT (or name the V8) -- V6 cars rarely say
     # "GT", and the excludes catch the rest. Shelby GT350/GT500 are
-    # supercharged / four-figure-premium cars, not a learner project. Mach 1
-    # (2003-04, 4.6 DOHC) and Bullitt (2001, 2008-09) are GT-based V8s.
+    # supercharged / four-figure-premium cars, not a learner project. Bullitt
+    # (2008-09) is a GT-based V8.
     # cc_make/cc_model None = skip Cars.com (no trim in its cards).
-    ("mustang_gt", ["mustang gt", "mustang v8"], 1999, 2014, 14000,
-     ["mustanggt", "mustangv8", "mustang46", "mustang50", "mach1", "bullitt"],
+    ("mustang_gt", ["mustang gt", "mustang v8"], 2005, 2014, 14000,
+     ["mustanggt", "mustangv8", "mustang46", "mustang50", "bullitt"],
      ["gt350", "gt500", "v6", "ecoboost", "automatic", "wrecked",
       "parts only", "salvage", "non running", "not running"],
      None, None),
