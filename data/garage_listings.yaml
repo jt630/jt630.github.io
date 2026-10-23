@@ -1,22 +1,36 @@
-generated: 2026-10-02
+generated: 2026-10-23
 
-fourrunner_classic: []
-
-toyota_truck:
+fourrunner_classic:
   - source: craigslist
-    title: "89 Toyota Pickup"
-    price: 1250
-    year: null
+    title: "2001 Toyota 4Runner (SR5, 4WD)"
+    price: 5000
+    year: 2001
     odometer: null
-    url: "https://www.craigslist.org/view/d/nampa-89-toyota-pickup/prA5pEf1MrTXaYgijdzXao"
+    url: "https://www.craigslist.org/view/d/nampa-2001-toyota-4runner-sr5-4wd/jev5PYc97Ycm4tTwLkhQj7"
     post_date: null
     location: null
     deal_rating: null
     market_delta: null
     miles_per_year: null
     dealer_flag: null
-    is_4x4: False
+    is_4x4: True
     is_manual: False
+  - source: craigslist
+    title: "1998 Toyota 4Runner SR5 4WD V6 - Adventure and Camping Rig"
+    price: 5000
+    year: 1998
+    odometer: null
+    url: "https://www.craigslist.org/view/d/meridian-1998-toyota-4runner-sr5-4wd-v6/xsGHV2k6qnMuHC1ZYsyQQn"
+    post_date: null
+    location: null
+    deal_rating: null
+    market_delta: null
+    miles_per_year: null
+    dealer_flag: null
+    is_4x4: True
+    is_manual: False
+
+toyota_truck: []
 
 cherokee_xj:
   - source: craigslist
@@ -24,7 +38,7 @@ cherokee_xj:
     price: 9999
     year: 1994
     odometer: null
-    url: "https://www.craigslist.org/view/d/nampa-1994-jeep-cherokee-sport-4x4/e2AFgp8ECLc5PznktPQXje"
+    url: "https://www.craigslist.org/view/d/nampa-1994-jeep-cherokee-sport-4x4/n6s1b16dyKPYUyZsEgj1d8"
     post_date: null
     location: NAMPA
     deal_rating: null
@@ -33,18 +47,20 @@ cherokee_xj:
     dealer_flag: null
     is_4x4: True
     is_manual: False
+
+mustang_gt:
   - source: craigslist
-    title: "1999 Jeep Cherokee Sport-ONE OWNER!(2 Wheel Drive)"
-    price: 2200
-    year: 1999
+    title: "2004 Ford Mustang Mach 1 – V8 – 5 Speed Manual – Competition Orange"
+    price: 13496
+    year: 2004
     odometer: null
-    url: "https://www.craigslist.org/view/d/boise-1999-jeep-cherokee-sport-one/34W5EZEdGb6o78AewiNMzr"
+    url: "https://www.craigslist.org/view/d/boise-2004-ford-mustang-mach-v8-speed/jGQVP5y8drrT3gzbwVbUAA"
     post_date: null
-    location: Boise Bench
+    location: "11711 W FAIRVIEW AVE"
     deal_rating: null
     market_delta: null
     miles_per_year: null
     dealer_flag: null
     is_4x4: False
-    is_manual: False
+    is_manual: True
 

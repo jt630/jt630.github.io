@@ -143,13 +143,18 @@ table.gar-tbl tr:hover td { background: rgba(255,45,138,0.06); }
   {{ $cats := slice
       (dict "key" "fourrunner_classic" "label" "Classic 4Runner (1990-2002)")
       (dict "key" "toyota_truck" "label" "Toyota Pickup / 1st-gen Tacoma")
-      (dict "key" "cherokee_xj" "label" "Jeep Cherokee XJ") }}
+      (dict "key" "cherokee_xj" "label" "Jeep Cherokee XJ")
+      (dict "key" "mustang_gt" "label" "Ford Mustang GT / V8 (1999-2014) — manual to learn on" "manualOnly" true) }}
   {{ range $cats }}
     {{ $rows := index $L .key }}
     {{ $matched := where $rows "is_4x4" true }}
     {{ $matched := where $matched "is_manual" true }}
     {{ $rest := where $rows "is_4x4" "!=" true }}
     {{ $rest = $rest | append (where (where $rows "is_4x4" true) "is_manual" "!=" true) }}
+    {{ if .manualOnly }}
+      {{ $matched = where $rows "is_manual" true }}
+      {{ $rest = where $rows "is_manual" "!=" true }}
+    {{ end }}
     {{ $restRated := sort (where $rest "miles_per_year" "!=" nil) "miles_per_year" }}
     {{ $restUnrated := where $rest "miles_per_year" nil }}
     {{ $ordered := $matched | append $restRated | append $restUnrated }}
@@ -188,6 +193,7 @@ table.gar-tbl tr:hover td { background: rgba(255,45,138,0.06); }
     <a href="https://www.facebook.com/marketplace/boise/search?query=toyota%20pickup&exact=false&radius_km=240" target="_blank" rel="noopener">Toyota Pickup</a>
     <a href="https://www.facebook.com/marketplace/boise/search?query=toyota%20tacoma&exact=false&radius_km=240" target="_blank" rel="noopener">1st-gen Tacoma</a>
     <a href="https://www.facebook.com/marketplace/boise/search?query=jeep%20cherokee&exact=false&radius_km=240" target="_blank" rel="noopener">Jeep Cherokee XJ</a>
+    <a href="https://www.facebook.com/marketplace/boise/search?query=mustang%20gt&exact=false&radius_km=240" target="_blank" rel="noopener">Mustang GT</a>
   </div>
 
   <!-- ─────────── INSPECTION CHECKLIST ─────────── -->
