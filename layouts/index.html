@@ -8,6 +8,7 @@
   {{ range .Site.Menus.main }}
   <div class="section-group">
     <h2 class="group-label">{{ .Name }}</h2>
+    {{ with .Params.blurb }}<p class="group-blurb">{{ . }}</p>{{ end }}
     <div class="section-cards">
       {{ range .Children }}
         {{ partial "section-card.html" (dict

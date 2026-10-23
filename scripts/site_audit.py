@@ -86,11 +86,25 @@ def load_cards():
     return cards
 
 
+def is_draft(p):
+    """True if a section's _index.md (or a loose page) has draft: true in
+    its front matter — those are hidden stubs, not orphans."""
+    f = p / "_index.md" if p.is_dir() else p
+    if f.suffix != ".md" or not f.exists():
+        return False
+    parts = f.read_text(encoding="utf-8").split("---", 2)
+    if len(parts) < 3:
+        return False
+    return re.search(r"^draft:\s*true\b", parts[1], re.M) is not None
+
+
 def content_sections():
     content = ROOT / "content"
     sections = set()
     loose_files = set()
     for p in content.iterdir():
+        if is_draft(p):
+            continue  # hidden stub (draft: true) — Hugo doesn't build it
         if p.is_dir():
             sections.add(p.name)
         elif p.suffix == ".md":
