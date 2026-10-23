@@ -12,7 +12,12 @@ filter — has **low miles for its age**. A 30-year-old truck with 220,000
 miles is a parts donor. The same truck with 90,000 miles is a survivor
 someone babied, and that's the one worth buying.
 
-Three categories, in order of how much character-per-dollar they bring:
-an old **4Runner**, an old **Toyota pickup or first-gen Tacoma**, or a
-**Jeep Cherokee (XJ)**. Live listings + the buying guide below re-derive
+Four categories, in order of how much character-per-dollar they bring:
+an old **4Runner**, an old **Toyota pickup or first-gen Tacoma**, a
+**Jeep Cherokee (XJ)**, and — added 2026-10-23 — a **Mustang GT**: a V8,
+RWD car to wrench on and learn to drive a **manual** in (2005–2014, so the
+2005–10 4.6 3V cars and the 2011–14 5.0s; Bullitt counts; the 1999–2004
+body style is deliberately excluded). For that category, manual floats to the top on its own
+(no 4x4 needed), and Cars.com is skipped because its cards don't carry the
+trim — a GT looks the same as a V6 there. Live listings + the buying guide below re-derive
 from `scripts/garage_finder.py` → `data/garage_listings.yaml`.

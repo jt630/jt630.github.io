@@ -13,6 +13,10 @@ Categories
                         Tacoma (1995-2004), <= $14,000
 3. cherokee_xj         - Jeep Cherokee XJ body, 1984-2001, <= $10,000
                         (explicitly NOT Grand Cherokee - different platform)
+4. mustang_gt          - Ford Mustang GT (V8), 2005-2014, <= $14,000. A
+                        second, separate want: a V8 to wrench on and learn
+                        manual on. Craigslist only -- Cars.com result cards
+                        carry no trim, so a GT can't be told from a V6.
 
 No mileage floor. Instead we compute miles_per_year = odometer / (2026 - year)
 so a low-miles-for-its-age listing sorts to the top of its category. Odometer
@@ -63,8 +67,22 @@ SEARCHES = [
      "toyota", "toyota-tacoma"),
     ("cherokee_xj", ["jeep cherokee"], 1984, 2001, 10000,
      ["cherokee"], ["grand cherokee", "grand-cherokee"], "jeep", "jeep-cherokee"),
+    # 2005-2010 S197 4.6 3V, 2011-14 Coyote 5.0. (1999-2004 "New Edge" cars
+    # dropped 2026-10-23: owner dislikes that body style.) Title must say GT (or name the V8) -- V6 cars rarely say
+    # "GT", and the excludes catch the rest. Shelby GT350/GT500 are
+    # supercharged / four-figure-premium cars, not a learner project. Bullitt
+    # (2008-09) is a GT-based V8.
+    # cc_make/cc_model None = skip Cars.com (no trim in its cards).
+    ("mustang_gt", ["mustang gt", "mustang v8"], 2005, 2014, 14000,
+     ["mustanggt", "mustangv8", "mustang46", "mustang50", "bullitt"],
+     ["gt350", "gt500", "v6", "ecoboost", "automatic", "wrecked",
+      "parts only", "salvage", "non running", "not running"],
+     None, None),
 ]
-YAML_KEYS = ("fourrunner_classic", "toyota_truck", "cherokee_xj")
+YAML_KEYS = ("fourrunner_classic", "toyota_truck", "cherokee_xj", "mustang_gt")
+
+# Categories where the lean is "manual" alone (RWD car, 4x4 is meaningless).
+MANUAL_LEAN = {"mustang_gt"}
 
 # Reuse the same dealer flags / geo lists / sold-listing suppression as
 # car_finder.py - it's the same Treasure Valley market.
@@ -238,8 +256,11 @@ def main():
          cc_make, cc_model) in SEARCHES:
         cl_rows, notes = run_search(key, terms, min_year, max_year, max_price,
                                      title_must, excludes)
-        cc_rows, cc_notes = carscom_search(key, cc_make, cc_model, min_year,
-                                            max_year, max_price, title_must, excludes)
+        if cc_make:
+            cc_rows, cc_notes = carscom_search(key, cc_make, cc_model, min_year,
+                                                max_year, max_price, title_must, excludes)
+        else:
+            cc_rows, cc_notes = [], ["cars.com: skipped for this category"]
         notes += cc_notes
 
         merged = cf.dedupe(cl_rows + cc_rows)
@@ -260,7 +281,8 @@ def main():
 
         # 4x4+manual matches float up first (the current lean), then
         # low-miles-for-age; unknown mpy sorts last within each tier.
-        kept.sort(key=lambda r: (not (r["is_4x4"] and r["is_manual"]),
+        kept.sort(key=lambda r: (not (r["is_manual"] if key in MANUAL_LEAN
+                                      else r["is_4x4"] and r["is_manual"]),
                                   r.get("miles_per_year") is None,
                                   r.get("miles_per_year") or 0))
         kept = kept[:35]
