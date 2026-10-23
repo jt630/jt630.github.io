@@ -1,0 +1,21 @@
+{
+  "nhtsa_decode": {
+    "engine": "8",
+    "error_code": "0",
+    "error_text": "0 - VIN decoded clean. Check Digit (9th position) is correct",
+    "make": "FORD",
+    "model": "Mustang",
+    "trim": "GT",
+    "year": "2005"
+  },
+  "recalls": {
+    "complaint_count": 868,
+    "recall_count": 9,
+    "recall_summaries": [
+      "Ford Motor Company (Ford) is recalling certain 2005-2014 Mustang, 2004-2011 Ranger, 2009-2011 Mercury Milan, 2006 Ford GT, 2008-2012 Fusion, 2007-2010 Edge and Lincoln MKX, and 2009-2010 Lincoln MKZ v",
+      "Ford Motor Company (Ford) is recalling certain air bag inflator and/or module replacement service parts that may have been used as part of a collision repair.  The parts include certain driver-side ai",
+      "Ford Motor Company (Ford) is recalling certain 2012 Ford Fusion and Mustang and Lincoln Zephyr and MKZ vehicles originally sold, or ever registered, in Alabama, California, Florida, Georgia, Hawaii, L"
+    ]
+  },
+  "recalls_fetched_at": 1792791843.2132163
+}
