@@ -1,4 +1,4 @@
-generated: 2026-10-23
+generated: 2026-10-28
 
 fourrunner_classic:
   - source: craigslist
@@ -30,7 +30,21 @@ fourrunner_classic:
     is_4x4: True
     is_manual: False
 
-toyota_truck: []
+toyota_truck:
+  - source: craigslist
+    title: "1988 Toyota Pickup Short Bed BLACK"
+    price: 2950
+    year: 1988
+    odometer: null
+    url: "https://www.craigslist.org/view/d/meridian-1988-toyota-pickup-short-bed/ctTh3kRyT5Pj2HTCqwN2ss"
+    post_date: null
+    location: null
+    deal_rating: null
+    market_delta: null
+    miles_per_year: null
+    dealer_flag: null
+    is_4x4: False
+    is_manual: False
 
 cherokee_xj:
   - source: craigslist
