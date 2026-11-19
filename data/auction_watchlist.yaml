@@ -258,6 +258,7 @@
 # unchanged; the new terms matched nothing in history (rare at Musick) so are
 # unverified for false positives - bare "vise" and "sage" deliberately left out.
 - id: fly_fishing
+  rare: true   # low-volume at Musick: gets the 🎯 Rare finds block + a GitHub issue alert
   label: "Fly Fishing Gear"
   keywords:
     - "fly fishing"
@@ -307,6 +308,7 @@
 # "mustang" hit repair manuals, die-cast and a Funko lot - year_led +
 # excludes remove them. History has ~7 real Mustangs, so expect few.
 - id: mustang_manual
+  rare: true   # low-volume at Musick: gets the 🎯 Rare finds block + a GitHub issue alert
   vehicles_only: true
   year_led: true
   label: "Manual Mustang"
@@ -358,6 +360,7 @@
 # match. History has only ~3 real ones (2025 KX250, 2004 TTR90, PW50) - rare
 # here. Helmets/gear are excluded; the broad 'motorcycles' group is unchanged.
 - id: dirt_bikes_jp
+  rare: true   # low-volume at Musick: gets the 🎯 Rare finds block + a GitHub issue alert
   label: "Japanese Dirt Bike"
   keywords:
     - "dirt bike"
@@ -393,6 +396,7 @@
 # shows; check the listing. Bare "ski"/"skis" dropped - it pulled in skis.
 # "jet ski" excluded.
 - id: ski_boots
+  rare: true   # low-volume at Musick: gets the 🎯 Rare finds block + a GitHub issue alert
   label: "Ski Boots (26.5-27.5, flex 100-120)"
   keywords:
     - "ski boot"
@@ -416,6 +420,7 @@
 # check fitment years in the listing). not_year_led so the cars (titles that start with a year)
 # themselves don't match. Excludes: Leupold "Forester Compass".
 - id: forester_accessories
+  rare: true   # low-volume at Musick: gets the 🎯 Rare finds block + a GitHub issue alert
   not_year_led: true
   label: "2019 Forester Accessories"
   keywords:

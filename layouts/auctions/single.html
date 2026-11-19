@@ -63,6 +63,7 @@
     <div class="auctions-stat"><span class="n" id="flagged-count">{{ len $flagged }}</span><span class="l">Flagged deals</span></div>
     <div class="auctions-stat"><span class="n">{{ len $arbSorted }}</span><span class="l">Arbitrage leads</span></div>
     <div class="auctions-stat"><span class="n">{{ len $candidates }}</span><span class="l">Car candidates<br>&lt;150k mi, clean title</span></div>
+    <div class="auctions-stat"><span class="n">{{ len (where $open "rare" true) }}</span><span class="l">Rare finds</span></div>
     <div class="auctions-stat"><span class="n">{{ len $watchlisted }}</span><span class="l">On your watchlist</span></div>
   </div>
   <p class="auctions-assump">
@@ -72,6 +73,23 @@
   </p>
 
   {{ partial "auction-dial-in.html" (dict "pageTitle" "Auction Watch" "pageURL" $.Permalink) }}
+
+  <!-- ─────────── RARE FINDS ─────────── -->
+  {{ $rare := where $open "rare" true }}
+  {{ $rareTimed := sort (where $rare "auction_ends_at" "!=" nil) "auction_ends_at" }}
+  {{ $rare = $rareTimed | append (where $rare "auction_ends_at" "eq" nil) }}
+  <h2>🎯 Rare finds</h2>
+  <p class="auctions-assump">
+    Low-volume searches you asked to hear about first: manual Mustangs,
+    Japanese dirt bikes, ski boots, 2019 Forester accessories, fly fishing
+    gear. Always shown, soonest-closing first. New ones also open a GitHub
+    issue on the daily refresh.
+  </p>
+  {{ if $rare }}
+  {{ partial "auction-lot-table.html" (dict "lots" $rare "keep" true) }}
+  {{ else }}
+  <p class="auctions-empty">Nothing open in those searches right now — checked {{ .generated }}. They're rare at Musick (a handful of lots a year), so a quiet board is normal.</p>
+  {{ end }}
 
   <!-- ─────────── HIGHLIGHTS ─────────── -->
   <h2>⭐ Highlights</h2>
