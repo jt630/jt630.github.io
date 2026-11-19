@@ -1,0 +1,38 @@
+# Search profile: the WHY behind the 2026-11-19 watchlist rewrite.
+# Source: owner's request in a Claude Code session. Price ceilings below are
+# informational only (not filters) until Session P gives them a home.
+source: "owner request, 2026-11-19"
+compiled_into_watchlist:
+  - commuter_cars
+  - trucks_offroad
+  - atv_utv
+  - mustang_manual
+  - classic_projects
+  - dirt_bikes_jp
+  - ski_boots
+  - forester_accessories
+  - fly_fishing
+groups:
+  commuter_cars:
+    for: sister
+    want: "Full-size sedan minimum, not a full SUV. Crossover is a judgment call."
+    decision: "Included midsize crossovers only (Edge, Murano, Outback, Santa Fe, Sorento); Accord/Camry/Fusion/Altima/Malibu/Sonata kept as 'large inside'."
+  trucks_offroad:
+    want: "4x4/4WD manual trucks only."
+    decision: "transmission=manual and drivetrain 4x4/4wd enforced after the detail render; unknown passes so the detail fetch still happens. ATV/UTV/RZR split into atv_utv (owner chose to keep them)."
+  mustang_manual:
+    want: "Manual Mustangs, 2005 and newer or 1985 and older."
+  classic_projects:
+    want: "Classic cars, cheaper, projects; manuals may need work."
+    price_ceiling: 10000   # informational
+    decision: "Classic = 1989 and older (owner's choice)."
+  dirt_bikes_jp:
+    want: "Japanese-made dirt bikes (Honda, Yamaha, Suzuki, Kawasaki)."
+    note: "Rare at Musick (3 in history). Existing 'motorcycles' group left as is."
+  ski_boots:
+    want: "Mondo 26.5-27.5, flex 100-120."
+    caveat: "Size/flex are rarely in titles, so they can't be filtered; check each listing."
+  forester_accessories:
+    want: "Accessories for a 2019 Subaru Forester (2019-2024 generation)."
+  fly_fishing:
+    want: "Fly rods, reels and tying equipment."

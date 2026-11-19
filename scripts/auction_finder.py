@@ -284,7 +284,15 @@ def load_watchlist():
     except (OSError, yaml.YAMLError) as e:
         sys.stderr.write(f"  [watchlist] couldn't load {WATCHLIST_PATH}: {e}\n")
         return []
-    return [g for g in groups if g.get("label") and g.get("keywords")]
+    # A group needs something to match on: keywords, regex, or (for a
+    # vehicles_only group) a year_ranges rule such as "anything classic".
+    return [
+        g for g in groups
+        if g.get("label") and (
+            g.get("keywords") or g.get("regex")
+            or (g.get("vehicles_only") and g.get("year_ranges"))
+        )
+    ]
 
 
 WATCHLIST = load_watchlist()
@@ -322,8 +330,58 @@ def match_watchlist(lot):
     # II" floor scrubber is not a Ford Focus.
     return [
         g["label"] for g in WATCHLIST
-        if (is_vehicle or not g.get("vehicles_only")) and group_matches(g, s)
+        if (is_vehicle or not g.get("vehicles_only"))
+        and group_matches(g, s)
+        and structured_ok(g, lot)
     ]
+
+
+_TITLE_YEAR = re.compile(
+    r"^(?:lot #\d+:\s*)?(?:bank repo\s*-\s*)?(?:\(\d+\)\s*)?((?:19|20)\d\d)\s",
+    re.IGNORECASE,
+)
+
+
+def structured_ok(group, lot):
+    """Optional spec rules on a watchlist group, checked against the lot's
+    detail-page fields: `transmission: manual`, `drivetrain: [4x4, 4wd]`,
+    `year_ranges: [[2005, 2100], [0, 1985]]` (implies the title must lead
+    with a year), `year_led: true` (the same title check without a range).
+
+    PERMISSIVE WHEN UNKNOWN (transmission, drivetrain): a missing field passes. The keep bar runs twice
+    - once on the title to decide which vehicles get the expensive detail
+    render, then again in normalize_lot() once transmission/drivetrain are
+    filled in. Failing on unknown would stop the detail fetch that learns
+    the answer. Year falls back to the one every Musick vehicle title leads
+    with, so out-of-range years skip the detail render entirely."""
+    want_tx = group.get("transmission")
+    tx = (lot.get("transmission") or "").strip().lower()
+    if want_tx and tx and want_tx.lower() not in tx:
+        return False
+    want_dt = group.get("drivetrain")
+    dt = (lot.get("drivetrain") or "").strip().lower()
+    if want_dt and dt and not any(w.lower() in dt for w in want_dt):
+        return False
+    if group.get("not_year_led") and _TITLE_YEAR.match(lot.get("title") or ""):
+        # Accessory searches ("Forester roof rack"): the car itself leads
+        # with a year, the accessory lot doesn't. The categorizer can't be
+        # used for this - it files "Subaru Forester roof rack" as Vehicles.
+        return False
+    ranges = group.get("year_ranges")
+    if ranges or group.get("year_led"):
+        year = lot.get("year")
+        if not year:
+            m = _TITLE_YEAR.match(lot.get("title") or "")
+            year = int(m.group(1)) if m else None
+        # `year_led`: real Musick vehicle titles all start "2015 FORD ...";
+        # a repair-manual set, die-cast model or seat-cover lot that merely
+        # names the car does not. An unknown year therefore FAILS here,
+        # unlike transmission/drivetrain, because the title always has it.
+        if not year:
+            return False
+        if ranges and not any(lo <= year <= hi for lo, hi in ranges):
+            return False
+    return True
 
 
 def group_matches(group, text):
@@ -334,8 +392,13 @@ def group_matches(group, text):
     group excludes "dodge"/"challenger"/"charger". Shared with
     scripts/watchlist_test.py so testing a keyword uses the exact live
     matching rules."""
-    if not any(re.search(_watchlist_kw_pattern(kw), text) for kw in group["keywords"]):
-        return False
+    kws, rx = group.get("keywords") or [], group.get("regex") or []
+    if kws or rx:
+        hit = any(re.search(_watchlist_kw_pattern(kw), text) for kw in kws) or any(
+            re.search(p, text) for p in rx
+        )
+        if not hit:
+            return False
     return not any(
         re.search(_watchlist_kw_pattern(kw), text) for kw in group.get("exclude") or []
     )

@@ -56,7 +56,7 @@ class CollisionGuardTests(unittest.TestCase):
 
     def test_groups_using_a_colliding_term_exclude_the_collision(self):
         for g in af.WATCHLIST:
-            kws = {k.lower() for k in g["keywords"]}
+            kws = {k.lower() for k in g.get("keywords") or []}
             for term, bad_titles in self.KNOWN_COLLISIONS.items():
                 if term not in kws:
                     continue
@@ -71,8 +71,56 @@ class CollisionGuardTests(unittest.TestCase):
 class WatchlistTestToolTests(unittest.TestCase):
     def test_tool_runs_offline_and_every_group_loads(self):
         self.assertEqual(wt.main([]), 0)
-        self.assertTrue(all(g.get("id") and g.get("keywords") for g in af.WATCHLIST))
+        self.assertTrue(all(g.get("id") and (g.get("keywords") or g.get("regex") or g.get("year_ranges")) for g in af.WATCHLIST))
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class StructuredRuleTests(unittest.TestCase):
+    """structured_ok(): transmission / drivetrain / year rules on a group."""
+
+    def test_unknown_transmission_and_drivetrain_pass(self):
+        g = {"transmission": "manual", "drivetrain": ["4x4", "4wd"]}
+        self.assertTrue(af.structured_ok(g, {"title": "2014 JEEP WRANGLER"}))
+
+    def test_known_auto_or_2wd_fails(self):
+        g = {"transmission": "manual", "drivetrain": ["4x4", "4wd"]}
+        self.assertFalse(af.structured_ok(g, {"transmission": "Auto", "drivetrain": "4x4"}))
+        self.assertFalse(af.structured_ok(g, {"transmission": "Manual", "drivetrain": "2WD"}))
+        self.assertTrue(af.structured_ok(g, {"transmission": "Manual", "drivetrain": "4x4"}))
+
+    def test_year_ranges_use_title_year_and_exclude_gap(self):
+        g = {"year_ranges": [[2005, 2100], [1900, 1985]]}
+        ok = lambda t: af.structured_ok(g, {"title": t})
+        self.assertTrue(ok("2007 FORD MUSTANG - 5-SPEED MANUAL!"))
+        self.assertTrue(ok("BANK REPO - 2014 FORD MUSTANG"))
+        self.assertTrue(ok("1966 FORD MUSTANG"))
+        self.assertFalse(ok("1990 FORD MUSTANG - ROLL CAGE!"))
+        self.assertFalse(ok("2000 FORD MUSTANG - RWD!"))
+
+    def test_year_rule_rejects_titles_without_leading_year(self):
+        g = {"year_ranges": [[1900, 1989]]}
+        self.assertFalse(af.structured_ok(g, {"title": "Haynes Ford Mustang II 1974-1978 Repair Manual"}))
+
+    def test_year_only_group_and_not_year_led(self):
+        orig = af.WATCHLIST
+        af.WATCHLIST = [
+            {"label": "Classic", "vehicles_only": True, "year_ranges": [[1900, 1989]]},
+            {"label": "Forester acc", "not_year_led": True, "keywords": ["forester"]},
+        ]
+        try:
+            self.assertEqual(af.match_watchlist({"title": "1969 DODGE D100 - 60K MILES!"}), ["Classic"])
+            self.assertEqual(af.match_watchlist({"title": "2014 SUBARU FORESTER - AWD!"}), [])
+            self.assertEqual(
+                af.match_watchlist({"title": "Subaru Forester 2019 Cargo Mat & Roof Crossbars"}),
+                ["Forester acc"],
+            )
+        finally:
+            af.WATCHLIST = orig
+
+    def test_regex_dirt_bike_needs_make_and_model(self):
+        g = {"regex": [r"\b(honda|yamaha|suzuki|kawasaki)\s+(crf|xr|yz|ttr|kx)\s?-?\d{2,3}\b"]}
+        self.assertTrue(af.group_matches(g, " 2004 yamaha ttr90 "))
+        self.assertFalse(af.group_matches(g, " mongoose xr-75 mountain bike "))
