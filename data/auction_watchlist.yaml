@@ -16,7 +16,14 @@
 # Test any change first: python scripts/watchlist_test.py (see /refine-search).
 - id: trucks_offroad
   vehicles_only: true   # skip lots the categorizer did not file under Vehicles (e.g. a "Focus" floor scrubber)
-  label: "Trucks & Off-Road/4x4"
+  label: "Manual 4x4 Truck"
+  # 2026-11-19: narrowed to 4x4/4WD *manual* trucks. transmission/drivetrain
+  # come from the detail-page render, which only happens AFTER a title match,
+  # so these rules pass while unknown and drop the lot once Musick says Auto
+  # or 2WD (see structured_ok() in auction_finder.py). ATV/UTV/RZR moved to
+  # their own group below.
+  transmission: manual
+  drivetrain: ["4x4", "4wd"]
   keywords:
     # "truck" alone was too generic (matched a truck TOOLBOX, not a
     # truck) - "pickup" plus specific models carry the real signal instead.
@@ -47,32 +54,77 @@
     - "chevy colorado"
     - "chevrolet colorado"
     - ranger
+
+# ATVs/UTVs used to ride on the truck group; split out 2026-11-19 so
+# narrowing the trucks to manual 4x4 didn't make them vanish.
+- id: atv_utv
+  label: "ATV/UTV"
+  keywords:
     - atv
     - utv
     - rzr
     - "side by side"
     - "side-by-side"
 
+# Rewritten 2026-11-19: sister wants full-size sedan minimum, not a full SUV
+# (crossovers a judgment call: only midsize ones - Edge, Murano, Outback,
+# Santa Fe, Sorento). Make-qualified phrases ("dodge charger", not "charger")
+# because bare words hit battery chargers, "Mid-Century" furniture, the Taurus
+# revolver. year_led=true = title must start with a year, which drops repair
+# manual sets, die-cast cars and seat-cover lots that merely name the car.
+# Tested on 2,225 real vehicle-category titles: ~118 matches, all real cars
+# (Accord/Camry/Fusion/Altima/Malibu/Sonata are midsize but large inside).
 - id: commuter_cars
-  vehicles_only: true   # skip lots the categorizer did not file under Vehicles (e.g. a "Focus" floor scrubber)
+  vehicles_only: true
+  year_led: true
   label: "Commuter Car (for sister)"
   keywords:
-    - civic
-    - corolla
-    - sentra
-    - elantra
-    - focus
-    - fiesta
-    - "mazda3"
-    - "mazda 3"
-    - yaris
-    - prius
-    - sonata
-    - jetta
-    - versa
-    - "hyundai accent"
-    - spark
-    - soul
+    - "chevrolet impala"
+    - "ford taurus"
+    - "toyota avalon"
+    - "dodge charger"
+    - "chrysler 300"
+    - "crown victoria"
+    - "grand marquis"
+    - "lincoln town car"
+    - "buick lacrosse"
+    - "buick lucerne"
+    - "buick lesabre"
+    - "buick park avenue"
+    - "hyundai azera"
+    - "hyundai genesis"
+    - "nissan maxima"
+    - "toyota camry"
+    - "honda accord"
+    - "ford fusion"
+    - "nissan altima"
+    - "chevrolet malibu"
+    - "hyundai sonata"
+    - "kia optima"
+    - "kia cadenza"
+    - "subaru legacy"
+    - "subaru outback"
+    - "volkswagen passat"
+    - "ford edge"
+    - "nissan murano"
+    - "toyota venza"
+    - "hyundai santa fe"
+    - "kia sorento"
+    - "mazda 6"
+    - "mazda6"
+    - "acura tlx"
+    - "acura tl"
+  exclude:
+    - repair
+    - haynes
+    - chilton
+    - cover
+    - covers
+    - diecast
+    - die-cast
+    - kit
+    - liner
+    - mats
 
 - id: project_cars
   vehicles_only: true   # skip lots the categorizer did not file under Vehicles (e.g. a "Focus" floor scrubber)
@@ -201,14 +253,30 @@
     - fossil
     - meteorite
 
+# Widened 2026-11-19 for rods, reels and tying gear (fly line, tippet, boxes,
+# vises, Orvis/Redington, tenkara). Tested: the 21 historical matches are
+# unchanged; the new terms matched nothing in history (rare at Musick) so are
+# unverified for false positives - bare "vise" and "sage" deliberately left out.
 - id: fly_fishing
   label: "Fly Fishing Gear"
   keywords:
     - "fly fishing"
     - "fly rod"
     - "fly reel"
-    - waders
+    - "waders"
     - "fly tying"
+    - "fly-tying"
+    - "tying vise"
+    - "fly vise"
+    - "fly box"
+    - "fly line"
+    - "tippet"
+    - "tenkara"
+    - "orvis"
+    - "redington"
+    - "fly fisherman"
+    - "fly-fishing"
+    - "bamboo rod"
 
 - id: mining
   label: "Mining Equipment"
@@ -232,3 +300,129 @@
     - "peace dollar"
     - "wheat penny"
     - "indian head"
+
+# Added 2026-11-19: manual Mustangs, 2005 and newer OR 1985 and older (skips
+# the 1986-2004 Fox/SN95 years). year_ranges is checked on the title's year;
+# transmission: manual is checked after the detail render. Tested: bare
+# "mustang" hit repair manuals, die-cast and a Funko lot - year_led +
+# excludes remove them. History has ~7 real Mustangs, so expect few.
+- id: mustang_manual
+  vehicles_only: true
+  year_led: true
+  label: "Manual Mustang"
+  transmission: manual
+  year_ranges: [[2005, 2100], [1900, 1985]]
+  keywords:
+    - "mustang"
+  exclude:
+    - "repair manual"
+    - "haynes"
+    - "chilton"
+    - "diecast"
+    - "die-cast"
+    - "model"
+    - "hood"
+    - "ornament"
+    - "taillights"
+    - "scoops"
+
+# Added 2026-11-19: any car/truck 1989 or older (project/classic, manual or
+# not - manual ones "may need work"). Owner's ceiling is $10k: NOT a filter,
+# it lives in data/search_profiles/. year_ranges implies a leading-year title,
+# which drops coin sets ("1989 U.S. Mint Proof Set") only partly - vehicles_only
+# handles the rest. Tested: 34 matches, nearly all real old vehicles.
+- id: classic_projects
+  vehicles_only: true
+  label: "Classic Project (<=10k)"
+  year_ranges: [[1900, 1989]]
+  exclude:
+    - "repair"
+    - "haynes"
+    - "chilton"
+    - "manual"
+    - "diecast"
+    - "die-cast"
+    - "model"
+    - "cards"
+    - "card"
+    - "box"
+    - "wax"
+    - "topps"
+    - "fleer"
+    - "sticker"
+    - "stickers"
+    - "service manual"
+
+# Added 2026-11-19: Japanese-made dirt bikes (Honda/Yamaha/Suzuki/Kawasaki).
+# Make-qualified model regex so "XR-75" bicycles and DeWalt "XR" drills don't
+# match. History has only ~3 real ones (2025 KX250, 2004 TTR90, PW50) - rare
+# here. Helmets/gear are excluded; the broad 'motorcycles' group is unchanged.
+- id: dirt_bikes_jp
+  label: "Japanese Dirt Bike"
+  keywords:
+    - "dirt bike"
+    - "trail bike"
+    - "motocross bike"
+    - "enduro bike"
+    - "pit bike"
+  regex:
+    - '\b(honda|yamaha|suzuki|kawasaki)\s+(crf|xr|yz|wr|ttr|tt-r|klx|kx|kdx|drz|dr-z|rmz|rm-z|rm|xt|tw|dt|pw|ct|cr)\s?-?\d{2,3}\b'
+  exclude:
+    - "helmet"
+    - "helmets"
+    - "gear"
+    - "goggles"
+    - "boots"
+    - "jersey"
+    - "parts"
+    - "accessories"
+    - "handlebar"
+    - "fender"
+    - "razor"
+    - "electric"
+    - "kidz"
+    - "bmx"
+    - "bicycle"
+    - "mongoose"
+    - "dewalt"
+    - "jacket"
+    - "tire"
+
+# Added 2026-11-19: ski boots, mondo 26.5-27.5, flex 100-120. Size/flex can't
+# be filtered from titles (most don't state them), so every adult-looking pair
+# shows; check the listing. Bare "ski"/"skis" dropped - it pulled in skis.
+# "jet ski" excluded.
+- id: ski_boots
+  label: "Ski Boots (26.5-27.5, flex 100-120)"
+  keywords:
+    - "ski boot"
+    - "ski-boot"
+    - "alpine boot"
+    - "touring boot"
+  exclude:
+    - "jet ski"
+    - "water ski"
+    - "ski-doo"
+    - "ski doo"
+    - "waterski"
+    - "snowmobile"
+    - "cross-country"
+    - "cross country"
+    - "youth"
+    - "junior"
+    - "kids"
+
+# Added 2026-11-19: accessories for a 2019 Subaru Forester (5th gen, 2019-24 -
+# check fitment years in the listing). not_year_led so the cars (titles that start with a year)
+# themselves don't match. Excludes: Leupold "Forester Compass".
+- id: forester_accessories
+  not_year_led: true
+  label: "2019 Forester Accessories"
+  keywords:
+    - "forester"
+    - "subaru forester"
+  exclude:
+    - "compass"
+    - "leupold"
+    - "abney"
+

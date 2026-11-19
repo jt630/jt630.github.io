@@ -33,7 +33,7 @@ import sys
 import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from auction_finder import WATCHLIST, group_matches  # noqa: E402
+from auction_finder import WATCHLIST, group_matches, guess_category, structured_ok  # noqa: E402
 
 _ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 HISTORY_GLOB = os.path.join(_ROOT, "research", "price_history", "*.jsonl")
@@ -66,8 +66,28 @@ def load_corpus():
     return out
 
 
+_VEH_CACHE = {}
+
+
+def _is_vehicle(title):
+    # guess_category is slow over 31k titles x every group; cache per title.
+    if title not in _VEH_CACHE:
+        _VEH_CACHE[title] = guess_category({"title": title, "description": ""}) == "Vehicles"
+    return _VEH_CACHE[title]
+
+
 def matches(group, corpus):
-    return [(t, src) for t, src in corpus if group_matches(group, f" {t} ".lower())]
+    out = []
+    for t, src in corpus:
+        lot = {"title": t, "description": ""}
+        is_veh = _is_vehicle(t) if group.get("vehicles_only") else False
+        if group.get("vehicles_only") and not is_veh:
+            continue
+        # Only title-derivable rules (year) can be tested here; transmission
+        # and drivetrain need the live detail render and pass when unknown.
+        if group_matches(group, f" {t} ".lower()) and structured_ok(group, lot):
+            out.append((t, src))
+    return out
 
 
 def _split(s):

@@ -20,6 +20,16 @@ read before any session that touches this scaling-up work.
 *Read this first. It's the state of play, so a new session doesn't have to
 reconstruct it. Update it at the end of every session.*
 
+**2026-11-19 session (watchlist rewrite)** — new criteria compiled into
+`data/auction_watchlist.yaml` (reasoning in
+`data/search_profiles/owner_criteria_2026-11.yaml`). New optional group keys
+in `auction_finder.structured_ok()`: `transmission`, `drivetrain`,
+`year_ranges`, `year_led`, `not_year_led`, plus `regex`. Transmission/drivetrain
+are checked after the detail render and PASS while unknown (so the fetch still
+happens); year comes from the title. Unverified on a live run: dispatch
+"Auction Watch — refresh lots" after merge and check that manual-4x4 trucks and
+the Mustang/classic groups show up, and that Auto/2WD trucks drop.
+
 **2026-10-07 session (timing + hide + swarm pricing)** — not yet verified
 against a live run, dispatch the workflow and check the new `auction_ends_at`
 coverage:
