@@ -1207,6 +1207,10 @@ def normalize_lot(r):
     r.setdefault("description", None)
     r["category"] = guess_category(r)
     r["watchlist_matches"] = match_watchlist(r)
+    # `rare: true` groups (low-volume searches) get a page block + an alert.
+    r["rare"] = any(
+        g.get("rare") and g["label"] in r["watchlist_matches"] for g in WATCHLIST
+    )
     r["estimated_value_low"] = None
     r["estimated_value_high"] = None
     r["estimated_value_mid"] = None

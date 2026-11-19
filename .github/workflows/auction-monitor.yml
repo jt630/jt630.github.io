@@ -20,6 +20,7 @@ on:
 permissions:
   contents: write
   actions: write   # needed to dispatch the Hugo deploy workflow
+  issues: write    # notify_rare.py opens an issue for new rare-group lots
 
 jobs:
   refresh:
@@ -168,6 +169,17 @@ jobs:
         if: github.event.inputs.probe_url == ''
         run: python -m unittest discover scripts/tests
 
+      - name: Alert on new rare finds (GitHub issue -> your email/phone)
+        # Rare groups (`rare: true` in data/auction_watchlist.yaml) are
+        # low-volume searches the owner wants to hear about first. Opens one
+        # issue per run for lots not announced before; the announced-URL
+        # list is committed below. Never fails the run.
+        if: github.event.inputs.probe_url == ''
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/notify_rare.py
+
       - name: Commit updated lots
         if: github.event.inputs.probe_url == ''
         id: commit
@@ -175,6 +187,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/auction_lots.yaml
+          [ -f research/auction_notified.json ] && git add research/auction_notified.json
           shopt -s nullglob
           cache_files=(data/.cache/auction_*.json)
           if [ ${#cache_files[@]} -gt 0 ]; then
