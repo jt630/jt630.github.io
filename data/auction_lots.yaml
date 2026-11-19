@@ -1,4 +1,4 @@
-generated: '2026-11-18'
+generated: '2026-11-19'
 lots:
 - platform: musick
   title: 'Lot #9011: Cordless Weed Trimmer with Bush Cutter & Carry Wheel + 4 TonGass
@@ -8,9 +8,9 @@ lots:
   current_bid: 5
   num_bids: 1
   close_time: null
-  auction_ends_at: '2026-11-20T01:00:00Z'
+  auction_ends_at: '2026-11-20T00:59:59Z'
   category: Small Engines & Appliances
-  description: 'Asking bid $6 · Time left: 1d 3h 53m 36s'
+  description: 'Asking bid $6 · Time left: 17h 41m 56s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches: []
   estimated_value_low: null
@@ -23,7 +23,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-18'
+  fetched_at: '2026-11-19'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -41,9 +41,9 @@ lots:
   current_bid: 5
   num_bids: 1
   close_time: null
-  auction_ends_at: '2026-11-20T01:00:00Z'
+  auction_ends_at: '2026-11-20T00:59:59Z'
   category: Small Engines & Appliances
-  description: 'Asking bid $6 · Time left: 1d 3h 53m 36s'
+  description: 'Asking bid $6 · Time left: 17h 41m 56s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches: []
   estimated_value_low: null
@@ -56,7 +56,41 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-18'
+  fetched_at: '2026-11-19'
+  comp_n: null
+  comp_median: null
+  comp_wavg: null
+  comp_low: null
+  comp_high: null
+  comp_30d: null
+  comp_90d: null
+  comp_span_days: null
+  comp_note: null
+- platform: musick
+  title: 'Lot #9030: TwistaBowl Child Feeding Bowl with Clamp, Blue, BPA-Free, Dishwasher
+    & Microwave Safe, travel play mat, burp rags, magnetic travel mug organizer, kids
+    puzzle'
+  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534477/TwistaBowl-Child-Feeding-Bowl-with-Clamp-Blue-BPA-Free-Dishwasher-Microwave-Safe-travel-play-mat-burp-rags-magnetic-travel-mug-o?url=%2Fauctions%2Fcatalog%2Fid%2F948
+  image_url: https://bid.musickauction.com/images/lot/3182/3182233_m.jpg?ts=1793996538
+  current_bid: 6
+  num_bids: 2
+  close_time: null
+  auction_ends_at: '2026-11-20T00:59:59Z'
+  category: Small Engines & Appliances
+  description: 'Asking bid $7 · Time left: 17h 41m 56s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches: []
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -71,12 +105,12 @@ lots:
     3hr Run, 69in Pole'
   url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534444/Yousky-Vako-L10-Rechargeable-Pool-Leaf-Vacuum-83-GPM-2200mAh-3hr-Run-69in-Pole?url=%2Fauctions%2Fcatalog%2Fid%2F948
   image_url: https://bid.musickauction.com/images/lot/3182/3182058_m.jpg?ts=1793995707
-  current_bid: 6
-  num_bids: 2
+  current_bid: 7
+  num_bids: 3
   close_time: null
-  auction_ends_at: '2026-11-20T01:00:00Z'
+  auction_ends_at: '2026-11-20T00:59:59Z'
   category: Small Engines & Appliances
-  description: 'Asking bid $7 · Time left: 1d 3h 53m 36s'
+  description: 'Asking bid $8 · Time left: 17h 41m 56s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches: []
   estimated_value_low: null
@@ -89,7 +123,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-18'
+  fetched_at: '2026-11-19'
   comp_n: 6
   comp_median: 9
   comp_wavg: 10
@@ -97,20 +131,19 @@ lots:
   comp_high: 10
   comp_30d: 9
   comp_90d: 9
-  comp_span_days: 21
+  comp_span_days: 22
   comp_note: 6 past closes since Oct 28 · median $9
 - platform: musick
-  title: 'Lot #9030: TwistaBowl Child Feeding Bowl with Clamp, Blue, BPA-Free, Dishwasher
-    & Microwave Safe, travel play mat, burp rags, magnetic travel mug organizer, kids
-    puzzle'
-  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534477/TwistaBowl-Child-Feeding-Bowl-with-Clamp-Blue-BPA-Free-Dishwasher-Microwave-Safe-travel-play-mat-burp-rags-magnetic-travel-mug-o?url=%2Fauctions%2Fcatalog%2Fid%2F948
-  image_url: https://bid.musickauction.com/images/lot/3182/3182233_m.jpg?ts=1793996538
-  current_bid: 6
-  num_bids: 2
+  title: 'Lot #9023: Yousky Vako L10 Rechargeable Pool Leaf Vacuum, 83 GPM, 2200mAh,
+    3hr Run, 69in Pole'
+  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534469/Yousky-Vako-L10-Rechargeable-Pool-Leaf-Vacuum-83-GPM-2200mAh-3hr-Run-69in-Pole?url=%2Fauctions%2Fcatalog%2Fid%2F948
+  image_url: https://bid.musickauction.com/images/lot/3182/3182185_m.jpg?ts=1793996320
+  current_bid: 7
+  num_bids: 3
   close_time: null
-  auction_ends_at: '2026-11-20T01:00:00Z'
+  auction_ends_at: '2026-11-20T00:59:59Z'
   category: Small Engines & Appliances
-  description: 'Asking bid $7 · Time left: 1d 3h 53m 36s'
+  description: 'Asking bid $8 · Time left: 17h 41m 56s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches: []
   estimated_value_low: null
@@ -123,7 +156,39 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-18'
+  fetched_at: '2026-11-19'
+  comp_n: 6
+  comp_median: 9
+  comp_wavg: 10
+  comp_low: 8
+  comp_high: 10
+  comp_30d: 9
+  comp_90d: 9
+  comp_span_days: 22
+  comp_note: 6 past closes since Oct 28 · median $9
+- platform: musick
+  title: 'Lot #724: IRANCH Brush Mower'
+  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/536498/IRANCH-Brush-Mower?url=%2Fauctions%2Fcatalog%2Fid%2F951
+  image_url: https://bid.musickauction.com/images/lot/3195/3195824_m.jpg?ts=1794445360
+  current_bid: 8
+  num_bids: 4
+  close_time: null
+  auction_ends_at: '2026-11-24T01:00:00Z'
+  category: Small Engines & Appliances
+  description: 'Asking bid $9 · Time left: 4d 17h 40m 44s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches: []
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -138,213 +203,12 @@ lots:
     Tactical MIL
   url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538034/Vector-Optics-6-25x50-Rifle-Scope-30mm-Tube-Parallax-Mounts-OL1100214-Tactical-MIL?url=%2Fauctions%2Fcatalog%2Fid%2F953
   image_url: https://bid.musickauction.com/images/lot/3204/3204793_m.jpg?ts=1794879780
-  current_bid: 6
-  num_bids: 2
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $7 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Rifle (deer)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #9023: Yousky Vako L10 Rechargeable Pool Leaf Vacuum, 83 GPM, 2200mAh,
-    3hr Run, 69in Pole'
-  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534469/Yousky-Vako-L10-Rechargeable-Pool-Leaf-Vacuum-83-GPM-2200mAh-3hr-Run-69in-Pole?url=%2Fauctions%2Fcatalog%2Fid%2F948
-  image_url: https://bid.musickauction.com/images/lot/3182/3182185_m.jpg?ts=1793996320
-  current_bid: 7
-  num_bids: 3
-  close_time: null
-  auction_ends_at: '2026-11-20T01:00:00Z'
-  category: Small Engines & Appliances
-  description: 'Asking bid $8 · Time left: 1d 3h 53m 36s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches: []
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 6
-  comp_median: 9
-  comp_wavg: 10
-  comp_low: 8
-  comp_high: 10
-  comp_30d: 9
-  comp_90d: 9
-  comp_span_days: 21
-  comp_note: 6 past closes since Oct 28 · median $9
-- platform: musick
-  title: 'Lot #724: IRANCH Brush Mower'
-  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/536498/IRANCH-Brush-Mower?url=%2Fauctions%2Fcatalog%2Fid%2F951
-  image_url: https://bid.musickauction.com/images/lot/3195/3195824_m.jpg?ts=1794445360
-  current_bid: 7
-  num_bids: 3
-  close_time: null
-  auction_ends_at: '2026-11-24T00:59:59Z'
-  category: Small Engines & Appliances
-  description: 'Asking bid $8 · Time left: 5d 3h 52m 52s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches: []
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: Federal Premium Force X2 12 Gauge 2-3/4" 00 Buckshot 1245 fps 9 Pellet Shotgun
-    Shells - 42 Rounds
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538042/Federal-Premium-Force-X2-12-Gauge-2-3-4-00-Buckshot-1245-fps-9-Pellet-Shotgun-Shells-42-Rounds?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204841_m.jpg?ts=1794879993
-  current_bid: 18
-  num_bids: 4
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $19 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Shotgun (birds)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 37
-  comp_median: 31
-  comp_wavg: 30
-  comp_low: 25
-  comp_high: 37
-  comp_30d: 31
-  comp_90d: 31
-  comp_span_days: 110
-  comp_note: 37 past closes since Jul 31 · median $31
-- platform: musick
-  title: 'Lot #6015: 1891 Indian Head Cent, 19.05mm, Copper, Circulated, Philadelphia
-    Issue, Plain Edge'
-  url: https://bid.musickauction.com/lot-details/index/catalog/947/lot/533760/1891-Indian-Head-Cent-19-05mm-Copper-Circulated-Philadelphia-Issue-Plain-Edge?url=%2Fauctions%2Fcatalog%2Fid%2F947
-  image_url: https://bid.musickauction.com/images/lot/3178/3178513_m.jpg?ts=1793837319
-  current_bid: 19
-  num_bids: 4
-  close_time: null
-  auction_ends_at: '2026-11-19T03:45:59Z'
-  category: Other
-  description: 'Asking bid $20 · Time left: 6h 39m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Old Coins
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #6004: Hammerli 44-1C .177 Air Rifle, Break-Barrel, Spanish Made, Adjustable
-    Iron Sights, Serial 4474-07'
-  url: https://bid.musickauction.com/lot-details/index/catalog/947/lot/533754/Hammerli-44-1C-177-Air-Rifle-Break-Barrel-Spanish-Made-Adjustable-Iron-Sights-Serial-4474-07?url=%2Fauctions%2Fcatalog%2Fid%2F947
-  image_url: https://bid.musickauction.com/images/lot/3178/3178483_m.jpg?ts=1793837229
-  current_bid: 23
-  num_bids: 12
-  close_time: null
-  auction_ends_at: '2026-11-19T03:47:59Z'
-  category: Firearms
-  description: 'Asking bid $24 · Time left: 6h 41m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Rifle (deer)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #6005: Gamo Swarm Whisper .22 Cal 10-Shot Break Barrel Air Rifle with
-    3-9x40 Scope, SN: 04-1C-798960 (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/947/lot/533755/Gamo-Swarm-Whisper-22-Cal-10-Shot-Break-Barrel-Air-Rifle-with-3-9x40-Scope-SN-04-1C-798960-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F947
-  image_url: https://bid.musickauction.com/images/lot/3178/3178489_m.jpg?ts=1793837232
-  current_bid: 43
+  current_bid: 11
   num_bids: 7
   close_time: null
-  auction_ends_at: '2026-11-19T03:46:59Z'
+  auction_ends_at: '2026-11-23T20:00:00Z'
   category: Firearms
-  description: 'Asking bid $45 · Time left: 6h 40m 45s'
+  description: 'Asking bid $12 · Time left: 4d 12h 41m 25s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Rifle (deer)
@@ -358,244 +222,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 3
-  comp_median: 20
-  comp_wavg: 34
-  comp_low: 16
-  comp_high: 42
-  comp_30d: 16
-  comp_90d: 20
-  comp_span_days: 49
-  comp_note: 3 past closes since Sep 30 · median $20
-- platform: musick
-  title: 'Lot #6003: Jimenez Arms J.A. 380 Semi-Automatic Pistol, .380 ACP, 6-Round
-    Capacity (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/947/lot/533753/Jimenez-Arms-J-A-380-Semi-Automatic-Pistol-380-ACP-6-Round-Capacity-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F947
-  image_url: https://bid.musickauction.com/images/lot/3178/3178476_m.jpg?ts=1793837224
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-19T03:47:59Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 6h 41m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 3
-  comp_median: 100
-  comp_wavg: 84
-  comp_low: 80
-  comp_high: 105
-  comp_30d: 80
-  comp_90d: 80
-  comp_span_days: 106
-  comp_note: 3 past closes since Aug 3 · median $100
-- platform: musick
-  title: 'Lot #1000: Jimenez Arms J.A. Nine 9mm Pistol, Chrome Finish, SN 345164,
-    3.75" Barrel, 12+1 Capacity (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538021/Jimenez-Arms-J-A-Nine-9mm-Pistol-Chrome-Finish-SN-345164-3-75-Barrel-12-1-Capacity-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204688_m.jpg?ts=1794879272
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 3
-  comp_median: 100
-  comp_wavg: 88
-  comp_low: 80
-  comp_high: 105
-  comp_30d: 80
-  comp_90d: 80
-  comp_span_days: 106
-  comp_note: 3 past closes since Aug 3 · median $100
-- platform: musick
-  title: 'Lot #1001: Kel-Tec PF-9 9mm Luger Compact Semi-Auto Pistol, Serial RKB03,
-    Made in USA, 7+1 Capacity (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538023/Kel-Tec-PF-9-9mm-Luger-Compact-Semi-Auto-Pistol-Serial-RKB03-Made-in-USA-7-1-Capacity-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204707_m.jpg?ts=1794879391
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 4
-  comp_median: 360
-  comp_wavg: 302
-  comp_low: 281
-  comp_high: 420
-  comp_30d: 165
-  comp_90d: 400
-  comp_span_days: 110
-  comp_note: 4 past closes since Jul 31 · median $360
-- platform: musick
-  title: Winchester Model 1200 12 Gauge Pump-Action Shotgun w/ Soft Case
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538025/Winchester-Model-1200-12-Gauge-Pump-Action-Shotgun-w-Soft-Case?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204722_m.jpg?ts=1794879500
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Shotgun (birds)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 17
-  comp_median: 280
-  comp_wavg: 317
-  comp_low: 240
-  comp_high: 370
-  comp_30d: 330
-  comp_90d: 265
-  comp_span_days: 110
-  comp_note: 17 past closes since Jul 31 · median $280
-- platform: musick
-  title: 'Lot #4001: Ruger Security-9 9MM Luger, Black, 4" Barrel, Semi-Auto Pistol,
-    SN: 385-71896'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538802/Ruger-Security-9-9MM-Luger-Black-4-Barrel-Semi-Auto-Pistol-SN-385-71896?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210035_m.jpg?ts=1794965197
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 19
-  comp_median: 210
-  comp_wavg: 259
-  comp_low: 180
-  comp_high: 280
-  comp_30d: 228
-  comp_90d: 210
-  comp_span_days: 110
-  comp_note: 19 past closes since Jul 31 · median $210
-- platform: musick
-  title: 'Ruger New Model Blackhawk .357 Magnum Revolver, 6.5" Barrel, Serial #36-94573,
-    Adjustable Sights'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538803/Ruger-New-Model-Blackhawk-357-Magnum-Revolver-6-5-Barrel-Serial-36-94573-Adjustable-Sights?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210044_m.jpg?ts=1794965204
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 9
-  comp_median: 470
-  comp_wavg: 418
-  comp_low: 270
-  comp_high: 650
-  comp_30d: 280
-  comp_90d: 470
-  comp_span_days: 82
-  comp_note: 9 past closes since Aug 28 · median $470
-- platform: musick
-  title: 'Lot #4002: Taurus TH40 .40 S&W DA/SA Pistol, 4.27" Barrel, Novak Sights,
-    Ambi Controls, SMC18007'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538804/Taurus-TH40-40-S-W-DA-SA-Pistol-4-27-Barrel-Novak-Sights-Ambi-Controls-SMC18007?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210053_m.jpg?ts=1794965211
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
+  fetched_at: '2026-11-19'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -605,1322 +232,16 @@ lots:
   comp_90d: null
   comp_span_days: null
   comp_note: null
-- platform: musick
-  title: Kel-Tec P-3AT .380 Auto, Subcompact Pistol, Serial JW894, Made in USA
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538805/Kel-Tec-P-3AT-380-Auto-Subcompact-Pistol-Serial-JW894-Made-in-USA?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210062_m.jpg?ts=1794965328
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 1
-  comp_median: 165
-  comp_wavg: 165
-  comp_low: 165
-  comp_high: 165
-  comp_30d: 165
-  comp_90d: 165
-  comp_span_days: 19
-  comp_note: 1 past close since Oct 30 · median $165
-- platform: musick
-  title: 'Lot #4004: Taurus Millennium G2 PT111 G2 9MM Semi-Auto Pistol, Serial TJN69799'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538808/Taurus-Millennium-G2-PT111-G2-9MM-Semi-Auto-Pistol-Serial-TJN69799?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210088_m.jpg?ts=1794965452
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 23
-  comp_median: 195
-  comp_wavg: 212
-  comp_low: 160
-  comp_high: 255
-  comp_30d: 165
-  comp_90d: 195
-  comp_span_days: 90
-  comp_note: 23 past closes since Aug 20 · median $195
-- platform: musick
-  title: Nickel Clerke 1st Revolver .22 LR, 4" Barrel, *Non Functional As Is" with
-    Vintage Powder Horn
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538809/Nickel-Clerke-1st-Revolver-22-LR-4-Barrel-Non-Functional-As-Is-with-Vintage-Powder-Horn?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210097_m.jpg?ts=1794965459
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #4005: SCCY CPX-2 9MM Pistol, Purple Frame, DAO, 3.1" Barrel, Holster,
-    SN: 934416'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538810/SCCY-CPX-2-9MM-Pistol-Purple-Frame-DAO-3-1-Barrel-Holster-SN-934416?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210103_m.jpg?ts=1794965467
-  current_bid: 50
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $55 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 8
-  comp_median: 160
-  comp_wavg: 182
-  comp_low: 152
-  comp_high: 205
-  comp_30d: 178
-  comp_90d: 155
-  comp_span_days: 105
-  comp_note: 8 past closes since Aug 4 · median $160
-- platform: musick
-  title: 'Lot #1003: Ruger LCP .380 ACP Semi-Automatic Pistol, Serial Number 379014840
-    (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538026/Ruger-LCP-380-ACP-Semi-Automatic-Pistol-Serial-Number-379014840-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204731_m.jpg?ts=1794879505
-  current_bid: 55
-  num_bids: 2
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $60 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 7
-  comp_median: 145
-  comp_wavg: 132
-  comp_low: 125
-  comp_high: 170
-  comp_30d: 110
-  comp_90d: 140
-  comp_span_days: 110
-  comp_note: 7 past closes since Jul 31 · median $145
-- platform: musick
-  title: Star BM 9MM Semi-Automatic Pistol, Spanish Make, Serial SBM218998, Century
-    Import, Wood Grips
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538801/Star-BM-9MM-Semi-Automatic-Pistol-Spanish-Make-Serial-SBM218998-Century-Import-Wood-Grips?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210025_m.jpg?ts=1794965061
-  current_bid: 60
-  num_bids: 3
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $65 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 1
-  comp_median: 125
-  comp_wavg: 125
-  comp_low: 125
-  comp_high: 125
-  comp_30d: 125
-  comp_90d: 125
-  comp_span_days: 26
-  comp_note: 1 past close since Oct 23 · median $125
-- platform: musick
-  title: 'Lot #6002: Lorcin L380 .380 ACP Semi-Auto Pistol, Nickel Finish, Serial
-    429024, USA Made (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/947/lot/533752/Lorcin-L380-380-ACP-Semi-Auto-Pistol-Nickel-Finish-Serial-429024-USA-Made-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F947
-  image_url: https://bid.musickauction.com/images/lot/3178/3178468_m.jpg?ts=1793837218
-  current_bid: 65
-  num_bids: 4
-  close_time: null
-  auction_ends_at: '2026-11-19T03:47:59Z'
-  category: Firearms
-  description: 'Asking bid $70 · Time left: 6h 41m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #9002: Dreame H12 Pro Cordless Wet and Dry Vacuum, 35 min Runtime, 0.9L
-    Water Tank, Self-Cleaning'
-  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534441/Dreame-H12-Pro-Cordless-Wet-and-Dry-Vacuum-35-min-Runtime-0-9L-Water-Tank-Self-Cleaning?url=%2Fauctions%2Fcatalog%2Fid%2F948
-  image_url: https://bid.musickauction.com/images/lot/3182/3182047_m.jpg?ts=1793995620
-  current_bid: 85
-  num_bids: 40
-  close_time: null
-  auction_ends_at: '2026-11-20T01:00:00Z'
-  category: Small Engines & Appliances
-  description: 'Asking bid $90 · Time left: 1d 3h 53m 36s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches: []
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 2
-  comp_median: 95
-  comp_wavg: 95
-  comp_low: 92
-  comp_high: 98
-  comp_30d: 95
-  comp_90d: 95
-  comp_span_days: 21
-  comp_note: 2 past closes since Oct 28 · median $95
-- platform: musick
-  title: Remington 700 7mm Rem Mag Bolt-Action Rifle, Universal Scope, Serial 381676,
-    Wood Stock, Case
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538022/Remington-700-7mm-Rem-Mag-Bolt-Action-Rifle-Universal-Scope-Serial-381676-Wood-Stock-Case?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204695_m.jpg?ts=1794879275
-  current_bid: 165
-  num_bids: 13
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $170 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Rifle (deer)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 15
-  comp_median: 350
-  comp_wavg: 390
-  comp_low: 118
-  comp_high: 435
-  comp_30d: 390
-  comp_90d: 350
-  comp_span_days: 82
-  comp_note: 15 past closes since Aug 28 · median $350
-- platform: musick
-  title: 'Lot #6001: Smith & Wesson M&P 45 Shield .45 ACP Pistol, 3.3" Barrel, Black,
-    Serial HRR5268 (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/947/lot/533751/Smith-Wesson-M-P-45-Shield-45-ACP-Pistol-3-3-Barrel-Black-Serial-HRR5268-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F947
-  image_url: https://bid.musickauction.com/images/lot/3178/3178458_m.jpg?ts=1793837071
-  current_bid: 185
-  num_bids: 19
-  close_time: null
-  auction_ends_at: '2026-11-19T03:47:59Z'
-  category: Firearms
-  description: 'Asking bid $190 · Time left: 6h 41m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 10
-  comp_median: 285
-  comp_wavg: 324
-  comp_low: 236
-  comp_high: 360
-  comp_30d: 285
-  comp_90d: 300
-  comp_span_days: 110
-  comp_note: 10 past closes since Jul 31 · median $285
-- platform: musick
-  title: 'Lot #910: 2008 GMC YUKON XL - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534437/2008-GMC-YUKON-XL-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F948
-  image_url: https://bid.musickauction.com/images/lot/3181/3181997_m.jpg?ts=1793995345
-  current_bid: 500
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-20T00:59:59Z'
-  category: Vehicles
-  description: 'Asking bid $550 · Time left: 1d 3h 53m 36s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5 MILE TEST DRIVE: Runs, Drives, & Shifts. Weird Noise From Front
-    End When Accelerating, 5.3L 8 Cylinder, 4x4, Automatic Transmission, Cold AC,
-    Third Row Seating, Adjustable Pedals, Black Leather Seats.'
-  vin: 1GKFK163X8J106610
-  mileage: 224483
-  title_status: Clear
-  year: 2008
-  make: GMC
-  model: Yukon
-  color: White
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  clean_title: true
-  miles_per_year: 12471
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 3
-  comp_median: 2150
-  comp_wavg: 2282
-  comp_low: 1925
-  comp_high: 2325
-  comp_30d: 2150
-  comp_90d: 2150
-  comp_span_days: 78
-  comp_note: 3 past closes since Aug 31 · median $2,150
-- platform: musick
-  title: 'Lot #111: 2013 FORD FOCUS - FORD SYNC-STYLE AUDIO!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538004/2013-FORD-FOCUS-FORD-SYNC-STYLE-AUDIO?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204135_m.jpg?ts=1794876630
-  current_bid: 500
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Vehicles
-  description: 'Asking bid $550 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE: Starts Drives Shifts,2.0L , 4 Cylinders , Front-Wheel
-    Drive (FWD) , Black Leather-Trimmed Seating , Infotainment: Ford SYNC-Style Audio
-    System, AM/FM Radio, SiriusXM Controls, Media & Phone Connectivity , Climate Control:
-    Manual A/C & Heating , Power Windows, Power Door Locks, Center Console, Cup Holders
-    & Rear Defroster , Tires: 215/50ZR17- Alloy Wheels. BUYERS ARE STRONGLY ENCOURAGED
-    TO PREVIEW AND INSPECT THE VEHICLE IN PERSON BEFORE BIDDING.'
-  vin: 1FADP3F28DL336660
-  mileage: 170426
-  title_status: Clear
-  year: 2013
-  make: FORD
-  model: FOCUS
-  color: BLACK
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: FWD
-  body: null
-  clean_title: true
-  miles_per_year: 13110
-  car_candidate: false
-  watchlist_matches:
-  - Commuter Car (for sister)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 4
-  comp_median: 1975
-  comp_wavg: 2027
-  comp_low: 1338
-  comp_high: 2588
-  comp_30d: 1500
-  comp_90d: 1975
-  comp_span_days: 50
-  comp_note: 4 past closes since Sep 28 · median $1,975
-- platform: musick
-  title: 'Lot #401: 2018 NISSAN ARMADA - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538773/2018-NISSAN-ARMADA-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209272_m.jpg?ts=1794961517
-  current_bid: 500
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T20:00:00Z'
-  category: Vehicles
-  description: 'Asking bid $550 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 5.6L 8 Cylinder,
-    4x4, Automatic Transmission, Various Drive Modes, Grey Cloth Interior, Good Tires,
-    Reverse Camera, Runs Good.'
-  vin: JN8AY2NC8J9550222
-  mileage: 162673
-  title_status: Clear
-  year: 2018
-  make: Nissan
-  model: Armada
-  color: Blue
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  clean_title: true
-  miles_per_year: 20334
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 2
-  comp_median: 4950
-  comp_wavg: 4700
-  comp_low: 4425
-  comp_high: 5475
-  comp_30d: 3900
-  comp_90d: 4950
-  comp_span_days: 56
-  comp_note: 2 past closes since Sep 22 · median $4,950
-- platform: musick
-  title: 'Lot #417: 2010 NISSAN FRONTIER - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538789/2010-NISSAN-FRONTIER-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209701_m.jpg?ts=1794963557
-  current_bid: 500
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Asking bid $550 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 4.0L 6 Cylinder,
-    4x4, Automatic Transmission, Grey Cloth Interior, Cold AC, Fuel Rims, Unable To
-    Clearly Identify Mileage.'
-  vin: 1N6AD0FV0AC400178
-  mileage: 178932
-  title_status: Clear
-  year: 2010
-  make: NISSAN
-  model: FRONTIER
-  color: Black
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 11183
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 2
-  comp_median: 4550
-  comp_wavg: 4524
-  comp_low: 4475
-  comp_high: 4625
-  comp_30d: 4400
-  comp_90d: 4550
-  comp_span_days: 56
-  comp_note: 2 past closes since Sep 22 · median $4,550
-- platform: musick
-  title: 'Lot #426: 2003 CHEVROLET AVALANCHE: 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538798/2003-CHEVROLET-AVALANCHE-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209984_m.jpg?ts=1794964984
-  current_bid: 500
-  num_bids: 1
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Asking bid $550 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5 MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 5.3L 8 Cylinder,
-    4x4, Automatic Transmission, Decent Tires, Trailer Brake, Grey Cloth Interior.'
-  vin: 3GNEK13T93G178735
-  mileage: 289088
-  title_status: Clear
-  year: 2003
-  make: CHEVY
-  model: AVALANCHE
-  color: WHITE
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 12569
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #908: 2011 GMC YUKON - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534435/2011-GMC-YUKON-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F948
-  image_url: https://bid.musickauction.com/images/lot/3181/3181940_m.jpg?ts=1793995108
-  current_bid: 550
-  num_bids: 2
-  close_time: null
-  auction_ends_at: '2026-11-20T01:00:00Z'
-  category: Vehicles
-  description: 'Asking bid $600 · Time left: 1d 3h 53m 36s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: Runs, Drives, & Shifts, Has Transmission Issues. 5.3L 8 Cylinder,
-    4x4, Automatic Transmission, Cold AC, Aftermarket Wheels, Exhaust & Suspension
-    Modifications, Adjustable Pedals.
-  vin: 1GKS2CE06BR214832
-  mileage: 196735
-  title_status: Clear
-  year: 2011
-  make: GMC
-  model: Yukon
-  color: White
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  clean_title: true
-  miles_per_year: 13116
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 3
-  comp_median: 2150
-  comp_wavg: 2172
-  comp_low: 2075
-  comp_high: 2325
-  comp_30d: 2075
-  comp_90d: 2150
-  comp_span_days: 36
-  comp_note: 3 past closes since Oct 12 · median $2,150
-- platform: musick
-  title: 'Lot #101: 2008 GMC SIERRA 1500 SLE - AFTERMARKET JVC MULTIMEDIA RECEIVER!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/537993/2008-GMC-SIERRA-1500-SLE-AFTERMARKET-JVC-MULTIMEDIA-RECEIVER?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3203/3203746_m.jpg?ts=1794874823
-  current_bid: 550
-  num_bids: 2
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Vehicles
-  description: 'Asking bid $600 · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE:STARTS DRIVES & SHIFTS ,5.3L - V8 – 8 cylinders,
-    4WD / 4x4 with automatic 4WD selection, Full-size, 4-door Crew Cab pickup, Gray
-    cloth seating, Aftermarket JVC touchscreen multimedia receiver . Tinted rear and
-    side glass . Tires: 285/55R20 all-terrain-style -Alloy wheels. PREVIEW / PHYSICAL
-    INSPECTION IS STRONGLY RECOMMENDED BEFORE BIDDING.'
-  vin: 3GTEK13JX8G254896
-  mileage: 207741
-  title_status: Clear
-  year: 2008
-  make: GMC
-  model: SIERRA 1500 SLE
-  color: null
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 11541
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 4
-  comp_median: 9300
-  comp_wavg: 9569
-  comp_low: 8700
-  comp_high: 10225
-  comp_30d: 9100
-  comp_90d: 9300
-  comp_span_days: 83
-  comp_note: 4 past closes since Aug 27 · median $9,300
-- platform: musick
-  title: 'Lot #704: 2014 GMC SIERRA 1500 - TINTED REAR WINDOWS! 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/536469/2014-GMC-SIERRA-1500-TINTED-REAR-WINDOWS-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F951
-  image_url: https://bid.musickauction.com/images/lot/3195/3195482_m.jpg?ts=1794443705
-  current_bid: 550
-  num_bids: 2
-  close_time: null
-  auction_ends_at: '2026-11-24T00:59:59Z'
-  category: Vehicles
-  description: 'Asking bid $600 · Time left: 5d 3h 52m 52s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE:STARTS RUNS & DRIVES .5.3L EcoTec3 V8 Cylinders,
-    4WD, Front Seating: Cloth front seating with a fold-down center armrest/console.
-    Rear Seating: Full-width rear bench seat with three headrests. Seating Material:
-    Gray patterned cloth with matching interior trim. Climate Control: Dual-zone ,
-    GMC Interllink ,Startup screen . Tinted Rear Windows, Rear Trailer Hitch Receiver,
-    TIRE: P265/65R18-Alloy Wheels. TRANSMISSION PROBLEM NOTED – TEST DRIVE NOT COMPLETED
-    During the attempted test drive, a transmission-related problem was observed.
-    Due to this concern, the test drive was discontinued before completion.. PREVIEW
-    / PHYSICAL INSPECTION IS STRONGLY RECOMMENDED BEFORE BIDDING.'
-  vin: 3GTU2UEC7EG207168
-  mileage: 177908
-  title_status: Clear
-  year: 2014
-  make: GMC
-  model: SIERRA 1500
-  color: BROWN
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 14826
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 2
-  comp_median: 7250
-  comp_wavg: 7198
-  comp_low: 7075
-  comp_high: 7425
-  comp_30d: null
-  comp_90d: 7250
-  comp_span_days: 61
-  comp_note: 2 past closes since Sep 18 · median $7,250
-- platform: musick
-  title: 'Lot #420: 2008 FORD F-150 - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538792/2008-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209792_m.jpg?ts=1794964007
-  current_bid: 550
-  num_bids: 2
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Asking bid $600 · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 5.4L 8 Cylinder,
-    4x4, Automatic Transmission, Good Tires, Grey Cloth Interior, Freshly Detailed,
-    AM/FM Radio.'
-  vin: 1FTPX14VX8KD53058
-  mileage: 145765
-  title_status: Clear
-  year: 2008
-  make: Ford
-  model: F-150
-  color: Silver
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 8098
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 14
-  comp_median: 3150
-  comp_wavg: 3069
-  comp_low: 2175
-  comp_high: 3850
-  comp_30d: 3000
-  comp_90d: 3000
-  comp_span_days: 106
-  comp_note: 14 past closes since Aug 3 · median $3,150
-- platform: musick
-  title: 'Lot #6018: Honda EU2000i Inverter Generator, 2000W, 120V, Parallel Ready,
-    45.6 lbs, Gas Powered'
-  url: https://bid.musickauction.com/lot-details/index/catalog/947/lot/533761/Honda-EU2000i-Inverter-Generator-2000W-120V-Parallel-Ready-45-6-lbs-Gas-Powered?url=%2Fauctions%2Fcatalog%2Fid%2F947
-  image_url: https://bid.musickauction.com/images/lot/3178/3178516_m.jpg?ts=1793837321
-  current_bid: 600
-  num_bids: 44
-  close_time: null
-  auction_ends_at: '2026-11-19T03:45:59Z'
-  category: Small Engines & Appliances
-  description: 'Asking bid $650 · Time left: 6h 39m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches: []
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 2
-  comp_median: 500
-  comp_wavg: 592
-  comp_low: 350
-  comp_high: 650
-  comp_30d: 800
-  comp_90d: 500
-  comp_span_days: 49
-  comp_note: 2 past closes since Sep 30 · median $500
-- platform: musick
-  title: 'Lot #702: 2016 FORD F-150 - 4X4! TOUCHSCREEN ENTERMAINMENT!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/536467/2016-FORD-F-150-4X4-TOUCHSCREEN-ENTERMAINMENT?url=%2Fauctions%2Fcatalog%2Fid%2F951
-  image_url: https://bid.musickauction.com/images/lot/3195/3195434_m.jpg?ts=1794443440
-  current_bid: 600
-  num_bids: 4
-  close_time: null
-  auction_ends_at: '2026-11-24T01:00:00Z'
-  category: Vehicles
-  description: 'Asking bid $650 · Time left: 5d 3h 52m 52s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE: Has Hard Time Starting, Does Not Drive, Unknown
-    Transmission Condition, 3.5l 6-Cylinder Engine (Has Major Mechanical Issues, Will
-    Start but Runs Very Rough, Significant Misfire, Gas Pedal Is Unresponsive, Does
-    Not Move Under own Power) Black Interior with Chrome Accents, Black Heated Cloth
-    Seats, Touchscreen Entertainment Center with Bluetooth Audio and Hands Free Phone
-    Calling'
-  vin: 1FTFW1EGXGFC63222
-  mileage: 183589
-  title_status: Clear
-  year: 2016
-  make: Ford
-  model: F-150
-  color: Gray
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 18359
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 20
-  comp_median: 6300
-  comp_wavg: 6874
-  comp_low: 4725
-  comp_high: 8200
-  comp_30d: 7000
-  comp_90d: 6500
-  comp_span_days: 113
-  comp_note: 20 past closes since Jul 27 · median $6,300
-- platform: musick
-  title: 'Lot #709: 1998 FORD RANGER - LOCAL FLEET!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/536474/1998-FORD-RANGER-LOCAL-FLEET?url=%2Fauctions%2Fcatalog%2Fid%2F951
-  image_url: https://bid.musickauction.com/images/lot/3195/3195664_m.jpg?ts=1794444503
-  current_bid: 600
-  num_bids: 3
-  close_time: null
-  auction_ends_at: '2026-11-24T01:00:00Z'
-  category: Vehicles
-  description: 'Asking bid $650 · Time left: 5d 3h 52m 52s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE: Starts Drives Shifts. 2.5L Inline 4-Cylinder,4x2
-    – Rear-Wheel Drive (RWD),Interior Color: Gray, Seating Capacity: 3 Passengers,
-    Seat Configuration: Front Split-Bench-Style Seating with Gray Vinyl-Style Upholstery,
-    Infotainment: Factory-Style Basic AM/FM Radio .Steel Wheels.SHAKES/VIBRATES WHILE
-    IDLING PREVIEW / PHYSICAL INSPECTION IS STRONGLY RECOMMENDED BEFORE BIDDING.'
-  vin: 1FTYR10C7WUB82841
-  mileage: 88347
-  title_status: Clear
-  year: 1998
-  make: FORD
-  model: RANGER
-  color: WHITE
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: RWD
-  body: Trucks
-  clean_title: true
-  miles_per_year: 3155
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 1
-  comp_median: 1100
-  comp_wavg: 1100
-  comp_low: 1100
-  comp_high: 1100
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: 98
-  comp_note: 1 past close since Aug 11 · median $1,100
-- platform: musick
-  title: 'Lot #705: 2009 GMC SIERRA 2500 - DIESEL!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/536470/2009-GMC-SIERRA-2500-DIESEL?url=%2Fauctions%2Fcatalog%2Fid%2F951
-  image_url: https://bid.musickauction.com/images/lot/3195/3195513_m.jpg?ts=1794443807
-  current_bid: 800
-  num_bids: 7
-  close_time: null
-  auction_ends_at: '2026-11-24T00:59:59Z'
-  category: Vehicles
-  description: 'Asking bid $850 · Time left: 5d 3h 52m 52s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE: Starts Drives & Shifts Correctly, Hard Steering,
-    6.6 L , 8 Cylinders, Black Leather Seats, 4x 4 Diesel, Aftermarket Market Stereo
-    Display. Climate Control. Sunroof..'
-  vin: 1GTHK43679F173318
-  mileage: 179795
-  title_status: Clear
-  year: 2009
-  make: GMC
-  model: SIERRA 2500 HD
-  color: BLACK
-  engine: Diesel
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 10576
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 3
-  comp_median: 9100
-  comp_wavg: 9064
-  comp_low: 8300
-  comp_high: 9300
-  comp_30d: 9100
-  comp_90d: 9100
-  comp_span_days: 83
-  comp_note: 3 past closes since Aug 27 · median $9,100
-- platform: musick
-  title: 'Lot #905: 2015 FORD EXPLORER - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534432/2015-FORD-EXPLORER-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F948
-  image_url: https://bid.musickauction.com/images/lot/3181/3181841_m.jpg?ts=1793994616
-  current_bid: 1000
-  num_bids: 12
-  close_time: null
-  auction_ends_at: '2026-11-20T00:59:59Z'
-  category: Vehicles
-  description: 'Asking bid $1,050 · Time left: 1d 3h 53m 36s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 3.5L 6 Cylinder,
-    4x4, Automatic Transmission, Black Cloth Interior, Various Drive Modes, Runs Good'
-  vin: 1FM5K8D84FGA45498
-  mileage: 218096
-  title_status: Clear
-  year: 2015
-  make: Ford
-  model: Explorer
-  color: White
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  clean_title: true
-  miles_per_year: 19827
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 19
-  comp_median: 3700
-  comp_wavg: 4303
-  comp_low: 3150
-  comp_high: 5400
-  comp_30d: 4300
-  comp_90d: 3900
-  comp_span_days: 105
-  comp_note: 19 past closes since Aug 4 · median $3,700
-- platform: musick
-  title: 'Lot #900: 2016 FORD F-350 - 125K MILES'
-  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534427/2016-FORD-F-350-125K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F948
-  image_url: https://bid.musickauction.com/images/lot/3181/3181701_m.jpg?ts=1793994047
-  current_bid: 4100
-  num_bids: 19
-  close_time: null
-  auction_ends_at: '2026-11-20T01:00:00Z'
-  category: Vehicles
-  description: 'Asking bid $4,200 · Time left: 1d 3h 53m 36s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 6.2L 8 Cylinder,
-    RWD, Automatic Transmission, Has AC, Great Condition Box Truck, Good Tires.'
-  vin: 1FDRF3G63GEB68631
-  mileage: 125544
-  title_status: Clear
-  year: 2016
-  make: Ford
-  model: F-350
-  color: White
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 2WD
-  body: Trucks
-  clean_title: true
-  miles_per_year: 12554
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 5
-  comp_median: 7300
-  comp_wavg: 7264
-  comp_low: 6400
-  comp_high: 7700
-  comp_30d: 7700
-  comp_90d: 7300
-  comp_span_days: 56
-  comp_note: 5 past closes since Sep 22 · median $7,300
-- platform: musick
-  title: 'Lot #600: 2017 FORD F-150 - STEERING WHEEL MOUNTED CONTROLS!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/947/lot/533738/2017-FORD-F-150-STEERING-WHEEL-MOUNTED-CONTROLS?url=%2Fauctions%2Fcatalog%2Fid%2F947
-  image_url: https://bid.musickauction.com/images/lot/3178/3178043_m.jpg?ts=1793835153
-  current_bid: 4300
-  num_bids: 38
-  close_time: null
-  auction_ends_at: '2026-11-19T03:51:59Z'
-  category: Vehicles
-  description: 'Asking bid $4,400 · Time left: 6h 45m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE: Starts Drives & Shifts Correctly : 2.7L EcoBoost
-    Twin-Turbocharged V6 Cylinders , 4WD / 4x4, Gray cloth front bucket-style seating
-    ,Gray cloth rear bench seat , Full-size rear passenger compartment , Front center
-    console with armrest and storage , Multi-function steering wheel ,Steering-wheel-mounted
-    controls , Power windows, Power door locks, Power exterior mirrors, Air conditioning
-    Adjustable cabin ventilation , Front and rear head restraints, INFOTAINMENT :
-    Rearview backup camera , AM/FM radio controls, CD/audio source controls , Physical
-    audio control buttons , Volume and tuning knobs, Tinted rear passenger windows
-    , Tire: LT275/65R18-Alloy wheels..'
-  vin: 1FTEW1EP8HFA01809
-  mileage: 213033
-  title_status: Clear
-  year: 2017
-  make: FORD
-  model: F-150
-  color: GRAY
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 23670
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 16
-  comp_median: 6850
-  comp_wavg: 7574
-  comp_low: 5975
-  comp_high: 8400
-  comp_30d: 7000
-  comp_90d: 6800
-  comp_span_days: 110
-  comp_note: 16 past closes since Jul 31 · median $6,850
-- platform: musick
-  title: 'Lot #902: 2022 FORD F-150 - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534429/2022-FORD-F-150-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F948
-  image_url: https://bid.musickauction.com/images/lot/3181/3181753_m.jpg?ts=1793994248
-  current_bid: 6300
-  num_bids: 53
-  close_time: null
-  auction_ends_at: '2026-11-20T00:59:59Z'
-  category: Vehicles
-  description: 'Asking bid $6,400 · Time left: 1d 3h 53m 36s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 3.5L 6 Cylinder,
-    4x4, Automatic Transmission, Black Cloth Interior, Bluetooth, Reverse Camera,
-    Cold AC, Rear Diff Lock, Great Work Truck.'
-  vin: 1FTFW1E8XNFB09602
-  mileage: 134753
-  title_status: Clear
-  year: 2022
-  make: Ford
-  model: F-150
-  color: White
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 33688
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 4
-  comp_median: 11800
-  comp_wavg: 11338
-  comp_low: 10050
-  comp_high: 12700
-  comp_30d: 11200
-  comp_90d: 11800
-  comp_span_days: 82
-  comp_note: 4 past closes since Aug 28 · median $11,800
-- platform: musick
-  title: 'Lot #1002: Hi-Point C9 9mm Luger Semi-Auto Pistol, 3.5" Barrel, 8+1 Capacity,
-    Serial P193182 (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538024/Hi-Point-C9-9mm-Luger-Semi-Auto-Pistol-3-5-Barrel-8-1-Capacity-Serial-P193182-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204715_m.jpg?ts=1794879395
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 4
-  comp_median: 80
-  comp_wavg: 85
-  comp_low: 74
-  comp_high: 96
-  comp_30d: 72
-  comp_90d: 80
-  comp_span_days: 85
-  comp_note: 4 past closes since Aug 24 · median $80
-- platform: musick
-  title: 'Lot #1004: Hi-Point C9 9mm Luger Semi-Auto Pistol, 3.5" Barrel, Serial P10156382,
-    Polymer Frame (No Magazine)'
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538027/Hi-Point-C9-9mm-Luger-Semi-Auto-Pistol-3-5-Barrel-Serial-P10156382-Polymer-Frame-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204740_m.jpg?ts=1794879510
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 6
-  comp_median: 102
-  comp_wavg: 98
-  comp_low: 78
-  comp_high: 128
-  comp_30d: 72
-  comp_90d: 102
-  comp_span_days: 85
-  comp_note: 6 past closes since Aug 24 · median $102
-- platform: musick
-  title: 'Crosman Quest 1000X .177 Cal Air Rifle with Gamo 4x32 Scope, Serial #806X01068'
-  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538028/Crosman-Quest-1000X-177-Cal-Air-Rifle-with-Gamo-4x32-Scope-Serial-806X01068?url=%2Fauctions%2Fcatalog%2Fid%2F953
-  image_url: https://bid.musickauction.com/images/lot/3204/3204748_m.jpg?ts=1794879641
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-23T20:00:00Z'
-  category: Firearms
-  description: 'Starting bid $5 · no bids yet · Time left: 4d 22h 53m 10s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Rifle (deer)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 8
-  comp_median: 20
-  comp_wavg: 23
-  comp_low: 12
-  comp_high: 25
-  comp_30d: 20
-  comp_90d: 20
-  comp_span_days: 99
-  comp_note: 8 past closes since Aug 10 · median $20
 - platform: musick
   title: 'Lot #1009: 1943 Lincoln Steel Wheat Penny, MS69 Grade (Uncertified), Encapsulated'
   url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538037/1943-Lincoln-Steel-Wheat-Penny-MS69-Grade-Uncertified-Encapsulated?url=%2Fauctions%2Fcatalog%2Fid%2F953
   image_url: https://bid.musickauction.com/images/lot/3204/3204817_m.jpg?ts=1794879916
-  current_bid: null
-  num_bids: 0
+  current_bid: 11
+  num_bids: 8
   close_time: null
   auction_ends_at: '2026-11-23T20:00:00Z'
   category: Vehicles
-  description: 'Starting bid $5 · no bids yet · Time left: 4d 22h 53m 10s'
+  description: 'Asking bid $12 · Time left: 4d 12h 41m 25s'
   agency: Musick Auction Co. (Meridian, ID)
   condition_text: '1943 Lincoln Steel Wheat Penny, MS69 Grade (Uncertified), Encapsulated,
     2.70 grams (0.095 ounces), 19.05 mm (0.75 inches) diameter, zinc-coated steel
@@ -1950,6 +271,7 @@ lots:
   car_candidate: false
   watchlist_matches:
   - Old Coins
+  - Classic Project (<=10k)
   estimated_value_low: null
   estimated_value_high: null
   estimated_value_mid: null
@@ -1960,7 +282,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-18'
+  fetched_at: '2026-11-19'
   comp_n: 12
   comp_median: 10
   comp_wavg: 15
@@ -1968,475 +290,20 @@ lots:
   comp_high: 16
   comp_30d: 31
   comp_90d: 10
-  comp_span_days: 77
+  comp_span_days: 78
   comp_note: 12 past closes since Sep 1 · median $10
 - platform: musick
-  title: 2009 CHEVROLET SILVERADO - LOCAL FLEET!
-  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/538724/2009-CHEVROLET-SILVERADO-LOCAL-FLEET?url=%2Fauctions%2Fcatalog%2Fid%2F951
-  image_url: https://bid.musickauction.com/images/lot/3208/3208730_m.jpg?ts=1794953072
-  current_bid: null
-  num_bids: 0
+  title: Federal Premium Force X2 12 Gauge 2-3/4" 00 Buckshot 1245 fps 9 Pellet Shotgun
+    Shells - 42 Rounds
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538042/Federal-Premium-Force-X2-12-Gauge-2-3-4-00-Buckshot-1245-fps-9-Pellet-Shotgun-Shells-42-Rounds?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204841_m.jpg?ts=1794879993
+  current_bid: 21
+  num_bids: 5
   close_time: null
-  auction_ends_at: '2026-11-24T01:00:00Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 3h 52m 52s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, and Shifts Correctly. 6.0 8-cylinder
-    Vortec Gas Engine. Has a Hydraulic Lift gate. Has Cruise Control, Tow Package,
-    and Good All-terrain Tires'
-  vin: 1GCHK44K29F181130
-  mileage: 226068
-  title_status: Clear
-  year: 2009
-  make: CHEVROLET
-  model: SILVERADO
-  color: WHITE
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: Trucks
-  clean_title: true
-  miles_per_year: 13298
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 8
-  comp_median: 5550
-  comp_wavg: 5025
-  comp_low: 4475
-  comp_high: 5925
-  comp_30d: 5900
-  comp_90d: 5900
-  comp_span_days: 98
-  comp_note: 8 past closes since Aug 11 · median $5,550
-- platform: musick
-  title: 2007 FORD F-150 - LOCAL FLEET!
-  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/538725/2007-FORD-F-150-LOCAL-FLEET?url=%2Fauctions%2Fcatalog%2Fid%2F951
-  image_url: https://bid.musickauction.com/images/lot/3208/3208762_m.jpg?ts=1794953221
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T01:00:00Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 3h 52m 52s'
-  agency: Musick Auction Co. (Meridian, ID)
-  condition_text: '5-MILE TEST DRIVE: Starts, Runs, Drives, And Shifts: (Rough Idle/Rough
-    Exhaust-type condition that appears to come from the front/engine area, 4.2L V6
-    Cylinders .Drivetrain: Rear-Wheel Drive (4x2 / RWD) XL / Base work-truck configuration,
-    INFOTAINMENT:AM/FM Stereo ,Roof-mounted light bar, Aftermarket/equipment mounting
-    hardware, Accessories/electronics have not all been tested, Gray Cloth Seat ,Tire
-    P235/70R17'
-  vin: 1FTRF12237KD62607
-  mileage: 1545442
-  title_status: Clear
-  year: 2007
-  make: FORD
-  model: F-150
-  color: WaHITE
-  engine: Gas
-  cylinders: '6'
-  transmission: Auto
-  drivetrain: RWD
-  body: Trucks
-  clean_title: true
-  miles_per_year: 81339
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 15
-  comp_median: 2800
-  comp_wavg: 2901
-  comp_low: 1700
-  comp_high: 3550
-  comp_30d: 3000
-  comp_90d: 3000
-  comp_span_days: 98
-  comp_note: 15 past closes since Aug 11 · median $2,800
-- platform: musick
-  title: 'Lot #400: 2019 GMC YUKON XL - 4X4 - NEW TRANSMISSION!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538772/2019-GMC-YUKON-XL-4X4-NEW-TRANSMISSION?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209245_m.jpg?ts=1794961352
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T20:00:00Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: New Transmission with Warranty.'
-  vin: 1GKS2GKCXKR170890
-  mileage: 162580
-  title_status: Clear
-  year: 2019
-  make: GMC
-  model: Yukon XL
-  color: Black
-  engine: Gas
-  cylinders: '8'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  clean_title: true
-  miles_per_year: 23226
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 3
-  comp_median: 5300
-  comp_wavg: 5657
-  comp_low: 5150
-  comp_high: 5800
-  comp_30d: 5650
-  comp_90d: 5300
-  comp_span_days: 43
-  comp_note: 3 past closes since Oct 5 · median $5,300
-- platform: musick
-  title: 'Lot #403: 2016 NISSAN VERSA - 110K MILES'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538775/2016-NISSAN-VERSA-110K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209335_m.jpg?ts=1794961851
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 4 Cylinder,
-    FWD, Automatic Transmission, Good Tires, AM/FM Radio, Clean Interior.'
-  vin: N1CE2CP1GL3653999
-  mileage: 110813
-  title_status: Clear
-  year: 2016
-  make: Nissan
-  model: Versa
-  color: Black
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: FWD
-  body: Sedans
-  clean_title: true
-  miles_per_year: 11081
-  car_candidate: true
-  watchlist_matches:
-  - Commuter Car (for sister)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 2
-  comp_median: 1950
-  comp_wavg: 1967
-  comp_low: 1700
-  comp_high: 2200
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: 112
-  comp_note: 2 past closes since Jul 28 · median $1,950
-- platform: musick
-  title: 'Lot #407: 2015 HYUNDAI ACCENT - 95K MILES'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538779/2015-HYUNDAI-ACCENT-95K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209456_m.jpg?ts=1794962455
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts, Loud Knock From Engine
-    Bay, 1.6L 4 Cylinder, FWD, Automatic Transmission, Grey Cloth Interior, Good Tires,
-    New Ignition Coils In Vehicle.'
-  vin: KMHCU4AEXFU806072
-  mileage: 95365
-  title_status: Clear
-  year: 2015
-  make: Hyundai
-  model: Accent
-  color: White
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: FWD
-  body: Sedans
-  clean_title: true
-  miles_per_year: 8670
-  car_candidate: true
-  watchlist_matches:
-  - Commuter Car (for sister)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 2
-  comp_median: 2675
-  comp_wavg: 2649
-  comp_low: 2512
-  comp_high: 2838
-  comp_30d: 2350
-  comp_90d: 2675
-  comp_span_days: 42
-  comp_note: 2 past closes since Oct 6 · median $2,675
-- platform: musick
-  title: 'Lot #413: 2013 NISSAN SENTRA - RUNS WELL'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538785/2013-NISSAN-SENTRA-RUNS-WELL?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209611_m.jpg?ts=1794963172
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 1.8L 4 Cylinder,
-    FWD, Automatic Transmission, Black Cloth Interior, Good Tires, Good MPG!'
-  vin: 3N1AB7AP4DL617223
-  mileage: 186026
-  title_status: Clear
-  year: 2013
-  make: Nissasn
-  model: Sentra
-  color: Gray
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: FWD
-  body: Sedans
-  clean_title: true
-  miles_per_year: 14310
-  car_candidate: false
-  watchlist_matches:
-  - Commuter Car (for sister)
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 2
-  comp_median: 2200
-  comp_wavg: 2308
-  comp_low: 1650
-  comp_high: 2750
-  comp_30d: 3300
-  comp_90d: 3300
-  comp_span_days: 92
-  comp_note: 2 past closes since Aug 17 · median $2,200
-- platform: musick
-  title: 'Lot #416: 2011 KIA SPORTAGE - 4X4!!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538788/2011-KIA-SPORTAGE-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209672_m.jpg?ts=1794963398
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 2.4L 4 Cylinder,
-    4x4, Automatic Transmission, Manual Shift Mode, Black Leather Interior, Heated
-    Seats, Good Tires, Cold AC, Runs Good, Exhaust Sounds Different Than It Should.'
-  vin: KNDPCCA29B7107355
-  mileage: 152339
-  title_status: Clear
-  year: 2011
-  make: Kia
-  model: Sportage
-  color: Blue
-  engine: Gas
-  cylinders: '4'
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  clean_title: true
-  miles_per_year: 10156
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 1
-  comp_median: 2050
-  comp_wavg: 2050
-  comp_low: 2050
-  comp_high: 2050
-  comp_30d: null
-  comp_90d: 2050
-  comp_span_days: 49
-  comp_note: 1 past close since Sep 29 · median $2,050
-- platform: musick
-  title: 'Lot #419: 2008 NISSAN ARMADA - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538791/2008-NISSAN-ARMADA-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3209/3209759_m.jpg?ts=1794963850
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 5.6L 8 Cylinder,
-    4x4, Automatic Transmission, Good Tires, Third Row, Leather Seats, AM/FM Radio.'
-  vin: 5N1AA08C88N612876
-  mileage: 138849
-  title_status: Clear
-  year: 2008
-  make: Nissan
-  model: Armada
-  color: Gray
-  engine: Gas
-  cylinders: null
-  transmission: Auto
-  drivetrain: 4x4
-  body: SUVs
-  clean_title: true
-  miles_per_year: 7714
-  car_candidate: true
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #427: 2003 PONTIAC AZTEK SRV - 4X4!'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538799/2003-PONTIAC-AZTEK-SRV-4X4?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210014_m.jpg?ts=1794965053
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
-  category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
-  condition_text: '5-MILE TEST DRIVE:'
-  vin: 3G7DB03E63S584340
-  mileage: null
-  title_status: Clear
-  year: 2003
-  make: Pontiac
-  model: Aztek
-  color: White
-  engine: Gas
-  cylinders: '6'
-  transmission: Manual
-  drivetrain: 4x4
-  body: SUVs
-  clean_title: true
-  miles_per_year: null
-  car_candidate: false
-  watchlist_matches:
-  - Trucks & Off-Road/4x4
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #4000: Winchester Model 120 Ranger 12 Gauge Pump-Action Shotgun, 28"
-    Barrel, Winchoke System'
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538800/Winchester-Model-120-Ranger-12-Gauge-Pump-Action-Shotgun-28-Barrel-Winchoke-System?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210015_m.jpg?ts=1794965054
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
+  auction_ends_at: '2026-11-23T20:00:00Z'
   category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
+  description: 'Asking bid $22 · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Shotgun (birds)
   estimated_value_low: null
@@ -2449,27 +316,28 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-18'
-  comp_n: 17
-  comp_median: 280
-  comp_wavg: 320
-  comp_low: 240
-  comp_high: 370
-  comp_30d: 300
-  comp_90d: 265
-  comp_span_days: 110
-  comp_note: 17 past closes since Jul 31 · median $280
+  fetched_at: '2026-11-19'
+  comp_n: 37
+  comp_median: 31
+  comp_wavg: 30
+  comp_low: 25
+  comp_high: 37
+  comp_30d: 31
+  comp_90d: 31
+  comp_span_days: 111
+  comp_note: 37 past closes since Jul 31 · median $31
 - platform: musick
-  title: Jennings J-22 Semi-Automatic Pistol, .22 LR, 2.5" Barrel
-  url: https://bid.musickauction.com/lot-details/index/catalog/954/lot/538807/Jennings-J-22-Semi-Automatic-Pistol-22-LR-2-5-Barrel?url=%2Fauctions%2Fcatalog%2Fid%2F954
-  image_url: https://bid.musickauction.com/images/lot/3210/3210079_m.jpg?ts=1794965338
-  current_bid: null
-  num_bids: 0
+  title: 'Lot #1000: Jimenez Arms J.A. Nine 9mm Pistol, Chrome Finish, SN 345164,
+    3.75" Barrel, 12+1 Capacity (No Magazine)'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538021/Jimenez-Arms-J-A-Nine-9mm-Pistol-Chrome-Finish-SN-345164-3-75-Barrel-12-1-Capacity-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204688_m.jpg?ts=1794879272
+  current_bid: 50
+  num_bids: 1
   close_time: null
-  auction_ends_at: '2026-11-24T19:59:59Z'
+  auction_ends_at: '2026-11-23T20:00:00Z'
   category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 5d 22h 52m 21s'
-  agency: Musick Auction Co. (Nampa, ID)
+  description: 'Asking bid $55 · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
   estimated_value_low: null
@@ -2482,13 +350,694 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-18'
+  fetched_at: '2026-11-19'
+  comp_n: 3
+  comp_median: 100
+  comp_wavg: 88
+  comp_low: 80
+  comp_high: 105
+  comp_30d: 80
+  comp_90d: 80
+  comp_span_days: 107
+  comp_note: 3 past closes since Aug 3 · median $100
+- platform: musick
+  title: 'Lot #1001: Kel-Tec PF-9 9mm Luger Compact Semi-Auto Pistol, Serial RKB03,
+    Made in USA, 7+1 Capacity (No Magazine)'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538023/Kel-Tec-PF-9-9mm-Luger-Compact-Semi-Auto-Pistol-Serial-RKB03-Made-in-USA-7-1-Capacity-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204707_m.jpg?ts=1794879391
+  current_bid: 55
+  num_bids: 2
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $60 · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
   comp_n: 4
-  comp_median: 108
-  comp_wavg: 111
-  comp_low: 104
-  comp_high: 120
-  comp_30d: 105
-  comp_90d: 105
-  comp_span_days: 99
-  comp_note: 4 past closes since Aug 10 · median $108
+  comp_median: 360
+  comp_wavg: 302
+  comp_low: 281
+  comp_high: 420
+  comp_30d: 165
+  comp_90d: 400
+  comp_span_days: 111
+  comp_note: 4 past closes since Jul 31 · median $360
+- platform: musick
+  title: 'Lot #1003: Ruger LCP .380 ACP Semi-Automatic Pistol, Serial Number 379014840
+    (No Magazine)'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538026/Ruger-LCP-380-ACP-Semi-Automatic-Pistol-Serial-Number-379014840-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204731_m.jpg?ts=1794879505
+  current_bid: 55
+  num_bids: 2
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $60 · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 7
+  comp_median: 145
+  comp_wavg: 132
+  comp_low: 125
+  comp_high: 170
+  comp_30d: 110
+  comp_90d: 140
+  comp_span_days: 111
+  comp_note: 7 past closes since Jul 31 · median $145
+- platform: musick
+  title: 'Lot #9002: Dreame H12 Pro Cordless Wet and Dry Vacuum, 35 min Runtime, 0.9L
+    Water Tank, Self-Cleaning'
+  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534441/Dreame-H12-Pro-Cordless-Wet-and-Dry-Vacuum-35-min-Runtime-0-9L-Water-Tank-Self-Cleaning?url=%2Fauctions%2Fcatalog%2Fid%2F948
+  image_url: https://bid.musickauction.com/images/lot/3182/3182047_m.jpg?ts=1793995620
+  current_bid: 95
+  num_bids: 42
+  close_time: null
+  auction_ends_at: '2026-11-20T00:59:59Z'
+  category: Small Engines & Appliances
+  description: 'Asking bid $100 · Time left: 17h 41m 56s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches: []
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 2
+  comp_median: 95
+  comp_wavg: 95
+  comp_low: 92
+  comp_high: 98
+  comp_30d: 95
+  comp_90d: 95
+  comp_span_days: 22
+  comp_note: 2 past closes since Oct 28 · median $95
+- platform: musick
+  title: Winchester Model 1200 12 Gauge Pump-Action Shotgun w/ Soft Case
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538025/Winchester-Model-1200-12-Gauge-Pump-Action-Shotgun-w-Soft-Case?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204722_m.jpg?ts=1794879500
+  current_bid: 100
+  num_bids: 6
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $105 · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Shotgun (birds)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 17
+  comp_median: 280
+  comp_wavg: 317
+  comp_low: 240
+  comp_high: 370
+  comp_30d: 330
+  comp_90d: 265
+  comp_span_days: 111
+  comp_note: 17 past closes since Jul 31 · median $280
+- platform: musick
+  title: Remington 700 7mm Rem Mag Bolt-Action Rifle, Universal Scope, Serial 381676,
+    Wood Stock, Case
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538022/Remington-700-7mm-Rem-Mag-Bolt-Action-Rifle-Universal-Scope-Serial-381676-Wood-Stock-Case?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204695_m.jpg?ts=1794879275
+  current_bid: 245
+  num_bids: 17
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $250 · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Rifle (deer)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 15
+  comp_median: 350
+  comp_wavg: 390
+  comp_low: 118
+  comp_high: 435
+  comp_30d: 390
+  comp_90d: 350
+  comp_span_days: 83
+  comp_note: 15 past closes since Aug 28 · median $350
+- platform: musick
+  title: 'Lot #104: 2015 VOLKSWAGEN PASSAT TDI - HEATED FRONT SEATS!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/537996/2015-VOLKSWAGEN-PASSAT-TDI-HEATED-FRONT-SEATS?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3203/3203854_m.jpg?ts=1794875328
+  current_bid: 500
+  num_bids: 1
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Vehicles
+  description: 'Asking bid $550 · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  condition_text: '5-MILE TEST DRIVE: STARTS RUNS & SHIFTS . 2.0L TURBO DIESEL – 4
+    CYLINDER. Front-Wheel Drive (FWD). Comfortable five-passenger cabin featuring
+    two-tone seating, front center armrest, power-adjustable driver''s seat, heated
+    front seats, factory touchscreen entertainment system, AM/FM/Satellite radio controls,
+    Bluetooth phone interface controls, rearview backup camera with parking guidelines,
+    dashboard analog clock, air conditioning, and automatic DSG gear selector with
+    Sport and manual shift modes. Sunroof . Tire Size: 235/45R18- Alloy Wheels . PREVIEW
+    / PHYSICAL INSPECTION IS STRONGLY RECOMMENDED BEFORE BIDDING.'
+  vin: 1VWBV7A36FC066343
+  mileage: 131907
+  title_status: Clear
+  year: 2015
+  make: VOLKSWAGEN
+  model: PASSAT TDI SE
+  color: SILVER
+  engine: Diesel
+  cylinders: '4'
+  transmission: Auto
+  drivetrain: FWD
+  body: Sedans
+  clean_title: true
+  miles_per_year: 11992
+  car_candidate: true
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 3
+  comp_median: 1450
+  comp_wavg: 2193
+  comp_low: 1300
+  comp_high: 2275
+  comp_30d: 1300
+  comp_90d: 1450
+  comp_span_days: 58
+  comp_note: 3 past closes since Sep 21 · median $1,450
+- platform: musick
+  title: 'Lot #710: 1989 DODGE D-350 - 62K MILES! TOW ARM FUNCTIONS!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/951/lot/536475/1989-DODGE-D-350-62K-MILES-TOW-ARM-FUNCTIONS?url=%2Fauctions%2Fcatalog%2Fid%2F951
+  image_url: https://bid.musickauction.com/images/lot/3195/3195691_m.jpg?ts=1794444665
+  current_bid: 600
+  num_bids: 3
+  close_time: null
+  auction_ends_at: '2026-11-24T01:00:00Z'
+  category: Vehicles
+  description: 'Asking bid $650 · Time left: 4d 17h 40m 44s'
+  agency: Musick Auction Co. (Meridian, ID)
+  condition_text: '5-MILE TEST DRIVE: Starts, Drives, Transmission Shifts Correctly
+    5.9L 8 Cylinder RWD 4 Speed Manual Transmission With Low Gear Tow Arm Functions
+    Amber Light Bar Functions Red Cloth Interior'
+  vin: 1B6ME3659KS048597
+  mileage: 62562
+  title_status: Clear
+  year: 1989
+  make: DODGE
+  model: D-350
+  color: BROWN
+  engine: Gas
+  cylinders: '8'
+  transmission: Manual
+  drivetrain: RWD
+  body: Trucks
+  clean_title: true
+  miles_per_year: 1691
+  car_candidate: true
+  watchlist_matches:
+  - Classic Project (<=10k)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 1
+  comp_median: 2050
+  comp_wavg: 2050
+  comp_low: 2050
+  comp_high: 2050
+  comp_30d: null
+  comp_90d: 2050
+  comp_span_days: 42
+  comp_note: 1 past close since Oct 8 · median $2,050
+- platform: musick
+  title: 'Lot #103: 2016 FORD FUSION SE - DARK TINTED WINDOWS!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/537995/2016-FORD-FUSION-SE-DARK-TINTED-WINDOWS?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3203/3203817_m.jpg?ts=1794875068
+  current_bid: 850
+  num_bids: 4
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Vehicles
+  description: 'Asking bid $900 · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  condition_text: '5-MILE TEST DRIVE: Starts Runs & Shifts, 2.5 L , 4 Cylinders ,
+    Front-wheel drive (FWD). Tan Upholstery with patterned seat inserts. Power-adjustable
+    driver''s seat controls. Power window controls. Power door-lock controls. Volume
+    and tuning knobs. Manual climate-control interface. Air conditioning with fan-speed
+    and temperature adjustment.. INFOTAINMENT : AM/FM radio. CD audio functionality.Dark-Tinted
+    Windows. Tires : 215/55R17 - Alloy Wheels. DAMAGED OR BROKEN ENGINE/MOTOR MOUNT
+    – SHUDDERING/JERKING DURING VEHICLE MOVEMENT. BUYERS ARE ENCOURAGED TO INSPECT
+    BEFORE BIDDING.SOLD AS- IS.'
+  vin: 3FA6P0H77GR367257
+  mileage: 109709
+  title_status: Clear
+  year: 2016
+  make: FORD
+  model: FUSION SE
+  color: WHITE
+  engine: Gas
+  cylinders: '4'
+  transmission: Auto
+  drivetrain: null
+  body: null
+  clean_title: true
+  miles_per_year: 10971
+  car_candidate: true
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 5
+  comp_median: 2000
+  comp_wavg: 2516
+  comp_low: 1900
+  comp_high: 3000
+  comp_30d: 2000
+  comp_90d: 2000
+  comp_span_days: 100
+  comp_note: 5 past closes since Aug 10 · median $2,000
+- platform: musick
+  title: 'Lot #904: 2016 CHEVROLET MALIBU - FWD- BLUETOOTH!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/948/lot/534431/2016-CHEVROLET-MALIBU-FWD-BLUETOOTH?url=%2Fauctions%2Fcatalog%2Fid%2F948
+  image_url: https://bid.musickauction.com/images/lot/3181/3181812_m.jpg?ts=1793994540
+  current_bid: 1550
+  num_bids: 16
+  close_time: null
+  auction_ends_at: '2026-11-20T01:00:00Z'
+  category: Vehicles
+  description: 'Asking bid $1,600 · Time left: 17h 41m 56s'
+  agency: Musick Auction Co. (Nampa, ID)
+  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 2.5L 4 Cylinder,
+    FWD, Automatic Transmission, Black Cloth Interior, Bluetooth, Great Condition
+    Tires, Manual Shift Mode.'
+  vin: 1G11C5SA7GF160830
+  mileage: 163109
+  title_status: Clear
+  year: 2016
+  make: Chevrolet
+  model: Malibu
+  color: White
+  engine: Gas
+  cylinders: '4'
+  transmission: Auto
+  drivetrain: FWD
+  body: Sedans
+  clean_title: true
+  miles_per_year: 16311
+  car_candidate: false
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 5
+  comp_median: 2450
+  comp_wavg: 2654
+  comp_low: 1950
+  comp_high: 2600
+  comp_30d: 1950
+  comp_90d: 2450
+  comp_span_days: 79
+  comp_note: 5 past closes since Aug 31 · median $2,450
+- platform: musick
+  title: 'Lot #110: 2013 CHEVROLET IMPALA - AFTERMARKET TOUCHSCREEN INFOTAINMENT CENTER!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538003/2013-CHEVROLET-IMPALA-AFTERMARKET-TOUCHSCREEN-INFOTAINMENT-CENTER?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204100_m.jpg?ts=1794876521
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Vehicles
+  description: 'Starting bid $500 · no bids yet · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts, 3.6L V6 Cylinders ,Front-Wheel
+    Drive (FWD),Aftermarket JVC Arsenal Touchscreen Multimedia Receiver, Bluetooth-Enabled
+    Audio System, Detachable Anti-Theft Stereo Faceplate, Power-Adjustable Driver''s
+    Seat, Gray Cloth Bucket Seats with Front Center Armrest, Woodgrain-Style Interior
+    Dashboard Trim, Air Conditioning with Rotary Climate Controls, Dual Exhaust Outlets,Tires:P225/55R17
+    All-Season-Alloy Wheels… PREVIEW / PHYSICAL INSPECTION IS STRONGLY RECOMMENDED
+    BEFORE BIDDING.'
+  vin: 2G1WG5E32D1217414
+  mileage: 178537
+  title_status: null
+  year: 2013
+  make: CHEVROLET
+  model: IMPALA
+  color: SILVER
+  engine: Gas
+  cylinders: '6'
+  transmission: Auto
+  drivetrain: FWD
+  body: Sedans
+  clean_title: false
+  miles_per_year: 13734
+  car_candidate: false
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 6
+  comp_median: 2600
+  comp_wavg: 2784
+  comp_low: 2525
+  comp_high: 3500
+  comp_30d: 2550
+  comp_90d: 2600
+  comp_span_days: 114
+  comp_note: 6 past closes since Jul 27 · median $2,600
+- platform: musick
+  title: 'Lot #112: 2013 SUBARU OUTBACK - TINTED REAR WINDOWS'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538005/2013-SUBARU-OUTBACK-TINTED-REAR-WINDOWS?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204171_m.jpg?ts=1794876863
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Vehicles
+  description: 'Starting bid $500 · no bids yet · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  condition_text: '5-Mile Test Drive: Starts Runs Drives Shifts, 2.5 L , 4 Cylinders,
+    Cloth seat upholstery. Five-passenger seating configuration, Front bucket seats,
+    Rear three-passenger bench seat, Reclining rear seatbacks, Power window controls,
+    Power door locks, Air conditioning and heating controls, INFOTAINMENT: AM/FM radio
+    , In-dash CD player, Roof rails for compatible cargo accessories, Rear Tinted
+    Windows ,Tire : P225/60R17- Aluminum Alloy Wheels. Engine Misfire. PREVIEW / PHYSICAL
+    INSPECTION IS STRONGLY RECOMMENDED BEFORE BIDDING.'
+  vin: 4S4BRBCC5D3276867
+  mileage: 153593
+  title_status: Clear
+  year: 2013
+  make: SUBARU
+  model: OUTBACK PREMIUM
+  color: SILVER
+  engine: Gas
+  cylinders: '4'
+  transmission: Auto
+  drivetrain: AWD
+  body: SUVs
+  clean_title: true
+  miles_per_year: 11815
+  car_candidate: false
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 7
+  comp_median: 1850
+  comp_wavg: 1812
+  comp_low: 1625
+  comp_high: 2700
+  comp_30d: 1600
+  comp_90d: 1650
+  comp_span_days: 114
+  comp_note: 7 past closes since Jul 27 · median $1,850
+- platform: musick
+  title: 'Lot #118: 2010 CHEVROLET IMPALA - 127K MILES!'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538011/2010-CHEVROLET-IMPALA-127K-MILES?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204407_m.jpg?ts=1794877948
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Vehicles
+  description: 'Starting bid $500 · no bids yet · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  condition_text: '5-MILE TEST DRIVE: Runs Drives & Shifts3.5L V6 Cylinders, Front-Wheel
+    Drive (FWD) ,Cloth Light Neutral / Beige Interior ,Dual-Zone Manual Climate Control
+    ,Power Windows, Windows. Power Door Locks, Six-Way Power-Adjustable Driver''s
+    Seat, INFOTAINMENT:AM/FM Stereo Radio, Single-Disc CD Player, MP3-Compatible CD
+    Playback , All-season Tire: 225/60R16- Steel wheels with full wheel covers. PREVIEW
+    / PHYSICAL INSPECTION IS STRONGLY RECOMMENDED BEFORE BIDDING.'
+  vin: 2G1WA5EN3A1214746
+  mileage: 127431
+  title_status: null
+  year: 2010
+  make: CHEVROLET
+  model: IMPALA
+  color: BLUE
+  engine: Gas
+  cylinders: '6'
+  transmission: Auto
+  drivetrain: FWD
+  body: Sedans
+  clean_title: false
+  miles_per_year: 7964
+  car_candidate: false
+  watchlist_matches:
+  - Commuter Car (for sister)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 4
+  comp_median: 2550
+  comp_wavg: 2523
+  comp_low: 2288
+  comp_high: 2900
+  comp_30d: 2500
+  comp_90d: 2550
+  comp_span_days: 49
+  comp_note: 4 past closes since Oct 1 · median $2,550
+- platform: musick
+  title: 'Lot #1002: Hi-Point C9 9mm Luger Semi-Auto Pistol, 3.5" Barrel, 8+1 Capacity,
+    Serial P193182 (No Magazine)'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538024/Hi-Point-C9-9mm-Luger-Semi-Auto-Pistol-3-5-Barrel-8-1-Capacity-Serial-P193182-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204715_m.jpg?ts=1794879395
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Firearms
+  description: 'Starting bid $50 · no bids yet · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 4
+  comp_median: 80
+  comp_wavg: 85
+  comp_low: 74
+  comp_high: 96
+  comp_30d: 72
+  comp_90d: 80
+  comp_span_days: 86
+  comp_note: 4 past closes since Aug 24 · median $80
+- platform: musick
+  title: 'Lot #1004: Hi-Point C9 9mm Luger Semi-Auto Pistol, 3.5" Barrel, Serial P10156382,
+    Polymer Frame (No Magazine)'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538027/Hi-Point-C9-9mm-Luger-Semi-Auto-Pistol-3-5-Barrel-Serial-P10156382-Polymer-Frame-No-Magazine?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204740_m.jpg?ts=1794879510
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Firearms
+  description: 'Starting bid $50 · no bids yet · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 6
+  comp_median: 102
+  comp_wavg: 98
+  comp_low: 78
+  comp_high: 128
+  comp_30d: 72
+  comp_90d: 102
+  comp_span_days: 86
+  comp_note: 6 past closes since Aug 24 · median $102
+- platform: musick
+  title: 'Crosman Quest 1000X .177 Cal Air Rifle with Gamo 4x32 Scope, Serial #806X01068'
+  url: https://bid.musickauction.com/lot-details/index/catalog/953/lot/538028/Crosman-Quest-1000X-177-Cal-Air-Rifle-with-Gamo-4x32-Scope-Serial-806X01068?url=%2Fauctions%2Fcatalog%2Fid%2F953
+  image_url: https://bid.musickauction.com/images/lot/3204/3204748_m.jpg?ts=1794879641
+  current_bid: null
+  num_bids: 0
+  close_time: null
+  auction_ends_at: '2026-11-23T20:00:00Z'
+  category: Firearms
+  description: 'Starting bid $5 · no bids yet · Time left: 4d 12h 41m 25s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Rifle (deer)
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: 8
+  comp_median: 20
+  comp_wavg: 23
+  comp_low: 12
+  comp_high: 25
+  comp_30d: 20
+  comp_90d: 20
+  comp_span_days: 100
+  comp_note: 8 past closes since Aug 10 · median $20
+- platform: musick
+  title: MERIDIAN - 959 - BRILLIANT GEMS & RARE FINDS! CARS, HIGH END JEWELRY, GUNS,
+    COINS, COW HIDE RUG, TRAINS, MOOSE ANTLER MOUNT, WATCHES, KNIVES, ANTIQUES AND
+    MORE!!  **DECEMBER 2, 2026 - 6PM**
+  url: https://bid.musickauction.com/auctions/catalog/id/955
+  image_url: https://bid.musickauction.com/images/auction/922_m.jpg?ts=1795047436
+  current_bid: null
+  num_bids: null
+  close_time: Wednesday - Dec 2, 2026  6:00pm
+  category: Vehicles
+  description: Musick Auction event in Meridian, ID
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Old Coins
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-19'
+  comp_n: null
+  comp_median: null
+  comp_wavg: null
+  comp_low: null
+  comp_high: null
+  comp_30d: null
+  comp_90d: null
+  comp_span_days: null
+  comp_note: null
