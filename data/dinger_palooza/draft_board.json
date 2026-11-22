@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-15T20:15:00.918040+00:00",
-  "week_start": "2026-11-16",
-  "week_end": "2026-11-22",
+  "generated_at": "2026-11-22T20:15:19.900729+00:00",
+  "week_start": "2026-11-23",
+  "week_end": "2026-11-29",
   "weights": {
     "schedule": 0.4,
     "pitcher": 0.3,
@@ -1870,7 +1870,7 @@
     {
       "rank": 93,
       "name": "Royce Lewis",
-      "team": "Minnesota Twins",
+      "team": "Los Angeles Dodgers",
       "team_abbr": "MIN",
       "overall_score": 30.0,
       "schedule_score": 0.0,
