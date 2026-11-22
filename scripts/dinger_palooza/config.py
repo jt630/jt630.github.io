@@ -116,7 +116,7 @@ PLAYERS = [
     {"name": "Heliot Ramos",         "team": "New York Yankees",    "team_id": 147, "team_abbr": "NYY",  "mlb_id": 671218, "bats": "R"},
     {"name": "Christian Walker",     "team": "Houston Astros",          "team_id": 117, "team_abbr": "HOU", "mlb_id": 572233, "bats": "R"},
     {"name": "Anthony Volpe",        "team": "New York Yankees",        "team_id": 147, "team_abbr": "NYY", "mlb_id": 683011, "bats": "R"},
-    {"name": "Royce Lewis",          "team": "Minnesota Twins",         "team_id": 142, "team_abbr": "MIN", "mlb_id": 668904, "bats": "R"},
+    {"name": "Royce Lewis",          "team": "Los Angeles Dodgers",         "team_id": 119, "team_abbr": "LAD", "mlb_id": 668904, "bats": "R"},
     {"name": "Carlos Correa",        "team": "Houston Astros",          "team_id": 117, "team_abbr": "HOU", "mlb_id": 621043, "bats": "R"},
     {"name": "Byron Buxton",         "team": "Minnesota Twins",         "team_id": 142, "team_abbr": "MIN", "mlb_id": 621439, "bats": "R"},
     {"name": "Jo Adell",             "team": "Cleveland Guardians",      "team_id": 114, "team_abbr": "CLE", "mlb_id": 666176, "bats": "R"},
