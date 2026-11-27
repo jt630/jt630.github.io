@@ -10,34 +10,34 @@ _Spec doc is a whole-word name match against a fixed doc list — a heuristic, n
 
 | Section | URL | Menu? | Card? | Layout? | Tags? | Spec doc | Inbound links |
 |---|---|---|---|---|---|---|---|
-| about | `/about/` | — | — | — | — | PRICE-DISCOVERY.md, THESIS.md, GODDARD.md, docs/AUCTION-MONITORING.md | 94 |
-| API Map | `/apis/` | ✔ | ✔ | ✔ | — | — | 94 |
-| Auction Watch | `/auctions/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, docs/AUCTION-MONITORING.md | 95 |
-| Backpacking | `/backpacking/` | ✔ | ✔ | — | ✔ | docs/RECREATION-API.md | 98 |
-| Beer Sheet | `/beer-sheet/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 95 |
-| Blog | `/blog/` | ✔ | ✔ | ✔ | ✔ | CUNTY-THEME-GUIDE.md | 99 |
-| Books | `/books/` | ✔ | ✔ | — | — | CUNTY-THEME-GUIDE.md, BEER_SHEET.md, MARKETS.md | 94 |
-| Brain Lab | `/brain/` | ✔ | ✔ | ✔ | — | GODDARD.md | 98 |
-| Calendar | `/calendar/` | ✔ | ✔ | ✔ | — | THESIS.md, BEER_SHEET.md, docs/RECREATION-API.md | 94 |
+| about | `/about/` | — | — | — | — | PRICE-DISCOVERY.md, THESIS.md, GODDARD.md, docs/AUCTION-MONITORING.md | 97 |
+| API Map | `/apis/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Auction Watch | `/auctions/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, docs/AUCTION-MONITORING.md | 98 |
+| Backpacking | `/backpacking/` | ✔ | ✔ | — | ✔ | docs/RECREATION-API.md | 101 |
+| Beer Sheet | `/beer-sheet/` | ✔ | ✔ | ✔ | — | BEER_SHEET.md | 98 |
+| Blog | `/blog/` | ✔ | ✔ | ✔ | ✔ | CUNTY-THEME-GUIDE.md | 102 |
+| Books | `/books/` | ✔ | ✔ | — | — | CUNTY-THEME-GUIDE.md, BEER_SHEET.md, MARKETS.md | 97 |
+| Brain Lab | `/brain/` | ✔ | ✔ | ✔ | — | GODDARD.md | 101 |
+| Calendar | `/calendar/` | ✔ | ✔ | ✔ | — | THESIS.md, BEER_SHEET.md, docs/RECREATION-API.md | 97 |
 | cars | `/cars/` | — | — | ✔ | — | PRICE-DISCOVERY.md, docs/AUCTION-MONITORING.md | 0 |
-| Coasters | `/coasters/` | ✔ | ✔ | ✔ | — | — | 94 |
-| Cooking | `/cooking/` | ✔ | ✔ | — | ✔ | CUNTY-THEME-GUIDE.md | 98 |
-| Dinger Palooza | `/dinger-palooza/` | ✔ | ✔ | ✔ | — | DINGER_PALOOZA.md, BEER_SHEET.md | 101 |
-| Drinks | `/drinks/` | ✔ | ✔ | ✔ | — | — | 94 |
-| Farming | `/farming/` | ✔ | ✔ | — | ✔ | — | 95 |
-| Fishing Report | `/fishing/` | ✔ | ✔ | ✔ | — | — | 94 |
-| The Forester | `/forester/` | ✔ | ✔ | ✔ | — | — | 94 |
-| Gadgets | `/gadgets/` | ✔ | ✔ | — | ✔ | — | 95 |
-| Project Truck | `/garage/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md | 94 |
-| Grandpa's Shop | `/grandpas-shop/` | ✔ | ✔ | ✔ | — | docs/AUCTION-MONITORING.md | 95 |
-| Home Theater | `/home-theater/` | ✔ | ✔ | ✔ | — | — | 94 |
+| Coasters | `/coasters/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Cooking | `/cooking/` | ✔ | ✔ | — | ✔ | CUNTY-THEME-GUIDE.md | 101 |
+| Dinger Palooza | `/dinger-palooza/` | ✔ | ✔ | ✔ | — | DINGER_PALOOZA.md, BEER_SHEET.md | 104 |
+| Drinks | `/drinks/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Farming | `/farming/` | ✔ | ✔ | — | ✔ | — | 98 |
+| Fishing Report | `/fishing/` | ✔ | ✔ | ✔ | — | — | 97 |
+| The Forester | `/forester/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Gadgets | `/gadgets/` | ✔ | ✔ | — | ✔ | — | 99 |
+| Project Truck | `/garage/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md | 97 |
+| Grandpa's Shop | `/grandpas-shop/` | ✔ | ✔ | ✔ | — | docs/AUCTION-MONITORING.md | 98 |
+| Home Theater | `/home-theater/` | ✔ | ✔ | ✔ | — | — | 97 |
 | hubs | `/hubs/` | — | — | ✔ | — | — | 0 |
-| Markets | `/markets/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, THESIS.md, MARKETS.md | 94 |
-| Monkeys | `/monkeys/` | ✔ | ✔ | ✔ | — | MONKEYS.md, PRICE-DISCOVERY.md, MARKETS.md | 94 |
-| Music | `/music/` | ✔ | ✔ | — | — | PRICE-DISCOVERY.md, CUNTY-THEME-GUIDE.md, MARKETS.md | 94 |
-| News | `/news/` | ✔ | ✔ | ✔ | — | — | 94 |
-| Public Health | `/public-health/` | ✔ | ✔ | ✔ | — | — | 94 |
-| Videos | `/videos/` | ✔ | ✔ | ✔ | — | — | 94 |
+| Markets | `/markets/` | ✔ | ✔ | ✔ | — | PRICE-DISCOVERY.md, THESIS.md, MARKETS.md | 97 |
+| Monkeys | `/monkeys/` | ✔ | ✔ | ✔ | — | MONKEYS.md, PRICE-DISCOVERY.md, MARKETS.md | 97 |
+| Music | `/music/` | ✔ | ✔ | — | — | PRICE-DISCOVERY.md, CUNTY-THEME-GUIDE.md, MARKETS.md | 97 |
+| News | `/news/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Public Health | `/public-health/` | ✔ | ✔ | ✔ | — | — | 97 |
+| Videos | `/videos/` | ✔ | ✔ | ✔ | — | — | 97 |
 
 **Possible dead layout duplicates (lookup-order conflict):**
 - layouts/coasters/analysis-list.html vs layouts/coasters/analysis/list.html
