@@ -1,4 +1,4 @@
-generated: '2026-11-26'
+generated: '2026-11-27'
 lots:
 - platform: musick
   title: 'Lot #2009: 2009 US Mint Uncirculated Coin Set, Philadelphia & Denver, 18
@@ -8,9 +8,9 @@ lots:
   current_bid: 7
   num_bids: 3
   close_time: null
-  auction_ends_at: '2026-11-30T19:59:59Z'
+  auction_ends_at: '2026-11-30T20:00:00Z'
   category: Vehicles
-  description: 'Asking bid $8 · Time left: 3d 21h 52m 45s'
+  description: 'Asking bid $8 · Time left: 2d 22h 10m 47s'
   agency: Musick Auction Co. (Meridian, ID)
   condition_text: '2009 US Mint Uncirculated Coin Set from Philadelphia and Denver
     mints, 18 coins including all four Lincoln Bicentennial cents, DC & U.S. Territories
@@ -50,7 +50,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -70,7 +70,7 @@ lots:
   close_time: null
   auction_ends_at: '2026-11-30T20:00:00Z'
   category: Other
-  description: 'Asking bid $8 · Time left: 3d 21h 52m 45s'
+  description: 'Asking bid $8 · Time left: 2d 22h 10m 47s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Old Coins
@@ -85,7 +85,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -105,7 +105,7 @@ lots:
   close_time: null
   auction_ends_at: '2026-11-30T20:00:00Z'
   category: Other
-  description: 'Asking bid $8 · Time left: 3d 21h 52m 45s'
+  description: 'Asking bid $8 · Time left: 2d 22h 10m 47s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Old Coins
@@ -120,7 +120,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -140,7 +140,7 @@ lots:
   close_time: null
   auction_ends_at: '2026-11-30T20:00:00Z'
   category: Jewelry & Valuables
-  description: 'Asking bid $35 · Time left: 3d 21h 52m 45s'
+  description: 'Asking bid $35 · Time left: 2d 22h 10m 47s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Old Coins
@@ -155,7 +155,42 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
+  comp_n: null
+  comp_median: null
+  comp_wavg: null
+  comp_low: null
+  comp_high: null
+  comp_30d: null
+  comp_90d: null
+  comp_span_days: null
+  comp_note: null
+- platform: musick
+  title: 'Lot #1004: Kahr CW380 .380 ACP Pistol, Stainless Polymer, 2.58" Barrel,
+    Serial RJ4825'
+  url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541029/Kahr-CW380-380-ACP-Pistol-Stainless-Polymer-2-58-Barrel-Serial-RJ4825?url=%2Fauctions%2Fcatalog%2Fid%2F957
+  image_url: https://bid.musickauction.com/images/lot/3223/3223649_m.jpg?ts=1795572894
+  current_bid: 50
+  num_bids: 1
+  close_time: null
+  auction_ends_at: '2026-12-01T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $55 · Time left: 3d 22h 8m 46s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Handguns (other)
+  rare: false
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -173,9 +208,9 @@ lots:
   current_bid: 55
   num_bids: 2
   close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
+  auction_ends_at: '2026-12-01T20:00:00Z'
   category: Other
-  description: 'Asking bid $60 · Time left: 4d 21h 50m 34s'
+  description: 'Asking bid $60 · Time left: 3d 22h 8m 46s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Shotgun (birds)
@@ -190,7 +225,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -201,145 +236,6 @@ lots:
   comp_span_days: null
   comp_note: null
 - platform: musick
-  title: Springfield Armory XDm-40 Compact 3.8” .40 S&W Semi-Automatic Pistol, Serial
-    Number MG355477
-  url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541022/Springfield-Armory-XDm-40-Compact-3-8-40-S-W-Semi-Automatic-Pistol-Serial-Number-MG355477?url=%2Fauctions%2Fcatalog%2Fid%2F957
-  image_url: https://bid.musickauction.com/images/lot/3223/3223585_m.jpg?ts=1795572536
-  current_bid: 60
-  num_bids: 3
-  close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $65 · Time left: 4d 21h 50m 34s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  rare: false
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-26'
-  comp_n: 4
-  comp_median: 260
-  comp_wavg: 268
-  comp_low: 251
-  comp_high: 278
-  comp_30d: 260
-  comp_90d: 260
-  comp_span_days: 100
-  comp_note: 4 past closes since Aug 17 · median $260
-- platform: musick
-  title: Glock 21 .45 ACP Pistol, Austria, 4.61" Barrel, Gen 3, SN TSE450
-  url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541024/Glock-21-45-ACP-Pistol-Austria-4-61-Barrel-Gen-3-SN-TSE450?url=%2Fauctions%2Fcatalog%2Fid%2F957
-  image_url: https://bid.musickauction.com/images/lot/3223/3223603_m.jpg?ts=1795572672
-  current_bid: 70
-  num_bids: 5
-  close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $75 · Time left: 4d 21h 50m 34s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  rare: false
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-26'
-  comp_n: 5
-  comp_median: 330
-  comp_wavg: 339
-  comp_low: 320
-  comp_high: 370
-  comp_30d: null
-  comp_90d: 330
-  comp_span_days: 90
-  comp_note: 5 past closes since Aug 28 · median $330
-- platform: musick
-  title: 'Lot #2004: Jimenez Arms J.A. NINE 9mm Semi-Automatic Pistol, 12+1 Capacity,
-    Serial 321053, Black Finish'
-  url: https://bid.musickauction.com/lot-details/index/catalog/956/lot/540260/Jimenez-Arms-J-A-NINE-9mm-Semi-Automatic-Pistol-12-1-Capacity-Serial-321053-Black-Finish?url=%2Fauctions%2Fcatalog%2Fid%2F956
-  image_url: https://bid.musickauction.com/images/lot/3218/3218400_m.jpg?ts=1795484908
-  current_bid: 75
-  num_bids: 6
-  close_time: null
-  auction_ends_at: '2026-11-30T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $80 · Time left: 3d 21h 52m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  rare: false
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-26'
-  comp_n: 4
-  comp_median: 80
-  comp_wavg: 79
-  comp_low: 59
-  comp_high: 102
-  comp_30d: 60
-  comp_90d: 60
-  comp_span_days: 114
-  comp_note: 4 past closes since Aug 3 · median $80
-- platform: musick
-  title: 'Lot #2001: Taurus PT 638 PRO SA .380 ACP Semi-Automatic Pistol, 15-Round
-    Capacity, 3.2" Barrel'
-  url: https://bid.musickauction.com/lot-details/index/catalog/956/lot/540257/Taurus-PT-638-PRO-SA-380-ACP-Semi-Automatic-Pistol-15-Round-Capacity-3-2-Barrel?url=%2Fauctions%2Fcatalog%2Fid%2F956
-  image_url: https://bid.musickauction.com/images/lot/3218/3218373_m.jpg?ts=1795484796
-  current_bid: 105
-  num_bids: 11
-  close_time: null
-  auction_ends_at: '2026-11-30T20:00:00Z'
-  category: Firearms
-  description: 'Asking bid $110 · Time left: 3d 21h 52m 45s'
-  agency: Musick Auction Co. (Meridian, ID)
-  watchlist_matches:
-  - Handguns (other)
-  rare: false
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-26'
-  comp_n: 6
-  comp_median: 135
-  comp_wavg: 160
-  comp_low: 131
-  comp_high: 154
-  comp_30d: null
-  comp_90d: 135
-  comp_span_days: 65
-  comp_note: 6 past closes since Sep 21 · median $135
-- platform: musick
   title: 'Lot #2003: Ruger LCP .380 ACP Semi-Auto Pistol, Black, 2.75" Barrel, Includes
     Magazine, SN: 371430569'
   url: https://bid.musickauction.com/lot-details/index/catalog/956/lot/540259/Ruger-LCP-380-ACP-Semi-Auto-Pistol-Black-2-75-Barrel-Includes-Magazine-SN-371430569?url=%2Fauctions%2Fcatalog%2Fid%2F956
@@ -349,7 +245,7 @@ lots:
   close_time: null
   auction_ends_at: '2026-11-30T20:00:00Z'
   category: Firearms
-  description: 'Asking bid $110 · Time left: 3d 21h 52m 45s'
+  description: 'Asking bid $110 · Time left: 2d 22h 10m 47s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -364,16 +260,51 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 7
   comp_median: 145
   comp_wavg: 134
   comp_low: 125
   comp_high: 170
   comp_30d: 110
-  comp_90d: 140
-  comp_span_days: 118
+  comp_90d: 125
+  comp_span_days: 119
   comp_note: 7 past closes since Jul 31 · median $145
+- platform: musick
+  title: 'Lot #2004: Jimenez Arms J.A. NINE 9mm Semi-Automatic Pistol, 12+1 Capacity,
+    Serial 321053, Black Finish'
+  url: https://bid.musickauction.com/lot-details/index/catalog/956/lot/540260/Jimenez-Arms-J-A-NINE-9mm-Semi-Automatic-Pistol-12-1-Capacity-Serial-321053-Black-Finish?url=%2Fauctions%2Fcatalog%2Fid%2F956
+  image_url: https://bid.musickauction.com/images/lot/3218/3218400_m.jpg?ts=1795484908
+  current_bid: 105
+  num_bids: 12
+  close_time: null
+  auction_ends_at: '2026-11-30T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $110 · Time left: 2d 22h 10m 47s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  rare: false
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-27'
+  comp_n: 4
+  comp_median: 80
+  comp_wavg: 79
+  comp_low: 59
+  comp_high: 102
+  comp_30d: 60
+  comp_90d: 60
+  comp_span_days: 115
+  comp_note: 4 past closes since Aug 3 · median $80
 - platform: musick
   title: 'Lot #1002: SIG Sauer P320 Full-Size 9mm Pistol, 4.7" Barrel'
   url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541025/SIG-Sauer-P320-Full-Size-9mm-Pistol-4-7-Barrel?url=%2Fauctions%2Fcatalog%2Fid%2F957
@@ -381,9 +312,9 @@ lots:
   current_bid: 105
   num_bids: 4
   close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
+  auction_ends_at: '2026-12-01T20:00:00Z'
   category: Firearms
-  description: 'Asking bid $110 · Time left: 4d 21h 50m 34s'
+  description: 'Asking bid $110 · Time left: 3d 22h 8m 46s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Handguns (other)
@@ -398,61 +329,27 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 14
   comp_median: 375
   comp_wavg: 418
   comp_low: 312
   comp_high: 445
   comp_30d: 410
-  comp_90d: 430
-  comp_span_days: 118
+  comp_90d: 435
+  comp_span_days: 119
   comp_note: 14 past closes since Jul 31 · median $375
 - platform: musick
-  title: 'Lot #1000: Ruger SP101 .357 Magnum Revolver, 2.25" Barrel, Stainless Steel'
-  url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541021/Ruger-SP101-357-Magnum-Revolver-2-25-Barrel-Stainless-Steel?url=%2Fauctions%2Fcatalog%2Fid%2F957
-  image_url: https://bid.musickauction.com/images/lot/3223/3223576_m.jpg?ts=1795572529
-  current_bid: 150
-  num_bids: 8
-  close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
-  category: Firearms
-  description: 'Asking bid $155 · Time left: 4d 21h 50m 34s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  rare: false
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-26'
-  comp_n: 2
-  comp_median: 575
-  comp_wavg: 610
-  comp_low: 512
-  comp_high: 638
-  comp_30d: 700
-  comp_90d: 575
-  comp_span_days: 57
-  comp_note: 2 past closes since Sep 30 · median $575
-- platform: musick
-  title: 'Lot #2000: Ruger P95 9mm Semi-Automatic Pistol, Stainless Slide, Polymer
-    Frame, 15-Round Capacity'
-  url: https://bid.musickauction.com/lot-details/index/catalog/956/lot/540256/Ruger-P95-9mm-Semi-Automatic-Pistol-Stainless-Slide-Polymer-Frame-15-Round-Capacity?url=%2Fauctions%2Fcatalog%2Fid%2F956
-  image_url: https://bid.musickauction.com/images/lot/3218/3218363_m.jpg?ts=1795484789
-  current_bid: 165
-  num_bids: 18
+  title: 'Lot #2001: Taurus PT 638 PRO SA .380 ACP Semi-Automatic Pistol, 15-Round
+    Capacity, 3.2" Barrel'
+  url: https://bid.musickauction.com/lot-details/index/catalog/956/lot/540257/Taurus-PT-638-PRO-SA-380-ACP-Semi-Automatic-Pistol-15-Round-Capacity-3-2-Barrel?url=%2Fauctions%2Fcatalog%2Fid%2F956
+  image_url: https://bid.musickauction.com/images/lot/3218/3218373_m.jpg?ts=1795484796
+  current_bid: 120
+  num_bids: 14
   close_time: null
   auction_ends_at: '2026-11-30T20:00:00Z'
   category: Firearms
-  description: 'Asking bid $170 · Time left: 3d 21h 52m 45s'
+  description: 'Asking bid $125 · Time left: 2d 22h 10m 47s'
   agency: Musick Auction Co. (Meridian, ID)
   watchlist_matches:
   - Handguns (other)
@@ -467,15 +364,153 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
+  comp_n: 6
+  comp_median: 135
+  comp_wavg: 160
+  comp_low: 131
+  comp_high: 154
+  comp_30d: null
+  comp_90d: 135
+  comp_span_days: 66
+  comp_note: 6 past closes since Sep 21 · median $135
+- platform: musick
+  title: Glock 21 .45 ACP Pistol, Austria, 4.61" Barrel, Gen 3, SN TSE450
+  url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541024/Glock-21-45-ACP-Pistol-Austria-4-61-Barrel-Gen-3-SN-TSE450?url=%2Fauctions%2Fcatalog%2Fid%2F957
+  image_url: https://bid.musickauction.com/images/lot/3223/3223603_m.jpg?ts=1795572672
+  current_bid: 130
+  num_bids: 11
+  close_time: null
+  auction_ends_at: '2026-12-01T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $135 · Time left: 3d 22h 8m 46s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Handguns (other)
+  rare: false
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-27'
+  comp_n: 5
+  comp_median: 330
+  comp_wavg: 339
+  comp_low: 320
+  comp_high: 370
+  comp_30d: null
+  comp_90d: 325
+  comp_span_days: 91
+  comp_note: 5 past closes since Aug 28 · median $330
+- platform: musick
+  title: Springfield Armory XDm-40 Compact 3.8” .40 S&W Semi-Automatic Pistol, Serial
+    Number MG355477
+  url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541022/Springfield-Armory-XDm-40-Compact-3-8-40-S-W-Semi-Automatic-Pistol-Serial-Number-MG355477?url=%2Fauctions%2Fcatalog%2Fid%2F957
+  image_url: https://bid.musickauction.com/images/lot/3223/3223585_m.jpg?ts=1795572536
+  current_bid: 155
+  num_bids: 22
+  close_time: null
+  auction_ends_at: '2026-12-01T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $160 · Time left: 3d 22h 8m 46s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Handguns (other)
+  rare: false
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-27'
+  comp_n: 4
+  comp_median: 260
+  comp_wavg: 268
+  comp_low: 251
+  comp_high: 278
+  comp_30d: 260
+  comp_90d: 260
+  comp_span_days: 101
+  comp_note: 4 past closes since Aug 17 · median $260
+- platform: musick
+  title: 'Lot #1000: Ruger SP101 .357 Magnum Revolver, 2.25" Barrel, Stainless Steel'
+  url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541021/Ruger-SP101-357-Magnum-Revolver-2-25-Barrel-Stainless-Steel?url=%2Fauctions%2Fcatalog%2Fid%2F957
+  image_url: https://bid.musickauction.com/images/lot/3223/3223576_m.jpg?ts=1795572529
+  current_bid: 165
+  num_bids: 11
+  close_time: null
+  auction_ends_at: '2026-12-01T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $170 · Time left: 3d 22h 8m 46s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Handguns (other)
+  rare: false
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-27'
+  comp_n: 2
+  comp_median: 575
+  comp_wavg: 610
+  comp_low: 512
+  comp_high: 638
+  comp_30d: 700
+  comp_90d: 575
+  comp_span_days: 58
+  comp_note: 2 past closes since Sep 30 · median $575
+- platform: musick
+  title: 'Lot #2000: Ruger P95 9mm Semi-Automatic Pistol, Stainless Slide, Polymer
+    Frame, 15-Round Capacity'
+  url: https://bid.musickauction.com/lot-details/index/catalog/956/lot/540256/Ruger-P95-9mm-Semi-Automatic-Pistol-Stainless-Slide-Polymer-Frame-15-Round-Capacity?url=%2Fauctions%2Fcatalog%2Fid%2F956
+  image_url: https://bid.musickauction.com/images/lot/3218/3218363_m.jpg?ts=1795484789
+  current_bid: 175
+  num_bids: 20
+  close_time: null
+  auction_ends_at: '2026-11-30T20:00:00Z'
+  category: Firearms
+  description: 'Asking bid $180 · Time left: 2d 22h 10m 47s'
+  agency: Musick Auction Co. (Meridian, ID)
+  watchlist_matches:
+  - Handguns (other)
+  rare: false
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-27'
   comp_n: 26
   comp_median: 202
   comp_wavg: 220
   comp_low: 171
   comp_high: 258
   comp_30d: 172
-  comp_90d: 198
-  comp_span_days: 118
+  comp_90d: 195
+  comp_span_days: 119
   comp_note: 26 past closes since Jul 31 · median $202
 - platform: musick
   title: 'Lot #6001: Ithaca 4E Break Action Shotgun, Serial #257814, High Grade Trap,
@@ -485,9 +520,9 @@ lots:
   current_bid: 390
   num_bids: 25
   close_time: null
-  auction_ends_at: '2026-12-01T00:59:59Z'
+  auction_ends_at: '2026-12-01T01:00:00Z'
   category: Firearms
-  description: 'Asking bid $400 · Time left: 4d 2h 51m 48s'
+  description: 'Asking bid $400 · Time left: 3d 3h 9m 55s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Shotgun (birds)
@@ -502,7 +537,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -519,9 +554,9 @@ lots:
   current_bid: 410
   num_bids: 22
   close_time: null
-  auction_ends_at: '2026-12-01T00:59:59Z'
+  auction_ends_at: '2026-12-01T01:00:00Z'
   category: Firearms
-  description: 'Asking bid $420 · Time left: 4d 2h 51m 48s'
+  description: 'Asking bid $420 · Time left: 3d 3h 9m 55s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Handguns (other)
@@ -536,7 +571,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 19
   comp_median: 330
   comp_wavg: 429
@@ -544,7 +579,7 @@ lots:
   comp_high: 440
   comp_30d: 330
   comp_90d: 330
-  comp_span_days: 118
+  comp_span_days: 119
   comp_note: 19 past closes since Jul 31 · median $330
 - platform: musick
   title: 'Lot #217: 2008 DODGE CHARGER - REAR BENCH SEATING!'
@@ -555,7 +590,7 @@ lots:
   close_time: null
   auction_ends_at: '2026-11-30T20:00:00Z'
   category: Vehicles
-  description: 'Asking bid $550 · Time left: 3d 21h 52m 45s'
+  description: 'Asking bid $550 · Time left: 2d 22h 10m 47s'
   agency: Musick Auction Co. (Meridian, ID)
   condition_text: '5-MILE TEST DRIVE: Starts Drives & Shifts, 3.5 L, 6 Cylinders.
     Rear-Wheel Drive (RWD), Dark Gray / Black Cloth Seating Surfaces, Front Bucket
@@ -591,26 +626,26 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 10
   comp_median: 1925
   comp_wavg: 2077
   comp_low: 1688
   comp_high: 2450
-  comp_30d: 1650
+  comp_30d: 1525
   comp_90d: 1925
-  comp_span_days: 71
+  comp_span_days: 72
   comp_note: 10 past closes since Sep 15 · median $1,925
 - platform: musick
   title: 'Lot #219: 2007 CHEVROLET MALIBU - SUNROOF!'
   url: https://bid.musickauction.com/lot-details/index/catalog/956/lot/540247/2007-CHEVROLET-MALIBU-SUNROOF?url=%2Fauctions%2Fcatalog%2Fid%2F956
   image_url: https://bid.musickauction.com/images/lot/3222/3222625_m.jpg?ts=1795538069
-  current_bid: 500
-  num_bids: 1
+  current_bid: 700
+  num_bids: 5
   close_time: null
-  auction_ends_at: '2026-11-30T19:59:59Z'
+  auction_ends_at: '2026-11-30T20:00:00Z'
   category: Vehicles
-  description: 'Asking bid $550 · Time left: 3d 21h 52m 45s'
+  description: 'Asking bid $750 · Time left: 2d 22h 10m 47s'
   agency: Musick Auction Co. (Meridian, ID)
   condition_text: '5-MILE TEST DRIVE: Starts, Drives & Shifts , 3.5L V6 – FWD – Front-Wheel
     Drive (FWD) , Black Leather Interior, Factory AM/FM Radio with CD Player , Power
@@ -646,7 +681,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 2
   comp_median: 1900
   comp_wavg: 1618
@@ -654,42 +689,8 @@ lots:
   comp_high: 2250
   comp_30d: 1200
   comp_90d: 1900
-  comp_span_days: 37
+  comp_span_days: 38
   comp_note: 2 past closes since Oct 19 · median $1,900
-- platform: musick
-  title: 'Lot #622: 2005 HARLEY DAVIDSON ROAD GLIDE'
-  url: https://bid.musickauction.com/lot-details/index/catalog/952/lot/537258/2005-HARLEY-DAVIDSON-ROAD-GLIDE?url=%2Fauctions%2Fcatalog%2Fid%2F952
-  image_url: https://bid.musickauction.com/images/lot/3199/3199312_m.jpg?ts=1794533925
-  current_bid: 750
-  num_bids: 6
-  close_time: null
-  auction_ends_at: '2026-12-01T00:59:59Z'
-  category: Other
-  description: 'Asking bid $800 · Time left: 4d 2h 51m 48s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Motorcycle
-  rare: false
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-26'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
 - platform: musick
   title: 'Lot #6000: Ruger No. 1 Single-Shot .222 Rem Rifle with S.N. Lyman Junior
     Targetspot Scope, Walnut Stock, Serial 6877'
@@ -698,9 +699,9 @@ lots:
   current_bid: 1100
   num_bids: 32
   close_time: null
-  auction_ends_at: '2026-12-01T00:59:59Z'
+  auction_ends_at: '2026-12-01T01:00:00Z'
   category: Firearms
-  description: 'Asking bid $1,150 · Time left: 4d 2h 51m 48s'
+  description: 'Asking bid $1,150 · Time left: 3d 3h 9m 55s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Rifle (deer)
@@ -715,7 +716,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 8
   comp_median: 435
   comp_wavg: 435
@@ -723,18 +724,52 @@ lots:
   comp_high: 738
   comp_30d: 250
   comp_90d: 320
-  comp_span_days: 118
+  comp_span_days: 119
   comp_note: 8 past closes since Jul 31 · median $435
+- platform: musick
+  title: 'Lot #622: 2005 HARLEY DAVIDSON ROAD GLIDE'
+  url: https://bid.musickauction.com/lot-details/index/catalog/952/lot/537258/2005-HARLEY-DAVIDSON-ROAD-GLIDE?url=%2Fauctions%2Fcatalog%2Fid%2F952
+  image_url: https://bid.musickauction.com/images/lot/3199/3199312_m.jpg?ts=1794533925
+  current_bid: 1350
+  num_bids: 12
+  close_time: null
+  auction_ends_at: '2026-12-01T01:00:00Z'
+  category: Other
+  description: 'Asking bid $1,400 · Time left: 3d 3h 9m 55s'
+  agency: Musick Auction Co. (Nampa, ID)
+  watchlist_matches:
+  - Motorcycle
+  rare: false
+  estimated_value_low: null
+  estimated_value_high: null
+  estimated_value_mid: null
+  deal_score: null
+  deal_pct: null
+  ai_note: null
+  value_source: null
+  ebay_n: null
+  ebay_median: null
+  flagged: false
+  fetched_at: '2026-11-27'
+  comp_n: null
+  comp_median: null
+  comp_wavg: null
+  comp_low: null
+  comp_high: null
+  comp_30d: null
+  comp_90d: null
+  comp_span_days: null
+  comp_note: null
 - platform: musick
   title: 'Lot #623: 2025 KAWASAKI KX250'
   url: https://bid.musickauction.com/lot-details/index/catalog/952/lot/537259/2025-KAWASAKI-KX250?url=%2Fauctions%2Fcatalog%2Fid%2F952
   image_url: https://bid.musickauction.com/images/lot/3199/3199321_m.jpg?ts=1794533931
-  current_bid: 1400
-  num_bids: 19
+  current_bid: 2000
+  num_bids: 31
   close_time: null
-  auction_ends_at: '2026-12-01T00:59:59Z'
+  auction_ends_at: '2026-12-01T01:00:00Z'
   category: Other
-  description: 'Asking bid $1,450 · Time left: 4d 2h 51m 48s'
+  description: 'Asking bid $2,050 · Time left: 3d 3h 9m 55s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Japanese Dirt Bike
@@ -749,7 +784,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -763,12 +798,12 @@ lots:
   title: 'Lot #616: 2009 POLARIS RZR 800: GOOD TIRES - SEATS 2!'
   url: https://bid.musickauction.com/lot-details/index/catalog/952/lot/537252/2009-POLARIS-RZR-800-GOOD-TIRES-SEATS-2?url=%2Fauctions%2Fcatalog%2Fid%2F952
   image_url: https://bid.musickauction.com/images/lot/3199/3199228_m.jpg?ts=1794533550
-  current_bid: 2600
-  num_bids: 33
+  current_bid: 2700
+  num_bids: 34
   close_time: null
-  auction_ends_at: '2026-12-01T00:59:59Z'
+  auction_ends_at: '2026-12-01T01:00:00Z'
   category: Other
-  description: 'Asking bid $2,700 · Time left: 4d 2h 51m 48s'
+  description: 'Asking bid $2,800 · Time left: 3d 3h 9m 55s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - ATV/UTV
@@ -783,7 +818,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -800,9 +835,9 @@ lots:
   current_bid: 3000
   num_bids: 18
   close_time: null
-  auction_ends_at: '2026-12-01T00:59:59Z'
+  auction_ends_at: '2026-12-01T01:00:00Z'
   category: Other
-  description: 'Asking bid $3,100 · Time left: 4d 2h 51m 48s'
+  description: 'Asking bid $3,100 · Time left: 3d 3h 9m 55s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Little Camper
@@ -817,7 +852,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -834,9 +869,9 @@ lots:
   current_bid: null
   num_bids: 0
   close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
+  auction_ends_at: '2026-12-01T20:00:00Z'
   category: Vehicles
-  description: 'Starting bid $500 · no bids yet · Time left: 4d 21h 50m 34s'
+  description: 'Starting bid $500 · no bids yet · Time left: 3d 22h 8m 46s'
   agency: Musick Auction Co. (Nampa, ID)
   condition_text: '5-MILE TEST DRIVE: Runs, Drives, & Shifts Correctly. 2.5L 4 Cylinder,
     FWD, Automatic Transmission, Grey Cloth Interior, Good Tires, Freshly Detailed!'
@@ -868,7 +903,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 2
   comp_median: 3150
   comp_wavg: 3770
@@ -876,7 +911,7 @@ lots:
   comp_high: 3825
   comp_30d: 4500
   comp_90d: 3150
-  comp_span_days: 34
+  comp_span_days: 35
   comp_note: 2 past closes since Oct 23 · median $3,150
 - platform: musick
   title: 'Lot #1001: Taurus GX4 XL 9mm Semi-Auto Pistol, Striker-Fired, GC62480, Polymer
@@ -886,9 +921,9 @@ lots:
   current_bid: null
   num_bids: 0
   close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
+  auction_ends_at: '2026-12-01T20:00:00Z'
   category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 4d 21h 50m 34s'
+  description: 'Starting bid $50 · no bids yet · Time left: 3d 22h 8m 46s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Handguns (other)
@@ -903,15 +938,15 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 24
   comp_median: 188
   comp_wavg: 216
   comp_low: 160
   comp_high: 252
   comp_30d: 170
-  comp_90d: 180
-  comp_span_days: 98
+  comp_90d: 175
+  comp_span_days: 99
   comp_note: 24 past closes since Aug 20 · median $188
 - platform: musick
   title: FIE E28 .25 ACP Semi-Auto Pistol, Wood Grips, Serial DK29936
@@ -920,9 +955,9 @@ lots:
   current_bid: null
   num_bids: 0
   close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
+  auction_ends_at: '2026-12-01T20:00:00Z'
   category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 4d 21h 50m 34s'
+  description: 'Starting bid $50 · no bids yet · Time left: 3d 22h 8m 46s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Handguns (other)
@@ -937,7 +972,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 1
   comp_median: 140
   comp_wavg: 140
@@ -945,7 +980,7 @@ lots:
   comp_high: 140
   comp_30d: null
   comp_90d: 140
-  comp_span_days: 76
+  comp_span_days: 77
   comp_note: 1 past close since Sep 11 · median $140
 - platform: musick
   title: Stoeger STR-9C 9mm Pistol, 3.8" Barrel, Polymer Frame, Serial T6429-21S07382
@@ -954,9 +989,9 @@ lots:
   current_bid: null
   num_bids: 0
   close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
+  auction_ends_at: '2026-12-01T20:00:00Z'
   category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 4d 21h 50m 34s'
+  description: 'Starting bid $50 · no bids yet · Time left: 3d 22h 8m 46s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Handguns (other)
@@ -971,42 +1006,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
-  comp_n: null
-  comp_median: null
-  comp_wavg: null
-  comp_low: null
-  comp_high: null
-  comp_30d: null
-  comp_90d: null
-  comp_span_days: null
-  comp_note: null
-- platform: musick
-  title: 'Lot #1004: Kahr CW380 .380 ACP Pistol, Stainless Polymer, 2.58" Barrel,
-    Serial RJ4825'
-  url: https://bid.musickauction.com/lot-details/index/catalog/957/lot/541029/Kahr-CW380-380-ACP-Pistol-Stainless-Polymer-2-58-Barrel-Serial-RJ4825?url=%2Fauctions%2Fcatalog%2Fid%2F957
-  image_url: https://bid.musickauction.com/images/lot/3223/3223649_m.jpg?ts=1795572894
-  current_bid: null
-  num_bids: 0
-  close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
-  category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 4d 21h 50m 34s'
-  agency: Musick Auction Co. (Nampa, ID)
-  watchlist_matches:
-  - Handguns (other)
-  rare: false
-  estimated_value_low: null
-  estimated_value_high: null
-  estimated_value_mid: null
-  deal_score: null
-  deal_pct: null
-  ai_note: null
-  value_source: null
-  ebay_n: null
-  ebay_median: null
-  flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
@@ -1023,9 +1023,9 @@ lots:
   current_bid: null
   num_bids: 0
   close_time: null
-  auction_ends_at: '2026-12-01T19:59:59Z'
+  auction_ends_at: '2026-12-01T20:00:00Z'
   category: Firearms
-  description: 'Starting bid $50 · no bids yet · Time left: 4d 21h 50m 34s'
+  description: 'Starting bid $50 · no bids yet · Time left: 3d 22h 8m 46s'
   agency: Musick Auction Co. (Nampa, ID)
   watchlist_matches:
   - Handguns (other)
@@ -1040,7 +1040,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: 4
   comp_median: 80
   comp_wavg: 85
@@ -1048,7 +1048,7 @@ lots:
   comp_high: 96
   comp_30d: 72
   comp_90d: 75
-  comp_span_days: 93
+  comp_span_days: 94
   comp_note: 4 past closes since Aug 24 · median $80
 - platform: musick
   title: MERIDIAN - 959 - BRILLIANT GEMS & RARE FINDS! CARS, HIGH END JEWELRY, GUNS,
@@ -1075,7 +1075,7 @@ lots:
   ebay_n: null
   ebay_median: null
   flagged: false
-  fetched_at: '2026-11-26'
+  fetched_at: '2026-11-27'
   comp_n: null
   comp_median: null
   comp_wavg: null
